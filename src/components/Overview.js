@@ -19,49 +19,54 @@ class Overview extends Component {
 
 	render() {
 	    return (
-	    	<div className="Overview-content">
-		      	<h1>Overview</h1>
-		      	<form className="section" onSubmit={this.setIpAndPort.bind(this)}>
-					<label>
-						IP:
-						<input type="text" name="ip" />
-					</label>
-					<label>
-						Port:
-						<input type="text" name="port" />
-					</label>
-					<input type="submit" value="Save" />
-				</form>
-				<div className="section">
-					Parameter received from Pod: {this.state.parameter}
+		    	<div className="Overview-content">
+			      	<h1>Overview</h1>
+			      	<form className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
+			      		<div className="form-group col-sm-4">
+							<label>
+								IP:
+								<input className="form-control" type="text" name="ip" />
+							</label>
+							<label>
+								Port:
+								<input className="form-control" type="text" name="port" />
+							</label>
+							<input className="btn btn-primary" type="submit" value="Save" />
+						</div>
+					</form>
+					<div className="section">
+						Parameter received from Pod: {this.state.parameter}
+					</div>
+					<form className="section col-sm-12" onSubmit={this.sendParameter.bind(this)}>
+			      		<div className="form-group col-sm-4">
+							<label>Parameter</label>
+							<label>
+								Index:
+								<input className="form-control" type="text" name="parameter" />
+							</label>
+							<label>
+								Type:
+								<input className="form-control" type="text" name="type" />
+							</label>
+							<label>
+								Value:
+								<input className="form-control" type="text" name="type" />
+							</label>
+							<input className="btn btn-primary" type="submit" value="Send parameter" />
+						</div>
+					</form>
+					<div className="col-sm-12">
+						<div className="section col-sm-4">
+							Data logging: 
+							<textarea className="logging-field" value={this.state.log}></textarea>
+						</div>
+					</div>
+			 {/*1. Set source IP and Port numbers
+				2. Rx and display one value
+				3. A button to set a value
+				4. A text box or similar to change a value
+				5. Data logging.*/}
 				</div>
-				<form className="section" onSubmit={this.sendParameter.bind(this)}>
-					<label>Parameter</label>
-					<label>
-						Index:
-						<input type="text" name="parameter" />
-					</label>
-					<label>
-						Type:
-						<input type="text" name="type" />
-					</label>
-					<label>
-						Value:
-						<input type="text" name="type" />
-					</label>
-					<input type="submit" value="Send parameter" />
-				</form>
-				<div className="section">
-					Data logging: 
-					<textarea className="logging-field" value={this.state.log}></textarea>
-				</div>
-		 {/*1. Set source IP and Port numbers
-			2. Rx and display one value
-			3. A button to set a value
-			4. A text box or similar to change a value
-			5. Data logging.*/}
-			</div>
-
 	    );
 	}
 }

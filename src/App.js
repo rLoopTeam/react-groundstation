@@ -11,10 +11,10 @@ class App extends Component {
   console.log(MainLayout)
     return (
       <Router history={browserHistory}>
-        <Route path="/" component={MainLayout}>
-          <IndexRoute component={Overview} />
-          <Route path="dashboard" component={Overview} />
-        </Route>
+          <Route path="/" component={MainLayout}>
+            <IndexRoute component={Overview} />
+            <Route path="dashboard" component={Overview} />
+          </Route>
       </Router>
     );
   }
