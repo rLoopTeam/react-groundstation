@@ -15,4 +15,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
+app.post('/', function(req, res){
+    console.log('POST /');
+    console.dir(req.body);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('thanks');
+});
+
 module.exports = app;

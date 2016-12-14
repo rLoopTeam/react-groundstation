@@ -21,7 +21,7 @@ class Overview extends Component {
 	    return (
 		    	<div className="Overview-content">
 			      	<h1>Overview</h1>
-			      	<form className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
+			      	<form action="#" method="post" className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
 			      		<div className="form-group col-sm-4">
 							<label>
 								IP:
