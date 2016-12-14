@@ -13,6 +13,10 @@ class App extends Component {
             <IndexRoute component={Overview} />
             <Route path="dashboard" component={Overview} />
           </Route>
+          <Route path="/websocketTest" component={MainLayout}>
+            <IndexRoute component={Overview} />
+            <Route path="dashboard" component={Overview} />
+          </Route>
       </Router>
     );
   }

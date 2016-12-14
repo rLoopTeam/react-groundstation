@@ -90,7 +90,7 @@ class Overview extends Component {
 			      	<form className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
 			      		<div className="form-group col-sm-4">
 							<label>
-								IP:
+								
 								<input className="form-control" type="text" name="ip" />
 							</label>
 							<label>

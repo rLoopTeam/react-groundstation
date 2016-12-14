@@ -17,7 +17,8 @@
   },
   "scripts": {
     "bstart": "npm run build && nodemon server",
-    "start": "nodemon server",
+    "start": "react-scripts start",
+    "clientStart": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
