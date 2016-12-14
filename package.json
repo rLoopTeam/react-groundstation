@@ -6,13 +6,18 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.11.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
-    "react-rt-chart": "^1.1.4"
+    "react-rt-chart": "^1.1.4",
+    "ws": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "bstart": "npm run build && nodemon server",
+    "start": "nodemon server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -52,10 +52,32 @@ class Overview extends Component {
 	}
 	sendParameter(e, index, type, value) {
 		e.preventDefault();
+		// $.ajax({
+		//     type: 'POST',
+		//     url: '/sendParameter',
+		//     data: data
+		//   })
+		//   .done(function(data) {
+		//     self.clearForm()
+		//   })
+		//   .fail(function(jqXhr) {
+		//     console.log('failed to register');
+		//   });
 		console.log("Parameter sent")
 	}
 	setIpAndPort(e, ip, port) {
 		e.preventDefault();
+		// $.ajax({
+		//     type: 'POST',
+		//     url: '/set',
+		//     data: data
+		//   })
+		//   .done(function(data) {
+		//     self.clearForm()
+		//   })
+		//   .fail(function(jqXhr) {
+		//     console.log('failed to register');
+		//   });
 		console.log("IP and port set")
 	}
 
