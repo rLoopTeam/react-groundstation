@@ -15,11 +15,18 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
 
-app.post('/', function(req, res){
+app.post('/sendParameter', function(req, res){
     console.log('POST /');
     console.dir(req.body);
     res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end('thanks');
+    res.end('sendParameter');
+});
+
+app.post('/setIpAndPort', function(req, res){
+    console.log('POST /');
+    console.dir(req.body);
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('setIpAndPort');
 });
 
 module.exports = app;

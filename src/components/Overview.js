@@ -10,10 +10,32 @@ class Overview extends Component {
 	}
 	sendParameter(e, index, type, value) {
 		e.preventDefault();
+		// $.ajax({
+		//     type: 'POST',
+		//     url: '/sendParameter',
+		//     data: data
+		//   })
+		//   .done(function(data) {
+		//     self.clearForm()
+		//   })
+		//   .fail(function(jqXhr) {
+		//     console.log('failed to register');
+		//   });
 		console.log("Parameter sent")
 	}
 	setIpAndPort(e, ip, port) {
 		e.preventDefault();
+		// $.ajax({
+		//     type: 'POST',
+		//     url: '/set',
+		//     data: data
+		//   })
+		//   .done(function(data) {
+		//     self.clearForm()
+		//   })
+		//   .fail(function(jqXhr) {
+		//     console.log('failed to register');
+		//   });
 		console.log("IP and port set")
 	}
 
@@ -21,7 +43,7 @@ class Overview extends Component {
 	    return (
 		    	<div className="Overview-content">
 			      	<h1>Overview</h1>
-			      	<form action="#" method="post" className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
+			      	<form className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
 			      		<div className="form-group col-sm-4">
 							<label>
 								IP:
