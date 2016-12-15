@@ -8,7 +8,9 @@ class Overview extends Component {
 		this.state = {
 			ip: '127.0.0.1',
 			port: 8080,
-			parameter: 123.4,
+			parameterIndex: 0,
+			parameterType: 0,
+			parameterValue: 0,
 			log:"some large amount of text"
 		}
 	}
@@ -20,10 +22,10 @@ class Overview extends Component {
 	    });
 	}
 
-	sendParameter(e, index, type, value) {
+	sendParameter(e) {
 		e.preventDefault();
 		
-		socket.emit('sendParameter', { index: index, type: type, value: value });
+		socket.emit('sendParameter', { index: this.state.parameterIndex, type: this.state.parameterType, value: this.state.parameterValue });
 		// $.ajax({
 		//     type: 'POST',
 		//     url: '/sendParameter',
@@ -55,15 +57,23 @@ class Overview extends Component {
 	}
 
 	handleIpChange(e){
-		console.log(this.state)
 		this.setState({ip: e.target.value})
-		console.log(this.state)
 	}
 
 	handlePortChange(e){
-		console.log(this.state)
 		this.setState({port: e.target.value})
-		console.log(this.state)
+	}
+
+	handleParameterIndexChange(e){
+		this.setState({parameterIndex: e.target.value})
+	}
+
+	handleParameterTypeChange(e){
+		this.setState({parameterType: e.target.value})
+	}
+
+	handleParameterValueChange(e){
+		this.setState({parameterValue: e.target.value})
 	}
 
 	render() {
@@ -91,15 +101,15 @@ class Overview extends Component {
 							<label>Parameter</label>
 							<label>
 								Index:
-								<input className="form-control" type="text" name="parameter" />
+								<input className="form-control" type="text" name="index" onChange={this.handleParameterIndexChange.bind(this)} />
 							</label>
 							<label>
 								Type:
-								<input className="form-control" type="text" name="type" />
+								<input className="form-control" type="text" name="type" onChange={this.handleParameterTypeChange.bind(this)} />
 							</label>
 							<label>
 								Value:
-								<input className="form-control" type="text" name="type" />
+								<input className="form-control" type="text" name="type" onChange={this.handleParameterValueChange.bind(this)} />
 							</label>
 							<input className="btn btn-primary" type="submit" value="Send parameter" />
 						</div>
