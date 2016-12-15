@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
-import { socket } from 'socket.io';
+import io from 'socket.io-client';
+let socket = io();
 
 class Overview extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			ip: '127.0.0.1',
+			port: 8080,
 			parameter: 123.4,
 			log:"some large amount of text"
 		}
 	}
-	sendParameter(e, index, type, value) {
-		e.preventDefault();
+
+	componentDidMount() {
 		socket.on('server event', function (data) {
 	        console.log(data);
-	        socket.emit('client event', { socket: 'io' });
+	        socket.emit('client event', { socket: 'io connected' });
 	    });
+	}
 
+	sendParameter(e, index, type, value) {
+		e.preventDefault();
+		
+		socket.emit('sendParameter', { index: index, type: type, value: value });
 		// $.ajax({
 		//     type: 'POST',
 		//     url: '/sendParameter',
@@ -29,8 +37,9 @@ class Overview extends Component {
 		//   });
 		console.log("Parameter sent")
 	}
-	setIpAndPort(e, ip, port) {
+	setIpAndPort(e) {
 		e.preventDefault();
+		socket.emit('setIpAndPort', { ip: this.state.ip,  port: this.state.port });
 		// $.ajax({
 		//     type: 'POST',
 		//     url: '/set',
@@ -45,21 +54,33 @@ class Overview extends Component {
 		console.log("IP and port set")
 	}
 
+	handleIpChange(e){
+		console.log(this.state)
+		this.setState({ip: e.target.value})
+		console.log(this.state)
+	}
+
+	handlePortChange(e){
+		console.log(this.state)
+		this.setState({port: e.target.value})
+		console.log(this.state)
+	}
+
 	render() {
 	    return (
 		    	<div className="Overview-content">
 			      	<h1>Overview</h1>
-			      	<form className="section col-sm-12" onSubmit={this.setIpAndPort.bind(this)}>
+			      	<form className="section col-sm-12">
 			      		<div className="form-group col-sm-4">
 							<label>
 								IP:
-								<input className="form-control" type="text" name="ip" />
+								<input className="form-control" type="text" name="ip" onChange={this.handleIpChange.bind(this)} />
 							</label>
 							<label>
 								Port:
-								<input className="form-control" type="text" name="port" />
+								<input className="form-control" type="text" name="port" onChange={this.handlePortChange.bind(this)} />
 							</label>
-							<input className="btn btn-primary" type="submit" value="Save" />
+							<input className="btn btn-primary" type="submit" value="Save" onClick={this.setIpAndPort.bind(this)} />
 						</div>
 					</form>
 					<div className="section">
