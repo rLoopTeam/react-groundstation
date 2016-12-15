@@ -2,6 +2,7 @@
 
 const app = require('./app');
 const udpServer = require('../pod/index');
+const updateConfig = require('../pod/updateConfig');
 
 
 
@@ -44,7 +45,9 @@ io.on('connection', function (socket) {
   socket.emit('server event', { foo: 'bar' });
 
   udpServer.on('message', function (message, remote) {
-    socket.emit('udp event', remote.address + ':' + remote.port +' - ' + message);
+    socket.emit('udp event', {
+      updateRate: updateConfig(),
+      log: remote.address + ':' + remote.port +' - ' + message});
 });
 
   socket.on('client event', function (data) {

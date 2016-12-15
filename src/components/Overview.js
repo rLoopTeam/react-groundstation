@@ -11,6 +11,9 @@ class Overview extends Component {
 			parameterIndex: 0,
 			parameterType: 0,
 			parameterValue: 0,
+			elapsed: 0,
+			start: Date.now(),
+			updateRate: 500,
 			dataLogs:[]
 		}
 	}
@@ -24,11 +27,26 @@ class Overview extends Component {
 	    });
 
 		socket.on('udp event', function (data) {
+    		_this.timer = setInterval(
+    			function(){
+    				_this.setState({elapsed: new Date() - _this.state.start})
+    			}, 50
+			);
+
 	        _this.setState({ 
-			    dataLogs: [data].concat(_this.state.dataLogs)
+			    dataLogs: [data.log].concat(_this.state.dataLogs),
+			    updateRate: data.updateRate
 			});
 	    });
 	}
+
+	componentWillUnmount(){
+
+        // This method is called immediately before the component is removed
+        // from the page and destroyed. We can clear the interval here:
+
+        clearInterval(this.timer);
+    }
 
 	sendParameter(e) {
 		e.preventDefault();
@@ -85,6 +103,11 @@ class Overview extends Component {
 	}
 
 	render() {
+		var elapsed = Math.round(this.state.elapsed / 100);
+
+        // This will give a number with one digit after the decimal dot (xx.x):
+        var seconds = (elapsed / 10).toFixed(2);  
+
 	    return (
 		    	<div className="Overview-content">
 			      	<h1>Overview</h1>
@@ -124,7 +147,14 @@ class Overview extends Component {
 					</form>
 					<div className="col-sm-12">
 						<div className="section col-sm-4">
-							Data logging: <em>(most recent at top)</em>
+							Data logging: <em>(most recent at top)</em> 
+							<div>
+							showing: {this.state.dataLogs.length}
+							<br/>
+							time: {seconds}s
+							<br/>
+							update rate: {this.state.updateRate}ms
+							</div>
 							<ul className="list-group margin-bottom-40px height-300 overflow-x-auto">
 								{this.state.dataLogs.map(function(logItem, index){
 					                return <li key={ index } className="list-group-item">{logItem}</li>;
