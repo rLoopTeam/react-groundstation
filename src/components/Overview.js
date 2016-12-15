@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import BatteryManagementSystem from './BatteryManagementSystem';
 
-
 class Overview extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			parameter: {index: 2, value: 123.4},
-			log:"some large amount of text 2",
+			log:"some large amount of text",
 			batteryManagementSystem: [
 				{"temperatureA":21,"temperatureB":21,"voltage":12.1},
 				{"temperatureA":21,"temperatureB":21,"voltage":12.1},

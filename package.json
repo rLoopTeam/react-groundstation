@@ -19,6 +19,7 @@
   "scripts": {
     "bstart": "npm run build && nodemon server",
     "start": "concurrently \"node server\" \"react-scripts start\"",
+    "start-all": "concurrently \"node server\" \"node pod\" \"react-scripts start\"",
     "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
