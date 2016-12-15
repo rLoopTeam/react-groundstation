@@ -11,14 +11,22 @@ class Overview extends Component {
 			parameterIndex: 0,
 			parameterType: 0,
 			parameterValue: 0,
-			log:"some large amount of text"
+			dataLogs:[]
 		}
 	}
 
 	componentDidMount() {
+        var _this = this;
+
 		socket.on('server event', function (data) {
 	        console.log(data);
 	        socket.emit('client event', { socket: 'io connected' });
+	    });
+
+		socket.on('udp event', function (data) {
+	        _this.setState({ 
+			    dataLogs: [data].concat(_this.state.dataLogs)
+			});
 	    });
 	}
 
@@ -116,8 +124,12 @@ class Overview extends Component {
 					</form>
 					<div className="col-sm-12">
 						<div className="section col-sm-4">
-							Data logging: 
-							<textarea className="logging-field" value={this.state.log}></textarea>
+							Data logging: <em>(most recent at top)</em>
+							<ul className="list-group margin-bottom-40px height-300 overflow-x-auto">
+								{this.state.dataLogs.map(function(logItem, index){
+					                return <li key={ index } className="list-group-item">{logItem}</li>;
+				                })}
+							</ul>
 						</div>
 					</div>
 			 {/*1. Set source IP and Port numbers

@@ -1,24 +1,6 @@
-// these are the details of the GS backend
-var PORT = 3003; 
-var HOST = '127.0.0.1';
 
 var dgram = require('dgram');
-var server = dgram.createSocket('udp4');
-
-/*
-* Listen: This is the receiving point of the groundstation
-*/
-server.on('listening', function () {
-    var address = server.address();
-    console.log('UDP Server listening on ' + address.address + ":" + address.port);
-});
-
-server.on('message', function (message, remote) {
-    console.log(remote.address + ':' + remote.port +' - ' + message);
-
-});
-
-server.bind(PORT, HOST);
+var udpServer = dgram.createSocket('udp4');
 
 
 /*
@@ -40,3 +22,5 @@ function sendData() {
 	}, 500)
 }
 sendData();
+
+module.exports = udpServer;

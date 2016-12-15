@@ -1,6 +1,35 @@
 'use strict';
 
 const app = require('./app');
+const udpServer = require('../pod/index');
+
+
+
+// these are the details of the GS backend
+var udpPORT = 3003; 
+var ddpHOST = '127.0.0.1';
+
+/*
+* Listen: This is the receiving point of the groundstation
+*/
+udpServer.on('listening', function () {
+    var address = udpServer.address();
+    console.log('UDP Server listening on ' + address.address + ":" + address.port);
+});
+
+udpServer.on('message', function (message, remote) {
+    console.log(remote.address + ':' + remote.port +' - ' + message);
+
+});
+
+udpServer.bind(udpPORT, ddpHOST);
+
+
+
+
+
+
+
 const PORT = process.env.PORT || 3001;
 
 const server = app.listen(PORT, () => {
@@ -13,6 +42,10 @@ const io = require('socket.io')(server);
 // socket.io demo
 io.on('connection', function (socket) {
   socket.emit('server event', { foo: 'bar' });
+
+  udpServer.on('message', function (message, remote) {
+    socket.emit('udp event', remote.address + ':' + remote.port +' - ' + message);
+});
 
   socket.on('client event', function (data) {
     socket.broadcast.emit('update label', data);
