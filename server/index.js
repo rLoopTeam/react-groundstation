@@ -12,7 +12,7 @@ io.on('connection', function (socket) {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 server.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
