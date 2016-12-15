@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "concurrently": "^3.1.0",
     "react-scripts": "0.8.4"
   },
   "dependencies": {
@@ -17,8 +18,8 @@
   },
   "scripts": {
     "bstart": "npm run build && nodemon server",
-    "start": "react-scripts start",
-    "clientStart": "react-scripts start",
+    "start": "concurrently \"node server\" \"react-scripts start\"",
+    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
