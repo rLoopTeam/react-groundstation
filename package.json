@@ -17,6 +17,9 @@
     "socket.io": "^1.7.2"
   },
   "scripts": {
+    "server": "node server",
+    "pod": "node pod",
+    "client": "react-scripts start",
     "bstart": "npm run build && nodemon server",
     "start": "concurrently \"node server\" \"react-scripts start\"",
     "start-all": "concurrently \"node server\" \"node pod\" \"react-scripts start\"",

@@ -1,26 +1,38 @@
 'use strict';
+/*
+* Groundstation backend
+*-----------------------
+*/
 
 const app = require('./app');
-const udpServer = require('../pod/index');
-const updateConfig = require('../pod/updateConfig');
-
-
-
-// these are the details of the GS backend
-var udpPORT = 3003; 
-var ddpHOST = '127.0.0.1';
+const dgram = require('dgram');
 
 /*
-* Listen: This is the receiving point of the groundstation
+* UDP data sender
 */
-udpServer.on('listening', function () {
-    var address = udpServer.address();
-    console.log('UDP Server listening on ' + address.address + ":" + address.port);
-});
+var SENDPORT = 3000; // This points to the Pod's UDP listener port
+var SENDHOST = '127.0.0.1';
 
+function sendMessageToPod(messageStr){
+    var message = new Buffer(messageStr);
+    var client = dgram.createSocket('udp4');
+    client.send(message, 0, message.length, SENDPORT, SENDHOST, function(err, bytes) {
+        if (err) throw err;
+        console.log("GROUNSTATION UDP - SENT: " +  SENDHOST + ':' + SENDPORT +' - ' + message);
+        client.close();
+    });
+}
+
+/*
+* UDP data receiver
+*/
+var udpPORT = 3001; // Groundsation's udp port
+var ddpHOST = '127.0.0.1';
+
+var udpServer = dgram.createSocket('udp4');
 udpServer.on('message', function (message, remote) {
-    console.log(remote.address + ':' + remote.port +' - ' + message);
-
+    console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
+    sendMessageToPod("Thanks Pod, message received")
 });
 
 udpServer.bind(udpPORT, ddpHOST);
@@ -34,7 +46,7 @@ udpServer.bind(udpPORT, ddpHOST);
 const PORT = process.env.PORT || 3001;
 
 const server = app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}!`);
+  console.log(`Server listening on port ${PORT}!`);
 });
 
 const io = require('socket.io')(server);
@@ -48,7 +60,7 @@ io.on('connection', function (socket) {
     socket.emit('udp event', {
       updateRate: updateConfig(),
       log: remote.address + ':' + remote.port +' - ' + message});
-});
+  });
 
   socket.on('client event', function (data) {
     socket.broadcast.emit('update label', data);
