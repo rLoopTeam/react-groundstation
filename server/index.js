@@ -62,10 +62,12 @@ io.on('connection', function (socket) {
 
   socket.on('sendParameter', function (data) {
     console.log(data);
+    sendMessageToPod(JSON.stringify(data))
   });
 
   socket.on('setIpAndPort', function (data) {
     console.log(data);
+    sendMessageToPod(JSON.stringify(data))
   });
 });
 
