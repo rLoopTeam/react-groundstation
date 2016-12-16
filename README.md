@@ -13,8 +13,8 @@ npm install
 npm run build && npm run start-all
 
 # alternatively you can run the batch files
-installStartup.bat (for installing npm packages)
-startup.bat (for simply build and run)
+installStartup.bat #(for installing npm packages)
+startup.bat #(for simply build and run)
 ```
 
 Your app should now be running on [localhost:3001](http://localhost:3001/).
