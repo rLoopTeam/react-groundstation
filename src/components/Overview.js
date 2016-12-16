@@ -7,7 +7,7 @@ class Overview extends Component {
 		super(props)
 		this.state = {
 			ip: '127.0.0.1',
-			port: 8080,
+			port: 3002,
 			parameterIndex: 0,
 			parameterType: 0,
 			parameterValue: 0,
@@ -102,6 +102,23 @@ class Overview extends Component {
 		this.setState({parameterValue: e.target.value})
 	}
 
+	toggleDatalogging(e){
+		var _this = this;
+
+		if(e.target.value === 'Stop')
+		{
+			console.log(this.timer)
+			this.setState({dataLogging: false});
+	        clearInterval(this.timer);
+			socket.emit('stop:dataLogs');
+		}
+		else if (e.target.value === 'Start')
+		{
+			this.setState({dataLogging: true});
+			socket.emit('start:dataLogs');
+		}
+	}
+
 	render() {
 		var elapsed = Math.round(this.state.elapsed / 100);
 
@@ -115,11 +132,11 @@ class Overview extends Component {
 			      		<div className="form-group col-sm-4">
 							<label>
 								IP:
-								<input className="form-control" type="text" name="ip" onChange={this.handleIpChange.bind(this)} />
+								<input className="form-control" type="text" name="ip" value={this.state.ip} onChange={this.handleIpChange.bind(this)} />
 							</label>
 							<label>
 								Port:
-								<input className="form-control" type="text" name="port" onChange={this.handlePortChange.bind(this)} />
+								<input className="form-control" type="text" name="port" value={this.state.port} onChange={this.handlePortChange.bind(this)} />
 							</label>
 							<input className="btn btn-primary" type="submit" value="Save" onClick={this.setIpAndPort.bind(this)} />
 						</div>
@@ -132,15 +149,15 @@ class Overview extends Component {
 							<label>Parameter</label>
 							<label>
 								Index:
-								<input className="form-control" type="text" name="index" onChange={this.handleParameterIndexChange.bind(this)} />
+								<input className="form-control" type="text" name="index" value={this.state.parameterIndex} onChange={this.handleParameterIndexChange.bind(this)} />
 							</label>
 							<label>
 								Type:
-								<input className="form-control" type="text" name="type" onChange={this.handleParameterTypeChange.bind(this)} />
+								<input className="form-control" type="text" name="type" value={this.state.parameterType} onChange={this.handleParameterTypeChange.bind(this)} />
 							</label>
 							<label>
 								Value:
-								<input className="form-control" type="text" name="type" onChange={this.handleParameterValueChange.bind(this)} />
+								<input className="form-control" type="text" name="value" value={this.state.parameterValue} onChange={this.handleParameterValueChange.bind(this)} />
 							</label>
 							<input className="btn btn-primary" type="submit" value="Send parameter" />
 						</div>
@@ -155,7 +172,11 @@ class Overview extends Component {
 							<br/>
 							update rate: {this.state.updateRate}ms
 							</div>
-							<ul className="list-group margin-bottom-40px height-300 overflow-x-auto">
+							<div class="form-group">
+								<input type="button" className="btn btn-danger col-xs-4" onClick={this.toggleDatalogging.bind(this)} value="Stop" />
+								<input type="button" className="btn btn-success col-xs-offset-2 col-xs-4" onClick={this.toggleDatalogging.bind(this)} value="Start" />
+							</div>
+							<ul className="list-group margin-bottom-40px height-300 overflow-x-auto col-xs-12">
 								{this.state.dataLogs.map(function(logItem, index){
 					                return <li key={ index } className="list-group-item">{logItem}</li>;
 				                })}

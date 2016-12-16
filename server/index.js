@@ -6,6 +6,7 @@
 
 const app = require('./app');
 const dgram = require('dgram');
+var updateClientWithDatalogs = true;
 
 /*
 * UDP data sender
@@ -27,10 +28,10 @@ function sendMessageToPod(messageStr){
 * UDP data receiver
 */
 var udpPORT = 3002; // Groundsation's udp port
-var ddpHOST = '127.0.0.1';
+var udpHOST = '127.0.0.1';
 
 var udpServer = dgram.createSocket('udp4');
-udpServer.bind(udpPORT, ddpHOST);
+udpServer = udpServer.bind(udpPORT, udpHOST);
 
 
 
@@ -47,26 +48,46 @@ const io = require('socket.io')(server);
 io.on('connection', function (socket) {
   socket.emit('server event', { foo: 'bar' });
 
-  udpServer.on('message', function (message, remote) {
-      console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
-      sendMessageToPod("Thanks Pod, message received")
+  startListening();
+  function startListening(){
+    udpServer.on('message', function (message, remote) {
+        console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
+        sendMessageToPod("Thanks Pod, message received")
 
-      socket.emit('udp event', {
-        log: remote.address + ':' + remote.port +' - ' + message
-      });
-  });
+        if(updateClientWithDatalogs)
+        {
+          socket.emit('udp event', {
+            log: remote.address + ':' + remote.port +' - ' + message
+          });
+        }
+    });
+  }
 
   socket.on('client event', function (data) {
     socket.broadcast.emit('update label', data);
   });
 
+  socket.on('stop:dataLogs', function () {
+    updateClientWithDatalogs = false;
+  });
+
+  socket.on('start:dataLogs', function () {
+    updateClientWithDatalogs = true;
+  });
+
   socket.on('sendParameter', function (data) {
-    console.log(data);
     sendMessageToPod(JSON.stringify(data))
   });
 
   socket.on('setIpAndPort', function (data) {
-    console.log(data);
+    udpPORT = data.port;
+    udpHOST = data.ip;
+    udpServer.close(function(){
+      udpServer = dgram.createSocket('udp4');
+      udpServer = udpServer.bind(udpPORT, udpHOST);
+      startListening()
+    });
+
     sendMessageToPod(JSON.stringify(data))
   });
 });
