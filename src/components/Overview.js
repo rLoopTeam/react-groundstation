@@ -27,6 +27,7 @@ class Overview extends Component {
 	    });
 
 		socket.on('udp event', function (data) {
+	        console.log(data);
     		_this.timer = setInterval(
     			function(){
     				_this.setState({elapsed: new Date() - _this.state.start})
@@ -34,8 +35,7 @@ class Overview extends Component {
 			);
 
 	        _this.setState({ 
-			    dataLogs: [data.log].concat(_this.state.dataLogs),
-			    updateRate: data.updateRate
+			    dataLogs: [data.log].concat(_this.state.dataLogs)
 			});
 	    });
 	}

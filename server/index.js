@@ -10,7 +10,7 @@ const dgram = require('dgram');
 /*
 * UDP data sender
 */
-var SENDPORT = 3000; // This points to the Pod's UDP listener port
+var SENDPORT = 3003; // This points to the Pod's UDP listener port
 var SENDHOST = '127.0.0.1';
 
 function sendMessageToPod(messageStr){
@@ -26,20 +26,11 @@ function sendMessageToPod(messageStr){
 /*
 * UDP data receiver
 */
-var udpPORT = 3001; // Groundsation's udp port
+var udpPORT = 3002; // Groundsation's udp port
 var ddpHOST = '127.0.0.1';
 
 var udpServer = dgram.createSocket('udp4');
-udpServer.on('message', function (message, remote) {
-    console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
-    sendMessageToPod("Thanks Pod, message received")
-});
-
 udpServer.bind(udpPORT, ddpHOST);
-
-
-
-
 
 
 
@@ -57,9 +48,12 @@ io.on('connection', function (socket) {
   socket.emit('server event', { foo: 'bar' });
 
   udpServer.on('message', function (message, remote) {
-    socket.emit('udp event', {
-      updateRate: updateConfig(),
-      log: remote.address + ':' + remote.port +' - ' + message});
+      console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
+      sendMessageToPod("Thanks Pod, message received")
+
+      socket.emit('udp event', {
+        log: remote.address + ':' + remote.port +' - ' + message
+      });
   });
 
   socket.on('client event', function (data) {

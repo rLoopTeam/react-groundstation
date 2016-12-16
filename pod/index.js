@@ -12,7 +12,7 @@ var updateConfig = require('./updateConfig');
 /*
 * UDP data sender
 */
-var SENDPORT = 3001; // point these details to the GS OR broadcast (might require some additional settings)
+var SENDPORT = 3002; // point these details to the GS OR broadcast (might require some additional settings)
 var SENDHOST = '127.0.0.1';
 
 function sendDataContinuously(){
@@ -33,7 +33,7 @@ sendDataContinuously();
 /*
 * UDP data receiver
 */
-var udpPORT = 3000; // details of the pod itself 
+var udpPORT = 3003; // details of the pod itself 
 var ddpHOST = '127.0.0.1';
 
 udpServer.on('message', function (message, remote) {
