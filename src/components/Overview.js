@@ -50,36 +50,11 @@ class Overview extends Component {
 
 	sendParameter(e) {
 		e.preventDefault();
-		
 		socket.emit('sendParameter', { index: this.state.parameterIndex, type: this.state.parameterType, value: this.state.parameterValue });
-		// $.ajax({
-		//     type: 'POST',
-		//     url: '/sendParameter',
-		//     data: data
-		//   })
-		//   .done(function(data) {
-		//     self.clearForm()
-		//   })
-		//   .fail(function(jqXhr) {
-		//     console.log('failed to register');
-		//   });
-		console.log("Parameter sent")
 	}
 	setIpAndPort(e) {
 		e.preventDefault();
 		socket.emit('setIpAndPort', { ip: this.state.ip,  port: this.state.port });
-		// $.ajax({
-		//     type: 'POST',
-		//     url: '/set',
-		//     data: data
-		//   })
-		//   .done(function(data) {
-		//     self.clearForm()
-		//   })
-		//   .fail(function(jqXhr) {
-		//     console.log('failed to register');
-		//   });
-		console.log("IP and port set")
 	}
 
 	handleIpChange(e){
@@ -130,20 +105,20 @@ class Overview extends Component {
 			      	<h1>Overview</h1>
 			      	<form className="section col-sm-12">
 			      		<div className="form-group col-sm-4">
-							<label>
-								IP:
-								<input className="form-control" type="text" name="ip" value={this.state.ip} onChange={this.handleIpChange.bind(this)} />
-							</label>
-							<label>
-								Port:
-								<input className="form-control" type="text" name="port" value={this.state.port} onChange={this.handlePortChange.bind(this)} />
-							</label>
-							<input className="btn btn-primary" type="submit" value="Save" onClick={this.setIpAndPort.bind(this)} />
+				      		<fieldset>
+				      			<legend>UDP Listening Settings</legend>
+								<label>
+									IP:
+									<input className="form-control" type="text" name="ip" value={this.state.ip} onChange={this.handleIpChange.bind(this)} />
+								</label>
+								<label>
+									Port:
+									<input className="form-control" type="text" name="port" value={this.state.port} onChange={this.handlePortChange.bind(this)} />
+								</label>
+								<input className="btn btn-primary" type="submit" value="Save" onClick={this.setIpAndPort.bind(this)} />
+							</fieldset>
 						</div>
 					</form>
-					<div className="section">
-						Parameter received from Pod: {this.state.parameter}
-					</div>
 					<form className="section col-sm-12" onSubmit={this.sendParameter.bind(this)}>
 			      		<div className="form-group col-sm-4">
 							<label>Parameter</label>

@@ -7,6 +7,7 @@
 const app = require('./app');
 const dgram = require('dgram');
 var updateClientWithDatalogs = true;
+var listeningForUdp = false;
 
 /*
 * UDP data sender
@@ -48,8 +49,11 @@ const io = require('socket.io')(server);
 io.on('connection', function (socket) {
   socket.emit('server event', { foo: 'bar' });
 
-  startListening();
+  if(!listeningForUdp)
+    startListening();
+
   function startListening(){
+    listeningForUdp = true;
     udpServer.on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
         sendMessageToPod("Thanks Pod, message received")
@@ -62,6 +66,10 @@ io.on('connection', function (socket) {
         }
     });
   }
+
+  socket.on('stop:Pod', function (data) {
+    sendMessageToPod('STOP');
+  });
 
   socket.on('client event', function (data) {
     socket.broadcast.emit('update label', data);
@@ -83,9 +91,11 @@ io.on('connection', function (socket) {
     udpPORT = data.port;
     udpHOST = data.ip;
     udpServer.close(function(){
+      listeningForUdp = false;
       udpServer = dgram.createSocket('udp4');
       udpServer = udpServer.bind(udpPORT, udpHOST);
-      startListening()
+      if(!listeningForUdp)
+        startListening()
     });
 
     sendMessageToPod(JSON.stringify(data))

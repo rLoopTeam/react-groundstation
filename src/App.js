@@ -3,6 +3,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 
 import MainLayout from './components/containers/MainLayout';
 import Overview from './components/Overview';
+import Stop from './components/Stop';
 import './App.css';
 
 class App extends Component {
@@ -13,9 +14,9 @@ class App extends Component {
             <IndexRoute component={Overview} />
             <Route path="dashboard" component={Overview} />
           </Route>
-          <Route path="/websocketTest" component={MainLayout}>
-            <IndexRoute component={Overview} />
-            <Route path="dashboard" component={Overview} />
+          <Route path="/stop" component={MainLayout}>
+            <IndexRoute component={Stop} />
+            <Route path="stop" component={Stop} />
           </Route>
       </Router>
     );
