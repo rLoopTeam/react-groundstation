@@ -17,13 +17,11 @@
     "socket.io": "^1.7.2"
   },
   "scripts": {
-    "server": "node server",
-    "pod": "node pod",
-    "client": "react-scripts start",
+    "_pod": "nodemon --watch ./pod pod",
+    "_server": "nodemon --watch ./server server",
+    "start": "concurrently \"npm run _server\" \"react-scripts start\"",
+    "start-all": "concurrently \"npm run _server\" \"npm run _pod\" \"react-scripts start\"",
     "bstart": "npm run build && nodemon server",
-    "start": "concurrently \"node server\" \"react-scripts start\"",
-    "start-all": "concurrently \"node server\" \"node pod\" \"react-scripts start\"",
-    "start-client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
