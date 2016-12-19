@@ -25,6 +25,62 @@ function sendMessageToPod(messageStr){
     });
 }
 
+//Function to send a SafetyUDP packet to the Xilinx simulation board
+function UDPSafe_Tx_Xilinx()
+{
+	var u8Buffer = new Uint8Array(23);
+	var msgBuff = new Buffer(u8Buffer.buffer);
+	
+	//format the message
+	
+	//packet type = 0x5000
+	//U16
+	u8Buffer[0] = '50';
+	u8Buffer[1] = '00';
+
+	//length = 16bytes
+	//u16
+	u8Buffer[2] = '00';
+	u8Buffer[3] = '10';
+	
+	//data
+	//4 blocks of u32 for basic "control" type messages
+	u8Buffer[4] = '00';
+	u8Buffer[5] = '00';
+	u8Buffer[6] = '00';
+	u8Buffer[7] = '00';
+	
+	u8Buffer[8] = '00';
+	u8Buffer[9] = '00';
+	u8Buffer[10] = '00';
+	u8Buffer[11] = '00';
+	
+	u8Buffer[12] = '00';
+	u8Buffer[13] = '00';
+	u8Buffer[14] = '00';
+	u8Buffer[15] = '00';
+	
+	u8Buffer[16] = '00';
+	u8Buffer[17] = '00';
+	u8Buffer[18] = '00';
+	u8Buffer[19] = '00';
+
+	//crc
+	//todo:
+	u8Buffer[20] = '00';
+	u8Buffer[21] = '00';
+	
+	
+	var client = dgram.createSocket('udp4');
+    client.send(msgBuff, 0, 22, 9170, SENDHOST, function(err, bytes)
+	{
+        if (err) throw err;
+        console.log("SafeUDP - SENT: " +  SENDHOST + ':' + SENDPORT +' - ' + u8Buffer);
+        client.close();
+    });
+	
+}
+
 /*
 * UDP data receiver
 */
@@ -67,10 +123,14 @@ io.on('connection', function (socket) {
     });
   }
 
+  //Xilinx Sim
+	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_Xilinx(); });
+
+  
   socket.on('stop:Pod', function (data) {
     sendMessageToPod('STOP');
   });
-
+  
   socket.on('client event', function (data) {
     socket.broadcast.emit('update label', data);
   });

@@ -40,6 +40,7 @@ class MainLayout extends Component {
 		            </li>
 		            <li><a href="/lcu">LCU</a></li>
 		            <li><a href="/stop">STOP</a></li>
+		            <li><a href="/xilinxsim">Xilinx Sim</a></li>
 		          </ul>
 		        </div>
 		      </div>

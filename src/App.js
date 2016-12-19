@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import MainLayout from './components/containers/MainLayout';
 import Overview from './components/Overview';
 import Stop from './components/Stop';
+import XilinxSim from './components/XilinxSim';
 import './App.css';
 
 class App extends Component {
@@ -17,6 +18,10 @@ class App extends Component {
           <Route path="/stop" component={MainLayout}>
             <IndexRoute component={Stop} />
             <Route path="stop" component={Stop} />
+          </Route>
+          <Route path="/XilinxSim" component={MainLayout}>
+            <IndexRoute component={XilinxSim} />
+            <Route path="XilinxSim" component={XilinxSim} />
           </Route>
       </Router>
     );
