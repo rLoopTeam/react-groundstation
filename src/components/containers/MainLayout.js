@@ -40,7 +40,13 @@ class MainLayout extends Component {
 		            </li>
 		            <li><a href="/lcu">LCU</a></li>
 		            <li><a href="/stop">STOP</a></li>
-		            <li><a href="/xilinxsim">Xilinx Sim</a></li>
+
+		            <li className="dropdown">
+		              <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras<span className="caret"></span></a>
+		              <ul className="dropdown-menu">
+						<li><a href="/xilinxsim">Xilinx Sim</a></li>
+		              </ul>
+		            </li>
 		          </ul>
 		        </div>
 		      </div>

@@ -23,12 +23,17 @@ class XilinxSim extends Component {
 		e.preventDefault();
 		socket.emit('XilinxSim:StartRun');
 	}
+	stopRun(e) {
+		e.preventDefault();
+		socket.emit('XilinxSim:StopRun');
+	}
 
 	render() {
 
 	    return (
 		    	<div className="Overview-content">
 		    		<button className="btn btn-success" onClick={this.startRun.bind(this)}>Start Run</button>
+		    		<button className="btn btn-danger" onClick={this.stopRun.bind(this)}>Stop Run</button>
 				</div>
 	    );
 	}

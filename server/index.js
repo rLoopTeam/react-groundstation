@@ -28,57 +28,84 @@ function sendMessageToPod(messageStr){
 //Function to send a SafetyUDP packet to the Xilinx simulation board
 function UDPSafe_Tx_Xilinx()
 {
-	var u8Buffer = new Uint8Array(23);
+	var u8Buffer = new Uint8Array(26);
 	var msgBuff = new Buffer(u8Buffer.buffer);
 	
 	//format the message
 	
+	//sequence number
+	//need to increment this for each transmission
+	u8Buffer[0] = 0x00;
+	u8Buffer[1] = 0x00;
+	u8Buffer[2] = 0x00;
+	u8Buffer[3] = 0x00;
+	
 	//packet type = 0x5000
 	//U16
-	u8Buffer[0] = '50';
-	u8Buffer[1] = '00';
+	//todo: calls something like: u8Buffer[4] = Numerical_To_U16(0x5000);
+	//Or pass in the packet type from a define.
+	u8Buffer[4] = 0x00;
+	u8Buffer[5] = 0x50;
 
 	//length = 16bytes
 	//u16
-	u8Buffer[2] = '00';
-	u8Buffer[3] = '10';
+	//todo: calls something like: u8Buffer[6] = Numerical_To_U16(16);
+	u8Buffer[6] = 0x00;
+	u8Buffer[7] = 0x10;
 	
 	//data
 	//4 blocks of u32 for basic "control" type messages
-	u8Buffer[4] = '00';
-	u8Buffer[5] = '00';
-	u8Buffer[6] = '00';
-	u8Buffer[7] = '00';
+	//todo: calls something like: u8Buffer[8] = Numerical_To_U32(1);
+	//block 0 = 0x00000001 = switch on run
+	u8Buffer[8] = 0x01;
+	u8Buffer[9] = 0x00;
+	u8Buffer[10] = 0x00;
+	u8Buffer[11] = 0x00;
 	
-	u8Buffer[8] = '00';
-	u8Buffer[9] = '00';
-	u8Buffer[10] = '00';
-	u8Buffer[11] = '00';
+	u8Buffer[12] = 0x00;
+	u8Buffer[13] = 0x00;
+	u8Buffer[14] = 0x00;
+	u8Buffer[15] = 0x00;
 	
-	u8Buffer[12] = '00';
-	u8Buffer[13] = '00';
-	u8Buffer[14] = '00';
-	u8Buffer[15] = '00';
+	u8Buffer[16] = 0x00;
+	u8Buffer[17] = 0x00;
+	u8Buffer[18] = 0x00;
+	u8Buffer[19] = 0x00;
 	
-	u8Buffer[16] = '00';
-	u8Buffer[17] = '00';
-	u8Buffer[18] = '00';
-	u8Buffer[19] = '00';
+	u8Buffer[20] = 0x00;
+	u8Buffer[21] = 0x00;
+	u8Buffer[22] = 0x00;
+	u8Buffer[23] = 0x00;
 
 	//crc
-	//todo:
-	u8Buffer[20] = '00';
-	u8Buffer[21] = '00';
+	//todo: Compute this value.
+	//0x470C
+	u8Buffer[24] = 0x0C;
+	u8Buffer[25] = 0x47;
 	
 	
 	var client = dgram.createSocket('udp4');
-    client.send(msgBuff, 0, 22, 9170, SENDHOST, function(err, bytes)
+	//port 9170 and 192.168.1.170 are just the test hardware, probably better to
+	//make this part of the SafeUDP call so as we can target different hardware.
+    client.send(msgBuff, 0, 26, 9170, "192.168.1.170", function(err, bytes)
 	{
         if (err) throw err;
-        console.log("SafeUDP - SENT: " +  SENDHOST + ':' + SENDPORT +' - ' + u8Buffer);
+        console.log("SafeUDP - SENT: " +  "192.168.1.170" + ':' + "9170" +' - ' + u8Buffer);
         client.close();
     });
 	
+}
+
+//convert a U32
+function Numerical_To_U32 (u32Value)
+{
+    arr = new Uint8Array([
+         (u32Value & 0xff000000) >> 24,
+         (u32Value & 0x00ff0000) >> 16,
+         (u32Value & 0x0000ff00) >> 8,
+         (u32Value & 0x000000ff)
+    ]);
+    return arr.buffer;
 }
 
 /*
