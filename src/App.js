@@ -5,6 +5,7 @@ import MainLayout from './components/containers/MainLayout';
 import Overview from './components/Overview';
 import Stop from './components/Stop';
 import XilinxSim from './components/XilinxSim';
+import FlightControl_Accel from './components/FlightControl_Accel';
 import './App.css';
 
 class App extends Component {
@@ -19,10 +20,17 @@ class App extends Component {
             <IndexRoute component={Stop} />
             <Route path="stop" component={Stop} />
           </Route>
+		  
           <Route path="/XilinxSim" component={MainLayout}>
             <IndexRoute component={XilinxSim} />
             <Route path="XilinxSim" component={XilinxSim} />
           </Route>
+		  
+		   <Route path="/FlightControl_Accel" component={MainLayout}>
+            <IndexRoute component={FlightControl_Accel} />
+            <Route path="FlightControl_Accel" component={FlightControl_Accel} />
+          </Route>
+		  
       </Router>
     );
   }
