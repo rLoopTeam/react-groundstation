@@ -15,19 +15,8 @@ class App extends Component {
           <Route path="/" component={MainLayout}>
             <IndexRoute component={Overview} />
             <Route path="dashboard" component={Overview} />
-          </Route>
-          <Route path="/stop" component={MainLayout}>
-            <IndexRoute component={Stop} />
             <Route path="stop" component={Stop} />
-          </Route>
-		  
-          <Route path="/XilinxSim" component={MainLayout}>
-            <IndexRoute component={XilinxSim} />
             <Route path="XilinxSim" component={XilinxSim} />
-          </Route>
-		  
-		   <Route path="/FlightControl_Accel" component={MainLayout}>
-            <IndexRoute component={FlightControl_Accel} />
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
           </Route>
 		  
