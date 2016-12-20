@@ -7,7 +7,9 @@
     "react-scripts": "0.8.4"
   },
   "dependencies": {
+    "chai": "^3.5.0",
     "express": "^4.14.0",
+    "mocha": "^3.2.0",
     "morgan": "^1.7.0",
     "nodemon": "^1.11.0",
     "react": "^15.4.1",
@@ -18,11 +20,12 @@
   },
   "scripts": {
     "_pod": "nodemon --watch ./pod pod",
-    "_server": "nodemon --watch ./server server",
+    "_server": "nodemon --watch ./server --watch ./utils  server",
     "start": "concurrently \"npm run _server\" \"react-scripts start\"",
     "start-all": "concurrently \"npm run _server\" \"npm run _pod\" \"react-scripts start\"",
     "bstart": "npm run build && nodemon server",
     "build": "react-scripts build",
+    "test-backend": "./node_modules/.bin/mocha --reporter spec",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
