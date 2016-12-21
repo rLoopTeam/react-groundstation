@@ -71,57 +71,85 @@ class FlightControl_Accel extends Component {
 		    <div className="Overview-content">
 			
 				<legend>Streaming Control</legend>
-				<form className="form-inline">
-					<div className="form-group">
-						<button className="btn btn-success" onClick={this.accelStartStream.bind(this)}>Start Stream</button>
-						<button className="btn btn-danger" onClick={this.accelStopStream.bind(this)}>Stop Stream</button>
-							
-					</div>
-				</form>
-			
-				<br></br>
-				<br></br>
-			
-				<legend>Accelerometer Calibration</legend>
-				<form className="form-inline">
-					<div className="form-group">
-						<div>
-							<label for="a0_x">A0:X-Axis</label>
-							<input type="text" className="form-control" name="a0_x" value={0} readonly />
-							<button type="submit" className="btn btn-primary" onClick={this.accelZeroX0.bind(this)}>Fine Zero</button>
-												
-							<label for="a0_y">A0:Y-Axis</label>
-							<input type="text" className="form-control" name="a0_y" value={0} readonly />
-							<button type="submit" className="btn btn-primary" onClick={this.accelZeroY0.bind(this)}>Fine Zero</button>
-							
-							<label for="a0_z">A0:Z-Axis</label>
-							<input type="text" className="form-control" name="a0_z" value={0} readonly />
-							<button type="submit" className="btn btn-primary" onClick={this.accelZeroZ0.bind(this)}>Fine Zero</button>
-							
-							<button type="submit" className="btn btn-danger" onClick={this.accelCoarse0.bind(this)}>Coarse Zero</button>
+					<form className="form-inline">
+						<div className="form-group">
+							<button className="btn btn-success" onClick={this.accelStartStream.bind(this)}>Start Stream</button>
+							<button className="btn btn-danger" onClick={this.accelStopStream.bind(this)}>Stop Stream</button>
+								
 						</div>
-						
-						<br></br>
-						
-						<div>
-							<label for="a1_x">A1:X-Axis</label>
-							<input type="text" className="form-control" name="a1_x" value={0} readonly />
-							<button type="submit" className="btn btn-primary" onClick={this.accelZeroX1.bind(this)}>Fine Zero</button>
-												
-							<label for="a1_y">A1:Y-Axis</label>
-							<input type="text" className="form-control" name="a1_y" value={0} readonly />
-							<button type="submit" className="btn btn-primary" onClick={this.accelZeroY1.bind(this)}>Fine Zero</button>
-							
-							<label for="a1_z">A1:Z-Axis</label>
-							<input type="text" className="form-control" name="a1_z" value={0} readonly />
-							<button type="submit" className="btn btn-primary" onClick={this.accelZeroZ1.bind(this)}>Fine Zero</button>
-							
-							<button type="submit" className="btn btn-danger" onClick={this.accelCoarse1.bind(this)}>Coarse Zero</button>
+					</form>
+				
+					<br></br>
+					<br></br>
+				
+					<legend>Accelerometer Calibration</legend>
+					
+				<div className="row margin-bottom-20px">
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+								<label for="a0_x">A0:X-Axis</label>
+							<div>
+								<input type="text" className="form-control" name="a0_x" value={0} readonly />
+								<button type="submit" className="btn btn-primary" onClick={this.accelZeroX0.bind(this)}>Fine Zero</button>
+							</div>
+						</div>
+					</form>
 
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							<label for="a0_y">A0:Y-Axis</label>
+							<div>
+								<input type="text" className="form-control" name="a0_y" value={0} readonly />
+								<button type="submit" className="btn btn-primary" onClick={this.accelZeroY0.bind(this)}>Fine Zero</button>
+							</div>
 						</div>
+					</form>	
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							<label for="a0_z">A0:Z-Axis</label>
+							<div>	
+								<input type="text" className="form-control" name="a0_z" value={0} readonly />
+								<button type="submit" className="btn btn-primary" onClick={this.accelZeroZ0.bind(this)}>Fine Zero</button>
+								<button type="submit" className="btn btn-danger" onClick={this.accelCoarse0.bind(this)}>Coarse Zero</button>
+							</div>
+						</div>
+					</form>
+				</div>
 						
-					</div>
-				</form>
+				<div className="row">
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							
+								<label for="a1_x">A1:X-Axis</label>
+							<div>
+								<input type="text" className="form-control" name="a1_x" value={0} readonly />
+								<button type="submit" className="btn btn-primary" onClick={this.accelZeroX1.bind(this)}>Fine Zero</button>
+							</div>
+						</div>
+					</form>	
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">					
+							<label for="a1_y">A1:Y-Axis</label>
+							<div>
+								<input type="text" className="form-control" name="a1_y" value={0} readonly />
+								<button type="submit" className="btn btn-primary" onClick={this.accelZeroY1.bind(this)}>Fine Zero</button>
+							</div>
+						</div>
+					</form>
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">	
+							<label for="a1_z">A1:Z-Axis</label>
+							<div>
+								<input type="text" className="form-control" name="a1_z" value={0} readonly />
+								<button type="submit" className="btn btn-primary" onClick={this.accelZeroZ1.bind(this)}>Fine Zero</button>
+								<button type="submit" className="btn btn-danger" onClick={this.accelCoarse1.bind(this)}>Coarse Zero</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			
 				<br></br>
 				<br></br>
@@ -135,4 +163,6 @@ class FlightControl_Accel extends Component {
 }
 
 export default FlightControl_Accel;
+
+
 
