@@ -12,7 +12,7 @@ var listeningForUdp = false;
 /*
 * UDP data sender
 */
-var SENDPORT = 3003; // This points to the Pod's UDP listener port
+var SENDPORT = 9100; //3003; // This points to the Pod's UDP listener port
 var SENDHOST = '127.0.0.1';
 
 function sendMessageToPod(messageStr){
@@ -26,9 +26,9 @@ function sendMessageToPod(messageStr){
 }
 
 //Function to send a SafetyUDP packet to the Xilinx simulation board
-function UDPSafe_Tx_X4(sIP, iPort)
+function UDPSafe_Tx_X4(sIP, iPort, u16PacketType, u32Block0, u32Block1)
 {
-	var u8Buffer = new Uint8Array(26);
+	var u8Buffer = new Uint8Array(30);
 	var msgBuff = new Buffer(u8Buffer.buffer);
 	
 	//format the message
@@ -44,28 +44,29 @@ function UDPSafe_Tx_X4(sIP, iPort)
 	//U16
 	//todo: calls something like: u8Buffer[4] = Numerical_To_U16(0x5000);
 	//Or pass in the packet type from a define.
-	u8Buffer[4] = 0x00;
-	u8Buffer[5] = 0x50;
+	u8Buffer[4] = (u16PacketType & 0x00FF) >> 0;
+	u8Buffer[5] = (u16PacketType & 0xFF00) >> 8;
+	//0x50;
 
 	//length = 16bytes
 	//u16
 	//todo: calls something like: u8Buffer[6] = Numerical_To_U16(16);
-	u8Buffer[6] = 0x00;
-	u8Buffer[7] = 0x10;
+	u8Buffer[6] = 0x10;
+	u8Buffer[7] = 0x00;
 	
 	//data
 	//4 blocks of u32 for basic "control" type messages
 	//todo: calls something like: u8Buffer[8] = Numerical_To_U32(1);
 	//block 0 = 0x00000001 = switch on run
-	u8Buffer[8] = 0x01;
-	u8Buffer[9] = 0x00;
-	u8Buffer[10] = 0x00;
-	u8Buffer[11] = 0x00;
+	u8Buffer[8] = (u32Block0 & 0x000000FF) >> 0;
+	u8Buffer[9] = (u32Block0 & 0x0000FF00) >> 8;
+	u8Buffer[10] = (u32Block0 & 0x00FF0000) >> 16;
+	u8Buffer[11] = (u32Block0 & 0xFF000000) >> 24;
 	
-	u8Buffer[12] = 0x00;
-	u8Buffer[13] = 0x00;
-	u8Buffer[14] = 0x00;
-	u8Buffer[15] = 0x00;
+	u8Buffer[12] = (u32Block1 & 0x000000FF) >> 0;
+	u8Buffer[13] = (u32Block1 & 0x0000FF00) >> 8;
+	u8Buffer[14] = (u32Block1 & 0x00FF0000) >> 16;
+	u8Buffer[15] = (u32Block1 & 0xFF000000) >> 24;
 	
 	u8Buffer[16] = 0x00;
 	u8Buffer[17] = 0x00;
@@ -79,9 +80,8 @@ function UDPSafe_Tx_X4(sIP, iPort)
 
 	//crc
 	//todo: Compute this value.
-	//0x470C
-	u8Buffer[24] = 0x0C;
-	u8Buffer[25] = 0x47;
+	u8Buffer[24] = 0xF2;
+	u8Buffer[25] = 0xAB;
 	
 	
 	var client = dgram.createSocket('udp4');
@@ -108,10 +108,17 @@ function Numerical_To_U32 (u32Value)
     return arr.buffer;
 }
 
+function Numerical_To_U16(u16Value, Object)
+{
+	object[0] = 0x0A;
+	object[1] = 0x0B;
+	
+}
+
 /*
 * UDP data receiver
 */
-var udpPORT = 3002; // Groundsation's udp port
+var udpPORT = 9100; //3002; // Groundsation's udp port
 var udpHOST = '127.0.0.1';
 
 var udpServer = dgram.createSocket('udp4');
@@ -139,7 +146,7 @@ io.on('connection', function (socket) {
     listeningForUdp = true;
     udpServer.on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
-        sendMessageToPod("Thanks Pod, message received")
+        //sendMessageToPod("Thanks Pod, message received")
 
         if(updateClientWithDatalogs)
         {
@@ -151,11 +158,12 @@ io.on('connection', function (socket) {
   }
 
   //Xilinx Sim
-	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_X4("129.168.1.170", 9170); });
+	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_X4("129.168.1.170", 9170, 0); });
 
 	
 	//flight controllers
-	socket.on('FlightControl_Accel:StartStream', function (data){ UDPSafe_Tx_X4("192.168.1.99", 9700); });
+	//enable stream of cal data 0x1001
+	socket.on('FlightControl_Accel:StartStream', function (data){ UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); });
 	
   
   socket.on('stop:Pod', function (data) {
