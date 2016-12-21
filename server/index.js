@@ -26,7 +26,7 @@ function sendMessageToPod(messageStr){
 }
 
 //Function to send a SafetyUDP packet to the Xilinx simulation board
-function UDPSafe_Tx_Xilinx()
+function UDPSafe_Tx_X4(sIP, iPort)
 {
 	var u8Buffer = new Uint8Array(26);
 	var msgBuff = new Buffer(u8Buffer.buffer);
@@ -87,10 +87,10 @@ function UDPSafe_Tx_Xilinx()
 	var client = dgram.createSocket('udp4');
 	//port 9170 and 192.168.1.170 are just the test hardware, probably better to
 	//make this part of the SafeUDP call so as we can target different hardware.
-    client.send(msgBuff, 0, 26, 9170, "192.168.1.170", function(err, bytes)
+    client.send(msgBuff, 0, 26, iPort, sIP, function(err, bytes)
 	{
         if (err) throw err;
-        console.log("SafeUDP - SENT: " +  "192.168.1.170" + ':' + "9170" +' - ' + u8Buffer);
+        console.log("SafeUDP - SENT: " +  sIP + ':' + iPort +' - ' + u8Buffer);
         client.close();
     });
 	
@@ -151,8 +151,12 @@ io.on('connection', function (socket) {
   }
 
   //Xilinx Sim
-	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_Xilinx(); });
+	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_X4("129.168.1.170", 9170); });
 
+	
+	//flight controllers
+	socket.on('FlightControl_Accel:StartStream', function (data){ UDPSafe_Tx_X4("192.168.1.99", 9700); });
+	
   
   socket.on('stop:Pod', function (data) {
     sendMessageToPod('STOP');
