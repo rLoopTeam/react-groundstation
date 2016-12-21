@@ -1,4 +1,7 @@
 const lookupTables = require('./lookupTables');
+
+
+// LACHLAN'S ORIGINAL CODE
 /*
 // * @brief
 // * 16Bit Table Based CRC
@@ -25,17 +28,36 @@ Luint16 u16SWCRC__CRC(const Luint8 *cpu8Data, Luint32 u32Length)
 
 }*/
 
-exports.u16SWCRC__CRC = function(cpu8Data, u32Length) {
-	let u16CRC;
-	let u32Counter;
-	
-	u16CRC = 0;
-	console.log(u32Length);
-	for (u32Counter = 0; u32Counter < u32Length; u32Counter++)
-	{
-		u16CRC = Math.pow(lookupTables.u16SWCRC_CRC_TABLE[(Math.pow((u16CRC >> 8), cpu8Data[u32Counter])) & 0xFF], (u16CRC << 8));
-		console.log(u32Counter+":"+u16CRC);
-	}
 
-	return u16CRC
+// THIS IS AN EXAMPLE JS IMPLEMENTATION OF A SIMILAR ALGORITHM https://gist.github.com/chitchcock/5112270
+exports.CRC16CCITT = function(cpu8Data, u32Length) {
+	var crc = 0xFFFF;
+    var j, i;
+
+    for (i = 0; i < u32Length; i++) {
+        c = cpu8Data[i].charCodeAt(0);
+        if (c > 255) { throw new RangeError(); }
+        j = (c ^ (crc >> 8)) & 0xFF;
+        crc = lookupTables.u16SWCRC_CRC_TABLE[j] ^ (crc << 8);
+        console.log("crc:", crc, " data:", cpu8Data[i]);
+    }
+    var result = (crc ^ 0) & 0xFFFF;
+	return result
 }
+
+// THIS IS LACHLAN'S EXAMPLE CONVERTED TO JS
+exports.u16SWCRC__CRC = function(data, length) {
+	var crc = 0x0000;
+    var j, i;
+
+    for (i = 0; i < length; i++) {
+        c = data[i].charCodeAt(0);
+        if (c > 255) { throw new RangeError(); }
+        j = ((crc >> 8) ^ data[i]) & 0xFF;
+		crc = lookupTables.u16SWCRC_CRC_TABLE[j] ^ (crc << 8);
+		console.log("crc:", crc, " data:", data[i]);
+    }
+    var result = crc;
+	return result
+}
+
