@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class MainLayout extends Component {
 	render() {
@@ -13,45 +14,45 @@ class MainLayout extends Component {
 		            <span className="icon-bar"></span>
 		            <span className="icon-bar"></span>
 		          </button>
-		          <a className="navbar-brand" href="/">Ground Station</a>
+		          <Link className="navbar-brand" to="/">Ground Station</Link>
 		        </div>
 		        <div id="navbar" className="navbar-collapse collapse">
 		          <ul className="nav navbar-nav">
-		            <li className="overview"><a href="/">Overview</a></li>
+		            <li className="overview"><Link to="/">Overview</Link></li>
 		            <li className="dropdown">
-		              <a href="/powerA" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Power A <span className="caret"></span></a>
+		              <Link to="/powerA" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Power A <span className="caret"></span></Link>
 		              <ul className="dropdown-menu">
-		                <li><a href="/powerAVoltage">Voltage</a></li>
-		                <li><a href="/powerACharger">Charger</a></li>
-		                <li><a href="/powerABMS1">BMS 1</a></li>
-		                <li><a href="/powerABMS2">BMS 2</a></li>
-		                <li><a href="/powerABMS3">BMS 3</a></li>
+		                <li><Link to="/powerAVoltage">Voltage</Link></li>
+		                <li><Link to="/powerACharger">Charger</Link></li>
+		                <li><Link to="/powerABMS1">BMS 1</Link></li>
+		                <li><Link to="/powerABMS2">BMS 2</Link></li>
+		                <li><Link to="/powerABMS3">BMS 3</Link></li>
 		              </ul>
 		            </li>
 		            <li className="dropdown">
-		              <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Power B <span className="caret"></span></a>
+		              <Link to="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Power B <span className="caret"></span></Link>
 		              <ul className="dropdown-menu">
-		                <li><a href="/powerBVoltage">Voltage</a></li>
-		                <li><a href="/powerB">Charger</a></li>
-		                <li><a href="/powerBBMS1">BMS 1</a></li>
-		                <li><a href="/powerBBMS2">BMS 2</a></li>
-		                <li><a href="/powerBBMS3">BMS 3</a></li>
+		                <li><Link to="/powerBVoltage">Voltage</Link></li>
+		                <li><Link to="/powerB">Charger</Link></li>
+		                <li><Link to="/powerBBMS1">BMS 1</Link></li>
+		                <li><Link to="/powerBBMS2">BMS 2</Link></li>
+		                <li><Link to="/powerBBMS3">BMS 3</Link></li>
 		              </ul>
 		            </li>
-		            <li><a href="/lcu">LCU</a></li>
-		            <li><a href="/stop">STOP</a></li>
+		            <li><Link to="/lcu">LCU</Link></li>
+		            <li><Link to="/stop">STOP</Link></li>
 
 					<li className="dropdown">
-		              <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Flight Control<span className="caret"></span></a>
+		              <Link to="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Flight Control<span className="caret"></span></Link>
 		              <ul className="dropdown-menu">
-						<li><a href="/flightcontrol_accel">Accelerometers</a></li>
+						<li><Link to="/flightcontrol_accel">Accelerometers</Link></li>
 		              </ul>
 		            </li>
 					
 		            <li className="dropdown">
-		              <a href="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras<span className="caret"></span></a>
+		              <Link to="/" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Extras<span className="caret"></span></Link>
 		              <ul className="dropdown-menu">
-						<li><a href="/xilinxsim">Xilinx Sim</a></li>
+						<li><Link to="/xilinxsim">Xilinx Sim</Link></li>
 		              </ul>
 		            </li>
 					

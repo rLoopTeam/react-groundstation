@@ -126,7 +126,8 @@ udpServer = udpServer.bind(udpPORT, udpHOST);
 
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
+const env = process.env.NODE_ENV || 'development';
 
 const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}!`);
