@@ -147,7 +147,7 @@ class Overview extends Component {
 							<br/>
 							update rate: {this.state.updateRate}ms
 							</div>
-							<div class="form-group">
+							<div className="form-group">
 								<input type="button" className="btn btn-danger col-xs-4" onClick={this.toggleDatalogging.bind(this)} value="Stop" />
 								<input type="button" className="btn btn-success col-xs-offset-2 col-xs-4" onClick={this.toggleDatalogging.bind(this)} value="Start" />
 							</div>

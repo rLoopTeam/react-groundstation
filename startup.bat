@@ -1,1 +1,1 @@
-call npm run build && npm run start-all
+call npm run start-all
