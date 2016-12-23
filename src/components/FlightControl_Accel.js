@@ -87,9 +87,9 @@ class FlightControl_Accel extends Component {
 				<div className="row margin-bottom-20px">
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
-								<label for="a0_x">A0:X-Axis</label>
+								<label htmlFor="a0_x">A0:X-Axis</label>
 							<div>
-								<input type="text" className="form-control" name="a0_x" value={0} readonly />
+								<input type="text" className="form-control" id="a0_x" name="a0_x" value={0} readOnly />
 								<button type="submit" className="btn btn-primary" onClick={this.accelZeroX0.bind(this)}>Fine Zero</button>
 							</div>
 						</div>
@@ -97,9 +97,9 @@ class FlightControl_Accel extends Component {
 
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
-							<label for="a0_y">A0:Y-Axis</label>
+							<label htmlFor="a0_y">A0:Y-Axis</label>
 							<div>
-								<input type="text" className="form-control" name="a0_y" value={0} readonly />
+								<input type="text" className="form-control" id="a0_y" name="a0_y" value={0} readOnly />
 								<button type="submit" className="btn btn-primary" onClick={this.accelZeroY0.bind(this)}>Fine Zero</button>
 							</div>
 						</div>
@@ -107,9 +107,9 @@ class FlightControl_Accel extends Component {
 
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
-							<label for="a0_z">A0:Z-Axis</label>
+							<label htmlFor="a0_z">A0:Z-Axis</label>
 							<div>	
-								<input type="text" className="form-control" name="a0_z" value={0} readonly />
+								<input type="text" className="form-control" id="a0_z" name="a0_z" value={0} readOnly />
 								<button type="submit" className="btn btn-primary" onClick={this.accelZeroZ0.bind(this)}>Fine Zero</button>
 								<button type="submit" className="btn btn-danger" onClick={this.accelCoarse0.bind(this)}>Coarse Zero</button>
 							</div>
@@ -121,9 +121,9 @@ class FlightControl_Accel extends Component {
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
 							
-								<label for="a1_x">A1:X-Axis</label>
+								<label htmlFor="a1_x">A1:X-Axis</label>
 							<div>
-								<input type="text" className="form-control" name="a1_x" value={0} readonly />
+								<input type="text" className="form-control" id="a1_x" name="a1_x" value={0} readOnly />
 								<button type="submit" className="btn btn-primary" onClick={this.accelZeroX1.bind(this)}>Fine Zero</button>
 							</div>
 						</div>
@@ -131,9 +131,9 @@ class FlightControl_Accel extends Component {
 
 					<form className="form-inline col-xs-4">
 						<div className="form-group">					
-							<label for="a1_y">A1:Y-Axis</label>
+							<label htmlFor="a1_y">A1:Y-Axis</label>
 							<div>
-								<input type="text" className="form-control" name="a1_y" value={0} readonly />
+								<input type="text" className="form-control" id="a1_y" name="a1_y" value={0} readOnly />
 								<button type="submit" className="btn btn-primary" onClick={this.accelZeroY1.bind(this)}>Fine Zero</button>
 							</div>
 						</div>
@@ -141,9 +141,9 @@ class FlightControl_Accel extends Component {
 
 					<form className="form-inline col-xs-4">
 						<div className="form-group">	
-							<label for="a1_z">A1:Z-Axis</label>
+							<label htmlFor="a1_z">A1:Z-Axis</label>
 							<div>
-								<input type="text" className="form-control" name="a1_z" value={0} readonly />
+								<input type="text" className="form-control" id="a1_z" name="a1_z" value={0} readOnly />
 								<button type="submit" className="btn btn-primary" onClick={this.accelZeroZ1.bind(this)}>Fine Zero</button>
 								<button type="submit" className="btn btn-danger" onClick={this.accelCoarse1.bind(this)}>Coarse Zero</button>
 							</div>
