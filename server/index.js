@@ -6,6 +6,8 @@
 
 const app = require('./app');
 const dgram = require('dgram');
+var _timer;
+var _room;
 var updateClientWithDatalogs = true;
 var listeningForUdp = false;
 
@@ -134,11 +136,16 @@ const server = app.listen(PORT, () => {
 });
 
 const io = require('socket.io')(server);
-
+io.set('log level',1);
 
 // socket.io demo
 io.on('connection', function (socket) {
-  socket.emit('server event', { foo: 'bar' });
+  socket.on('disconnect', function() {
+    console.log('Server got disconnect!');
+  });
+
+  socket.in(_room).emit('server event', { foo: 'bar' });
+  console.log("started listening")
 
   if(!listeningForUdp)
     startListening();
@@ -147,16 +154,20 @@ io.on('connection', function (socket) {
     listeningForUdp = true;
     udpServer.on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
-        //sendMessageToPod("Thanks Pod, message received")
+        
 
         if(updateClientWithDatalogs)
         {
-          socket.emit('udp event', {
+          socket.in(_room).emit('udp:event', {
             log: remote.address + ':' + remote.port +' - ' + message
           });
         }
     });
   }
+
+  socket.on('forceDisconnect', function(){
+    socket.disconnect();
+  });
 
   //Xilinx Sim
 	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_X4("129.168.1.170", 9170, 0); });
@@ -175,11 +186,35 @@ io.on('connection', function (socket) {
     socket.broadcast.emit('update label', data);
   });
 
-  socket.on('stop:dataLogs', function () {
+  socket.on('stop:dataLogs', function (data) {
+    if(_timer)
+    {
+      clearInterval(_timer)
+    }
+    console.log(data);
+
+    sendMessageToPod("DataLogs are no longer listening")
     updateClientWithDatalogs = false;
   });
 
-  socket.on('start:dataLogs', function () {
+  socket.on('join', function (data) {
+      var name = data.name;
+      _room = data.room;
+      socket.join(_room);
+      console.log(name + ' joined the group. '+ socket.id);
+      socket.in(_room).emit('udp:event', {log: name + ' joined the group: ' + _room});
+  });
+
+  socket.on('start:dataLogs', function (data) {
+    if(_timer)
+    {
+      clearInterval(_timer)
+    }
+    console.log(data);
+
+    _timer = setInterval(function(){
+        sendMessageToPod("Thanks Pod, message received")
+    }, 2500);
     updateClientWithDatalogs = true;
   });
 

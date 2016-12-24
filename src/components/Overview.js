@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-let socket = io();
+let socket = io('',{'forceNew':true});
 
 class Overview extends Component {
 	constructor(props) {
@@ -13,38 +13,54 @@ class Overview extends Component {
 			parameterValue: 0,
 			elapsed: 0,
 			start: Date.now(),
-			updateRate: 500,
+			updateRate: 2500,
 			dataLogs:[]
 		}
 	}
 
-	componentDidMount() {
+	componentWillMount() {
         var _this = this;
 
-		socket.on('server event', function (data) {
-	        console.log(data);
-	        socket.emit('client event', { socket: 'io connected' });
-	    });
+		socket.on('connect', function() {
+			console.log('Client now connected!')
+			
+			//join pubsub group
+			socket.emit('join', {name: 'overviewLogs', room: 'dataLogging'});
 
-		socket.on('udp event', function (data) {
-	        console.log(data);
-    		_this.timer = setInterval(
-    			function(){
-    				_this.setState({elapsed: new Date() - _this.state.start})
-    			}, 50
-			);
 
-	        _this.setState({ 
-			    dataLogs: [data.log].concat(_this.state.dataLogs)
+			//start datalogging
+			socket.emit('start:dataLogs', {action: true});
+
+			socket.on('server event', function (data) {
+				console.log(data);
+				socket.emit('client event', { socket: 'io connected' });
 			});
-	    });
+
+			socket.on('udp:event', function (data) {
+				console.log(data);
+				_this.timer = setInterval(
+					function(){
+						_this.setState({elapsed: new Date() - _this.state.start})
+					}, 50
+				);
+
+				_this.setState({ 
+					dataLogs: [data.log].concat(_this.state.dataLogs)
+				});
+			});
+		});
+
+		socket.on('disconnected', function() {
+			console.log('Client got disconnect!')
+		});
+
 	}
 
 	componentWillUnmount(){
 
         // This method is called immediately before the component is removed
         // from the page and destroyed. We can clear the interval here:
-
+		socket.emit('forceDisconnect');
         clearInterval(this.timer);
     }
 
@@ -85,12 +101,12 @@ class Overview extends Component {
 			console.log(this.timer)
 			this.setState({dataLogging: false});
 	        clearInterval(this.timer);
-			socket.emit('stop:dataLogs');
+			socket.emit('stop:dataLogs', {action: false});
 		}
 		else if (e.target.value === 'Start')
 		{
 			this.setState({dataLogging: true});
-			socket.emit('start:dataLogs');
+			socket.emit('start:dataLogs', {action: true});
 		}
 	}
 

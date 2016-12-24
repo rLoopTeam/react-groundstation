@@ -27,7 +27,7 @@ var nodePaths = (process.env.NODE_PATH || '')
   .map(resolveApp);
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   entry: [
     // Finally, this is your app's code:
     resolveApp('src/index.js')

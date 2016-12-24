@@ -34,7 +34,7 @@
     "_pod": "nodemon --watch ./pod pod",
     "start": "cross-env NODE_ENV=development nodemon --watch ./server --watch ./utils  server",
     "start-all": "concurrently \"npm run start\" \"npm run _pod\"",
-    "_start-debug": "cross-env NODE_ENV=development nodemon --debug server",
+    "_start-debug": "cross-env NODE_ENV=development nodemon --watch ./server --watch ./utils --debug server",
     "bstart": "npm run build && cross-env NODE_ENV=development nodemon server",
     "build": "react-scripts build",
     "test-backend": "./node_modules/.bin/mocha --reporter spec",
