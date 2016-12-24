@@ -30,7 +30,7 @@ describe("UDP tests: ", function() {
 		})
 	})
 	describe("extractAccelerometerData", function() {
-		it.only("should extract the accelerometer data that comes after the message header", function() {
+		it("should extract the accelerometer data that comes after the message header", function() {
 			var raw = [
 				// header
 				0xFF,0xFF,0xFF,0xFF, //32 bit sequence
@@ -51,6 +51,14 @@ describe("UDP tests: ", function() {
 				0xFF, 0xFF
 			]
 			var parsedUdpMessage = udp.parseUdpMessage(raw);
+			expect(parsedUdpMessage.data.accelerometer0.flags).to.equal(4294967295)
+			expect(parsedUdpMessage.data.accelerometer0.x).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer0.y).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer0.z).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer1.flags).to.equal(4294967295)
+			expect(parsedUdpMessage.data.accelerometer1.x).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer1.y).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer1.z).to.equal(65535)
 		})
 	})
 })

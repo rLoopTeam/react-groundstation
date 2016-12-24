@@ -1,3 +1,4 @@
+const bin = require("./binary");
 /*
 * UDP data format:
 * [u32 Sequence][u16 PacketType][u16 Length]...hardware specific data e.g. accelerometers...[CRC16]
@@ -16,26 +17,10 @@ function parseUdpMessage(raw_udp) {
 }
 
 function extractMessageHeader(raw_udp) {
-
-  	var sequence = new DataView(new ArrayBuffer(4))
-  	var packetType = new DataView(new ArrayBuffer(2))
-	var length = new DataView(new ArrayBuffer(2))
-
-	sequence.setInt8(0, raw_udp[0]);
-	sequence.setInt8(1, raw_udp[1]);
-	sequence.setInt8(2, raw_udp[2]);
-	sequence.setInt8(3, raw_udp[3]);
-
-	packetType.setInt8(0, raw_udp[4]);
-	packetType.setInt8(1, raw_udp[5]);
-
-	length.setInt8(0, raw_udp[6]);
-	length.setInt8(1, raw_udp[7]);
-	
 	return {
-		sequence: sequence.getUint32(0, true),
-		packetType: packetType.getUint16(0, true),
-		length: length.getUint16(0, true)
+		sequence: bin.uint32(raw_udp[0], raw_udp[1], raw_udp[2], raw_udp[3]),
+		packetType: bin.uint16(raw_udp[4], raw_udp[5]),
+		length: bin.uint16(raw_udp[6], raw_udp[7]),
 	}
 }
 
@@ -43,7 +28,7 @@ function extractDataOfType(raw_udp, type){
 	var data = {}
 	switch (type) {
 		case dataTypes.ACCELEROMETERS: {
-
+			data = getAccelerometersData(raw_udp);
 		}
 		default:
 			break;
@@ -52,30 +37,31 @@ function extractDataOfType(raw_udp, type){
 }
 
 function extractCrc(raw_udp){
-	var crc = new DataView(new ArrayBuffer(2))
-	crc.setInt8(0, raw_udp[raw_udp.length - 2]);
-	crc.setInt8(1, raw_udp[raw_udp.length - 1]);
-	return crc.getUint16(0, true)
+	return bin.uint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1])
 }
 
 const dataTypes = Object.freeze({
     ACCELEROMETERS: 0
 });
 
-const dataTemplates = Object.freeze({
-    ACCELEROMETERS: {
+function getAccelerometersData(raw_udp) {
+	var flags0 = bin.uint32(raw_udp[8], raw_udp[9], raw_udp[10], raw_udp[11])
+	var x0 = bin.uint16(raw_udp[12], raw_udp[13])
+	var y0 = bin.uint16(raw_udp[14], raw_udp[15])
+	var z0 = bin.uint16(raw_udp[16], raw_udp[17])
+	var flags1 = bin.uint32(raw_udp[18], raw_udp[19], raw_udp[20], raw_udp[21])
+	var x1 = bin.uint16(raw_udp[22], raw_udp[23])
+	var y1 = bin.uint16(raw_udp[24], raw_udp[25])
+	var z1 = bin.uint16(raw_udp[26], raw_udp[27])
+	return {
     	accelerometer0: {
-    		x: null,
-    		y: null,
-    		z: null
+    		flags: flags0, x: x0, y: y0, z: z0
     	},
     	accelerometer1: {
-    		x: null,
-    		y: null,
-    		z: null
+    		flags: flags1, x: x1, y: y1, z: z1
     	}
     }
-});
+}
 
 module.exports = {
 	parseUdpMessage,
