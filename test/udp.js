@@ -4,33 +4,33 @@ const udp = require("../utils/udpParser");
 * Test for the CRC checksum module
 */
 describe("UDP tests: ", function() {
-	describe("extractMessageHeader", function() {
-		it("should extract header of udp message and output the correct MAXIMUM value for each type of Uint: [u32 Sequence][u16 PacketType][u16 Length]", function() {
+	describe("parseMessageHeader", function() {
+		it("should parse header of udp message and output the correct MAXIMUM value for each type of Uint: [u32 Sequence][u16 PacketType][u16 Length]", function() {
 			var raw = [
 				0xFF,0xFF,0xFF,0xFF, //32 bit sequence
 				0xFF,0xFF, //16 bit type
 				0xFF,0xFF, //16 bit length
 			]
-			var start = udp.extractMessageHeader(raw);
+			var start = udp.parseMessageHeader(raw);
 			console.log(start)
 			expect(start.sequence).to.equal(4294967295);
 			expect(start.packetType).to.equal(65535);
 			expect(start.length).to.equal(65535);
 		})
-		it("should extract header of udp message and output the correct MINIMUM value for each type of Uint: [u32 Sequence][u16 PacketType][u16 Length]", function() {
+		it("should parse header of udp message and output the correct MINIMUM value for each type of Uint: [u32 Sequence][u16 PacketType][u16 Length]", function() {
 			var raw = [
 				0x00,0x00,0x00,0x00, //32 bit sequence
 				0x00,0x00, //16 bit type
 				0x00,0x00, //16 bit length
 			]
-			var start = udp.extractMessageHeader(raw);
+			var start = udp.parseMessageHeader(raw);
 			expect(start.sequence).to.equal(0);
 			expect(start.packetType).to.equal(0);
 			expect(start.length).to.equal(0);
 		})
 	})
-	describe("extractAccelerometerData", function() {
-		it("should extract the accelerometer data that comes after the message header", function() {
+	describe("parseAccelerometerData", function() {
+		it("should parse the accelerometer data that comes after the message header", function() {
 			var raw = [
 				// header
 				0xFF,0xFF,0xFF,0xFF, //32 bit sequence
