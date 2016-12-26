@@ -6,26 +6,31 @@
 
 const app = require('./app');
 const dgram = require('dgram');
+const udptx = require('./udp/tx');
+const udprx = require('./udp/rx');
+var udp = {
+  tx: udptx,
+  rx: udprx
+}
 var _timer;
 var _room;
 var updateClientWithDatalogs = true;
-var listeningForUdp = false;
 
-/*
-* UDP data sender
-*/
-var SENDPORT = 9100; //3003; // This points to the Pod's UDP listener port
-var SENDHOST = '127.0.0.1';
+// /*
+// * UDP data sender
+// */
+// var SENDPORT = 9100; //3003; // This points to the Pod's UDP listener port
+// var SENDHOST = '127.0.0.1';
 
-function sendMessageToPod(messageStr){
-    var message = new Buffer(messageStr);
-    var client = dgram.createSocket('udp4');
-    client.send(message, 0, message.length, SENDPORT, SENDHOST, function(err, bytes) {
-        if (err) throw err;
-        console.log("GROUNSTATION UDP - SENT: " +  SENDHOST + ':' + SENDPORT +' - ' + message);
-        client.close();
-    });
-}
+// function udp.tx.sendMessage(messageStr){
+//     var message = new Buffer(messageStr);
+//     var client = dgram.createSocket('udp4');
+//     client.send(message, 0, message.length, SENDPORT, SENDHOST, function(err, bytes) {
+//         if (err) throw err;
+//         console.log("GROUNSTATION UDP - SENT: " +  SENDHOST + ':' + SENDPORT +' - ' + message);
+//         client.close();
+//     });
+// }
 
 //Function to send a SafetyUDP packet to the Xilinx simulation board
 function UDPSafe_Tx_X4(sIP, iPort, u16PacketType, u32Block0, u32Block1)
@@ -117,14 +122,14 @@ function Numerical_To_U16(u16Value, Object)
 	
 }
 
-/*
-* UDP data receiver
-*/
-var udpPORT = 9100; //3002; // Groundsation's udp port
-var udpHOST = '127.0.0.1';
+// /*
+// * UDP data receiver
+// */
+// var udpPORT = 9100; //3002; // Groundsation's udp port
+// var udpHOST = '127.0.0.1';
 
-var udpServer = dgram.createSocket('udp4');
-udpServer = udpServer.bind(udpPORT, udpHOST);
+// var udpServer = dgram.createSocket('udp4');
+// udpServer = udpServer.bind(udpPORT, udpHOST);
 
 
 
@@ -136,7 +141,6 @@ const server = app.listen(PORT, () => {
 });
 
 const io = require('socket.io')(server);
-io.set('log level',1);
 
 // socket.io demo
 io.on('connection', function (socket) {
@@ -147,12 +151,12 @@ io.on('connection', function (socket) {
   socket.in(_room).emit('server event', { foo: 'bar' });
   console.log("started listening")
 
-  if(!listeningForUdp)
+  if(!udp.listeningForUdp)
     startListening();
 
   function startListening(){
-    listeningForUdp = true;
-    udpServer.on('message', function (message, remote) {
+    udp.listeningForUdp = true;
+    udp.rx.server.on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
         
 
@@ -179,7 +183,7 @@ io.on('connection', function (socket) {
 	
   
   socket.on('stop:Pod', function (data) {
-    sendMessageToPod('STOP');
+    udp.tx.sendMessage('STOP');
   });
   
   socket.on('client event', function (data) {
@@ -193,7 +197,7 @@ io.on('connection', function (socket) {
     }
     console.log(data);
 
-    sendMessageToPod("DataLogs are no longer listening")
+    udp.tx.sendMessage("DataLogs are no longer listening")
     updateClientWithDatalogs = false;
   });
 
@@ -213,27 +217,21 @@ io.on('connection', function (socket) {
     console.log(data);
 
     _timer = setInterval(function(){
-        sendMessageToPod("Thanks Pod, message received")
+        udp.tx.sendMessage("Thanks Pod, message received")
     }, 2500);
     updateClientWithDatalogs = true;
   });
 
   socket.on('sendParameter', function (data) {
-    sendMessageToPod(JSON.stringify(data))
+    udp.tx.sendMessage(JSON.stringify(data))
   });
 
   socket.on('setIpAndPort', function (data) {
-    udpPORT = data.port;
-    udpHOST = data.ip;
-    udpServer.close(function(){
-      listeningForUdp = false;
-      udpServer = dgram.createSocket('udp4');
-      udpServer = udpServer.bind(udpPORT, udpHOST);
-      if(!listeningForUdp)
-        startListening()
-    });
-
-    sendMessageToPod(JSON.stringify(data))
+    udp.rx.updateConnectionData(data).then(() => {
+      if(!udp.listeningForUdp)
+          startListening()
+    })
+    udp.tx.sendMessage(JSON.stringify(data))
   });
 });
 
