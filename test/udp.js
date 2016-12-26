@@ -29,8 +29,9 @@ describe("UDP tests: ", function() {
 			expect(start.length).to.equal(0);
 		})
 	})
+	
 	describe("parseAccelerometerData", function() {
-		it("should parse the accelerometer data that comes after the message header", function() {
+		it("should parse the raw udp, and detect the type of data contained and parse it. In this case it is ACCELOROMETER data", function() {
 			var raw = [
 				// header
 				0xFF,0xFF,0xFF,0xFF, //32 bit sequence
@@ -50,7 +51,10 @@ describe("UDP tests: ", function() {
 				// crc
 				0xFF, 0xFF
 			]
+			// Parse raw udp data
 			var parsedUdpMessage = udp.parseUdpMessage(raw);
+
+			// We expect it to be accelerometer data
 			expect(parsedUdpMessage.data.accelerometer0.flags).to.equal(4294967295)
 			expect(parsedUdpMessage.data.accelerometer0.x).to.equal(65535)
 			expect(parsedUdpMessage.data.accelerometer0.y).to.equal(65535)
