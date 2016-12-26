@@ -5,6 +5,8 @@ module.exports = {
 	BackendHost:'127.0.0.1',
 
 	// Used for testing purposes
-	PodPort:'3003', // Pod details
-	PodHost:'127.0.0.1'
+	PodTxPort:'3003', // Pod details
+	PodTxHost:'127.0.0.1',
+	PodRxPort:'9100', // Pod details
+	PodRxHost:'127.0.0.1'
 }

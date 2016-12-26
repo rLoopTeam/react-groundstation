@@ -19,7 +19,6 @@ class App extends Component {
             <Route path="XilinxSim" component={XilinxSim} />
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
           </Route>
-		  
       </Router>
     );
   }

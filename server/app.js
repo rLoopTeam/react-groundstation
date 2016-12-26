@@ -4,7 +4,7 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('../config/webpack.config.js');
+const config = require('../config/webpack/webpack.config');
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 var pubPath = path.join(__dirname, '..', 'public/index.html');
