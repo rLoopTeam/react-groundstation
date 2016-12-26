@@ -29,7 +29,7 @@ class Overview extends Component {
 
 
 			//start datalogging
-			socket.emit('start:dataLogs', {action: true});
+			socket.emit('start:dataLogs');
 
 			socket.on('server event', function (data) {
 				console.log(data);
@@ -71,6 +71,13 @@ class Overview extends Component {
 	setIpAndPort(e) {
 		e.preventDefault();
 		socket.emit('setIpAndPort', { ip: this.state.ip,  port: this.state.port });
+		
+
+		//join pubsub group
+		socket.emit('join', {name: 'overviewLogs', room: 'dataLogging'});
+		
+		//start datalogging
+		socket.emit('start:dataLogs');
 	}
 
 	handleIpChange(e){
@@ -101,12 +108,12 @@ class Overview extends Component {
 			console.log(this.timer)
 			this.setState({dataLogging: false});
 	        clearInterval(this.timer);
-			socket.emit('stop:dataLogs', {action: false});
+			socket.emit('stop:dataLogs');
 		}
 		else if (e.target.value === 'Start')
 		{
 			this.setState({dataLogging: true});
-			socket.emit('start:dataLogs', {action: true});
+			socket.emit('start:dataLogs');
 		}
 	}
 

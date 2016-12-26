@@ -162,7 +162,7 @@ io.on('connection', function (socket) {
 
         if(updateClientWithDatalogs)
         {
-          socket.in(_room).emit('udp:event', {
+          socket.in('dataLogging').emit('udp:event', {
             log: remote.address + ':' + remote.port +' - ' + message
           });
         }

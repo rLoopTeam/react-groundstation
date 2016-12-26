@@ -8,8 +8,8 @@ var Promise = require('promise');
 // var rxPort = 9100; //3002; // Groundsation's udp port
 // var rxHost = '127.0.0.1';
 
-rxPort = commConfig.PodTxPort;//receive from server to pod on pod's sending port
-rxHost = commConfig.PodTxHost;//receive from server to pod on pod's sending host ip
+var rxPort = commConfig.PodTxPort;//receive from server to pod on pod's sending port
+var rxHost = commConfig.PodTxHost;//receive from server to pod on pod's sending host ip
 
 var udpServer = dgram.createSocket('udp4');
 udpServer.bind(rxPort, rxHost);
@@ -35,7 +35,7 @@ module.exports = {
            udpServer.close(function () {
                _this.listeningForUdp = false;
                udpServer = dgram.createSocket('udp4');
-               udpServer = udpServer.bind(rxPort, rxHost);
+               udpServer.bind(rxPort, rxHost);
                resolve();
             })
        });

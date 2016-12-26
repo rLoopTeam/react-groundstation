@@ -7,8 +7,8 @@ const dgram = require('dgram');
 // var txPort = 9100; //3003; // This points to the Pod's UDP listener port
 // var txHost = '127.0.0.1';
 
-txPort = commConfig.PodRxPort;//send from server to pod on pod's receiving port
-txHost = commConfig.PodRxHost;//send from server to pod on pod's receiving host ip
+var txPort = commConfig.PodRxPort;//send from server to pod on pod's receiving port
+var txHost = commConfig.PodRxHost;//send from server to pod on pod's receiving host ip
 
 module.exports = {
     sendMessage: function (messageStr){
