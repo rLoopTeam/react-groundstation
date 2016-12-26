@@ -5,37 +5,40 @@ var Promise = require('promise');
 /*
 * UDP data receiver
 */
-// var txPort = 9100; //3002; // Groundsation's udp port
-// var txHost = '127.0.0.1';
+// var rxPort = 9100; //3002; // Groundsation's udp port
+// var rxHost = '127.0.0.1';
 
-txPort = commConfig.PodTxPort;//receive from server to pod on pod's sending port
-txHost = commConfig.PodTxHost;//receive from server to pod on pod's sending host ip
+rxPort = commConfig.PodTxPort;//receive from server to pod on pod's sending port
+rxHost = commConfig.PodTxHost;//receive from server to pod on pod's sending host ip
 
 var udpServer = dgram.createSocket('udp4');
-udpServer.bind(txPort, txHost);
+udpServer.bind(rxPort, rxHost);
 
 
 module.exports = {
-     server: udpServer,
-     listeningForUdp: false,
-     setHost: function (ip) {
-         txHost = ip;
-     },
-     setPort: function (port) {
-         txPort = port;
-     },
-     updateConnectionData: function (params) {
-        this.setPort(params.port);
-        this.setHost(params.ip);
-        
-        var promise = new Promise(function (resolve, reject) {
-            udpServer.close(function () {
-                this.listeningForUdp = false;
-                udpServer = dgram.createSocket('udp4');
-                udpServer = udpServer.bind(txPort, txHost);
-                resolve();
+    server: function(){
+        return udpServer
+    },
+    listeningForUdp: false,
+    setHost: function (ip) {
+        rxHost = ip;
+    },
+    setPort: function (port) {
+        rxPort = port;
+    },
+    updateConnectionData: function (params) {
+       var _this = this;
+       _this.setPort(params.port);
+       _this.setHost(params.ip);
+       
+       var promise = new Promise(function (resolve, reject) {
+           udpServer.close(function () {
+               _this.listeningForUdp = false;
+               udpServer = dgram.createSocket('udp4');
+               udpServer = udpServer.bind(rxPort, rxHost);
+               resolve();
             })
-        });
-        return promise;
-     }
+       });
+       return promise;
+    }
 };

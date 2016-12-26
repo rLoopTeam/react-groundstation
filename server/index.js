@@ -151,12 +151,12 @@ io.on('connection', function (socket) {
   socket.in(_room).emit('server event', { foo: 'bar' });
   console.log("started listening")
 
-  if(!udp.listeningForUdp)
+  if(!udp.rx.listeningForUdp)
     startListening();
 
   function startListening(){
-    udp.listeningForUdp = true;
-    udp.rx.server.on('message', function (message, remote) {
+    udp.rx.listeningForUdp = true;
+    udp.rx.server().on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
         
 
@@ -189,6 +189,19 @@ io.on('connection', function (socket) {
   socket.on('client event', function (data) {
     socket.broadcast.emit('update label', data);
   });
+  
+  socket.on('start:dataLogs', function (data) {
+    if(_timer)
+    {
+      clearInterval(_timer)
+    }
+    console.log(data);
+
+    _timer = setInterval(function(){
+        udp.tx.sendMessage("Thanks Pod, message received")
+    }, 2500);
+    updateClientWithDatalogs = true;
+  });
 
   socket.on('stop:dataLogs', function (data) {
     if(_timer)
@@ -209,53 +222,17 @@ io.on('connection', function (socket) {
       socket.in(_room).emit('udp:event', {log: name + ' joined the group: ' + _room});
   });
 
-  socket.on('start:dataLogs', function (data) {
-    if(_timer)
-    {
-      clearInterval(_timer)
-    }
-    console.log(data);
-
-    _timer = setInterval(function(){
-        udp.tx.sendMessage("Thanks Pod, message received")
-    }, 2500);
-    updateClientWithDatalogs = true;
-  });
-
   socket.on('sendParameter', function (data) {
     udp.tx.sendMessage(JSON.stringify(data))
   });
 
   socket.on('setIpAndPort', function (data) {
     udp.rx.updateConnectionData(data).then(() => {
-      if(!udp.listeningForUdp)
+      if(!udp.rx.listeningForUdp)
           startListening()
     })
     udp.tx.sendMessage(JSON.stringify(data))
   });
-});
-
-
-
-
-
-// Always return the main index.html, so react-router render the route in the client
-app.get('/websocketTest', function(req, res) {
-	console.log('/websocketTest')
-});
-
-app.post('/sendParameter', function(req, res){
-    console.log('POST /');
-    console.dir(req.body);
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end('sendParameter');
-});
-
-app.post('/setIpAndPort', function(req, res){
-    console.log('POST /');
-    console.dir(req.body);
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end('setIpAndPort');
 });
 
 
