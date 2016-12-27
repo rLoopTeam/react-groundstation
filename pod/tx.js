@@ -13,9 +13,9 @@ var config = require('../config/commConfig');
 function udpTX(){
 	var message = new Buffer('Telemetry data ');
 	var client = dgram.createSocket('udp4');
-	client.send(message, 0, message.length, config.GroundstationPort, config.GroundstationHost, function(err, bytes) {
+	client.send(message, 0, message.length, config.PodTxPort, config.PodTxHost, function(err, bytes) {
 	    if (err) throw err;
-	    console.log("POD - SENT: " + config.GroundstationHost + ':' + config.GroundstationPort +' - ' + message);
+	    console.log("POD - SENT: " + config.PodTxHost + ':' + config.PodTxPort +' - ' + message);
 	    client.close();
 	});
 }

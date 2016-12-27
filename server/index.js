@@ -3,9 +3,8 @@
 * Groundstation backend
 *-----------------------
 */
-
+const commConfig = require('../config/commConfig');
 const app = require('./app');
-const dgram = require('dgram');
 const udptx = require('./udp/tx');
 const udprx = require('./udp/rx');
 var udp = {
@@ -13,95 +12,14 @@ var udp = {
   rx: udprx
 }
 var _timer;
-var _room;
+var room = {
+  dataLogging: 'dataLogging'
+};
 var updateClientWithDatalogs = true;
 
-// /*
-// * UDP data sender
-// */
-// var SENDPORT = 9100; //3003; // This points to the Pod's UDP listener port
-// var SENDHOST = '127.0.0.1';
-
-// function udp.tx.sendMessage(messageStr){
-//     var message = new Buffer(messageStr);
-//     var client = dgram.createSocket('udp4');
-//     client.send(message, 0, message.length, SENDPORT, SENDHOST, function(err, bytes) {
-//         if (err) throw err;
-//         console.log("GROUNSTATION UDP - SENT: " +  SENDHOST + ':' + SENDPORT +' - ' + message);
-//         client.close();
-//     });
-// }
-
-//Function to send a SafetyUDP packet to the Xilinx simulation board
-function UDPSafe_Tx_X4(sIP, iPort, u16PacketType, u32Block0, u32Block1)
-{
-	var u8Buffer = new Uint8Array(30);
-	var msgBuff = new Buffer(u8Buffer.buffer);
-	
-	//format the message
-	
-	//sequence number
-	//need to increment this for each transmission
-	u8Buffer[0] = 0x00;
-	u8Buffer[1] = 0x00;
-	u8Buffer[2] = 0x00;
-	u8Buffer[3] = 0x00;
-	
-	//packet type = 0x5000
-	//U16
-	//todo: calls something like: u8Buffer[4] = Numerical_To_U16(0x5000);
-	//Or pass in the packet type from a define.
-	u8Buffer[4] = (u16PacketType & 0x00FF) >> 0;
-	u8Buffer[5] = (u16PacketType & 0xFF00) >> 8;
-	//0x50;
-
-	//length = 16bytes
-	//u16
-	//todo: calls something like: u8Buffer[6] = Numerical_To_U16(16);
-	u8Buffer[6] = 0x10;
-	u8Buffer[7] = 0x00;
-	
-	//data
-	//4 blocks of u32 for basic "control" type messages
-	//todo: calls something like: u8Buffer[8] = Numerical_To_U32(1);
-	//block 0 = 0x00000001 = switch on run
-	u8Buffer[8] = (u32Block0 & 0x000000FF) >> 0;
-	u8Buffer[9] = (u32Block0 & 0x0000FF00) >> 8;
-	u8Buffer[10] = (u32Block0 & 0x00FF0000) >> 16;
-	u8Buffer[11] = (u32Block0 & 0xFF000000) >> 24;
-	
-	u8Buffer[12] = (u32Block1 & 0x000000FF) >> 0;
-	u8Buffer[13] = (u32Block1 & 0x0000FF00) >> 8;
-	u8Buffer[14] = (u32Block1 & 0x00FF0000) >> 16;
-	u8Buffer[15] = (u32Block1 & 0xFF000000) >> 24;
-	
-	u8Buffer[16] = 0x00;
-	u8Buffer[17] = 0x00;
-	u8Buffer[18] = 0x00;
-	u8Buffer[19] = 0x00;
-	
-	u8Buffer[20] = 0x00;
-	u8Buffer[21] = 0x00;
-	u8Buffer[22] = 0x00;
-	u8Buffer[23] = 0x00;
-
-	//crc
-	//todo: Compute this value.
-	u8Buffer[24] = 0xF2;
-	u8Buffer[25] = 0xAB;
-	
-	
-	var client = dgram.createSocket('udp4');
-	//port 9170 and 192.168.1.170 are just the test hardware, probably better to
-	//make this part of the SafeUDP call so as we can target different hardware.
-    client.send(msgBuff, 0, 26, iPort, sIP, function(err, bytes)
-	{
-        if (err) throw err;
-        console.log("SafeUDP - SENT: " +  sIP + ':' + iPort +' - ' + u8Buffer);
-        client.close();
-    });
-	
-}
+/*------------
+BIT CONVERSION
+------------*/
 
 //convert a U32
 function Numerical_To_U32 (u32Value)
@@ -115,6 +33,7 @@ function Numerical_To_U32 (u32Value)
     return arr.buffer;
 }
 
+//convert a U16
 function Numerical_To_U16(u16Value, Object)
 {
 	object[0] = 0x0A;
@@ -122,18 +41,11 @@ function Numerical_To_U16(u16Value, Object)
 	
 }
 
-// /*
-// * UDP data receiver
-// */
-// var udpPORT = 9100; //3002; // Groundsation's udp port
-// var udpHOST = '127.0.0.1';
 
-// var udpServer = dgram.createSocket('udp4');
-// udpServer = udpServer.bind(udpPORT, udpHOST);
-
-
-
-const PORT = process.env.PORT || 3000;
+/*------------
+    SERVER
+------------*/
+const PORT = process.env.PORT || commConfig.Appserver.port;
 const env = process.env.NODE_ENV || 'development';
 
 const server = app.listen(PORT, () => {
@@ -142,13 +54,14 @@ const server = app.listen(PORT, () => {
 
 const io = require('socket.io')(server);
 
+
+
+/*------------
+  WEBSOCKETS
+------------*/
 // socket.io demo
 io.on('connection', function (socket) {
-  socket.on('disconnect', function() {
-    console.log('Server got disconnected!');
-  });
 
-  socket.in(_room).emit('server event', { foo: 'bar' });
   console.log("started listening")
 
   if(!udp.rx.listeningForUdp)
@@ -195,7 +108,6 @@ io.on('connection', function (socket) {
     {
       clearInterval(_timer)
     }
-    console.log(data);
 
     _timer = setInterval(function(){
         udp.tx.sendMessage("Thanks Pod, message received")
@@ -208,7 +120,6 @@ io.on('connection', function (socket) {
     {
       clearInterval(_timer)
     }
-    console.log(data);
 
     udp.tx.sendMessage("DataLogs are no longer listening")
     updateClientWithDatalogs = false;
@@ -216,10 +127,10 @@ io.on('connection', function (socket) {
 
   socket.on('join', function (data) {
       var name = data.name;
-      _room = data.room;
-      socket.join(_room);
+      room[data.room] = data.room; //add name of room to the list of rooms
+      socket.join(room[data.room]);
       console.log(name + ' joined the group. '+ socket.id);
-      socket.in(_room).emit('udp:event', {log: name + ' joined the group: ' + _room});
+      socket.in(room[data.room]).emit('udp:event', {log: name + ' joined the group: ' + room[data.room]});
   });
 
   socket.on('sendParameter', function (data) {
@@ -232,7 +143,12 @@ io.on('connection', function (socket) {
       if(!udp.rx.listeningForUdp)
           startListening()
     })
+
     udp.tx.sendMessage(JSON.stringify(data))
+  });
+
+  socket.on('disconnect', function() {
+    console.log('Server got disconnected!');
   });
 });
 

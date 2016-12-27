@@ -15,4 +15,4 @@ udpServer.on('message', function (message, remote) {
     console.log("POD - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
 });
 
-udpServer.bind(config.PodPort, config.PodHost);
+udpServer.bind(config.PodRxPort, config.PodRxHost);
