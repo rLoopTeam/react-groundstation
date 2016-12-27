@@ -1,17 +1,15 @@
-var fakeDataItem1 = {
-	'name':'Value 1',
-	'stale':false,
-	'value':20.023
-};
-var fakeDataItem2 = {
-	'name':'Value 2',
-	'stale':false,
-	'value':10000
-};
-
 var fakeDataStore = new Array();
-fakeDataStore.push(fakeDataItem1);
-fakeDataStore.push(fakeDataItem2);
+
+for(var i = 0;i<1000;i++)
+{	
+	var fakeDataItem1 = {
+		'name':'Value '+i,
+		'stale':false,
+		'value':20.023
+	};
+
+	fakeDataStore.push(fakeDataItem1);
+}
 
 
 module.exports = function (app, io)
@@ -33,11 +31,26 @@ module.exports = function (app, io)
 			console.log("StreamPipeServer: " + clientID + " send message: " + JSON.stringify(msg));
 		});
 		
-		setInterval(function(){
-			socket.emit('new data burst',fakeDataStore);
-			fakeDataItem1.value++;
-			fakeDataItem2.value++;
+		var clientReady = true;
+		
+		var updateTimer = setInterval(function(){
+			//Wait for an acknowledge to send new data, otherwise we fill up the OS buffers and bad things happen
+			if(clientReady){
+				clientReady = false;
+				socket.emit('new data burst',fakeDataStore, function(data) {clientReady = true;});
+			}
+			
+			for(var i = 0;i<1000;i++)
+			{
+				fakeDataStore[i].value += i+1;
+			}
 			}, 33);
+		
+		socket.on('disconnect', function(){
+			clearInterval(updateTimer);
+		});
+		
+		
 		
 	});	
 }

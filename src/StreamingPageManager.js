@@ -11,10 +11,11 @@ class StreamingPageManager {
 	}
 	
 	newPacketCallback(parameterList){
-		for(var i = 0;i<this.requestParametersWithCallbacks.length; i++){
-			for (var y = 0; y<parameterList.length;y++)
+		for(var i = 0, len1 = this.requestParametersWithCallbacks.length;i<len1; i++){
+			var name = this.requestParametersWithCallbacks[i].parameter;
+			for (var y = 0, len2 = parameterList.length; y<len2;y++)
 			{
-				if(parameterList[y].name == this.requestParametersWithCallbacks[i].parameter){
+				if(parameterList[y].name == name){
 					this.requestParametersWithCallbacks[i].callback(parameterList[y]);
 					break;
 				}

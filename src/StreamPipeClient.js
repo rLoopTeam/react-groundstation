@@ -16,8 +16,9 @@ class DataStreamClient {
 			
 			this.socket.emit('request parameters', this.RequestedParameters);
 			
-			this.socket.on('new data burst', function(msg){
+			this.socket.on('new data burst', function(msg, fn){
 				newPacketCallback(msg);
+				fn('');
 			});
 			
 			this.socket.on('disconnect', function () {this.connected = false; });
