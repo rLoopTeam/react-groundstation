@@ -132,11 +132,13 @@ const PORT = process.env.PORT || 3000;
 const env = process.env.NODE_ENV || 'development';
 
 const server = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}!`);
+  console.log('Server listening on port ${PORT}!');
 });
 
 const io = require('socket.io')(server);
 io.set('log level',1);
+
+const StreamPipeServer = require('./StreamPipeServer.js')(app, io);
 
 // socket.io demo
 io.on('connection', function (socket) {
