@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-let socket = io('',{'forceNew':true});
+var socket;
 
 class Overview extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			ip: '127.0.0.1',
-			port: 3002,
+			port: 9100,
+			socketIp: '127.0.0.1',
+			socketPort: 3000,
 			parameterIndex: 0,
 			parameterType: 0,
 			parameterValue: 0,
@@ -18,8 +20,15 @@ class Overview extends Component {
 		}
 	}
 
-	componentWillMount() {
-        var _this = this;
+	newSocketConnection(host, port, serverName){
+		socket = io.connect(host+':'+port, {
+			reconnection: true,
+			reconnectionDelay: 1000,
+			reconnectionDelayMax : 5000,
+			reconnectionAttempts: Infinity
+		});
+		
+		var _this = this;
 
 		socket.on('connect', function() {
 			console.log('Client now connected!')
@@ -27,14 +36,8 @@ class Overview extends Component {
 			//join pubsub group
 			socket.emit('join', {name: 'overviewLogs', room: 'dataLogging'});
 
-
 			//start datalogging
 			socket.emit('start:dataLogs');
-
-			socket.on('server event', function (data) {
-				console.log(data);
-				socket.emit('client event', { socket: 'io connected' });
-			});
 
 			socket.on('udp:event', function (data) {
 				console.log(data);
@@ -51,9 +54,26 @@ class Overview extends Component {
 		});
 
 		socket.on('disconnected', function() {
-			console.log('Client got disconnect!')
-		});
+			console.log('Client got disconnected!')
+			console.log('Opening new connection')
 
+			if(serverName === 'one')
+				this.startServerTwo()
+			if(serverName === 'two')
+				this.startServerOne()
+		});
+	}
+
+	startServerOne() {
+		this.newSocketConnection(this.state.socketIp, this.state.socketPort, 'one')
+	}
+
+	startServerTwo() {
+		this.newSocketConnection(this.state.socketIp, this.state.socketPort, 'two')
+	}
+
+	componentWillMount() {
+        this.startServerOne()
 	}
 
 	componentWillUnmount(){
@@ -61,7 +81,9 @@ class Overview extends Component {
         // This method is called immediately before the component is removed
         // from the page and destroyed. We can clear the interval here:
 		socket.emit('forceDisconnect');
-        clearInterval(this.timer);
+		socket.close(()=>{
+			clearInterval(this.timer);
+		})
     }
 
 	sendParameter(e) {
@@ -71,13 +93,8 @@ class Overview extends Component {
 	setIpAndPort(e) {
 		e.preventDefault();
 		socket.emit('setIpAndPort', { ip: this.state.ip,  port: this.state.port });
-		
-
-		//join pubsub group
-		socket.emit('join', {name: 'overviewLogs', room: 'dataLogging'});
-		
-		//start datalogging
-		socket.emit('start:dataLogs');
+		if (socket) socket.disconnect();//this server will bounce
+        this.startServerOne()
 	}
 
 	handleIpChange(e){

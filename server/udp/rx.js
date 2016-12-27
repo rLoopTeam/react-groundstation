@@ -33,9 +33,11 @@ module.exports = {
        
        var promise = new Promise(function (resolve, reject) {
            udpServer.close(function () {
+               console.log('udpServer disconnected')
                _this.listeningForUdp = false;
                udpServer = dgram.createSocket('udp4');
                udpServer.bind(rxPort, rxHost);
+               console.log('rebound to ip and port')
                resolve();
             })
        });

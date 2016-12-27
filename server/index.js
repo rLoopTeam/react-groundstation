@@ -145,7 +145,7 @@ const io = require('socket.io')(server);
 // socket.io demo
 io.on('connection', function (socket) {
   socket.on('disconnect', function() {
-    console.log('Server got disconnect!');
+    console.log('Server got disconnected!');
   });
 
   socket.in(_room).emit('server event', { foo: 'bar' });
@@ -228,6 +228,7 @@ io.on('connection', function (socket) {
 
   socket.on('setIpAndPort', function (data) {
     udp.rx.updateConnectionData(data).then(() => {
+      console.log('udp starting to listen again')
       if(!udp.rx.listeningForUdp)
           startListening()
     })
