@@ -30,13 +30,6 @@ var room = {
 
 var logger = require('./datalogging.js')(logger);
 
-
-/*------------
-  WEBSOCKETS
-  Handles commands from the client to send to the Pod.
-------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger);
-
 /*------------
 	All UDP I/O directly to/from pod.
 	***commands to the pod are currently down in websocketCommands, that should be abstracted out to here. 
@@ -58,3 +51,9 @@ var rtDataStore = require('./realtimeDataStore')();
 	Sends requested parameters to the client at a fixed interval.
 ------------*/
 const StreamPipeServer = require('./StreamPipeServer.js')(app, io);
+
+/*------------
+  WEBSOCKETS
+  Handles commands from the client to send to the Pod.
+------------*/
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger);
