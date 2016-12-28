@@ -7,10 +7,18 @@ const dgram = require('dgram');
 // var txPort = 9100; //3003; // This points to the Pod's UDP listener port
 // var txHost = '127.0.0.1';
 
+var winston = require('winston');
 var txPort = commConfig.PodRxPort;//send from server to pod on pod's receiving port
 var txHost = commConfig.PodRxHost;//send from server to pod on pod's receiving host ip
 var u8Buffer;
 
+var logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.File)({ filename: 'winston_tx.log' }),
+        new (winston.transports.File)({ filename: 'winston_all.log', name: 'file.all' })
+    ]
+});
+logger.level = 'debug';
 
 module.exports = {
     sendMessage: function (messageStr){
@@ -19,6 +27,7 @@ module.exports = {
         client.send(message, 0, message.length, txPort, txHost, function(err, bytes) {
             if (err) throw err;
             console.log("GROUNSTATION UDP - SENT: " +  txHost + ':' + txPort +' - ' + message);
+            logger.log("debug", "GROUNSTATION UDP - SENT: " +  txHost + ':' + txPort +' - ' + message);
             client.close();
         });
     },

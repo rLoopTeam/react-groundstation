@@ -7,6 +7,11 @@ const commConfig = require('../config/commConfig');
 const app = require('./app');
 const udptx = require('./udp/tx');
 const udprx = require('./udp/rx');
+
+var fs = require('fs')
+var path = require('path')
+var winston = require('winston');
+
 var udp = {
   tx: udptx,
   rx: udprx
@@ -16,6 +21,14 @@ var room = {
   dataLogging: 'dataLogging'
 };
 var updateClientWithDatalogs = true;
+
+var logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.File)({ filename: 'winston_rx.log' }),
+        new (winston.transports.File)({ filename: 'winston_all.log', name: 'file.all' })
+    ]
+});
+logger.level = 'debug';
 
 /*------------
 BIT CONVERSION
@@ -71,7 +84,7 @@ io.on('connection', function (socket) {
     udp.rx.listeningForUdp = true;
     udp.rx.server().on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
-        
+        logger.log("debug", "GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
 
         if(updateClientWithDatalogs)
         {
