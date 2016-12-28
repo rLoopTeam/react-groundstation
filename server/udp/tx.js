@@ -14,8 +14,8 @@ var u8Buffer;
 
 var logger = new (winston.Logger)({
     transports: [
-        new (winston.transports.File)({ filename: 'winston_tx.log' }),
-        new (winston.transports.File)({ filename: 'winston_all.log', name: 'file.all' })
+        new (winston.transports.File)({ filename: './logs/winston_tx.log' }),
+        new (winston.transports.File)({ filename: './logs/winston_all.log', name: 'file.all' })
     ]
 });
 logger.level = 'debug';
