@@ -67,7 +67,7 @@ io.on('connection', function (socket) {
   if(!udp.rx.listeningForUdp)
     startListening();
 
-  function startListening(){
+  function startListening(){ // listen for udp packets
     udp.rx.listeningForUdp = true;
     udp.rx.server().on('message', function (message, remote) {
         console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
@@ -82,74 +82,72 @@ io.on('connection', function (socket) {
     });
   }
 
-  socket.on('forceDisconnect', function(){
-    socket.disconnect();
-  });
+  var websocket = {};
+  websocket.events = {
+    'forceDisconnect': function(){
+      socket.disconnect();
+    },
+    'XilinxSim:StartRun': function (data){ 
+      UDPSafe_Tx_X4("129.168.1.170", 9170, 0); 
+    },
+    'FlightControl_Accel:StartStream': function (data){ 
+      UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
+    },
+    'stop:Pod': function (data) {
+      udp.tx.sendMessage('STOP');
+    },
+    'client event': function (data) {
+      socket.broadcast.emit('update label', data);
+    },
+    'start:dataLogs': function (data) {
+      if(_timer)
+      {
+        clearInterval(_timer)
+      }
 
-  //Xilinx Sim
-	socket.on('XilinxSim:StartRun', function (data){ UDPSafe_Tx_X4("129.168.1.170", 9170, 0); });
+      _timer = setInterval(function(){
+          udp.tx.sendMessage("Thanks Pod, message received")
+      }, 2500);
+      updateClientWithDatalogs = true;
+    },
+    'stop:dataLogs': function (data) {
+      if(_timer)
+      {
+        clearInterval(_timer)
+      }
 
-	
-	//flight controllers
-	//enable stream of cal data 0x1001
-	socket.on('FlightControl_Accel:StartStream', function (data){ UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); });
-	
-  
-  socket.on('stop:Pod', function (data) {
-    udp.tx.sendMessage('STOP');
-  });
-  
-  socket.on('client event', function (data) {
-    socket.broadcast.emit('update label', data);
-  });
-  
-  socket.on('start:dataLogs', function (data) {
-    if(_timer)
-    {
-      clearInterval(_timer)
+      udp.tx.sendMessage("DataLogs are no longer listening")
+      updateClientWithDatalogs = false;
+    },
+    'join': function (data) {
+        var name = data.name;
+        room[data.room] = data.room; //add name of room to the list of rooms
+        socket.join(room[data.room]);
+        console.log(name + ' joined the group. '+ socket.id);
+        socket.in(room[data.room]).emit('udp:event', {log: name + ' joined the group: ' + room[data.room]});
+    },
+    'sendParameter': function (data) {
+      udp.tx.sendMessage(JSON.stringify(data))
+    },
+    'setIpAndPort': function (data) {
+      udp.rx.updateConnectionData(data).then(() => {
+        console.log('udp starting to listen again')
+        if(!udp.rx.listeningForUdp)
+            startListening()
+      })
+
+      udp.tx.sendMessage(JSON.stringify(data))
+    },
+    'disconnect': function() {
+      console.log('Server got disconnected!');
     }
+  }
 
-    _timer = setInterval(function(){
-        udp.tx.sendMessage("Thanks Pod, message received")
-    }, 2500);
-    updateClientWithDatalogs = true;
-  });
-
-  socket.on('stop:dataLogs', function (data) {
-    if(_timer)
-    {
-      clearInterval(_timer)
-    }
-
-    udp.tx.sendMessage("DataLogs are no longer listening")
-    updateClientWithDatalogs = false;
-  });
-
-  socket.on('join', function (data) {
-      var name = data.name;
-      room[data.room] = data.room; //add name of room to the list of rooms
-      socket.join(room[data.room]);
-      console.log(name + ' joined the group. '+ socket.id);
-      socket.in(room[data.room]).emit('udp:event', {log: name + ' joined the group: ' + room[data.room]});
-  });
-
-  socket.on('sendParameter', function (data) {
-    udp.tx.sendMessage(JSON.stringify(data))
-  });
-
-  socket.on('setIpAndPort', function (data) {
-    udp.rx.updateConnectionData(data).then(() => {
-      console.log('udp starting to listen again')
-      if(!udp.rx.listeningForUdp)
-          startListening()
-    })
-
-    udp.tx.sendMessage(JSON.stringify(data))
-  });
-
-  socket.on('disconnect', function() {
-    console.log('Server got disconnected!');
-  });
+  for (const event in websocket.events){
+      socket.on (event, (data)=> {
+        websocket.events[event](data);
+      })
+  }
 });
 
 
