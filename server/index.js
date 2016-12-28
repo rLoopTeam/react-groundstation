@@ -88,10 +88,10 @@ io.on('connection', function (socket) {
       socket.disconnect();
     },
     'XilinxSim:StartRun': function (data){ 
-      UDPSafe_Tx_X4("129.168.1.170", 9170, 0); 
+      udp.tx.UDPSafe_Tx_X4("129.168.1.170", 9170, 0); 
     },
     'FlightControl_Accel:StartStream': function (data){ 
-      UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
+      udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
     },
     'stop:Pod': function (data) {
       udp.tx.sendMessage('STOP');

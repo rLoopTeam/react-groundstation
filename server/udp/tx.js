@@ -9,6 +9,8 @@ const dgram = require('dgram');
 
 var txPort = commConfig.PodRxPort;//send from server to pod on pod's receiving port
 var txHost = commConfig.PodRxHost;//send from server to pod on pod's receiving host ip
+var u8Buffer;
+
 
 module.exports = {
     sendMessage: function (messageStr){
@@ -20,7 +22,7 @@ module.exports = {
             client.close();
         });
     },
-    //public
+    //public *maybe should be private since it is used by UDPSafe_Tx_X4
     sendSafeUDP: function(msgBuff, offset = 0, length = 26, iPort = 9170, sIP = '192.168.1.170') {
         var client = dgram.createSocket('udp4');
         //port 9170 and 192.168.1.170 are just the test hardware, probably better to
@@ -34,7 +36,7 @@ module.exports = {
     },
     //Function to send a SafetyUDP packet to the Xilinx simulation board
     UDPSafe_Tx_X4: function (sIP, iPort, u16PacketType, u32Block0, u32Block1) {
-        var u8Buffer = new Uint8Array(30);
+        u8Buffer = new Uint8Array(30);
         var msgBuff = new Buffer(u8Buffer.buffer);
         
         //format the message
