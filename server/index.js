@@ -60,16 +60,17 @@ const PORT = process.env.PORT || commConfig.Appserver.port;
 const env = process.env.NODE_ENV || 'development';
 
 const server = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}!`);
+  console.log('Server listening on port ${PORT}!');
 });
 
 const io = require('socket.io')(server);
 
-
+const StreamPipeServer = require('./StreamPipeServer.js')(app, io);
 
 /*------------
   WEBSOCKETS
 ------------*/
+
 // socket.io demo
 io.on('connection', function (socket) {
 

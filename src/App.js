@@ -6,6 +6,7 @@ import Overview from './components/Overview';
 import Stop from './components/Stop';
 import XilinxSim from './components/XilinxSim';
 import FlightControl_Accel from './components/FlightControl_Accel';
+import DataStreamExample from './components/datasubexample';
 import './App.css';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="stop" component={Stop} />
             <Route path="XilinxSim" component={XilinxSim} />
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
+			<Route path="datasubexample" component={DataStreamExample} />
           </Route>
       </Router>
     );

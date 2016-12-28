@@ -56,6 +56,8 @@ class MainLayout extends Component {
 		              </ul>
 		            </li>
 					
+					<li className="streamExample"><Link to="/datasubexample">Data Stream Example</Link></li>
+					
 		          </ul>
 		        </div>
 		      </div>
