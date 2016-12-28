@@ -33,7 +33,7 @@ describe("CRC tests: ", function() {
 		var crcResult = crc.CRC16CCITT(udpData, udpData.length).toString(16);
 		expect(crcResult).to.equal('a886');
   	})
-  	it("testing Lachlan's algorithm against our own data, with the expected result generated from the code on the hardware", function() {
+  	it.skip("testing Lachlan's algorithm against our own data, with the expected result generated from the code on the hardware", function() {
   		// test data from the hardware
   		var udpData = [
 			0x00,0x00,0x00,0x00,0x00,
