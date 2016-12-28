@@ -21,7 +21,6 @@ class App extends Component {
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
 			<Route path="datasubexample" component={DataStreamExample} />
           </Route>
-		  
       </Router>
     );
   }
