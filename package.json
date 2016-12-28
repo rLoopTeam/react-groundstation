@@ -29,7 +29,8 @@
     "react-dom": "^15.4.1",
     "react-router": "^3.0.0",
     "react-rt-chart": "^1.1.4",
-    "socket.io": "^1.7.2"
+    "socket.io": "^1.7.2",
+    "winston": "^2.3.0"
   },
   "scripts": {
     "_pod": "nodemon --watch ./pod pod",
