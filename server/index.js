@@ -8,8 +8,6 @@ const app = require('./app');
 const udptx = require('./udp/tx');
 const udprx = require('./udp/rx');
 
-var fs = require('fs')
-var path = require('path')
 var winston = require('winston');
 
 var udp = {
