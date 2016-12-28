@@ -5,15 +5,18 @@
 */
 const commConfig = require('../config/commConfig');
 const app = require('./app');
+
 const udptx = require('./udp/tx');
 const udprx = require('./udp/rx');
-
-var winston = require('winston');
 
 var udp = {
   tx: udptx,
   rx: udprx
 }
+
+var winston = require('winston');
+
+
 var _timer;
 var room = {
   dataLogging: 'dataLogging'
@@ -76,7 +79,7 @@ io.on('connection', function (socket) {
 
   console.log("started listening")
 
-  if(!udp.rx.listeningForUdp)
+  //if(!udp.rx.listeningForUdp)
     startListening();
 
   function startListening(){ // listen for udp packets

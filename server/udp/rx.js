@@ -11,7 +11,7 @@ var Promise = require('promise');
 var rxPort = commConfig.PodTxPort;//receive from server to pod on pod's sending port
 var rxHost = commConfig.PodTxHost;//receive from server to pod on pod's sending host ip
 
-var udpServer = dgram.createSocket('udp4');
+var udpServer = dgram.createSocket({type: 'udp4', reuseAddr: true});
 udpServer.bind(rxPort, rxHost);
 
 

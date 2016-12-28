@@ -4,7 +4,7 @@
 * This file contains a server which can send data via udp.
 * Using this, we can simulate data going from the pod.
 */
-var dgram = require('dgram');
+var dgram = require({type: 'udp4', reuseAddr: true});
 var config = require('../config/commConfig');
 
 /*

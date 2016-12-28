@@ -23,7 +23,7 @@ logger.level = 'debug';
 module.exports = {
     sendMessage: function (messageStr){
         var message = new Buffer(messageStr);
-        var client = dgram.createSocket('udp4');
+        var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
         client.send(message, 0, message.length, txPort, txHost, function(err, bytes) {
             if (err) throw err;
             console.log("GROUNSTATION UDP - SENT: " +  txHost + ':' + txPort +' - ' + message);
@@ -33,7 +33,7 @@ module.exports = {
     },
     //public *maybe should be private since it is used by UDPSafe_Tx_X4
     sendSafeUDP: function(msgBuff, offset = 0, length = 26, iPort = 9170, sIP = '192.168.1.170') {
-        var client = dgram.createSocket('udp4');
+        var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
         //port 9170 and 192.168.1.170 are just the test hardware, probably better to
         //make this part of the SafeUDP call so as we can target different hardware.
         client.send(msgBuff, offset, length, iPort, sIP, function(err, bytes)

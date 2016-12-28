@@ -5,7 +5,7 @@
 * Using this, we can simulate data coming into the pod.
 */
 var dgram = require('dgram');
-var udpServer = dgram.createSocket('udp4');
+var udpServer = dgram.createSocket({type: 'udp4', reuseAddr: true});
 var config = require('../config/commConfig');
 
 /*
