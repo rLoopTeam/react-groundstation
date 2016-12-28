@@ -7,6 +7,15 @@
 			"request": "attach",
 			"port": 5858,
 			"restart": true
+		},
+
+		{
+			"cwd": "${workspaceRoot}",
+			"program": "${workspaceRoot}/node_modules/.bin/mocha",
+			"name": "Run tests",
+			"type": "node",
+			"request": "launch",
+			"port": 5858
 		}
 	]
 }
