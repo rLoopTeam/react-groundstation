@@ -33,10 +33,10 @@ module.exports = function (io, udp, room, logger, podCommands)
 		  socket.disconnect();
 		},
 		'XilinxSim:StartRun': function (data){ 
-		  udp.tx.UDPSafe_Tx_X4("129.168.1.170", 9170, 0); 
+			podCommands.XilinxSimStart();
 		},
-		'FlightControl_Accel:StartStream': function (data){ 
-		  udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
+		'FlightControl_Accel:StartStream': function (){ 
+			podCommands.StreamingControlStart()
 		},
 		'stop:Pod': function (data) {
 			podCommands.PodStop();
@@ -75,7 +75,7 @@ module.exports = function (io, udp, room, logger, podCommands)
 			socket.in(room[data.room]).emit('udp:event', {log: name + ' joined the group: ' + room[data.room]});
 		},
 		'sendParameter': function (data) {
-		  udp.tx.sendMessage(JSON.stringify(data))
+			podCommands.SendParameter(data);
 		},
 		'setIpAndPort': function (data) {
 		  udp.rx.updateConnectionData(data).then(() => {

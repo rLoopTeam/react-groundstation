@@ -5,9 +5,6 @@ let socket = io();
 class Stop extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-			command: 'stop'
-		}
 	}
 
 	componentDidMount() {
@@ -28,8 +25,14 @@ class Stop extends Component {
 
 	    return (
 		    	<div className="Overview-content">
-		    		<button className="btn-lg btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
-		    		<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
+					<div className="row">
+						<div className="col-sm-2">
+							<button className="btn-lg btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
+						</div>
+						<div className="col-sm-2">
+							<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
+						</div>
+					</div>
 				</div>
 	    );
 	}
