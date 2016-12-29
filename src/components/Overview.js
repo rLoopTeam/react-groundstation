@@ -18,6 +18,9 @@ class Overview extends Component {
 			updateRate: 2500,
 			dataLogs:[]
 		}
+
+
+		this._isMounted = true;
 	}
 
 	newSocketConnection(host, port, serverName){
@@ -43,13 +46,16 @@ class Overview extends Component {
 				console.log(data);
 				_this.timer = setInterval(
 					function(){
-						_this.setState({elapsed: new Date() - _this.state.start})
+						if(_this._isMounted)
+							_this.setState({elapsed: new Date() - _this.state.start})
 					}, 50
 				);
-
-				_this.setState({ 
-					dataLogs: [data.log].concat(_this.state.dataLogs)
-				});
+				
+				if(_this._isMounted){
+					_this.setState({ 
+						dataLogs: [data.log].concat(_this.state.dataLogs)
+					});
+				}
 			});
 		});
 
@@ -78,6 +84,7 @@ class Overview extends Component {
 
 	componentWillUnmount(){
 
+		this._isMounted = false;
         // This method is called immediately before the component is removed
         // from the page and destroyed. We can clear the interval here:
 		socket.emit('forceDisconnect');
@@ -98,23 +105,28 @@ class Overview extends Component {
 	}
 
 	handleIpChange(e){
-		this.setState({ip: e.target.value})
+		if(this._isMounted)
+			this.setState({ip: e.target.value})
 	}
 
 	handlePortChange(e){
-		this.setState({port: e.target.value})
+		if(this._isMounted)
+			this.setState({port: e.target.value})
 	}
 
 	handleParameterIndexChange(e){
-		this.setState({parameterIndex: e.target.value})
+		if(this._isMounted)
+			this.setState({parameterIndex: e.target.value})
 	}
 
 	handleParameterTypeChange(e){
-		this.setState({parameterType: e.target.value})
+		if(this._isMounted)
+			this.setState({parameterType: e.target.value})
 	}
 
 	handleParameterValueChange(e){
-		this.setState({parameterValue: e.target.value})
+		if(this._isMounted)
+			this.setState({parameterValue: e.target.value})
 	}
 
 	toggleDatalogging(e){
@@ -123,13 +135,15 @@ class Overview extends Component {
 		if(e.target.value === 'Stop')
 		{
 			console.log(this.timer)
-			this.setState({dataLogging: false});
+			if(_this._isMounted)
+				this.setState({dataLogging: false});
 	        clearInterval(this.timer);
 			socket.emit('stop:dataLogs');
 		}
 		else if (e.target.value === 'Start')
 		{
-			this.setState({dataLogging: true});
+			if(_this._isMounted)
+				this.setState({dataLogging: true});
 			socket.emit('start:dataLogs');
 		}
 	}

@@ -11,10 +11,19 @@ class GenericParameterLabel extends Component {
 			stale: false,
 			value: 0
 		}
+
+		this._isMounted = true;
+		
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
+		this.props.StreamingPageManager.destroy;
 	}
 	
 	dataCallback(parameterData){
-		this.setState({value: parameterData.value, stale: parameterData.stale});
+		if(this._isMounted)
+			this.setState({value: parameterData.value, stale: parameterData.stale});
 	}
 
 	render() {

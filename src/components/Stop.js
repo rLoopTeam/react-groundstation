@@ -3,9 +3,6 @@ import io from 'socket.io-client';
 let socket = io();
 
 class Stop extends Component {
-	constructor(props) {
-		super(props)
-	}
 
 	componentDidMount() {
         var _this = this;
