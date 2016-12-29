@@ -13,6 +13,7 @@ function bytesToUint8(byte1, littleEndian) {
 function bytesToInt8(byte1, littleEndian) {
 	var dataView = new DataView(new ArrayBuffer(1))
 	dataView.setInt8(0, byte1);
+	console.log(dataView.getInt8(0, littleEndian));
 	return dataView.getInt8(0, littleEndian)
 }
 
@@ -58,7 +59,7 @@ function bytesToFloat32(byte1, byte2, byte3, byte4, littleEndian) {
 }
 
 function bytesToFloat64(byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, littleEndian) {
-	var dataView = new DataView(new ArrayBuffer(4))
+	var dataView = new DataView(new ArrayBuffer(8))
 	dataView.setInt8(0, byte1);
 	dataView.setInt8(1, byte2);
 	dataView.setInt8(2, byte3);

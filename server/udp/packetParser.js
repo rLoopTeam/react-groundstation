@@ -27,12 +27,16 @@ class PacketParser{
 			{
 				"Name":"Test Packet",
 				"ParameterPrefix":"Test 1: ",
-				"PacketType":20,
+				"PacketType":80,
 				"Parameters":[
-								{'Name':'x', 'type':'uint16', 'units':'mm', 'size': 2},
-								{'Name':'y', 'type':'uint16', 'units':'mm', 'size': 2},
-								{'Name':'z', 'type':'uint16', 'units':'mm', 'size': 2},
-								{'Name':'velocity', 'type':'float32', 'units':'m/s', 'size': 4}
+								{'Name':'x', 'type':'uint8', 'units':'NA', 'size': 1},
+								{'Name':'x', 'type':'int8', 'units':'NA', 'size': 1},
+								{'Name':'x', 'type':'uint16', 'units':'NA', 'size': 2},
+								{'Name':'x', 'type':'int16', 'units':'NA', 'size': 2},
+								{'Name':'x', 'type':'uint32', 'units':'NA', 'size': 4},
+								{'Name':'x', 'type':'int32', 'units':'NA', 'size': 4},
+								{'Name':'x', 'type':'float32', 'units':'NA', 'size': 4},
+								{'Name':'x', 'type':'float64', 'units':'NA', 'size': 8}
 							]
 			}
 		];
@@ -66,6 +70,7 @@ class PacketParser{
 		//    sequence misses
 
 		var logger = this.logger;
+	
 		
 		logger.log('info', 'PacketParser: New packet!');
 		
@@ -79,7 +84,14 @@ class PacketParser{
 		
 		var sequence = bin.bytesToUint32(raw_udp[0], raw_udp[1], raw_udp[2], raw_udp[3]);
 		var packetType = bin.bytesToUint16(raw_udp[4], raw_udp[5]);
-		var length = bin.bytesToUint16(raw_udp[6], raw_udp[7]);
+		var length = bin.bytesToUint16(raw_udp[6], raw_udp[7], true);
+		
+		if((length+10) !== raw_udp.length)
+		{
+			//Packet is the wrong length, abort, should update packet stats too
+			logger.log('warn',"PacketParser: Packet with invalid length received.");
+			return;
+		}
 		
 		//See if we know how to decode this particular type of packet
 		var packetDef = this.findPacketDefinition(packetType);
@@ -113,12 +125,12 @@ class PacketParser{
 			switch(packetDef.Parameters[i].type){
 				case 'uint8':
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToUint8(raw_udp[parseLoc], raw_udp[parseLoc+1]),
+														'value':bin.bytesToUint8(raw_udp[parseLoc]),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int8': 
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToInt8(raw_udp[parseLoc], raw_udp[parseLoc+1]),
+														'value':bin.bytesToInt8(raw_udp[parseLoc]),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'uint16': 
@@ -162,10 +174,10 @@ class PacketParser{
 							break;
 				case 'float64':	
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToFloat64(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],
-																raw_udp[parseLoc+4], raw_udp[parseLoc+5],
-																raw_udp[parseLoc+6], raw_udp[parseLoc+7]),
+														'value':bin.bytesToFloat64(raw_udp[parseLoc+7], raw_udp[parseLoc+6],
+																raw_udp[parseLoc+5], raw_udp[parseLoc+4],
+																raw_udp[parseLoc+3], raw_udp[parseLoc+2],
+																raw_udp[parseLoc+1], raw_udp[parseLoc+0]),
 														'units':packetDef.Parameters[i].units});
 							break;
 				

@@ -53,13 +53,11 @@ exports.u16SWCRC__CRC = function(cpu8Data, length) {
     var j, i, c;
 
     for (i = 0; i < length; i++) {
-        c = cpu8Data[i].charCodeAt(0);
+        c = cpu8Data[i];
         if (c > 255) { throw new RangeError(); }
 
         j = ((crc >> 8) ^ c) & 0xFF;
 		crc = lookupTables.u16SWCRC_CRC_TABLE[j] ^ (crc << 8);
-
-		console.log("crc:", crc, " character:", cpu8Data[i]);
     }
     var result = crc;
 	return result
