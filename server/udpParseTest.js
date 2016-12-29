@@ -2,8 +2,6 @@ const bin = require('./udp/binary.js');
 
 module.exports = function(logger){
 	
-	console.log("got here");
-	
 	var packetParser = require('./udp/packetParser')(logger);
 	var DummyPacket = [];
 	DummyPacket.push.apply(DummyPacket,bin.uint32ToBytes(0,true)); //Sequence
