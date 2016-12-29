@@ -15,7 +15,7 @@ class StreamingPageManager {
 			var name = this.requestParametersWithCallbacks[i].parameter;
 			for (var y = 0, len2 = parameterList.length; y<len2;y++)
 			{
-				if(parameterList[y].name == name){
+				if(parameterList[y].name === name){
 					this.requestParametersWithCallbacks[i].callback(parameterList[y]);
 					break;
 				}

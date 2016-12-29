@@ -2,8 +2,6 @@ var winston = require('winston');
 
 module.exports = function ()
 {
-	
-	var updateClientWithDatalogs = true;
 
 	var logger = new (winston.Logger)({
 		transports: [

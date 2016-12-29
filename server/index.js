@@ -37,6 +37,12 @@ var logger = require('./datalogging.js')(logger);
 var udp = require('./udp/udpMain.js')(udp);
 
 /*------------
+	All UDP I/O directly to/from pod.
+	***commands to the pod are currently down in websocketCommands, that should be abstracted out to here. 
+------------*/
+var podCommands = require('./udp/podCommands')(udp);
+
+/*------------
 	RTDATASTORE	
 	Holds the last parameter values received from the pod.
 	Queried by the stream pipe server for data to send to the client
@@ -56,4 +62,4 @@ const StreamPipeServer = require('./StreamPipeServer.js')(app, io);
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands);
