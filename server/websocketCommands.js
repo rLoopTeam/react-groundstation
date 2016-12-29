@@ -36,7 +36,11 @@ module.exports = function (io, udp, room, logger, podCommands)
 			podCommands.XilinxSimStart();
 		},
 		'FlightControl_Accel:StartStream': function (){ 
-			podCommands.StreamingControlStart()
+			podCommands.FCUStreamingControlStart()
+		},
+		'power:streamingControl': function(data){
+			//data.status == on/off
+			podCommands.PowerStreamingControl(data.status)
 		},
 		'stop:Pod': function (data) {
 			podCommands.PodStop();
