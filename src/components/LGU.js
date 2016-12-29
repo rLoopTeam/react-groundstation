@@ -55,26 +55,49 @@ class LGU extends Component {
         var _this = this;
 	}
 
-	updatestreamingControl(e) {
-		socket.emit('power:streamingControl', {status: e.target.value})
+	handlePositionChange(e, index) {
+        var _index = e;
+        var e = index;
+        var liftName = e.currentTarget.name;
+        var liftDirection = e.currentTarget.value;
+        var _lift = this.set.lift[_index][liftName].direction[liftDirection] = true;
+
+        if(liftDirection === 'up')
+        {
+            this.set.lift[_index][liftName][direction][up] = true;
+            this.set.lift[_index][liftName][direction][down] = false;
+        }
+        else
+        {
+            this.set.lift[_index][liftName][direction][up] = false;
+            this.set.lift[_index][liftName][direction][down] = true;
+        }
+        
+		socket.emit('lgu:positionChange', {liftName: liftName, liftDirection: liftDirection})
 	}
 
 	render() {
-
+        var _this = this;
 	    return (
 		    	<div className="Overview-content">
-                    {this.set.lift.map(function(item, index){
+                    {
+                        this.set.lift.map(function(item, index){
+                        var itemName = Object.keys(item),
+                            direction = Object.keys(item[itemName].direction),
+                            upKey = direction[0],
+                            upVal = item[itemName].direction.up,
+                            downKey = direction[1],
+                            downVal = item[itemName].direction.down;
 
-                            
                                     return (<form key={index}>
                                         <fieldset>
-                                            <legend>{Object.keys(item)}</legend>
+                                            <legend>{itemName}</legend>
                                             <div className="form-group">
-                                                <input type="radio" id={Object.keys(item) + '-' + Object.keys(item[Object.keys(item)].direction)[0]} name={Object.keys(item)} value={item[Object.keys(item)].direction.up} />
-                                                <label htmlFor={Object.keys(item) + '-' + Object.keys(item[Object.keys(item)].direction)[0]}>{Object.keys(item[Object.keys(item)].direction)[0]}</label>
+                                                <input type="radio" id={itemName + '-' + upKey} name={itemName} onChange={_this.handlePositionChange.bind(_this, index)} checked={upVal ? 'checked' : ''} value={upKey} />
+                                                <label htmlFor={itemName + '-' + upKey}>{upKey}</label>
                                                 <br />
-                                                <input type="radio" id={Object.keys(item) + '-' + Object.keys(item[Object.keys(item)].direction)[1]} name={Object.keys(item)} value={item[Object.keys(item)].direction.down} />
-                                                <label htmlFor={Object.keys(item) + '-' + Object.keys(item[Object.keys(item)].direction)[1]}>{Object.keys(item[Object.keys(item)].direction)[1]}</label>
+                                                <input type="radio" id={itemName + '-' + downKey} name={itemName} onChange={_this.handlePositionChange.bind(_this, index)} checked={downVal ? 'checked' : ''} value={downKey} />
+                                                <label htmlFor={itemName + '-' + downKey}>{downKey}</label>
                                             </div>
                                         </fieldset>
                                     </form>);
