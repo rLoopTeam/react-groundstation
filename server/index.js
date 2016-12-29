@@ -57,3 +57,15 @@ const StreamPipeServer = require('./StreamPipeServer.js')(app, io);
   Handles commands from the client to send to the Pod.
 ------------*/
 const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger);
+
+/*------------
+  PacketParserTest
+  Just a quick test of the packet parser, need to verify a ton:
+  all the endiannesses
+  checksum validty
+  what the packet length encompasses
+------------*/
+const parseTest = require('./udpParseTest.js')(logger);
+
+
+
