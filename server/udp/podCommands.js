@@ -5,6 +5,9 @@ module.exports = function(udp){
         },
         PodStop: () => {
             udp.tx.sendMessage("PodStop")
+        },
+        StreamingControl: (command) => {
+            udp.tx.sendMessage(command)
         }
     }
 }

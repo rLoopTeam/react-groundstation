@@ -26,6 +26,10 @@ body {
   margin-bottom: 40px !important;
 }
 
+.margin-top-20px{
+  margin-top: 20px !important;
+}
+
 .height-300 {
   height: 300px;
 }

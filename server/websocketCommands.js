@@ -86,6 +86,10 @@ module.exports = function (io, udp, room, logger, podCommands)
 
 		  udp.tx.sendMessage(JSON.stringify(data))
 		},
+		'streamingControl': function(data){
+			//data.status == on/off
+			podCommands.StreamingControl(data.status)
+		},
 		'disconnect': function() {
 		  console.log('Server got disconnected!');
 		}
