@@ -5,14 +5,6 @@ let socket = io();
 class Stop extends Component {
 	constructor(props) {
 		super(props)
-		this.streamingControl = [
-			{
-				selected: true, value: 'Off'
-			},
-			{
-				selected: false, value: 'On'
-			}
-		]
 	}
 
 	componentDidMount() {
@@ -29,10 +21,6 @@ class Stop extends Component {
 		socket.emit('power:Pod');
 	}
 
-	updatestreamingControl(e) {
-		socket.emit('streamingControl', {status: e.target.value})
-	}
-
 	render() {
 
 	    return (
@@ -44,14 +32,6 @@ class Stop extends Component {
 						<div className="col-sm-2">
 							<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
 						</div>
-					</div>
-					<div className="form-group margin-top-20px">
-						<label htmlFor="streamingControl">Streaming Control</label>
-						<select id="streamingControl" name="streamingControl" onChange={this.updatestreamingControl.bind(this)} className="form-control">
-							{this.streamingControl.map(function(elem, index){
-								return <option key={ index } value={elem.value}> {elem.value} </option>;
-							})}
-						</select>
 					</div>
 				</div>
 	    );
