@@ -12,11 +12,6 @@ class Stop extends Component {
 
 	componentDidMount() {
         var _this = this;
-
-		socket.on('server event', function (data) {
-	        console.log(data);
-	        socket.emit('client event', { socket: 'io connected' });
-	    });
 	}
 
 	stopPod(e) {
@@ -24,11 +19,17 @@ class Stop extends Component {
 		socket.emit('stop:Pod');
 	}
 
+	podPower(e) {
+		e.preventDefault();
+		socket.emit('power:Pod');
+	}
+
 	render() {
 
 	    return (
 		    	<div className="Overview-content">
 		    		<button className="btn-lg btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
+		    		<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
 				</div>
 	    );
 	}

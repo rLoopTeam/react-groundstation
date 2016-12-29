@@ -1,6 +1,7 @@
 
-module.exports = function (io, udp, room, logger)
+module.exports = function (io, udp, room, logger, podCommands)
 {
+	var updateClientWithDatalogs = true;
 	var _timer;
 	
 	// socket.io demo
@@ -38,7 +39,7 @@ module.exports = function (io, udp, room, logger)
 		  udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
 		},
 		'stop:Pod': function (data) {
-		  udp.tx.sendMessage('STOP');
+			podCommands.PodStop();
 		},
 		'client event': function (data) {
 		  socket.broadcast.emit('update label', data);
@@ -62,6 +63,9 @@ module.exports = function (io, udp, room, logger)
 
 		  udp.tx.sendMessage("DataLogs are no longer listening")
 		  updateClientWithDatalogs = false;
+		},
+		'power:Pod': function(){
+			podCommands.PodOff()
 		},
 		'join': function (data) {
 			var name = data.name;
