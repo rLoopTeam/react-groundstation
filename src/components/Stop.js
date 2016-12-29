@@ -6,8 +6,16 @@ class Stop extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			command: 'stop'
+			streamingControl: 'off'
 		}
+		this.streamingControl = [
+			{
+				selected: true, value: 'Off'
+			},
+			{
+				selected: false, value: 'Off'
+			}
+		]
 	}
 
 	componentDidMount() {
@@ -30,6 +38,13 @@ class Stop extends Component {
 		    	<div className="Overview-content">
 		    		<button className="btn-lg btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
 		    		<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
+					
+					<label for="streamingControl">Streaming Control</label>
+					<select id="streamingControl" name="streamingControl" onChange={this.updatestreamingControl()} class="form-control">
+						{this.streamingControl.map(function(elem, index){
+							return <option key={ index } value={elem.value}> {elem.value} </option>;
+						})}
+					</select>
 				</div>
 	    );
 	}
