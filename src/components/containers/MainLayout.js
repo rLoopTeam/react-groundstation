@@ -40,6 +40,7 @@ class MainLayout extends Component {
 		              </ul>
 		            </li>
 		            <li><Link to="/lcu">LCU</Link></li>
+		            <li><Link to="/lgu">LGU</Link></li>
 		            <li><Link to="/stop">STOP</Link></li>
 
 					<li className="dropdown">
