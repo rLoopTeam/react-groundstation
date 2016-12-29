@@ -6,7 +6,10 @@ module.exports = function(udp){
         PodStop: () => {
             udp.tx.sendMessage("PodStop")
         },
-        StreamingControlStart: () => {
+        PowerStreamingControl: (command) => {
+            udp.tx.sendMessage(command)
+        },
+        FCUStreamingControlStart: () => {
 		  udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
         },
         XilinxSimStart: () => {
