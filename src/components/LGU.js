@@ -5,12 +5,12 @@ let socket = io();
 class LGU extends Component {
 	constructor(props) {
 		super(props)
-        this.set = {
+        this.state = {
             lift: [
                 {
                     fwd1: {
                         direction: {
-                            up: true, down: false
+                            up: false, down: true
                         },
                         speed: {
                             low: 0, high: 10000, tick: 1
@@ -20,7 +20,7 @@ class LGU extends Component {
                 {
                     fwd2: {
                         direction: {
-                            up: true, down: false
+                            up: false, down: true
                         },
                         speed: {
                             low: 0, high: 10000, tick: 1
@@ -30,7 +30,7 @@ class LGU extends Component {
                 {
                     aft1: {
                         direction: {
-                            up: true, down: false
+                            up: false, down: true
                         },
                         speed: {
                             low: 0, high: 10000, tick: 1
@@ -40,7 +40,7 @@ class LGU extends Component {
                 {
                     aft2: {
                         direction: {
-                            up: true, down: false
+                            up: false, down: true
                         },
                         speed: {
                             low: 0, high: 10000, tick: 1
@@ -60,17 +60,21 @@ class LGU extends Component {
         var e = index;
         var liftName = e.currentTarget.name;
         var liftDirection = e.currentTarget.value;
-        var _lift = this.set.lift[_index][liftName].direction[liftDirection] = true;
+        var _direction = this.state.lift[_index][liftName].direction;
+        var upVal;
+        var downVal;
 
         if(liftDirection === 'up')
         {
-            this.set.lift[_index][liftName][direction][up] = true;
-            this.set.lift[_index][liftName][direction][down] = false;
+            upVal = _direction.up = true;
+            downVal = _direction.down = false;
+            this.setState({_direction: _direction})
         }
         else
         {
-            this.set.lift[_index][liftName][direction][up] = false;
-            this.set.lift[_index][liftName][direction][down] = true;
+            upVal = _direction.up = false;
+            downVal = _direction.down = true;
+            this.setState({_direction: _direction})
         }
         
 		socket.emit('lgu:positionChange', {liftName: liftName, liftDirection: liftDirection})
@@ -81,7 +85,7 @@ class LGU extends Component {
 	    return (
 		    	<div className="Overview-content">
                     {
-                        this.set.lift.map(function(item, index){
+                        this.state.lift.map(function(item, index){
                         var itemName = Object.keys(item),
                             direction = Object.keys(item[itemName].direction),
                             upKey = direction[0],
