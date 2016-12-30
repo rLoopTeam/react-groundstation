@@ -126,10 +126,30 @@ class LGU extends Component {
 
                                     return (<form key={index}>
                                         <fieldset>
-                                            <legend>{itemName}</legend>
+                                            <legend>
+                                            	{itemName}
+                                            </legend>
+													
+                                            
                                             <div className="form-group">
-                                                <label htmlFor={itemName + '-' + speedkey}>{speedkey}</label>
+                                                <label htmlFor={itemName + '-' + speedkey}>{speedkey} 
+                                            </label>
+                                            
+											<small>
+												&nbsp; {speedVal}
+											</small>
                                                 <input type="range" name={itemName} id={itemName + '-' + speedkey} onChange={_this.handleSpeedChange.bind(_this, index)} value={speedVal} min={speedLow} max={speedHigh} />
+                                                <div className="row">
+                                                	<div className="col-xs-5">
+                                                		0
+                                                	</div>
+                                                	<div className="col-xs-2 text-center">
+                                                		500
+                                                	</div>
+                                                	<div className="col-xs-5 text-right">
+                                                		1000
+                                                	</div>
+												</div>
                                             </div>
 
                                             <div className="form-group">
@@ -152,6 +172,70 @@ class LGU extends Component {
 export default LGU;
 
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
 
 
 // WEBPACK FOOTER //
