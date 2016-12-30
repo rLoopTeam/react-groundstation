@@ -88,7 +88,7 @@ class LGU extends Component {
         var _speed = liftArr[_index][liftName].speed;
         
         //set value on object item
-        var val = _speed.value = liftSpeed;
+        var val = _speed.value = liftSpeed; 
 
         
 		
@@ -104,19 +104,25 @@ class LGU extends Component {
 					{
 						if(lift)//eslint prefers to have for in body wrapped in if statement
 						{
-							var _liftName = Object.keys(lift),
+                            var _liftName = Object.keys(lifts)[0],
 								_speed = lifts[lift].speed.value = liftSpeed;
+
+
+                            //send name of LGU and new value set
+                            socket.emit('lgu:speedChange', {liftName: _liftName, liftSpeed: liftSpeed})
 						}
 					}
 				}
 			}
 		}
+        else{
+            //send name of LGU and new value set
+            socket.emit('lgu:speedChange', {liftName: liftName, liftSpeed: liftSpeed})
+        }
 
         //set state
         this.setState({_speed: _speed});
         
-        //send name of LGU and new value set
-		socket.emit('lgu:speedChange', {liftName: liftName, liftSpeed: liftSpeed})
 	}
 
 	handlePositionChange(e, index) {
