@@ -6,7 +6,8 @@ const bin = require("./binary");
 */
 
 const dataTypes = Object.freeze({
-    ACCELEROMETERS: {id:0}
+    ACCELEROMETERS: {id:0},
+    POWER_NODE: {id:1}
 });
 
 function parseUdpMessage(raw_udp) {
@@ -33,6 +34,9 @@ function parseDataOfType(raw_udp, type){
 	switch (type) {
 		case dataTypes.ACCELEROMETERS.id: {
 			data = getAccelerometersData(raw_udp);
+		}
+		case dataTypes.POWER_NODE.id: {
+			data = getPowerNodeData(raw_udp);
 		}
 		default:
 			break;
@@ -66,6 +70,26 @@ function getAccelerometersData(raw_udp) {
     		flags: flags1, x: x1, y: y1, z: z1
     	}
     }
+}
+
+function getPowerNodeData(raw_udp){
+	var row_voltages = []
+	var start_index = 0
+	for (i=1; i<19; i++){
+		row_voltages[i] = bin.bytesToFloat32(raw_udp[start_index], raw_udp[start_index+1], raw_udp[start_index+2], raw_udp[start_index+3])
+		start_index += 4
+	}
+
+	var pack_voltage = bin.bytesToFloat32(raw_udp[start_index], raw_udp[start_index+1], raw_udp[start_index+2], raw_udp[start_index+3])
+	start_index += 4
+	var pack_current = bin.bytesToFloat32(raw_udp[start_index], raw_udp[start_index+1], raw_udp[start_index+2], raw_udp[start_index+3])
+	return {
+		power_node: {
+			row_voltages: row_voltages,
+			pack_current: pack_current,
+			pack_voltage: pack_voltage
+		}
+	}
 }
 
 module.exports = {
