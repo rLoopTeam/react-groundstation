@@ -17,10 +17,12 @@
 const bin = require('./binary.js');
 
 class PacketParser{
-	constructor(logger)
+	constructor(logger, processsedPacketCB)
 	{
 		this.date = new Date();
 		this.logger = logger;
+		this.gotNewPacket = this.gotNewPacket.bind(this);
+		this.processsedPacketCB = processsedPacketCB;
 		
 			//TODO: Read this from a config file
 		this.packetDefinitions = [
@@ -29,14 +31,14 @@ class PacketParser{
 				"ParameterPrefix":"Test 1: ",
 				"PacketType":80,
 				"Parameters":[
-								{'Name':'x', 'type':'uint8', 'units':'NA', 'size': 1},
-								{'Name':'x', 'type':'int8', 'units':'NA', 'size': 1},
-								{'Name':'x', 'type':'uint16', 'units':'NA', 'size': 2},
-								{'Name':'x', 'type':'int16', 'units':'NA', 'size': 2},
-								{'Name':'x', 'type':'uint32', 'units':'NA', 'size': 4},
-								{'Name':'x', 'type':'int32', 'units':'NA', 'size': 4},
-								{'Name':'x', 'type':'float32', 'units':'NA', 'size': 4},
-								{'Name':'x', 'type':'float64', 'units':'NA', 'size': 8}
+								{'Name':'x', 'type':'uint8', 'units':'test1', 'size': 1},
+								{'Name':'y', 'type':'int8', 'units':'test2', 'size': 1},
+								{'Name':'a', 'type':'uint16', 'units':'NA', 'size': 2},
+								{'Name':'b', 'type':'int16', 'units':'NA', 'size': 2},
+								{'Name':'c', 'type':'uint32', 'units':'NA', 'size': 4},
+								{'Name':'d', 'type':'int32', 'units':'NA', 'size': 4},
+								{'Name':'e', 'type':'float32', 'units':'NA', 'size': 4},
+								{'Name':'f', 'type':'float64', 'units':'millis since Unix Epoch', 'size': 8}
 							]
 			}
 		];
@@ -63,7 +65,6 @@ class PacketParser{
 
 
 	gotNewPacket (raw_udp) {
-		
 		//Good for testing, should just have some stats:
 		//    how many good
 		//    bad packets
@@ -71,8 +72,6 @@ class PacketParser{
 
 		var logger = this.logger;
 	
-		
-		logger.log('info', 'PacketParser: New packet!');
 		
 		if(this.verifyCRC(raw_udp))
 		{
@@ -105,6 +104,7 @@ class PacketParser{
 		
 		var newDataParams = {
 			'packetName':packetDef.Name,
+			'packetType':packetDef.PacketType,
 			'rxTime':this.date.getTime(), //Millis since 1970/1/1
 			'parameters':[]
 			}
@@ -186,11 +186,11 @@ class PacketParser{
 
 			parseLoc = newParseLoc;
 		}
-		
-		return(newDataParams);
+
+		this.processsedPacketCB(newDataParams);
 	}
 }
 
-module.exports = function(logger){
-	return new PacketParser(logger);
+module.exports = function(logger, processsedPacketCB){
+	return new PacketParser(logger, processsedPacketCB);
 };

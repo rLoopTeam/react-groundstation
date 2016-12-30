@@ -15,14 +15,16 @@ class DataStreamExample extends Component {
 
 	render() {
 		var labels = [];
+		/*
 		for (var i = 0;i<1000;i++){
 			var paramString = "Value " + i;
 			var keyString = "Val" + i;
 			labels.push(<div key={keyString} >{i}:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter={paramString} units="Gs" key={keyString} /> </div>)
-		}
+		}*/
 	    return (
 		    	<div className="Overview-content">
-				{labels}
+				<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Test 1: x' />
+				<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Test 1: f' />
 				</div>
 	    );
 	}

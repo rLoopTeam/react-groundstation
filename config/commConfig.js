@@ -7,5 +7,6 @@ module.exports = {
 	PodTxPort:'9100', // Pod details
 	PodTxHost:'127.0.0.1',
 	PodRxPort:'9100', // Pod details
-	PodRxHost:'127.0.0.1'
+	PodRxHost:'127.0.0.1',
+	RXServers:[ {'port':9900,'hostIP':'239.255.0.1','hostName':'Power Node'} ]
 }

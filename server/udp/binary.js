@@ -13,7 +13,6 @@ function bytesToUint8(byte1, littleEndian) {
 function bytesToInt8(byte1, littleEndian) {
 	var dataView = new DataView(new ArrayBuffer(1))
 	dataView.setInt8(0, byte1);
-	console.log(dataView.getInt8(0, littleEndian));
 	return dataView.getInt8(0, littleEndian)
 }
 

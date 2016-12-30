@@ -9,7 +9,8 @@ class GenericParameterLabel extends Component {
 		
 		this.state = {
 			stale: false,
-			value: 0
+			value: 0,
+			units: ''
 		}
 
 		this._isMounted = true;
@@ -23,17 +24,17 @@ class GenericParameterLabel extends Component {
 	
 	dataCallback(parameterData){
 		if(this._isMounted)
-			this.setState({value: parameterData.value, stale: parameterData.stale});
+			this.setState({value: parameterData.Value, stale: parameterData.IsStale, units: parameterData.Units});
 	}
 
 	render() {
 	    return (
 		    	<div className="Generic-Value">
-				{this.state.value} {this.props.units}
+				{this.state.value} {this.state.units}
 				</div>
 	    );
 	}
-}
+} 
 
 export default GenericParameterLabel;
 

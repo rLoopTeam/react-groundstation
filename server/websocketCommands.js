@@ -9,10 +9,12 @@ module.exports = function (io, udp, room, logger, podCommands)
 
 	  console.log("started listening")
 
+	  /*
 	  if(!udp.rx.listeningForUdp)
-		startListening();
+		startListening();*/
 
 	  function startListening(){ // listen for udp packets
+	  /*
 		udp.rx.listeningForUdp = true;
 		udp.rx.server().on('message', function (message, remote) {
 			console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
@@ -24,7 +26,7 @@ module.exports = function (io, udp, room, logger, podCommands)
 				log: remote.address + ':' + remote.port +' - ' + message
 			  });
 			}
-		});
+		});*/
 	  }
 
 	  var websocket = {};
