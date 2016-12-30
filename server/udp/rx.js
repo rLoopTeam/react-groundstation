@@ -16,7 +16,7 @@ class udpServer {
 		}.bind(this));
   
 		this.udpServer.on('message', function (message, remote) {   
-			console.log("Got a UDP message!");
+			console.log("Got a UDP message!"); //TODO Remove once everyone has verified it's working.
 			this.rxCallback(message);
 		}.bind(this));
 		
@@ -29,7 +29,6 @@ class udpServer {
 		
 		this.udpServer.bind(port, function() {
 			this.udpServer.setBroadcast(true);
-			this.udpServer.addMembership(ip);
 		}.bind(this));
 	}
 }
