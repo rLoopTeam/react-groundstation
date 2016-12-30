@@ -93,6 +93,9 @@ module.exports = function (io, udp, room, logger, podCommands)
 		'lgu:positionChange': function(data){
 		  udp.tx.sendMessage(JSON.stringify(data))
 		},
+		'lgu:speedChange': function(data){
+		  udp.tx.sendMessage(JSON.stringify(data))
+		},
 		'disconnect': function() {
 		  console.log('Server got disconnected!');
 		}
