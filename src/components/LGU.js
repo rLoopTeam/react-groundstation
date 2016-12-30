@@ -87,6 +87,11 @@ class LGU extends Component {
                     {
                         this.state.lift.map(function(item, index){
                         var itemName = Object.keys(item),
+                            speedkey = Object.keys(item[itemName])[1],
+                            speedLow = item[itemName].speed.low,
+                            speedHigh = item[itemName].speed.high,
+                            speedTick = item[itemName].speed.tick,
+                            directionkey = Object.keys(item[itemName])[0],
                             direction = Object.keys(item[itemName].direction),
                             upKey = direction[0],
                             upVal = item[itemName].direction.up,
@@ -97,6 +102,13 @@ class LGU extends Component {
                                         <fieldset>
                                             <legend>{itemName}</legend>
                                             <div className="form-group">
+                                                <label htmlFor={itemName + '-' + speedkey}>{speedkey}</label>
+                                                <input type="range" name={itemName + '-' + speedkey} id={itemName + '-' + speedkey} min={speedLow} max={speedHigh} />
+                                            </div>
+
+                                            <div className="form-group">
+                                                <label>{directionkey}</label>
+                                                <br />
                                                 <input type="radio" id={itemName + '-' + upKey} name={itemName} onChange={_this.handlePositionChange.bind(_this, index)} checked={upVal ? 'checked' : ''} value={upKey} />
                                                 <label htmlFor={itemName + '-' + upKey}>{upKey}</label>
                                                 <br />
