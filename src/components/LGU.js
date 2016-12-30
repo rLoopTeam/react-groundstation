@@ -5,6 +5,10 @@ let socket = io();
 class LGU extends Component {
 	constructor(props) {
 		super(props)
+
+		this.interlockDirection = false;
+		this.interlockSpeed = false;
+
         this.state = {
             lift: [
                 {
@@ -54,6 +58,20 @@ class LGU extends Component {
 	componentDidMount() {
         var _this = this;
 	}
+
+	handleInterlockDirection (e){
+		if(this.interlockDirection)
+			this.interlockDirection = false;
+		else
+			this.interlockDirection = true;
+	}
+
+	handleInterlockSpeed (e){
+		if(this.interlockSpeed)
+			this.interlockSpeed = false;
+		else
+			this.interlockSpeed = true;
+	}
     
 
 	handleSpeedChange(e, index) {
@@ -63,12 +81,36 @@ class LGU extends Component {
         //set name of lift and value returned to variables
         var liftName = _e.currentTarget.name;
         var liftSpeed = _e.currentTarget.value;
+        var liftArr = this.state.lift;
+		
 
         //assign object to variable
-        var _speed = this.state.lift[_index][liftName].speed;
+        var _speed = liftArr[_index][liftName].speed;
         
         //set value on object item
         var val = _speed.value = liftSpeed;
+
+        
+		
+		//set the value for all speed inputs to match the others
+		if(this.interlockSpeed)
+		{
+			for(var _ind in liftArr)
+			{
+				if(_ind)//eslint prefers to have for in body wrapped in if statement
+				{
+					var lifts = liftArr[_ind];
+					for(var lift in lifts)
+					{
+						if(lift)//eslint prefers to have for in body wrapped in if statement
+						{
+							var _liftName = Object.keys(lift),
+								_speed = lifts[lift].speed.value = liftSpeed;
+						}
+					}
+				}
+			}
+		}
 
         //set state
         this.setState({_speed: _speed});
@@ -110,6 +152,26 @@ class LGU extends Component {
         var _this = this;
 	    return (
 		    	<div className="Overview-content">
+		    	<fieldset>
+					<legend>
+						Interlock controls
+					</legend>
+					<div className="form-group">
+						<input type="checkbox" name="interlockDirection" id="interlockDirection" onChange={_this.handleInterlockDirection.bind(_this)} value={_this.interlockDirection} />
+
+						<label htmlFor="interlockDirection">
+							&nbsp; Interlock Direction
+						</label>
+					</div>
+					<div className="form-group">
+						<input type="checkbox" name="interlockSpeed" id="interlockSpeed" onChange={_this.handleInterlockSpeed.bind(_this)} value={_this.interlockSpeed} />
+
+						<label htmlFor="interlockSpeed">
+							&nbsp; Interlock Speed
+						</label>
+					</div>
+				</fieldset>
+
                     {
                         this.state.lift.map(function(item, index){
                         var itemName = Object.keys(item),
@@ -135,19 +197,19 @@ class LGU extends Component {
                                                 <label htmlFor={itemName + '-' + speedkey}>{speedkey} 
                                             </label>
                                             
-											<small>
-												&nbsp; {speedVal}
-											</small>
+											<span>
+												&nbsp; {parseFloat(((speedVal / speedHigh) * 100).toString()).toFixed(4)}%
+											</span>
                                                 <input type="range" name={itemName} id={itemName + '-' + speedkey} onChange={_this.handleSpeedChange.bind(_this, index)} value={speedVal} min={speedLow} max={speedHigh} />
                                                 <div className="row">
                                                 	<div className="col-xs-5">
-                                                		0
+                                                		0%
                                                 	</div>
                                                 	<div className="col-xs-2 text-center">
-                                                		500
+                                                		50%
                                                 	</div>
                                                 	<div className="col-xs-5 text-right">
-                                                		1000
+                                                		100%
                                                 	</div>
 												</div>
                                             </div>
@@ -172,6 +234,130 @@ class LGU extends Component {
 export default LGU;
 
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
 
 
 // WEBPACK FOOTER //
