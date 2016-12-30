@@ -104,8 +104,9 @@ class LGU extends Component {
 					{
 						if(lift)//eslint prefers to have for in body wrapped in if statement
 						{
-                            var _liftName = Object.keys(lifts)[0],
-								_speed = lifts[lift].speed.value = liftSpeed;
+                            var _liftName = Object.keys(lifts)[0];
+							
+							_speed = lifts[lift].speed.value = liftSpeed;
 
 
                             //send name of LGU and new value set
@@ -135,23 +136,65 @@ class LGU extends Component {
 
         //assign object to variable
         var _direction = this.state.lift[_index][liftName].direction;
+        var liftArr = this.state.lift;
+		
 
-        //set value on object items
-        var upVal = _direction.up = false;
-        var downVal = _direction.down = true;
+		//set value on object items
+		var upVal = _direction.up = false;
+		var downVal = _direction.down = true;
+
+		//set values if position is up
+		if(liftDirection === 'up')
+		{
+			upVal = _direction.up = true;
+			downVal = _direction.down = false;
+		}
+
+
+
+        //set the value for all speed inputs to match the others
+		if(this.interlockDirection)
+		{
+			for(var _ind in liftArr)
+			{
+				if(_ind)//eslint prefers to have for in body wrapped in if statement
+				{
+					var lifts = liftArr[_ind];
+					for(var lift in lifts)
+					{
+						if(lift)//eslint prefers to have for in body wrapped in if statement
+						{
+                            var _liftName = Object.keys(lifts)[0];
+							
+							_direction = lifts[lift].direction;
+
+								//set value on object items
+								upVal = _direction.up = false;
+								downVal = _direction.down = true;
+
+								//set values if position is up
+								if(liftDirection === 'up')
+								{
+									upVal = _direction.up = true;
+									downVal = _direction.down = false;
+								}
+
         
-        //set values if position is up
-        if(liftDirection === 'up')
-        {
-            upVal = _direction.up = true;
-            downVal = _direction.down = false;
-        }
+								//send name of LGU and new values to server
+								socket.emit('lgu:positionChange', {liftName: _liftName, liftDirection: liftDirection})
+						}
+					}
+				}
+			}
+		}
+		else
+		{
+			//send name of LGU and new values to server
+			socket.emit('lgu:positionChange', {liftName: liftName, liftDirection: liftDirection})
+		}
         
         //set state object
         this.setState({_direction: _direction})
-        
-        //send name of LGU and new values to server
-		socket.emit('lgu:positionChange', {liftName: liftName, liftDirection: liftDirection})
 	}
 
 	render() {
@@ -240,6 +283,10 @@ class LGU extends Component {
 export default LGU;
 
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/LGU.js
 
 
 // WEBPACK FOOTER //
