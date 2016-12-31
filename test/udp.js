@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const udp = require("../utils/udpParser");
+const udp = require("../server/udp/udpParser");
 /*
 * Test for the CRC checksum module
 */
