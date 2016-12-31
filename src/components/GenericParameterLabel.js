@@ -19,7 +19,7 @@ class GenericParameterLabel extends Component {
 
 	componentWillUnmount() {
 		this._isMounted = false;
-		this.props.StreamingPageManager.destroy();
+		this.props.StreamingPageManager.destroy;
 	}
 	
 	dataCallback(parameterData){
