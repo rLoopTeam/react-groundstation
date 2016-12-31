@@ -37,14 +37,20 @@ module.exports = function (io, udp, room, logger, podCommands)
 		'XilinxSim:StartRun': function (data){ 
 			podCommands.XilinxSimStart();
 		},
-		'FlightControl_Accel:StartStream': function (){ 
-			podCommands.FCUStreamingControlStart()
+		'FlightControl_Accel:StartStream_CalData': function (){ 
+			podCommands.FCUStreamingControlStart_AccelCalData()
 		},
-		'FlightControl_Accel:Zero': function (data){ 
-			podCommands.FCUFineZero(data)
+		'FlightControl_Accel:StartStream_FullData': function (){ 
+			podCommands.FCUStreamingControlStart_AccelFullData()
 		},
-		'FlightControl_Accel:Coarse': function (data){ 
-			podCommands.FCUCoarseZero(data)
+		'FlightControl_Accel:StopStream': function (){ 
+			podCommands.FCUStreamingControlStop_Accel()
+		},
+		'FlightControl_Accel:FineZero': function (data){ 
+			podCommands.FCUAccel_FineZero(data)
+		},
+		'FlightControl_Accel:AutoZero': function (data){ 
+			podCommands.FCUAccel_AutoZero(data)
 		},
 		'power:streamingControl': function(data){
 			//data.status == on/off
