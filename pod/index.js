@@ -7,3 +7,8 @@
 var tx = require('./tx');
 var rx = require('./rx');
 
+console.log("Pod started")
+setTimeout(function(){
+	tx.udpTX();
+}, 500)
+
