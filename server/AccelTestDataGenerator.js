@@ -28,7 +28,6 @@ class AccelTestDataGenerator{
 }
 	
 	SendNewPacketToGS(){
-		console.log("Here");
 		var payload = [];
 		
 		//Accel 1
