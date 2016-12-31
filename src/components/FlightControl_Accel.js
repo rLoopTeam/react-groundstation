@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import StreamingPageManager from '../StreamingPageManager.js';
+import GenericParameterLabel from './GenericParameterLabel.js';
+
 import io from 'socket.io-client';
 let socket = io.connect('127.0.0.1:3000', {
 			reconnection: true,
@@ -10,7 +13,11 @@ let socket = io.connect('127.0.0.1:3000', {
 class FlightControl_Accel extends Component {
 	constructor(props) {
 		super(props)
+		this.dataCallback = this.dataCallback.bind(this);
+
+		
 		this.state = {
+			streamManager: new StreamingPageManager(),
 			command: 'FlightControl_Accel',
 			accelerometer0: {
 				flags: "N/A",
@@ -25,8 +32,17 @@ class FlightControl_Accel extends Component {
 				z: 0
 			}
 		}
+		
+		this.state.streamManager.RequestParameterWithCallback('Accel 0 X Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 0 Y Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 0 Z Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 1 X Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 1 Y Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 1 Z Raw', this.dataCallback);
+		
+		
 	}
-
+	
 	componentDidMount() {
         var _this = this;
 		
@@ -54,24 +70,46 @@ class FlightControl_Accel extends Component {
 				console.log(data);
 			})
 		});
+		
+		this._isMounted = true;
 	}
 
-	accelStartStream(e) {
-		socket.emit('FlightControl_Accel:StartStream');
+	accelStartStream_CalData(e) {
+		socket.emit('FlightControl_Accel:StartStream_CalData');
+	}
+	accelStartStream_FullData(e) {
+		socket.emit('FlightControl_Accel:StartStream_FullData');
 	}
 	accelStopStream(e) {
 		socket.emit('FlightControl_Accel:StopStream');
 	}
 	
-	accelZero(data, e) {
+	accelFineZero(data, e) {
 		e.preventDefault();
 		//data.accel, data.axis
-		socket.emit('FlightControl_Accel:Zero', data);
+		socket.emit('FlightControl_Accel:FineZero', data);
 	}
-	accelCoarse(data, e) {
+	accelAutoZero(data, e) {
 		e.preventDefault();
 		//data.accel, data.axis
-		socket.emit('FlightControl_Accel:Coarse', data);
+		socket.emit('FlightControl_Accel:AutoZero', data);
+	}
+	
+	dataCallback(parameterData){
+		var accelerometer0 = {x:this.state.accelerometer0.x,y:this.state.accelerometer0.y,z:this.state.accelerometer0.z};
+		var accelerometer1 = {x:this.state.accelerometer1.x,y:this.state.accelerometer1.y,z:this.state.accelerometer1.z};
+
+		if(this._isMounted){
+			switch(parameterData.Name){
+				case 'Accel 0 X Raw': accelerometer0.x = parameterData.Value; this.setState({accelerometer0: accelerometer0}); break;
+				case 'Accel 0 Y Raw': accelerometer0.y = parameterData.Value; this.setState({accelerometer0: accelerometer0}); break;
+				case 'Accel 0 Z Raw': accelerometer0.z = parameterData.Value; this.setState({accelerometer0: accelerometer0}); break;
+				case 'Accel 1 X Raw': accelerometer1.x = parameterData.Value; this.setState({accelerometer1: accelerometer1}); break;
+				case 'Accel 1 Y Raw': accelerometer1.y = parameterData.Value; this.setState({accelerometer1: accelerometer1}); break;
+				case 'Accel 1 Z Raw': accelerometer1.z = parameterData.Value; this.setState({accelerometer1: accelerometer1}); break;
+			}
+			
+		}
 	}
 
 	render(){
@@ -82,7 +120,7 @@ class FlightControl_Accel extends Component {
 				<legend>Streaming Control</legend>
 					<form className="form-inline">
 						<div className="form-group">
-							<button className="btn btn-success" onClick={this.accelStartStream}>Start Stream</button>
+							<button className="btn btn-success" onClick={this.accelStartStream_CalData}>Start Stream</button>
 							<button className="btn btn-danger" onClick={this.accelStopStream}>Stop Stream</button>
 								
 						</div>
@@ -90,8 +128,36 @@ class FlightControl_Accel extends Component {
 				
 					<br></br>
 					<br></br>
-				
-					<legend>Accelerometer Calibration</legend>
+					{/*	
+				<table width='100%'><tbody>
+				<tr>
+					<td>
+					<legend>Accel 1 Live</legend>
+					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hex='true'/></div><br />
+					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Raw' /></div><br />
+					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Raw' /></div><br />
+					<div>Z Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Raw' /></div><br />
+					<div>X Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Gs' /></div><br />
+					<div>Y Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Gs' /></div><br />
+					<div>Z Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Gs' /></div><br />
+					<div>Roll:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Roll' /></div><br />
+					<div>Pitch:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Pitch' /></div><br />
+					</td><td>
+					<legend>Accel 2 Live</legend>
+					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hex='true'/></div><br />
+					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' /></div><br />
+					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' /></div><br />
+					<div>Z Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Raw' /></div><br />
+					<div>X Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' /></div><br />
+					<div>Y Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' /></div><br />
+					<div>Z Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' /></div><br />
+					<div>Roll:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Roll' /></div><br />
+					<div>Pitch:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Pitch' /></div><br />
+					</td>
+				</tr></tbody>
+				</table>
+					*/}		
+				<legend>Accelerometer Calibration</legend>
 					
 				<div className="row margin-bottom-20px">
 					<form className="form-inline col-xs-4">
@@ -99,7 +165,7 @@ class FlightControl_Accel extends Component {
 								<label htmlFor="a0_x">A0:X-Axis</label>
 							<div>
 								<input type="text" className="form-control" id="a0_x" name="a0_x"  value={this.state.accelerometer0.x} readOnly />
-								<button className="btn btn-primary" onClick={this.accelZero.bind(this, {accel: 0, axis: 0})}>Fine Zero</button>
+								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 0})}>Fine Zero</button>
 							</div>
 						</div>
 					</form>
@@ -109,7 +175,7 @@ class FlightControl_Accel extends Component {
 							<label htmlFor="a0_y">A0:Y-Axis</label>
 							<div>
 								<input type="text" className="form-control" id="a0_y" name="a0_y" value={this.state.accelerometer0.y} readOnly />
-								<button className="btn btn-primary" onClick={this.accelZero.bind(this, {accel: 0, axis: 1})}>Fine Zero</button>
+								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 1})}>Fine Zero</button>
 							</div>
 						</div>
 					</form>	
@@ -119,8 +185,8 @@ class FlightControl_Accel extends Component {
 							<label htmlFor="a0_z">A0:Z-Axis</label>
 							<div>	
 								<input type="text" className="form-control" id="a0_z" name="a0_z" value={this.state.accelerometer0.z} readOnly />
-								<button className="btn btn-primary" onClick={this.accelZero.bind(this, {accel: 0, axis: 2})}>Fine Zero</button>
-								<button className="btn btn-danger" onClick={this.accelCoarse.bind(this, {accel: 0, axis: 2})}>Coarse Zero</button>
+								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 2})}>Fine Zero</button>
+								<button className="btn btn-danger" onClick={this.accelAutoZero.bind(this, {accel: 0, axis: 2})}>Auto Zero</button>
 							</div>
 						</div>
 					</form>
@@ -133,7 +199,7 @@ class FlightControl_Accel extends Component {
 								<label htmlFor="a1_x">A1:X-Axis</label>
 							<div>
 								<input type="text" className="form-control" id="a1_x" name="a1_x" value={this.state.accelerometer1.x} readOnly />
-								<button className="btn btn-primary" onClick={this.accelZero.bind(this, {accel: 1, axis: 0})}>Fine Zero</button>
+								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 0})}>Fine Zero</button>
 							</div>
 						</div>
 					</form>	
@@ -143,7 +209,7 @@ class FlightControl_Accel extends Component {
 							<label htmlFor="a1_y">A1:Y-Axis</label>
 							<div>
 								<input type="text" className="form-control" id="a1_y" name="a1_y" value={this.state.accelerometer1.y} readOnly />
-								<button className="btn btn-primary" onClick={this.accelZero.bind(this, {accel: 1, axis: 1})}>Fine Zero</button>
+								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 1})}>Fine Zero</button>
 							</div>
 						</div>
 					</form>
@@ -153,8 +219,8 @@ class FlightControl_Accel extends Component {
 							<label htmlFor="a1_z">A1:Z-Axis</label>
 							<div>
 								<input type="text" className="form-control" id="a1_z" name="a1_z" value={this.state.accelerometer1.z} readOnly />
-								<button className="btn btn-primary" onClick={this.accelZero.bind(this, {accel: 1, axis: 2})}>Fine Zero</button>
-								<button className="btn btn-danger" onClick={this.accelCoarse.bind(this, {accel: 1, axis: 2})}>Coarse Zero</button>
+								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 2})}>Fine Zero</button>
+								<button className="btn btn-danger" onClick={this.accelAutoZero.bind(this, {accel: 1, axis: 2})}>Auto Zero</button>
 							</div>
 						</div>
 					</form>
@@ -164,8 +230,63 @@ class FlightControl_Accel extends Component {
 				<br></br>
 			
 				<legend>Device Status</legend>
-			
+				<div className="row">
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							
+							<label htmlFor="a0_flags">A0:Flags</label>
+							<div>
+								<input type="text" className="form-control" id="a0_flags" name="a0_flags" value={this.state.accelerometer0.flags} readOnly />
+							</div>
+						</div>
+					</form>	
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							
+							<label htmlFor="a1_flags">A1:Flags</label>
+							<div>
+								<input type="text" className="form-control" id="a1_flags" name="a1_flags" value={this.state.accelerometer1.flags} readOnly />
+							</div>
+						</div>
+					</form>	
+				</div>
 				
+				<div className="row">
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							
+							<label htmlFor="last_crc">Last CRC</label>
+							<div>
+								<input type="text" className="form-control" id="last_crc" name="last_crc" value={this.state.accelerometer0.last_crc} readOnly />
+							</div>
+						</div>
+					</form>	
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							
+							<label htmlFor="packet_count">Packet Count</label>
+							<div>
+								<input type="text" className="form-control" id="packet_count" name="packet_count" value={this.state.accelerometer0.packet_count} readOnly />
+							</div>
+						</div>
+					</form>	
+				</div>
+				
+				<br></br>
+				<br></br>
+			
+				<legend>Development DAQ</legend>
+					<form className="form-inline">
+						<div className="form-group">
+							<button className="btn btn-success" onClick={this.accelStartStream_CalData}>Start DAQ</button>
+							<button className="btn btn-danger" onClick={this.accelStopStream}>Stop DAQ</button>
+								
+						</div>
+					</form>
+				<br></br>
+				<br></br>				
 			</div>
 	    );
 	}
