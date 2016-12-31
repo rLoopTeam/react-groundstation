@@ -52,7 +52,7 @@ class AccelTestDataGenerator{
 		payload.push.apply(payload,bin.float32ToBytes(500.0,true)); //Pitch Angle
 		payload.push.apply(payload,bin.float32ToBytes(600.0,true)); //Roll Angle
 	
-		this.packetParser.gotNewPacket(this.makeSafetyUDP(this.sequence, 0x4099, payload));
+		this.packetParser.gotNewPacket(this.makeSafetyUDP(this.sequence, 0x1003, payload));
 
 		this.sequence = this.sequence + 1;
 	}
