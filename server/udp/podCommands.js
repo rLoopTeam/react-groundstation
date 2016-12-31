@@ -1,3 +1,5 @@
+const makeSafeUDPPackage = require('./makeSafeUDPPackage');
+
 module.exports = function(udp){
     return{
         PodOff: () => {
@@ -19,10 +21,12 @@ module.exports = function(udp){
 		  udp.tx.sendMessage(JSON.stringify(data))
         },
         FCUFineZero: (data) => {
-            udp.tx.sendMessage(JSON.stringify(data));
+            var safePackage = makeSafeUDPPackage(0x1005, data.accel, data.axis, 0, 0);
+            udp.tx.sendMessage(safePackage);
         },
         FCUCoarseZero: (data) => {
-            udp.tx.sendMessage(JSON.stringify(data));
+            var safePackage = makeSafeUDPPackage(0x1005, data.accel, data.axis, 0, 0);
+            udp.tx.sendMessage(safePackage);
         }
     }
 }

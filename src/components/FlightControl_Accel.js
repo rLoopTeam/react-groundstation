@@ -34,6 +34,23 @@ class FlightControl_Accel extends Component {
 			console.log('Client now connected!')
 
 			socket.on('FlightControl_Accel:telemetry', function(data){
+				var _accelerometer0 = this.state.accelerometer0;
+				var _accelerometer1 = this.state.accelerometer1;
+
+				_accelerometer0.x = data._accelerometer0.x;
+				_accelerometer0.y = data._accelerometer0.y;
+				_accelerometer0.z = data._accelerometer0.z;
+				
+				_accelerometer1.x = data._accelerometer1.x;
+				_accelerometer1.y = data._accelerometer1.y;
+				_accelerometer1.z = data._accelerometer1.z;
+				
+
+				this.setState({
+					_accelerometer0: _accelerometer0, 
+					_accelerometer1: _accelerometer1
+				});
+
 				console.log(data);
 			})
 		});
@@ -55,14 +72,6 @@ class FlightControl_Accel extends Component {
 		e.preventDefault();
 		//data.accel, data.axis
 		socket.emit('FlightControl_Accel:Coarse', data);
-	}
-
-	handleInputChange(e)
-	{
-		var _name = e.currentTarget.name;
-		var _value = e.currentTarget.value;
-		
-		this.setState({})
 	}
 
 	render(){
