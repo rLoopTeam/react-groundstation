@@ -23,8 +23,8 @@ class Overview extends Component {
 		this._isMounted = true;
 	}
 
-	newSocketConnection(host, port, serverName){
-		socket = io.connect(host+':'+port, {
+	newSocketConnection(host, socketPort, serverName){
+		socket = io.connect(host+':'+socketPort, {
 			reconnection: true,
 			reconnectionDelay: 1000,
 			reconnectionDelayMax : 5000,

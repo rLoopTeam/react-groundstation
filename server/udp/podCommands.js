@@ -17,6 +17,12 @@ module.exports = function(udp){
         },
         SendParameter: (data) => {
 		  udp.tx.sendMessage(JSON.stringify(data))
+        },
+        FCUFineZero: (data) => {
+            udp.tx.sendMessage(JSON.stringify(data));
+        },
+        FCUCoarseZero: (data) => {
+            udp.tx.sendMessage(JSON.stringify(data));
         }
     }
 }
