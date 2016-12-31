@@ -23,7 +23,6 @@ class udpServer {
 		this.udpServer.on('disconnect', function(){
 			udpServer.bind(port, function() {
 				this.udpServer.setBroadcast(true);
-				this.udpServer.addMembership(ip);
 			}.bind(this));
 		}.bind(this));
 		
