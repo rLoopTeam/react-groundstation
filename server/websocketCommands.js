@@ -37,17 +37,15 @@ module.exports = function (io, udp, room, logger, podCommands)
 		'XilinxSim:StartRun': function (data){ 
 			podCommands.XilinxSimStart();
 		},
-
 		'FlightControl_Accel:StartStream': function (){ 
 			podCommands.FCUStreamingControlStart()
 		},
-		'FlightControl_Accel:Zero': function (accelerometer, axis){ 
-			console.log("SERVER - Zero accelerometer:",accelerometer, axis)
+		'FlightControl_Accel:Zero': function (data){ 
+			podCommands.FCUFineZero(data)
 		},
-		'FlightControl_Accel:Coarse': function (accelerometer, axis){ 
-			console.log("SERVER - Coarse accelerometer:",accelerometer, axis)
+		'FlightControl_Accel:Coarse': function (data){ 
+			podCommands.FCUCoarseZero(data)
 		},
-
 		'power:streamingControl': function(data){
 			//data.status == on/off
 			podCommands.PowerStreamingControl(data.status)
