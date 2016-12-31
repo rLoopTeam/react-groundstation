@@ -29,7 +29,7 @@ class PacketParser{
 			{
 				"Name":"Test Packet",
 				"ParameterPrefix":"Test 1: ",
-				"PacketType":80,
+				"PacketType":0x5000,
 				"Parameters":[
 								{'Name':'x', 'type':'uint8', 'units':'test1', 'size': 1},
 								{'Name':'y', 'type':'int8', 'units':'test2', 'size': 1},
@@ -40,7 +40,33 @@ class PacketParser{
 								{'Name':'e', 'type':'float32', 'units':'NA', 'size': 4},
 								{'Name':'f', 'type':'float64', 'units':'millis since Unix Epoch', 'size': 8}
 							]
-			}
+			},
+			{
+				"Name":"Accel Data",
+				"ParameterPrefix":"Accel ",
+				"PacketType":0x4099,
+				"Parameters":[
+								{'Name':'1 Flags', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'1 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
+								{'Name':'1 Y Raw', 'type':'int16', 'units':'RAW', 'size': 2},
+								{'Name':'1 Z Raw', 'type':'int16', 'units':'RAW', 'size': 2},
+								{'Name':'1 X Gs', 'type':'float32', 'units':'Gs', 'size': 4},
+								{'Name':'1 Y Gs', 'type':'float32', 'units':'Gs', 'size': 4},
+								{'Name':'1 Z Gs', 'type':'float32', 'units':'Gs', 'size': 4},
+								{'Name':'1 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
+								{'Name':'1 Roll', 'type':'float32', 'units':'degrees', 'size': 4},
+								
+								{'Name':'2 Flags', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'2 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
+								{'Name':'2 Y Raw', 'type':'int16', 'units':'RAW', 'size': 2},
+								{'Name':'2 Z Raw', 'type':'int16', 'units':'RAW', 'size': 2},
+								{'Name':'2 X Gs', 'type':'float32', 'units':'Gs', 'size': 4},
+								{'Name':'2 Y Gs', 'type':'float32', 'units':'Gs', 'size': 4},
+								{'Name':'2 Z Gs', 'type':'float32', 'units':'Gs', 'size': 4},
+								{'Name':'2 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
+								{'Name':'2 Roll', 'type':'float32', 'units':'degrees', 'size': 4}
+							]
+			},
 		];
 	}
 
@@ -82,7 +108,7 @@ class PacketParser{
 		}
 		
 		var sequence = bin.bytesToUint32(raw_udp[0], raw_udp[1], raw_udp[2], raw_udp[3]);
-		var packetType = bin.bytesToUint16(raw_udp[4], raw_udp[5]);
+		var packetType = bin.bytesToUint16(raw_udp[4], raw_udp[5], true);
 		var length = bin.bytesToUint16(raw_udp[6], raw_udp[7], true);
 		
 		if((length+10) !== raw_udp.length)
@@ -168,8 +194,7 @@ class PacketParser{
 				case 'float32': 
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToFloat32(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],
-																raw_udp[parseLoc+4], raw_udp[parseLoc+5]),
+																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'float64':	

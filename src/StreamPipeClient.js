@@ -27,6 +27,7 @@ class DataStreamClient {
 		
 	}
 	
+	
 	RequestParameter(parameter){
 		this.RequestedParameters.push(parameter);
 		if(this.connected)

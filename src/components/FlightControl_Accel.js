@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import StreamingPageManager from '../StreamingPageManager.js';
+import GenericParameterLabel from './GenericParameterLabel.js';
+
 import io from 'socket.io-client';
 let socket = io.connect('127.0.0.1:3000', {
 			reconnection: true,
@@ -10,7 +13,11 @@ let socket = io.connect('127.0.0.1:3000', {
 class FlightControl_Accel extends Component {
 	constructor(props) {
 		super(props)
+		this.dataCallback = this.dataCallback.bind(this);
+
+		
 		this.state = {
+			streamManager: new StreamingPageManager(),
 			command: 'FlightControl_Accel',
 			accelerometer0: {
 				flags: "N/A",
@@ -25,8 +32,17 @@ class FlightControl_Accel extends Component {
 				z: 0
 			}
 		}
+		
+		this.state.streamManager.RequestParameterWithCallback('Accel 1 X Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 1 Y Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 1 Z Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 2 X Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 2 Y Raw', this.dataCallback);
+		this.state.streamManager.RequestParameterWithCallback('Accel 2 Z Raw', this.dataCallback);
+		
+		
 	}
-
+	
 	componentDidMount() {
         var _this = this;
 		
@@ -54,6 +70,8 @@ class FlightControl_Accel extends Component {
 				console.log(data);
 			})
 		});
+		
+		this._isMounted = true;
 	}
 
 	accelStartStream(e) {
@@ -73,6 +91,23 @@ class FlightControl_Accel extends Component {
 		//data.accel, data.axis
 		socket.emit('FlightControl_Accel:Coarse', data);
 	}
+	
+	dataCallback(parameterData){
+		var accelerometer0 = {x:this.state.accelerometer0.x,y:this.state.accelerometer0.y,z:this.state.accelerometer0.z};
+		var accelerometer1 = {x:this.state.accelerometer1.x,y:this.state.accelerometer1.y,z:this.state.accelerometer1.z};
+
+		if(this._isMounted){
+			switch(parameterData.Name){
+				case 'Accel 1 X Raw': accelerometer0.x = parameterData.Value; this.setState({accelerometer0: accelerometer0}); break;
+				case 'Accel 1 Y Raw': accelerometer0.y = parameterData.Value; this.setState({accelerometer0: accelerometer0}); break;
+				case 'Accel 1 Z Raw': accelerometer0.z = parameterData.Value; this.setState({accelerometer0: accelerometer0}); break;
+				case 'Accel 2 X Raw': accelerometer1.x = parameterData.Value; this.setState({accelerometer1: accelerometer1}); break;
+				case 'Accel 2 Y Raw': accelerometer1.y = parameterData.Value; this.setState({accelerometer1: accelerometer1}); break;
+				case 'Accel 2 Z Raw': accelerometer1.z = parameterData.Value; this.setState({accelerometer1: accelerometer1}); break;
+			}
+			
+		}
+	}
 
 	render(){
 
@@ -90,8 +125,36 @@ class FlightControl_Accel extends Component {
 				
 					<br></br>
 					<br></br>
+			
+				<table width='100%'><tbody>
+				<tr>
+					<td>
+					<legend>Accel 1 Live</legend>
+					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hex='true'/></div><br />
+					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' /></div><br />
+					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' /></div><br />
+					<div>Z Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Raw' /></div><br />
+					<div>X Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' /></div><br />
+					<div>Y Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' /></div><br />
+					<div>Z Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' /></div><br />
+					<div>Roll:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Roll' /></div><br />
+					<div>Pitch:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Pitch' /></div><br />
+					</td><td>
+					<legend>Accel 2 Live</legend>
+					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Flags' hex='true'/></div><br />
+					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 X Raw' /></div><br />
+					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Y Raw' /></div><br />
+					<div>Z Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Z Raw' /></div><br />
+					<div>X Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 X Gs' /></div><br />
+					<div>Y Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Y Gs' /></div><br />
+					<div>Z Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Z Gs' /></div><br />
+					<div>Roll:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Roll' /></div><br />
+					<div>Pitch:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 2 Pitch' /></div><br />
+					</td>
+				</tr></tbody>
+				</table>
 				
-					<legend>Accelerometer Calibration</legend>
+				<legend>Accelerometer Calibration</legend>
 					
 				<div className="row margin-bottom-20px">
 					<form className="form-inline col-xs-4">
