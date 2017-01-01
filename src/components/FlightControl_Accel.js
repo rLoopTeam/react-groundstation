@@ -76,12 +76,15 @@ class FlightControl_Accel extends Component {
 	}
 
 	accelStartStream_CalData(e) {
+		e.preventDefault();
 		socket.emit('FlightControl_Accel:StartStream_CalData');
 	}
 	accelStartStream_FullData(e) {
+		e.preventDefault();
 		socket.emit('FlightControl_Accel:StartStream_FullData');
 	}
 	accelStopStream(e) {
+		e.preventDefault();
 		socket.emit('FlightControl_Accel:StopStream');
 	}
 	
@@ -121,8 +124,8 @@ class FlightControl_Accel extends Component {
 				<legend>Streaming Control</legend>
 					<form className="form-inline">
 						<div className="form-group">
-							<button className="btn btn-success" onClick={this.accelStartStream_CalData}>Start Stream</button>
-							<button className="btn btn-danger" onClick={this.accelStopStream}>Stop Stream</button>
+							<button type="button" className="btn btn-success" onClick={this.accelStartStream_CalData}>Start Stream</button>
+							<button type="button" className="btn btn-danger" onClick={this.accelStopStream}>Stop Stream</button>
 								
 						</div>
 					</form>
@@ -298,6 +301,22 @@ export default FlightControl_Accel;
 
 
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/FlightControl_Accel.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/FlightControl_Accel.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/FlightControl_Accel.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/FlightControl_Accel.js
 
 
 // WEBPACK FOOTER //
