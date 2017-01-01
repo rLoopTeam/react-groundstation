@@ -181,38 +181,34 @@ class PacketParser{
 			switch(packetDef.Parameters[i].type){
 				case 'uint8':
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToUint8(raw_udp[parseLoc]),
+														'value':bin.bytesToUint8(raw_udp[parseLoc],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int8': 
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToInt8(raw_udp[parseLoc]),
+														'value':bin.bytesToInt8(raw_udp[parseLoc],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'uint16': 
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToUint16(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3]),
+														'value':bin.bytesToUint16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int16': 
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToInt16(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3]),
+														'value':bin.bytesToInt16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'uint32':
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToUint32(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],
-																raw_udp[parseLoc+4], raw_udp[parseLoc+5]),
+																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int32': 
 							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToInt32(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],
-																raw_udp[parseLoc+4], raw_udp[parseLoc+5]),
+																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'uint64': 
@@ -241,7 +237,6 @@ class PacketParser{
 
 			parseLoc = newParseLoc;
 		}
-
 		this.processsedPacketCB(newDataParams);
 	}
 }
