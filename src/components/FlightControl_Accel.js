@@ -240,7 +240,7 @@ class FlightControl_Accel extends Component {
 							
 							<label htmlFor="a0_flags">A0:Flags</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hex='true' readOnly='true'/>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hex='true' hexType={32} readOnly='true'/>
 							</div>
 						</div>
 					</form>	
@@ -250,7 +250,7 @@ class FlightControl_Accel extends Component {
 							
 							<label htmlFor="a1_flags">A1:Flags</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hex='true' readOnly='true'/>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hex='true' hexType={32} readOnly='true'/>
 							</div>
 						</div>
 					</form>	

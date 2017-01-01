@@ -12,9 +12,13 @@ class GenericParameterInput extends Component {
 			value: 0,
 			units: ''
 		}
-
+		this.hexTypeMap = {
+			'8':2,
+			'16':4,
+			'32':8,
+			'64':16
+		}
 		this._isMounted = true;
-		
 	}
 
 	componentWillUnmount() {
@@ -28,16 +32,36 @@ class GenericParameterInput extends Component {
 	}
 
 	render() {
+
 		var isReadOnly = (this.props.readOnly)?'readOnly':false;
+		var formattedValue = this.state.value;
+
+		if (this.props.hex === 'true'){
+			console.log("show hex")
+		  	formattedValue = this.state.value.toString(16);
+		  	if (this.props.hexType != null && this.props.hexType != undefined ) {
+		  		console.log("use padding")
+		  		var padding = this.hexTypeMap[this.props.hexType] - formattedValue.length;
+		  		if (padding < 0) { throw new Error('Error - Value has more bytes than the hexType allows. Check the datatype.'); }
+				formattedValue = new Array(padding+1).join(0) + formattedValue;
+		  	}
+		  	formattedValue = '0x'+formattedValue;
+		}
+
 		return (
 				<div>
 					<input 	type="text" 
 							className="form-control"
-							value={ (this.props.hex === 'true') ? '0x'+this.state.value.toString(16) : this.state.value } readOnly={isReadOnly} /><b>{this.state.units}</b>
+							value={formattedValue} readOnly={isReadOnly} /><b>{this.state.units}</b>
 				</div>
 		);
 	}
 } 
+
+GenericParameterInput.propTypes = {
+	hex: React.PropTypes.oneOf(['true']),
+  	hexType: React.PropTypes.oneOf([8,16,32,64])
+};
 
 export default GenericParameterInput;
 
