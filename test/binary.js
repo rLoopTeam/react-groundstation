@@ -26,24 +26,28 @@ describe("Binary tests: ", function() {
 	})
 	describe("bytes to int", function() {
 		it("should result in a INT given a valid set of BYTES", function() {
-			expect(bin.bytesToInt32(0xFF, 0xFF, 0xFD, 0x66 )).to.equal(-666)
+			
 			expect(bin.bytesToInt32(0x7F, 0xFF, 0xFF, 0xFF)).to.equal(2147483647);
+
+			var bytes = bin.int16ToBytes(-666, true)
+			expect(bin.bytesToInt16(bytes[0], bytes[1], true)).to.equal(-666)
+			expect(bin.bytesToInt16(0xFD, 0x66)).to.equal(-666);
 			expect(bin.bytesToInt16(0x7F, 0xFF)).to.equal(32767);
+			
 			expect(bin.bytesToInt8(0x7F)).to.equal(127);
 		})
 	})
 	describe("int to bytes", function() {
 		it("should result in an array of BYTES given a corresponding INT of the correct size", function() {
-			expect(bin.int32ToBytes(-666)[0]).to.equal(0xFF);
-			expect(bin.int32ToBytes(-666)[1]).to.equal(0xFF);
-			expect(bin.int32ToBytes(-666)[2]).to.equal(0xFD);
-			expect(bin.int32ToBytes(-666)[3]).to.equal(0x66);
 
 			expect(bin.int32ToBytes(2147483647)[0]).to.equal(0x7F);
 			expect(bin.int32ToBytes(2147483647)[1]).to.equal(0xFF);
 			expect(bin.int32ToBytes(2147483647)[2]).to.equal(0xFF);
 			expect(bin.int32ToBytes(2147483647)[3]).to.equal(0xFF);
 			
+			expect(bin.int16ToBytes(-666)[0]).to.equal(0xFD);
+			expect(bin.int16ToBytes(-666)[1]).to.equal(0x66);
+
 			expect(bin.int16ToBytes(32767)[0]).to.equal(0x7F);
 			expect(bin.int16ToBytes(32767)[1]).to.equal(0xFF);
 
