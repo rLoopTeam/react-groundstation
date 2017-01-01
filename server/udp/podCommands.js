@@ -2,6 +2,7 @@ const makeSafeUDPPackage = require('./makeSafeUDPPackage');
 
 module.exports = function(udp){
     return{
+		/*
         PodOff: () => {
             udp.tx.sendMessage("PodOff")
         },
@@ -10,36 +11,30 @@ module.exports = function(udp){
         },
         PowerStreamingControl: (command) => {
             udp.tx.sendMessage(command)
-        },
+        },*/
 		
         FCUStreamingControlStart_AccelCalData: () => {
-		  udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001001); 
+		  udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001001, 0x0, 0x0); 
         },
+		
         FCUStreamingControlStart_AccelFullData: () => {
-		  udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000001, 0x00001003); 
+		  udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0); 
         },		
+		
 		FCUStreamingControlStop_Accel: () => {
-		  udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x0100, 0x00000000, 0x00000000); 
+		  udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0); 
         },	
 		
         XilinxSimStart: () => {
-		  udp.tx.UDPSafe_Tx_X4("129.168.1.170", 9170, 0); 
-        },
-        SendParameter: (data) => {
-		  udp.tx.sendMessage(JSON.stringify(data))
+		  udp.tx.transmitPodCommand('Xilinx Sim', 0x0, 0x0, 0x0, 0x0, 0x0); 
         },
 		
         FCUAccel_FineZero: (data) => {
-			udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x1005, data.accel, data.axis); 
-			//This appears as a GigeVision packet
-            //var safePackage = makeSafeUDPPackage(0x1005, data.accel, data.axis, 0, 0);
-            //udp.tx.sendMessage(safePackage);
+			udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0); 
         },
 		
         FCUAccel_AutoZero: (data) => {
-			udp.tx.UDPSafe_Tx_X4("127.0.0.1", 9100, 0x1004, data.accel, 0x00000000); 
-            //var safePackage = makeSafeUDPPackage(0x1005, data.accel, data.axis, 0, 0);
-            //udp.tx.sendMessage(safePackage);
+			udp.tx.transmitPodCommand('Flight Control', 0x1004, data.accel, 0x00000000, 0x0, 0x0); 
         }
     }
 }

@@ -30,7 +30,6 @@ var room = {
 
 var logger = require('./datalogging.js')(logger);
 
-
 /*------------
 	RTDATASTORE	
 	Holds the last parameter values received from the pod.
@@ -39,6 +38,11 @@ var logger = require('./datalogging.js')(logger);
 //TODO pass a hook to connect the UDP rx with the real time data store,
 //TODO pass or return a hook to give the stream pipe server access to this data store
 var rtDataStore = require('./realtimeDataStore')(logger); 
+
+/*------------
+	Stats on packets for various things that get added back to the rtDataStore
+------------*/
+var packetStats = require('./udp/packetStats.js')(rtDataStore);
 
 /*------------
     Stream Pipe
@@ -51,7 +55,7 @@ const StreamPipeServer = require('./StreamPipeServer.js')(app, io, rtDataStore);
 	PacketParser
 	Takes raw udp packets and parses them into JSON objects
 ------------*/
-var packetParser = require('./udp/packetParser')(logger, rtDataStore.insertDataPacket);
+var packetParser = require('./udp/packetParser')(logger, rtDataStore.insertDataPacket, packetStats);
 
 /*------------
 	All UDP I/O directly to/from pod.

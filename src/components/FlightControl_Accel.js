@@ -129,14 +129,13 @@ class FlightControl_Accel extends Component {
 								
 						</div>
 					</form>
-				
-					<br></br>
-					<br></br>
-					{/*	
+			
+					{ /*
 				<table width='100%'><tbody>
 				<tr>
 					<td>
 					<legend>Accel 1 Live</legend>
+					<div>Rxed:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Stat 1003'/></div><br />
 					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hex='true'/></div><br />
 					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Raw' /></div><br />
 					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Raw' /></div><br />
@@ -160,7 +159,8 @@ class FlightControl_Accel extends Component {
 					</td>
 				</tr></tbody>
 				</table>
-					*/}		
+					*/ }
+							
 				<legend>Accelerometer Calibration</legend>
 					
 				<div className="row margin-bottom-20px">
@@ -262,7 +262,7 @@ class FlightControl_Accel extends Component {
 							
 							<label htmlFor="last_crc">Last CRC</label>
 							<div>
-								<input type="text" className="form-control" id="last_crc" name="last_crc" value={this.state.accelerometer0.last_crc} readOnly />
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Last CRC 1003' hex='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
@@ -272,7 +272,7 @@ class FlightControl_Accel extends Component {
 							
 							<label htmlFor="packet_count">Packet Count</label>
 							<div>
-								<input type="text" className="form-control" id="packet_count" name="packet_count" value={this.state.accelerometer0.packet_count} readOnly />
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003' readOnly='true'/>
 							</div>
 						</div>
 					</form>	

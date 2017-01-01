@@ -1,4 +1,6 @@
 const commConfig = require('../../config/commConfig');
+const bin = require('./binary.js');
+const crc = require('./crc.js');
 const dgram = require('dgram');
 
 /*
@@ -21,6 +23,8 @@ var logger = new (winston.Logger)({
 logger.level = 'debug';
 
 module.exports = {
+	/*
+	Commented this out to see what breaks, should just delete later
     sendMessage: function (messageStr){
         var message = new Buffer(messageStr);
         var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
@@ -30,78 +34,97 @@ module.exports = {
             logger.log("debug", "GROUNSTATION UDP - SENT: " +  txHost + ':' + txPort +' - ' + message);
             client.close();
         });
-    },
-    //public *maybe should be private since it is used by UDPSafe_Tx_X4
-    sendSafeUDP: function(msgBuff, offset = 0, length = 26, iPort = 9170, sIP = '192.168.1.170') {
-        var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
-        //port 9170 and 192.168.1.170 are just the test hardware, probably better to
-        //make this part of the SafeUDP call so as we can target different hardware.
-        client.send(msgBuff, offset, length, iPort, sIP, function(err, bytes)
-        {
+    },*/
+	
+	//Probably need to do something about these:
+	sendMessage: function(messageStr){
+		console.log("GS->Pod theoretically: "+messageStr);
+	},
+
+	transmitPodCommand: function(node, packetType, u32Block0, u32Block1, u32Block2, u32Block3)
+	{	
+		//TODO Sequence counters
+	
+		//Find the IP and port for the node we're transmitting to
+		var found = false;
+		var port = 0;
+		var ip = '';
+		for(var i = 0;i<commConfig.RXServers.length;i++){
+			if(commConfig.RXServers[i].hostName === node)
+			{
+				found = true;
+				port = commConfig.RXServers[i].port;
+				ip = commConfig.RXServers[i].hostIP;
+				break;
+			}
+		}
+		
+		if(found === false)
+		{
+			console.log("Couldn't transmit to "+node+" command "+packetType);
+			return;
+		}else{
+			console.log("Transmitting type 0x"+packetType.toString(16)+" to "+node+" "+ip+":"+port+" blocks: " +u32Block0+" "+u32Block1+" "+u32Block2+" "+u32Block3);
+		}
+		
+		var packet = [];
+		
+		//These if blocks look odd but I think it'll do the correct handling for everything
+		//everything: + numbers, - numbers, unsigned numbers above the max uint32 / 2
+		if(u32Block0 > 0)
+			packet.push.apply(packet,bin.uint32ToBytes(u32Block0,true));
+		else
+			packet.push.apply(packet,bin.int32ToBytes(u32Block0,true));
+		if(u32Block1 > 0)
+			packet.push.apply(packet,bin.uint32ToBytes(u32Block1,true));
+		else
+			packet.push.apply(packet,bin.int32ToBytes(u32Block1,true));
+		if(u32Block2 > 0)
+			packet.push.apply(packet,bin.uint32ToBytes(u32Block2,true));
+		else
+			packet.push.apply(packet,bin.int32ToBytes(u32Block2,true));
+		if(u32Block3 > 0)
+			packet.push.apply(packet,bin.uint32ToBytes(u32Block3,true));
+		else
+			packet.push.apply(packet,bin.int32ToBytes(u32Block3,true));
+
+		packet = this.makeSafetyUDP(0, packetType, packet);
+		
+		//Might want to look into reusing the client instead of instantiating a new one each time
+		var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
+        client.send(Buffer.from(packet), 0, packet.length, port, ip, function(err, bytes) {
             if (err) throw err;
-            console.log("SafeUDP - SENT: " +  sIP + ':' + iPort +' - ' + u8Buffer);
             client.close();
         });
-    },
-    //Function to send a SafetyUDP packet to the Xilinx simulation board
-    UDPSafe_Tx_X4: function (sIP, iPort, u16PacketType, u32Block0, u32Block1) {
-        u8Buffer = new Uint8Array(30);
-        var msgBuff = new Buffer(u8Buffer.buffer);
-        
-        //format the message
-        
-        //sequence number
-        //need to increment this for each transmission
-        u8Buffer[0] = 0x00;
-        u8Buffer[1] = 0x00;
-        u8Buffer[2] = 0x00;
-        u8Buffer[3] = 0x00;
-        
-        //packet type = 0x5000
-        //U16
-        //todo: calls something like: u8Buffer[4] = Numerical_To_U16(0x5000);
-        //Or pass in the packet type from a define.
-        u8Buffer[4] = (u16PacketType & 0x00FF) >> 0;
-        u8Buffer[5] = (u16PacketType & 0xFF00) >> 8;
-        //0x50;
-
-        //length = 16bytes
-        //u16
-        //todo: calls something like: u8Buffer[6] = Numerical_To_U16(16);
-        u8Buffer[6] = 0x10;
-        u8Buffer[7] = 0x00;
-        
-        //data
-        //4 blocks of u32 for basic "control" type messages
-        //todo: calls something like: u8Buffer[8] = Numerical_To_U32(1);
-        //block 0 = 0x00000001 = switch on run
-        u8Buffer[8] = (u32Block0 & 0x000000FF) >> 0;
-        u8Buffer[9] = (u32Block0 & 0x0000FF00) >> 8;
-        u8Buffer[10] = (u32Block0 & 0x00FF0000) >> 16;
-        u8Buffer[11] = (u32Block0 & 0xFF000000) >> 24;
-        
-        u8Buffer[12] = (u32Block1 & 0x000000FF) >> 0;
-        u8Buffer[13] = (u32Block1 & 0x0000FF00) >> 8;
-        u8Buffer[14] = (u32Block1 & 0x00FF0000) >> 16;
-        u8Buffer[15] = (u32Block1 & 0xFF000000) >> 24;
-        
-        u8Buffer[16] = 0x00;
-        u8Buffer[17] = 0x00;
-        u8Buffer[18] = 0x00;
-        u8Buffer[19] = 0x00;
-        
-        u8Buffer[20] = 0x00;
-        u8Buffer[21] = 0x00;
-        u8Buffer[22] = 0x00;
-        u8Buffer[23] = 0x00;
-
-        //crc
-        //todo: Compute this value.
-        u8Buffer[24] = 0xF2;
-        u8Buffer[25] = 0xAB;
-        
-        this.sendSafeUDP(msgBuff, 0, 26, iPort, sIP);
-    }
+		
+		if(commConfig.MirrorLocal == true)
+		{
+			var client2 = dgram.createSocket({type: 'udp4', reuseAddr: true});
+			client2.send(Buffer.from(packet), 0, packet.length, port, '127.0.0.1', function(err, bytes) {
+				if (err) throw err;
+				client2.close();
+			});	
+		}
+	},
+	
+	makeSafetyUDP: function (sequence, packetType, payload){
+		var finalPacket = [];
+		
+		finalPacket.push.apply(finalPacket,bin.uint32ToBytes(sequence,true)); //Sequence
+		finalPacket.push.apply(finalPacket,bin.uint16ToBytes(packetType, true)); //PacketType
+		finalPacket.push.apply(finalPacket,bin.uint16ToBytes(0,true)); //Length
+		
+		finalPacket.push.apply(finalPacket, payload);
+		
+		//TODO: move this above, probably left here after refactoring but can be moved above and reverified.
+		var packetLength = payload.length; //Strictly the payload. Header & CRC not included
+		finalPacket[6] = bin.uint16ToBytes(packetLength,true)[0];
+		finalPacket[7] = bin.uint16ToBytes(packetLength,true)[1];
+		
+		finalPacket.push.apply(finalPacket,bin.uint16ToBytes(crc.u16SWCRC__CRC(finalPacket, finalPacket.length),true));
+		
+		return finalPacket;
+	}
 }
 
 
