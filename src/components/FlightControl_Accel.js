@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
+import GenericParameterInput from './GenericParameterInput.js';
 
 import io from 'socket.io-client';
 let socket = io.connect('127.0.0.1:3000', {
@@ -236,7 +237,7 @@ class FlightControl_Accel extends Component {
 							
 							<label htmlFor="a0_flags">A0:Flags</label>
 							<div>
-								<input type="text" className="form-control" id="a0_flags" name="a0_flags" value={this.state.accelerometer0.flags} readOnly />
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hex='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
@@ -246,7 +247,7 @@ class FlightControl_Accel extends Component {
 							
 							<label htmlFor="a1_flags">A1:Flags</label>
 							<div>
-								<input type="text" className="form-control" id="a1_flags" name="a1_flags" value={this.state.accelerometer1.flags} readOnly />
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hex='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
