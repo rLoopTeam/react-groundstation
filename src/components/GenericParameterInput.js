@@ -37,10 +37,8 @@ class GenericParameterInput extends Component {
 		var formattedValue = this.state.value;
 
 		if (this.props.hex === 'true'){
-			console.log("show hex")
 		  	formattedValue = this.state.value.toString(16);
 		  	if (this.props.hexType != null && this.props.hexType != undefined ) {
-		  		console.log("use padding")
 		  		var padding = this.hexTypeMap[this.props.hexType] - formattedValue.length;
 		  		if (padding < 0) { throw new Error('Error - Value has more bytes than the hexType allows. Check the datatype.'); }
 				formattedValue = new Array(padding+1).join(0) + formattedValue;
