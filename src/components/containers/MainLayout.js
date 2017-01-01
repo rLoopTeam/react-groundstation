@@ -58,6 +58,7 @@ class MainLayout extends Component {
 		            </li>
 					
 					<li className="streamExample"><Link to="/datasubexample">Data Stream Example</Link></li>
+					<li className="commConfig"><Link to="/commConfig">Communication Configuration</Link></li>
 					
 		          </ul>
 		        </div>
