@@ -117,7 +117,7 @@ class FlightControl_Accel extends Component {
 	}
 
 	render(){
-
+		console.log(this.state)
 	    return (
 		    <div className="Overview-content">
 			

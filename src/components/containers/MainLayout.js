@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import InfoPanel from '../InfoPanel';
 
 class MainLayout extends Component {
 	render() {
 	    return (
         <div className="container-fluid">
-	      <nav className="navbar navbar-inverse navbar-fixed-top">
+	      	<nav className="navbar navbar-inverse navbar-fixed-top">
 		      <div className="col-xs-12">
 		        <div className="navbar-header">
 		          <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -63,9 +64,16 @@ class MainLayout extends Component {
 		        </div>
 		      </div>
 		    </nav>
-		    <div className="col-xs-12">
-		        {this.props.children}
+		    <div className="row">
+			    <div className="col-xs-12">
+			        {this.props.children}
+		        </div>
 	        </div>
+	        <div className="row">
+			    <div className="col-xs-12">
+			        <InfoPanel />
+		        </div>
+		    </div>
         </div>
 	    );
 	}
