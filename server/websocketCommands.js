@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands)
+module.exports = function (io, udp, room, logger, podCommands, commConfig)
 {
 	var updateClientWithDatalogs = true;
 	var _timer;
@@ -37,8 +37,20 @@ module.exports = function (io, udp, room, logger, podCommands)
 		'XilinxSim:StartRun': function (data){ 
 			podCommands.XilinxSimStart();
 		},
-		'FlightControl_Accel:StartStream': function (){ 
-			podCommands.FCUStreamingControlStart()
+		'FlightControl_Accel:StartStream_CalData': function (){ 
+			podCommands.FCUStreamingControlStart_AccelCalData()
+		},
+		'FlightControl_Accel:StartStream_FullData': function (){ 
+			podCommands.FCUStreamingControlStart_AccelFullData()
+		},
+		'FlightControl_Accel:StopStream': function (){ 
+			podCommands.FCUStreamingControlStop_Accel()
+		},
+		'FlightControl_Accel:FineZero': function (data){ 
+			podCommands.FCUAccel_FineZero(data)
+		},
+		'FlightControl_Accel:AutoZero': function (data){ 
+			podCommands.FCUAccel_AutoZero(data)
 		},
 		'power:streamingControl': function(data){
 			//data.status == on/off
@@ -95,9 +107,15 @@ module.exports = function (io, udp, room, logger, podCommands)
 		'lgu:positionChange': function(data){
 		  udp.tx.sendMessage(JSON.stringify(data))
 		},
+		'lgu:speedChange': function(data){
+		  udp.tx.sendMessage(JSON.stringify(data))
+		},
 		'disconnect': function() {
 		  console.log('Server got disconnected!');
-		}
+		},
+		'commConfig:req': function(data){
+			socket.emit('commConfig:res', commConfig);
+		},
 	  }
 
 	  for (const event in websocket.events){

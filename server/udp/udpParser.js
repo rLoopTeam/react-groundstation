@@ -14,6 +14,9 @@ function parseUdpMessage(raw_udp) {
 	var header = parseMessageHeader(raw_udp);
 	var data = parseDataOfType(raw_udp, header.packetType);
 	var crc = parseCrc(raw_udp);
+	
+	
+	
 	return {
 		header,
 		data,

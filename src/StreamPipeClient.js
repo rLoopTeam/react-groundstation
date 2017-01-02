@@ -11,7 +11,6 @@ class DataStreamClient {
 		this.socket = io('/dataStreamServer',{'forceNew':true});
 		
 		this.socket.on('connect', function() {
-			console.log('Client now connected!');
 			this.connected = true;
 			
 			this.socket.emit('request parameters', this.RequestedParameters);
@@ -26,6 +25,7 @@ class DataStreamClient {
 		}.bind(this));
 		
 	}
+	
 	
 	RequestParameter(parameter){
 		this.RequestedParameters.push(parameter);

@@ -1,0 +1,11 @@
+
+.info-panel legend {
+	font-size: 1em;
+	margin-bottom: 5px;
+	background: aqua;
+}
+
+.info-element {
+    display: inline-block;
+    padding: 0 10px;
+}

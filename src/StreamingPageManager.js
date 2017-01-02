@@ -23,6 +23,10 @@ class StreamingPageManager {
 		}
 	}
 	
+	destroy(){
+		
+	}
+	
 	//Allows a component to suscribe to a parameter from the pod
 	RequestParameterWithCallback(parameter, callback)
 	{

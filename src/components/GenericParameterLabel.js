@@ -19,7 +19,7 @@ class GenericParameterLabel extends Component {
 
 	componentWillUnmount() {
 		this._isMounted = false;
-		this.props.StreamingPageManager.destroy();
+		this.props.StreamingPageManager.destroy;
 	}
 	
 	dataCallback(parameterData){
@@ -28,11 +28,19 @@ class GenericParameterLabel extends Component {
 	}
 
 	render() {
-	    return (
-		    	<div className="Generic-Value">
-				{this.state.value} {this.state.units}
-				</div>
-	    );
+		if(this.props.hex == 'true'){
+			return (
+					<div className="Generic-Value">
+					0x{this.state.value.toString(16)} {this.state.units}
+					</div>
+			);
+		}else{
+			return (
+					<div className="Generic-Value">
+					{this.state.value} {this.state.units}
+					</div>
+			);
+		}
 	}
 } 
 

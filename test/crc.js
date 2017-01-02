@@ -1,6 +1,6 @@
 const expect    = require("chai").expect;
-const crc = require("../utils/crc");
-const lookupTables = require('../utils/lookupTables');
+const crc = require("../server/udp/crc");
+const lookupTables = require('../server/udp/lookupTables');
 
 /*
 * Test for the CRC checksum module
