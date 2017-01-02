@@ -93,11 +93,11 @@ class PacketParser{
 			logger.log('warn', "PacketParser: Got a packet of type "+packetType+" and don't know what to do with it.");
 			return;
 		}
-		else
-		{
-			console.log('Good News', "PacketParser: Got a packet of type "+packetType+".");
+		// else
+		// {
+		// 	console.log('Good News', "PacketParser: Got a packet of type "+packetType+".");
 			
-		}
+		// }
 		
 		var newDataParams = {
 			'packetName':packetDef.Name,
