@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands)
+module.exports = function (io, udp, room, logger, podCommands, commConfig)
 {
 	var updateClientWithDatalogs = true;
 	var _timer;
@@ -112,7 +112,10 @@ module.exports = function (io, udp, room, logger, podCommands)
 		},
 		'disconnect': function() {
 		  console.log('Server got disconnected!');
-		}
+		},
+		'commConfig:req': function(data){
+			socket.emit('commConfig:res', commConfig);
+		},
 	  }
 
 	  for (const event in websocket.events){

@@ -73,7 +73,7 @@ var podCommands = require('./udp/podCommands')(udp);
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig);
 
 /*------------
   Test Data Generator

@@ -8,6 +8,7 @@ import LGU from './components/LGU';
 import XilinxSim from './components/XilinxSim';
 import FlightControl_Accel from './components/FlightControl_Accel';
 import DataStreamExample from './components/datasubexample';
+import CommConfig from './components/CommConfig';
 import './App.css';
 
 class App extends Component {
@@ -21,7 +22,8 @@ class App extends Component {
             <Route path="lgu" component={LGU} />
             <Route path="XilinxSim" component={XilinxSim} />
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
-			<Route path="datasubexample" component={DataStreamExample} />
+			      <Route path="datasubexample" component={DataStreamExample} />
+			      <Route path="commConfig" component={CommConfig} />
           </Route>
       </Router>
     );
