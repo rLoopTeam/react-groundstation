@@ -22,13 +22,21 @@ class InfoPanel extends Component {
 
 	render(){
 	    return (
-	    	<div className="info-panel">
-				<legend>Global Stats</legend>
-			    <div className="InfoPanel-content">
-					<div className="info-element">Packet 1001 Rx:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001'/></div>
-					<div className="info-element">Packet 1003 Rx:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003'/></div>
+
+			<footer className="footer navbar-fixed-bottom navbar-default">
+				<div className="container-fluid">
+					<div className="info-panel">
+						<legend>Global Stats</legend>
+						<div className="InfoPanel-content">
+							<div className="info-element">Packet 1001 Rx:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001'/></div>
+							<div className="info-element">Packet 1003 Rx:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003'/></div>
+						</div>
+					</div>
 				</div>
-			</div>
+			</footer>
+
+	
+	    	
 	    );
 	}
 }
