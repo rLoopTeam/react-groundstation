@@ -43,12 +43,16 @@ class FlightControl_Accel extends Component {
 		
 		
 	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
+		this.props.StreamingPageManager.destroy;
+	}
 	
 	componentDidMount() {
         var _this = this;
 		
 		socket.on('connect', function() {
-			console.log('Client now connected!')
 
 			socket.on('FlightControl_Accel:telemetry', function(data){
 				var _accelerometer0 = this.state.accelerometer0;
@@ -68,7 +72,6 @@ class FlightControl_Accel extends Component {
 					_accelerometer1: _accelerometer1
 				});
 
-				console.log(data);
 			})
 		});
 		
@@ -117,7 +120,6 @@ class FlightControl_Accel extends Component {
 	}
 
 	render(){
-		console.log(this.state)
 	    return (
 		    <div className="Overview-content">
 			
