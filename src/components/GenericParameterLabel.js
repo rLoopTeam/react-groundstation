@@ -1,46 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import GenericParameterDisplay from './GenericParameterDisplay.js';
 
-class GenericParameterLabel extends Component {
-	constructor(props) {
-		super(props)
-		this.dataCallback = this.dataCallback.bind(this);
-		
-		this.props.StreamingPageManager.RequestParameterWithCallback(this.props.parameter, this.dataCallback);
-		
-		this.state = {
-			stale: false,
-			value: 0,
-			units: ''
-		}
-
-		this._isMounted = true;
-		
-	}
-
-	componentWillUnmount() {
-		this._isMounted = false;
-		this.props.StreamingPageManager.destroy;
-	}
-	
-	dataCallback(parameterData){
-		if(this._isMounted)
-			this.setState({value: parameterData.Value, stale: parameterData.IsStale, units: parameterData.Units});
-	}
-
+class GenericParameterLabel extends GenericParameterDisplay {
+	/*
+	* This component inherits all code from GenericParameterDisplay. Look there for implemetation details
+	*/
 	render() {
-		if(this.props.hex == 'true'){
-			return (
-					<div className="Generic-Value">
-					0x{this.state.value.toString(16)} {this.state.units}
-					</div>
-			);
-		}else{
-			return (
-					<div className="Generic-Value">
-					{this.state.value} {this.state.units}
-					</div>
-			);
-		}
+		return (
+			<div className="Generic-Value">
+				{this.getFormattedValue()} <b>{this.getUnits()}</b>
+			</div>
+		);
 	}
 } 
 

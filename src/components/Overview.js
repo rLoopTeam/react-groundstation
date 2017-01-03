@@ -93,10 +93,6 @@ class Overview extends Component {
 		})
     }
 
-	sendParameter(e) {
-		e.preventDefault();
-		socket.emit('sendParameter', { index: this.state.parameterIndex, type: this.state.parameterType, value: this.state.parameterValue });
-	}
 	setIpAndPort(e) {
 		e.preventDefault();
 		socket.emit('setIpAndPort', { ip: this.state.ip,  port: this.state.port });
@@ -171,24 +167,6 @@ class Overview extends Component {
 								</label>
 								<input className="btn btn-primary" type="submit" value="Save" onClick={this.setIpAndPort.bind(this)} />
 							</fieldset>
-						</div>
-					</form>
-					<form className="section col-sm-12" onSubmit={this.sendParameter.bind(this)}>
-			      		<div className="form-group col-sm-4">
-							<label>Parameter</label>
-							<label>
-								Index:
-								<input className="form-control" type="text" name="index" value={this.state.parameterIndex} onChange={this.handleParameterIndexChange.bind(this)} />
-							</label>
-							<label>
-								Type:
-								<input className="form-control" type="text" name="type" value={this.state.parameterType} onChange={this.handleParameterTypeChange.bind(this)} />
-							</label>
-							<label>
-								Value:
-								<input className="form-control" type="text" name="value" value={this.state.parameterValue} onChange={this.handleParameterValueChange.bind(this)} />
-							</label>
-							<input className="btn btn-primary" type="submit" value="Send parameter" />
 						</div>
 					</form>
 					<div className="col-sm-12">

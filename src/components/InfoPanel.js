@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-import GenericParameterInput from './GenericParameterInput.js';
+//import GenericParameterInput from './GenericParameterInput.js';
 import './InfoPanel.css';
-
-import io from 'socket.io-client';
 
 class InfoPanel extends Component {
 	constructor(props) {
