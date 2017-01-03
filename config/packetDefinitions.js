@@ -57,6 +57,28 @@ module.exports = {
 								{'Name':'1 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
 								{'Name':'1 Roll', 'type':'float32', 'units':'degrees', 'size': 4}
 							]
-			}
+			},
+			{
+				"Name":"Brake Cal Full",
+				"ParameterPrefix":"Brake ",
+				"PacketType":0x0000, //defined in the packet section of confluence for FCU
+				"Parameters":[
+								{'Name':'Parking', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Left Screw Pos', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Right Screw Pos', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Left Extend Limit', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Right Extend Limit', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Left Retract Limit', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Right Retract Limit', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'FL I-Beam Dist', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'RL I-Beam Dist', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'FR I-Beam Dist', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'RR I-Beam Dist', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Left MLP Raw', 'type':'int16', 'units':'mm', 'size': 2},
+								{'Name':'Right MLP Raw', 'type':'int16', 'units':'mm', 'size': 2},
+								{'Name':'Left MLP Scaled', 'type':'int16', 'units':'mm', 'size': 2},
+								{'Name':'Right MLP Scaled', 'type':'int16', 'units':'mm', 'size': 2},
+							]
+			},
 		]
 }
