@@ -31,49 +31,52 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig)
 
 	  var websocket = {};
 	  websocket.events = {
-		'forceDisconnect': function(){
+		'forceDisconnect': () => {
 		  socket.disconnect();
 		},
-		'XilinxSim:StartRun': function (data){ 
+		'XilinxSim:StartRun': (data) => {  
 			podCommands.XilinxSimStart();
 		},
-		'FlightControl_Accel:StartStream_CalData': function (){ 
+		'FlightControl_BrakeEnableDevelopmentMode': () => {
+			podCommands.FCUBrake_EnableDevelopmentMode();
+		},
+		'FlightControl_Accel:StartStream_CalData': () => {  
 			podCommands.FCUStreamingControlStart_AccelCalData()
 		},
-		'FlightControl_Accel:StartStream_FullData': function (){ 
+		'FlightControl_Accel:StartStream_FullData': () => {  
 			podCommands.FCUStreamingControlStart_AccelFullData()
 		},
-		'FlightControl_Accel:StopStream': function (){ 
+		'FlightControl_Accel:StopStream': () => {  
 			podCommands.FCUStreamingControlStop_Accel()
 		},
-		'FlightControl_Accel:FineZero': function (data){ 
+		'FlightControl_Accel:FineZero': (data) => {  
 			podCommands.FCUAccel_FineZero(data)
 		},
-		'FlightControl_Accel:AutoZero': function (data){ 
+		'FlightControl_Accel:AutoZero': (data) => {  
 			podCommands.FCUAccel_AutoZero(data)
 		},
-		'power:streamingControl': function(data){
+		'power:streamingControl': (data) => {
 			//data.status == on/off
 			podCommands.PowerStreamingControl(data.status)
 		},
-		'stop:Pod': function (data) {
+		'stop:Pod': (data) => {
 			podCommands.PodStop();
 		},
-		'client event': function (data) {
+		'client event': (data) => {
 		  socket.broadcast.emit('update label', data);
 		},
-		'start:dataLogs': function (data) {
+		'start:dataLogs': (data) => {
 		  if(_timer)
 		  {
 			clearInterval(_timer)
 		  }
 
-		  _timer = setInterval(function(){
+		  _timer = setInterval(() => {
 			  udp.tx.sendMessage("Thanks Pod, message received")
 		  }, 2500);
 		  updateClientWithDatalogs = true;
 		},
-		'stop:dataLogs': function (data) {
+		'stop:dataLogs': (data) => {
 		  if(_timer)
 		  {
 			clearInterval(_timer)
@@ -82,21 +85,21 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig)
 		  udp.tx.sendMessage("DataLogs are no longer listening")
 		  updateClientWithDatalogs = false;
 		},
-		'power:Pod': function(){
+		'power:Pod': () => {
 			podCommands.PodOff()
 		},
-		'join': function (data) {
+		'join': (data) => {
 			var name = data.name;
 			room[data.room] = data.room; //add name of room to the list of rooms
 			socket.join(room[data.room]);
 			console.log(name + ' joined the group. '+ socket.id);
 			socket.in(room[data.room]).emit('udp:event', {log: name + ' joined the group: ' + room[data.room]});
 		},
-		'sendParameter': function (data) {
+		'sendParameter': (data) => {
 			podCommands.SendParameter(data);
 		},
-		'setIpAndPort': function (data) {
-		  udp.rx.updateConnectionData(data).then(() => {
+		'setIpAndPort': (data) => {
+		  udp.rx.updateConnectionData(data).then( () => {
 			console.log('udp starting to listen again')
 			if(!udp.rx.listeningForUdp)
 				startListening()
@@ -104,22 +107,22 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig)
 
 		  udp.tx.sendMessage(JSON.stringify(data))
 		},
-		'lgu:positionChange': function(data){
+		'lgu:positionChange': (data) => {
 		  udp.tx.sendMessage(JSON.stringify(data))
 		},
-		'lgu:speedChange': function(data){
+		'lgu:speedChange': (data) => {
 		  udp.tx.sendMessage(JSON.stringify(data))
 		},
-		'disconnect': function() {
+		'disconnect': () => {
 		  console.log('Server got disconnected!');
 		},
-		'commConfig:req': function(data){
+		'commConfig:req': (data) => {
 			socket.emit('commConfig:res', commConfig);
 		},
 	  }
 
 	  for (const event in websocket.events){
-		  socket.on (event, (data)=> {
+		  socket.on (event, (data) => {
 			websocket.events[event](data);
 		  })
 	  }
