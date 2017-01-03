@@ -38,6 +38,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig)
 			podCommands.XilinxSimStart();
 		},
 		'FlightControl_BrakeEnableDevelopmentMode': () => {
+			// THIS IS VERY VERY DANGEROUS 
 			podCommands.FCUBrake_EnableDevelopmentMode();
 		},
 		'FlightControl_Accel:StartStream_CalData': () => {  
@@ -99,7 +100,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig)
 			podCommands.SendParameter(data);
 		},
 		'setIpAndPort': (data) => {
-		  udp.rx.updateConnectionData(data).then( () => {
+		  udp.rx.updateConnectionData(data).then(() => {
 			console.log('udp starting to listen again')
 			if(!udp.rx.listeningForUdp)
 				startListening()
