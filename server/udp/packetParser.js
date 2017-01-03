@@ -47,6 +47,16 @@ class PacketParser{
 		return 0;
 	}
 
+	logPacket(packet){
+		data = ''
+		for(var i = 0, len = packet.Parameters.length; i<len; i++){
+			if (i > 0){
+				data = data + ","
+				data = data + packet.Parameters[i]
+			}
+		}
+		logger.log("info", data)
+	}
 
 	gotNewPacket (raw_udp) {
 		//Good for testing, should just have some stats:
@@ -179,7 +189,9 @@ class PacketParser{
 			parseLoc = newParseLoc;
 		}
 		this.packetStats.gotPacketType(packetDef.PacketType, bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]));
+
 		this.processsedPacketCB(newDataParams);
+		return newDataParams;
 	}
 }
 
