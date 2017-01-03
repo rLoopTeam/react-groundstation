@@ -22,6 +22,7 @@ class packetStats{
 	{
 		this.rtDataStore = rtDataStore;
 		this.rxPackets = [];
+		this.daqPackets = [];
 		this.gotPacketType.bind(this);
 		this.updateRtDataStore = this.updateRtDataStore.bind(this);
 		
@@ -40,11 +41,27 @@ class packetStats{
 		this.rxPackets.push({'type':packetType.toString(16),'count':1});
 	}
 	
+	loggedPacketType(packetType)
+	{
+		for(var i = 0;i<this.daqPackets.length;i++){
+			if(this.daqPackets[i].type == packetType.toString(16))
+			{
+				this.daqPackets[i].count++;
+				return;
+			}
+		}
+		this.daqPackets.push({'type':packetType.toString(16),'count':1});
+	}
+	
 	updateRtDataStore(){
 		var newData ={'packetName':'Packet Stats','packetType':'0','rxTime':0,'parameters':[]};
 		for(var i = 0;i<this.rxPackets.length;i++){
 			newData.parameters.push({'name':'Packet Rx Count '+this.rxPackets[i].type,'value':this.rxPackets[i].count,'units':'packets'},
 									{'name':'Packet Last CRC '+this.rxPackets[i].type,'value':this.rxPackets[i].crc,'units':''}
+									);
+		}
+		for(var i = 0;i<this.daqPackets.length;i++){
+			newData.parameters.push({'name':'Packet DAQ Count '+this.daqPackets[i].type,'value':this.daqPackets[i].count,'units':'packets'}
 									);
 		}
 		this.rtDataStore.insertDataPacket(newData);

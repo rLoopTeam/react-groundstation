@@ -38,6 +38,9 @@ class MainLayout extends Component {
 				name: "STOP", location: "/stop"
 			},
 			{
+				name: "DAQ", location: "/DAQ"
+			},
+			{
 				name: "Flight Control", location: "/flightControl", children: [
 					{name: "Accelerometers", location: "/flightcontrol_accel"},
 					{name: "Brakes", location: "/brakes"},

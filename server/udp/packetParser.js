@@ -18,16 +18,22 @@ const bin = require('./binary.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
 
 class PacketParser{
-	constructor(logger, processsedPacketCB, packetStats)
+	constructor(logger, packetStats)
 	{
 		this.date = new Date();
 		this.logger = logger;
 		this.gotNewPacket = this.gotNewPacket.bind(this);
-		this.processsedPacketCB = processsedPacketCB;
+		this.addPacketLisenter = this.addPacketLisenter.bind(this);
 		this.packetStats = packetStats;
 		this.packetDefinitions = packetDefinitions.packetDefinitions;
+		this.packetRXCallbacks = [];
 	}
 
+	addPacketLisenter(cb)
+	{
+		this.packetRXCallbacks.push(cb);
+	}
+	
 	verifyCRC(raw_udp)
 	{
 		var crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
@@ -55,8 +61,6 @@ class PacketParser{
 		//    sequence misses
 
 		var logger = this.logger;
-	
-	
 		
 		if(this.verifyCRC(raw_udp))
 		{
@@ -113,7 +117,7 @@ class PacketParser{
 			var newName = packetDef.Parameters[i]
 			newParseLoc += packetDef.Parameters[i].size;
 			
-			if(newParseLoc > length){
+			if(newParseLoc > (length+8)){
 				//uh oh, ran out of packet
 				logger.log('warn','PacketParser: Error parsing packet, not long enough');
 			}
@@ -179,10 +183,14 @@ class PacketParser{
 			parseLoc = newParseLoc;
 		}
 		this.packetStats.gotPacketType(packetDef.PacketType, bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]));
-		this.processsedPacketCB(newDataParams);
+		
+		for(var i = 0;i<this.packetRXCallbacks.length;i++)
+		{
+			this.packetRXCallbacks[i](newDataParams);
+		}
 	}
 }
 
-module.exports = function(logger, processsedPacketCB, packetStats){
-	return new PacketParser(logger, processsedPacketCB, packetStats);
+module.exports = function(logger, packetStats){
+	return new PacketParser(logger, packetStats);
 };

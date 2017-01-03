@@ -10,6 +10,7 @@ import FlightControl_Accel from './components/FlightControl_Accel';
 import Brakes from './components/Brakes';
 import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
+import DAQ from './components/DAQ';
 import './App.css';
 
 class App extends Component {
@@ -24,8 +25,9 @@ class App extends Component {
             <Route path="XilinxSim" component={XilinxSim} />
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
             <Route path="brakes" component={Brakes} />
-			      <Route path="datasubexample" component={DataStreamExample} />
-			      <Route path="commConfig" component={CommConfig} />
+			<Route path="datasubexample" component={DataStreamExample} />
+			<Route path="commConfig" component={CommConfig} />
+			<Route path="DAQ" component={DAQ} />
           </Route>
       </Router>
     );

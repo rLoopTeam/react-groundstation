@@ -55,7 +55,9 @@ const StreamPipeServer = require('./StreamPipeServer.js')(app, io, rtDataStore);
 	PacketParser
 	Takes raw udp packets and parses them into JSON objects
 ------------*/
-var packetParser = require('./udp/packetParser')(logger, rtDataStore.insertDataPacket, packetStats);
+var packetParser = require('./udp/packetParser')(logger, packetStats);
+
+packetParser.addPacketLisenter(rtDataStore.insertDataPacket);
 
 /*------------
 	All UDP I/O directly to/from pod.
@@ -70,10 +72,18 @@ const udp = require('./udp/udpMain.js')(logger, packetParser.gotNewPacket);
 var podCommands = require('./udp/podCommands')(udp);
 
 /*------------
+	DAQ Data module
+	Records received data packets to the file system
+------------*/
+const daq = require('./daq.js')(packetStats);
+packetParser.addPacketLisenter(daq.gotNewPacket);
+
+/*------------
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq);
+
 
 /*------------
   Test Data Generator
@@ -86,4 +96,6 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
   Adds some data to the real time data store for testing
   DISABLE FOR PRODUCTION
 ------------*/
-//const AccelTestDataGenerator = require('./AccelTestDataGenerator.js')(packetParser);
+const AccelTestDataGenerator = require('./AccelTestDataGenerator.js')(packetParser);
+
+
