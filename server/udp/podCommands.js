@@ -5,7 +5,7 @@ module.exports = function(udp){
     //flag allow/disallow the use of FCUBrake_MoveMotorRAW which is 
     //extreamly dangerous and will damage the magnets
 
-    _brakeDevelopmentConfirmation = false;
+    var _brakeDevelopmentConfirmation = false;
 
     return{
 		/*
@@ -60,7 +60,7 @@ module.exports = function(udp){
                 udp.tx.transmitPodCommand('Flight Control', 0x1401, data.command, data.position, 0x0, 0x0); 
 
             }
-            
+
         },
         FCUStreamingControlStart_AccelCalData: () => {
 
