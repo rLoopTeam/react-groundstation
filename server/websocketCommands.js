@@ -51,19 +51,11 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 
 				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
 
-
-				if(_brakeDevelopmentConfirmation)
-				{
-
-					podCommands.FCUBrake_MoveMotorRAW(data);
-
-				}
+				podCommands.FCUBrake_MoveMotorRAW(data);
 
 			},
 
 			'FlightControl_Brake:DisableDevelopmentMode': () => {
-
-				_brakeDevelopmentConfirmation = false; //flag used to allow/disallow Move Motor Raw command
 
 				podCommands.FCUBrake_DisableDevelopmentMode();
 
@@ -72,9 +64,6 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 			'FlightControl_Brake:EnableDevelopmentMode': () => {
 
 				// THIS IS VERY VERY DANGEROUS 
-
-
-				_brakeDevelopmentConfirmation = true; //flag used to allow/disallow Move Motor Raw command
 
 				podCommands.FCUBrake_EnableDevelopmentMode();
 
