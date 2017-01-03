@@ -40,6 +40,7 @@ class MainLayout extends Component {
 			{
 				name: "Flight Control", location: "/flightControl", children: [
 					{name: "Accelerometers", location: "/flightcontrol_accel"},
+					{name: "Brakes", location: "/brakes"},
 				]
 			},
 			{
