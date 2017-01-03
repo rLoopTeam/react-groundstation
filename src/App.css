@@ -15,7 +15,8 @@
 }
 
 body {
-  padding-top: 70px !important;
+  margin-top: 60px !important;
+  margin-bottom: 60px !important;
 }
 
 .Overview-content {

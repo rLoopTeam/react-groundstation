@@ -12,7 +12,6 @@ module.exports = function(udp){
         PowerStreamingControl: (command) => {
             udp.tx.sendMessage(command)
         },*/
-		
         FCUStreamingControlStart_AccelCalData: () => {
 		  udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001001, 0x0, 0x0); 
         },

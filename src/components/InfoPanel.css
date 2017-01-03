@@ -1,20 +1,11 @@
-.info-panel {
-	position: fixed;
-	width: 100%;
-	bottom: 0;
-	background: white;
-	border-top: solid #cacaca 1px;
-}
 
 .info-panel legend {
 	font-size: 1em;
 	margin-bottom: 5px;
 	background: aqua;
-    border-top: solid 1px gainsboro;
 }
 
 .info-element {
     display: inline-block;
-    border-right: solid #cacaca 1px;
     padding: 0 10px;
 }
