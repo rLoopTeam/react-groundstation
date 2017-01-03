@@ -1,5 +1,5 @@
-const bin = require('./udp/binary.js');
-const crc = require('./udp/crc.js');
+const bin = require('../udp/binary.js');
+const crc = require('../udp/crc.js');
 
 class AccelTestDataGenerator{
 	constructor(packetParser){
