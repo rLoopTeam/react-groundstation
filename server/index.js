@@ -96,6 +96,6 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
   Adds some data to the real time data store for testing
   DISABLE FOR PRODUCTION
 ------------*/
-const AccelTestDataGenerator = require('./AccelTestDataGenerator.js')(packetParser);
+//const AccelTestDataGenerator = require('./AccelTestDataGenerator.js')(packetParser);
 
 
