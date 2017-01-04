@@ -10,7 +10,7 @@ class NumericInput extends Component {
 	render() {
 		return (
 			<span>
-				{this.props.label}
+				<label>{this.props.label}</label>
 				<input 	type="number" 
 						className="form-control"
 						value={this.state.value}
