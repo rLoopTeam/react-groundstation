@@ -52,15 +52,17 @@ class Brakes extends Component {
 
     componentDidMount() {
         var _this = this;
-        // socket.on('connect', function() {
-		// 	console.log('Client now connected!')
-        //     socket.emit('commConfig:req')
-
-		// 	socket.on('commConfig:res', function(data){
-        //         var commConfig = JSON.stringify(data, null, '    ')
-        //         _this.setState({commConfig: commConfig})
-		// 	})
-		// });
+        socket.emit("FlightControl_Brake:RequestDevelopmentMode");
+        socket.on('connect', function() {
+			socket.on('FlightControl_Brake:DevelopmentMode', function(data){
+                //FlightControl_Brake:RequestDevelopmentMode
+                console.log("\n\n\n\n\n\nUI UPDATE DEV MODE FROM POD\n\n\n\n\n",data.developmentMode)
+                _this.setState({
+                    developmentModeSelection: (data.developmentMode)?1:0,
+                    developmentMode: data.developmentMode
+                })
+			})
+		});
     }
 
 
@@ -80,8 +82,6 @@ class Brakes extends Component {
                     developmentMode: true
                 });
                 socket.emit('FlightControl_Brake:EnableDevelopmentMode');
-                //socket.emit('FlightControl_Brake:MoveMotorRAW', {command: this.state.brakesSelection, 
-                //                                                 position: this.state.nextBrakePosition});
             } else {
                 this.setState({
                     developmentModeSelection: 0,
@@ -99,7 +99,7 @@ class Brakes extends Component {
     
     brakePositionHandler(changeEvent) {
         this.setState({
-            nextBrakePosition: parseInt(changeEvent.target.value)
+            nextBrakePosition: parseInt(changeEvent.target.value, 10)
         });
     }
 

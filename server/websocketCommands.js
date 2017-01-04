@@ -69,6 +69,12 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 
 			},
 
+			'FlightControl_Brake:RequestDevelopmentMode': () => {
+
+				podCommands.FCUBrake_RequestDevelopmentMode()
+
+			},
+
 			'FlightControl_Accel:StartStream_CalData': () => {
 
 				podCommands.FCUStreamingControlStart_AccelCalData()
@@ -98,6 +104,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 				podCommands.FCUAccel_AutoZero(data)
 
 			},
+
 
 			'power:streamingControl': (data) => {
 

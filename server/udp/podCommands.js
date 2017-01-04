@@ -37,6 +37,13 @@ module.exports = function(udp){
 
             udp.tx.transmitPodCommand('Flight Control', 0x1400, 0x01293847, 0x0, 0x0, 0x0); 
         }
+        
+        function FCUBrake_RequestDevelopmentMode() {
+
+            //udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0); 
+            console.log("SEND 'REQUESTDEVELOPMENTMODE'");
+
+        }
 
         function FCUBrake_MoveMotorRAW(data){
             console.log("move motor", data)
@@ -66,6 +73,7 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0); 
 
         }
+
 
         function FCUStreamingControlStop_Accel() {
 
@@ -107,8 +115,9 @@ module.exports = function(udp){
         FCUBrake_DisableDevelopmentMode,
         FCUBrake_EnableDevelopmentMode,
         FCUBrake_MoveMotorRAW,
+        FCUBrake_RequestDevelopmentMode,	
         FCUStreamingControlStart_AccelCalData,
-        FCUStreamingControlStart_AccelFullData,		
+        FCUStreamingControlStart_AccelFullData, 
 		FCUStreamingControlStop_Accel,	
         XilinxSimStart,
         FCUAccel_FineZero,		
