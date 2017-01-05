@@ -233,7 +233,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 
 			'commConfig:req': (data) => {
 
-				socket.broadcast.emit('commConfig:res', commConfig);
+				socket.in(room.commConfig).emit('commConfig:res', commConfig);
 
 			}
 
