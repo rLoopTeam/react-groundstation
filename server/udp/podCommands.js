@@ -83,7 +83,7 @@ module.exports = function(udp){
         
         function XilinxSimStart() {
 
-            udp.tx.transmitPodCommand('Xilinx Sim', 0x0, 0x0, 0x0, 0x0, 0x0); 
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
 
         }
         
