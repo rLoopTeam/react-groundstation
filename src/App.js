@@ -7,6 +7,7 @@ import Stop from './components/Stop';
 import LGU from './components/LGU';
 import XilinxSim from './components/XilinxSim';
 import FlightControl_Accel from './components/FlightControl_Accel';
+import FlightControl_Contrast from './components/FlightControl_Contrast';
 import Brakes from './components/Brakes';
 import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="lgu" component={LGU} />
             <Route path="XilinxSim" component={XilinxSim} />
             <Route path="FlightControl_Accel" component={FlightControl_Accel} />
+            <Route path="FlightControl_Contrast" component={FlightControl_Contrast} />
             <Route path="brakes" component={Brakes} />
 			<Route path="datasubexample" component={DataStreamExample} />
 			<Route path="commConfig" component={CommConfig} />
