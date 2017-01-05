@@ -24,8 +24,11 @@ class CommConfig extends Component {
 
     componentDidMount() {
         var _this = this;
+
+		
         socket.on('connect', function() {
 			console.log('Client now connected!')
+			
             socket.emit('commConfig:req')
 
 			socket.on('commConfig:res', function(data){
@@ -53,3 +56,28 @@ class CommConfig extends Component {
 
 export default CommConfig;
 
+
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
