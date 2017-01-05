@@ -42,11 +42,31 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 			},
 
 			'XilinxSim:StartRun': (data) => {
-
-				podCommands.XilinxSimStart();
-
+				podCommands.XilinxSim_Start();
 			},
-
+			'XilinxSim:StopRun': (data) => {
+				podCommands.XilinxSim_Stop();
+			},
+			'XilinxSim:Laser0_On': (data) => {
+				podCommands.XilinxSim_Laser0On();
+			},
+			'XilinxSim:Laser0_Off': (data) => {
+				podCommands.XilinxSim_Laser0Off();
+			},
+			'XilinxSim:Laser1_On': (data) => {
+				podCommands.XilinxSim_Laser1On();
+			},
+			'XilinxSim:Laser1_Off': (data) => {
+				podCommands.XilinxSim_Laser1Off();
+			},
+			'XilinxSim:Laser2_On': (data) => {
+				podCommands.XilinxSim_Laser2On();
+			},
+			'XilinxSim:Laser2_Off': (data) => {
+				podCommands.XilinxSim_Laser2Off();
+			},
+			
+			
 			'FlightControl_Brake:MoveMotorRAW': (data) => {
 
 				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
@@ -75,37 +95,33 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 
 			},
 
+			//accels
 			'FlightControl_Accel:StartStream_CalData': () => {
-
 				podCommands.FCUStreamingControlStart_AccelCalData()
-
 			},
-
 			'FlightControl_Accel:StartStream_FullData': () => {
-
 				podCommands.FCUStreamingControlStart_AccelFullData()
-
 			},
-
 			'FlightControl_Accel:StopStream': () => {
-
 				podCommands.FCUStreamingControlStop_Accel()
-
 			},
-
 			'FlightControl_Accel:FineZero': (data) => {
-
 				podCommands.FCUAccel_FineZero(data)
-
 			},
-
 			'FlightControl_Accel:AutoZero': (data) => {
-
 				podCommands.FCUAccel_AutoZero(data)
-
 			},
 
 
+			//Contrast sensor streaming control
+			'FlightControl_Contrast:StartStream': () => {
+				podCommands.FCUContrast_StartStream()
+			},
+			'FlightControl_Contrast:StopStrean': () => {
+				podCommands.FCUContrast_StopStream()
+			},
+
+			
 			'power:streamingControl': (data) => {
 
 				//data.status == on/off
@@ -233,7 +249,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 
 			'commConfig:req': (data) => {
 
-				socket.broadcast.emit('commConfig:res', commConfig);
+				socket.in(room.commConfig).emit('commConfig:res', commConfig);
 
 			}
 

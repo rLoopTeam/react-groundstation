@@ -80,24 +80,52 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0); 
 
         }
-        
-        function XilinxSimStart() {
-
-            udp.tx.transmitPodCommand('Xilinx Sim', 0x0, 0x0, 0x0, 0x0, 0x0); 
-
-        }
-        
+		
+		//Accel control
         function FCUAccel_FineZero(data) {
-
-            udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0); 
-
+			udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0); 
         }
-        
         function FCUAccel_AutoZero(data) {
-
             udp.tx.transmitPodCommand('Flight Control', 0x1004, data.accel, 0x00000000, 0x0, 0x0); 
-
         }
+
+		
+		//contrast sensors
+        function FCUContrast_StartStream() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x01, 0x1301, 0x0, 0x0); 
+        }
+        function FCUContrast_StopStream() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00, 0x00000000, 0x0, 0x0); 
+        }
+				
+
+        
+        function XilinxSim_Start() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Stop() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x0, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser0On() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x0, 0x1, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser0Off() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x0, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser1On() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x1, 0x1, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser1Off() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x1, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser2On() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x2, 0x1, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser2Off() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x2, 0x0, 0x0, 0x0); 
+        }
+
+        
 
     return{
 		/*
@@ -119,8 +147,19 @@ module.exports = function(udp){
         FCUStreamingControlStart_AccelCalData,
         FCUStreamingControlStart_AccelFullData, 
 		FCUStreamingControlStop_Accel,	
-        XilinxSimStart,
         FCUAccel_FineZero,		
-        FCUAccel_AutoZero
+        FCUAccel_AutoZero,
+
+		FCUContrast_StartStream,
+		FCUContrast_StopStream,
+
+        XilinxSim_Start,
+        XilinxSim_Stop,
+		XilinxSim_Laser0On,
+		XilinxSim_Laser0Off,
+		XilinxSim_Laser1On,
+		XilinxSim_Laser1Off,
+		XilinxSim_Laser2On,
+		XilinxSim_Laser2Off
     }
 }

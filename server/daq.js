@@ -15,10 +15,12 @@ class daq {
 			return;
 		
 		var filename = "logs/" + packet.packetName + ".csv";
-		var toWrite = packet.rxTime +", ";
+		//just no need for this
+		//var toWrite = packet.rxTime +", ";
+		var toWrite = "";
 		
 		for(var i = 0;i<packet.parameters.length-1;i++){
-			toWrite = toWrite + packet.parameters[i].value + ", ";
+			toWrite = toWrite + packet.parameters[i].value + ",";
 		}
 		
 		toWrite = toWrite + packet.parameters[packet.parameters.length-1].value + "\n";

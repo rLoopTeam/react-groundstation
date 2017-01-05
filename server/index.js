@@ -21,7 +21,8 @@ const server = app.listen(PORT, () => {
 const io = require('socket.io')(server);
 
 var room = {
-  dataLogging: 'dataLogging'
+  dataLogging: 'dataLogging',
+  commConfig: 'commConfig'
 };
 
 /*------------
