@@ -29,9 +29,6 @@ class MainLayout extends Component {
 				]
 			},
 			{
-				name: "LCU", location: "/lcu"
-			},
-			{
 				name: "LGU", location: "/lgu"
 			},
 			{

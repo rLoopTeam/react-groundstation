@@ -70,6 +70,11 @@ class CommConfig extends Component {
         var _this = this;
     }
 
+	handleChange(e){
+		var name = e.currentTarget.name,
+			value = e.currentTarget.value;
+	}
+
 	render() {
 		var _this = this;
 		var inputs = [];
@@ -149,7 +154,7 @@ class CommConfig extends Component {
 												return(
 													<div key={inx+"-"+i} className="form-group">
 														<label htmlFor={e.label}>{e.label}</label>
-														<input type="text" id={e.label} name={e.label} value={e.input} />
+														<input type="text" id={e.label} name={e.label} value={e.input} onChange={_this.handleChange} readOnly/>
 													</div>
 												);
 											}
@@ -162,7 +167,7 @@ class CommConfig extends Component {
 									return (<fieldset>
 									<legend>{elem.legend}</legend>
 										<label htmlFor={elem.label}>{elem.label}</label>
-										<input type="text" id={elem.label} name={elem.label} value={elem.input} />
+										<input type="text" id={elem.label} name={elem.label} value={elem.input} onChange={_this.handleChange} readOnly/>
 									</fieldset>);
 								}
 							}
