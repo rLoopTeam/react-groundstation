@@ -1,4 +1,6 @@
 var dgram = require('dgram');
+var Dequeue = require('dequeue');
+var FIFO = new Dequeue();
 
 /*
 * UDP data receiver
@@ -15,8 +17,7 @@ class udpServer {
 			  console.log('UDP Client listening on ' + address.address + ":" + address.port);
 		}.bind(this));
   
-		this.udpServer.on('message', function (message, remote) {   
-			console.log("Got a UDP message!"); //TODO Remove once everyone has verified it's working.
+		this.udpServer.on('message', function (message, remote) {  
 			this.rxCallback(message);
 		}.bind(this));
 		
