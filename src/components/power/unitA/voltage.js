@@ -33,12 +33,23 @@ class PowerA_Voltage extends Component {
 
         ]		
 
-		var _a = -2.320;
-		var _b = -2.320;
+		var _pos = -2.320;
+		var _neg = -2.320;
+		var _drainVoltage = -1;
+        var isDraining = false;
         
         for(var _i = 0; _i < 18; _i++)
         {
-            this.voltage.push({A: [_a, _b], B: [_a, _b], C: [_a, _b], D: [_a, _b], E: [_a, _b], F: [_a, _b], bool: false, voltage: _a})
+            this.voltage.push({
+                A: [_pos, _neg], 
+                B: [_pos, _neg], 
+                C: [_pos, _neg], 
+                D: [_pos, _neg], 
+                E: [_pos, _neg], 
+                F: [_pos, _neg], 
+                bool: isDraining, 
+                voltage: _drainVoltage
+            })
         }
 	}
 	
@@ -90,7 +101,7 @@ class PowerA_Voltage extends Component {
                                     else{
                                         if(Array.isArray(val))
                                         {
-                                            var val = val.join(units + " | ");
+                                            val = val.join(units + " | ");
                                         }
                                     }
 
