@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
-import GenericParameterLabel from './GenericParameterLabel.js';
-import GenericParameterInput from './GenericParameterInput.js';
 
 import io from 'socket.io-client';
 let socket = io.connect('127.0.0.1:3000', {

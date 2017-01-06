@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
-import GenericParameterLabel from './GenericParameterLabel.js';
 import config from '../../config/commConfig';
 
 import io from 'socket.io-client';
@@ -73,7 +72,6 @@ class CommConfig extends Component {
 
 	render() {
 		var _this = this;
-		var labels = [];
 		var inputs = [];
 
 	    return (
@@ -99,16 +97,16 @@ class CommConfig extends Component {
 											var aoLabel = aoItem,
 												aoInput = aItem[aoLabel];
 
-												aoInputGroup.push({input: aoInput, label: aoLabel});
+												return aoInputGroup.push({input: aoInput, label: aoLabel});
 										})
 
-										inputs.push(aoInputGroup)
+										return inputs.push(aoInputGroup)
 									}
 									else{
 										var aLabel = Object.keys(aItem),
 											aInput = aItem;
 
-										inputs.push({legend: label, input: aInput, label: aLabel});
+										return inputs.push({legend: label, input: aInput, label: aLabel});
 									}
 								})
 							}
@@ -121,20 +119,20 @@ class CommConfig extends Component {
 									var oLabel = oItem,
 										oInput = input[oLabel];
 
-										oInputGroup.push({input: oInput, label: oLabel});
+										return oInputGroup.push({input: oInput, label: oLabel});
 								})
 
-								inputs.push(oInputGroup)
+								return inputs.push(oInputGroup)
 							}
 							break;
 						}
 						default:
 						{
-							inputs.push({legend: label, input: input, label: label});
-
-							break;
+							return inputs.push({legend: label, input: input, label: label});
 						}
 					}
+
+					return false;
                 })	
 			}
 					{
@@ -155,6 +153,7 @@ class CommConfig extends Component {
 													</div>
 												);
 											}
+											return false;
 										})}
 									</fieldset>);
 								}

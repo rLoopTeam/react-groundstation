@@ -140,7 +140,8 @@ class LGU extends Component {
 		
 
 		//set value on object items
-		var upVal = _direction.up = false;
+		_direction.up = false;
+		var upVal = _direction.up;
 		var downVal = _direction.down = true;
 
 		//set values if position is up

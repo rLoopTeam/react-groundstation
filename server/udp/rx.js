@@ -1,6 +1,4 @@
 var dgram = require('dgram');
-var Dequeue = require('dequeue');
-var FIFO = new Dequeue();
 
 /*
 * UDP data receiver
