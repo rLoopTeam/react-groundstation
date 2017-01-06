@@ -74,7 +74,7 @@ class Brakes extends Component {
 
     brakesDevModeHandler(changeEvent){
 
-        if(changeEvent.target.value == 1){
+        if(changeEvent.target.value === 1){
             var shouldUpdateBrakePosition = confirm("WARNING: You are about to enable development mode. This is a dangerous operation.");
             if (shouldUpdateBrakePosition){
                 this.setState({
@@ -144,12 +144,12 @@ class Brakes extends Component {
                             <div className="radio">
                                 <label htmlFor="dev-mode-off"><input type="radio" id="dev-mode-off" name="brakesDevMode" value="0" 
                                         onChange={this.brakesDevModeHandler.bind(this)} 
-                                        checked={this.state.developmentModeSelection == 0}/>OFF</label> 
+                                        checked={this.state.developmentModeSelection === 0}/>OFF</label> 
                             </div> 
                             <div className="radio">
                                 <label htmlFor="dev-mode-on"><input type="radio" id="dev-mode-on" name="brakesDevMode" value="1" 
                                         onChange={this.brakesDevModeHandler.bind(this)} 
-                                        checked={this.state.developmentModeSelection == 1}/>ON</label>
+                                        checked={this.state.developmentModeSelection === 1}/>ON</label>
                             </div>
                         </div>
                     </div>
@@ -162,17 +162,17 @@ class Brakes extends Component {
                             <div className="radio">
                                 <label htmlFor="brake-selection-0"><input type="radio" id="brake-selection-0" name="brakesSelection" value="0" 
                                         onChange={this.brakesSelectionHandler.bind(this)} 
-                                        checked={this.state.brakesSelection == 0} />Brake 0</label>
+                                        checked={this.state.brakesSelection === 0} />Brake 0</label>
                             </div> 
                             <div className="radio">
                                 <label htmlFor="brake-selection-1"><input type="radio" id="brake-selection-1" name="brakesSelection" value="1" 
                                         onChange={this.brakesSelectionHandler.bind(this)} 
-                                        checked={this.state.brakesSelection == 1}/>Brake 1</label>
+                                        checked={this.state.brakesSelection === 1}/>Brake 1</label>
                             </div>
                             <div className="radio">
                                 <label htmlFor="brake-selection-2"><input type="radio" id="brake-selection-2" name="brakesSelection" value="2" 
                                     onChange={this.brakesSelectionHandler.bind(this)} 
-                                    checked={this.state.brakesSelection == 2}/>Both</label>
+                                    checked={this.state.brakesSelection === 2}/>Both</label>
                             </div>
                         </div>
                         <button disabled={(this.state.developmentMode)?"":"disabled"} className={buttonClasses}
