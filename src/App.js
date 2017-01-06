@@ -12,6 +12,7 @@ import Brakes from './components/Brakes';
 import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
+import PowerA_Voltage from './components/power/unitA/voltage';
 import './App.css';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/" component={MainLayout}>
             <IndexRoute component={Overview} />
             <Route path="dashboard" component={Overview} />
+            <Route path="powerAVoltage" component={PowerA_Voltage} />
             <Route path="stop" component={Stop} />
             <Route path="lgu" component={LGU} />
             <Route path="XilinxSim" component={XilinxSim} />

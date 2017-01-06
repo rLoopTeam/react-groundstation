@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
-var socket;
 
 class Overview extends Component {
 	constructor(props) {

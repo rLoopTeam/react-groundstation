@@ -71,8 +71,10 @@ class CommConfig extends Component {
     }
 
 	handleChange(e){
-		var name = e.currentTarget.name,
-			value = e.currentTarget.value;
+		var _name = e.currentTarget.name,
+			_value = e.currentTarget.value;
+
+			socket.emit("update_commConfig", {name: _name, value: _value})
 	}
 
 	render() {

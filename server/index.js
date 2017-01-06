@@ -63,7 +63,10 @@ const udp = require('./udp/udpMain.js')(logger);
 	Put the UDP RX in it's own process
 ------------*/
 var cp = require('child_process');
-const udpRxMain = cp.fork('./server/udp/udpRxMain.js');
+
+//added "[], {execArgv: ['--debug=5859']}" becuase this was blocking the debugger by using the 5858 port
+//found this fix here: https://github.com/nodejs/node/issues/3469
+const udpRxMain = cp.fork('./server/udp/udpRxMain.js', [], {execArgv: ['--debug=5859']});
 udpRxMain.on('message', function(m) {
 	if(m.command === 'newPacket')
 	{
