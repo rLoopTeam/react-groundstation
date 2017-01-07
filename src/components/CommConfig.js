@@ -70,31 +70,32 @@ class CommConfig extends Component {
         var _this = this;
     }
 
-	handleChange(e){
-		var _name = e.currentTarget.name,
-			_value = e.currentTarget.value;
+	handleChange(legend, key, e){
+		var _this = this,
+			_name = e.currentTarget.name,
+			_value = e.currentTarget.value,
+			_commConfig = _this.state.commConfig;
 
-		var _new_inputs = {
-            Appserver: {
-                port: 3000,
-                ip: '127.0.0.1'
-            },
-            // Used for testing purposes
-            PodRxPort:'9100', // Pod details
-            PodRxHost:'127.0.0.1',
-            RXServers:[ {'port':911,'hostIP':'192.168.0.110','hostName':'Power Node A'},
-                {'port':9111,'hostIP':'192.168.0.111','hostName':'Power Node B'},
-                {'port':9100,'hostIP':'192.168.1.100','hostName':'Flight Control'},
-                {'port':9120,'hostIP':'192.168.0.120','hostName':'Landing Gear'},
-                {'port':9130,'hostIP':'192.168.0.130','hostName':'Gimbal Control'},
-                {'port':9900,'hostIP':'127.0.0.1','hostName':'localhost'},
-                {'port':9170,'hostIP':'192.168.1.170','hostName':'Xilinx Sim'}
-            ],
-            MirrorLocal:true
-        } //TODO replace with actually data
+			if(!isNaN(_value))
+				_value = parseInt(_value, 10);
 
-        //socket.emit("update_commConfig", {name: _name, value: _value})
-        socket.emit("update_commConfig", _new_inputs)
+
+			if(key !== null)
+				_commConfig[legend][key][_name] = _value;
+			else
+			{
+				if(legend)
+					_commConfig[legend][_name] = _value;
+				else
+					_commConfig[_name] = _value;
+			}
+
+			_this.setState({_commConfig: _commConfig})
+	}
+
+	saveChanges()
+	{
+        socket.emit("update_commConfig", this.state.commConfig);
 	}
 
 	render() {
@@ -117,7 +118,7 @@ class CommConfig extends Component {
 									if(typeof(aItem) === 'object')
 									{
 										var aoInputGroup = [];
-										aoInputGroup.push({legend: label});
+										aoInputGroup.push({legend: label, key: aIndex});
 								
 
 										Object.keys(aItem).map(function(aoItem, aoIndex){
@@ -140,7 +141,7 @@ class CommConfig extends Component {
 							else
 							{
 								var oInputGroup = [];
-								oInputGroup.push({legend: label});
+								oInputGroup.push({legend: label, key: null});
 
 								Object.keys(input).map(function(oItem, oIndex){
 									var oLabel = oItem,
@@ -176,7 +177,7 @@ class CommConfig extends Component {
 												return(
 													<div key={inx+"-"+i} className="form-group">
 														<label htmlFor={e.label}>{e.label}</label>
-														<input type="text" id={e.label} name={e.label} value={e.input} onChange={_this.handleChange}/>
+														<input type="text" id={e.label} name={e.label} value={e.input} onChange={_this.handleChange.bind(_this, elem[0].legend, elem[0].key)}/>
 													</div>
 												);
 											}
@@ -189,7 +190,7 @@ class CommConfig extends Component {
 									return (<fieldset>
 									<legend>{elem.legend}</legend>
 										<label htmlFor={elem.label}>{elem.label}</label>
-										<input type="text" id={elem.label} name={elem.label} value={elem.input} onChange={_this.handleChange}/>
+										<input type="text" id={elem.label} name={elem.label} value={elem.input} onChange={_this.handleChange.bind(_this, null, null)}/>
 									</fieldset>);
 								}
 							}
@@ -202,6 +203,7 @@ class CommConfig extends Component {
 							);
 						})
 					}
+					<button className="btn btn-primary" onClick={_this.saveChanges.bind(_this)}>Save Changes</button>
 			</div>
 	    );
 	}
@@ -210,6 +212,38 @@ class CommConfig extends Component {
 export default CommConfig;
 
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
 
 
 // WEBPACK FOOTER //
