@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
+module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config)
 {
 	var updateClientWithDatalogs = true;
 
@@ -251,7 +251,14 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq)
 
 				socket.in(room.commConfig).emit('commConfig:res', commConfig);
 
-			}
+			},
+
+            'update_commConfig': (data) => {
+
+			    //console.log('data: %O', data); //DEBUG
+                config.writeCommConfig(data);
+            }
+
 
 	  }
 

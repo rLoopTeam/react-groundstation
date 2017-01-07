@@ -74,7 +74,27 @@ class CommConfig extends Component {
 		var _name = e.currentTarget.name,
 			_value = e.currentTarget.value;
 
-			socket.emit("update_commConfig", {name: _name, value: _value})
+		var _new_inputs = {
+            Appserver: {
+                port: 3000,
+                ip: '127.0.0.1'
+            },
+            // Used for testing purposes
+            PodRxPort:'9100', // Pod details
+            PodRxHost:'127.0.0.1',
+            RXServers:[ {'port':911,'hostIP':'192.168.0.110','hostName':'Power Node A'},
+                {'port':9111,'hostIP':'192.168.0.111','hostName':'Power Node B'},
+                {'port':9100,'hostIP':'192.168.1.100','hostName':'Flight Control'},
+                {'port':9120,'hostIP':'192.168.0.120','hostName':'Landing Gear'},
+                {'port':9130,'hostIP':'192.168.0.130','hostName':'Gimbal Control'},
+                {'port':9900,'hostIP':'127.0.0.1','hostName':'localhost'},
+                {'port':9170,'hostIP':'192.168.1.170','hostName':'Xilinx Sim'}
+            ],
+            MirrorLocal:true
+        } //TODO replace with actually data
+
+        //socket.emit("update_commConfig", {name: _name, value: _value})
+        socket.emit("update_commConfig", _new_inputs)
 	}
 
 	render() {
@@ -156,7 +176,7 @@ class CommConfig extends Component {
 												return(
 													<div key={inx+"-"+i} className="form-group">
 														<label htmlFor={e.label}>{e.label}</label>
-														<input type="text" id={e.label} name={e.label} value={e.input} onChange={_this.handleChange} readOnly/>
+														<input type="text" id={e.label} name={e.label} value={e.input} onChange={_this.handleChange}/>
 													</div>
 												);
 											}
@@ -169,7 +189,7 @@ class CommConfig extends Component {
 									return (<fieldset>
 									<legend>{elem.legend}</legend>
 										<label htmlFor={elem.label}>{elem.label}</label>
-										<input type="text" id={elem.label} name={elem.label} value={elem.input} onChange={_this.handleChange} readOnly/>
+										<input type="text" id={elem.label} name={elem.label} value={elem.input} onChange={_this.handleChange}/>
 									</fieldset>);
 								}
 							}
