@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import GenericParameterDisplay from '../../GenericParameterDisplay.js';
 import StreamingPageManager from '../../../StreamingPageManager.js';
 import config from '../../../../config/commConfig';
 
@@ -23,12 +24,13 @@ let socket = io.connect(ip + ':' + port, {
 class PowerA_Voltage extends Component {
 	constructor(props) {
 		super(props)
-		
+
 		this.state = {
 			streamManager: new StreamingPageManager(),
 			command: 'PowerA_Voltage',
 		}
 
+        var genericParameterDisplay = new GenericParameterDisplay({StreamingPageManager: this.state.streamManager, parameter: this.state.command})
         this.voltage = [
 
         ]		
