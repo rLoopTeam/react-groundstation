@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GenericParameterDisplay from '../../GenericParameterDisplay.js';
+import GenericParameterLabel from '../../GenericParameterLabel.js';
 import StreamingPageManager from '../../../StreamingPageManager.js';
 import config from '../../../../config/commConfig';
 
@@ -30,7 +30,6 @@ class PowerA_Voltage extends Component {
 			command: 'PowerA_Voltage',
 		}
 
-        var genericParameterDisplay = new GenericParameterDisplay({StreamingPageManager: this.state.streamManager, parameter: this.state.command})
         this.voltage = [
 
         ]		
@@ -38,7 +37,7 @@ class PowerA_Voltage extends Component {
 		var _pos = -2.320;
 		var _neg = -2.320;
 		var _drainVoltage = -1;
-        var isDraining = false;
+        var isBalancing = false;
         
         for(var _i = 0; _i < 18; _i++)
         {
@@ -49,10 +48,21 @@ class PowerA_Voltage extends Component {
                 D: [_pos, _neg], 
                 E: [_pos, _neg], 
                 F: [_pos, _neg], 
-                hasDraw: isDraining, 
+                Balancing: isBalancing, 
                 voltage: _drainVoltage
             })
         }
+
+        this.labels = [
+            {label: "A", value: "A"},
+            {label: "B", value: "B"},
+            {label: "C", value: "C"},
+            {label: "D", value: "D"},
+            {label: "E", value: "E"},
+            {label: "F", value: "F"},
+            {label: "Balancing", value: "Balancing"},
+            {label: "voltage", value: "voltage"},
+        ]
 	}
 	
 	componentDidMount() {
@@ -99,7 +109,7 @@ class PowerA_Voltage extends Component {
                                         units = 'V';
                                         _className = "col-xs-1_5 text-center no-right-border";
                                     }
-                                    else if(key === 'hasDraw')
+                                    else if(key === 'Balancing')
                                     {
                                         units = '';
                                         val = val.toString();
@@ -119,10 +129,14 @@ class PowerA_Voltage extends Component {
                                             _keyCount--;
                                             _showKeys = false;
 
-                                            return key;
+                                            return key;;
                                         }
                                         else{
-                                            return val + units;
+                                            return (
+                                                <GenericParameterLabel 
+                                                StreamingPageManager={_this.state.streamManager} 
+                                                parameter={val}/>
+                                            );
                                         }
                                     }
 
