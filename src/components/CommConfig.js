@@ -76,7 +76,7 @@ class CommConfig extends Component {
 			_value = e.currentTarget.value,
 			_commConfig = _this.state.commConfig;
 
-			if(!isNaN(_value))
+			if(!isNaN(_value) && _value !== '')
 				_value = parseInt(_value, 10);
 
 
@@ -212,6 +212,10 @@ class CommConfig extends Component {
 export default CommConfig;
 
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/CommConfig.js
 
 
 // WEBPACK FOOTER //
