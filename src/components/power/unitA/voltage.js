@@ -47,7 +47,7 @@ class PowerA_Voltage extends Component {
                 D: [_pos, _neg], 
                 E: [_pos, _neg], 
                 F: [_pos, _neg], 
-                bool: isDraining, 
+                hasDraw: isDraining, 
                 voltage: _drainVoltage
             })
         }
@@ -69,30 +69,35 @@ class PowerA_Voltage extends Component {
 	}
 	
 	render(){
-        var _this = this;
+        var _this = this,
+            _className = "col-xs-1_5 text-center",
+			_showKeys = true,
+            _keyCount = 0;
 
 	    return (
 		    <div className="Overview-content">
 		    	<ul className="list-group">
                 {_this.voltage.map(function(item, index){
                     var itemKey = Object.keys(item);
+                    
+                    if(_showKeys)
+                        _keyCount = itemKey.length;
 
 					return (
 						<li className="list-group-item" key={index}>
-							<div className="row">
+                            <div className="row">
 							{
 								itemKey.map(function(elem, inx){
 									var key = elem,
 										val = item[key],
-                                        units = '°c',
-                                        _className = "col-xs-1_5 text-center";
+                                        units = '°c';
 
                                     if(key === 'voltage')
                                     {
                                         units = 'V';
                                         _className = "col-xs-1_5 text-center no-right-border";
                                     }
-                                    else if(key === 'bool')
+                                    else if(key === 'hasDraw')
                                     {
                                         units = '';
                                         val = val.toString();
@@ -105,10 +110,25 @@ class PowerA_Voltage extends Component {
                                         }
                                     }
 
+                                    function showChartLabels()
+                                    {
+                                        if(_keyCount > 0)
+                                        {
+                                            _keyCount--;
+                                            _showKeys = false;
+
+                                            return key;
+                                        }
+                                        else{
+                                            return val + units;
+                                        }
+                                    }
+
+
 
 									return (
 											<div key={index + "-" + inx} className={_className}>
-											{val}<span>{units}</span>
+                                                {showChartLabels()}
 											</div>
 									);
 								})
@@ -126,6 +146,14 @@ class PowerA_Voltage extends Component {
 
 export default PowerA_Voltage;
 
+
+
+// WEBPACK FOOTER //
+// ./src/components/power/unitA/voltage.js
+
+
+// WEBPACK FOOTER //
+// ./src/components/power/unitA/voltage.js
 
 
 // WEBPACK FOOTER //
