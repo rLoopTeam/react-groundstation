@@ -27,7 +27,9 @@ var nodePaths = (process.env.NODE_PATH || '')
   .map(resolveApp);
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval', //this is a dev optimization - need 'source-map' for production
+  watch: true,
+  profile: true,
   entry: [
     // Finally, this is your app's code:
     resolveApp('src/index.js')

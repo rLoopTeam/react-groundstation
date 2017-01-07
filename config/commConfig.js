@@ -4,7 +4,7 @@ module.exports = {
 		ip: '127.0.0.1'
 	},
 	// Used for testing purposes
-	PodRxPort:'9100', // Pod details
+	PodRxPort: 9100, // Pod details
 	PodRxHost:'127.0.0.1',
 	RXServers:[ {'port':9110,'hostIP':'192.168.0.110','hostName':'Power Node A'},
 	{'port':9111,'hostIP':'192.168.0.111','hostName':'Power Node B'},

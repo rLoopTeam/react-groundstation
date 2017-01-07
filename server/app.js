@@ -23,6 +23,8 @@ if (isDeveloping) {
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
     contentBase: 'src',
+    profile: false,
+    watch: true,
     stats: {
       colors: true,
       hash: false,
