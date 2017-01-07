@@ -84,17 +84,25 @@ udpRxMain.on('message', function(m) {
 var podCommands = require('./udp/podCommands')(udp);
 
 /*------------
-	DAQ Data module
-	Records received data packets to the file system
-------------*/
+ DAQ Data module
+ Records received data packets to the file system
+ ------------*/
 const daq = require('./daq.js')(packetStats);
+
+/*------------
+ Config module
+ Saves the config settings
+ ------------*/
+const config = require('./config.js')(packetStats);
+
+
 
 
 /*------------
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config);
 
 
 /*------------
