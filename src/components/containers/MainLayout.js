@@ -29,9 +29,6 @@ class MainLayout extends Component {
 				]
 			},
 			{
-				name: "LCU", location: "/lcu"
-			},
-			{
 				name: "LGU", location: "/lgu"
 			},
 			{
@@ -42,6 +39,7 @@ class MainLayout extends Component {
 			},
 			{
 				name: "Flight Control", location: "/flightControl", children: [
+					{name: "Contrast Sensors", location: "/flightcontrol_contrast"},
 					{name: "Accelerometers", location: "/flightcontrol_accel"},
 					{name: "Brakes", location: "/brakes"},
 				]

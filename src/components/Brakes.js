@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
+import NumericInput from './NumericInput.js';
 import config from '../../config/commConfig';
 
 import io from 'socket.io-client';
@@ -21,7 +22,13 @@ class Brakes extends Component {
 		this.render = this.render.bind(this);
 
 		this.state = {
-			streamManager: new StreamingPageManager()
+			streamManager: new StreamingPageManager(),
+            developmentMode: false,
+            developmentModeSelection: 0,
+            brakesSelection: 2,
+            nextBrakePosition: null,
+            brake0Distance: null,
+            brake1Distance: null,
 		}
 
         this.labels = [
@@ -45,26 +52,82 @@ class Brakes extends Component {
 
     componentDidMount() {
         var _this = this;
-        // socket.on('connect', function() {
-		// 	console.log('Client now connected!')
-        //     socket.emit('commConfig:req')
+        socket.emit("FlightControl_Brake:RequestDevelopmentMode");
+        socket.on('connect', function() {
+			socket.on('FlightControl_Brake:DevelopmentMode', function(data){
+                //FlightControl_Brake:RequestDevelopmentMode
+                console.log("\n\n\n\n\n\nUI UPDATE DEV MODE FROM POD\n\n\n\n\n",data.developmentMode)
+                _this.setState({
+                    developmentModeSelection: (data.developmentMode)?1:0,
+                    developmentMode: data.developmentMode
+                })
+			})
+		});
+    }
 
-		// 	socket.on('commConfig:res', function(data){
-        //         var commConfig = JSON.stringify(data, null, '    ')
-        //         _this.setState({commConfig: commConfig})
-		// 	})
-		// });
+
+    brakesSelectionHandler(changeEvent){
+        this.setState({
+            brakesSelection: changeEvent.target.value
+        });
+    }
+
+    brakesDevModeHandler(changeEvent){
+
+        if(changeEvent.target.value === 1){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to enable development mode. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                this.setState({
+                    developmentModeSelection: 1,
+                    developmentMode: true
+                });
+                socket.emit('FlightControl_Brake:EnableDevelopmentMode');
+            } else {
+                this.setState({
+                    developmentModeSelection: 0,
+                    developmentMode: false
+                });
+            }
+        }else{
+            this.setState({
+                developmentModeSelection: 0,
+                developmentMode: false
+            });
+            socket.emit('FlightControl_Brake:DisableDevelopmentMode');
+        }
+    }
+    
+    brakePositionHandler(changeEvent) {
+        this.setState({
+            nextBrakePosition: parseInt(changeEvent.target.value, 10)
+        });
+    }
+
+    updateBrakes() {
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to change the brake distance. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:MoveMotorRAW', {command: this.state.brakesSelection, 
+                                                                 position: this.state.nextBrakePosition});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to change the brake position. This is a dangerous operation.")
+        }
     }
 
 	render() {
 		var _this = this;
+        var buttonClasses = "btn btn-primary " + ((this.state.developmentMode)?"":"disabled");
 	    return (
-            <div>
+            <div className="row">
+                <div className="col-md-6">
                 {
                     this.labels.map(function(item, index){
-                        return(
-                            <div>
-                                {item.label}:
+                        return (
+                            <div className="row" key={"brakes" + index}>
+                                <label>{item.label}</label>
                                 <GenericParameterLabel 
                                     StreamingPageManager={_this.state.streamManager} 
                                     parameter={item.value}/>
@@ -72,7 +135,50 @@ class Brakes extends Component {
                         )
                     })
                 }
-                
+
+                </div>
+                <div className="col-md-6">
+                    <div className="row">
+                        <div className="form-group">
+                            <label>Development mode</label>
+                            <div className="radio">
+                                <label htmlFor="dev-mode-off"><input type="radio" id="dev-mode-off" name="brakesDevMode" value="0" 
+                                        onChange={this.brakesDevModeHandler.bind(this)} 
+                                        checked={this.state.developmentModeSelection === 0}/>OFF</label> 
+                            </div> 
+                            <div className="radio">
+                                <label htmlFor="dev-mode-on"><input type="radio" id="dev-mode-on" name="brakesDevMode" value="1" 
+                                        onChange={this.brakesDevModeHandler.bind(this)} 
+                                        checked={this.state.developmentModeSelection === 1}/>ON</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <NumericInput label="Brake position" 
+                                onChange={this.brakePositionHandler.bind(this)}/>
+
+                        <label>Brake selection</label>
+                        <div className="form-group">
+                            <div className="radio">
+                                <label htmlFor="brake-selection-0"><input type="radio" id="brake-selection-0" name="brakesSelection" value="0" 
+                                        onChange={this.brakesSelectionHandler.bind(this)} 
+                                        checked={this.state.brakesSelection === 0} />Brake 0</label>
+                            </div> 
+                            <div className="radio">
+                                <label htmlFor="brake-selection-1"><input type="radio" id="brake-selection-1" name="brakesSelection" value="1" 
+                                        onChange={this.brakesSelectionHandler.bind(this)} 
+                                        checked={this.state.brakesSelection === 1}/>Brake 1</label>
+                            </div>
+                            <div className="radio">
+                                <label htmlFor="brake-selection-2"><input type="radio" id="brake-selection-2" name="brakesSelection" value="2" 
+                                    onChange={this.brakesSelectionHandler.bind(this)} 
+                                    checked={this.state.brakesSelection === 2}/>Both</label>
+                            </div>
+                        </div>
+                        <button disabled={(this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={this.updateBrakes.bind(this)}>Update brake position</button>
+                    </div>
+                </div>
             </div>
 	    );
 	}

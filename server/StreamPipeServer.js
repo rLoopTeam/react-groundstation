@@ -1,3 +1,4 @@
+
 var fakeDataStore = new Array();
 
 for(var i = 0;i<1000;i++)
@@ -38,7 +39,7 @@ class StreamPipeServer
 				
 				var clientReady = true;
 				
-				var updateTimer = setInterval(function(){
+				rtDataStore.hasNewData.on('new rtData', function(){
 					//Wait for an acknowledge to send new data, otherwise we fill up the OS buffers and bad things happen
 					if(clientReady){
 						clientReady = false;
@@ -54,7 +55,7 @@ class StreamPipeServer
 				});
 				
 				socket.on('disconnect', function(){
-					clearInterval(updateTimer);
+					// clearInterval(updateTimer);
 				});		
 			});	
 	}

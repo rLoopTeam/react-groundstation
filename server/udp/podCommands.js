@@ -7,26 +7,17 @@ module.exports = function(udp){
 
     var _brakeDevelopmentConfirmation = false;
 
-    return{
-		/*
-        PodOff: () => {
-            udp.tx.sendMessage("PodOff")
-        },
-        PodStop: () => {
-            udp.tx.sendMessage("PodStop")
-        },
-        PowerStreamingControl: (command) => {
-            udp.tx.sendMessage(command)
-        },*/
-        setBrakeDevelopmentMode: (value) => {
 
+        function setBrakeDevelopmentMode(value){
+            console.log("podcommands: set eddv mode", value)
             //this is used as a flag to allow/disallow the use of FCUBrake_MoveMotorRAW which is 
             //extreamly dangerous and will damage the magnets
 
             _brakeDevelopmentConfirmation = value;
 
-        },
-        FCUBrake_DisableDevelopmentMode: () => {
+        }
+
+        function FCUBrake_DisableDevelopmentMode(){
 
             this.setBrakeDevelopmentMode(false);
 
@@ -35,19 +26,28 @@ module.exports = function(udp){
 
             udp.tx.transmitPodCommand('Flight Control', 0x1400, 0x000000, 0x0, 0x0, 0x0); 
 
-        },
-        FCUBrake_EnableDevelopmentMode: () => {
+        }
 
-		    // THIS IS VERY VERY DANGEROUS 
+        function FCUBrake_EnableDevelopmentMode(){
+
+            // THIS IS VERY VERY DANGEROUS 
 
 
             this.setBrakeDevelopmentMode(true);
 
             udp.tx.transmitPodCommand('Flight Control', 0x1400, 0x01293847, 0x0, 0x0, 0x0); 
-        },
-        FCUBrake_MoveMotorRAW: (data) => {
+        }
+        
+        function FCUBrake_RequestDevelopmentMode() {
 
-		    // THIS IS VERY VERY DANGEROUS 
+            //udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0); 
+            console.log("SEND 'REQUESTDEVELOPMENTMODE'");
+
+        }
+
+        function FCUBrake_MoveMotorRAW(data){
+            console.log("move motor", data)
+            // THIS IS VERY VERY DANGEROUS 
 
 
             // data.command (0 = Left, 1 = Right, 2 = Both)
@@ -60,42 +60,106 @@ module.exports = function(udp){
                 udp.tx.transmitPodCommand('Flight Control', 0x1401, data.command, data.position, 0x0, 0x0); 
 
             }
+        }
 
-        },
-        FCUStreamingControlStart_AccelCalData: () => {
+        function FCUStreamingControlStart_AccelCalData() {
 
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001001, 0x0, 0x0); 
 
-        },
-		
-        FCUStreamingControlStart_AccelFullData: () => {
+        }
+        
+        function FCUStreamingControlStart_AccelFullData() {
 
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0); 
 
-        },		
-		
-		FCUStreamingControlStop_Accel: () => {
+        }
+
+
+        function FCUStreamingControlStop_Accel() {
 
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0); 
 
-        },	
-		
-        XilinxSimStart: () => {
-
-            udp.tx.transmitPodCommand('Xilinx Sim', 0x0, 0x0, 0x0, 0x0, 0x0); 
-
-        },
-		
-        FCUAccel_FineZero: (data) => {
-
-            udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0); 
-
-        },
-		
-        FCUAccel_AutoZero: (data) => {
-
-            udp.tx.transmitPodCommand('Flight Control', 0x1004, data.accel, 0x00000000, 0x0, 0x0); 
-
         }
+		
+		//Accel control
+        function FCUAccel_FineZero(data) {
+			udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0); 
+        }
+        function FCUAccel_AutoZero(data) {
+            udp.tx.transmitPodCommand('Flight Control', 0x1004, data.accel, 0x00000000, 0x0, 0x0); 
+        }
+
+		
+		//contrast sensors
+        function FCUContrast_StartStream() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x01, 0x1301, 0x0, 0x0); 
+        }
+        function FCUContrast_StopStream() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00, 0x00000000, 0x0, 0x0); 
+        }
+				
+
+        
+        function XilinxSim_Start() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Stop() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x0, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser0On() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x0, 0x1, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser0Off() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x0, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser1On() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x1, 0x1, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser1Off() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x1, 0x0, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser2On() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x2, 0x1, 0x0, 0x0); 
+        }
+        function XilinxSim_Laser2Off() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x2, 0x0, 0x0, 0x0); 
+        }
+
+        
+
+    return{
+		/*
+        PodOff: () => {
+            udp.tx.sendMessage("PodOff")
+        },
+        PodStop: () => {
+            udp.tx.sendMessage("PodStop")
+        },
+        PowerStreamingControl: (command) => {
+            udp.tx.sendMessage(command)
+        },*/
+
+        setBrakeDevelopmentMode,
+        FCUBrake_DisableDevelopmentMode,
+        FCUBrake_EnableDevelopmentMode,
+        FCUBrake_MoveMotorRAW,
+        FCUBrake_RequestDevelopmentMode,	
+        FCUStreamingControlStart_AccelCalData,
+        FCUStreamingControlStart_AccelFullData, 
+		FCUStreamingControlStop_Accel,	
+        FCUAccel_FineZero,		
+        FCUAccel_AutoZero,
+
+		FCUContrast_StartStream,
+		FCUContrast_StopStream,
+
+        XilinxSim_Start,
+        XilinxSim_Stop,
+		XilinxSim_Laser0On,
+		XilinxSim_Laser0Off,
+		XilinxSim_Laser1On,
+		XilinxSim_Laser1Off,
+		XilinxSim_Laser2On,
+		XilinxSim_Laser2Off
     }
 }

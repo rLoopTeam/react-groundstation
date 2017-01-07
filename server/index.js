@@ -21,7 +21,8 @@ const server = app.listen(PORT, () => {
 const io = require('socket.io')(server);
 
 var room = {
-  dataLogging: 'dataLogging'
+  dataLogging: 'dataLogging',
+  commConfig: 'commConfig'
 };
 
 /*------------
@@ -51,19 +52,30 @@ var packetStats = require('./udp/packetStats.js')(rtDataStore);
 ------------*/
 const StreamPipeServer = require('./StreamPipeServer.js')(app, io, rtDataStore);
 
-/*------------
-	PacketParser
-	Takes raw udp packets and parses them into JSON objects
-------------*/
-var packetParser = require('./udp/packetParser')(logger, packetStats);
-
-packetParser.addPacketLisenter(rtDataStore.insertDataPacket);
 
 /*------------
 	All UDP I/O directly to/from pod.
 	***commands to the pod are currently down in websocketCommands, that should be abstracted out to here. 
 ------------*/
-const udp = require('./udp/udpMain.js')(logger, packetParser.gotNewPacket);
+const udp = require('./udp/udpMain.js')(logger);
+
+/*-----------
+	Put the UDP RX in it's own process
+------------*/
+var cp = require('child_process');
+
+//added "[], {execArgv: ['--debug=5859']}" becuase this was blocking the debugger by using the 5858 port
+//found this fix here: https://github.com/nodejs/node/issues/3469
+const udpRxMain = cp.fork('./server/udp/udpRxMain.js', [], {execArgv: ['--debug=5859']});
+udpRxMain.on('message', function(m) {
+	if(m.command === 'newPacket')
+	{
+		rtDataStore.insertDataPacket(m.data);
+		packetStats.gotPacketType(m.data.packetType, m.data.crc, m.data.sequence);
+		daq.gotNewPacket(m.data);
+	}
+});
+
 
 /*------------
 	All UDP I/O directly to/from pod.
@@ -72,17 +84,25 @@ const udp = require('./udp/udpMain.js')(logger, packetParser.gotNewPacket);
 var podCommands = require('./udp/podCommands')(udp);
 
 /*------------
-	DAQ Data module
-	Records received data packets to the file system
-------------*/
+ DAQ Data module
+ Records received data packets to the file system
+ ------------*/
 const daq = require('./daq.js')(packetStats);
-packetParser.addPacketLisenter(daq.gotNewPacket);
+
+/*------------
+ Config module
+ Saves the config settings
+ ------------*/
+const config = require('./config.js')(packetStats);
+
+
+
 
 /*------------
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config);
 
 
 /*------------
@@ -96,6 +116,7 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
   Adds some data to the real time data store for testing
   DISABLE FOR PRODUCTION
 ------------*/
-//const AccelTestDataGenerator = require('./AccelTestDataGenerator.js')(packetParser);
+//const AccelTestDataGenerator = require('./DataGenerators/AccelTestDataGenerator.js')(packetParser);
 
+// const BrakeTestDataGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 

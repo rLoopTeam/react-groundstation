@@ -1,6 +1,10 @@
+var events = require('events');
+
+
 class RealTimeDataStore {
 	constructor(logger){
 		this.logger = logger;
+		this.hasNewData = new events.EventEmitter();
 		this.date = new Date();
 		
 		/*---------
@@ -35,6 +39,8 @@ class RealTimeDataStore {
 	*/
 	insertDataPacket(newDataPacket)
 	{
+		this.hasNewData.emit("new rtData");
+
 		for(var x = 0;x<newDataPacket.parameters.length;x++)
 		{
 			var found = false;

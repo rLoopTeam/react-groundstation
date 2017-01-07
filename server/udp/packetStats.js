@@ -1,4 +1,3 @@
-
 /*------------
     This module should:
 		-receive packets from the udp server
@@ -25,20 +24,23 @@ class packetStats{
 		this.daqPackets = [];
 		this.gotPacketType.bind(this);
 		this.updateRtDataStore = this.updateRtDataStore.bind(this);
-		
 		setInterval(this.updateRtDataStore ,30);
 	}
 
-	gotPacketType(packetType, CRC){
+	gotPacketType(packetType, CRC, sequence){
 		for(var i = 0;i<this.rxPackets.length;i++){
 			if(this.rxPackets[i].type == packetType.toString(16))
 			{
 				this.rxPackets[i].count++;
 				this.rxPackets[i].crc = CRC;
+				if(sequence - this.rxPackets[i].lastSequence > 1){
+					this.rxPackets[i].sequenceJumps += sequence - this.rxPackets[i].lastSequence - 1;
+				}
+				this.rxPackets[i].lastSequence = sequence;
 				return;
 			}
 		}
-		this.rxPackets.push({'type':packetType.toString(16),'count':1});
+		this.rxPackets.push({'type':packetType.toString(16),'count':1,'lastSequence':sequence,'sequenceJumps':0});
 	}
 	
 	loggedPacketType(packetType)
@@ -57,7 +59,8 @@ class packetStats{
 		var newData ={'packetName':'Packet Stats','packetType':'0','rxTime':0,'parameters':[]};
 		for(var i = 0;i<this.rxPackets.length;i++){
 			newData.parameters.push({'name':'Packet Rx Count '+this.rxPackets[i].type,'value':this.rxPackets[i].count,'units':'packets'},
-									{'name':'Packet Last CRC '+this.rxPackets[i].type,'value':this.rxPackets[i].crc,'units':''}
+									{'name':'Packet Last CRC '+this.rxPackets[i].type,'value':this.rxPackets[i].crc,'units':''},
+									{'name':'Packet Sequence Jumps '+this.rxPackets[i].type,'value':this.rxPackets[i].sequenceJumps,'units':''}
 									);
 		}
 		for(var i = 0;i<this.daqPackets.length;i++){

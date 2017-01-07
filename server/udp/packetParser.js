@@ -18,18 +18,16 @@ const bin = require('./binary.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
 
 class PacketParser{
-	constructor(logger, packetStats)
+	constructor()
 	{
 		this.date = new Date();
-		this.logger = logger;
 		this.gotNewPacket = this.gotNewPacket.bind(this);
-		this.addPacketLisenter = this.addPacketLisenter.bind(this);
-		this.packetStats = packetStats;
+		this.addPacketLisenter = this.addPacketListener.bind(this);
 		this.packetDefinitions = packetDefinitions.packetDefinitions;
 		this.packetRXCallbacks = [];
 	}
 
-	addPacketLisenter(cb)
+	addPacketListener(cb)
 	{
 		this.packetRXCallbacks.push(cb);
 	}
@@ -77,11 +75,11 @@ class PacketParser{
 			//Woohoo! Update packet stats that we got a good one
 		}else{
 			//Uh - oh, update stats that we lost one, abort parsing
-			return;
 			console.log("packetparser.js: Warn, CRC Failure");
+			return;
 		}
 		
-		var sequence = bin.bytesToUint32(raw_udp[0], raw_udp[1], raw_udp[2], raw_udp[3]);
+		var sequence = bin.bytesToUint32(raw_udp[0], raw_udp[1], raw_udp[2], raw_udp[3], true);
 		var packetType = bin.bytesToUint16(raw_udp[4], raw_udp[5], true);
 		var length = bin.bytesToUint16(raw_udp[6], raw_udp[7], true);
 		
@@ -89,7 +87,7 @@ class PacketParser{
 		if((length+10) !== raw_udp.length)
 		{
 			//Packet is the wrong length, abort, should update packet stats too
-			logger.log('warn',"PacketParser: Packet with invalid length received.");
+			//logger.log('warn',"PacketParser: Packet with invalid length received.");
 			console.log("XX! UDP.LEN:" + raw_udp.length + " PayloadLen:" + length);
 			return;
 		}
@@ -104,14 +102,13 @@ class PacketParser{
 		{
 			//Uh-oh, can't decode this packet.
 			//Throw an error and abort
-			logger.log('warn', "PacketParser: Got a packet of type "+packetType+" and don't know what to do with it.");
+			//logger.log('warn', "PacketParser: Got a packet of type "+packetType+" and don't know what to do with it.");
 			return;
 		}
-		// else
-		// {
-		// 	console.log('Good News', "PacketParser: Got a packet of type "+packetType+".");
-			
-		// }
+		else
+		{
+		 	//Got a good packet
+		}
 		
 		var newDataParams = {
 			'packetName':packetDef.Name,
@@ -189,18 +186,20 @@ class PacketParser{
 				
 				default: logger.log('warn', "PacketParser: Error in packet definition, type unknown"); break;
 			}
-
 			parseLoc = newParseLoc;
 		}
-		this.packetStats.gotPacketType(packetDef.PacketType, bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]));
+		
+		newDataParams.crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
+		newDataParams.sequence = sequence;
 		
 		for(var i = 0;i<this.packetRXCallbacks.length;i++)
 		{
 			this.packetRXCallbacks[i](newDataParams);
 		}
+
 	}
 }
 
-module.exports = function(logger, packetStats){
-	return new PacketParser(logger, packetStats);
+module.exports = function(){
+	return new PacketParser();
 };

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
-import GenericParameterLabel from './GenericParameterLabel.js';
 import GenericParameterInput from './GenericParameterInput.js';
 
 import io from 'socket.io-client';
@@ -63,37 +62,6 @@ class FlightControl_Accel extends Component {
 						</div>
 					</form>
 			
-					{ /*
-				<table width='100%'><tbody>
-				<tr>
-					<td>
-					<legend>Accel 1 Live</legend>
-					<div>Rxed:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Stat 1003'/></div><br />
-					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hex='true'/></div><br />
-					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Raw' /></div><br />
-					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Raw' /></div><br />
-					<div>Z Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Raw' /></div><br />
-					<div>X Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Gs' /></div><br />
-					<div>Y Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Gs' /></div><br />
-					<div>Z Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Gs' /></div><br />
-					<div>Roll:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Roll' /></div><br />
-					<div>Pitch:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 0 Pitch' /></div><br />
-					</td><td>
-					<legend>Accel 2 Live</legend>
-					<div>Flags:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hex='true'/></div><br />
-					<div>X Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' /></div><br />
-					<div>Y Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' /></div><br />
-					<div>Z Raw:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Raw' /></div><br />
-					<div>X Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' /></div><br />
-					<div>Y Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' /></div><br />
-					<div>Z Gs:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' /></div><br />
-					<div>Roll:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Roll' /></div><br />
-					<div>Pitch:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Pitch' /></div><br />
-					</td>
-				</tr></tbody>
-				</table>
-					*/ }
-							
 				<legend>Accelerometer Calibration</legend>
 					
 				<div className="row margin-bottom-20px">
