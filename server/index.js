@@ -123,3 +123,7 @@ var charger = require('./charger')(rtDataStore);
 
 // const BrakeTestDataGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 
+//Accelerometer packet generator
+// const payloads = require('./DataGenerators/TestPayloads');
+// const testGenerator = require('./DataGenerators/TestGenerator.js');
+// testGenerator(0x1003, payloads.accelerometer);
