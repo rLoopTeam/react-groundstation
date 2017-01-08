@@ -96,14 +96,17 @@ const daq = require('./daq.js')(packetStats);
 const config = require('./config.js')(packetStats);
 
 
-
-
 /*------------
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
 const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config);
 
+
+/*------------
+	Grabs data from the charger
+------------*/
+var charger = require('./charger')(rtDataStore);
 
 /*------------
   Test Data Generator

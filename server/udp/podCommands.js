@@ -97,7 +97,15 @@ module.exports = function(udp){
         function FCUContrast_StopStream() {
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00, 0x00000000, 0x0, 0x0); 
         }
-				
+		
+
+        function PowerAChargeRelayOff() {
+            udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x00, 0x00000000, 0x0, 0x0); 
+        }
+
+        function PowerAChargeRelayOn() {
+            udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x01, 0x00000000, 0x0, 0x0); 
+        }		
 
         
         function XilinxSim_Start() {
@@ -151,8 +159,11 @@ module.exports = function(udp){
         FCUAccel_AutoZero,
 
 		FCUContrast_StartStream,
-		FCUContrast_StopStream,
-
+		FCUContrast_StopStream,	
+		
+		PowerAChargeRelayOff,
+		PowerAChargeRelayOn,
+		
         XilinxSim_Start,
         XilinxSim_Stop,
 		XilinxSim_Laser0On,

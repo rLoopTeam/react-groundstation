@@ -13,6 +13,7 @@ import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
 import PowerA_Voltage from './components/power/unitA/voltage';
+import PowerA_Charger from './components/power/unitA/charger';
 import './App.css';
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
             <IndexRoute component={Overview} />
             <Route path="dashboard" component={Overview} />
             <Route path="powerAVoltage" component={PowerA_Voltage} />
+			<Route path="powerACharger" component={PowerA_Charger} />
             <Route path="stop" component={Stop} />
             <Route path="lgu" component={LGU} />
             <Route path="XilinxSim" component={XilinxSim} />

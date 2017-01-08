@@ -128,6 +128,14 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerStreamingControl(data.status)
 
 			},
+			
+			'PowerA:ChargeRelayOn':(data) => {
+				podCommands.PowerAChargeRelayOn(data.status)
+			},
+			
+			'PowerA:ChargeRelayOff':(data) => {
+				podCommands.PowerAChargeRelayOff(data.status)
+			},
 
 			'AllLogging:Start': function(data){
 				
