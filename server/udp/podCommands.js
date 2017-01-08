@@ -105,8 +105,19 @@ module.exports = function(udp){
 
         function PowerAChargeRelayOn() {
             udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x01, 0x00000000, 0x0, 0x0); 
-        }		
+        }
+		
+		function PowerAStreamingOff(){
+			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x00, 0x00000000, 0x0, 0x0); 
+		}
 
+		function PowerAStreamCurrentTemps(){
+			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3201, 0x0, 0x0); 
+		}
+		
+		function PowerAStreamTempLocations(){
+			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
+		}
         
         function XilinxSim_Start() {
             udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
@@ -163,6 +174,9 @@ module.exports = function(udp){
 		
 		PowerAChargeRelayOff,
 		PowerAChargeRelayOn,
+		PowerAStreamingOff,
+		PowerAStreamCurrentTemps,
+		PowerAStreamTempLocations,
 		
         XilinxSim_Start,
         XilinxSim_Stop,

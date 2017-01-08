@@ -120,45 +120,65 @@ class PacketParser{
 		var parseLoc = 8;
 		var newParseLoc = 8;
 		
+		var looping = false;
+		var loopingIndex = 1;
+		var loopSuffix = '';
+		var loopFieldCount = 0;
+		
 		for(var i = 0, len = packetDef.Parameters.length;i<len;i++){
 			var newName = packetDef.Parameters[i]
 			newParseLoc += packetDef.Parameters[i].size;
 			
 			if(newParseLoc > (length+8)){
-				//uh oh, ran out of packet
-				logger.log('warn','PacketParser: Error parsing packet, not long enough');
+				//Needs to be updated to handle looping
+				//logger.log('warn','PacketParser: Error parsing packet, not long enough');
+				break;
 			}
+			
+			//Starting a loop set of fields
+			if(packetDef[i].beginLoop === true && looping === false)
+			{
+				looping = true;
+				loopSuffix = 1;
+			}
+			
+			if(looping === true && loopingIndex === 1){
+				loopFieldCount++;
+			}
+				
+			if(looping === true)
+				loopSuffix = loopingIndex.toString() + ' ';
 			
 			//Might put this switch statement in its own function so it's not gunking up the flow of this one so much
 			switch(packetDef.Parameters[i].type){
 				case 'uint8':
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToUint8(raw_udp[parseLoc],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int8': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToInt8(raw_udp[parseLoc],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'uint16': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToUint16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int16': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToInt16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'uint32':
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToUint32(raw_udp[parseLoc], raw_udp[parseLoc+1],
 																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'int32': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToInt32(raw_udp[parseLoc], raw_udp[parseLoc+1],
 																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
 														'units':packetDef.Parameters[i].units});
@@ -170,13 +190,13 @@ class PacketParser{
 							logger.log('error',"PacketParser: JS can't do 64-bit integers!");
 							break;
 				case 'float32': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToFloat32(raw_udp[parseLoc], raw_udp[parseLoc+1],
 																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
 														'units':packetDef.Parameters[i].units});
 							break;
 				case 'float64':	
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+packetDef.Parameters[i].Name,
+							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
 														'value':bin.bytesToFloat64(raw_udp[parseLoc+7], raw_udp[parseLoc+6],
 																raw_udp[parseLoc+5], raw_udp[parseLoc+4],
 																raw_udp[parseLoc+3], raw_udp[parseLoc+2],
@@ -187,6 +207,11 @@ class PacketParser{
 				default: logger.log('warn', "PacketParser: Error in packet definition, type unknown"); break;
 			}
 			parseLoc = newParseLoc;
+			
+			if(looping === true && packetDef[i].endLoop === true){
+				i -= loopFieldCount;
+				loopingIndex++;
+			}
 		}
 		
 		newDataParams.crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);

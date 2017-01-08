@@ -16,6 +16,33 @@ module.exports = {
 								{'Name':'f', 'type':'float64', 'units':'millis since Unix Epoch', 'size': 8}
 							]
 			},
+			
+			{
+				"Name":"Power A Current Temps",
+				"ParameterPrefix":"Power A Temps",
+				"PacketType":0x3201,
+				"Parameters":[
+								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
+								
+								{'Name':'Temperature', 'type':'float32', 'units':'C', 'size': 4, 'beginLoop':true, 'endLoop':true},
+							]
+			},
+			
+			{
+				"Name":"Power A Current Temps Locations",
+				"ParameterPrefix":"Power A Temps Locs",
+				"PacketType":0x3203,
+				"Parameters":[
+								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
+								
+								{'Name':'User Index', 'type':'uint32', 'units':'Hex', 'size': 4, 'beginLoop':true},
+								{'Name':'Resolution', 'type':'uint16', 'units':'bits', 'size': 4},
+								{'Name':'Bus Index', 'type':'uint32', 'units':'', 'size': 4, 'endLoop':true},
+							]
+			},
+			
 			{
 				"Name":"Accel Cal Full",
 				"ParameterPrefix":"Accel ",
