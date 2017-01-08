@@ -7,6 +7,15 @@ module.exports = function(udp){
 
     var _brakeDevelopmentConfirmation = false;
 
+        function LGU_PositionChange(liftName, liftDirection) {
+            console.log("Name:" + liftName + " Direction:" + liftDirection)
+            //udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
+        }
+
+        function LGU_SpeedChange(liftName, liftSpeed) {
+            console.log("Name:" + liftName + " Speed:" + liftSpeed)
+            //udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
+        }
 
         function setBrakeDevelopmentMode(value){
             console.log("podcommands: set eddv mode", value)
@@ -98,8 +107,38 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00, 0x00000000, 0x0, 0x0); 
         }
 				
+        //Hover Engines
+        function FCUHover_Enable() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_Disable() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_EnableStaticHovering() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_ReleaseStaticHovering() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_EnableHEX(hexName) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_DisableHEX(hexName) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_SetHEXSpeed(hewName, hexSpeed) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_StartCooling(coolingName) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_StopCooling(coolingName) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUHover_OpenSolenoid(solenoidName) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
 
-        
         function XilinxSim_Start() {
             udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
         }
@@ -139,6 +178,9 @@ module.exports = function(udp){
             udp.tx.sendMessage(command)
         },*/
 
+        LGU_PositionChange,
+        LGU_SpeedChange,
+
         setBrakeDevelopmentMode,
         FCUBrake_DisableDevelopmentMode,
         FCUBrake_EnableDevelopmentMode,
@@ -152,6 +194,18 @@ module.exports = function(udp){
 
 		FCUContrast_StartStream,
 		FCUContrast_StopStream,
+
+        FCUHover_Enable,
+        FCUHover_Disable,
+        FCUHover_EnableStaticHovering,
+        FCUHover_ReleaseStaticHovering,
+        FCUHover_EnableHEX,
+        FCUHover_DisableHEX,
+        FCUHover_SetHEXSpeed,
+        FCUHover_StartCooling,
+        FCUHover_StopCooling,
+        FCUHover_OpenSolenoid,
+
 
         XilinxSim_Start,
         XilinxSim_Stop,
