@@ -85,12 +85,65 @@ module.exports = {
 				"ParameterPrefix": "LaserOpto",
 				"PacketType": 0x1101,
 				"Parameters":[
-								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
-								{'Name':'Laser error packet count', 'type':'uint32', 'units':'', 'size':4},
-								{'Name':'First byte wrong', 'type':'uint32', 'units':'', 'size':4},
-								{'Name':'Raw distance', 'type':'float32', 'units':'', 'size':4},
-								{'Name':'Filtered value', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4}, //top-level fault flags
 								{'Name':'Spare', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 1', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 1', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 2', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 2', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 2', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 2', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 3', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 3', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 3', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 3', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 3', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 3', 'type':'uint32', 'units':'', 'size':4},
+
+
+								{'Name':'Fault flags 4', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 4', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 4', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 4', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 4', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 4', 'type':'uint32', 'units':'', 'size':4},
+				
+								{'Name':'Fault flags 5', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 5', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 5', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 5', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 5', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 5', 'type':'uint32', 'units':'', 'size':4},
+				
+								{'Name':'Fault flags 6', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 6', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 6', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 6', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 6', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 6', 'type':'uint32', 'units':'', 'size':4},
+				
+								{'Name':'Fault flags 7', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 7', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 7', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 7', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 7', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 7', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 8', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 8', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 8', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 8', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 8', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 8', 'type':'uint32', 'units':'', 'size':4},
 				]
 			},
 			{
