@@ -80,7 +80,32 @@ module.exports = {
 								{'Name':'Right MLP Scaled', 'type':'int16', 'units':'mm', 'size': 2},
 							]
 			},
-			
+			{
+				"Name": "Laser Opto Sensor",
+				"ParameterPrefix": "LaserOpto",
+				"PacketType": 0x1101,
+				"Parameters":[
+								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare', 'type':'uint32', 'units':'', 'size':4},
+				]
+			},
+			{
+				"Name": "Forward Laser Distance Sensor",
+				"ParameterPrefix": "ForwardLaser",
+				"PacketType": 0x1201,
+				"Parameters":[
+								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Spare 0', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'RAW value', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 3', 'type':'uint32', 'units':'', 'size':4},
+				]
+			},
 			{
 				"Name":"Flight Control - Laser Contrast 0",
 				"ParameterPrefix":"LaserContrast0 ",
