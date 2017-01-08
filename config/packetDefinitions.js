@@ -219,7 +219,119 @@ module.exports = {
 								{'Name':'Fall_52', 'type':'uint64', 'units':'ns', 'size': 8},
 								{'Name':'Fall_53', 'type':'uint64', 'units':'ns', 'size': 8},
 						]
-			},			
+			},
+
+			{
+                "Name":"Battery A Temps",
+                "ParameterPrefix":"Power Temperatures A ",
+                "PacketType":0x3201,
+                "Parameters":[
+                                {'Name':'Number of Sensors', 'type':'uint16', 'units':'', 'size': 2},
+                                {'Name':'Spare', 'type':'uint16', 'units':'', 'size': 2},
+                                
+                                {'Name':'1 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'2 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'3 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'4 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'5 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'6 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'7 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'8 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'9 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'10 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'11 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'12 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'13 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'14 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'15 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'16 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'17 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                                {'Name':'18 Temp', 'type':'float32', 'units':'C', 'size': 4},
+                        ]
+            },  
+            
+            
+            {
+                "Name":"Battery A Location Data",
+                "ParameterPrefix":"Power Temperature ",
+                "PacketType":0x3203,
+                "Parameters":[
+                                {'Name':'Number of Sensors', 'type':'uint16', 'units':'', 'size': 2},
+                                {'Name':'Spare', 'type':'uint16', 'units':'', 'size': 2},
+                
+                                {'Name':'1 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'1 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'1 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'2 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'2 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'2 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'3 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'3 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'3 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'4 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'4 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'4 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'5 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'5 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'5 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'6 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'6 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'6 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'7 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'7 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'7 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'8 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'8 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'8 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'9 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'9 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'9 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'10 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'10 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'10 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'11 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'11 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'11 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'12 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'12 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'12 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'13 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'13 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'13 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'14 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'14 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'14 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'15 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'15 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'15 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'16 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'16 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'16 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'17 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'17 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'17 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                                
+                                {'Name':'18 User Index', 'type':'uint16', 'units':'C', 'size': 2},
+                                {'Name':'18 Resolution', 'type':'uint8', 'units':'C', 'size': 1},
+                                {'Name':'18 Bus Index', 'type':'uint8', 'units':'C', 'size': 1},
+                        ]
+            },			
 			
 		]
 }

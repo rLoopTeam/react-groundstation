@@ -70,16 +70,6 @@ class PowerA_Voltage extends Component {
 		this._isMounted = true;
 	}
 	
-	startAllLogging(data, e) {
-		e.preventDefault();
-		socket.emit('AllLogging:Start', data);
-	}
-	
-	stopAllLogging(data, e) {
-		e.preventDefault();
-		socket.emit('AllLogging:Stop', data);
-	}
-	
 	render(){
         var _this = this,
             _className = "col-xs-1_5 text-center",
@@ -135,7 +125,7 @@ class PowerA_Voltage extends Component {
                                             return (
                                                 <GenericParameterLabel 
                                                 StreamingPageManager={_this.state.streamManager} 
-                                                parameter={val}/>
+                                                parameter="Power Temperatures A 1 Temp"/>
                                             );
                                         }
                                     }
@@ -162,91 +152,3 @@ class PowerA_Voltage extends Component {
 
 export default PowerA_Voltage;
 
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js

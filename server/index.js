@@ -109,6 +109,9 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
   Test Data Generator
   Adds some data to the real time data store for testing
 ------------*/
+
+
+const packetParser = require('./udp/packetParser.js')();
 //const testDataGenerator = require('./testDataGenerator.js')(packetParser);
 
 /*------------
@@ -119,4 +122,7 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
 //const AccelTestDataGenerator = require('./DataGenerators/AccelTestDataGenerator.js')(packetParser);
 
 // const BrakeTestDataGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
+
+
+const BatteryTestDataGenerator = require('./DataGenerators/BatteryTestDataGenerator.js')(packetParser);
 
