@@ -27,7 +27,7 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(500.0,true)); //Pitch 
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(600.0,true)); //Roll Angle
 
 var battTempSensors = [];
-var NumOfTempSensors = 20;
+var NumOfTempSensors = 300;
 battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(NumOfTempSensors,true)); //Number of temperature sensors
 battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(0,true)); //Spare slot
 

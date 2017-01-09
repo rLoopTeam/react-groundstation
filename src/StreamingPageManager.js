@@ -27,7 +27,7 @@ class StreamingPageManager {
 		
 	}
 	
-	//Allows a component to suscribe to a parameter from the pod
+	//Allows a component to subscribe to a parameter from the pod
 	RequestParameterWithCallback(parameter, callback)
 	{
 		this.requestParametersWithCallbacks.push({parameter: parameter,callback: callback});
