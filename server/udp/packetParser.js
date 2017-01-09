@@ -124,9 +124,9 @@ class PacketParser{
 		var loopingIndex = 1;
 		var loopSuffix = '';
 		var loopFieldCount = 0;
-		
+
 		for(var i = 0, len = packetDef.Parameters.length;i<len;i++){
-			var newName = packetDef.Parameters[i]
+			var newName = packetDef.Parameters[i];
 			newParseLoc += packetDef.Parameters[i].size;
 			
 			if(newParseLoc > (length+8)){
@@ -136,7 +136,7 @@ class PacketParser{
 			}
 			
 			//Starting a loop set of fields
-			if(packetDef[i].beginLoop === true && looping === false)
+			if(packetDef.Parameters[i].beginLoop === true && looping === false)
 			{
 				looping = true;
 				loopSuffix = 1;
@@ -208,7 +208,7 @@ class PacketParser{
 			}
 			parseLoc = newParseLoc;
 			
-			if(looping === true && packetDef[i].endLoop === true){
+			if(looping === true && packetDef.Parameters[i].endLoop === true){
 				i -= loopFieldCount;
 				loopingIndex++;
 			}
@@ -221,7 +221,6 @@ class PacketParser{
 		{
 			this.packetRXCallbacks[i](newDataParams);
 		}
-
 	}
 }
 

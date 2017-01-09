@@ -20,9 +20,10 @@ function makeSafetyUDP(sequence, packetType, payload){
     
     return finalPacket;
 }
+
 function makeNewPacket(sequence, type, payload){
     
-    var testPacket = makeSafetyUDP(sequence, type, payload, true);
+    var testPacket = makeSafetyUDP(sequence, type, payload);
     var packetBuf = new Buffer(testPacket);
     var client = dgram.createSocket("udp4");
     client.bind();
