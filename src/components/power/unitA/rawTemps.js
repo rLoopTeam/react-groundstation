@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import GenericParameterLabel from '../../GenericParameterLabel.js';
 import StreamingPageManager from '../../../StreamingPageManager.js';
 import config from '../../../../config/commConfig';
+import jquery from 'jquery';
 
 import io from 'socket.io-client';
 
@@ -18,51 +19,18 @@ let socket = io.connect(ip + ':' + port, {
 
 
 /*
-*   PowerA_Voltage class
+*   PowerA_RawTemperatures class
 */       
 
-class PowerA_Voltage extends Component {
+class PowerA_RawTemperatures extends Component {
 	constructor(props) {
 		super(props)
 
 		this.state = {
 			streamManager: new StreamingPageManager(),
-			command: 'PowerA_Voltage',
+			command: 'PowerA_RawTemperatures',
 		}
 
-        this.voltage = [
-
-        ]		
-
-		var _pos = -2.320;
-		var _neg = -2.320;
-		var _drainVoltage = -1;
-        var isBalancing = false;
-        
-        for(var _i = 0; _i < 18; _i++)
-        {
-            this.voltage.push({
-                A: [_pos, _neg], 
-                B: [_pos, _neg], 
-                C: [_pos, _neg], 
-                D: [_pos, _neg], 
-                E: [_pos, _neg], 
-                F: [_pos, _neg], 
-                Balancing: isBalancing, 
-                voltage: _drainVoltage
-            })
-        }
-
-        this.labels = [
-            {label: "A", value: "A"},
-            {label: "B", value: "B"},
-            {label: "C", value: "C"},
-            {label: "D", value: "D"},
-            {label: "E", value: "E"},
-            {label: "F", value: "F"},
-            {label: "Balancing", value: "Balancing"},
-            {label: "voltage", value: "voltage"},
-        ]
 	}
 	
 	componentDidMount() {
@@ -70,14 +38,19 @@ class PowerA_Voltage extends Component {
 		this._isMounted = true;
 	}
 	
-	startAllLogging(data, e) {
+	PowerAStreamingOff(data, e) {
 		e.preventDefault();
-		socket.emit('AllLogging:Start', data);
+		socket.emit('PowerA:StreamingOff', data);
 	}
 	
-	stopAllLogging(data, e) {
+	PowerAStreamCurrentTemps(data, e) {
 		e.preventDefault();
-		socket.emit('AllLogging:Stop', data);
+		socket.emit('PowerA:StreamCurrentTemps', data);
+	}
+	
+	PowerAStreamTempLocations(data, e) {
+		e.preventDefault();
+		socket.emit('PowerA:StreamTempLocations', data);
 	}
 	
 	render(){
@@ -86,167 +59,56 @@ class PowerA_Voltage extends Component {
 			_showKeys = true,
             _keyCount = 0;
 
+		var rows = [];
+		for(var i = 0;i<20;i++)
+		{
+			rows.push(<tr key={"row"+i}><td>{i} C</td><td>12345</td><td>10</td><td>8</td></tr>)
+		}
+			
+		// Change the selector if needed
+		var $table = $('table.scroll'),
+		$bodyCells = $table.find('tbody tr:first').children(),
+		colWidth;
+
+		// Adjust the width of thead cells when window resizes
+		$(window).resize(function() {
+		// Get the tbody columns width array
+		colWidth = $bodyCells.map(function() {
+			return $(this).width();
+		}).get();
+
+		// Set the width of thead columns
+		$table.find('thead tr').children().each(function(i, v) {
+			$(v).width(colWidth[i]);
+		});    
+		}).resize(); // Trigger resize handler
+			
 	    return (
-		    <div className="Overview-content">
-		    	<ul className="list-group">
-                {_this.voltage.map(function(item, index){
-                    var itemKey = Object.keys(item);
-                    
-                    if(_showKeys)
-                        _keyCount = itemKey.length;
+				<div>
+				
 
-					return (
-						<li className="list-group-item" key={index}>
-                            <div className="row">
-							{
-								itemKey.map(function(elem, inx){
-									var key = elem,
-										val = item[key],
-                                        units = '°c';
+				
+				<legend>Power Node A - Stream Control</legend>
+					<form className="form-inline">
+						<div className="form-group">
+							<button className="btn btn-success" onClick={this.PowerAStreamingOff.bind(this, {})} style={{margin:10}}>Stream Off</button>
+							<button className="btn btn-success" onClick={this.PowerAStreamCurrentTemps.bind(this, {})} style={{margin:10}}>Stream Temperatures</button>   
+							<button className="btn btn-success" onClick={this.PowerAStreamTempLocations.bind(this, {})} style={{margin:10}}>Stream Sensor Locations</button>   
+							<br /><br />
+						</div>
+					</form>
 
-                                    if(key === 'voltage')
-                                    {
-                                        units = 'V';
-                                        _className = "col-xs-1_5 text-center no-right-border";
-                                    }
-                                    else if(key === 'Balancing')
-                                    {
-                                        units = '';
-                                        val = val.toString();
-                                        _className = "col-xs-1_5 text-right no-right-border";
-                                    }
-                                    else{
-                                        if(Array.isArray(val))
-                                        {
-                                            val = val.join(units + " | ");
-                                        }
-                                    }
+					<table className="scroll">
+					<thead><tr>
+						<th>Temperature</th><th>User Field</th><th>Resolution</th><th>BusID</th>
+					</tr></thead>
+					<tbody>
+					{rows}
+					</tbody></table>
 
-                                    function showChartLabels()
-                                    {
-                                        if(_keyCount > 0)
-                                        {
-                                            _keyCount--;
-                                            _showKeys = false;
-
-                                            return key;;
-                                        }
-                                        else{
-                                            return (
-                                                <GenericParameterLabel 
-                                                StreamingPageManager={_this.state.streamManager} 
-                                                parameter={val}/>
-                                            );
-                                        }
-                                    }
-
-
-
-									return (
-											<div key={index + "-" + inx} className={_className}>
-                                                {showChartLabels()}
-											</div>
-									);
-								})
-							}
-							</div>
-						</li>
-					);
-                 })
-                }
-                </ul>
-			</div>
+				</div>
 	    );
 	}
 }
 
-export default PowerA_Voltage;
-
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
-
-
-// WEBPACK FOOTER //
-// ./src/components/power/unitA/voltage.js
+export default PowerA_RawTemperatures;

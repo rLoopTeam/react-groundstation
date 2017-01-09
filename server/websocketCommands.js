@@ -120,14 +120,6 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'FlightControl_Contrast:StopStrean': () => {
 				podCommands.FCUContrast_StopStream()
 			},
-
-			
-			'power:streamingControl': (data) => {
-
-				//data.status == on/off
-				podCommands.PowerStreamingControl(data.status)
-
-			},
 			
 			'PowerA:ChargeRelayOn':(data) => {
 				podCommands.PowerAChargeRelayOn(data.status)
@@ -135,6 +127,23 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			
 			'PowerA:ChargeRelayOff':(data) => {
 				podCommands.PowerAChargeRelayOff(data.status)
+			},
+			
+			'PowerA:ChargeRelayOff':(data) => {
+				podCommands.PowerAChargeRelayOff(data.status)
+			},
+			
+			
+			'PowerA:StreamingOff':(data) => {
+				podCommands.PowerAStreamingOff();
+			},
+	
+			'PowerA:StreamCurrentTemps':(data) => {
+				podCommands.PowerAStreamCurrentTemps();
+			},
+	
+			'PowerA:StreamTempLocations':(data) => {
+				podCommands.PowerAStreamTempLocations();
 			},
 
 			'AllLogging:Start': function(data){
