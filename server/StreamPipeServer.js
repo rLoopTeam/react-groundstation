@@ -44,7 +44,25 @@ class StreamPipeServer
 				
 				var clientReady = true;
 				
-				rtDataStore.hasNewData.on('new rtData', function(){
+				//add event listener (ensure that there is only once instance of this)
+				if(!rtDataStore.hasNewData.listenerCount("new_rtData"))
+				{
+					//when no others have been created
+					addNewEventListener()
+				}
+				else
+				{
+					// clean up all listeners to ensure we have just the one we need
+					// we might need to refine this. (i am not 100% sure on the reprecussions of doing this)
+					rtDataStore.hasNewData.removeAllListeners('new_rtData')
+					addNewEventListener()
+				}
+
+				function addNewEventListener () {
+					rtDataStore.hasNewData.on('new_rtData', sendNewData);
+				}
+
+				function sendNewData() { 
 					//Wait for an acknowledge to send new data, otherwise we fill up the OS buffers and bad things happen
 					if(clientReady){
 						clientReady = false;
@@ -57,7 +75,7 @@ class StreamPipeServer
 
 						socket.emit('new data burst',newData, function(data) {clientReady = true;});
 					}
-				});
+				}
 				
 				socket.on('disconnect', function(){
 					// clearInterval(updateTimer);

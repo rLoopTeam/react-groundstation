@@ -13,6 +13,7 @@ build
 .DS_Store
 .env
 npm-debug.log
+.vscode/settings.json
 
 # winston log files
 logs/winston_all.log
