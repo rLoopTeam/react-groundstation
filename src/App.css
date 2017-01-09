@@ -71,3 +71,7 @@ body {
 .no-right-border{
     border-right: none !important;
 }
+
+.table-bordered>tbody>tr>td, .table-bordered>thead>tr>th{
+  width: 300px ! important;
+} 
