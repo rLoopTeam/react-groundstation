@@ -26,6 +26,29 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(200.678,true)); //Raw 
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(500.0,true)); //Pitch Angle
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(600.0,true)); //Roll Angle
 
+var battTempSensors = [];
+var NumOfTempSensors = 20;
+battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(NumOfTempSensors,true)); //Number of temperature sensors
+battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(0,true)); //Spare slot
+
+for(var i = 0;i<NumOfTempSensors;i++)
+{
+	battTempSensors.push.apply(battTempSensors,bin.float32ToBytes(23+i/10,true));
+}
+
+var battTempLocations = [];;
+battTempLocations.push.apply(battTempLocations,bin.uint16ToBytes(NumOfTempSensors,true)); //Number of temperature sensors
+battTempLocations.push.apply(battTempLocations,bin.uint16ToBytes(0,true)); //Spare slot
+
+for(var i = 0;i<NumOfTempSensors;i++)
+{
+	battTempLocations.push.apply(battTempLocations,bin.uint16ToBytes(23+i,true)); //User Location
+	battTempLocations.push.apply(battTempLocations,bin.uint8ToBytes(10,true)); //Resolution in bits
+	battTempLocations.push.apply(battTempLocations,bin.uint8ToBytes(2+i,true)); //Bus Index
+}
+
 module.exports = {
-	accelerometer
+	accelerometer,
+	battTempSensors,
+	battTempLocations
 }
