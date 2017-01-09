@@ -110,7 +110,7 @@ module.exports = {
 			{
 				"Name":"Brake data",
 				"ParameterPrefix":"Brake ",
-				"PacketType":0x1402, //defined in the packet section of confluence for FCU
+				"PacketType":0x1402, 
 				"Parameters":[
 								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
@@ -148,7 +148,7 @@ module.exports = {
 			{
 				"Name":"Motor parameters",
 				"ParameterPrefix":"Motor ",
-				"PacketType":0x1406, //defined in the packet section of confluence for FCU
+				"PacketType":0x1406,
 				"Parameters":[
 								{'Name':'Microstep Resolution 1', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Max Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
