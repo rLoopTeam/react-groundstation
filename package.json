@@ -32,7 +32,8 @@
     "react-router": "^3.0.0",
     "react-rt-chart": "^1.1.4",
     "socket.io": "^1.7.2",
-    "winston": "^2.3.0"
+    "winston": "^2.3.0",
+    "xml2js": "^0.4.17"
   },
   "scripts": {
     "_pod": "nodemon --watch ./pod pod",
