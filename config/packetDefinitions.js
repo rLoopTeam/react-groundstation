@@ -108,8 +108,64 @@ module.exports = {
 							]
 			},
 			{
+				"Name":"Brake data",
+				"ParameterPrefix":"Brake ",
+				"PacketType":0x1402, //defined in the packet section of confluence for FCU
+				"Parameters":[
+								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw mm 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw um 1', 'type':'uint32', 'units':'um', 'size': 4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
+
+								{'Name':'ADC Sample 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'ADC Zero 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'ADC Minus Zero 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'System Span 1', 'type':'uint32', 'units':'um', 'size': 4},
+								{'Name':'Brake Position mm 1', 'type':'uint32', 'units':'mm', 'size': 4},
+								{'Name':'Linear Velocity 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Linear Acceleration 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Current Position 1', 'type':'uint32', 'units':'', 'size': 4},
+
+								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'I Beam mm 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw mm 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw um 2', 'type':'uint32', 'units':'um', 'size': 4},
+								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
+
+								{'Name':'ADC Sample 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'ADC Zero 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'ADC Minus Zero 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'System Span 2', 'type':'uint32', 'units':'um', 'size': 4},
+								{'Name':'Brake Position mm 2', 'type':'uint32', 'units':'mm', 'size': 4},
+								{'Name':'Linear Velocity 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Linear Acceleration 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Current Position 2', 'type':'uint32', 'units':'', 'size': 4},
+							]
+			},
+			{
+				"Name":"Motor parameters",
+				"ParameterPrefix":"Motor ",
+				"PacketType":0x1406, //defined in the packet section of confluence for FCU
+				"Parameters":[
+								{'Name':'Microstep Resolution 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Microns per Revolution 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Steps per Revolution 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Angular Velocity 1', 'type':'int32', 'units':'', 'size': 4},
+
+								{'Name':'Microstep Resolution 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Acceleration 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Microns per Revolution 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Steps per Revolution 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Angular Velocity 2', 'type':'int32', 'units':'', 'size': 4},
+							]
+			},
+			{
 				"Name": "Laser Opto Sensor",
-				"ParameterPrefix": "LaserOpto",
+				"ParameterPrefix": "LaserOpto ",
 				"PacketType": 0x1101,
 				"Parameters":[
 								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4}, //top-level fault flags
@@ -175,7 +231,7 @@ module.exports = {
 			},
 			{
 				"Name": "Forward Laser Distance Sensor",
-				"ParameterPrefix": "ForwardLaser",
+				"ParameterPrefix": "ForwardLaser ",
 				"PacketType": 0x1201,
 				"Parameters":[
 								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
