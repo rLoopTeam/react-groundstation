@@ -10,7 +10,7 @@ let socket = io.connect('127.0.0.1:3000', {
 			reconnectionAttempts: Infinity
 		});
 
-class FlightControl_Accel extends Component {
+class FlightControl_FullAccel extends Component {
 	constructor(props) {
 		super(props)
 		
@@ -52,25 +52,24 @@ class FlightControl_Accel extends Component {
 	render(){
 	    return (
 		    <div className="Overview-content">
-			
 				<legend>Streaming Control</legend>
 					<form className="form-inline">
 						<div className="form-group">
-							<button type="button" className="btn btn-success" onClick={this.accelStartStream_CalData}>Start Stream</button>
-							<button type="button" className="btn btn-danger" onClick={this.accelStopStream}>Stop Stream</button>
+							<button type="button" className="btn btn-success" onClick={this.accelStartStream_CalData}  style={{margin:10}}>Start Cal Stream</button>
+							<button type="button" className="btn btn-success" onClick={this.accelStartStream_FullData} style={{margin:10}}>Start Full Stream</button>
+							<button type="button" className="btn btn-danger" onClick={this.accelStopStream} style={{margin:10}}>Stop Stream</button>
 								
 						</div>
 					</form>
 			
-				<legend>Accelerometer Calibration</legend>
+				<legend>Full Accelerometer Data</legend>
 					
 				<div className="row margin-bottom-20px">
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
 								<label htmlFor="a0_x">A0:X-Axis</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Raw' hideUnits='true' readOnly='true'/>
-								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 0})}>Fine Zero</button>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Gs' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>
@@ -79,8 +78,7 @@ class FlightControl_Accel extends Component {
 						<div className="form-group">
 							<label htmlFor="a0_y">A0:Y-Axis</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Raw' hideUnits='true' readOnly='true'/>
-								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 1})}>Fine Zero</button>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Gs' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
@@ -89,9 +87,7 @@ class FlightControl_Accel extends Component {
 						<div className="form-group">
 							<label htmlFor="a0_z">A0:Z-Axis</label>
 							<div>	
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Raw' hideUnits='true' readOnly='true'/>
-								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 2})}>Fine Zero</button>
-								<button className="btn btn-danger" onClick={this.accelAutoZero.bind(this, {accel: 0, axis: 2})}>Auto Zero</button>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Gs' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>
@@ -101,36 +97,78 @@ class FlightControl_Accel extends Component {
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
 							
-								<label htmlFor="a1_x">A1:X-Axis</label>
+								<label htmlFor="a1_x">A0:Pitch</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' hideUnits='true' readOnly='true'/>
-								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 0})}>Fine Zero</button>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Pitch' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
 
 					<form className="form-inline col-xs-4">
 						<div className="form-group">					
-							<label htmlFor="a1_y">A1:Y-Axis</label>
+							<label htmlFor="a1_y">A0:Roll</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' hideUnits='true' readOnly='true'/>
-								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 1})}>Fine Zero</button>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Roll' hideUnits='true' readOnly='true'/>
+							</div>
+						</div>
+					</form>
+
+				</div>
+
+				<br /><br />
+			
+				<div className="row">
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+								<label htmlFor="a1_x">A1:X-Axis</label>
+							<div>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>
 
 					<form className="form-inline col-xs-4">
-						<div className="form-group">	
-							<label htmlFor="a1_z">A1:Z-Axis</label>
+						<div className="form-group">
+							<label htmlFor="a0_y">A1:Y-Axis</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Raw' hideUnits='true' readOnly='true'/>
-								<button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 2})}>Fine Zero</button>
-								<button className="btn btn-danger" onClick={this.accelAutoZero.bind(this, {accel: 1, axis: 2})}>Auto Zero</button>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' hideUnits='true' readOnly='true'/>
+							</div>
+						</div>
+					</form>	
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							<label htmlFor="a0_z">A1:Z-Axis</label>
+							<div>	
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>
 				</div>
-			
+
+				<br />
+						
+				<div className="row">
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+							
+								<label htmlFor="a1_x">A1:Pitch</label>
+							<div>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' hideUnits='true' readOnly='true'/>
+							</div>
+						</div>
+					</form>	
+
+					<form className="form-inline col-xs-4">
+						<div className="form-group">					
+							<label htmlFor="a1_y">A1:Roll</label>
+							<div>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' hideUnits='true' readOnly='true'/>
+							</div>
+						</div>
+					</form>
+				</div>
+
 				<br></br>
 				<br></br>
 			
@@ -181,20 +219,9 @@ class FlightControl_Accel extends Component {
 				
 				<br></br>
 				<br></br>
-			
-				<legend>Development DAQ</legend>
-					<form className="form-inline">
-						<div className="form-group">
-							<button className="btn btn-success" onClick={this.accelStartStream_CalData}>Start DAQ</button>
-							<button className="btn btn-danger" onClick={this.accelStopStream}>Stop DAQ</button>
-								
-						</div>
-					</form>
-				<br></br>
-				<br></br>				
 			</div>
 	    );
 	}
 }
 
-export default FlightControl_Accel;
+export default FlightControl_FullAccel;

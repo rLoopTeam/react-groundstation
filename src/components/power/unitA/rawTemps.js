@@ -38,6 +38,7 @@ class PowerA_RawTemperatures extends Component {
 		}
 	
 	requestParameterFromServer(parameter){
+		console.log("requesting: "+parameter);
 		this.DataStreamClient.RequestParameter(parameter);
 	}
 	
@@ -53,10 +54,10 @@ class PowerA_RawTemperatures extends Component {
 	newPacketCallback(parameterData){
 		var field;
 		var newState = {};
-
-		for(var i = 0;i<parameterData.length;i++){
-			
-			if(this._isMounted){
+		console.log("here");
+		console.log(JSON.stringify(parameterData));
+		if(this._isMounted){			
+			for(var i = 0;i<parameterData.length;i++){
 				if(parameterData[i].Name === 'Power A Temps Count' && this.state.numberofSensors !== parameterData[i].Value){
 					this.setState({numberofSensors: parameterData[i].Value});
 					for(var x = 1;x<=parameterData[i].Value;x++){
@@ -64,6 +65,7 @@ class PowerA_RawTemperatures extends Component {
 						this.requestParameterFromServer('Power A Temps Loc '+x+' User Index');
 						this.requestParameterFromServer('Power A Temps Loc '+x+' Resolution');
 						this.requestParameterFromServer('Power A Temps Loc '+x+' Bus Index');
+						this.requestParameterFromServer('Power A ROM ID '+x);
 					}
 				}
 
@@ -98,10 +100,17 @@ class PowerA_RawTemperatures extends Component {
 						newState[field] = parameterData[i].Value;
 					}
 				}
+
+				if(parameterData[i].Name.substring(0,14) === "Power A ROM ID")
+				{
+					field = 'ROMID'+parameterData[i].Name.split(' ')[4];
+					if(this.state[field] !== parameterData[i].Value){
+						newState[field] = parameterData[i].Value;
+					}
+				}
 			}
-		}
-		if(this._isMounted)
 			this.setState(newState);
+		}
 	}
 	
 	PowerAStreamingOff(data, e) {
@@ -119,6 +128,12 @@ class PowerA_RawTemperatures extends Component {
 		socket.emit('PowerA:StreamTempLocations', data);
 	}
 	
+	PowerAROMIDScan(data, e) {
+		e.preventDefault();
+		data.numberofSensors = this.state.numberofSensors;
+		socket.emit('PowerA:TempSensorROMIDScan', data);
+	}
+
 	render(){
         var _this = this,
             _className = "col-xs-1_5 text-center",
@@ -129,7 +144,14 @@ class PowerA_RawTemperatures extends Component {
 		for(var i = 1;i<=this.state.numberofSensors;i++)
 		{
 			//rows.push(<tr key={"row"+i}><td>{this.state['temperatureValues'+i.toString()]} C</td><td>{this.state['userIndex'+i.toString()]}</td></tr>)
-			rows.push(<tr key={"row"+i}><td>{this.state['temperatureValues'+i.toString()]} C</td><td>{this.state['userIndex'+i.toString()]}</td><td>{this.state['resolution'+i.toString()]}</td><td>{this.state['busIndex'+i.toString()]}</td></tr>)
+			rows.push(<tr key={"row"+i}>
+				<td>{i-1}</td>
+				<td>{this.state['temperatureValues'+i.toString()]} C</td>
+				<td>{this.state['userIndex'+i.toString()]}</td>
+				<td>{this.state['resolution'+i.toString()]}</td>
+				<td>{this.state['busIndex'+i.toString()]}</td>
+				<td>{this.state['ROMID'+i.toString()]}</td>
+				</tr>)
 		}
 
 	    return (
@@ -140,13 +162,14 @@ class PowerA_RawTemperatures extends Component {
 							<button className="btn btn-success" onClick={this.PowerAStreamingOff.bind(this, {})} style={{margin:10}}>Stream Off</button>
 							<button className="btn btn-success" onClick={this.PowerAStreamCurrentTemps.bind(this, {})} style={{margin:10}}>Stream Temperatures</button>   
 							<button className="btn btn-success" onClick={this.PowerAStreamTempLocations.bind(this, {})} style={{margin:10}}>Stream Sensor Locations</button>   
+							<button className="btn btn-success" onClick={this.PowerAROMIDScan.bind(this, {})} style={{margin:10}}>Get ROM IDs</button>   
 							<br /><br />
 						</div>
 					</form>
 
 					<table className="table">
 					<thead><tr>
-						<th>Temperature</th><th>User Field</th><th>Resolution</th><th>Bus ID</th>
+						<th>Index</th><th>Temperature</th><th>User Field</th><th>Resolution</th><th>Bus ID</th><th>ROM ID</th>
 					</tr></thead>
 					<tbody>
 					{rows}

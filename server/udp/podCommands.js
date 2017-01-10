@@ -80,7 +80,15 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0); 
 
         }
+
+        function FCUStreamingControlStart_Brakes() {
+            udp.tx.transmitPodCommand('Flight Control',0x0100, 0x01, 0x1402,0x0,0x0);
+        }
 		
+        function FCUStreamingControlStart_MotorsRaw() {
+            udp.tx.transmitPodCommand('Flight Control',0x0100, 0x01, 0x1406,0x0,0x0);
+        }
+
 		//Accel control
         function FCUAccel_FineZero(data) {
 			udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0); 
@@ -118,6 +126,14 @@ module.exports = function(udp){
 		function PowerAStreamTempLocations(){
 			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
 		}
+
+        function PowerARequestRomID(index){
+            udp.tx.transmitPodCommand('Power Node A',0x3204, index,0x0,0x0,0x0);
+        }
+
+        function PowerBRequestRomID(index){
+            udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
+        }
         
         function XilinxSim_Start() {
             udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
@@ -165,18 +181,22 @@ module.exports = function(udp){
         FCUBrake_RequestDevelopmentMode,	
         FCUStreamingControlStart_AccelCalData,
         FCUStreamingControlStart_AccelFullData, 
-		FCUStreamingControlStop_Accel,	
+		FCUStreamingControlStop_Accel,
+        FCUStreamingControlStart_Brakes,
+        FCUStreamingControlStart_MotorsRaw,
         FCUAccel_FineZero,		
         FCUAccel_AutoZero,
 
 		FCUContrast_StartStream,
 		FCUContrast_StopStream,	
 		
-		PowerAChargeRelayOff,
-		PowerAChargeRelayOn,
-		PowerAStreamingOff,
-		PowerAStreamCurrentTemps,
-		PowerAStreamTempLocations,
+        PowerAChargeRelayOff,
+        PowerAChargeRelayOn,
+        PowerAStreamingOff,
+        PowerAStreamCurrentTemps,
+        PowerAStreamTempLocations,
+        PowerARequestRomID,
+        PowerBRequestRomID,
 		
         XilinxSim_Start,
         XilinxSim_Stop,

@@ -12,7 +12,7 @@ class MainLayout extends Component {
 			},
 			{
 				name: "Power A", location: "/powerA", children: [
-					// {name: "Voltage", location: "/powerAVoltage"},
+					{name: "Voltage", location: "/powerAVoltage"},
 					{name: "Charger", location: "/powerACharger"},
 					{name: "BMS 1", location: "/powerABMS1"},
 					{name: "BMS 2", location: "/powerABMS2"},
@@ -22,7 +22,7 @@ class MainLayout extends Component {
 			},
 			{
 				name: "Power B", location: "/powerB", children: [
-					// {name: "Voltage", location: "/powerBVoltage"},
+					{name: "Voltage", location: "/powerBVoltage"},
 					{name: "Charger", location: "/powerBCharger"},
 					{name: "BMS 1", location: "/powerBBMS1"},
 					{name: "BMS 2", location: "/powerBBMS2"},
@@ -42,8 +42,10 @@ class MainLayout extends Component {
 			{
 				name: "Flight Control", location: "/flightControl", children: [
 					{name: "Contrast Sensors", location: "/flightcontrol_contrast"},
-					{name: "Accelerometers", location: "/flightcontrol_accel"},
+					{name: "Full Accel Data", location: "/flightcontrol_fullaccel"},
+					{name: "Full Cal Data", location: "/flightcontrol_calaccel"},
 					{name: "Brakes", location: "/brakes"},
+					{name: "Steppers", location: "/steppers"},
 				]
 			},
 			{

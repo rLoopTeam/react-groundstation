@@ -16,7 +16,7 @@ let socket = io.connect(ip + ':' + port, {
 			reconnectionAttempts: Infinity
 		});
 
-class Brakes extends Component {
+class Steppers extends Component {
 	constructor(props) {
 		super(props)
 		this.render = this.render;
@@ -32,45 +32,18 @@ class Brakes extends Component {
 		}
 
         this.labels = [
-            {label: "Left Fault Flags", value: "Brake Fault flags 1"},
-            {label: "Left I-Beam", value: "Brake I Beam mm 1"},
-            {label: "Left Lead screw target", value: "Brake Lead screw mm 1"},
-            {label: "Left Lead screw target", value: "Brake Lead screw um 1"},
+            {label: "Left Microstep Resolution", value: "Motor Microstep Resolution 1"},
+            {label: "Left Max Acceleration", value: "Motor Max Acceleration 1"},
+            {label: "Left Microns Per Revolution", value: "Motor Microns per Revolution 1"},
+            {label: "Left Steps Per Revolution", value: "Motor Steps per Revolution 1"},
+            {label: "Left Angular Velocity", value: "Motor Max Angular Velocity 1"},
 
-            {label: "Left Extend Limit", value: "Brake Limit Extend 1"},
-            {label: "Left Retract Limit", value: "Brake Limit Retract 1"},
-            {label: "Left Extend Edge", value: "Brake Limit Extend Edge 1"},
-            {label: "Left Retract Edge", value: "Brake Limit Retract Edge 1"},
-            {label: "Left Sw Flags", value: "Brake SW Error 1"},
+            {label: "Right Microstep Resolution", value: "Motor Microstep Resolution 2"},
+            {label: "Right Max Acceleration", value: "Motor Max Acceleration 2"},
+            {label: "Right Microns Per Revolution", value: "Motor Microns per Revolution 2"},
+            {label: "Right Steps Per Revolution", value: "Motor Steps per Revolution 2"},
+            {label: "Right Angular Velocity", value: "Motor Max Angular Velocity 2"},
 
-            {label: "Left ADC Sample", value: "Brake ADC Sample 1"},
-            {label: "Left ADC Zero", value: "Brake ADC Zero 1"},
-            {label: "Left System Span", value: "Brake System Span 1"},
-            {label: "Left Brake Position", value: "Brake Position mm 1"},
-            {label: "Left Linear Velocity", value: "Brake Linear Velocity 1"},
-            {label: "Left Linear Acceleration", value: "Brake Linear Acceleration 1"},
-            {label: "Left Current Screw Position", value: "Brake Current Position 1"},
-        ]
-
-        this.labels2 = [
-            {label: "Right Fault Flags", value: "Brake Fault flags 2"},
-            {label: "Right I-Beam", value: "Brake I Beam mm 2"},
-            {label: "Right Lead screw target", value: "Brake Lead screw mm 2"},
-            {label: "Right Lead screw target", value: "Brake Lead screw um 2"},
-
-            {label: "Right Extend Limit", value: "Brake Limit Extend 2"},
-            {label: "Right Retract Limit", value: "Brake Limit Retract 2"},
-            {label: "Right Extend Edge", value: "Brake Limit Extend Edge 2"},
-            {label: "Right Retract Edge", value: "Brake Limit Retract Edge 2"},
-            {label: "Right Sw Flags", value: "Brake SW Error 2"},
-
-            {label: "Right ADC Sample", value: "Brake ADC Sample 2"},
-            {label: "Right ADC Zero", value: "Brake ADC Zero 2"},
-            {label: "Right System Span", value: "Brake System Span 2"},
-            {label: "Right Brake Position", value: "Brake Position mm 2"},
-            {label: "Right Linear Velocity", value: "Brake Linear Velocity 2"},
-            {label: "Right Linear Acceleration", value: "Brake Linear Acceleration 2"},
-            {label: "Right Current Screw Position", value: "Brake Current Position 2"}
         ]
 	}
 
@@ -131,9 +104,9 @@ class Brakes extends Component {
         });
     }
 
-    accelStartStream_Brakes(e) {
+    accelStartStream_MotorsRaw(e) {
         e.preventDefault();
-        socket.emit('FlightControl:Stream_Brakes');
+        socket.emit('FlightControl:Stream_MotorsRaw');
     }
 
     updateBrakes() {
@@ -166,26 +139,11 @@ class Brakes extends Component {
 	    return (
             <div className="row">
 
-                <button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stream Brakes Data</button>
+                <button type="button" className="btn btn-success" onClick={this.accelStartStream_MotorsRaw}  style={{margin:10}}>Stream Motor Data</button>
 
                 <div className="col-md-6">
                 {
                     this.labels.map(function(item, index){
-                        return (
-                            <div className="row" key={"brakes" + index}>
-                                <label>{item.label}</label>
-                                <GenericParameterLabel 
-                                    StreamingPageManager={_this.state.streamManager} 
-                                    parameter={item.value}/>
-                            </div>
-                        )
-                    }, this)
-                }
-                </div>
-
-                <div className="col-md-6">
-                {
-                    this.labels2.map(function(item, index){
                         return (
                             <div className="row" key={"brakes" + index}>
                                 <label>{item.label}</label>
@@ -246,5 +204,5 @@ class Brakes extends Component {
 	}
 }
 
-export default Brakes;
+export default Steppers;
 

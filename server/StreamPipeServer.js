@@ -30,7 +30,7 @@ class StreamPipeServer
 				console.log("StreamPipeServer: New client id " + socket.id);
 				
 				socket.on('request parameters', function(msg){
-					//console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
+					console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
 					for(var y = 0; y<msg.length;y++)
 					{
 						requestedParams.push(msg[y]);
@@ -38,25 +38,25 @@ class StreamPipeServer
 				});
 
 				socket.on('request parameter', function(msg){
-					//console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
+					console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
 					requestedParams.push(msg);
 				});
 				
 				var clientReady = true;
 				
 				//add event listener (ensure that there is only once instance of this)
-				if(!rtDataStore.hasNewData.listenerCount("new_rtData"))
-				{
+				//if(!rtDataStore.hasNewData.listenerCount("new_rtData"))
+				//{
 					//when no others have been created
 					addNewEventListener()
-				}
-				else
-				{
+			//	}
+			//	else
+			//	{
 					// clean up all listeners to ensure we have just the one we need
 					// we might need to refine this. (i am not 100% sure on the reprecussions of doing this)
-					rtDataStore.hasNewData.removeAllListeners('new_rtData')
-					addNewEventListener()
-				}
+				//	rtDataStore.hasNewData.removeAllListeners('new_rtData')
+			//		addNewEventListener()
+			//	}
 
 				function addNewEventListener () {
 					rtDataStore.hasNewData.on('new_rtData', sendNewData);

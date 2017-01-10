@@ -95,13 +95,15 @@ const daq = require('./daq.js')(packetStats);
  ------------*/
 const config = require('./config.js')(packetStats);
 
+//Scans the temperature node sensor busses
+//for the temperature sensor ROM Ids
+var romIDScanner = require('./romIDScanner.js')(podCommands, rtDataStore);
 
 /*------------
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config);
-
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner);
 
 /*------------
 	Grabs data from the charger
@@ -125,8 +127,8 @@ var charger = require('./charger')(rtDataStore);
 //const TempSensorsGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 
 //Accelerometer packet generator
-const payloads = require('./DataGenerators/TestPayloads');
-const testGenerator = require('./DataGenerators/TestGenerator.js');
-// testGenerator(0x1003, payloads.accelerometer);
-testGenerator(0x3201, payloads.battTempSensors);
-testGenerator(0x3203, payloads.battTempLocations);
+//const payloads = require('./DataGenerators/TestPayloads');
+//const testGenerator = require('./DataGenerators/TestGenerator.js');
+//testGenerator(0x1003, payloads.accelerometer);
+//testGenerator(0x3201, payloads.battTempSensors);
+//testGenerator(0x3203, payloads.battTempLocations);

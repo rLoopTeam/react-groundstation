@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config)
+module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner)
 {
 	var updateClientWithDatalogs = true;
 
@@ -111,7 +111,12 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'FlightControl_Accel:AutoZero': (data) => {
 				podCommands.FCUAccel_AutoZero(data)
 			},
-
+			'FlightControl:Stream_Brakes': (data) => {
+				podCommands.FCUStreamingControlStart_Brakes();
+			},
+			'FlightControl:Stream_MotorsRaw': (data) => {
+				podCommands.FCUStreamingControlStart_MotorsRaw();
+			},
 
 			//Contrast sensor streaming control
 			'FlightControl_Contrast:StartStream': () => {
@@ -144,6 +149,10 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 	
 			'PowerA:StreamTempLocations':(data) => {
 				podCommands.PowerAStreamTempLocations();
+			},
+
+			'PowerA:TempSensorROMIDScan':(data) => {
+				romIDScanner.BeginScanA(data.numOfSensors);
 			},
 
 			'AllLogging:Start': function(data){
