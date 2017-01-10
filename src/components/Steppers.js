@@ -49,53 +49,18 @@ class Steppers extends Component {
 
     componentDidMount() {
         var _this = this;
-        socket.emit("FlightControl_Brake:RequestDevelopmentMode");
-        socket.on('connect', function() {
-			socket.on('FlightControl_Brake:DevelopmentMode', function(data){
-                //FlightControl_Brake:RequestDevelopmentMode
-                console.log("\n\n\n\n\n\nUI UPDATE DEV MODE FROM POD\n\n\n\n\n",data.developmentMode)
-                _this.setState({
-                    developmentModeSelection: (data.developmentMode)?1:0,
-                    developmentMode: data.developmentMode
-                })
-			})
-		});
     }
 
+    stepperParameterSelectionHandler(changeEvent){
+        this.setState({
+            parameterSelection: parseInt(changeEvent.currentTarget.value)
+        });
+    }
 
     brakesSelectionHandler(changeEvent){
         this.setState({
             brakesSelection: parseInt(changeEvent.currentTarget.value)
         });
-    }
-
-    brakesDevModeHandler(changeEvent){
-        var _this = this;
-
-        //turn on dev mode
-        if(changeEvent.currentTarget.value === '1'){
-            var shouldUpdateBrakePosition = confirm("WARNING: You are about to enable development mode. This is a dangerous operation and will damage the magnets.");
-            if (shouldUpdateBrakePosition){
-                _this.setState({
-                    developmentModeSelection: 1,
-                    developmentMode: true
-                });
-                socket.emit('FlightControl_Brake:EnableDevelopmentMode');
-            } else {
-                _this.setState({
-                    developmentModeSelection: 0,
-                    developmentMode: false
-                });
-            }
-        }
-        //turn off dev mode
-        else{
-            _this.setState({
-                developmentModeSelection: 0,
-                developmentMode: false
-            });
-            socket.emit('FlightControl_Brake:DisableDevelopmentMode');
-        }
     }
 
 	brakePositionHandler(changeEvent) {
@@ -109,37 +74,31 @@ class Steppers extends Component {
         socket.emit('FlightControl:Stream_MotorsRaw');
     }
 
-    updateBrakes() {
-        if(this.state.developmentMode){
-            var shouldUpdateBrakePosition = confirm("WARNING: You are about to change the brake distance. This is a dangerous operation.");
-            if (shouldUpdateBrakePosition){
-                socket.emit('FlightControl_Brake:MoveMotorRAW', {command: this.state.brakesSelection, 
-                                                                 position: this.state.nextBrakePosition});
-            } else {
-
-            }
-        }else{
-            alert("You need to be in development mode to change the brake position. This is a dangerous operation.")
+    sendStepperParameter() {
+        switch(this.state.parameterSelection){
+            case 0: if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxAngularAccel',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxAngularAccel',{brake:1,value:this.state.nextBrakePosition});} 
+                     break;
+            case 1: if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetPicoMetersPerRev',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetPicoMetersPerRev',{brake:1,value:this.state.nextBrakePosition});} 
+                     break;
+            case 2:if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxRPM',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxRPM',{brake:1,value:this.state.nextBrakePosition});} 
+                     break;
+            case 3: if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:1,value:this.state.nextBrakePosition});} 
+                     break;
         }
+        socket.emit('FlightControl_Brake:MoveMotorRAW', {command: this.state.brakesSelection, 
+                                                         position: this.state.nextBrakePosition});
     }   
 
 	render() {
 		var _this = this;
-        var buttonClasses = "btn btn-primary " + ((this.state.developmentMode) ? "" : "disabled");
-        function isbrakesDevModeActive(){
-            if(_this.state.developmentModeSelection === 1){
-                return '';
-            }
-            else
-            {
-                return 'hidden';
-            }
-        }
+        var buttonClasses = "btn btn-primary ";
 
 	    return (
             <div className="row">
-
-                <button type="button" className="btn btn-success" onClick={this.accelStartStream_MotorsRaw}  style={{margin:10}}>Stream Motor Data</button>
 
                 <div className="col-md-6">
                 {
@@ -154,27 +113,38 @@ class Steppers extends Component {
                         )
                     }, this)
                 }
+
+                <button type="button" className="btn btn-success" onClick={this.accelStartStream_MotorsRaw}  style={{margin:10}}>Stream Motor Data</button>
                 </div>
 
                 <div className="col-md-6">
-                    <div className="row">
+
+                        <label>Stepper Parameters</label><br />
+
                         <div className="form-group">
-                            <label>Development mode</label>
                             <div className="radio">
-                                <label htmlFor="dev-mode-off"><input type="radio" id="dev-mode-off" name="brakesDevMode" value="0" 
-                                        onChange={_this.brakesDevModeHandler.bind(_this)} 
-                                        checked={_this.state.developmentModeSelection === 0}/>OFF</label> 
+                                <label htmlFor="parameter-selection-0"><input type="radio" id="parameter-selection-0" name="parameterSelection" value="0" 
+                                        onChange={_this.stepperParameterSelectionHandler.bind(_this)} 
+                                        checked={_this.state.parameterSelection === 0} />Max Angular Acceleration</label>
                             </div> 
                             <div className="radio">
-                                <label htmlFor="dev-mode-on"><input type="radio" id="dev-mode-on" name="brakesDevMode" value="1" 
-                                        onChange={_this.brakesDevModeHandler.bind(_this)} 
-                                        checked={_this.state.developmentModeSelection === 1}/>ON</label>
+                                <label htmlFor="parameter-selection-1"><input type="radio" id="parameter-selection-1" name="parameterSelection" value="1" 
+                                        onChange={_this.stepperParameterSelectionHandler.bind(_this)} 
+                                        checked={_this.state.parameterSelection === 1}/>Microns Per Revolution</label>
+                            </div>
+                            <div className="radio">
+                                <label htmlFor="parameter-selection-2"><input type="radio" id="parameter-selection-2" name="parameterSelection" value="2" 
+                                    onChange={_this.stepperParameterSelectionHandler.bind(_this)} 
+                                    checked={_this.state.parameterSelection === 2}/>Max RPM (Angular Velocity)</label>
+                            </div>
+                            <div className="radio">
+                                <label htmlFor="parameter-selection-3"><input type="radio" id="parameter-selection-3" name="parameterSelection" value="3" 
+                                    onChange={_this.stepperParameterSelectionHandler.bind(_this)} 
+                                    checked={_this.state.parameterSelection === 3}/>Microstep Resolution</label>
                             </div>
                         </div>
-                    </div>
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <NumericInput label="Brake position" 
-                                onChange={_this.brakePositionHandler.bind(_this)}/>
+
+                        <NumericInput onChange={_this.brakePositionHandler.bind(_this)}/><br />
 
                         <label>Brake selection</label>
                         <div className="form-group">
@@ -194,9 +164,9 @@ class Steppers extends Component {
                                     checked={_this.state.brakesSelection === 2}/>Both</label>
                             </div>
                         </div>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.updateBrakes.bind(_this)}>Update brake position</button>
-                    </div>
+                        <button className={buttonClasses}
+                            onClick={_this.sendStepperParameter.bind(_this)}>Set Parameter</button>
+
                 </div>
 
             </div>

@@ -1,4 +1,5 @@
 const makeSafeUDPPackage = require('./makeSafeUDPPackage');
+const bin = require('./binary');
 
 module.exports = function(udp){
     
@@ -46,7 +47,7 @@ module.exports = function(udp){
         }
 
         function FCUBrake_MoveMotorRAW(data){
-            console.log("move motor", data)
+            console.log("move motor raw ", data)
             // THIS IS VERY VERY DANGEROUS 
 
 
@@ -60,6 +61,108 @@ module.exports = function(udp){
                 udp.tx.transmitPodCommand('Flight Control', 0x1401, data.command, data.position, 0x0, 0x0); 
 
             }
+        }
+
+        function FCUBrake_MoveMotorIBeam(data){
+            console.log("move motor i-beam", data)
+            // THIS IS VERY VERY DANGEROUS 
+            // data.position (mm)
+
+            if(_brakeDevelopmentConfirmation)
+            {
+                //sending floats in annoying but this is how to do it
+                var bytes= bin.float32ToBytes( data.position);
+                udp.tx.transmitPodCommand('Flight Control', 0x1403, bin.bytesToUint32(bytes[0],bytes[1],bytes[2],bytes[3],false), 0x0, 0x0, 0x0); 
+
+            }
+        }
+
+        function FCUBrake_BeginInit(data){
+            console.log("Brakes: Begin Init", data)
+            // THIS IS VERY VERY DANGEROUS 
+
+            if(_brakeDevelopmentConfirmation)
+            {
+                udp.tx.transmitPodCommand('Flight Control', 0x1408, 0x98765432, 0x0, 0x0, 0x0); 
+
+            }
+        }
+
+        function FCUBrake_MLPSetZeroLeftBrake(){
+            console.log("Brakes: Set Zero Left Brake")
+            // THIS IS VERY VERY DANGEROUS 
+
+            if(_brakeDevelopmentConfirmation)
+            {
+                udp.tx.transmitPodCommand('Flight Control', 0x1409, 0x55660123, 0x0, 0x0, 0x0); 
+
+            }
+        }
+
+        function FCUBrake_MLPSetZeroRightBrake(){
+            console.log("Brakes: Set Zero Right Brake")
+            // THIS IS VERY VERY DANGEROUS 
+
+            if(_brakeDevelopmentConfirmation)
+            {
+                udp.tx.transmitPodCommand('Flight Control', 0x1409, 0x55660123, 0x01, 0x0, 0x0); 
+
+            }
+        }
+
+
+        function FCUBrake_MLPSetSpanLeftBrake(){
+            console.log("Brakes: Set Span Left Brake")
+            // THIS IS VERY VERY DANGEROUS 
+
+            if(_brakeDevelopmentConfirmation)
+            {
+                udp.tx.transmitPodCommand('Flight Control', 0x1409, 0x55660123, 0x0, 0x1, 0x0); 
+
+            }
+        }
+
+        function FCUBrake_MLPSetSpanRightBrake(){
+            console.log("Brakes: Set Span Right Brake")
+            // THIS IS VERY VERY DANGEROUS 
+
+            if(_brakeDevelopmentConfirmation)
+            {
+                udp.tx.transmitPodCommand('Flight Control', 0x1409, 0x55660123, 0x01, 0x1, 0x0); 
+
+            }
+        }
+
+        function FCUStepper_SetMaxAngularAccel(data){
+            //data.brake 0 = Left, 1 = right
+            //data.value
+
+            console.log("Setting Max Angular Accel");
+            udp.tx.transmitPodCommand('Flight Control', 0x1404,0x0,data.brake,data.value,0x0);
+        }
+
+        function FCUStepper_SetPicoMetersPerRev(data){
+            //data.brake 0 = Left, 1 = right
+            //data.value
+
+            console.log("Setting Picometers per revolution");
+            udp.tx.transmitPodCommand('Flight Control', 0x1404,0x1,data.brake,data.value,0x0);
+        }
+
+        function FCUStepper_SetMaxRPM(data){
+            //data.brake 0 = Left, 1 = right
+            //data.value
+
+            console.log("Setting MAX RPM");
+            udp.tx.transmitPodCommand('Flight Control', 0x1404,0x2,data.brake,data.value,0x0);
+        }
+
+        function FCUStepper_SetMicroStepResolution(data){
+            //data.brake 0 = Left, 1 = right
+            //data.value
+
+            console.log("Setting Micro Step Resolution");
+            udp.tx.transmitPodCommand('Flight Control', 0x1404,0x3,data.brake,data.value,0x0);
         }
 
         function FCUStreamingControlStart_AccelCalData() {
@@ -178,6 +281,16 @@ module.exports = function(udp){
         FCUBrake_DisableDevelopmentMode,
         FCUBrake_EnableDevelopmentMode,
         FCUBrake_MoveMotorRAW,
+        FCUBrake_MoveMotorIBeam,
+        FCUBrake_BeginInit,
+        FCUBrake_MLPSetZeroLeftBrake,
+        FCUBrake_MLPSetZeroRightBrake,
+        FCUBrake_MLPSetSpanLeftBrake,
+        FCUBrake_MLPSetSpanRightBrake,
+        FCUStepper_SetMaxAngularAccel,
+        FCUStepper_SetPicoMetersPerRev,
+        FCUStepper_SetMaxRPM,
+        FCUStepper_SetMicroStepResolution,
         FCUBrake_RequestDevelopmentMode,	
         FCUStreamingControlStart_AccelCalData,
         FCUStreamingControlStart_AccelFullData, 

@@ -75,6 +75,59 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			},
 
+			'FlightControl_Brake:MoveMotorIBeam': (data) => {
+
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+
+				podCommands.FCUBrake_MoveMotorIBeam(data);
+
+			},
+
+
+			'FlightControl_Brake:BeginInit': (data) => {
+
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+
+				podCommands.FCUBrake_BeginInit(data);
+
+			},
+
+			'FlightControl_Brake:SetZeroLeftBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetZeroLeftBrake();
+			},
+
+			'FlightControl_Brake:SetZeroRightBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetZeroRightBrake();
+			},
+
+			'FlightControl_Brake:SetSpanLeftBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetSpanLeftBrake();
+			},
+
+			'FlightControl_Brake:SetSpanRightBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetSpanRightBrake();
+			},
+
+			'FlightControl_Stepper:SetMaxAngularAccel': (data) => {
+				podCommands.FCUStepper_SetMaxAngularAccel(data);
+			},
+
+			'FlightControl_Stepper:SetPicoMetersPerRev': (data) => {
+				podCommands.FCUStepper_SetPicoMetersPerRev(data);
+			},
+
+			'FlightControl_Stepper:SetMicroStepReslution': (data) => {
+				podCommands.FCUStepper_SetMicroStepResolution(data);
+			},
+
+			'FlightControl_Stepper:SetMaxRPM': (data) => {
+				podCommands.FCUStepper_SetMaxRPM(data);
+			},
+
 			'FlightControl_Brake:DisableDevelopmentMode': () => {
 
 				podCommands.FCUBrake_DisableDevelopmentMode();

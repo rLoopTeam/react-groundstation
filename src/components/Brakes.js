@@ -125,23 +125,23 @@ class Brakes extends Component {
         }
     }
 
-	brakePositionHandler(changeEvent) {
-        this.setState({
-            nextBrakePosition: parseInt(changeEvent.currentTarget.value, 10)
-        });
-    }
-
     accelStartStream_Brakes(e) {
         e.preventDefault();
         socket.emit('FlightControl:Stream_Brakes');
     }
 
-    updateBrakes() {
+	brakeRawPositionHandler(changeEvent) {
+        this.setState({
+            nextRawBrakePosition: parseInt(changeEvent.currentTarget.value, 10)
+        });
+    }
+
+    updateRawBrakes() {
         if(this.state.developmentMode){
             var shouldUpdateBrakePosition = confirm("WARNING: You are about to change the brake distance. This is a dangerous operation.");
             if (shouldUpdateBrakePosition){
                 socket.emit('FlightControl_Brake:MoveMotorRAW', {command: this.state.brakesSelection, 
-                                                                 position: this.state.nextBrakePosition});
+                                                                 position: this.state.nextRawBrakePosition});
             } else {
 
             }
@@ -149,6 +149,90 @@ class Brakes extends Component {
             alert("You need to be in development mode to change the brake position. This is a dangerous operation.")
         }
     }   
+
+    brakeIBeamPositionHandler(changeEvent) {
+        this.setState({
+            nextIBeamBrakePosition: parseFloat(changeEvent.currentTarget.value, 10)
+        });
+    }
+
+    updateIBeamBrakes() {
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to change the brake distance. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:MoveMotorIBeam', {position: this.state.nextIBeamBrakePosition});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to change the brake position. This is a dangerous operation.")
+        }
+    }   
+
+    brakesBeginInit(){
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to reinitialize the brakes. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:BeginInit', {});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to reinitialize the brakes. This is a dangerous operation.")
+        }
+    }
+
+    brakesSetZeroLeft(){
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to rezero the left brake. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:SetZeroLeftBrake', {});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to rezero the left brake. This is a dangerous operation.")
+        }
+    }
+
+    brakesSetZeroRight(){
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to rezero the right brake. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:SetZeroRightBrake', {});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to rezero the right brakes. This is a dangerous operation.")
+        }
+    }
+
+    brakesSetSpanLeft(){
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to respan the left brake. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:SetSpanLeftBrake', {});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to span the left brake. This is a dangerous operation.")
+        }
+    }
+
+    brakesSetSpanRight(){
+        if(this.state.developmentMode){
+            var shouldUpdateBrakePosition = confirm("WARNING: You are about to respan the right brake. This is a dangerous operation.");
+            if (shouldUpdateBrakePosition){
+                socket.emit('FlightControl_Brake:SetSpanRightBrake', {});
+            } else {
+
+            }
+        }else{
+            alert("You need to be in development mode to span the right brake. This is a dangerous operation.")
+        }
+    }
 
 	render() {
 		var _this = this;
@@ -215,8 +299,8 @@ class Brakes extends Component {
                         </div>
                     </div>
                     <div className={isbrakesDevModeActive() + " row"}>
-                        <NumericInput label="Brake position" 
-                                onChange={_this.brakePositionHandler.bind(_this)}/>
+                        <NumericInput label="Raw Brake Position" 
+                                onChange={_this.brakeRawPositionHandler.bind(_this)}/>
 
                         <label>Brake selection</label>
                         <div className="form-group">
@@ -237,7 +321,43 @@ class Brakes extends Component {
                             </div>
                         </div>
                         <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.updateBrakes.bind(_this)}>Update brake position</button>
+                            onClick={_this.updateRawBrakes.bind(_this)}>Update brake position</button>
+                    </div>
+                    <br />
+                    <div className={isbrakesDevModeActive() + " row"}>
+                        <NumericInput label="I-Beam Brake Position 2.5 - 22 (mm)" 
+                                onChange={_this.brakeIBeamPositionHandler.bind(_this)}/>
+
+                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={_this.updateIBeamBrakes.bind(_this)}>Update I-Beam brake position</button>
+                    </div>
+                    <br />
+                    <div className={isbrakesDevModeActive() + " row"}>
+                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={_this.brakesBeginInit.bind(_this)}>Reinitialize Brake Position</button>
+                    </div>
+                                        <br />
+                    <div className={isbrakesDevModeActive() + " row"}>
+                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={_this.brakesSetZeroLeft.bind(_this)}>Set Zero Left Brake</button>
+                    </div>
+
+                                        <br />
+                    <div className={isbrakesDevModeActive() + " row"}>
+                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={_this.brakesSetZeroRight.bind(_this)}>Set Zero Right Brake</button>
+                    </div>
+
+                                        <br />
+                    <div className={isbrakesDevModeActive() + " row"}>
+                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={_this.brakesSetSpanLeft.bind(_this)}>Set Span Left Brake</button>
+                    </div>
+
+                                        <br />
+                    <div className={isbrakesDevModeActive() + " row"}>
+                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                            onClick={_this.brakesSetSpanRight.bind(_this)}>Set Span Right Brake</button>
                     </div>
                 </div>
 
