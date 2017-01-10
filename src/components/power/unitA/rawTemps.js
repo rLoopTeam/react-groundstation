@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import config from '../../../../config/commConfig';
-import jquery from 'jquery';
 import DataStreamClient from '../../../StreamPipeClient.js';
 import io from 'socket.io-client';
 
