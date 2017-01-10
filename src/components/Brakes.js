@@ -124,6 +124,16 @@ class Brakes extends Component {
 	render() {
 		var _this = this;
         var buttonClasses = "btn btn-primary " + ((this.state.developmentMode) ? "" : "disabled");
+        function isbrakesDevModeActive(){
+            if(_this.state.developmentModeSelection === 1){
+                return '';
+            }
+            else
+            {
+                return 'hidden';
+            }
+        }
+
 	    return (
             <div className="row">
                 <div className="col-md-6">
@@ -157,7 +167,7 @@ class Brakes extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
+                    <div className={isbrakesDevModeActive() + " row"}>
                         <NumericInput label="Brake position" 
                                 onChange={_this.brakePositionHandler}/>
 
