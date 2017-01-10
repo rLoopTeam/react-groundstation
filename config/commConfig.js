@@ -6,6 +6,8 @@ module.exports = {
 	// Used for testing purposes
 	PodRxPort: 9100, // Pod details
 	PodRxHost:'127.0.0.1',
+	testDataGeneratorTargetHost:'127.0.0.1',
+	testDataGeneratorTargetPort:'9900',
 	RXServers:[ {'port':9900,'hostIP':'192.168.0.110','hostName':'Power Node A'},
 	{'port':9111,'hostIP':'192.168.0.111','hostName':'Power Node B'},
 	{'port':9900,'hostIP':'192.168.0.100','hostName':'Flight Control'},
