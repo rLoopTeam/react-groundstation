@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import StreamingPageManager from '../../../StreamingPageManager.js';
 import config from '../../../../config/commConfig';
 import jquery from 'jquery';
 import DataStreamClient from '../../../StreamPipeClient.js';
@@ -49,7 +48,6 @@ class PowerA_RawTemperatures extends Component {
 	
 	componentWillUnmount() {
 		this._isMounted = false;
-		this.state.StreamingPageManager.destroy();
 	}
 	
 	newPacketCallback(parameterData){
@@ -102,7 +100,8 @@ class PowerA_RawTemperatures extends Component {
 				}
 			}
 		}
-		this.setState(newState);
+		if(this._isMounted)
+			this.setState(newState);
 	}
 	
 	PowerAStreamingOff(data, e) {

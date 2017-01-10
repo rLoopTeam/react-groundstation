@@ -12,11 +12,12 @@ import Brakes from './components/Brakes';
 import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
-import PowerA_Voltage from './components/power/unitA/voltage';
+// import PowerA_Voltage from './components/power/unitA/voltage';
 import PowerA_Charger from './components/power/unitA/charger';
 import PowerA_RawTemperatures from './components/power/unitA/rawTemps';
 import './App.css';
 
+            // <Route path="powerAVoltage" component={PowerA_Voltage} />
 class App extends Component {
   render() {
     return (
@@ -24,7 +25,6 @@ class App extends Component {
           <Route path="/" component={MainLayout}>
             <IndexRoute component={Overview} />
             <Route path="dashboard" component={Overview} />
-            <Route path="powerAVoltage" component={PowerA_Voltage} />
 			<Route path="powerACharger" component={PowerA_Charger} />
 			<Route path="powerARawTemps" component={PowerA_RawTemperatures} />
             <Route path="stop" component={Stop} />
