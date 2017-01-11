@@ -26,6 +26,10 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(200.678,true)); //Raw 
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(500.0,true)); //Pitch Angle
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(600.0,true)); //Roll Angle
 
+
+/*
+* 0x3021 Temperature sensor
+*/
 var battTempSensors = [];
 var NumOfTempSensors = 300;
 battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(NumOfTempSensors,true)); //Number of temperature sensors
@@ -36,6 +40,10 @@ for(var i = 0;i<NumOfTempSensors;i++)
 	battTempSensors.push.apply(battTempSensors,bin.float32ToBytes(23+i/10,true));
 }
 
+
+/*
+* 0x3203 Accelerometer location
+*/
 var battTempLocations = [];;
 battTempLocations.push.apply(battTempLocations,bin.uint16ToBytes(NumOfTempSensors,true)); //Number of temperature sensors
 battTempLocations.push.apply(battTempLocations,bin.uint16ToBytes(0,true)); //Spare slot
