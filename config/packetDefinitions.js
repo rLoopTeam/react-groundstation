@@ -166,6 +166,9 @@ module.exports = {
 								{'Name':'Linear Velocity 2', 'type':'int32', 'units':'', 'size': 4},
 								{'Name':'Linear Acceleration 2', 'type':'int32', 'units':'', 'size': 4},
 								{'Name':'Current Position 2', 'type':'int32', 'units':'', 'size': 4},
+
+								{'Name':'State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},								
 							]
 			},
 			{

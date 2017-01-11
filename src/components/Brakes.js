@@ -32,7 +32,7 @@ class Brakes extends Component {
 		}
 
         this.labels = [
-            {label: "Left Fault Flags", value: "Brake Fault flags 1"},
+            {label: "Left Fault Flags", value: "Brake Fault flags 1", hex:"true"},
             {label: "Left I-Beam", value: "Brake I Beam mm 1"},
             {label: "Left Lead screw target", value: "Brake Lead screw mm 1"},
             {label: "Left Lead screw target", value: "Brake Lead screw um 1"},
@@ -53,7 +53,7 @@ class Brakes extends Component {
         ]
 
         this.labels2 = [
-            {label: "Right Fault Flags", value: "Brake Fault flags 2"},
+            {label: "Right Fault Flags", value: "Brake Fault flags 2", hex:"true"},
             {label: "Right I-Beam", value: "Brake I Beam mm 2"},
             {label: "Right Lead screw target", value: "Brake Lead screw mm 2"},
             {label: "Right Lead screw target", value: "Brake Lead screw um 2"},
@@ -70,7 +70,9 @@ class Brakes extends Component {
             {label: "Right Brake Position", value: "Brake Position mm 2"},
             {label: "Right Linear Velocity", value: "Brake Linear Velocity 2"},
             {label: "Right Linear Acceleration", value: "Brake Linear Acceleration 2"},
-            {label: "Right Current Screw Position", value: "Brake Current Position 2"}
+            {label: "Right Current Screw Position", value: "Brake Current Position 2"},
+            {label: "State", value:"Brake State", hex:"true"},
+            {label: "Calibration State", value:"Brake Calibration State", hex:"true"},
         ]
 	}
 
@@ -247,120 +249,126 @@ class Brakes extends Component {
             }
         }
 
+        let borderStyle = {border: '2px solid black',borderRadius: '10px',padding: '10px', width:'50%' };
+
 	    return (
-            <div className="row">
-
+            <div>
                 <button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stream Brakes Data</button>
+                <div className="row">
 
-                <div className="col-md-6">
-                {
-                    this.labels.map(function(item, index){
-                        return (
-                            <div className="row" key={"brakes" + index}>
-                                <label>{item.label}</label>
-                                <GenericParameterLabel 
-                                    StreamingPageManager={_this.state.streamManager} 
-                                    parameter={item.value}/>
-                            </div>
-                        )
-                    }, this)
-                }
-                </div>
-
-                <div className="col-md-6">
-                {
-                    this.labels2.map(function(item, index){
-                        return (
-                            <div className="row" key={"brakes" + index}>
-                                <label>{item.label}</label>
-                                <GenericParameterLabel 
-                                    StreamingPageManager={_this.state.streamManager} 
-                                    parameter={item.value}/>
-                            </div>
-                        )
-                    }, this)
-                }
-                </div>
-
-                <div className="col-md-6">
-                    <div className="row">
-                        <div className="form-group">
-                            <label>Development mode</label>
-                            <div className="radio">
-                                <label htmlFor="dev-mode-off"><input type="radio" id="dev-mode-off" name="brakesDevMode" value="0" 
-                                        onChange={_this.brakesDevModeHandler.bind(_this)} 
-                                        checked={_this.state.developmentModeSelection === 0}/>OFF</label> 
-                            </div> 
-                            <div className="radio">
-                                <label htmlFor="dev-mode-on"><input type="radio" id="dev-mode-on" name="brakesDevMode" value="1" 
-                                        onChange={_this.brakesDevModeHandler.bind(_this)} 
-                                        checked={_this.state.developmentModeSelection === 1}/>ON</label>
-                            </div>
-                        </div>
+                    <div className="col-lg-4">
+                    {
+                        this.labels.map(function(item, index){
+                            return (
+                                <div className="row" key={"brakes" + index}>
+                                    <label>{item.label}</label>
+                                    <GenericParameterLabel 
+                                        StreamingPageManager={_this.state.streamManager} 
+                                        parameter={item.value} hex={item.hex}/>
+                                </div>
+                            )
+                        }, this)
+                    }
                     </div>
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <NumericInput label="Raw Brake Position" 
-                                onChange={_this.brakeRawPositionHandler.bind(_this)}/>
 
-                        <label>Brake selection</label>
-                        <div className="form-group">
-                            <div className="radio">
-                                <label htmlFor="brake-selection-0"><input type="radio" id="brake-selection-0" name="brakesSelection" value="0" 
-                                        onChange={_this.brakesSelectionHandler.bind(_this)} 
-                                        checked={_this.state.brakesSelection === 0} />Left</label>
-                            </div> 
-                            <div className="radio">
-                                <label htmlFor="brake-selection-1"><input type="radio" id="brake-selection-1" name="brakesSelection" value="1" 
-                                        onChange={_this.brakesSelectionHandler.bind(_this)} 
-                                        checked={_this.state.brakesSelection === 1}/>Right</label>
-                            </div>
-                            <div className="radio">
-                                <label htmlFor="brake-selection-2"><input type="radio" id="brake-selection-2" name="brakesSelection" value="2" 
-                                    onChange={_this.brakesSelectionHandler.bind(_this)} 
-                                    checked={_this.state.brakesSelection === 2}/>Both</label>
+                    <div className="col-lg-4">
+                    {
+                        this.labels2.map(function(item, index){
+                            return (
+                                <div className="row" key={"brakes" + index}>
+                                    <label>{item.label}</label>
+                                    <GenericParameterLabel 
+                                        StreamingPageManager={_this.state.streamManager} 
+                                        parameter={item.value} hex={item.hex}/>
+                                </div>
+                            )
+                        }, this)
+                    }
+                    </div>
+
+                    <div className="col-lg-4">
+                        <div className="row">
+                            <div className="form-group">
+                                <label>Development mode</label>
+                                <div className="radio">
+                                    <label htmlFor="dev-mode-off"><input type="radio" id="dev-mode-off" name="brakesDevMode" value="0" 
+                                            onChange={_this.brakesDevModeHandler.bind(_this)} 
+                                            checked={_this.state.developmentModeSelection === 0}/>OFF</label> 
+                                </div> 
+                                <div className="radio">
+                                    <label htmlFor="dev-mode-on"><input type="radio" id="dev-mode-on" name="brakesDevMode" value="1" 
+                                            onChange={_this.brakesDevModeHandler.bind(_this)} 
+                                            checked={_this.state.developmentModeSelection === 1}/>ON</label>
+                                </div>
                             </div>
                         </div>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.updateRawBrakes.bind(_this)}>Update brake position</button>
-                    </div>
-                    <br />
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <NumericInput label="I-Beam Brake Position 2.5 - 22 (mm)" 
-                                onChange={_this.brakeIBeamPositionHandler.bind(_this)}/>
+                        <div className={isbrakesDevModeActive() + " row"} style={borderStyle}>
+                            <div style={{width: '50%'}}>
+                                <NumericInput label="Raw Brake Position" 
+                                    onChange={_this.brakeRawPositionHandler.bind(_this)}/>
+                            </div>            
 
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.updateIBeamBrakes.bind(_this)}>Update I-Beam brake position</button>
-                    </div>
-                    <br />
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.brakesBeginInit.bind(_this)}>Reinitialize Brake Position</button>
-                    </div>
-                                        <br />
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.brakesSetZeroLeft.bind(_this)}>Set Zero Left Brake</button>
-                    </div>
+                            <label>Brake selection</label>
+                            <div className="form-group">
+                                <div className="radio">
+                                    <label htmlFor="brake-selection-0"><input type="radio" id="brake-selection-0" name="brakesSelection" value="0" 
+                                            onChange={_this.brakesSelectionHandler.bind(_this)} 
+                                            checked={_this.state.brakesSelection === 0} />Left</label>
+                                </div> 
+                                <div className="radio">
+                                    <label htmlFor="brake-selection-1"><input type="radio" id="brake-selection-1" name="brakesSelection" value="1" 
+                                            onChange={_this.brakesSelectionHandler.bind(_this)} 
+                                            checked={_this.state.brakesSelection === 1}/>Right</label>
+                                </div>
+                                <div className="radio">
+                                    <label htmlFor="brake-selection-2"><input type="radio" id="brake-selection-2" name="brakesSelection" value="2" 
+                                        onChange={_this.brakesSelectionHandler.bind(_this)} 
+                                        checked={_this.state.brakesSelection === 2}/>Both</label>
+                                </div>
+                            </div>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.updateRawBrakes.bind(_this)}>Update brake position</button>
+                        </div>
+                        <br />
+                        <div className={isbrakesDevModeActive() + " row"} style={borderStyle}>
+                            <div style={{marginBottom:'10px'}}>
+                                <NumericInput label="I-Beam Brake Position 2.5 - 22 (mm)"
+                                    onChange={_this.brakeIBeamPositionHandler.bind(_this)}/>
+                                
+                            </div>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.updateIBeamBrakes.bind(_this)}>Update I-Beam brake position</button>
+                        </div>
+                        <br />
+                        <div className={isbrakesDevModeActive() + " row"}>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.brakesBeginInit.bind(_this)}>Reinitialize Brake Position</button>
+                        </div>
+                                            <br />
+                        <div className={isbrakesDevModeActive() + " row"}>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.brakesSetZeroLeft.bind(_this)}>Set Zero Left Brake</button>
+                        </div>
 
-                                        <br />
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.brakesSetZeroRight.bind(_this)}>Set Zero Right Brake</button>
-                    </div>
+                                            <br />
+                        <div className={isbrakesDevModeActive() + " row"}>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.brakesSetZeroRight.bind(_this)}>Set Zero Right Brake</button>
+                        </div>
 
-                                        <br />
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.brakesSetSpanLeft.bind(_this)}>Set Span Left Brake</button>
-                    </div>
+                                            <br />
+                        <div className={isbrakesDevModeActive() + " row"}>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.brakesSetSpanLeft.bind(_this)}>Set Span Left Brake</button>
+                        </div>
 
-                                        <br />
-                    <div className={isbrakesDevModeActive() + " row"}>
-                        <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
-                            onClick={_this.brakesSetSpanRight.bind(_this)}>Set Span Right Brake</button>
+                                            <br />
+                        <div className={isbrakesDevModeActive() + " row"}>
+                            <button disabled={(_this.state.developmentMode)?"":"disabled"} className={buttonClasses}
+                                onClick={_this.brakesSetSpanRight.bind(_this)}>Set Span Right Brake</button>
+                        </div>
                     </div>
                 </div>
-
             </div>
 	    );
 	}

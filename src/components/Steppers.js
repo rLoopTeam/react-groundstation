@@ -89,8 +89,6 @@ class Steppers extends Component {
                      if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:1,value:this.state.nextBrakePosition});} 
                      break;
         }
-        socket.emit('FlightControl_Brake:MoveMotorRAW', {command: this.state.brakesSelection, 
-                                                         position: this.state.nextBrakePosition});
     }   
 
 	render() {
