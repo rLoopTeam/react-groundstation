@@ -39,7 +39,7 @@ class RealTimeDataStore {
 	*/
 	insertDataPacket(newDataPacket)
 	{
-		this.hasNewData.emit("new rtData");
+		this.hasNewData.emit("new_rtData");
 
 		for(var x = 0;x<newDataPacket.parameters.length;x++)
 		{
@@ -74,7 +74,6 @@ class RealTimeDataStore {
 		var ret = {'Name':parameterName, 'Value':'?', 'IsStale':true,
 					'Units':'?', 'PacketName':'?'};
 					
-		//Try to update an existing entry
 		for(var y = 0, len = this.rtDataStore.length;y<len;y++)
 		{
 			if(parameterName === this.rtDataStore[y].Name)

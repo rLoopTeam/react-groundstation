@@ -1,5 +1,6 @@
 const expect = require("chai").expect;
 const bin = require("../server/udp/binary");
+
 /*
 * Test for the CRC checksum module
 */

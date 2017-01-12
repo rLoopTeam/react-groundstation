@@ -17,6 +17,7 @@ class MainLayout extends Component {
 					{name: "BMS 1", location: "/powerABMS1"},
 					{name: "BMS 2", location: "/powerABMS2"},
 					{name: "BMS 3", location: "/powerABMS3"},
+					{name: "Raw Temperatures",location:"/powerARawTemps"}
 				]
 			},
 			{
@@ -26,6 +27,7 @@ class MainLayout extends Component {
 					{name: "BMS 1", location: "/powerBBMS1"},
 					{name: "BMS 2", location: "/powerBBMS2"},
 					{name: "BMS 3", location: "/powerBBMS3"},
+					{name: "Raw Temperatures",location:"/powerARawTemps"}
 				]
 			},
 			{
@@ -40,8 +42,11 @@ class MainLayout extends Component {
 			{
 				name: "Flight Control", location: "/flightControl", children: [
 					{name: "Contrast Sensors", location: "/flightcontrol_contrast"},
-					{name: "Accelerometers", location: "/flightcontrol_accel"},
+					{name: "Full Accel Data", location: "/flightcontrol_fullaccel"},
+					{name: "Full Cal Data", location: "/flightcontrol_calaccel"},
+					{name: "Distance Sensors", location: "/FlightControl_DistanceSensors"},
 					{name: "Brakes", location: "/brakes"},
+					{name: "Steppers", location: "/steppers"},
 				]
 			},
 			{

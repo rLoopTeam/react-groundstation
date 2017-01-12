@@ -16,6 +16,44 @@ module.exports = {
 								{'Name':'f', 'type':'float64', 'units':'millis since Unix Epoch', 'size': 8}
 							]
 			},
+			
+			{
+				"Name":"Power A Current Temps",
+				"ParameterPrefix":"Power A Temps ",
+				"PacketType":0x3201,
+				"Parameters":[
+								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
+								
+								{'Name':'Temperature', 'type':'float32', 'units':'C', 'size': 4, 'beginLoop':true, 'endLoop':true}
+							]
+			},
+			
+			{
+				"Name":"Power A Current Temps Locations",
+				"ParameterPrefix":"Power A Temps Loc ",
+				"PacketType":0x3203,
+				"Parameters":[
+								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
+								
+								{'Name':'User Index', 'type':'uint16', 'units':'Hex', 'size': 2, 'beginLoop':true},
+								{'Name':'Resolution', 'type':'uint8', 'units':'bits', 'size': 1},
+								{'Name':'Bus Index', 'type':'uint8', 'units':'', 'size': 1, 'endLoop':true}
+							]
+			},
+
+			{
+				"Name":"Power A ROM ID",
+				"ParameterPrefix":"Power A ROM ",
+				"PacketType":0x3205,
+				"Parameters":[
+								{'Name':'Index', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Hi', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Lo', 'type':'uint32', 'units':'', 'size': 4}
+							]
+			},
+			
 			{
 				"Name":"Accel Cal Full",
 				"ParameterPrefix":"Accel ",
@@ -80,7 +118,156 @@ module.exports = {
 								{'Name':'Right MLP Scaled', 'type':'int16', 'units':'mm', 'size': 2},
 							]
 			},
-			
+			{
+				"Name":"Brake data",
+				"ParameterPrefix":"Brake ",
+				"PacketType":0x1402, 
+				"Parameters":[
+								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw mm 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw um 1', 'type':'uint32', 'units':'um', 'size': 4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
+
+								{'Name':'Limit Extend 1', 'type':'uint8','units':'','size':1},
+								{'Name':'Limit Retract 1', 'type':'uint8','units':'','size':1},
+								{'Name':'Limit Extend Edge 1', 'type':'uint8','units':'','size':1},
+								{'Name':'Limit Retract Edge 1', 'type':'uint8','units':'','size':1},
+								{'Name':'SW Error 1', 'type':'uint8','units':'','size':1},
+
+								{'Name':'ADC Sample 1', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ADC Zero 1', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ADC Minus Zero 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'System Span 1', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Position mm 1', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Linear Velocity 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Linear Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Current Position 1', 'type':'int32', 'units':'', 'size': 4},
+
+								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'I Beam mm 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw mm 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw um 2', 'type':'uint32', 'units':'um', 'size': 4},
+								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
+
+								{'Name':'Limit Extend 2', 'type':'uint8','units':'','size':1},
+								{'Name':'Limit Retract 2', 'type':'uint8','units':'','size':1},
+								{'Name':'Limit Extend Edge 2', 'type':'uint8','units':'','size':1},
+								{'Name':'Limit Retract Edge 2', 'type':'uint8','units':'','size':1},
+								{'Name':'SW Error 2', 'type':'uint8','units':'','size':1},
+
+								{'Name':'ADC Sample 2', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ADC Zero 2', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ADC Minus Zero 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'System Span 2', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Position mm 2', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Linear Velocity 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Linear Acceleration 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Current Position 2', 'type':'int32', 'units':'', 'size': 4},
+
+								{'Name':'State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},								
+							]
+			},
+			{
+				"Name":"Motor parameters",
+				"ParameterPrefix":"Motor ",
+				"PacketType":0x1406,
+				"Parameters":[
+								{'Name':'Microstep Resolution 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Microns per Revolution 1', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Steps per Revolution 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Angular Velocity 1', 'type':'int32', 'units':'', 'size': 4},
+
+								{'Name':'Microstep Resolution 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Acceleration 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Microns per Revolution 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Steps per Revolution 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Max Angular Velocity 2', 'type':'int32', 'units':'', 'size': 4},
+							]
+			},
+			{
+				"Name": "Laser Opto Sensor",
+				"ParameterPrefix": "LaserOpto ",
+				"PacketType": 0x1101,
+				"Parameters":[
+								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4}, //top-level fault flags
+								{'Name':'Spare', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 1', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 1', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 2', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 2', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 2', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 2', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 3', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 3', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 3', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 3', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 3', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 3', 'type':'uint32', 'units':'', 'size':4},
+
+
+								{'Name':'Fault flags 4', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 4', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 4', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 4', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 4', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 4', 'type':'uint32', 'units':'', 'size':4},
+				
+								{'Name':'Fault flags 5', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 5', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 5', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 5', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 5', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 5', 'type':'uint32', 'units':'', 'size':4},
+				
+								{'Name':'Fault flags 6', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 6', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 6', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 6', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 6', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 6', 'type':'uint32', 'units':'', 'size':4},
+				
+								{'Name':'Fault flags 7', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 7', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 7', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 7', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 7', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 7', 'type':'uint32', 'units':'', 'size':4},
+
+								{'Name':'Fault flags 8', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Laser error packet count 8', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'First byte wrong 8', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Raw distance 8', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value 8', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 8', 'type':'uint32', 'units':'', 'size':4},
+				]
+			},
+			{
+				"Name": "Forward Laser Distance Sensor",
+				"ParameterPrefix": "ForwardLaser ",
+				"PacketType": 0x1201,
+				"Parameters":[
+								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Spare 0', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size':4},
+								{'Name':'RAW value', 'type':'float32', 'units':'', 'size':4},
+								{'Name':'Filtered value', 'type':'float32', 'units':'mm', 'size':4},
+								{'Name':'Spare 3', 'type':'uint32', 'units':'', 'size':4},
+				]
+			},
 			{
 				"Name":"Flight Control - Laser Contrast 0",
 				"ParameterPrefix":"LaserContrast0 ",

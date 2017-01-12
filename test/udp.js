@@ -1,8 +1,13 @@
 const expect = require("chai").expect;
 const udp = require("../server/udp/udpParser");
+
+const pParser = require("../server/udp/packetParser.js")
+const winston = require('winston')
 /*
 * Test for the CRC checksum module
 */
+
+
 describe("UDP tests: ", function() {
 	describe("parseMessageHeader", function() {
 		it("should parse header of udp message and output the correct MAXIMUM value for each type of Uint: [u32 Sequence][u16 PacketType][u16 Length]", function() {
@@ -29,7 +34,7 @@ describe("UDP tests: ", function() {
 			expect(start.length).to.equal(0);
 		})
 	})
-	
+	/*
 	describe("parseAccelerometerData", function() {
 		it("should parse the raw udp, and detect the type of data contained and parse it. In this case it is ACCELOROMETER data", function() {
 			var raw = [
@@ -53,6 +58,52 @@ describe("UDP tests: ", function() {
 			]
 			// Parse raw udp data
 			var parsedUdpMessage = udp.parseUdpMessage(raw);
+
+			// We expect it to be accelerometer data
+			expect(parsedUdpMessage.data.accelerometer0.flags).to.equal(4294967295)
+			expect(parsedUdpMessage.data.accelerometer0.x).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer0.y).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer0.z).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer1.flags).to.equal(4294967295)
+			expect(parsedUdpMessage.data.accelerometer1.x).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer1.y).to.equal(65535)
+			expect(parsedUdpMessage.data.accelerometer1.z).to.equal(65535)
+		})
+	})
+	*/
+		describe("parseAccelerometerDataPacket", function() {
+		it("should parse the raw udp, and detect the type of data contained and parse it. In this case it is ACCELOROMETER data", function() {
+			var raw = [
+				// header
+				0xFF,0xFF,0xFF,0xFF, //32 bit sequence
+				0x00,0x00, //16 bit type
+				0xFF,0xFF, //16 bit length
+
+				// data
+				0xFF,0xFF,0xFF,0xFF, // accelrometer 0 flags
+				0xFF,0xFF, // acceleration X
+				0xFF,0xFF, // acceleration Y
+				0xFF,0xFF, // acceleration Z
+				0xFF,0xFF,0xFF,0xFF, // accelrometer 1 flags
+				0xFF,0xFF, // acceleration X
+				0xFF,0xFF, // acceleration Y
+				0xFF,0xFF, // acceleration Z
+
+				// crc
+				0xFF, 0xFF
+			]
+
+			var logger = new (winston.Logger)({
+			    transports: [
+			        new (winston.transports.File)({ filename: './logs/winston_csv.log' }),
+			    ]
+			});
+			logger.level = 'debug';
+
+			parser = new pParser(logger, console.log)
+
+			// Parse raw udp data
+			var parsedUdpMessage = parser.gotNewPacket(raw);
 
 			// We expect it to be accelerometer data
 			expect(parsedUdpMessage.data.accelerometer0.flags).to.equal(4294967295)

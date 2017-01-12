@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config)
+module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner)
 {
 	var updateClientWithDatalogs = true;
 
@@ -75,6 +75,59 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			},
 
+			'FlightControl_Brake:MoveMotorIBeam': (data) => {
+
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+
+				podCommands.FCUBrake_MoveMotorIBeam(data);
+
+			},
+
+
+			'FlightControl_Brake:BeginInit': (data) => {
+
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+
+				podCommands.FCUBrake_BeginInit(data);
+
+			},
+
+			'FlightControl_Brake:SetZeroLeftBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetZeroLeftBrake();
+			},
+
+			'FlightControl_Brake:SetZeroRightBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetZeroRightBrake();
+			},
+
+			'FlightControl_Brake:SetSpanLeftBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetSpanLeftBrake();
+			},
+
+			'FlightControl_Brake:SetSpanRightBrake': () => {
+				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+				podCommands.FCUBrake_MLPSetSpanRightBrake();
+			},
+
+			'FlightControl_Stepper:SetMaxAngularAccel': (data) => {
+				podCommands.FCUStepper_SetMaxAngularAccel(data);
+			},
+
+			'FlightControl_Stepper:SetPicoMetersPerRev': (data) => {
+				podCommands.FCUStepper_SetPicoMetersPerRev(data);
+			},
+
+			'FlightControl_Stepper:SetMicroStepReslution': (data) => {
+				podCommands.FCUStepper_SetMicroStepResolution(data);
+			},
+
+			'FlightControl_Stepper:SetMaxRPM': (data) => {
+				podCommands.FCUStepper_SetMaxRPM(data);
+			},
+
 			'FlightControl_Brake:DisableDevelopmentMode': () => {
 
 				podCommands.FCUBrake_DisableDevelopmentMode();
@@ -111,7 +164,12 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'FlightControl_Accel:AutoZero': (data) => {
 				podCommands.FCUAccel_AutoZero(data)
 			},
-
+			'FlightControl:Stream_Brakes': (data) => {
+				podCommands.FCUStreamingControlStart_Brakes();
+			},
+			'FlightControl:Stream_MotorsRaw': (data) => {
+				podCommands.FCUStreamingControlStart_MotorsRaw();
+			},
 
 			//Contrast sensor streaming control
 			'FlightControl_Contrast:StartStream': () => {
@@ -120,6 +178,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'FlightControl_Contrast:StopStrean': () => {
 				podCommands.FCUContrast_StopStream()
 			},
+			
+			'PowerA:ChargeRelayOn':(data) => {
+				podCommands.PowerAChargeRelayOn(data.status)
 
 		    //Hover Engines
             'FlightControl_Hover:Enable': () => {
@@ -137,12 +198,11 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
             'FlightControl_Hover:EnableHEX': (data) => {
                 podCommands.FCUHover_EnableHEX(data.hexName)
 			},
-            'FlightControl_Hover:DisableHEX': (data) => {
-                podCommands.FCUHover_DisableHEX(data.hexName)
-			},
+			
             'FlightControl_Hover:SetHEXSpeed': (data) => {
                 podCommands.FCUHover_SetHEXSpeed(data.hewName, data.hexSpeed)
 			},
+			
             'FlightControl_Hover:StartCooling': (data) => {
                 podCommands.FCUHover_StartCooling(data.coolingName)
 			},
@@ -153,11 +213,20 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
                 podCommands.FCUHover_OpenSolenoid(data.solenoidName)
 			},
 
-			'power:streamingControl': (data) => {
+			'PowerA:StreamingOff':(data) => {
+				podCommands.PowerAStreamingOff();
+			},
+	
+			'PowerA:StreamCurrentTemps':(data) => {
+				podCommands.PowerAStreamCurrentTemps();
+			},
+	
+			'PowerA:StreamTempLocations':(data) => {
+				podCommands.PowerAStreamTempLocations();
+			},
 
-				//data.status == on/off
-				podCommands.PowerStreamingControl(data.status)
-
+			'PowerA:TempSensorROMIDScan':(data) => {
+				romIDScanner.BeginScanA(data.numOfSensors);
 			},
 
 			'AllLogging:Start': function(data){
