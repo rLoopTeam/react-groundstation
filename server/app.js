@@ -37,6 +37,10 @@ if (isDeveloping) {
 
   // serve static assets normally
   app.use(express.static(__dirname + '/public'))
+  
+  // serve static bootstrap file
+  app.use('/jquery', express.static(path.join(__dirname, '..', '/node_modules/jquery/dist')))
+  app.use('/bootstrap', express.static(path.join(__dirname, '..', '/node_modules/bootstrap/dist')))
 
   //setup middleware
   app.use(middleware);
