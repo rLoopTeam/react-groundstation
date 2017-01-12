@@ -7,10 +7,10 @@ class Stop extends Component {
 		super(props)
 		this.streamingControl = [
 			{
-				selected: true, value: 'Off'
+				selected: true, value: false, title: 'Off'
 			},
 			{
-				selected: false, value: 'On'
+				selected: false, value: true, title: 'On'
 			}
 		]
 	}
@@ -29,9 +29,9 @@ class Stop extends Component {
 		socket.emit('power:Pod');
 	}
 
-	updatestreamingControl(e) {
-		socket.emit('power:streamingControl', {status: e.target.value})
-	}
+	// updatestreamingControl(e) {
+	// 	socket.emit('power:PodStop_Power__streamingControl', {status: e.target.value})
+	// }
 
 	render() {
 
@@ -45,6 +45,7 @@ class Stop extends Component {
 							<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
 						</div>
 					</div>
+					{/*
 					<div className="form-group margin-top-20px">
 						<label htmlFor="streamingControl">Streaming Control</label>
 						<select id="streamingControl" name="streamingControl" onChange={this.updatestreamingControl.bind(this)} className="form-control">
@@ -53,6 +54,7 @@ class Stop extends Component {
 							})}
 						</select>
 					</div>
+					*/}
 				</div>
 	    );
 	}

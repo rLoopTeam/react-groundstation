@@ -1,5 +1,6 @@
 const makeSafeUDPPackage = require('./makeSafeUDPPackage');
 const bin = require('./binary');
+var chalk = require('chalk');//using this to show messages in color
 
 module.exports = function(udp){
     
@@ -24,6 +25,20 @@ module.exports = function(udp){
             //extreamly dangerous and will damage the magnets
 
             _brakeDevelopmentConfirmation = value;
+
+        }
+
+        function FCUPod_Off(){
+
+            // udp.tx.transmitPodCommand('Flight Control', 0x0001, 0x1234ABCD, 0x0, 0x0, 0x0); 
+
+            console.log(chalk.red('we need to add this command. we need the packet type'));
+            
+        }
+
+        function FCUPod_Stop(){
+
+            udp.tx.transmitPodCommand('Flight Control', 0x0001, 0x1234ABCD, 0x0, 0x0, 0x0); 
 
         }
 
@@ -186,7 +201,6 @@ module.exports = function(udp){
 
         }
 
-
         function FCUStreamingControlStop_Accel() {
 
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0); 
@@ -245,17 +259,6 @@ module.exports = function(udp){
         function PowerBRequestRomID(index){
             udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
         }
-
-
-
-
-
-
-
-
-
-				
-
 
 
         //Hover Engines
@@ -320,19 +323,11 @@ module.exports = function(udp){
         
 
     return{
-		/*
-        PodOff: () => {
-            udp.tx.sendMessage("PodOff")
-        },
-        PodStop: () => {
-            udp.tx.sendMessage("PodStop")
-        },
-        PowerStreamingControl: (command) => {
-            udp.tx.sendMessage(command)
-        },*/
-
         LGU_PositionChange,
         LGU_SpeedChange,
+
+        FCUPod_Off,
+        FCUPod_Stop,
 
         setBrakeDevelopmentMode,
         FCUBrake_DisableDevelopmentMode,

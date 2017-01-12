@@ -242,12 +242,6 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			},
 
-			'stop:Pod': (data) => {
-
-				podCommands.PodStop();
-
-			},
-
 			'client event': (data) => {
 
 				socket.broadcast.emit('update label', data);
@@ -290,7 +284,13 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			'power:Pod': () => {
 
-				podCommands.PodOff()
+				podCommands.FCUPod_Off();
+
+			},
+
+			'stop:Pod': () => {
+
+				podCommands.FCUPod_Stop();
 
 			},
 
