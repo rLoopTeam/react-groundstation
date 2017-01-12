@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterInput from './GenericParameterInput.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-// import FaultFlagDisplay from './FaultFlagDisplay.js';
+import FaultFlagDisplay from './FaultFlagDisplay.js';
 
 class FlightControl_DistanceSensors extends Component {
 	constructor(props) {
@@ -53,6 +53,9 @@ class FlightControl_DistanceSensors extends Component {
 				<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
 				<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
 				<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Raw' hideUnits='true' readOnly='true'/>
+				<FaultFlagDisplay 	StreamingPageManager={this.state.streamManager} 
+									label="Accel 1 fault flags"
+									parameter='Accel 1 Flags'></FaultFlagDisplay>
 			</div>
 	    );
 	}
