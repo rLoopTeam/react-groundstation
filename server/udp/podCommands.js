@@ -217,7 +217,47 @@ module.exports = function(udp){
         function FCUContrast_StopStream() {
             udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00, 0x00000000, 0x0, 0x0); 
         }
+		
+		function PowerAStreamingOff(){
+			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x00, 0x00000000, 0x0, 0x0); 
+		}
+
+        function PowerAChargeRelayOff() {
+            udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x00, 0x00000000, 0x0, 0x0); 
+        }
+
+        function PowerAChargeRelayOn() {
+            udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x01, 0x00000000, 0x0, 0x0); 
+        }
+
+		function PowerAStreamCurrentTemps(){
+			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3201, 0x0, 0x0); 
+		}
+		
+		function PowerAStreamTempLocations(){
+			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
+		}
+
+        function PowerARequestRomID(index){
+            udp.tx.transmitPodCommand('Power Node A',0x3204, index,0x0,0x0,0x0);
+        }
+
+        function PowerBRequestRomID(index){
+            udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
+        }
+
+
+
+
+
+
+
+
+
 				
+
+
+
         //Hover Engines
         function FCUHover_Enable() {
             udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
@@ -250,29 +290,7 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
         }
 
-        function PowerAChargeRelayOn() {
-            udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x01, 0x00000000, 0x0, 0x0); 
-        }
-		
-		function PowerAStreamingOff(){
-			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x00, 0x00000000, 0x0, 0x0); 
-		}
 
-		function PowerAStreamCurrentTemps(){
-			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3201, 0x0, 0x0); 
-		}
-		
-		function PowerAStreamTempLocations(){
-			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
-		}
-
-        function PowerARequestRomID(index){
-            udp.tx.transmitPodCommand('Power Node A',0x3204, index,0x0,0x0,0x0);
-        }
-
-        function PowerBRequestRomID(index){
-            udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
-        }
         
         function XilinxSim_Start() {
             udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
