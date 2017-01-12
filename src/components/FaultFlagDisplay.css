@@ -6,6 +6,9 @@
 .flag-wrapper th {
     padding: 1px 5px;
 }
+.nominal-row {
+	background-color: #3ce23c;
+}
 .warning-row {
 	background-color: #f9ce80;
 }
@@ -13,6 +16,13 @@
 	background-color: #ff7f44;
 }
 .critical-row {
-	background-color: #ff0000;
-	color: white;
+	animation-name: critical-flash;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes critical-flash {
+    0%   {background-color: #d03535; color: white;}
+    50%  {background-color: #ffffff; color: black;}
+    100% {background-color: #d03535; color: white;}
 }

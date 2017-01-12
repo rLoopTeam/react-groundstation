@@ -9,7 +9,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 		this.definition = faultFlagDefinitions[this.props.parameter]
 		if (!this.definition)
 			throw new Error("Fault flag definition not found in packetDefinitions.js")
-
+		console.log(this.definition)
 		this.preFilledArray = Array(this.props.bits).fill(0);
 		this.template = this.definition.template;
 
@@ -26,15 +26,27 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 	*/
 	render() {
 		const self = this;
+		
+		// get value as bits
 		const value = this.state.value.toString(2);
-		const renderedFaultFlags = this.preFilledArray.map(renderRow);
+
+		var renderedFaultFlags;
+		if (value.indexOf("1") > -1) {
+			renderedFaultFlags = this.preFilledArray.map(renderRow);
+		} else {
+			renderedFaultFlags = (<tr className="nominal-row"><td></td><td>Status nominal</td></tr>);
+		}
+
+		/*
+		* Callback
+		*/
 		function renderRow(_, i) {
 			var result;
 			if (self.template[i] != undefined && self.template[i].severity) {
 				const isTriggered = (value[i] == 1) ? true : false;			
 				const severityClass = (isTriggered) ? self.severityClassMap[self.template[i].severity] : "";
 				if (isTriggered) {
-					result = (<tr key={"fault_flag_" + i} className={severityClass}><td>{i}</td><td>{value[i]},{self.template[i].name}</td></tr>);
+					result = (<tr key={"fault_flag_" + i} className={severityClass}><td>{i}</td><td>{self.template[i].name}</td></tr>);
 				}
 			}
 
@@ -47,7 +59,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 					<table className="table-bordered">
 						<thead>
 							<tr>
-						   		<th></th>
+						   		<th>Index</th>
 						   		<th>{this.props.label}</th>
 						 	</tr>
 						</thead>
