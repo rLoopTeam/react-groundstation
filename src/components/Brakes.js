@@ -256,7 +256,7 @@ class Brakes extends Component {
                 <button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stream Brakes Data</button>
                 <div className="row">
 
-                    <div className="col-lg-4">
+                    <div className="col-sm-4">
                     {
                         this.labels.map(function(item, index){
                             return (
@@ -271,7 +271,7 @@ class Brakes extends Component {
                     }
                     </div>
 
-                    <div className="col-lg-4">
+                    <div className="col-sm-4">
                     {
                         this.labels2.map(function(item, index){
                             return (
@@ -286,7 +286,7 @@ class Brakes extends Component {
                     }
                     </div>
 
-                    <div className="col-lg-4">
+                    <div className="col-sm-4">
                         <div className="row">
                             <div className="form-group">
                                 <label>Development mode</label>
