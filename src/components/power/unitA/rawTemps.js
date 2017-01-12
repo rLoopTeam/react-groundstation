@@ -37,7 +37,7 @@ class PowerA_RawTemperatures extends Component {
 		}
 	
 	requestParameterFromServer(parameter){
-		console.log("requesting: "+parameter);
+		// console.log("requesting: "+parameter);
 		this.DataStreamClient.RequestParameter(parameter);
 	}
 	
@@ -53,8 +53,8 @@ class PowerA_RawTemperatures extends Component {
 	newPacketCallback(parameterData){
 		var field;
 		var newState = {};
-		console.log("here");
-		console.log(JSON.stringify(parameterData));
+		// console.log("here");
+		// console.log(JSON.stringify(parameterData));
 		if(this._isMounted){			
 			for(var i = 0;i<parameterData.length;i++){
 				if(parameterData[i].Name === 'Power A Temps Count' && this.state.numberofSensors !== parameterData[i].Value){

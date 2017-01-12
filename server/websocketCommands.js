@@ -9,7 +9,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 	var _timer;
 
 	var websocket = {};
-	
+
 	// socket.io demo
 	io.on('connection', function (socket) {
 
@@ -65,8 +65,8 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'XilinxSim:Laser2_Off': (data) => {
 				podCommands.XilinxSim_Laser2Off();
 			},
-			
-			
+
+
 			'FlightControl_Brake:MoveMotorRAW': (data) => {
 
 				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
@@ -136,7 +136,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			'FlightControl_Brake:EnableDevelopmentMode': () => {
 
-				// THIS IS VERY VERY DANGEROUS 
+				// THIS IS VERY VERY DANGEROUS
 
 				podCommands.FCUBrake_EnableDevelopmentMode();
 
@@ -183,15 +183,37 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerAChargeRelayOn(data.status)
 			},
 			
-			'PowerA:ChargeRelayOff':(data) => {
-				podCommands.PowerAChargeRelayOff(data.status)
+		    //Hover Engines
+            'FlightControl_Hover:Enable': () => {
+                podCommands.FCUHover_Enable()
+			},
+            'FlightControl_Hover:Disable': () => {
+                podCommands.FCUHover_Disable()
+			},
+            'FlightControl_Hover:EnableStaticHovering': () => {
+                podCommands.FCUHover_EnableStaticHovering()
+			},
+            'FlightControl_Hover:ReleaseStaticHovering': () => {
+                podCommands.FCUHover_ReleaseStaticHovering()
+			},
+            'FlightControl_Hover:EnableHEX': (data) => {
+                podCommands.FCUHover_EnableHEX(data.hexName)
 			},
 			
-			'PowerA:ChargeRelayOff':(data) => {
-				podCommands.PowerAChargeRelayOff(data.status)
+            'FlightControl_Hover:SetHEXSpeed': (data) => {
+                podCommands.FCUHover_SetHEXSpeed(data.hewName, data.hexSpeed)
 			},
 			
-			
+            'FlightControl_Hover:StartCooling': (data) => {
+                podCommands.FCUHover_StartCooling(data.coolingName)
+			},
+            'FlightControl_Hover:StopCooling': (data) => {
+                podCommands.FCUHover_StopCooling(data.coolingName)
+			},
+            'FlightControl_Hover:OpenSolenoid': (data) => {
+                podCommands.FCUHover_OpenSolenoid(data.solenoidName)
+			},
+
 			'PowerA:StreamingOff':(data) => {
 				podCommands.PowerAStreamingOff();
 			},
@@ -209,20 +231,14 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			},
 
 			'AllLogging:Start': function(data){
-				
+
 				console.log("Starting local logging.");
 				daq.isLogging = true;
-			
+
 			},'AllLogging:Stop': function(data){
-				
+
 				console.log("Stopping local logging.");
 				daq.isLogging = false;
-				
-			},
-			
-			'stop:Pod': (data) => {
-
-				podCommands.PodStop();
 
 			},
 
@@ -268,7 +284,13 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			'power:Pod': () => {
 
-				podCommands.PodOff()
+				podCommands.FCUPod_Off();
+
+			},
+
+			'stop:Pod': () => {
+
+				podCommands.FCUPod_Stop();
 
 			},
 
@@ -310,13 +332,13 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			'lgu:positionChange': (data) => {
 
-				udp.tx.sendMessage(JSON.stringify(data))
+                podCommands.LGU_PositionChange(data.liftName, data.liftDirection)
 
 			},
 
 			'lgu:speedChange': (data) => {
 
-				udp.tx.sendMessage(JSON.stringify(data))
+				podCommands.LGU_SpeedChange(data.liftName, data.liftSpeed)
 
 			},
 

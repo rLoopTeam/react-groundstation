@@ -94,7 +94,7 @@ class Brakes extends Component {
 
     brakesSelectionHandler(changeEvent){
         this.setState({
-            brakesSelection: parseInt(changeEvent.currentTarget.value)
+            brakesSelection: parseInt(changeEvent.currentTarget.value, 10)
         });
     }
 

@@ -53,13 +53,13 @@ class Steppers extends Component {
 
     stepperParameterSelectionHandler(changeEvent){
         this.setState({
-            parameterSelection: parseInt(changeEvent.currentTarget.value)
+            parameterSelection: parseInt(changeEvent.currentTarget.value, 10)
         });
     }
 
     brakesSelectionHandler(changeEvent){
         this.setState({
-            brakesSelection: parseInt(changeEvent.currentTarget.value)
+            brakesSelection: parseInt(changeEvent.currentTarget.value, 10)
         });
     }
 
@@ -76,18 +76,19 @@ class Steppers extends Component {
 
     sendStepperParameter() {
         switch(this.state.parameterSelection){
-            case 0: if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxAngularAccel',{brake:0,value:this.state.nextBrakePosition});} 
-                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxAngularAccel',{brake:1,value:this.state.nextBrakePosition});} 
+            case 0: if(this.state.brakesSelection === 0 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetMaxAngularAccel',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection === 1 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetMaxAngularAccel',{brake:1,value:this.state.nextBrakePosition});} 
                      break;
-            case 1: if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetPicoMetersPerRev',{brake:0,value:this.state.nextBrakePosition});} 
-                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetPicoMetersPerRev',{brake:1,value:this.state.nextBrakePosition});} 
+            case 1: if(this.state.brakesSelection === 0 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetPicoMetersPerRev',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection === 1 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetPicoMetersPerRev',{brake:1,value:this.state.nextBrakePosition});} 
                      break;
-            case 2:if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxRPM',{brake:0,value:this.state.nextBrakePosition});} 
-                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMaxRPM',{brake:1,value:this.state.nextBrakePosition});} 
+            case 2:if(this.state.brakesSelection === 0 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetMaxRPM',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection === 1 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetMaxRPM',{brake:1,value:this.state.nextBrakePosition});} 
                      break;
-            case 3: if(this.state.brakesSelection == 0 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:0,value:this.state.nextBrakePosition});} 
-                     if(this.state.brakesSelection == 1 || this.state.brakesSelection == 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:1,value:this.state.nextBrakePosition});} 
+            case 3: if(this.state.brakesSelection === 0 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:0,value:this.state.nextBrakePosition});} 
+                     if(this.state.brakesSelection === 1 || this.state.brakesSelection === 2){ socket.emit('FlightControl_Stepper:SetMicroStepReslution',{brake:1,value:this.state.nextBrakePosition});} 
                      break;
+            default: break;
         }
     }   
 
