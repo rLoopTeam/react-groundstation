@@ -87,10 +87,6 @@ class LGU extends Component {
         //assign object to variable
         var _speed = liftArr[_index][liftName].speed;
         
-        //set value on object item
-        var val = _speed.value = liftSpeed; 
-
-        
 		
 		//set the value for all speed inputs to match the others
 		if(this.interlockSpeed)
