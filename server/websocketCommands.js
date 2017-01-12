@@ -181,7 +181,8 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			
 			'PowerA:ChargeRelayOn':(data) => {
 				podCommands.PowerAChargeRelayOn(data.status)
-
+			},
+			
 		    //Hover Engines
             'FlightControl_Hover:Enable': () => {
                 podCommands.FCUHover_Enable()
