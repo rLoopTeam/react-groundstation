@@ -1,0 +1,28 @@
+.flag-wrapper,
+.flag-wrapper table {
+	width: 250px;
+}
+.flag-wrapper td,
+.flag-wrapper th {
+    padding: 1px 5px;
+}
+.nominal-row {
+	background-color: #3ce23c;
+}
+.warning-row {
+	background-color: #f9ce80;
+}
+.danger-row {
+	background-color: #ff7f44;
+}
+.critical-row {
+	animation-name: critical-flash;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes critical-flash {
+    0%   {background-color: #d03535; color: white;}
+    50%  {background-color: #ffffff; color: black;}
+    100% {background-color: #d03535; color: white;}
+}

@@ -74,7 +74,6 @@ class RealTimeDataStore {
 		var ret = {'Name':parameterName, 'Value':'?', 'IsStale':true,
 					'Units':'?', 'PacketName':'?'};
 					
-		//Try to update an existing entry
 		for(var y = 0, len = this.rtDataStore.length;y<len;y++)
 		{
 			if(parameterName === this.rtDataStore[y].Name)

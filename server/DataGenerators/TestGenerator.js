@@ -29,7 +29,7 @@ function makeNewPacket(sequence, type, payload){
     client.bind();
     client.on("listening", function () {
         client.setBroadcast(true);
-        client.send(packetBuf, 0, packetBuf.length, commConfig.RXServers[5].port, commConfig.RXServers[5].hostIP, function(err, bytes) {
+        client.send(packetBuf, 0, packetBuf.length, commConfig.testDataGeneratorTargetPort, commConfig.testDataGeneratorTargetHost, function(err, bytes) {
             client.close();
         });
     });
