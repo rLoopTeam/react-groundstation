@@ -174,7 +174,7 @@ module.exports = {
 			{
 				"Name":"Throttle parameters",
 				"ParameterPrefix":"Throttle ",
-				"PacketType":0x1406,
+				"PacketType":0x1502,
 				"Parameters":[
 								{'Name':'Requested RPM 1', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Requested RPM 2', 'type':'uint16', 'units':'', 'size': 2},
