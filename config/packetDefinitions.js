@@ -146,6 +146,39 @@ module.exports = {
 							]
 			},
 			{
+				"Name":"Throttle parameters",
+				"ParameterPrefix":"Throttle ",
+				"PacketType":0x1406,
+				"Parameters":[
+								{'Name':'Requested RPM 1', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 2', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 3', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 4', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 5', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 6', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 7', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Requested RPM 8', 'type':'uint16', 'units':'', 'size': 2},
+									
+								{'Name':'Current RPM 1', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 2', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 3', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 4', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 5', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 6', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 7', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Current RPM 8', 'type':'uint16', 'units':'', 'size': 2},
+
+								{'Name':'ASI RPM 1', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 2', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 3', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 4', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 5', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 6', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 7', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'ASI RPM 8', 'type':'uint16', 'units':'', 'size': 2},
+							]
+			},
+			{
 				"Name":"Motor parameters",
 				"ParameterPrefix":"Motor ",
 				"PacketType":0x1406,
