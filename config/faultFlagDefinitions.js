@@ -129,6 +129,15 @@ module.exports = {
 		]
 	},
 
+	/*
+	*  Forward Laser Distance Sensor
+	*/
+	"ForwardLaser Fault flags": {
+		"smallEndian": true,
+		"template": [
+			{"name":"Guarding Fault", "severity":"critical"},
+		]
+	},
 
 	/*
 	* FCU Throttle
@@ -425,13 +434,6 @@ module.exports = {
 		]
 	},
 
-	// Forward Laser Distance Sensor
-	"ForwardLaser Fault flags": {
-		"smallEndian": true,
-		"template": [
-			{"name":"Guarding Fault", "severity":"critical"},
-		]
-	},
 
 	// Flight Control - Laser Contrast 0"
 	"LaserContrast0 System Fault Flags": {

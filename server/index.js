@@ -127,8 +127,10 @@ var charger = require('./charger')(rtDataStore);
 //const TempSensorsGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 
 //Accelerometer packet generator
-//const payloads = require('./DataGenerators/TestPayloads');
-//const testGenerator = require('./DataGenerators/TestGenerator.js');
-//testGenerator(0x1003, payloads.accelerometer);
-//testGenerator(0x3201, payloads.battTempSensors);
-//testGenerator(0x3203, payloads.battTempLocations);
+// const payloads = require('./DataGenerators/TestPayloads');
+// const testGenerator = require('./DataGenerators/TestGenerator.js');
+// testGenerator(0x1003, payloads.accelerometer);
+// testGenerator(0x1101, payloads.optoDistanceSensors);
+// testGenerator(0x1201, payloads.forwardLaserDistanceSensors);
+// testGenerator(0x3201, payloads.battTempSensors);
+// testGenerator(0x3203, payloads.battTempLocations);

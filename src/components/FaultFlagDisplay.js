@@ -9,7 +9,6 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 		this.definition = faultFlagDefinitions[this.props.parameter]
 		if (!this.definition)
 			throw new Error("Fault flag definition not found in packetDefinitions.js")
-		console.log(this.definition)
 		this.preFilledArray = Array(this.props.bits).fill(0);
 		this.template = this.definition.template;
 
@@ -43,7 +42,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 		function renderRow(_, i) {
 			var result;
 			if (self.template[i] !== undefined && self.template[i].severity) {
-				const isTriggered = (value[i] === 1) ? true : false;			
+				const isTriggered = (value[i] === "1") ? true : false;			
 				const severityClass = (isTriggered) ? self.severityClassMap[self.template[i].severity] : "";
 				if (isTriggered) {
 					result = (<tr key={"fault_flag_" + i} className={severityClass}><td>{i}</td><td>{self.template[i].name}</td></tr>);

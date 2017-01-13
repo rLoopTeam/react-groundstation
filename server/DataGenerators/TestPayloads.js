@@ -28,6 +28,81 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(600.0,true)); //Roll A
 
 
 /*
+* 0x1101 Laser opto sensors
+*/
+var optoDistanceSensors = [];
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(7,true)); //Top level fault Flags
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(7,true)); //spare
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(7,true)); //fault flags 1
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 1
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 1
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(14.5,true)); //raw distance 1
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(98.72,true)); //filtered value 1
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 1
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags 2
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 2
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 2
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(0.5,true)); //raw distance 2
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(8.72,true)); //filtered value 2
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 2
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags 3
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 3
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 3
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(13.5,true)); //raw distance 3
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(8.72,true)); //filtered value 3
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 3
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags 4
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 4
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 4
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(70.5,true)); //raw distance 4
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(8.72,true)); //filtered value 4
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 4
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags 5
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 5
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 5
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(310.5,true)); //raw distance 5
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(8.72,true)); //filtered value 5
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 5
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags 6
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 6
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 6
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(103.5,true)); //raw distance 6
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(8.72,true)); //filtered value 6
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 6
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags 7
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 7
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 7
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(10.5,true)); //raw distance 7
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(8.72,true)); //filtered value 7
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 7
+
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(2,true)); //fault flags 8
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //laser error packet count 8
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //first bbyte wrong 8
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(120.5,true)); //raw distance 8
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.float32ToBytes(18.82,true)); //filtered value 8
+optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0,true)); //spare 8
+
+/*
+* 0x1201 Forward laser distance sensor
+*/
+var forwardLaserDistanceSensors = [];
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(0,true)); //fault flags
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(0,true)); //spare 0
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(0,true)); //spare 1
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.float32ToBytes(100.5,true)); //raw value
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.float32ToBytes(18.82,true)); //filtered value
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(0,true)); //spare 3
+
+
+/*
 * 0x3021 Temperature sensor
 */
 var battTempSensors = [];
@@ -58,6 +133,8 @@ for(var i = 0;i<NumOfTempSensors;i++)
 module.exports = {
 	accelerometer,
 	battTempSensors,
-	battTempLocations
+	battTempLocations,
+	optoDistanceSensors,
+	forwardLaserDistanceSensors
 }
 
