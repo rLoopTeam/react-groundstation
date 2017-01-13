@@ -294,7 +294,27 @@ module.exports = function(udp){
         }
 
 
-        
+        //Aux Propulsion
+        function FCUAuxProp_Enable() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUAuxProp_Disable() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUAuxProp_SetSpeed(speed) {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+
+
+        //Aux Propulsion
+        function FCUGimbal_Static() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+        function FCUGimbal_FullBackwards() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
+        }
+
+
         function XilinxSim_Start() {
             udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0); 
         }
@@ -374,6 +394,13 @@ module.exports = function(udp){
         FCUHover_StartCooling,
         FCUHover_StopCooling,
         FCUHover_OpenSolenoid,
+
+        FCUAuxProp_Enable,
+        FCUAuxProp_Disable,
+        FCUAuxProp_SetSpeed,
+
+        FCUGimbal_Static,
+        FCUGimbal_FullBackwards,
 
 
         XilinxSim_Start,

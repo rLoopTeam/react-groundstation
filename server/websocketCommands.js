@@ -214,6 +214,28 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
                 podCommands.FCUHover_OpenSolenoid(data.solenoidName)
 			},
 
+
+		    //Aux Propulsion
+            'FlightControl_AuxProp:Enable': (data) => {
+                podCommands.FCUAuxProp_Enable();
+            },
+            'FlightControl_AuxProp:Disable': (data) => {
+                podCommands.FCUAuxProp_Disable();
+            },
+            'FlightControl_AuxProp:SetSpeed': (data) => {
+                podCommands.FCUAuxProp_SetSpeed(data.speed);
+            },
+
+
+		    //Gimbals
+            'FlightControl_Gimbal:StaticGimbaling': (data) => {
+                podCommands.FCUGimbal_Static();
+            },
+            'FlightControl_Gimbal:FullBackwards': (data) => {
+                podCommands.FCUGimbal_FullBackwards();
+            },
+
+
 			'PowerA:StreamingOff':(data) => {
 				podCommands.PowerAStreamingOff();
 			},
