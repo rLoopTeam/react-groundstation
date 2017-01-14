@@ -158,12 +158,6 @@ class Throttles extends Component {
     //     podCommands.FCUHover_SetHEXSpeed(data.hewName, data.hexSpeed)
     // },
     
-    // 'FlightControl_Hover:StartCooling': (data) => {
-    //     podCommands.FCUHover_StartCooling(data.coolingName)
-    // },
-    // 'FlightControl_Hover:StopCooling': (data) => {
-    //     podCommands.FCUHover_StopCooling(data.coolingName)
-    // },
     // 'FlightControl_Hover:OpenSolenoid': (data) => {
     //     podCommands.FCUHover_OpenSolenoid(data.solenoidName)
     // },
