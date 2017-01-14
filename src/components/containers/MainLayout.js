@@ -47,6 +47,7 @@ class MainLayout extends Component {
 					{name: "Distance Sensors", location: "/FlightControl_DistanceSensors"},
 					{name: "Brakes", location: "/brakes"},
 					{name: "Steppers", location: "/steppers"},
+					{name: "Throttles", location: "/throttles"},
 				]
 			},
 			{
@@ -107,10 +108,8 @@ class MainLayout extends Component {
 					</div>
 				</div>
 			</nav>
-			<div className="row">
-				<div className="col-xs-12">
+			<div className="container-fluid">
 					{this.props.children}
-				</div>
 			</div>
 
 			<div className="row">
