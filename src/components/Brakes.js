@@ -32,7 +32,7 @@ class Brakes extends Component {
 		}
 
         this.labels = [
-            {label: "Left Fault Flags", value: "Brake Fault flags 1", hex:"true"},
+            {label: "Left Fault Flags", value: "Brake Fault Flags 1", hex:"true"},
             {label: "Left I-Beam", value: "Brake I Beam mm 1"},
             {label: "Left Lead screw target", value: "Brake Lead screw mm 1"},
             {label: "Left Lead screw target", value: "Brake Lead screw um 1"},
