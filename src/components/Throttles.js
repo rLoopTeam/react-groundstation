@@ -17,6 +17,8 @@ class Throttles extends Component {
 
 		this.state = {
 			streamManager: new StreamingPageManager(),
+            hexModeSelection: 0,
+            hexMode: false
 		}
 
         /**
@@ -108,7 +110,7 @@ class Throttles extends Component {
     handleHoverToggle(e)
     {
         // toggles the hover engine status {bool}
-        if(e.currentTarget.value)
+        if(e.currentTarget.value === 'true')
             socket.emit('FlightControl_Hover:Enable');
 
         else
@@ -125,7 +127,7 @@ class Throttles extends Component {
     handleStaticHoveringToggle(e)
     {
         // toggles the hover engine status {bool}
-        if(e.currentTarget.value)
+        if(e.currentTarget.value === 'true')
             socket.emit('FlightControl_Hover:EnableStaticHovering');
 
         else
@@ -142,11 +144,70 @@ class Throttles extends Component {
     handleCoolingToggle(cooling, e)
     {
         // toggles the hover engine status {bool}
-        if(e.currentTarget.value)
+        if(e.currentTarget.value === 'true')
             socket.emit('FlightControl_Hover:StartCooling', {coolingName: cooling.name});
 
         else
             socket.emit('FlightControl_Hover:StopCooling', {coolingName: cooling.name});
+    }
+
+    handleHexModeToggle(hexName, e)
+    {
+        var _this = this;
+        if(e.currentTarget.value === 'true')
+        {
+            var shouldEnableHexMode = confirm("WARNING: You are about to enable hex mode.");
+            
+            if (shouldEnableHexMode){ //user confirmed action
+                _this.setState({
+                    hexModeSelection: 1,
+                    hexMode: true
+                });
+                socket.emit('FlightControl_Hover:EnableHEX', {hexName: hexName});
+            } else { //user denied action
+                _this.setState({
+                    hexModeSelection: 0,
+                    hexMode: false
+                });
+                socket.emit('FlightControl_Hover:DisableHEX', {hexName: hexName});
+            }
+        }
+        //turn off hex mode
+        else{
+            _this.setState({
+                hexModeSelection: 0,
+                hexMode: false
+            });
+            socket.emit('FlightControl_Brake:hexMode');
+        }
+    }
+
+    createHexInputLoop() {
+        var hexInputs = [];
+        for(var _i = 1; _i <= 8; _i ++)
+        {
+            hexInputs.push(
+                <div key={_i} className="col-xs-3">
+                    <h4>Hex Name: {_i}</h4>
+                    <div className='form-group'>
+                        <input type="radio" name={"hexMode"+_i} id={"hexModeTrue"+_i} value="true" checked={this.state.hexModeSelection} onChange={this.handleHexModeToggle.bind(this, _i)} />
+
+                        <label htmlFor={"hexModeTrue"+_i}>
+                            on
+                        </label>
+                    </div>
+                        
+                    <div className='form-group'>
+                        <input type="radio" name={"hexMode"+_i} id={"hexModeFalse"+_i} value="false" checked={!this.state.hexModeSelection} onChange={this.handleHexModeToggle.bind(this, _i)}/>
+                        
+                        <label htmlFor={"hexModeFalse"+_i}>
+                            off
+                        </label>
+                    </div>
+                </div>
+            )
+        }
+        return hexInputs;
     }
 
 
@@ -303,6 +364,12 @@ class Throttles extends Component {
                                 </label>
                             </div>
                         </div>
+                </fieldset>
+
+                {/*Development Mode*/}
+                <fieldset>
+                    <legend>Hex Mode</legend>
+                    {_this.createHexInputLoop()}
                 </fieldset>
                 </div>
 
