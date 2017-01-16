@@ -154,6 +154,8 @@ class Throttles extends Component {
     handleHexModeToggle(hexName, e)
     {
         var _this = this;
+        var hexMode = "hexMode"+hexName,
+            hexModeSelection = "hexModeSelection"+hexName;
         if(e.currentTarget.value === 'true')
         {
             var shouldEnableHexMode = confirm("WARNING: You are about to enable hex mode.");
@@ -190,7 +192,7 @@ class Throttles extends Component {
                 <div key={_i} className="col-xs-3">
                     <h4>Hex Name: {_i}</h4>
                     <div className='form-group'>
-                        <input type="radio" name={"hexMode"+_i} id={"hexModeTrue"+_i} value="true" checked={this.state.hexModeSelection} onChange={this.handleHexModeToggle.bind(this, _i)} />
+                        <input type="radio" name={"hexMode"+_i} id={"hexModeTrue"+_i} value="true" checked={this.state["hexModeSelection"+_i]} onChange={this.handleHexModeToggle.bind(this, _i)} />
 
                         <label htmlFor={"hexModeTrue"+_i}>
                             on
@@ -198,7 +200,7 @@ class Throttles extends Component {
                     </div>
                         
                     <div className='form-group'>
-                        <input type="radio" name={"hexMode"+_i} id={"hexModeFalse"+_i} value="false" checked={!this.state.hexModeSelection} onChange={this.handleHexModeToggle.bind(this, _i)}/>
+                        <input type="radio" name={"hexMode"+_i} id={"hexModeFalse"+_i} value="false" checked={!this.state["hexModeSelection"+_i]} onChange={this.handleHexModeToggle.bind(this, _i)}/>
                         
                         <label htmlFor={"hexModeFalse"+_i}>
                             off
