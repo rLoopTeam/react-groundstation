@@ -1,3 +1,7 @@
+.fault-flag-display {
+    font-size: 14px;
+    margin: 2px 2px 10px 2px;
+}
 .flag-wrapper,
 .flag-wrapper table {
 	width: 250px;
