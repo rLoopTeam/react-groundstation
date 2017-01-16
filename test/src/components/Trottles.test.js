@@ -72,44 +72,44 @@ describe("Cooling Command Suite", () => {
 * Tests for Cooling input count
 *
 */
-  it('number of total Front Left Cooling inputs === 2', () => {
+  it('number of total Front Left Cooling inputs === 3', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
     const coolingFLInputs = throttles.find('[name="CoolingFL"]');
 
-     expect(coolingFLInputs.length).toEqual(2);
+     expect(coolingFLInputs.length).toEqual(3);
   }) 
 
-  it('number of total Front Right Cooling inputs === 2', () => {
+  it('number of total Front Right Cooling inputs === 3', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
     const coolingFRInputs = throttles.find('[name="CoolingFR"]');
 
-     expect(coolingFRInputs.length).toEqual(2);
+     expect(coolingFRInputs.length).toEqual(3);
   })
   
-  it('number of total Rear Left Cooling inputs === 2', () => {
+  it('number of total Rear Left Cooling inputs === 3', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
     const coolingRLInputs = throttles.find('[name="CoolingRL"]');
 
-     expect(coolingRLInputs.length).toEqual(2);
+     expect(coolingRLInputs.length).toEqual(3);
   })
   
-  it('number of total Rear Right Cooling inputs === 2', () => {
+  it('number of total Rear Right Cooling inputs === 3', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
     const coolingRRInputs = throttles.find('[name="CoolingRR"]');
 
-     expect(coolingRRInputs.length).toEqual(2);
+     expect(coolingRRInputs.length).toEqual(3);
   })
 
 
@@ -127,7 +127,7 @@ describe("Cooling Command Suite", () => {
        return item.props().value;
     });
 
-     expect(coolingFLInputsValues).toEqual(["true", "false"]);
+     expect(coolingFLInputsValues).toEqual(["true", "false", "initiate"]);
   })
   
   it('Front Right Cooling input values are boolean', () => {
@@ -139,7 +139,7 @@ describe("Cooling Command Suite", () => {
        return item.props().value;
     });
 
-     expect(coolingFRInputsValues).toEqual(["true", "false"]);
+     expect(coolingFRInputsValues).toEqual(["true", "false", "initiate"]);
   })
   
   it('Rear Left Cooling input values are boolean', () => {
@@ -151,7 +151,7 @@ describe("Cooling Command Suite", () => {
        return item.props().value;
     });
 
-     expect(coolingRLInputsValues).toEqual(["true", "false"]);
+     expect(coolingRLInputsValues).toEqual(["true", "false", "initiate"]);
   })
   
   it('Rear Right Cooling input values are boolean', () => {
@@ -163,7 +163,7 @@ describe("Cooling Command Suite", () => {
        return item.props().value;
     });
 
-     expect(coolingRRInputsValues).toEqual(["true", "false"]);
+     expect(coolingRRInputsValues).toEqual(["true", "false", "initiate"]);
   })
 })
 

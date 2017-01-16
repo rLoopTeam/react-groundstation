@@ -28,6 +28,13 @@ class Throttles extends Component {
             hexSpeed: [
                 0, 0, 0, 0,
                 0, 0, 0, 0,
+            ], 
+            staticHovering: [
+                0, 1
+            ],
+            coolingControl:
+            [
+                0,0,0,0
             ]
 		}
 
@@ -136,12 +143,24 @@ class Throttles extends Component {
      */
     handleStaticHoveringToggle(e)
     {
+        var staticHovering = this.state.staticHovering;
         // toggles the hover engine status {bool}
         if(e.currentTarget.value === 'true')
-            socket.emit('FlightControl_Hover:EnableStaticHovering');
+        {
+            staticHovering[0] = 1;
+            staticHovering[1] = 0;
+            this.setState({staticHovering: staticHovering});
 
+            socket.emit('FlightControl_Hover:EnableStaticHovering');
+        }
         else
+        {
+            staticHovering[0] = 0;
+            staticHovering[1] = 1;
+            this.setState({staticHovering: staticHovering});
+
             socket.emit('FlightControl_Hover:ReleaseStaticHovering');
+        }
     }
     
     /**
@@ -153,18 +172,37 @@ class Throttles extends Component {
      */
     handleCoolingToggle(cooling, e)
     {
+        var coolingControl = this.state.coolingControl;
+
         // toggles the hover engine status {bool}
         if(e.currentTarget.value === 'true')
+        {
+            coolingControl[cooling.name - 1] = 1;
+            this.setState({coolingControl: coolingControl});
+
             socket.emit('FlightControl_Hover:StartCooling', {coolingName: cooling.name});
+        }
+
+        else if(e.currentTarget.value === 'initiate')
+        {
+            coolingControl[cooling.name - 1] = 2;
+            this.setState({coolingControl: coolingControl});
+
+            socket.emit('FlightControl_Hover:OpenSolenoid', {solenoidName: cooling.name});
+        }
 
         else
+        {
+            coolingControl[cooling.name - 1] = 0;
+            this.setState({coolingControl: coolingControl});
+
             socket.emit('FlightControl_Hover:StopCooling', {coolingName: cooling.name});
+        }
     }
 
     handleHexModeToggle(hexName, e)
     {
         var _this = this,
-            hexName = hexName,
             hexMode = this.state["hexMode"],//get the hexMode array
             hexModeSelection = this.state["hexModeSelection"];//get the hexModeSelection array
 
@@ -261,32 +299,6 @@ class Throttles extends Component {
         return hexInputs;
     }
 
-
-    // 'FlightControl_Hover:EnableHEX': (data) => {
-    //     podCommands.FCUHover_EnableHEX(data.hexName)
-    // },
-    
-    // 'FlightControl_Hover:SetHEXSpeed': (data) => {
-    //     podCommands.FCUHover_SetHEXSpeed(data.hexName, data.hexSpeed)
-    // },
-    
-    // 'FlightControl_Hover:OpenSolenoid': (data) => {
-    //     podCommands.FCUHover_OpenSolenoid(data.solenoidName)
-    // },
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
     render() {
         var _this = this;
 
@@ -319,7 +331,7 @@ class Throttles extends Component {
                     <fieldset>
                         <legend>Static Hovering</legend>
                         <div className='form-group'>
-                            <input type="radio" name="StaticHovering" id="StaticHoveringTrue" value="true" onChange={_this.handleStaticHoveringToggle.bind(_this)} />
+                            <input type="radio" name="StaticHovering" id="StaticHoveringTrue" value="true" checked={this.state["staticHovering"][0]} onChange={_this.handleStaticHoveringToggle.bind(_this)} />
 
                             <label htmlFor="StaticHoveringTrue">
                                 on
@@ -327,7 +339,7 @@ class Throttles extends Component {
                         </div>
                             
                         <div className='form-group'>
-                            <input type="radio" name="StaticHovering" id="StaticHoveringFalse" value="false" onChange={_this.handleStaticHoveringToggle.bind(_this)}/>
+                            <input type="radio" name="StaticHovering" id="StaticHoveringFalse" value="false" checked={this.state["staticHovering"][1]} onChange={_this.handleStaticHoveringToggle.bind(_this)}/>
                             
                             <label htmlFor="StaticHoveringFalse">
                                 off
@@ -343,7 +355,7 @@ class Throttles extends Component {
                             <h4>Front Left</h4>
 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingFL" id="CoolingFLTrue" value="true" onChange={_this.handleCoolingToggle.bind(_this, {name: 1})} />
+                                <input type="radio" name="CoolingFL" id="CoolingFLTrue" value="true" checked={this.state["coolingControl"][0] === 1} onChange={_this.handleCoolingToggle.bind(_this, {name: 1})} />
 
                                 <label htmlFor="CoolingFLTrue">
                                     on
@@ -351,10 +363,18 @@ class Throttles extends Component {
                             </div>
                                 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingFL" id="CoolingFLFalse" value="false" onChange={_this.handleCoolingToggle.bind(_this, {name: 1})}/>
+                                <input type="radio" name="CoolingFL" id="CoolingFLFalse" value="false" checked={this.state["coolingControl"][0] === 0} onChange={_this.handleCoolingToggle.bind(_this, {name: 1})}/>
                                 
                                 <label htmlFor="CoolingFLFalse">
                                     off
+                                </label>
+                            </div>
+                                
+                            <div className='form-group'>
+                                <input type="radio" name="CoolingFL" id="CoolingFLInitiate" value="initiate" checked={this.state["coolingControl"][0] === 2} onChange={_this.handleCoolingToggle.bind(_this, {name: 1})}/>
+                                
+                                <label htmlFor="CoolingFLInitiate">
+                                    initiate
                                 </label>
                             </div>
                         </div>
@@ -362,7 +382,7 @@ class Throttles extends Component {
                             <h4>Front Right</h4>
 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingFR" id="CoolingFRTrue" value="true" onChange={_this.handleCoolingToggle.bind(_this, {name: 2})} />
+                                <input type="radio" name="CoolingFR" id="CoolingFRTrue" value="true" checked={this.state["coolingControl"][2] === 1} onChange={_this.handleCoolingToggle.bind(_this, {name: 2})} />
 
                                 <label htmlFor="CoolingFRTrue">
                                     on
@@ -370,10 +390,18 @@ class Throttles extends Component {
                             </div>
                                 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingFR" id="CoolingFRFalse" value="false" onChange={_this.handleCoolingToggle.bind(_this, {name: 2})}/>
+                                <input type="radio" name="CoolingFR" id="CoolingFRFalse" value="false" checked={this.state["coolingControl"][2] === 0} onChange={_this.handleCoolingToggle.bind(_this, {name: 2})}/>
                                 
                                 <label htmlFor="CoolingFRFalse">
                                     off
+                                </label>
+                            </div>
+                                
+                            <div className='form-group'>
+                                <input type="radio" name="CoolingFR" id="CoolingFRInitiate" value="initiate" checked={this.state["coolingControl"][2] === 2} onChange={_this.handleCoolingToggle.bind(_this, {name: 2})}/>
+                                
+                                <label htmlFor="CoolingFRInitiate">
+                                    initiate
                                 </label>
                             </div>
                         </div>
@@ -381,7 +409,7 @@ class Throttles extends Component {
                             <h4>Rear Left</h4>
 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingRL" id="CoolingRLTrue" value="true" onChange={_this.handleCoolingToggle.bind(_this, {name: 3})} />
+                                <input type="radio" name="CoolingRL" id="CoolingRLTrue" value="true" checked={this.state["coolingControl"][3] === 1} onChange={_this.handleCoolingToggle.bind(_this, {name: 3})} />
 
                                 <label htmlFor="CoolingRLTrue">
                                     on
@@ -389,10 +417,18 @@ class Throttles extends Component {
                             </div>
                                 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingRL" id="CoolingRLFalse" value="false" onChange={_this.handleCoolingToggle.bind(_this, {name: 3})}/>
+                                <input type="radio" name="CoolingRL" id="CoolingRLFalse" value="false" checked={this.state["coolingControl"][3] === 0} onChange={_this.handleCoolingToggle.bind(_this, {name: 3})}/>
                                 
                                 <label htmlFor="CoolingRLFalse">
                                     off
+                                </label>
+                            </div>
+                                
+                            <div className='form-group'>
+                                <input type="radio" name="CoolingRL" id="CoolingRLInitiate" value="initiate" checked={this.state["coolingControl"][3] === 2} onChange={_this.handleCoolingToggle.bind(_this, {name: 3})}/>
+                                
+                                <label htmlFor="CoolingRLInitiate">
+                                    initiate
                                 </label>
                             </div>
                         </div>
@@ -400,7 +436,7 @@ class Throttles extends Component {
                             <h4>Rear Right</h4>
 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingRR" id="CoolingRRTrue" value="true" onChange={_this.handleCoolingToggle.bind(_this, {name: 4})} />
+                                <input type="radio" name="CoolingRR" id="CoolingRRTrue" value="true" checked={this.state["coolingControl"][4] === 1} onChange={_this.handleCoolingToggle.bind(_this, {name: 4})} />
 
                                 <label htmlFor="CoolingRRTrue">
                                     on
@@ -408,10 +444,18 @@ class Throttles extends Component {
                             </div>
                                 
                             <div className='form-group'>
-                                <input type="radio" name="CoolingRR" id="CoolingRRFalse" value="false" onChange={_this.handleCoolingToggle.bind(_this, {name: 4})}/>
+                                <input type="radio" name="CoolingRR" id="CoolingRRFalse" value="false" checked={this.state["coolingControl"][4] === 0} onChange={_this.handleCoolingToggle.bind(_this, {name: 4})}/>
                                 
                                 <label htmlFor="CoolingRRFalse">
                                     off
+                                </label>
+                            </div>
+                                
+                            <div className='form-group'>
+                                <input type="radio" name="CoolingRR" id="CoolingRRInitiate" value="initiate" checked={this.state["coolingControl"][4] === 2} onChange={_this.handleCoolingToggle.bind(_this, {name: 4})}/>
+                                
+                                <label htmlFor="CoolingRRInitiate">
+                                    initiate
                                 </label>
                             </div>
                         </div>
