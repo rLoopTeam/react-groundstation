@@ -77,9 +77,9 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputs = throttles.find('[name="CoolingFL"]');
+    const group1Inputs = throttles.find('[name="Group1"]');
 
-     expect(coolingFLInputs.length).toEqual(3);
+     expect(group1Inputs.length).toEqual(3);
   }) 
 
   it('number of total Front Right Cooling inputs === 3', () => {
@@ -87,9 +87,9 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputs = throttles.find('[name="CoolingFR"]');
+    const group2Inputs = throttles.find('[name="Group2"]');
 
-     expect(coolingFRInputs.length).toEqual(3);
+     expect(group2Inputs.length).toEqual(3);
   })
   
   it('number of total Rear Left Cooling inputs === 3', () => {
@@ -97,9 +97,9 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputs = throttles.find('[name="CoolingRL"]');
+    const group3Inputs = throttles.find('[name="Group3"]');
 
-     expect(coolingRLInputs.length).toEqual(3);
+     expect(group3Inputs.length).toEqual(3);
   })
   
   it('number of total Rear Right Cooling inputs === 3', () => {
@@ -107,9 +107,9 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputs = throttles.find('[name="CoolingRR"]');
+    const group4Inputs = throttles.find('[name="Group4"]');
 
-     expect(coolingRRInputs.length).toEqual(3);
+     expect(group4Inputs.length).toEqual(3);
   })
 
 
@@ -123,11 +123,11 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputsValues = throttles.find('[name="CoolingFL"]').map( (item, index) => { 
+    const group1InputsValues = throttles.find('[name="Group1"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingFLInputsValues).toEqual(["true", "false", "initiate"]);
+     expect(group1InputsValues).toEqual(["true", "false", "initiate"]);
   })
   
   it('Front Right Cooling input values are boolean', () => {
@@ -135,11 +135,11 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputsValues = throttles.find('[name="CoolingFR"]').map( (item, index) => { 
+    const group2InputsValues = throttles.find('[name="Group2"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingFRInputsValues).toEqual(["true", "false", "initiate"]);
+     expect(group2InputsValues).toEqual(["true", "false", "initiate"]);
   })
   
   it('Rear Left Cooling input values are boolean', () => {
@@ -147,11 +147,11 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputsValues = throttles.find('[name="CoolingRL"]').map( (item, index) => { 
+    const group3InputsValues = throttles.find('[name="Group3"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingRLInputsValues).toEqual(["true", "false", "initiate"]);
+     expect(group3InputsValues).toEqual(["true", "false", "initiate"]);
   })
   
   it('Rear Right Cooling input values are boolean', () => {
@@ -159,11 +159,11 @@ describe("Cooling Command Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputsValues = throttles.find('[name="CoolingRR"]').map( (item, index) => { 
+    const group4InputsValues = throttles.find('[name="Group4"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingRRInputsValues).toEqual(["true", "false", "initiate"]);
+     expect(group4InputsValues).toEqual(["true", "false", "initiate"]);
   })
 })
 
@@ -185,9 +185,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputs = throttles.find('[name="hoverEngineMode1"]');
+    const hoverEngine1 = throttles.find('[name="hoverEngineMode1"]');
 
-     expect(coolingFLInputs.length).toEqual(2);
+     expect(hoverEngine1.length).toEqual(2);
   }) 
 
   it('number of total Hover Engine Name 2 inputs === 2', () => {
@@ -195,9 +195,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputs = throttles.find('[name="hoverEngineMode2"]');
+    const hoverEngine2 = throttles.find('[name="hoverEngineMode2"]');
 
-     expect(coolingFRInputs.length).toEqual(2);
+     expect(hoverEngine2.length).toEqual(2);
   })
   
   it('number of total Hover Engine Name 3 inputs === 2', () => {
@@ -205,9 +205,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputs = throttles.find('[name="hoverEngineMode3"]');
+    const hoverEngine3 = throttles.find('[name="hoverEngineMode3"]');
 
-     expect(coolingRLInputs.length).toEqual(2);
+     expect(hoverEngine3.length).toEqual(2);
   })
   
   it('number of total Hover Engine Name 4 inputs === 2', () => {
@@ -215,9 +215,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputs = throttles.find('[name="hoverEngineMode4"]');
+    const hoverEngine4 = throttles.find('[name="hoverEngineMode4"]');
 
-     expect(coolingRRInputs.length).toEqual(2);
+     expect(hoverEngine4.length).toEqual(2);
   })
 
   it('number of total Hover Engine Name 5 inputs === 2', () => {
@@ -225,9 +225,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputs = throttles.find('[name="hoverEngineMode5"]');
+    const hoverEngine5 = throttles.find('[name="hoverEngineMode5"]');
 
-     expect(coolingFLInputs.length).toEqual(2);
+     expect(hoverEngine5.length).toEqual(2);
   }) 
 
   it('number of total Hover Engine Name 6 inputs === 2', () => {
@@ -235,9 +235,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputs = throttles.find('[name="hoverEngineMode6"]');
+    const hoverEngine6 = throttles.find('[name="hoverEngineMode6"]');
 
-     expect(coolingFRInputs.length).toEqual(2);
+     expect(hoverEngine6.length).toEqual(2);
   })
   
   it('number of total Hover Engine Name 7 inputs === 2', () => {
@@ -245,9 +245,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputs = throttles.find('[name="hoverEngineMode7"]');
+    const hoverEngine7 = throttles.find('[name="hoverEngineMode7"]');
 
-     expect(coolingRLInputs.length).toEqual(2);
+     expect(hoverEngine7.length).toEqual(2);
   })
   
   it('number of total Hover Engine Name 8 inputs === 2', () => {
@@ -255,9 +255,9 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputs = throttles.find('[name="hoverEngineMode8"]');
+    const hoverEngine8 = throttles.find('[name="hoverEngineMode8"]');
 
-     expect(coolingRRInputs.length).toEqual(2);
+     expect(hoverEngine8.length).toEqual(2);
   })
 
 
@@ -273,11 +273,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputsValues = throttles.find('[name="hoverEngineMode1"]').map( (item, index) => { 
+    const group1InputsValues = throttles.find('[name="hoverEngineMode1"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingFLInputsValues).toEqual(["true", "false"]);
+     expect(group1InputsValues).toEqual(["true", "false"]);
   })
   
   it('HoverEngine 2 input values are boolean', () => {
@@ -285,11 +285,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputsValues = throttles.find('[name="hoverEngineMode2"]').map( (item, index) => { 
+    const group2InputsValues = throttles.find('[name="hoverEngineMode2"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingFRInputsValues).toEqual(["true", "false"]);
+     expect(group2InputsValues).toEqual(["true", "false"]);
   })
   
   it('HoverEngine 3 input values are boolean', () => {
@@ -297,11 +297,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputsValues = throttles.find('[name="hoverEngineMode3"]').map( (item, index) => { 
+    const group3InputsValues = throttles.find('[name="hoverEngineMode3"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingRLInputsValues).toEqual(["true", "false"]);
+     expect(group3InputsValues).toEqual(["true", "false"]);
   })
   
   it('HoverEngine 4 input values are boolean', () => {
@@ -309,11 +309,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputsValues = throttles.find('[name="hoverEngineMode4"]').map( (item, index) => { 
+    const group4InputsValues = throttles.find('[name="hoverEngineMode4"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingRRInputsValues).toEqual(["true", "false"]);
+     expect(group4InputsValues).toEqual(["true", "false"]);
   })
 
   it('HoverEngine 5 input values are boolean', () => {
@@ -321,11 +321,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputsValues = throttles.find('[name="hoverEngineMode5"]').map( (item, index) => { 
+    const group1InputsValues = throttles.find('[name="hoverEngineMode5"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingFLInputsValues).toEqual(["true", "false"]);
+     expect(group1InputsValues).toEqual(["true", "false"]);
   })
   
   it('HoverEngine 6 input values are boolean', () => {
@@ -333,11 +333,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputsValues = throttles.find('[name="hoverEngineMode6"]').map( (item, index) => { 
+    const group2InputsValues = throttles.find('[name="hoverEngineMode6"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingFRInputsValues).toEqual(["true", "false"]);
+     expect(group2InputsValues).toEqual(["true", "false"]);
   })
   
   it('HoverEngine 7 input values are boolean', () => {
@@ -345,11 +345,11 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputsValues = throttles.find('[name="hoverEngineMode7"]').map( (item, index) => { 
+    const group3InputsValues = throttles.find('[name="hoverEngineMode7"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingRLInputsValues).toEqual(["true", "false"]);
+     expect(group3InputsValues).toEqual(["true", "false"]);
   })
   
   it('HoverEngine 8 input values are boolean', () => {
@@ -357,10 +357,10 @@ describe("Hover Hover Engine Mode Suite", () => {
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputsValues = throttles.find('[name="hoverEngineMode8"]').map( (item, index) => { 
+    const group4InputsValues = throttles.find('[name="hoverEngineMode8"]').map( (item, index) => { 
        return item.props().value;
     });
 
-     expect(coolingRRInputsValues).toEqual(["true", "false"]);
+     expect(group4InputsValues).toEqual(["true", "false"]);
   })
 });
