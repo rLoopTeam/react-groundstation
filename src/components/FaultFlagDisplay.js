@@ -8,7 +8,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 		super(props)
 		this.definition = faultFlagDefinitions[this.props.parameter]
 		if (!this.definition)
-			throw new Error("Fault flag definition not found in packetDefinitions.js")
+			throw new Error("Fault flag definition not found in packetDefinitions.js: " + this.props.parameter)
 		this.preFilledArray = Array(this.props.bits).fill(0);
 		this.template = this.definition.template;
 
