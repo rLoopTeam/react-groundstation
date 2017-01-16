@@ -123,7 +123,7 @@ module.exports = {
 				"ParameterPrefix":"Brake ",
 				"PacketType":0x1402, 
 				"Parameters":[
-								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Fault flags 1', 'type':'uint32', 'units':'A', 'size': 4},
 								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw mm 1', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw um 1', 'type':'uint32', 'units':'um', 'size': 4},
@@ -145,7 +145,7 @@ module.exports = {
 								{'Name':'Linear Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
 								{'Name':'Current Position 1', 'type':'int32', 'units':'', 'size': 4},
 
-								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Fault flags 2', 'type':'uint32', 'units':'A', 'size': 4},
 								{'Name':'I Beam mm 2', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw mm 2', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw um 2', 'type':'uint32', 'units':'um', 'size': 4},

@@ -25,8 +25,8 @@ class StatsModal extends Component {
               </div>
               <div className="col-md-4">
                   <h3>Brakes</h3>
-                <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Brake 1 Fault Flags" parameter='Brake Fault Flags 1' />
-                <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Brake 2 Fault Flags" parameter='Brake Fault Flags 2' />
+                <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Left Brake Fault Flags" parameter='Brake Fault flags 1' />
+                <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Brake Fault Flags" parameter='Brake Fault flags 2' />
               </div>
               <div className="col-md-4">
                   <h3>Contrast sensors</h3>

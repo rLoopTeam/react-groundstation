@@ -133,5 +133,6 @@ var charger = require('./charger')(rtDataStore);
 // testGenerator(0x1003, payloads.accelerometer);
 // testGenerator(0x1101, payloads.optoDistanceSensors);
 // testGenerator(0x1201, payloads.forwardLaserDistanceSensors);
+// testGenerator(0x1402, payloads.brakesStreaming);
 // testGenerator(0x3201, payloads.battTempSensors);
 // testGenerator(0x3203, payloads.battTempLocations);

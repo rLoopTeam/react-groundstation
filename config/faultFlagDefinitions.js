@@ -57,13 +57,13 @@ module.exports = {
 			{"name":"Development mode enabled", "severity":"critical"},
 		]
 	},
-	"Brake Fault Flags 1": {
+	"Brake Fault flags 1": {
 		"smallEndian": true,
 		"template": [
 			{"name":"General Fault", "severity":"critical"},
 		]
 	},
-	"Brake Fault Flags 2": {
+	"Brake Fault flags 2": {
 		"smallEndian": true,
 		"template": [
 			{"name":"General Fault", "severity":"critical"},
