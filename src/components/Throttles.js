@@ -17,15 +17,15 @@ class Throttles extends Component {
 
 		this.state = {
 			streamManager: new StreamingPageManager(),
-            hexModeSelection: [
+            hoverEngineModeSelection: [
                 0, 0, 0, 0,
                 0, 0, 0, 0,
             ],
-            hexMode: [
+            hoverEngineMode: [
                 false, false, false, false,
                 false, false, false, false,
             ],
-            hexSpeed: [
+            hoverEngineSpeed: [
                 0, 0, 0, 0,
                 0, 0, 0, 0,
             ], 
@@ -200,91 +200,91 @@ class Throttles extends Component {
         }
     }
 
-    handleHexModeToggle(hexName, e)
+    handleHoverEngineModeToggle(hoverEngineName, e)
     {
         var _this = this,
-            hexMode = this.state["hexMode"],//get the hexMode array
-            hexModeSelection = this.state["hexModeSelection"];//get the hexModeSelection array
+            hoverEngineMode = this.state["hoverEngineMode"],//get the hoverEngineMode array
+            hoverEngineModeSelection = this.state["hoverEngineModeSelection"];//get the hoverEngineModeSelection array
 
             
         if(e.currentTarget.value === 'true')
         {
-            var shouldEnableHexMode = confirm("WARNING: You are about to enable hex mode.");
+            var shouldEnableHoverEngineMode = confirm("WARNING: You are about to enable hoverEngine mode.");
             
-            if (shouldEnableHexMode){ //user confirmed action
-                hexModeSelection[hexName] = 1; // set a value in the hexModeSelection array
-                hexMode[hexName] = true; // set a value in the hexMode array
+            if (shouldEnableHoverEngineMode){ //user confirmed action
+                hoverEngineModeSelection[hoverEngineName] = 1; // set a value in the hoverEngineModeSelection array
+                hoverEngineMode[hoverEngineName] = true; // set a value in the hoverEngineMode array
 
                 _this.setState({
-                    hexModeSelection: hexModeSelection,
-                    hexMode: hexMode
+                    hoverEngineModeSelection: hoverEngineModeSelection,
+                    hoverEngineMode: hoverEngineMode
                 });
-                socket.emit('FlightControl_Hover:EnableHEX', {hexName: hexName});
+                socket.emit('FlightControl_Hover:EnableHEX', {hoverEngineName: hoverEngineName});
             } else { //user denied action
-                hexModeSelection[hexName] = 0; // set a value in the hexModeSelection array
-                hexMode[hexName] = false; // set a value in the hexMode array
+                hoverEngineModeSelection[hoverEngineName] = 0; // set a value in the hoverEngineModeSelection array
+                hoverEngineMode[hoverEngineName] = false; // set a value in the hoverEngineMode array
 
                 _this.setState({
-                    hexModeSelection: hexModeSelection,
-                    hexMode: hexMode
+                    hoverEngineModeSelection: hoverEngineModeSelection,
+                    hoverEngineMode: hoverEngineMode
                 });
-                socket.emit('FlightControl_Hover:DisableHEX', {hexName: hexName});
+                socket.emit('FlightControl_Hover:DisableHEX', {hoverEngineName: hoverEngineName});
             }
         }
-        //turn off hex mode
+        //turn off hoverEngine mode
         else{
-            hexModeSelection[hexName] = 0; // set a value in the hexModeSelection array
-            hexMode[hexName] = false; // set a value in the hexMode array
+            hoverEngineModeSelection[hoverEngineName] = 0; // set a value in the hoverEngineModeSelection array
+            hoverEngineMode[hoverEngineName] = false; // set a value in the hoverEngineMode array
 
             _this.setState({
-                hexModeSelection: hexModeSelection,
-                hexMode: hexMode
+                hoverEngineModeSelection: hoverEngineModeSelection,
+                hoverEngineMode: hoverEngineMode
             });
-            socket.emit('FlightControl_Hover:DisableHEX', {hexName: hexName});
+            socket.emit('FlightControl_Hover:DisableHEX', {hoverEngineName: hoverEngineName});
         }
     }
 
-    handleSetHexSpeed(hexName, e)
+    handleSetHoverEngineSpeed(hoverEngineName, e)
     {
-        var hexSpeed = this.state.hexSpeed;
-            hexSpeed[hexName] = e.currentTarget.value;
+        var hoverEngineSpeed = this.state.hoverEngineSpeed;
+            hoverEngineSpeed[hoverEngineName] = e.currentTarget.value;
 
-        this.setState({hexSpeed: hexSpeed})
+        this.setState({hoverEngineSpeed: hoverEngineSpeed})
     }
 
-    sendSetHEXSpeed(hexName, e)
+    sendSetHEXSpeed(hoverEngineName, e)
     {
-        var hexSpeed = this.state.hexSpeed[hexName];
-        socket.emit('FlightControl_Hover:SetHEXSpeed', {hexName, hexSpeed})
+        var hoverEngineSpeed = this.state.hoverEngineSpeed[hoverEngineName];
+        socket.emit('FlightControl_Hover:SetHEXSpeed', {hoverEngineName, hoverEngineSpeed})
     }
 
-    createHexInputLoop() {
-        var hexInputs = [];
+    createHoverEngineInputLoop() {
+        var hoverEngineInputs = [];
         for(var _i = 1; _i <= 8; _i ++)
         {
-            hexInputs.push(
+            hoverEngineInputs.push(
                 <div key={_i} className="col-xs-3">
-                    <h4>Hex Name: {_i}</h4>
+                    <h4>Hover Engine: {_i}</h4>
                     <div className='form-group'>
-                        <input type="radio" name={"hexMode"+_i} id={"hexModeTrue"+_i} value="true" checked={this.state["hexModeSelection"][_i]} onChange={this.handleHexModeToggle.bind(this, _i)} />
+                        <input type="radio" name={"hoverEngineMode"+_i} id={"hoverEngineModeTrue"+_i} value="true" checked={this.state["hoverEngineModeSelection"][_i]} onChange={this.handleHoverEngineModeToggle.bind(this, _i)} />
 
-                        <label htmlFor={"hexModeTrue"+_i}>
+                        <label htmlFor={"hoverEngineModeTrue"+_i}>
                             on
                         </label>
                     </div>
                         
                     <div className='form-group'>
-                        <input type="radio" name={"hexMode"+_i} id={"hexModeFalse"+_i} value="false" checked={!this.state["hexModeSelection"][_i]} onChange={this.handleHexModeToggle.bind(this, _i)}/>
+                        <input type="radio" name={"hoverEngineMode"+_i} id={"hoverEngineModeFalse"+_i} value="false" checked={!this.state["hoverEngineModeSelection"][_i]} onChange={this.handleHoverEngineModeToggle.bind(this, _i)}/>
                         
-                        <label htmlFor={"hexModeFalse"+_i}>
+                        <label htmlFor={"hoverEngineModeFalse"+_i}>
                             off
                         </label>
                     </div>
 
-                    <div className={this.state["hexModeSelection"][_i] ? '' : 'hidden'}>
+                    <div className={this.state["hoverEngineModeSelection"][_i] ? '' : 'hidden'}>
                         <div className='form-group'>
-                            <label htmlFor={"hexModeValue"+_i}>Set Hex Speed Value</label>
-                            <input type="text" name={"hexModeValue"+_i} id={"hexModeValue"+_i} onChange={this.handleSetHexSpeed.bind(this, _i)} />
+                            <label htmlFor={"hoverEngineModeValue"+_i}>Set HoverEngine Speed Value</label>
+                            <input type="text" name={"hoverEngineModeValue"+_i} id={"hoverEngineModeValue"+_i} onChange={this.handleSetHoverEngineSpeed.bind(this, _i)} />
                             <button className="btn btn-primary" onClick={this.sendSetHEXSpeed.bind(this, _i)}>Send</button>
                         </div>
                     </div>
@@ -293,10 +293,10 @@ class Throttles extends Component {
 
             if(_i % 4 === 0)
             {
-                hexInputs[_i] = <div key={'row'+_i} className="row"> {hexInputs[_i]} </div>;
+                hoverEngineInputs[_i] = <div key={'row'+_i} className="row"> {hoverEngineInputs[_i]} </div>;
             }
         }
-        return hexInputs;
+        return hoverEngineInputs;
     }
 
     render() {
@@ -463,8 +463,8 @@ class Throttles extends Component {
 
                 {/*Development Mode*/}
                 <fieldset>
-                    <legend>Hex Mode</legend>
-                    {_this.createHexInputLoop()}
+                    <legend>Hover Engine Mode</legend>
+                    {_this.createHoverEngineInputLoop()}
                 </fieldset>
                 </div>
 
@@ -478,7 +478,7 @@ class Throttles extends Component {
                                     <label>{item.label}</label>
                                     <GenericParameterLabel 
                                         StreamingPageManager={_this.state.streamManager} 
-                                        parameter={item.value} hex={item.hex}/>
+                                        parameter={item.value} hoverEngine={item.hoverEngine}/>
                                 </div>
                             )
                         }, this) //bind keyword this to contained method calls
@@ -492,7 +492,7 @@ class Throttles extends Component {
                                     <label>{item.label}</label>
                                     <GenericParameterLabel 
                                         StreamingPageManager={_this.state.streamManager} 
-                                        parameter={item.value} hex={item.hex}/>
+                                        parameter={item.value} hoverEngine={item.hoverEngine}/>
                                 </div>
                             )
                         }, this) //bind keyword this to contained method calls
@@ -506,7 +506,7 @@ class Throttles extends Component {
                                     <label>{item.label}</label>
                                     <GenericParameterLabel 
                                         StreamingPageManager={_this.state.streamManager} 
-                                        parameter={item.value} hex={item.hex}/>
+                                        parameter={item.value} hoverEngine={item.hoverEngine}/>
                                 </div>
                             )
                         }, this) //bind keyword this to contained method calls

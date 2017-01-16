@@ -173,89 +173,89 @@ describe("Cooling Command Suite", () => {
 *
 *
 */
-describe("Hover Hex Mode Suite", () => { 
+describe("Hover Hover Engine Mode Suite", () => { 
   
 /*
 *
 * Tests for Cooling input count
 *
 */
-  it('number of total Hex Name 1 inputs === 2', () => {
+  it('number of total Hover Engine Name 1 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputs = throttles.find('[name="hexMode1"]');
+    const coolingFLInputs = throttles.find('[name="hoverEngineMode1"]');
 
      expect(coolingFLInputs.length).toEqual(2);
   }) 
 
-  it('number of total Hex Name 2 inputs === 2', () => {
+  it('number of total Hover Engine Name 2 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputs = throttles.find('[name="hexMode2"]');
+    const coolingFRInputs = throttles.find('[name="hoverEngineMode2"]');
 
      expect(coolingFRInputs.length).toEqual(2);
   })
   
-  it('number of total Hex Name 3 inputs === 2', () => {
+  it('number of total Hover Engine Name 3 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputs = throttles.find('[name="hexMode3"]');
+    const coolingRLInputs = throttles.find('[name="hoverEngineMode3"]');
 
      expect(coolingRLInputs.length).toEqual(2);
   })
   
-  it('number of total Hex Name 4 inputs === 2', () => {
+  it('number of total Hover Engine Name 4 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputs = throttles.find('[name="hexMode4"]');
+    const coolingRRInputs = throttles.find('[name="hoverEngineMode4"]');
 
      expect(coolingRRInputs.length).toEqual(2);
   })
 
-  it('number of total Hex Name 5 inputs === 2', () => {
+  it('number of total Hover Engine Name 5 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputs = throttles.find('[name="hexMode5"]');
+    const coolingFLInputs = throttles.find('[name="hoverEngineMode5"]');
 
      expect(coolingFLInputs.length).toEqual(2);
   }) 
 
-  it('number of total Hex Name 6 inputs === 2', () => {
+  it('number of total Hover Engine Name 6 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputs = throttles.find('[name="hexMode6"]');
+    const coolingFRInputs = throttles.find('[name="hoverEngineMode6"]');
 
      expect(coolingFRInputs.length).toEqual(2);
   })
   
-  it('number of total Hex Name 7 inputs === 2', () => {
+  it('number of total Hover Engine Name 7 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputs = throttles.find('[name="hexMode7"]');
+    const coolingRLInputs = throttles.find('[name="hoverEngineMode7"]');
 
      expect(coolingRLInputs.length).toEqual(2);
   })
   
-  it('number of total Hex Name 8 inputs === 2', () => {
+  it('number of total Hover Engine Name 8 inputs === 2', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputs = throttles.find('[name="hexMode8"]');
+    const coolingRRInputs = throttles.find('[name="hoverEngineMode8"]');
 
      expect(coolingRRInputs.length).toEqual(2);
   })
@@ -268,96 +268,96 @@ describe("Hover Hex Mode Suite", () => {
 * Tests for Cooling input values
 *
 */
-  it('Hex 1 input values are boolean', () => {
+  it('HoverEngine 1 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputsValues = throttles.find('[name="hexMode1"]').map( (item, index) => { 
+    const coolingFLInputsValues = throttles.find('[name="hoverEngineMode1"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingFLInputsValues).toEqual(["true", "false"]);
   })
   
-  it('Hex 2 input values are boolean', () => {
+  it('HoverEngine 2 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputsValues = throttles.find('[name="hexMode2"]').map( (item, index) => { 
+    const coolingFRInputsValues = throttles.find('[name="hoverEngineMode2"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingFRInputsValues).toEqual(["true", "false"]);
   })
   
-  it('Hex 3 input values are boolean', () => {
+  it('HoverEngine 3 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputsValues = throttles.find('[name="hexMode3"]').map( (item, index) => { 
+    const coolingRLInputsValues = throttles.find('[name="hoverEngineMode3"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingRLInputsValues).toEqual(["true", "false"]);
   })
   
-  it('Hex 4 input values are boolean', () => {
+  it('HoverEngine 4 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputsValues = throttles.find('[name="hexMode4"]').map( (item, index) => { 
+    const coolingRRInputsValues = throttles.find('[name="hoverEngineMode4"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingRRInputsValues).toEqual(["true", "false"]);
   })
 
-  it('Hex 5 input values are boolean', () => {
+  it('HoverEngine 5 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFLInputsValues = throttles.find('[name="hexMode5"]').map( (item, index) => { 
+    const coolingFLInputsValues = throttles.find('[name="hoverEngineMode5"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingFLInputsValues).toEqual(["true", "false"]);
   })
   
-  it('Hex 6 input values are boolean', () => {
+  it('HoverEngine 6 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingFRInputsValues = throttles.find('[name="hexMode6"]').map( (item, index) => { 
+    const coolingFRInputsValues = throttles.find('[name="hoverEngineMode6"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingFRInputsValues).toEqual(["true", "false"]);
   })
   
-  it('Hex 7 input values are boolean', () => {
+  it('HoverEngine 7 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRLInputsValues = throttles.find('[name="hexMode7"]').map( (item, index) => { 
+    const coolingRLInputsValues = throttles.find('[name="hoverEngineMode7"]').map( (item, index) => { 
        return item.props().value;
     });
 
      expect(coolingRLInputsValues).toEqual(["true", "false"]);
   })
   
-  it('Hex 8 input values are boolean', () => {
+  it('HoverEngine 8 input values are boolean', () => {
 
     //render a Throttle component in the document
     const throttles = shallow(<Throttles />);
 
-    const coolingRRInputsValues = throttles.find('[name="hexMode8"]').map( (item, index) => { 
+    const coolingRRInputsValues = throttles.find('[name="hoverEngineMode8"]').map( (item, index) => { 
        return item.props().value;
     });
 
