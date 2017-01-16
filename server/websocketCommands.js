@@ -199,9 +199,12 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
             'FlightControl_Hover:EnableHEX': (data) => {
                 podCommands.FCUHover_EnableHEX(data.hexName)
 			},
+            'FlightControl_Hover:DisableHEX': (data) => {
+                podCommands.FCUHover_DisableHEX(data.hexName)
+			},
 			
             'FlightControl_Hover:SetHEXSpeed': (data) => {
-                podCommands.FCUHover_SetHEXSpeed(data.hewName, data.hexSpeed)
+                podCommands.FCUHover_SetHEXSpeed(data.hexName, data.hexSpeed)
 			},
 			
             'FlightControl_Hover:StartCooling': (data) => {

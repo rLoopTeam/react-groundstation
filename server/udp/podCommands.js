@@ -280,7 +280,7 @@ module.exports = function(udp){
         function FCUHover_DisableHEX(hexName) {
             udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
         }
-        function FCUHover_SetHEXSpeed(hewName, hexSpeed) {
+        function FCUHover_SetHEXSpeed(hexName, hexSpeed) {
             udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
         }
         function FCUHover_StartCooling(coolingName) {

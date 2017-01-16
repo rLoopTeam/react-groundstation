@@ -17,8 +17,18 @@ class Throttles extends Component {
 
 		this.state = {
 			streamManager: new StreamingPageManager(),
-            hexModeSelection: 0,
-            hexMode: false
+            hexModeSelection: [
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+            ],
+            hexMode: [
+                false, false, false, false,
+                false, false, false, false,
+            ],
+            hexSpeed: [
+                0, 0, 0, 0,
+                0, 0, 0, 0,
+            ]
 		}
 
         /**
@@ -153,35 +163,61 @@ class Throttles extends Component {
 
     handleHexModeToggle(hexName, e)
     {
-        var _this = this;
-        var hexMode = "hexMode"+hexName,
-            hexModeSelection = "hexModeSelection"+hexName;
+        var _this = this,
+            hexName = hexName,
+            hexMode = this.state["hexMode"],//get the hexMode array
+            hexModeSelection = this.state["hexModeSelection"];//get the hexModeSelection array
+
+            
         if(e.currentTarget.value === 'true')
         {
             var shouldEnableHexMode = confirm("WARNING: You are about to enable hex mode.");
             
             if (shouldEnableHexMode){ //user confirmed action
+                hexModeSelection[hexName] = 1; // set a value in the hexModeSelection array
+                hexMode[hexName] = true; // set a value in the hexMode array
+
                 _this.setState({
-                    hexModeSelection: 1,
-                    hexMode: true
+                    hexModeSelection: hexModeSelection,
+                    hexMode: hexMode
                 });
                 socket.emit('FlightControl_Hover:EnableHEX', {hexName: hexName});
             } else { //user denied action
+                hexModeSelection[hexName] = 0; // set a value in the hexModeSelection array
+                hexMode[hexName] = false; // set a value in the hexMode array
+
                 _this.setState({
-                    hexModeSelection: 0,
-                    hexMode: false
+                    hexModeSelection: hexModeSelection,
+                    hexMode: hexMode
                 });
                 socket.emit('FlightControl_Hover:DisableHEX', {hexName: hexName});
             }
         }
         //turn off hex mode
         else{
+            hexModeSelection[hexName] = 0; // set a value in the hexModeSelection array
+            hexMode[hexName] = false; // set a value in the hexMode array
+
             _this.setState({
-                hexModeSelection: 0,
-                hexMode: false
+                hexModeSelection: hexModeSelection,
+                hexMode: hexMode
             });
-            socket.emit('FlightControl_Brake:hexMode');
+            socket.emit('FlightControl_Hover:DisableHEX', {hexName: hexName});
         }
+    }
+
+    handleSetHexSpeed(hexName, e)
+    {
+        var hexSpeed = this.state.hexSpeed;
+            hexSpeed[hexName] = e.currentTarget.value;
+
+        this.setState({hexSpeed: hexSpeed})
+    }
+
+    sendSetHEXSpeed(hexName, e)
+    {
+        var hexSpeed = this.state.hexSpeed[hexName];
+        socket.emit('FlightControl_Hover:SetHEXSpeed', {hexName, hexSpeed})
     }
 
     createHexInputLoop() {
@@ -192,7 +228,7 @@ class Throttles extends Component {
                 <div key={_i} className="col-xs-3">
                     <h4>Hex Name: {_i}</h4>
                     <div className='form-group'>
-                        <input type="radio" name={"hexMode"+_i} id={"hexModeTrue"+_i} value="true" checked={this.state["hexModeSelection"+_i]} onChange={this.handleHexModeToggle.bind(this, _i)} />
+                        <input type="radio" name={"hexMode"+_i} id={"hexModeTrue"+_i} value="true" checked={this.state["hexModeSelection"][_i]} onChange={this.handleHexModeToggle.bind(this, _i)} />
 
                         <label htmlFor={"hexModeTrue"+_i}>
                             on
@@ -200,14 +236,27 @@ class Throttles extends Component {
                     </div>
                         
                     <div className='form-group'>
-                        <input type="radio" name={"hexMode"+_i} id={"hexModeFalse"+_i} value="false" checked={!this.state["hexModeSelection"+_i]} onChange={this.handleHexModeToggle.bind(this, _i)}/>
+                        <input type="radio" name={"hexMode"+_i} id={"hexModeFalse"+_i} value="false" checked={!this.state["hexModeSelection"][_i]} onChange={this.handleHexModeToggle.bind(this, _i)}/>
                         
                         <label htmlFor={"hexModeFalse"+_i}>
                             off
                         </label>
                     </div>
+
+                    <div className={this.state["hexModeSelection"][_i] ? '' : 'hidden'}>
+                        <div className='form-group'>
+                            <label htmlFor={"hexModeValue"+_i}>Set Hex Speed Value</label>
+                            <input type="text" name={"hexModeValue"+_i} id={"hexModeValue"+_i} onChange={this.handleSetHexSpeed.bind(this, _i)} />
+                            <button className="btn btn-primary" onClick={this.sendSetHEXSpeed.bind(this, _i)}>Send</button>
+                        </div>
+                    </div>
                 </div>
             )
+
+            if(_i % 4 === 0)
+            {
+                hexInputs[_i] = <div key={'row'+_i} className="row"> {hexInputs[_i]} </div>;
+            }
         }
         return hexInputs;
     }
@@ -218,7 +267,7 @@ class Throttles extends Component {
     // },
     
     // 'FlightControl_Hover:SetHEXSpeed': (data) => {
-    //     podCommands.FCUHover_SetHEXSpeed(data.hewName, data.hexSpeed)
+    //     podCommands.FCUHover_SetHEXSpeed(data.hexName, data.hexSpeed)
     // },
     
     // 'FlightControl_Hover:OpenSolenoid': (data) => {
