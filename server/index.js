@@ -115,7 +115,7 @@ var charger = require('./charger')(rtDataStore);
   Test Data Generator
   Adds some data to the real time data store for testing
 ------------*/
-//const testDataGenerator = require('./testDataGenerator.js')(packetParser);
+// const testDataGenerator = require('./testDataGenerator.js')(packetParser);
 
 /*------------
   Acclerometer Test Data Generator
@@ -125,13 +125,13 @@ var charger = require('./charger')(rtDataStore);
 //const AccelTestDataGenerator = require('./DataGenerators/AccelTestDataGenerator.js')(packetParser);
 
 // const BrakeTestDataGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
-// const TempSensorsGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
+//const TempSensorsGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 
 //Accelerometer packet generator
-// const payloads = require('./DataGenerators/TestPayloads');
-// const testGenerator = require('./DataGenerators/TestGenerator.js');
+ const payloads = require('./DataGenerators/TestPayloads');
+ const testGenerator = require('./DataGenerators/TestGenerator.js');
 // testGenerator(0x1003, payloads.accelerometer);
 // testGenerator(0x1101, payloads.optoDistanceSensors);
 // testGenerator(0x1201, payloads.forwardLaserDistanceSensors);
-// testGenerator(0x3201, payloads.battTempSensors);
+ testGenerator(0x3201, payloads.battTempSensors);
 // testGenerator(0x3203, payloads.battTempLocations);

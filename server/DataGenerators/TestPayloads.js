@@ -106,7 +106,7 @@ forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32To
 * 0x3021 Temperature sensor
 */
 var battTempSensors = [];
-var NumOfTempSensors = 300;
+var NumOfTempSensors = 20;
 battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(NumOfTempSensors,true)); //Number of temperature sensors
 battTempSensors.push.apply(battTempSensors,bin.uint16ToBytes(0,true)); //Spare slot
 

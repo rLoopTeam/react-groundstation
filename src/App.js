@@ -18,6 +18,7 @@ import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
 // import PowerA_Voltage from './components/power/unitA/voltage';
 import PowerA_Charger from './components/power/unitA/charger';
+import Charging from './components/power/Charging';
 import PowerA_RawTemperatures from './components/power/unitA/rawTemps';
 import './App.css';
 
@@ -29,6 +30,7 @@ class App extends Component {
         <Route path="/" component={MainLayout}>
         <IndexRoute component={Overview} />
           <Route path="dashboard" component={Overview} />
+          <Route path="Charging" component={Charging} />
           <Route path="powerACharger" component={PowerA_Charger} />
           <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
           <Route path="stop" component={Stop} />
@@ -44,6 +46,7 @@ class App extends Component {
           <Route path="datasubexample" component={DataStreamExample} />
           <Route path="commConfig" component={CommConfig} />
           <Route path="DAQ" component={DAQ} />
+
         </Route>  
       </Router>
     );
