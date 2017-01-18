@@ -152,6 +152,41 @@ brakesStreaming.push.apply(brakesStreaming, bin.int32ToBytes(0,true)); //current
 brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //state
 brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //calibration state
 
+var BMSStreaming = []
+BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(0,true)); //fault flags
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(1,true)); //temp sensor state
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(1,true)); //Charger state
+BMSStreaming.push.apply(BMSStreaming, bin.uint16ToBytes(250,true)); //num temp sensors
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(30,true)); //highest temp
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(23,true)); //average temp
+BMSStreaming.push.apply(BMSStreaming, bin.uint16ToBytes(18,true)); //highest sensor index
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(60,true)); //pack voltage
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(4.5,true)); //cell highest voltage
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(4.1,true)); //lowest cell voltage
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(22.2,true)); //bms boards temp
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(5,true)); //node pressure
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(26,true)); //node temp
+
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(0,true)); //module voltage 0
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(1,true)); //module voltage 1
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(2,true)); //module voltage 2
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(3,true)); //module voltage 3
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(4,true)); //module voltage 4
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(5,true)); //module voltage 5
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(6,true)); //module voltage 6
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(7,true)); //module voltage 7
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(8,true)); //module voltage 8
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(9,true)); //module voltage 9
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(10,true)); //module voltage 10
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(11,true)); //module voltage 11
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(12,true)); //module voltage 12
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(13,true)); //module voltage 13
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(14,true)); //module voltage 14
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(15,true)); //module voltage 15
+
+
+
+
 // {
 // 				"Name":"Brake data",
 // 				"ParameterPrefix":"Brake ",
@@ -240,5 +275,6 @@ module.exports = {
 	battTempLocations,
 	optoDistanceSensors,
 	forwardLaserDistanceSensors,
+	BMSStreaming
 }
 
