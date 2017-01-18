@@ -34,8 +34,6 @@ class Charging extends Component {
             {label: "Num Temp Sensors", value: "Power A BMS Num Temp Sensors"},
             {label: "Highest Sensor Value", value: "Power A BMS Highest Sensor Value"},
             {label: "Average Temp", value: "Power A BMS Average Temp"},
-            {label: "Highest Sensor Value", value: "Power A BMS Highest Sensor Value"},
-            {label: "Average Temp", value: "Power A BMS Average Temp"},
             {label: "Highest Sensor Index", value: "Power A BMS Highest Sensor Index"},
             {label: "Pack Volts", value: "Power A BMS Pack Volts"},
             {label: "Highest Cell Volts", value: "Power A BMS Highest Cell Volts"},
@@ -58,7 +56,9 @@ class Charging extends Component {
             {label: "Module 13 Volts", value: "Power A BMS 13 Module Voltage"},
             {label: "Module 14 Volts", value: "Power A BMS 14 Module Voltage"},
             {label: "Module 15 Volts", value: "Power A BMS 15 Module Voltage"},
-            {label: "Module 16 Volts", value: "Power A BMS 16 Module Voltage"}
+            {label: "Module 16 Volts", value: "Power A BMS 16 Module Voltage"},
+            {label: "Module 17 Volts", value: "Power A BMS 17 Module Voltage"},
+            {label: "Module 18 Volts", value: "Power A BMS 18 Module Voltage"}
         ]
 
         this.labels2 = [
@@ -77,7 +77,6 @@ class Charging extends Component {
             {label: "Board Temp", value: "Power B BMS Board Temp"},
             {label: "Node Pressure", value: "Power B BMS Node Pressure"},
             {label: "Node Temp", value: "Power B BMS Node Temp"},
-            {label: "Module 0 Volts", value: "Power B BMS Module Voltage 0"},
             {label: "Module 1 Volts", value: "Power B BMS Module Voltage 1"},
             {label: "Module 2 Volts", value: "Power B BMS Module Voltage 2"},
             {label: "Module 3 Volts", value: "Power B BMS Module Voltage 3"},
@@ -92,8 +91,11 @@ class Charging extends Component {
             {label: "Module 12 Volts", value: "Power B BMS Module Voltage 12"},
             {label: "Module 13 Volts", value: "Power B BMS Module Voltage 13"},
             {label: "Module 14 Volts", value: "Power B BMS Module Voltage 14"},
-            {label: "Module 15 Volts", value: "Power B BMS Module Voltage 15"}]
-
+            {label: "Module 15 Volts", value: "Power B BMS Module Voltage 15"},
+            {label: "Module 16 Volts", value: "Power B BMS Module Voltage 16"},
+            {label: "Module 17 Volts", value: "Power B BMS Module Voltage 17"},
+            {label: "Module 18 Volts", value: "Power B BMS Module Voltage 18"}
+        ]
     }
 
 	componentDidMount() {
