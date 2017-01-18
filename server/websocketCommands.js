@@ -255,6 +255,20 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				romIDScanner.BeginScanA(data.numOfSensors);
 			},
 
+			'PowerA:StartCharging':(data) => {
+				podCommands.PowerAStartCharging();
+			},
+			'PowerA:StopCharging':(data) => {
+				podCommands.PowerAStopCharging();
+			},
+
+			'PowerB:StartCharging':(data) => {
+				podCommands.PowerBStartCharging();
+			},
+			'PowerB:StopCharging':(data) => {
+				podCommands.PowerBStopCharging();
+			},
+
 			'AllLogging:Start': function(data){
 
 				console.log("Starting local logging.");

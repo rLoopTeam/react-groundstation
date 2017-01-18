@@ -260,6 +260,21 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
         }
 
+        function PowerAStartCharging(){
+            udp.tx.transmitPodCommand('Power Node A',0x3020, 0x11229988,0x01,0x0,0x0);
+        }
+
+        function PowerAStopCharging(){
+            udp.tx.transmitPodCommand('Power Node A',0x3020, 0x11229988,0x0,0x0,0x0);
+        }
+
+        function PowerBStartCharging(){
+            udp.tx.transmitPodCommand('Power Node B',0x3020, 0x11229988,0x01,0x0,0x0);
+        }
+
+        function PowerBStopCharging(){
+            udp.tx.transmitPodCommand('Power Node B',0x3020, 0x11229988,0x0,0x0,0x0);
+        }
 
         //Hover Engines
         function FCUHover_Enable() {
@@ -382,6 +397,10 @@ module.exports = function(udp){
         PowerAStreamTempLocations,
         PowerARequestRomID,
         PowerBRequestRomID,
+        PowerAStartCharging,
+        PowerAStopCharging,
+        PowerBStartCharging,
+        PowerBStopCharging,
 		
 
         FCUHover_Enable,

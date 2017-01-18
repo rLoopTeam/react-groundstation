@@ -142,11 +142,25 @@ class Charging extends Component {
 	}
    
 
-    brakeIBeamPositionHandler(changeEvent) {
-        this.setState({
-            nextIBeamBrakePosition: parseFloat(changeEvent.currentTarget.value, 10)
-        });
-    }
+	startChargeA(data, e) {
+		e.preventDefault();
+		socket.emit('PowerA:StartCharging', data);
+	}
+
+	stopChargeA(data, e) {
+		e.preventDefault();
+		socket.emit('PowerA:StopCharging', data);
+	}
+
+	startChargeB(data, e) {
+		e.preventDefault();
+		socket.emit('PowerB:StartCharging', data);
+	}
+
+	stopChargeB(data, e) {
+		e.preventDefault();
+		socket.emit('PowerB:StopCharging', data);
+	}
 
 	render() {
 		var _this = this;
@@ -161,12 +175,9 @@ class Charging extends Component {
                     <div className="col-sm-6">
                     <legend>Pack A - {this.state.packVoltageA} V - {this.state.packCurrentA} A</legend>
 
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Begin Charging</button>
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stop Charging</button><br />
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Begin Balancing</button>
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stop Balancing</button><br />
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Open Charge Relay</button>
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Close Charge Relay</button><br /><br />
+						<button type="button" className="btn btn-success" onClick={this.startChargeA.bind(this, {})}  style={{margin:10}}>Begin Charging</button>
+						<button type="button" className="btn btn-success" onClick={this.stopChargeA.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
+
 
                     <label>Max Temp:</label> {this.state.maxTempA} C<br />
                     <label>Min Temp:</label> {this.state.minTempA} C<br />
@@ -188,12 +199,8 @@ class Charging extends Component {
                     <div className="col-sm-6">
 						<legend>Pack B - {this.state.packVoltageA} V - {this.state.packCurrentA} A</legend>
 
-                    	<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Begin Charging</button>
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stop Charging</button><br />
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Begin Balancing</button>
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Stop Balancing</button><br />
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Open Charge Relay</button>
-						<button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes}  style={{margin:10}}>Close Charge Relay</button><br /><br />
+ 						<button type="button" className="btn btn-success" onClick={this.startChargeB.bind(this, {})}  style={{margin:10}}>Begin Charging</button>
+						<button type="button" className="btn btn-success" onClick={this.stopChargeB.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
 
                     <label>Max Temp:</label> {this.state.maxTempB} C<br />
                     <label>Min Temp:</label> {this.state.minTempB} C<br />
