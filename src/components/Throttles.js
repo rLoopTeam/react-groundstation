@@ -29,6 +29,9 @@ class Throttles extends Component {
                 0, 0, 0, 0,
                 0, 0, 0, 0,
             ], 
+            hovering: [
+                0, 1
+            ],
             staticHovering: [
                 0, 1
             ],
@@ -126,12 +129,25 @@ class Throttles extends Component {
      */
     handleHoverToggle(e)
     {
+        var hovering = this.state.hovering;
         // toggles the hover engine status {bool}
         if(e.currentTarget.value === 'true')
+        {
+            hovering[0] = 1;
+            hovering[1] = 0;
+            this.setState({hovering: hovering});
+
             socket.emit('FlightControl_Hover:Enable');
+        }
 
         else
+        {
+            hovering[0] = 0;
+            hovering[1] = 1;
+            this.setState({hovering: hovering});
+
             socket.emit('FlightControl_Hover:Disable');
+        }
     }
     
     /**
@@ -310,7 +326,7 @@ class Throttles extends Component {
                     <fieldset>
                         <legend>Hover</legend>
                         <div className='form-group'>
-                            <input type="radio" name="Hover" id="HoverTrue" value="true" onChange={_this.handleHoverToggle.bind(_this)} />
+                            <input type="radio" name="Hover" id="HoverTrue" value="true" checked={this.state["hovering"][0]} onChange={_this.handleHoverToggle.bind(_this)} />
 
                             <label htmlFor="HoverTrue">
                                 on
@@ -318,7 +334,7 @@ class Throttles extends Component {
                         </div>
                             
                         <div className='form-group'>
-                            <input type="radio" name="Hover" id="HoverFalse" value="false" onChange={_this.handleHoverToggle.bind(_this)}/>
+                            <input type="radio" name="Hover" id="HoverFalse" value="false" checked={this.state["hovering"][1]} onChange={_this.handleHoverToggle.bind(_this)}/>
                             
                             <label htmlFor="HoverFalse">
                                 off

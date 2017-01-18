@@ -10,6 +10,7 @@ import FlightControl_CalAccel from './components/FlightControl_CalAccel';
 import FlightControl_FullAccel from './components/FlightControl_FullAccel';
 import FlightControl_Contrast from './components/FlightControl_Contrast';
 import FlightControl_DistanceSensors from './components/FlightControl_DistanceSensors';
+import LineChart from './components/charts/LineChart';
 import Brakes from './components/Brakes';
 import Throttles from './components/Throttles';
 import Steppers from './components/Steppers';
@@ -39,6 +40,7 @@ class App extends Component {
           <Route path="FlightControl_Contrast" component={FlightControl_Contrast} />
           <Route path="FlightControl_DistanceSensors" component={FlightControl_DistanceSensors} />
           <Route path="throttles" component={Throttles} />
+          <Route path="LineChart" component={LineChart} />
           <Route path="brakes" component={Brakes} />
           <Route path="Steppers" component={Steppers} />
           <Route path="datasubexample" component={DataStreamExample} />
