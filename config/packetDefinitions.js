@@ -53,6 +53,28 @@ module.exports = {
 								{'Name':'Lo', 'type':'uint32', 'units':'', 'size': 4}
 							]
 			},
+
+			{
+				"Name":"Power A BMS",
+				"ParameterPrefix":"Power A BMS ",
+				"PacketType":0x3401,
+				"Parameters":[
+								{'Name':'Faults', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Temp State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Charger State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Num Temp Sensors', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Highest Sensor Value', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Average Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Highest Sensor Index', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Pack Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Highest Cell Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Lowest Cell Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Board Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Node Pressure', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Node Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Module Voltage', 'type':'float32', 'units':'', 'size': 4, 'beginLoop':true, 'endLoop':true},
+							]
+			},
 			
 			{
 				"Name":"Accel Cal Full",
@@ -220,6 +242,7 @@ module.exports = {
 								{'Name':'Microns per Revolution 2', 'type':'int32', 'units':'', 'size': 4},
 								{'Name':'Steps per Revolution 2', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Max Angular Velocity 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Lowest Cell Volts', 'type':'float32', 'units':'', 'size': 4}
 							]
 			},
 			{
@@ -443,3 +466,5 @@ module.exports = {
 			
 		]
 }
+
+

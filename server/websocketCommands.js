@@ -254,6 +254,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'PowerA:TempSensorROMIDScan':(data) => {
 				romIDScanner.BeginScanA(data.numOfSensors);
 			},
+			'PowerA:RequestBMS':(data) => {
+				podCommands.PowerARequestBMS();
+			},
 
 			'PowerA:StartCharging':(data) => {
 				podCommands.PowerAStartCharging();
