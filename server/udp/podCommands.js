@@ -237,7 +237,7 @@ module.exports = function(udp){
 		}
 
         function PowerARequestBMS(){
-            udp.tx.transmitPodCommand('Power Node A', 0x3401, 0x00, 0x00000000, 0x0, 0x0); 
+            udp.tx.transmitPodCommand('Power Node A', 0x3400, 0x00, 0x00000000, 0x0, 0x0); 
         }
 
         function PowerAChargeRelayOff() {
