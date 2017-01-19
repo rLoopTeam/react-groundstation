@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import config from '../../../../config/commConfig';
 import DataStreamClient from '../../../StreamPipeClient.js';
-import LineChart from '../../charts/LineChart.js';
 import io from 'socket.io-client';
 
 let ip = config.Appserver.ip;
@@ -138,21 +137,11 @@ class PowerA_RawTemperatures extends Component {
         var _this = this,
             _className = "col-xs-1_5 text-center",
 			_showKeys = true,
-            _keyCount = 0,
-			_charts = [];
+            _keyCount = 0;
 
 		var rows = [];
-		var data = {
-			dates: [],
-			temperature: [],
-		};
-		var rate = [];
 		for(var i = 1;i<=this.state.numberofSensors;i++)
 		{
-			data["dates"] = new Date();
-			data["temperature"] = this.state['temperatureValues'+i.toString()];
-
-			rate.push(this.state['resolution'+i.toString()]);
 			//rows.push(<tr key={"row"+i}><td>{this.state['temperatureValues'+i.toString()]} C</td><td>{this.state['userIndex'+i.toString()]}</td></tr>)
 			rows.push(<tr key={"row"+i}>
 				<td>{i-1}</td>
@@ -161,17 +150,8 @@ class PowerA_RawTemperatures extends Component {
 				<td>{this.state['resolution'+i.toString()]}</td>
 				<td>{this.state['busIndex'+i.toString()]}</td>
 				<td>{this.state['ROMID'+i.toString()]}</td>
-			</tr>)
+				</tr>)
 		}
-
-		function showCharts()
-		{
-			if(data.length > 0)
-			{
-				return <LineChart key={i} data={data} rate={10} />;
-			}
-		}
-
 
 	    return (
 				<div>
@@ -185,7 +165,7 @@ class PowerA_RawTemperatures extends Component {
 							<br /><br />
 						</div>
 					</form>
-					{showCharts()}
+
 					<table className="table">
 					<thead><tr>
 						<th>Index</th><th>Temperature</th><th>User Field</th><th>Resolution</th><th>Bus ID</th><th>ROM ID</th>

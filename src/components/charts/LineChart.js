@@ -14,12 +14,11 @@ let socket;
 class LineChart extends Component{
     constructor(props){
         super(props)
-        this.props = props;
-        // console.log(this.props)
+
     }
 
     componentDidMount() {
-        setInterval(() => this.forceUpdate(), this.props.rate);
+        setInterval(() => this.forceUpdate(), 10);
     }
 
     getRandomValue(){
@@ -27,31 +26,30 @@ class LineChart extends Component{
     }
     
     render() {
-        // var chart = {
-        //     axis: {
-        //         y: { min: 0, max: 10 }
-        //     },
-        //     point: {
-        //         show: false
-        //     }
-        // };
+        var chart = {
+            axis: {
+                y: { min: 0, max: 10 }
+            },
+            point: {
+                show: false
+            }
+        };
 
-        // var flow = {
-        //     duration: 200
-        // };
+        var flow = {
+            duration: 200
+        };
 
-        // var data = {
-        // date: new Date(),
-        // Car: this.getRandomValue(),
-        // Bus: this.getRandomValue()
-        // };
+        var fields = ['Car','Bus'];
 
-        var data = this.props.data;
-        var fields = Object.keys(this.props.data);
+        var data = {
+        date: new Date(),
+        Car: this.getRandomValue(),
+        Bus: this.getRandomValue()
+        };
     
         return <RTChart
                 // flow={flow}
-                // chart={chart}
+                chart={chart}
                 fields={fields}
                 data={data} />
     }
