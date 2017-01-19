@@ -18,7 +18,7 @@ class LineChart extends Component{
     }
 
     componentDidMount() {
-        setInterval(() => this.forceUpdate(), 100);
+        setInterval(() => this.forceUpdate(), 10);
     }
 
     getRandomValue(){
@@ -39,6 +39,8 @@ class LineChart extends Component{
             duration: 200
         };
 
+        var fields = ['Car','Bus'];
+
         var data = {
         date: new Date(),
         Car: this.getRandomValue(),
@@ -48,7 +50,7 @@ class LineChart extends Component{
         return <RTChart
                 // flow={flow}
                 chart={chart}
-                fields={['Car','Bus']}
+                fields={fields}
                 data={data} />
     }
 }
