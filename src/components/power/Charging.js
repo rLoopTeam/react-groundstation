@@ -21,7 +21,6 @@ class Charging extends Component {
 	constructor(props) {
 		super(props)
 		this.render = this.render;
-        this.requestBMSA = this.requestBMSA.bind(this);
 
 		this.state = {
 			streamManager: new StreamingPageManager(),
@@ -101,7 +100,6 @@ class Charging extends Component {
 	componentDidMount() {
         var _this = this;
 		this._isMounted = true;
-        setInterval(this.requestBMSA, 300);
 	}
 	
 	componentWillUnmount() {
@@ -130,7 +128,7 @@ class Charging extends Component {
 	}
 
     requestBMSA(data, e) {
-        socket.emit('PowerA:RequestBMS', data);
+        socket.emit('PowerA:RequestBMS');
     }
 
 	render() {
@@ -146,6 +144,7 @@ class Charging extends Component {
                     <div className="col-sm-6">
                     <legend>Pack A - {this.state.packVoltageA} V - {this.state.packCurrentA} A</legend>
 
+                        <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BSM Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startChargeA.bind(this, {})}  style={{margin:10}}>Begin Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeA.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
 
