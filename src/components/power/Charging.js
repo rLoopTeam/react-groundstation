@@ -142,9 +142,9 @@ class Charging extends Component {
                 <div className="row">
 
                     <div className="col-sm-6">
-                    <legend>Pack A - {this.state.packVoltageA} V - {this.state.packCurrentA} A</legend>
+                    <legend>Pack A</legend>
 
-                        <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BSM Stream</button>
+                        <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startChargeA.bind(this, {})}  style={{margin:10}}>Begin Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeA.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
 
@@ -164,7 +164,7 @@ class Charging extends Component {
                     </div>
 
                     <div className="col-sm-6">
-						<legend>Pack B - {this.state.packVoltageA} V - {this.state.packCurrentA} A</legend>
+						<legend>Pack B</legend>
 
  						<button type="button" className="btn btn-success" onClick={this.startChargeB.bind(this, {})}  style={{margin:10}}>Begin Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeB.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
