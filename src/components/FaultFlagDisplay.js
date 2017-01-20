@@ -51,17 +51,11 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 
 			return result;
 		}
-
 		return (
 			<div className="fault-flag-display">
 				<div className="table-responsive flag-wrapper"> 
+					<b>{this.props.label}</b>
 					<table className="table-bordered">
-						<thead>
-							<tr>
-						   		<th>Index</th>
-						   		<th>{this.props.label}</th>
-						 	</tr>
-						</thead>
 						<tbody>
 							{renderedFaultFlags}
 						</tbody>

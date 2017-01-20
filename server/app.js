@@ -40,6 +40,7 @@ if (isDeveloping) {
   
   // serve static bootstrap file
   app.use('/jquery', express.static(path.join(__dirname, '..', '/node_modules/jquery/dist')))
+  app.use('/c3Chart', express.static(path.join(__dirname, '..', '/node_modules/c3/')))
   app.use('/bootstrap', express.static(path.join(__dirname, '..', '/node_modules/bootstrap/dist')))
 
   //setup middleware

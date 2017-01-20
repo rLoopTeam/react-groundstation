@@ -53,21 +53,6 @@ module.exports = {
 								{'Name':'Lo', 'type':'uint32', 'units':'', 'size': 4}
 							]
 			},
-/*
-Auto sequence test:
-States returned (4 bytes):
-0x01 = IDLE
-0x02 = BRAKES INIT ACTION
-0x02 = EXPECTED RESULT
-0x03 = BRAKE FULL EXTEND ACTION
-0x04 = BRAKE FULL EXTEND EXPECTED RESULT
-0x05 = BRAKE FULL RETRACT ACTION
-0x06 = BRAKE FULL RETRACT EXPECTED RESULT
-
-Status of each state (1 byte):
-0x00 = Fail
-0x01 = Pass
-*/
 			{
 				"Name":"Auto-sequence test",
 				"ParameterPrefix":"Auto-test ",
@@ -75,6 +60,27 @@ Status of each state (1 byte):
 				"Parameters":[
 								{'Name':'State', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Status', 'type':'uint8', 'units':'', 'size': 1}
+							]
+			},
+			{
+				"Name":"Power A BMS",
+				"ParameterPrefix":"Power A BMS ",
+				"PacketType":0x3401,
+				"Parameters":[
+								{'Name':'Faults', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Temp State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Charger State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Num Temp Sensors', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Highest Sensor Value', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Average Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Highest Sensor Index', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Pack Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Highest Cell Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Lowest Cell Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Board Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Node Pressure', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Node Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Module Voltage', 'type':'float32', 'units':'', 'size': 4, 'beginLoop':true, 'endLoop':true},
 							]
 			},
 			
@@ -147,7 +153,7 @@ Status of each state (1 byte):
 				"ParameterPrefix":"Brake ",
 				"PacketType":0x1402, 
 				"Parameters":[
-								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Fault flags 1', 'type':'uint32', 'units':'A', 'size': 4},
 								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw mm 1', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw um 1', 'type':'uint32', 'units':'um', 'size': 4},
@@ -169,7 +175,7 @@ Status of each state (1 byte):
 								{'Name':'Linear Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
 								{'Name':'Current Position 1', 'type':'int32', 'units':'', 'size': 4},
 
-								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Fault flags 2', 'type':'uint32', 'units':'A', 'size': 4},
 								{'Name':'I Beam mm 2', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw mm 2', 'type':'float32', 'units':'mm', 'size': 4},
 								{'Name':'Lead screw um 2', 'type':'uint32', 'units':'um', 'size': 4},
@@ -244,6 +250,7 @@ Status of each state (1 byte):
 								{'Name':'Microns per Revolution 2', 'type':'int32', 'units':'', 'size': 4},
 								{'Name':'Steps per Revolution 2', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Max Angular Velocity 2', 'type':'int32', 'units':'', 'size': 4},
+								{'Name':'Lowest Cell Volts', 'type':'float32', 'units':'', 'size': 4}
 							]
 			},
 			{
@@ -467,3 +474,5 @@ Status of each state (1 byte):
 			
 		]
 }
+
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
+import FaultFlagDisplay from './FaultFlagDisplay';
 import NumericInput from './NumericInput.js';
 import config from '../../config/commConfig';
 
@@ -32,7 +33,6 @@ class Brakes extends Component {
 		}
 
         this.labels = [
-            {label: "Left Fault Flags", value: "Brake Fault Flags 1", hex:"true"},
             {label: "Left I-Beam", value: "Brake I Beam mm 1"},
             {label: "Left Lead screw target", value: "Brake Lead screw mm 1"},
             {label: "Left Lead screw target", value: "Brake Lead screw um 1"},
@@ -53,7 +53,6 @@ class Brakes extends Component {
         ]
 
         this.labels2 = [
-            {label: "Right Fault Flags", value: "Brake Fault flags 2", hex:"true"},
             {label: "Right I-Beam", value: "Brake I Beam mm 2"},
             {label: "Right Lead screw target", value: "Brake Lead screw mm 2"},
             {label: "Right Lead screw target", value: "Brake Lead screw um 2"},
@@ -257,6 +256,9 @@ class Brakes extends Component {
                 <div className="row">
 
                     <div className="col-sm-4">
+                        <div className="row">
+                            <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
+                        </div>
                     {
                         this.labels.map(function(item, index){
                             return (
@@ -272,6 +274,9 @@ class Brakes extends Component {
                     </div>
 
                     <div className="col-sm-4">
+                        <div className="row">
+                            <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+                        </div>
                     {
                         this.labels2.map(function(item, index){
                             return (

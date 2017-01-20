@@ -204,7 +204,7 @@ class PacketParser{
 														'units':packetDef.Parameters[i].units});
 							break;
 				
-				default: logger.log('warn', "PacketParser: Error in packet definition, type unknown"); break;
+				default: console.log("PacketParser: Error in packet definition, type unknown"); break;
 			}
 			parseLoc = newParseLoc;
 			
