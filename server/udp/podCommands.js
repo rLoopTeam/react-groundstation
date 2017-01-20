@@ -325,7 +325,7 @@ module.exports = function(udp){
         }
 
 
-        //Aux Propulsion
+        //Gimbal
         function FCUGimbal_Static() {
             udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
         }
@@ -359,7 +359,16 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Xilinx Sim', 0x5001, 0x2, 0x0, 0x0, 0x0); 
         }
 
-        
+        function AutoSequenceTest_Start() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x01, 0x0, 0x0, 0x0);
+        }
+        function AutoSequenceTest_Skip() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x02, 0x0, 0x0, 0x0);
+        }
+        function AutoSequenceTest_Kill() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x03, 0x0, 0x0, 0x0);
+        }
+
 
     return{
         LGU_PositionChange,
@@ -434,6 +443,10 @@ module.exports = function(udp){
 		XilinxSim_Laser1On,
 		XilinxSim_Laser1Off,
 		XilinxSim_Laser2On,
-		XilinxSim_Laser2Off
+		XilinxSim_Laser2Off,
+
+        AutoSequenceTest_Start,
+        AutoSequenceTest_Skip,
+        AutoSequenceTest_Kill
     }
 }
