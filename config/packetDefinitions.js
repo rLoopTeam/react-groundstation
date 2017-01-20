@@ -53,6 +53,30 @@ module.exports = {
 								{'Name':'Lo', 'type':'uint32', 'units':'', 'size': 4}
 							]
 			},
+/*
+Auto sequence test:
+States returned (4 bytes):
+0x01 = IDLE
+0x02 = BRAKES INIT ACTION
+0x02 = EXPECTED RESULT
+0x03 = BRAKE FULL EXTEND ACTION
+0x04 = BRAKE FULL EXTEND EXPECTED RESULT
+0x05 = BRAKE FULL RETRACT ACTION
+0x06 = BRAKE FULL RETRACT EXPECTED RESULT
+
+Status of each state (1 byte):
+0x00 = Fail
+0x01 = Pass
+*/
+			{
+				"Name":"Auto-sequence test",
+				"ParameterPrefix":"Auto-test ",
+				"PacketType":0x1901,
+				"Parameters":[
+								{'Name':'State', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Status', 'type':'uint8', 'units':'', 'size': 1}
+							]
+			},
 			
 			{
 				"Name":"Accel Cal Full",
@@ -174,7 +198,7 @@ module.exports = {
 			{
 				"Name":"Throttle parameters",
 				"ParameterPrefix":"Throttle ",
-				"PacketType":0x1502,
+				"PacketType":0x1503,
 				"Parameters":[
 								{'Name':'Requested RPM 1', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Requested RPM 2', 'type':'uint16', 'units':'', 'size': 2},
