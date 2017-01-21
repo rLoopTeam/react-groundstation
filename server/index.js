@@ -98,7 +98,7 @@ const config = require('./config.js')(packetStats);
 
 //Scans the temperature node sensor busses
 //for the temperature sensor ROM Ids
-var romIDScanner = require('./romIDScanner.js')(podCommands, rtDataStore);
+var romIDScanner = require('./ROMIDScanner.js')(podCommands, rtDataStore);
 
 /*------------
   WEBSOCKETS
