@@ -33,9 +33,13 @@ class Brakes extends Component {
 		}
 
         this.labels = [
-            {label: "Left I-Beam", value: "Brake I Beam mm 1"},
-            {label: "Left Lead screw target", value: "Brake Lead screw mm 1"},
-            {label: "Left Lead screw target", value: "Brake Lead screw um 1"},
+            {label: "Left I-Beam", value: "Brake I Beam mm 1 Target"},
+            {label: "Left Lead screw target", value: "Brake Lead screw mm 1 Target"},
+            {label: "Left Lead screw target", value: "Brake Lead screw um 1 Target"},
+
+            {label: "I Beam mm Current", value: "Brake I Beam mm 1 Current"},
+            {label: "Lead Screw mm Current", value: "Brake Lead Screw mm 1 Current"},
+            {label: "MLP Current", value: "Brake MLP 1 Current"},
 
             {label: "Left Extend Limit", value: "Brake Limit Extend 1"},
             {label: "Left Retract Limit", value: "Brake Limit Retract 1"},
@@ -53,9 +57,13 @@ class Brakes extends Component {
         ]
 
         this.labels2 = [
-            {label: "Right I-Beam", value: "Brake I Beam mm 2"},
-            {label: "Right Lead screw target", value: "Brake Lead screw mm 2"},
-            {label: "Right Lead screw target", value: "Brake Lead screw um 2"},
+            {label: "Right I-Beam", value: "Brake I Beam mm 2 Target"},
+            {label: "Right Lead screw target", value: "Brake Lead screw mm 2 Target"},
+            {label: "Right Lead screw target", value: "Brake Lead screw um 2 Target"},
+
+            {label: "I Beam mm Current", value: "Brake I Beam mm 2 Current"},
+            {label: "Lead Screw mm Current", value: "Brake Lead Screw mm 2 Current"},
+            {label: "MLP Current", value: "Brake MLP 2 Current"},
 
             {label: "Right Extend Limit", value: "Brake Limit Extend 2"},
             {label: "Right Retract Limit", value: "Brake Limit Retract 2"},
