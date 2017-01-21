@@ -31,6 +31,7 @@ class Overview extends Component {
 					yAxisLabel="Gs"
 					xAxisLabel="Time(ms)"
 					width={1000}
+					height={400}
 				/>
 			</div>
 		);
