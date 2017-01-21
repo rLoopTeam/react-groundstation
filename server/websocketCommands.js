@@ -384,6 +384,17 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			},
 
+            'AutoSequenceTest:Start': (data) => {
+                podCommands.AutoSequenceTest_Start();
+            },
+            'AutoSequenceTest:Skip': (data) => {
+                podCommands.AutoSequenceTest_Skip();
+            },
+            'AutoSequenceTest:Kill': (data) => {
+                podCommands.AutoSequenceTest_Kill();
+            },
+
+
 			'disconnect': () => {
 
 				console.log('Server got disconnected!');
