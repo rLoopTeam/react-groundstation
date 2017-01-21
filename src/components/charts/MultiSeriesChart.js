@@ -80,7 +80,7 @@ class MultiSeriesChart extends Component {
             		legend={true}
 	                data={this.lineData}
 	                width={this.props.width}
-	                height={400}
+	                height={this.props.height}
 	                // viewBoxObject={{
 	                //     x: 0,
 	                //     y: 0,
@@ -89,8 +89,10 @@ class MultiSeriesChart extends Component {
 	                // }}
 	                title={this.props.title}
 	                yAxisLabel={this.props.yAxisLabel}
+	                yRange={[-20,20]}
 	                xAxisLabel={this.props.xAxisLabel}
 	                gridHorizontal={true}
+	                margin={{top: 10, bottom: 50, left: 50, right: 10}}
 	                />
 			</div>
 		);
