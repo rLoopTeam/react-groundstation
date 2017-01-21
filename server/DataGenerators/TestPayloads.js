@@ -109,6 +109,9 @@ brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(15,true)); //fault
 brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //i beam mm 1
 brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //lead screw mm 1
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(1490,true)); //lead screw um 1
+brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //i beam mm 1
+brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //lead screw mm 1
+brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(1490,true)); //lead screw um 1
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(0,true)); //spare 1
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(0,true)); //spare 1
 
@@ -131,6 +134,9 @@ brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(15,true)); //fault
 brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //i beam mm 2
 brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //lead screw mm 2
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(1490,true)); //lead screw um 2
+brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //i beam mm 2
+brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(14.90,true)); //lead screw mm 2
+brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(1490,true)); //lead screw um 2
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(0,true)); //spare 2
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(0,true)); //spare 2
 
