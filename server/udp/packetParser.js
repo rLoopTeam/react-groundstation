@@ -113,7 +113,7 @@ class PacketParser{
 		var newDataParams = {
 			'packetName':packetDef.Name,
 			'packetType':packetDef.PacketType,
-			'rxTime':this.date.getTime(), //Millis since 1970/1/1
+			'rxTime':(new Date()).getTime(), //Millis since 1970/1/1
 			'parameters':[]
 			}
 		

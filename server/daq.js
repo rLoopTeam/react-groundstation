@@ -16,8 +16,8 @@ class daq {
 		
 		var filename = "logs/" + packet.packetName + ".csv";
 		//just no need for this
-		//var toWrite = packet.rxTime +", ";
-		var toWrite = "";
+		var toWrite = packet.rxTime +", ";
+
 		
 		for(var i = 0;i<packet.parameters.length-1;i++){
 			toWrite = toWrite + packet.parameters[i].value + ",";
