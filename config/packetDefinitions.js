@@ -154,9 +154,15 @@ module.exports = {
 				"PacketType":0x1402, 
 				"Parameters":[
 								{'Name':'Fault flags 1', 'type':'uint32', 'units':'A', 'size': 4},
-								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
-								{'Name':'Lead screw mm 1', 'type':'float32', 'units':'mm', 'size': 4},
-								{'Name':'Lead screw um 1', 'type':'uint32', 'units':'um', 'size': 4},
+
+								{'Name':'I Beam mm 1 Target', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw mm 1 Target', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw um 1 Target', 'type':'uint32', 'units':'um', 'size': 4},
+
+								{'Name':'I Beam mm 1 Current', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead Screw mm 1 Current', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'MLP 1 Current', 'type':'float32', 'units':'mm', 'size': 4},
+
 								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
 
@@ -176,11 +182,14 @@ module.exports = {
 								{'Name':'Current Position 1', 'type':'int32', 'units':'', 'size': 4},
 
 								{'Name':'Fault flags 2', 'type':'uint32', 'units':'A', 'size': 4},
-								{'Name':'I Beam mm 2', 'type':'float32', 'units':'mm', 'size': 4},
-								{'Name':'Lead screw mm 2', 'type':'float32', 'units':'mm', 'size': 4},
-								{'Name':'Lead screw um 2', 'type':'uint32', 'units':'um', 'size': 4},
-								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
-								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
+
+								{'Name':'I Beam mm 2 Target', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw mm 2 Target', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead screw um 2 Target', 'type':'uint32', 'units':'um', 'size': 4},
+
+								{'Name':'I Beam mm 2 Current', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'Lead Screw mm 2 Current', 'type':'float32', 'units':'mm', 'size': 4},
+								{'Name':'MLP 2 Current', 'type':'float32', 'units':'mm', 'size': 4},
 
 								{'Name':'Limit Extend 2', 'type':'uint8','units':'','size':1},
 								{'Name':'Limit Retract 2', 'type':'uint8','units':'','size':1},
