@@ -18,10 +18,9 @@ import Steppers from './components/Steppers';
 import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
-// import PowerA_Voltage from './components/power/unitA/voltage';
-import PowerA_Charger from './components/power/unitA/charger';
 import Charging from './components/power/Charging';
 import PowerA_RawTemperatures from './components/power/unitA/rawTemps';
+import PowerB_RawTemperatures from './components/power/unitB/rawTemps';
 import './App.css';
 
             // <Route path="powerAVoltage" component={PowerA_Voltage} />
@@ -33,8 +32,8 @@ class App extends Component {
         <IndexRoute component={Overview} />
           <Route path="dashboard" component={Overview} />
           <Route path="Charging" component={Charging} />
-          <Route path="powerACharger" component={PowerA_Charger} />
           <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
+          <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />
           <Route path="stop" component={Stop} />
           <Route path="lgu" component={LGU} />
           <Route path="XilinxSim" component={XilinxSim} />

@@ -236,6 +236,10 @@ module.exports = function(udp){
 			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x00, 0x00000000, 0x0, 0x0); 
 		}
 
+        function PowerBStreamingOff(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3010, 0x00, 0x00000000, 0x0, 0x0); 
+        }
+
         function PowerARequestBMS(){
             udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3401, 0x0, 0x0); 
         }
@@ -255,10 +259,18 @@ module.exports = function(udp){
 		function PowerAStreamCurrentTemps(){
 			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3201, 0x0, 0x0); 
 		}
+
+        function PowerBStreamCurrentTemps(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3010, 0x01, 0x3201, 0x0, 0x0); 
+        }
 		
 		function PowerAStreamTempLocations(){
 			udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
 		}
+
+        function PowerBStreamTempLocations(){
+            udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
+        }
 
         function PowerARequestRomID(index){
             udp.tx.transmitPodCommand('Power Node A',0x3204, index,0x0,0x0,0x0);
@@ -410,8 +422,11 @@ module.exports = function(udp){
         PowerAChargeRelayOff,
         PowerAChargeRelayOn,
         PowerAStreamingOff,
+        PowerBStreamingOff,
         PowerAStreamCurrentTemps,
+        PowerBStreamCurrentTemps,
         PowerAStreamTempLocations,
+        PowerBStreamTempLocations,
         PowerARequestRomID,
         PowerBRequestRomID,
         PowerAStartCharging,

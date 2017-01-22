@@ -27,7 +27,7 @@ class MainLayout extends Component {
 					//{name: "BMS 1", location: "/powerBBMS1"},
 					//{name: "BMS 2", location: "/powerBBMS2"},
 					//{name: "BMS 3", location: "/powerBBMS3"},
-					{name: "Raw Temperatures",location:"/powerARawTemps"}
+					{name: "Raw Temperatures",location:"/powerBRawTemps"}
 				]
 			},
 			{

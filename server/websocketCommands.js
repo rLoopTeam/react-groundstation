@@ -251,8 +251,24 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerAStreamTempLocations();
 			},
 
+			'PowerB:StreamingOff':(data) => {
+				podCommands.PowerBStreamingOff();
+			},
+	
+			'PowerB:StreamCurrentTemps':(data) => {
+				podCommands.PowerBStreamCurrentTemps();
+			},
+	
+			'PowerB:StreamTempLocations':(data) => {
+				podCommands.PowerBStreamTempLocations();
+			},
+
 			'PowerA:TempSensorROMIDScan':(data) => {
 				romIDScanner.BeginScanA(data.numOfSensors);
+			},
+
+			'PowerB:TempSensorROMIDScan':(data) => {
+				romIDScanner.BeginScanB(data.numOfSensors);
 			},
 
 			//These are BMS Streams

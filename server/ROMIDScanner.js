@@ -24,9 +24,16 @@ class TempSensorROMIDScanner {
 		console.log("Beginning to scan the temperature sensor IDs on Power Node A.");
 	}
 
-	BeginScanB()
+	BeginScanB(numberOfSensors)
 	{
+		this.ScanBIndex = 0;
+		this.ScanBROMID = '';
+		this.ScanBLastIndex = numberOfSensors - 1;
+		this.PodCommands.PowerBRequestRomID(0);
+		this.ScanATimeout = 0;
 
+		this.timerB = setInterval(function(){this.ScanBCB()}.bind(this), 30);
+		console.log("Beginning to scan the temperature sensor IDs on Power Node B.");
 	}
 
 	ScanACB()
@@ -80,13 +87,53 @@ class TempSensorROMIDScanner {
 
 	ScanBCB()
 	{
+		var IDHi = this.rtDataStore.retrieveDataParameter("Power B ROM Hi").Value;
+		var IDLo =  this.rtDataStore.retrieveDataParameter("Power B ROM Lo").Value;
+		var index =  this.rtDataStore.retrieveDataParameter("Power B ROM Index").Value;
 
+		var IDArray = [];
+		IDArray = IDArray.concat(bin.uint32ToBytes(IDHi).reverse());
+		IDArray = IDArray.concat(bin.uint32ToBytes(IDLo).reverse());
+
+		if(this.ScanBTimeout == 100)
+		{
+			this.PodCommands.PowerBRequestRomID(this.ScanAIndex);
+		}
+
+		if(this.ScanBTimeout >= 300 || this.ScanBLastIndex == index){
+				console.log("Scan B done.");
+				clearInterval(this.timerB);
+		}
+
+		if(index != this.ScanBIndex){
+			this.ScanBTimeout++;
+			return;
+		}
+
+		var newByte = IDArray[0].toString(16);;
+		if(newByte.length == 1)
+			newByte = '0' + newByte;
+		var toAdd = newByte;
+
+		for(var i = 1;i<8;i++){
+			newByte = IDArray[i].toString(16);
+			if(newByte.length == 1)
+				newByte = '0' + newByte;
+			toAdd += ' ' + newByte;
+		}
+
+		toAdd = toAdd.toUpperCase();
+
+		console.log("Got Sensor "+index+" id: "+toAdd);
+
+		var newData ={'packetName':'Power B ROM IDs'+(index+1),'packetType':'0','rxTime':0,'parameters':[]};
+		newData.parameters.push({'name':'Power B ROM ID '+(index+1),'value':toAdd,'units':''});
+		this.rtDataStore.insertDataPacket(newData);
+
+		this.ScanAIndex++;
+		this.PodCommands.PowerARequestRomID(this.ScanBIndex);
 	}
 
-	insertROMIDIntoRTStore(sensorIndex, ID)
-	{
-
-	}
 }
 
 module.exports = function(PodCommands, rtDataStore){

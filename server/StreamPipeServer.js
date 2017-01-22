@@ -30,7 +30,7 @@ class StreamPipeServer
 				console.log("StreamPipeServer: New client id " + socket.id);
 				
 				socket.on('request parameters', function(msg){
-					console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
+					//console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
 					for(var y = 0; y<msg.length;y++)
 					{
 						requestedParams.push(msg[y]);
@@ -38,7 +38,7 @@ class StreamPipeServer
 				});
 
 				socket.on('request parameter', function(msg){
-					console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
+					//console.log("StreamPipeServer: " + clientID + " requested: " + JSON.stringify(msg));
 					requestedParams.push(msg);
 				});
 				
