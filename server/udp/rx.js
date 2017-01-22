@@ -9,6 +9,7 @@ class udpServer {
 	{
 		this.udpServer = dgram.createSocket({type: 'udp4', reuseAddr: true});
 		this.rxCallback = rxCallback;
+		this.port = port;
 		
 		this.udpServer.on('listening', function () {
 			  var address = this.udpServer.address();
@@ -16,7 +17,7 @@ class udpServer {
 		}.bind(this));
   
 		this.udpServer.on('message', function (message, remote) {  
-			this.rxCallback(message);
+			this.rxCallback(message, this.port);
 		}.bind(this));
 		
 		this.udpServer.on('disconnect', function(){

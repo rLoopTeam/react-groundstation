@@ -21,7 +21,7 @@ function makeSafetyUDP(sequence, packetType, payload){
     return finalPacket;
 }
 
-function makeNewPacket(sequence, type, payload){
+function makeNewPacket(sequence, type, payload, port){
     
     var testPacket = makeSafetyUDP(sequence, type, payload);
     var packetBuf = new Buffer(testPacket);
@@ -29,7 +29,7 @@ function makeNewPacket(sequence, type, payload){
     client.bind();
     client.on("listening", function () {
         client.setBroadcast(true);
-        client.send(packetBuf, 0, packetBuf.length, commConfig.testDataGeneratorTargetPort, commConfig.testDataGeneratorTargetHost, function(err, bytes) {
+        client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function(err, bytes) {
             client.close();
         });
     });
@@ -37,10 +37,21 @@ function makeNewPacket(sequence, type, payload){
     return testPacket;
 }
 
-module.exports = function( type, payload){
+module.exports = function( type, payload, node){
     var sequence = 0;
+
+    var port = 0;
+
+    for(var i = 0;i<commConfig.RXServers.length;i++)
+    {
+        if(commConfig.RXServers[i].hostName === node)
+        {
+            port = commConfig.RXServers[i].port;
+        }
+    }
+
     setInterval(function(){
-        makeNewPacket(sequence, type, payload); 
+        makeNewPacket(sequence, type, payload, port); 
         sequence += 1;
     },30);
 }

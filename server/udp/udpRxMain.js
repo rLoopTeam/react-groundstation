@@ -32,9 +32,9 @@ class udpRxMain{
 	}
 	
 	//Pass a udp packet from the receivers to the parser
-	rxNewPacket(rawUDP)
+	rxNewPacket(rawUDP, port)
 	{
-		packetParser.gotNewPacket(rawUDP);
+		packetParser.gotNewPacket(rawUDP, port);
 	}
 }
 

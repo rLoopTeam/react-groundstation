@@ -2,25 +2,10 @@ module.exports = {
 	packetDefinitions:
 	[
 			{
-				"Name":"Test Packet",
-				"ParameterPrefix":"Test 1: ",
-				"PacketType":0x5000,
-				"Parameters":[
-								{'Name':'x', 'type':'uint8', 'units':'test1', 'size': 1},
-								{'Name':'y', 'type':'int8', 'units':'test2', 'size': 1},
-								{'Name':'a', 'type':'uint16', 'units':'NA', 'size': 2},
-								{'Name':'b', 'type':'int16', 'units':'NA', 'size': 2},
-								{'Name':'c', 'type':'uint32', 'units':'NA', 'size': 4},
-								{'Name':'d', 'type':'int32', 'units':'NA', 'size': 4},
-								{'Name':'e', 'type':'float32', 'units':'NA', 'size': 4},
-								{'Name':'f', 'type':'float64', 'units':'millis since Unix Epoch', 'size': 8}
-							]
-			},
-			
-			{
 				"Name":"Power A Current Temps",
 				"ParameterPrefix":"Power A Temps ",
 				"PacketType":0x3201,
+				"Node":"Power Node A",
 				"Parameters":[
 								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
@@ -30,9 +15,38 @@ module.exports = {
 			},
 			
 			{
+				"Name":"Power B Current Temps",
+				"ParameterPrefix":"Power B Temps ",
+				"PacketType":0x3201,
+				"Node":"Power Node B",
+				"Parameters":[
+								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
+								
+								{'Name':'Temperature', 'type':'float32', 'units':'C', 'size': 4, 'beginLoop':true, 'endLoop':true}
+							]
+			},
+
+			{
 				"Name":"Power A Current Temps Locations",
 				"ParameterPrefix":"Power A Temps Loc ",
 				"PacketType":0x3203,
+				"Node":"Power Node A",
+				"Parameters":[
+								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
+								
+								{'Name':'User Index', 'type':'uint16', 'units':'Hex', 'size': 2, 'beginLoop':true},
+								{'Name':'Resolution', 'type':'uint8', 'units':'bits', 'size': 1},
+								{'Name':'Bus Index', 'type':'uint8', 'units':'', 'size': 1, 'endLoop':true}
+							]
+			},
+
+			{
+				"Name":"Power B Current Temps Locations",
+				"ParameterPrefix":"Power B Temps Loc ",
+				"PacketType":0x3203,
+				"Node":"Power Node B",
 				"Parameters":[
 								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
@@ -47,6 +61,18 @@ module.exports = {
 				"Name":"Power A ROM ID",
 				"ParameterPrefix":"Power A ROM ",
 				"PacketType":0x3205,
+				"Node":"Power Node A",
+				"Parameters":[
+								{'Name':'Index', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Hi', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Lo', 'type':'uint32', 'units':'', 'size': 4}
+							]
+			},
+			{
+				"Name":"Power B ROM ID",
+				"ParameterPrefix":"Power B ROM ",
+				"PacketType":0x3205,
+				"Node":"Power Node B",
 				"Parameters":[
 								{'Name':'Index', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Hi', 'type':'uint32', 'units':'', 'size': 4},
@@ -57,6 +83,7 @@ module.exports = {
 				"Name":"Auto-sequence test",
 				"ParameterPrefix":"Auto-test ",
 				"PacketType":0x1901,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'State', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Status', 'type':'uint8', 'units':'', 'size': 1}
@@ -66,6 +93,30 @@ module.exports = {
 				"Name":"Power A BMS",
 				"ParameterPrefix":"Power A BMS ",
 				"PacketType":0x3401,
+				"Node":"Power Node A",
+				"Parameters":[
+								{'Name':'Faults', 'type':'uint32', 'units':'', 'size': 4},
+								{'Name':'Temp State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Charger State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Num Temp Sensors', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Highest Sensor Value', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Average Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Highest Sensor Index', 'type':'uint16', 'units':'', 'size': 2},
+								{'Name':'Pack Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Highest Cell Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Lowest Cell Volts', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Board Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Node Pressure', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Node Temp', 'type':'float32', 'units':'', 'size': 4},
+								{'Name':'Module Voltage', 'type':'float32', 'units':'', 'size': 4, 'beginLoop':true, 'endLoop':true},
+							]
+			},
+
+			{
+				"Name":"Power B BMS",
+				"ParameterPrefix":"Power B BMS ",
+				"PacketType":0x3401,
+				"Node":"Power Node B",
 				"Parameters":[
 								{'Name':'Faults', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Temp State', 'type':'uint8', 'units':'', 'size': 1},
@@ -88,6 +139,7 @@ module.exports = {
 				"Name":"Accel Cal Full",
 				"ParameterPrefix":"Accel ",
 				"PacketType":0x1001,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'0 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'0 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -104,6 +156,7 @@ module.exports = {
 				"Name":"Accel Data Full",
 				"ParameterPrefix":"Accel ",
 				"PacketType":0x1003,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'0 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'0 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -130,6 +183,7 @@ module.exports = {
 				"Name":"Brake Cal Full",
 				"ParameterPrefix":"Brake ",
 				"PacketType":0x0000, //defined in the packet section of confluence for FCU
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'Parking', 'type':'uint8', 'units':'', 'size': 1},
 								{'Name':'Left Screw Pos', 'type':'float32', 'units':'mm', 'size': 4},
@@ -152,6 +206,7 @@ module.exports = {
 				"Name":"Brake data",
 				"ParameterPrefix":"Brake ",
 				"PacketType":0x1402, 
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'Fault flags 1', 'type':'uint32', 'units':'A', 'size': 4},
 
@@ -214,6 +269,7 @@ module.exports = {
 				"Name":"Throttle parameters",
 				"ParameterPrefix":"Throttle ",
 				"PacketType":0x1503,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'Requested RPM 1', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Requested RPM 2', 'type':'uint16', 'units':'', 'size': 2},
@@ -247,6 +303,7 @@ module.exports = {
 				"Name":"Motor parameters",
 				"ParameterPrefix":"Motor ",
 				"PacketType":0x1406,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'Microstep Resolution 1', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Max Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
@@ -266,6 +323,7 @@ module.exports = {
 				"Name": "Laser Opto Sensor",
 				"ParameterPrefix": "LaserOpto ",
 				"PacketType": 0x1101,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4}, //top-level fault flags
 								{'Name':'Spare', 'type':'uint32', 'units':'', 'size':4},
@@ -332,6 +390,7 @@ module.exports = {
 				"Name": "Forward Laser Distance Sensor",
 				"ParameterPrefix": "ForwardLaser ",
 				"PacketType": 0x1201,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Spare 0', 'type':'uint32', 'units':'', 'size':4},
@@ -345,6 +404,7 @@ module.exports = {
 				"Name":"Flight Control - Laser Contrast 0",
 				"ParameterPrefix":"LaserContrast0 ",
 				"PacketType":0x1301,
+				"Node":"Flight Control",
 				"Parameters":[
 								{'Name':'System Fault Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Spare 0', 'type':'uint32', 'units':'', 'size': 4},
@@ -479,8 +539,7 @@ module.exports = {
 								{'Name':'Fall_52', 'type':'uint64', 'units':'ns', 'size': 8},
 								{'Name':'Fall_53', 'type':'uint64', 'units':'ns', 'size': 8},
 						]
-			},			
-			
+			},
 		]
 }
 

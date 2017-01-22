@@ -173,7 +173,6 @@ BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(22.2,true)); //bms boar
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(5,true)); //node pressure
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(26,true)); //node temp
 
-BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(0,true)); //module voltage 0
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(1,true)); //module voltage 1
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(2,true)); //module voltage 2
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(3,true)); //module voltage 3
@@ -189,8 +188,9 @@ BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(12,true)); //module vol
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(13,true)); //module voltage 13
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(14,true)); //module voltage 14
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(15,true)); //module voltage 15
-
-
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(16,true)); //module voltage 16
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(17,true)); //module voltage 17
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(18,true)); //module voltage 18
 
 
 // {

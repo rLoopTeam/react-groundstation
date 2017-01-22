@@ -240,6 +240,10 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3401, 0x0, 0x0); 
         }
 
+        function PowerBRequestBMS(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3010, 0x01, 0x3401, 0x0, 0x0); 
+        }
+
         function PowerAChargeRelayOff() {
             udp.tx.transmitPodCommand('Power Node A', 0x3100, 0x00, 0x00000000, 0x0, 0x0); 
         }
@@ -415,6 +419,7 @@ module.exports = function(udp){
         PowerBStartCharging,
         PowerBStopCharging,
         PowerARequestBMS,
+        PowerBRequestBMS,
 		
 
         FCUHover_Enable,

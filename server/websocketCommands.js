@@ -254,8 +254,13 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'PowerA:TempSensorROMIDScan':(data) => {
 				romIDScanner.BeginScanA(data.numOfSensors);
 			},
+
+			//These are BMS Streams
 			'PowerA:RequestBMS':(data) => {
 				podCommands.PowerARequestBMS();
+			},
+			'PowerB:RequestBMS':(data) => {
+				podCommands.PowerBRequestBMS();
 			},
 
 			'PowerA:StartCharging':(data) => {

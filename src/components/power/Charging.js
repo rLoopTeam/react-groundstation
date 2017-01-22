@@ -67,8 +67,6 @@ class Charging extends Component {
             {label: "Num Temp Sensors", value: "Power B BMS Num Temp Sensors"},
             {label: "Highest Sensor Value", value: "Power B BMS Highest Sensor Value"},
             {label: "Average Temp", value: "Power B BMS Average Temp"},
-            {label: "Highest Sensor Value", value: "Power B BMS Highest Sensor Value"},
-            {label: "Average Temp", value: "Power B BMS Average Temp"},
             {label: "Highest Sensor Index", value: "Power B BMS Highest Sensor Index"},
             {label: "Pack Volts", value: "Power B BMS Pack Volts"},
             {label: "Highest Cell Volts", value: "Power B BMS Highest Cell Volts"},
@@ -76,24 +74,24 @@ class Charging extends Component {
             {label: "Board Temp", value: "Power B BMS Board Temp"},
             {label: "Node Pressure", value: "Power B BMS Node Pressure"},
             {label: "Node Temp", value: "Power B BMS Node Temp"},
-            {label: "Module 1 Volts", value: "Power B BMS Module Voltage 1"},
-            {label: "Module 2 Volts", value: "Power B BMS Module Voltage 2"},
-            {label: "Module 3 Volts", value: "Power B BMS Module Voltage 3"},
-            {label: "Module 4 Volts", value: "Power B BMS Module Voltage 4"},
-            {label: "Module 5 Volts", value: "Power B BMS Module Voltage 5"},
-            {label: "Module 6 Volts", value: "Power B BMS Module Voltage 6"},
-            {label: "Module 7 Volts", value: "Power B BMS Module Voltage 7"},
-            {label: "Module 8 Volts", value: "Power B BMS Module Voltage 8"},
-            {label: "Module 9 Volts", value: "Power B BMS Module Voltage 9"},
-            {label: "Module 10 Volts", value: "Power B BMS Module Voltage 10"},
-            {label: "Module 11 Volts", value: "Power B BMS Module Voltage 11"},
-            {label: "Module 12 Volts", value: "Power B BMS Module Voltage 12"},
-            {label: "Module 13 Volts", value: "Power B BMS Module Voltage 13"},
-            {label: "Module 14 Volts", value: "Power B BMS Module Voltage 14"},
-            {label: "Module 15 Volts", value: "Power B BMS Module Voltage 15"},
-            {label: "Module 16 Volts", value: "Power B BMS Module Voltage 16"},
-            {label: "Module 17 Volts", value: "Power B BMS Module Voltage 17"},
-            {label: "Module 18 Volts", value: "Power B BMS Module Voltage 18"}
+            {label: "Module 1 Volts", value: "Power B BMS 1 Module Voltage"},
+            {label: "Module 2 Volts", value: "Power B BMS 2 Module Voltage"},
+            {label: "Module 3 Volts", value: "Power B BMS 3 Module Voltage"},
+            {label: "Module 4 Volts", value: "Power B BMS 4 Module Voltage"},
+            {label: "Module 5 Volts", value: "Power B BMS 5 Module Voltage"},
+            {label: "Module 6 Volts", value: "Power B BMS 6 Module Voltage"},
+            {label: "Module 7 Volts", value: "Power B BMS 7 Module Voltage"},
+            {label: "Module 8 Volts", value: "Power B BMS 8 Module Voltage"},
+            {label: "Module 9 Volts", value: "Power B BMS 9 Module Voltage"},
+            {label: "Module 10 Volts", value: "Power B BMS 10 Module Voltage"},
+            {label: "Module 11 Volts", value: "Power B BMS 11 Module Voltage"},
+            {label: "Module 12 Volts", value: "Power B BMS 12 Module Voltage"},
+            {label: "Module 13 Volts", value: "Power B BMS 13 Module Voltage"},
+            {label: "Module 14 Volts", value: "Power B BMS 14 Module Voltage"},
+            {label: "Module 15 Volts", value: "Power B BMS 15 Module Voltage"},
+            {label: "Module 16 Volts", value: "Power B BMS 16 Module Voltage"},
+            {label: "Module 17 Volts", value: "Power B BMS 17 Module Voltage"},
+            {label: "Module 18 Volts", value: "Power B BMS 18 Module Voltage"}
         ]
     }
 
@@ -131,6 +129,10 @@ class Charging extends Component {
         socket.emit('PowerA:RequestBMS');
     }
 
+    requestBMSB(data, e) {
+        socket.emit('PowerB:RequestBMS');
+    }
+
 	render() {
 		var _this = this;
         var buttonClasses = "btn btn-primary " + ((this.state.developmentMode) ? "" : "disabled");
@@ -165,7 +167,8 @@ class Charging extends Component {
 
                     <div className="col-sm-6">
 						<legend>Pack B</legend>
-
+                        
+                        <button className="btn btn-primary" onClick={this.requestBMSB.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
  						<button type="button" className="btn btn-success" onClick={this.startChargeB.bind(this, {})}  style={{margin:10}}>Begin Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeB.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
 

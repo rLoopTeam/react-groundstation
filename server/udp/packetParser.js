@@ -16,6 +16,7 @@
 */
 const bin = require('./binary.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
+const commConfig = require('../../config/commConfig.js');
 
 class PacketParser{
 	constructor()
@@ -38,11 +39,21 @@ class PacketParser{
 		return true;
 	}
 
-	findPacketDefinition(packetType)
+	findPacketDefinition(packetType, port)
 	{
+		//Use the port number to identify the node that sent the packet
+		var node = '';
+		for(var i = 0; i< commConfig.RXServers.length;i++){
+			if(commConfig.RXServers[i].port == port)
+			{
+				node = commConfig.RXServers[i].hostName;
+				break;
+			}
+		}
+
 		for(var i = 0, len = this.packetDefinitions.length; i<len; i++)
 		{
-			if(this.packetDefinitions[i].PacketType == packetType)
+			if(this.packetDefinitions[i].PacketType == packetType && this.packetDefinitions[i].Node === node)
 			{
 				return this.packetDefinitions[i];
 			}
@@ -62,7 +73,7 @@ class PacketParser{
 		logger.log("info", data)
 	}
 
-	gotNewPacket (raw_udp) {
+	gotNewPacket (raw_udp, port) {
 		//Good for testing, should just have some stats:
 		//    how many good
 		//    bad packets
@@ -83,7 +94,6 @@ class PacketParser{
 		var packetType = bin.bytesToUint16(raw_udp[4], raw_udp[5], true);
 		var length = bin.bytesToUint16(raw_udp[6], raw_udp[7], true);
 		
-		
 		if((length+10) !== raw_udp.length)
 		{
 			//Packet is the wrong length, abort, should update packet stats too
@@ -97,7 +107,7 @@ class PacketParser{
 			
 		
 		//See if we know how to decode this particular type of packet
-		var packetDef = this.findPacketDefinition(packetType);
+		var packetDef = this.findPacketDefinition(packetType, port);
 		if(packetDef === 0)
 		{
 			//Uh-oh, can't decode this packet.
