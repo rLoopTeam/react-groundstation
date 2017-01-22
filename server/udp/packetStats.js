@@ -24,10 +24,12 @@ class packetStats{
 		this.daqPackets = [];
 		this.gotPacketType.bind(this);
 		this.updateRtDataStore = this.updateRtDataStore.bind(this);
-		setInterval(this.updateRtDataStore ,30);
+		this.nodeTimes = [];
+		setInterval(this.updateRtDataStore ,60);
 	}
 
-	gotPacketType(packetType, CRC, sequence){
+	gotPacketType(packetType, CRC, sequence, node){
+		var found = false;
 		for(var i = 0;i<this.rxPackets.length;i++){
 			if(this.rxPackets[i].type == packetType.toString(16))
 			{
@@ -37,10 +39,27 @@ class packetStats{
 					this.rxPackets[i].sequenceJumps += sequence - this.rxPackets[i].lastSequence - 1;
 				}
 				this.rxPackets[i].lastSequence = sequence;
-				return;
+				found = true;
+				break;
 			}
 		}
-		this.rxPackets.push({'type':packetType.toString(16),'count':1,'lastSequence':sequence,'sequenceJumps':0});
+		if(found === false)
+			this.rxPackets.push({'type':packetType.toString(16),'count':1,'lastSequence':sequence,'sequenceJumps':0});
+
+		//Records last time a node was seen
+		found = false;
+		for(var i = 0;i<this.nodeTimes.length;i++)
+		{
+			if(this.nodeTimes[i].name == node)
+			{
+				this.nodeTimes[i].lastSeen = (new Date()).getTime();
+				found = true;
+				break;
+			}
+		}
+		if(found === false){
+			this.nodeTimes.push({'name':node,'lastSeen':(new Date()).getTime()});
+		}
 	}
 	
 	loggedPacketType(packetType)
@@ -66,6 +85,15 @@ class packetStats{
 		for(var i = 0;i<this.daqPackets.length;i++){
 			newData.parameters.push({'name':'Packet DAQ Count '+this.daqPackets[i].type,'value':this.daqPackets[i].count,'units':'packets'}
 									);
+		}
+		var currentTime = (new Date()).getTime();
+		for(var i = 0;i<this.nodeTimes.length;i++){
+			if((currentTime - this.nodeTimes[i].lastSeen) < 2000) //2 seconds
+				//Node has been seen in the past 2 seconds
+				newData.parameters.push({'name':this.nodeTimes[i].name+" network status",'value':"Online",'units':''});
+			else
+				//Node has not been seen in the past 2 seconds
+				newData.parameters.push({'name':this.nodeTimes[i].name+" network status",'value':"Offline",'units':''});
 		}
 		this.rtDataStore.insertDataPacket(newData);
 	}

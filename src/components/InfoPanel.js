@@ -38,8 +38,9 @@ class InfoPanel extends Component {
 						<legend>Global Stats</legend>
 						<div className="InfoPanel-content">
 							<button className="btn btn-primary" onClick={this.toggleModalVisibility.bind(this)}>Faults</button>
-							<div className="info-element">Packet 1001 Rx:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001'/></div>
-							<div className="info-element">Packet 1003 Rx:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003'/></div>
+							<div className="info-element">Power A Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node A network status'/></div>
+							<div className="info-element">Power B Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node B network status'/></div>
+							<div className="info-element">FCU Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Flight Control network status'/></div>
 						</div>
 					</div>
 				</div>

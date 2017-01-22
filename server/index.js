@@ -72,7 +72,7 @@ udpRxMain.on('message', function(m) {
 	if(m.command === 'newPacket')
 	{
 		rtDataStore.insertDataPacket(m.data);
-		packetStats.gotPacketType(m.data.packetType, m.data.crc, m.data.sequence);
+		packetStats.gotPacketType(m.data.packetType, m.data.crc, m.data.sequence,m.data.node);
 		daq.gotNewPacket(m.data);
 	}
 });

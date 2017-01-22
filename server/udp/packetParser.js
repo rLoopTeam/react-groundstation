@@ -226,6 +226,7 @@ class PacketParser{
 		
 		newDataParams.crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
 		newDataParams.sequence = sequence;
+		newDataParams.node = packetDef.Node;
 		
 		for(var i = 0;i<this.packetRXCallbacks.length;i++)
 		{
