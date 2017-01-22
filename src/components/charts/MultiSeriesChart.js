@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import d3 from 'd3';
 import {LineChart} from 'react-d3-basic';
+import RTChart from 'react-rt-chart';
 // import {Chart, Svg, Grid, Title, Legend, Xaxis, Yaxis} from 'react-d3-core';
 
 class MultiSeriesChart extends Component {
 	constructor(props) {
 		super(props)
 		const self = this;
+
+		this.state = {
+			stale: false,
+			values: Array(this.props.parameters).fill(0),
+			units: ''
+		}
 		
 		var _index = 0;
 		this.lineData = [];
@@ -19,36 +26,27 @@ class MultiSeriesChart extends Component {
 					self.dataCallback(data, index)
 				});
 			})(i)
-			this.lineData.push({
-				index: this.state._index,
-                name: this.props.lineNames[i],
-                values: [{index: 0, x: 0, y: 0}],
-                strokeWidth: 3,
-                strokeDashArray: "5,5",
-            });
-		}
 
-		this.state = {
-			stale: false,
-			values: Array(this.props.parameters).fill(0),
-			units: '',
-			_index: 0;
+			this.lineData["date"] = new Date();
+			this.lineData[this.props.lineNames[i]] = 0;
 		}
 
 
-		var new_Index = this.state._index++;
-		this.setState({_index: new_Index);
 		this._isMounted = true;
 
 	}
 	componentDidMount() {
 		setInterval(() => {
 			for (var i = 0; i < this.props.parameters.length; i++) {
-				var vals = this.lineData[i].values;
-	            if(vals.length > 30)
-	                vals.splice(0, 1);
-	            if (this.state.values[i] != undefined)
-	            	vals.push({x: Date.now(), y: this.state.values[i]})
+				// var vals = this.lineData[i].values;
+	            // if(vals.length > 30)
+	            //     vals.splice(0, 1);
+	            // if (this.state.values[i] != undefined)
+	            // 	vals.push({x: Date.now(), y: this.state.values[i]})
+
+
+				this.lineData["date"] = new Date();
+				this.lineData[this.props.lineNames[i]] = this.state.values[i];
 				
 			}
 
@@ -109,7 +107,18 @@ class MultiSeriesChart extends Component {
 		var title="test chart lib"
 
 
+        var chart = {
+            axis: {
+                y: { min: -20, max: 20 }
+            },
+            point: {
+                show: false
+            }
+        };
 
+		var fields = this.lineData.map(function (data) { 
+			return data.name;
+		});
 
 
 		return (
@@ -190,31 +199,38 @@ class MultiSeriesChart extends Component {
 			// 		yLabel={yLabel}
 			// 	/>
 			// </Chart>
-			<div>
 
 
 
-				<LineChart
-            		legend={true}
-	                data={this.lineData}
-					chartSeries ={this.lineData}
-	                width={this.props.width}
-	                height={this.props.height}
-	                // viewBoxObject={{
-	                //     x: 0,
-	                //     y: 0,
-	                //     width: this.props.width,
-	                //     height: 400
-	                // }}
-	                title={this.props.title}
-	                yAxisLabel={this.props.yAxisLabel}
-	                yRange={[-20,20]}
-	                xAxisLabel={this.props.xAxisLabel}
-	                gridHorizontal={true}
-	                margin={{top: 10, bottom: 50, left: 50, right: 10}}
-					x= {x}
-	                />
-			</div>
+			// <div>
+			// 	<LineChart
+            // 		legend={true}
+	        //         data={this.lineData}
+			// 		chartSeries ={this.lineData}
+	        //         width={this.props.width}
+	        //         height={this.props.height}
+	        //         // viewBoxObject={{
+	        //         //     x: 0,
+	        //         //     y: 0,
+	        //         //     width: this.props.width,
+	        //         //     height: 400
+	        //         // }}
+	        //         title={this.props.title}
+	        //         yAxisLabel={this.props.yAxisLabel}
+	        //         yRange={[-20,20]}
+	        //         xAxisLabel={this.props.xAxisLabel}
+	        //         gridHorizontal={true}
+	        //         margin={{top: 10, bottom: 50, left: 50, right: 10}}
+			// 		x= {x}
+			// 		y={y}
+	        //         />
+			// </div>
+
+			<RTChart
+                // flow={flow}
+                chart={chart}
+                fields={fields}
+                data={this.lineData} />
 		);
 	}
 } 
