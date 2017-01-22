@@ -44,10 +44,10 @@ class MainLayout extends Component {
 					{name: "Contrast Sensors", location: "/flightcontrol_contrast"},
 					{name: "Full Accel Data", location: "/flightcontrol_fullaccel"},
 					{name: "Full Cal Data", location: "/flightcontrol_calaccel"},
-					{name: "Distance Sensors", location: "/FlightControl_DistanceSensors"},
 					{name: "Brakes", location: "/brakes"},
 					{name: "Steppers", location: "/steppers"},
 					{name: "Throttles", location: "/throttles"},
+					{name: "Navigation Sensors", location: "/FlightControl_NavigationSensors"},
 				]
 			},
 			{
