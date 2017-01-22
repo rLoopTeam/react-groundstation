@@ -52,6 +52,7 @@ class MainLayout extends Component {
 			},
 			{
 				name: "Extras", location: "/extras", children: [
+					{name: "Functional Test", location: "/functionalTest"},
 					{name: "Xilinx Sim", location: "/xilinxsim"},
 				]
 			},
