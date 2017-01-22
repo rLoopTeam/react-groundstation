@@ -31,7 +31,7 @@ class Steppers extends Component {
             brake1Distance: null,
 		}
 
-        this.labels = [
+        this.labelsA = [
             {label: "Left Microstep Resolution", value: "Motor Microstep Resolution 1"},
             {label: "Left Max Acceleration", value: "Motor Max Acceleration 1"},
             {label: "Left Microns Per Revolution", value: "Motor Microns per Revolution 1"},
@@ -101,7 +101,7 @@ class Steppers extends Component {
 
                 <div className="col-md-6">
                 {
-                    this.labels.map(function(item, index){
+                    this.labelsA.map(function(item, index){
                         return (
                             <div className="row" key={"brakes" + index}>
                                 <label>{item.label}</label>

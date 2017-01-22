@@ -272,11 +272,11 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
         }
 
-        function PowerARequestRomID(index){
+        function PowerARequestRomID(data){
             udp.tx.transmitPodCommand('Power Node A',0x3204, index,0x0,0x0,0x0);
         }
 
-        function PowerBRequestRomID(index){
+        function PowerBRequestRomID(data){
             udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
         }
 
@@ -294,6 +294,22 @@ module.exports = function(udp){
 
         function PowerBStopCharging(){
             udp.tx.transmitPodCommand('Power Node B',0x3020, 0x11229988,0x0,0x0,0x0);
+        }
+
+        function PowerAStartDischarging(data){
+            udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x1, data.cellIndex, 0x1);
+        }
+
+        function PowerAStopDischarging(data){
+            udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x0, data.cellIndex, 0x1);
+        }
+
+        function PowerBStartDischarging(data){
+            udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x1, data.cellIndex, 0x1);
+        }
+
+        function PowerBStopDischarging(data){
+            udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x0, data.cellIndex, 0x1);
         }
 
         //Hover Engines
@@ -433,6 +449,10 @@ module.exports = function(udp){
         PowerAStopCharging,
         PowerBStartCharging,
         PowerBStopCharging,
+        PowerAStartDischarging,
+        PowerAStopDischarging,
+        PowerBStartDischarging,
+        PowerBStopDischarging,
         PowerARequestBMS,
         PowerBRequestBMS,
 		
