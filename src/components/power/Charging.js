@@ -35,12 +35,17 @@ class Charging extends Component {
             {label: "Average Temp", value: "Power A BMS Average Temp"},
             {label: "Highest Sensor Index", value: "Power A BMS Highest Sensor Index"},
             {label: "Pack Volts", value: "Power A BMS Pack Volts"},
+        ];
+
+        this.labelsA2 = [
             {label: "Highest Cell Volts", value: "Power A BMS Highest Cell Volts"},
             {label: "Lowest Cell Volts", value: "Power A BMS Lowest Cell Volts"},
             {label: "Board Temp", value: "Power A BMS Board Temp"},
             {label: "Node Pressure", value: "Power A BMS Node Pressure"},
             {label: "Node Temp", value: "Power A BMS Node Temp"},
-        ]; // plus auto-generated labels for each individual cell (see below)
+			{label: "Voltage Updates", value: "Power A BMS Voltage Updates"},
+			{label: "Temp Scan Count", value: "Power A BMS Temp Scan Count"}
+		];
 
         this.labelsB = [
             {label: "BMS Faults", value: "Power B BMS Faults", hex: "true"},
@@ -51,12 +56,17 @@ class Charging extends Component {
             {label: "Average Temp", value: "Power B BMS Average Temp"},
             {label: "Highest Sensor Index", value: "Power B BMS Highest Sensor Index"},
             {label: "Pack Volts", value: "Power B BMS Pack Volts"},
+        ]; // plus auto-generated labels for each individual cell (see below)
+
+		this.labelsB2 = [
             {label: "Highest Cell Volts", value: "Power B BMS Highest Cell Volts"},
             {label: "Lowest Cell Volts", value: "Power B BMS Lowest Cell Volts"},
             {label: "Board Temp", value: "Power B BMS Board Temp"},
             {label: "Node Pressure", value: "Power B BMS Node Pressure"},
             {label: "Node Temp", value: "Power B BMS Node Temp"},
-        ]; // plus auto-generated labels for each individual cell (see below)
+            {label: "Voltage Updates", value: "Power B BMS Voltage Updates"},
+			{label: "Temp Scan Count", value: "Power B BMS Temp Scan Count"},
+		];
 
         this.cellIndexes = [...(new Array(18)).keys()];
     }
@@ -169,18 +179,34 @@ class Charging extends Component {
 						<button type="button" className="btn btn-success" onClick={this.PowerALatchRelay.bind(this, {})}  style={{margin:10}}>Latch Power Relay</button>
 						<button type="button" className="btn btn-danger" onClick={this.PodSafe.bind(this, {})}  style={{margin:10}}>Pod Safe</button><br />
 
+						<div className="row"><div className="col-sm-6">
+
                         {
-                        this.labelsA.map(function(item, index){
-                            return (
-                                <div className="row" key={"brakes" + index}>
-                                    <label>{item.label}</label>
-                                    <GenericParameterLabel 
-                                        StreamingPageManager={_this.state.streamManager} 
-                                        parameter={item.value} hex={item.hex}/>
-                                </div>
-                            )
-                        }, this)
+	                        this.labelsA.map(function(item, index){
+	                            return (
+	                                <div className="row" key={"brakes" + index}>
+	                                    <label>{item.label}</label>
+	                                    <GenericParameterLabel 
+	                                        StreamingPageManager={_this.state.streamManager} 
+	                                        parameter={item.value} hex={item.hex}/>
+	                                </div>
+	                            )
+	                        }, this)
+	                    }
+	                    </div><div className="col-sm-6">
+	                    {
+	                        this.labelsA2.map(function(item, index){
+	                            return (
+	                                <div className="row" key={"brakes" + index}>
+	                                    <label>{item.label}</label>
+	                                    <GenericParameterLabel 
+	                                        StreamingPageManager={_this.state.streamManager} 
+	                                        parameter={item.value} hex={item.hex}/>
+	                                </div>
+	                            )
+	                        }, this)
                         }
+                        </div></div>
 
                         <button type="button" className="btn btn-success" onClick={this.stopManualDischargingA.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
 
@@ -192,7 +218,7 @@ class Charging extends Component {
 										<label>Module {cellIndex + 1} Volts</label>
 										<GenericParameterLabel
 											StreamingPageManager={_this.state.streamManager}
-											parameter="Power A BMS {index + 1} Module Voltage"/>
+											parameter={"Power A BMS "+(cellIndex + 1)+" Module Voltage"}/>
 									</div>
 									<button type="button" className="btn btn-success" onClick={this.startDischargeA.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
 									<button type="button" className="btn btn-success" onClick={this.stopDischargeA.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />
@@ -211,18 +237,34 @@ class Charging extends Component {
 						<button type="button" className="btn btn-success" onClick={this.PowerBLatchRelay.bind(this, {})}  style={{margin:10}}>Latch Power Relay</button>
 						<button type="button" className="btn btn-danger" onClick={this.PodSafe.bind(this, {})}  style={{margin:10}}>Pod Safe</button><br />
 
+						<div className="row"><div className="col-sm-6">
+
                         {
-                        this.labelsB.map(function(item, index){
-                            return (
-                                <div className="row" key={"brakes" + index}>
-                                    <label>{item.label}</label>
-                                    <GenericParameterLabel 
-                                        StreamingPageManager={_this.state.streamManager} 
-                                        parameter={item.value} hex={item.hex}/>
-                                </div>
-                            )
-                        }, this)
+	                        this.labelsB.map(function(item, index){
+	                            return (
+	                                <div className="row" key={"brakes" + index}>
+	                                    <label>{item.label}</label>
+	                                    <GenericParameterLabel 
+	                                        StreamingPageManager={_this.state.streamManager} 
+	                                        parameter={item.value} hex={item.hex}/>
+	                                </div>
+	                            )
+	                        }, this)
+	                    }
+	                    </div><div className="col-sm-6">
+	                    {
+	                        this.labelsB2.map(function(item, index){
+	                            return (
+	                                <div className="row" key={"brakes" + index}>
+	                                    <label>{item.label}</label>
+	                                    <GenericParameterLabel 
+	                                        StreamingPageManager={_this.state.streamManager} 
+	                                        parameter={item.value} hex={item.hex}/>
+	                                </div>
+	                            )
+	                        }, this)
                         }
+                        </div></div>
 
                         <button type="button" className="btn btn-success" onClick={this.stopManualDischargingB.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
 
@@ -234,7 +276,7 @@ class Charging extends Component {
 										<label>Module {cellIndex + 1} Volts</label>
 										<GenericParameterLabel
 											StreamingPageManager={_this.state.streamManager}
-											parameter="Power A BMS {index + 1} Module Voltage"/>
+											parameter={"Power B BMS "+(cellIndex + 1)+" Module Voltage"}/>
 									</div>
 									<button type="button" className="btn btn-success" onClick={this.startDischargeB.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
 									<button type="button" className="btn btn-success" onClick={this.stopDischargeB.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />

@@ -192,6 +192,25 @@ BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(16,true)); //module vol
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(17,true)); //module voltage 17
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(18,true)); //module voltage 18
 
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(1,true)); //BMS ID1
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(2,true)); //BMS ID2
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(3,true)); //BMS ID3
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(4,true)); //BMS ID4
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(5,true)); //BMS ID5
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(6,true)); //BMS ID6
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(7,true)); //BMS ID7
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(8,true)); //BMS ID8
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(9,true)); //BMS ID9
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(10,true)); //BMS ID10
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(11,true)); //BMS ID11
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(12,true)); //BMS ID12
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(13,true)); //BMS ID13
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(14,true)); //BMS ID14
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(15,true)); //BMS ID15
+BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(16,true)); //BMS ID16
+
+BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(100,true)); //Volts Update Count
+BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(20,true)); //Temp Scan Count
 
 // {
 // 				"Name":"Brake data",
