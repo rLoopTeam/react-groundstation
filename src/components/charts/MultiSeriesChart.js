@@ -77,8 +77,11 @@ class MultiSeriesChart extends Component {
                 y: {  },
 				
             },
+			legend: {
+				position: 'right'
+			},
             point: {
-                show: false
+                show: true
             }
         };
 
