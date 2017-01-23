@@ -26,35 +26,38 @@ class Stop extends Component {
 
 	podPower(e) {
 		e.preventDefault();
-		socket.emit('power:Pod');
+		var _enterPodSafe = confirm('Are you sure you would like to enter pod safe mode? This could be CATASTROPHIC...');
+		if(_enterPodSafe)
+			socket.emit('power:Pod');
 	}
 
-	// updatestreamingControl(e) {
-	// 	socket.emit('power:PodStop_Power__streamingControl', {status: e.target.value})
-	// }
+	powerLatch(value, e) {
+		e.preventDefault();
+		var _value = value;
+
+		socket.emit('power:Latch', {powerNode: _value});
+	}
 
 	render() {
 
 	    return (
-		    	<div className="Overview-content">
-					<div className="row">
-						<div className="col-sm-2">
-							<button className="btn-lg btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
-						</div>
-						<div className="col-sm-2">
-							<button className="btn-lg btn-warning" onClick={this.podPower.bind(this)}>Power</button>
-						</div>
+		    	<div className="col-xs-5 pull-right">
+					<div className="col-sm-2 pull-right">
+						<button className="btn btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
 					</div>
-					{/*
-					<div className="form-group margin-top-20px">
-						<label htmlFor="streamingControl">Streaming Control</label>
-						<select id="streamingControl" name="streamingControl" onChange={this.updatestreamingControl.bind(this)} className="form-control">
-							{this.streamingControl.map(function(elem, index){
-								return <option key={ index } value={elem.value}> {elem.value} </option>;
-							})}
-						</select>
+					<div className="col-sm-3 pull-right">
+						<button className="btn btn-warning" onClick={this.podPower.bind(this)}>Pod Safe</button>
 					</div>
-					*/}
+					<div className="dropup col-sm-4 pull-right">
+						<button className="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Power Latch
+							<span className="caret"></span>
+						</button>
+						<ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<li><a href="#" onClick={this.powerLatch.bind(this, 0)}>Power Node A</a></li>
+							<li><a href="#" onClick={this.powerLatch.bind(this, 1)}>Power Node B</a></li>
+						</ul>
+					</div>
 				</div>
 	    );
 	}

@@ -386,6 +386,12 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			},
 
+			'power:Latch': (data) => {
+
+				podCommands.FCUPod_PowerLatch(data);
+
+			},
+
 			'stop:Pod': () => {
 
 				podCommands.FCUPod_Stop();

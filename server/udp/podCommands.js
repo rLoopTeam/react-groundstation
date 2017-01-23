@@ -28,11 +28,13 @@ module.exports = function(udp){
 
         }
 
+        
+        /**
+         * Pod Safe
+         */
         function FCUPod_Off(){
 
-            // udp.tx.transmitPodCommand('Flight Control', 0x0001, 0x1234ABCD, 0x0, 0x0, 0x0); 
-
-            console.log(chalk.red('we need to add this command. we need the packet type'));
+            udp.tx.transmitPodCommand('Flight Control', 0x3000, 0x76543210, 0x0, 0x0, 0x0);
             
         }
 
@@ -40,6 +42,18 @@ module.exports = function(udp){
 
             udp.tx.transmitPodCommand('Flight Control', 0x0001, 0x1234ABCD, 0x0, 0x0, 0x0); 
 
+        }
+
+        
+        /**
+         * 
+         * Power Latch
+         * @param {any} data - data.powerNode (0 or 1) for Power Node A or Power Node B
+         */
+        function FCUPod_PowerLatch(data){
+
+            udp.tx.transmitPodCommand('Flight Control', 0x3030, 0xABCD1245, data.powerNode, 0x0, 0x0);
+            
         }
 
         function FCUBrake_DisableDevelopmentMode(){
@@ -441,6 +455,7 @@ module.exports = function(udp){
 
         FCUPod_Off,
         FCUPod_Stop,
+        FCUPod_PowerLatch,
 
         setBrakeDevelopmentMode,
         FCUBrake_DisableDevelopmentMode,
