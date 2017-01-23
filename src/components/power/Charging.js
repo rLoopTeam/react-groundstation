@@ -122,19 +122,32 @@ class Charging extends Component {
 	}
 
     requestBMSA(data, e) {
+    	e.preventDefault();
         socket.emit('PowerA:RequestBMS');
     }
 
     requestBMSB(data, e) {
+    	e.preventDefault();
         socket.emit('PowerB:RequestBMS');
     }
 
 	PowerALatchRelay(data, e) {
+		e.preventDefault();
         socket.emit('PowerA:LatchRelay');
     }
 
 	PowerBLatchRelay(data, e) {
+		e.preventDefault();
         socket.emit('PowerB:LatchRelay');
+    }
+
+    PodSafe(data, e) {
+    	e.preventDefault();
+
+	    var shouldSafePod = confirm("WARNING: You are about to disable all power on the pod.");
+        if (shouldSafePod){
+            socket.emit('PodSafe');
+        }
     }
 
 	render() {
@@ -153,7 +166,8 @@ class Charging extends Component {
                         <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startChargeA.bind(this, {})}  style={{margin:10}}>Start Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeA.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
-						<button type="button" className="btn btn-success" onClick={this.PowerALatchRelay.bind(this, {})}  style={{margin:10}}>Latch Power Relay</button><br />
+						<button type="button" className="btn btn-success" onClick={this.PowerALatchRelay.bind(this, {})}  style={{margin:10}}>Latch Power Relay</button>
+						<button type="button" className="btn btn-danger" onClick={this.PodSafe.bind(this, {})}  style={{margin:10}}>Pod Safe</button><br />
 
                         {
                         this.labelsA.map(function(item, index){
@@ -194,7 +208,8 @@ class Charging extends Component {
                         <button className="btn btn-primary" onClick={this.requestBMSB.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
  						<button type="button" className="btn btn-success" onClick={this.startChargeB.bind(this, {})}  style={{margin:10}}>Start Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeB.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
-						<button type="button" className="btn btn-success" onClick={this.PowerBLatchRelay.bind(this, {})}  style={{margin:10}}>Latch Power Relay</button><br />
+						<button type="button" className="btn btn-success" onClick={this.PowerBLatchRelay.bind(this, {})}  style={{margin:10}}>Latch Power Relay</button>
+						<button type="button" className="btn btn-danger" onClick={this.PodSafe.bind(this, {})}  style={{margin:10}}>Pod Safe</button><br />
 
                         {
                         this.labelsB.map(function(item, index){

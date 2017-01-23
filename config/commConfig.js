@@ -14,7 +14,8 @@ module.exports = {
 	{'port':9100,'hostIP':'192.168.0.100','hostName':'Flight Control'},
 	{'port':9120,'hostIP':'192.168.0.120','hostName':'Landing Gear'},
 	{'port':9130,'hostIP':'192.168.0.130','hostName':'Gimbal Control'},
-	{'port':9170,'hostIP':'192.168.1.170','hostName':'Xilinx Sim'}
+	{'port':9170,'hostIP':'192.168.1.170','hostName':'Xilinx Sim'},
+	{'port':9110,'hostIP':'192.168.0.255','hostName':'Power Node Broadcast'}
 	],
 	MirrorLocal:true
 }

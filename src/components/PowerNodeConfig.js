@@ -57,7 +57,7 @@ class PowerNodeConfig extends Component {
                     <div className="col-sm-6">
                     <legend>Pack Personality Config</legend>
 						<button type="button" className="btn btn-success" onClick={this.PowerAToPowerB.bind(this, {})}  style={{margin:10}}>Power A To Power B</button><br />
-						<button type="button" className="btn btn-success" onClick={this.PowerBToPowerA.bind(this, {})}  style={{margin:10}}>Power B To Powre A</button>
+						<button type="button" className="btn btn-success" onClick={this.PowerBToPowerA.bind(this, {})}  style={{margin:10}}>Power B To Power A</button>
                     </div>
                 </div>
             </div>
