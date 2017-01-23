@@ -6,6 +6,7 @@ import Overview from './components/Overview';
 import Stop from './components/Stop';
 import LGU from './components/LGU';
 import XilinxSim from './components/XilinxSim';
+import FunctionalTest from './components/FunctionalTest';
 import FlightControl_CalAccel from './components/FlightControl_CalAccel';
 import FlightControl_FullAccel from './components/FlightControl_FullAccel';
 import FlightControl_Contrast from './components/FlightControl_Contrast';
@@ -37,6 +38,7 @@ class App extends Component {
           <Route path="stop" component={Stop} />
           <Route path="lgu" component={LGU} />
           <Route path="XilinxSim" component={XilinxSim} />
+          <Route path="FunctionalTest" component={FunctionalTest} />
           <Route path="FlightControl_FullAccel" component={FlightControl_FullAccel} />
           <Route path="FlightControl_CalAccel" component={FlightControl_CalAccel} />
           <Route path="FlightControl_Contrast" component={FlightControl_Contrast} />
