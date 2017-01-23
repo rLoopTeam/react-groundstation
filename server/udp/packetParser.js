@@ -24,8 +24,10 @@ class PacketParser{
 		this.date = new Date();
 		this.gotNewPacket = this.gotNewPacket.bind(this);
 		this.addPacketLisenter = this.addPacketListener.bind(this);
+		this.addDAQPacketListener = this.addDAQPacketListener.bind(this);
 		this.packetDefinitions = packetDefinitions.packetDefinitions;
 		this.packetRXCallbacks = [];
+		this.daqPacketRXCallbacks = [];
 	}
 
 	addPacketListener(cb)
@@ -33,6 +35,12 @@ class PacketParser{
 		this.packetRXCallbacks.push(cb);
 	}
 	
+
+	addDAQPacketListener(cb)
+	{
+		this.daqPacketRXCallbacks.push(cb);
+	}
+
 	verifyCRC(raw_udp)
 	{
 		var crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
@@ -120,117 +128,146 @@ class PacketParser{
 		 	//Got a good packet
 		}
 		
-		var newDataParams = {
-			'packetName':packetDef.Name,
-			'packetType':packetDef.PacketType,
-			'rxTime':(new Date()).getTime(), //Millis since 1970/1/1
-			'parameters':[]
-			}
-		
-		var parseLoc = 8;
-		var newParseLoc = 8;
-		
-		var looping = false;
-		var loopingIndex = 1;
-		var loopSuffix = '';
-		var loopFieldCount = 0;
-
-		for(var i = 0, len = packetDef.Parameters.length;i<len;i++){
-			var newName = packetDef.Parameters[i];
-			newParseLoc += packetDef.Parameters[i].size;
-			
-			if(newParseLoc > (length+8)){
-				//Needs to be updated to handle looping
-				//logger.log('warn','PacketParser: Error parsing packet, not long enough');
-				break;
-			}
-			
-			//Starting a loop set of fields
-			if(packetDef.Parameters[i].beginLoop === true && looping === false)
-			{
-				looping = true;
-				loopSuffix = 1;
-			}
-			
-			if(looping === true && loopingIndex === 1){
-				loopFieldCount++;
-			}
-				
-			if(looping === true)
-				loopSuffix = loopingIndex.toString() + ' ';
-			
-			//Might put this switch statement in its own function so it's not gunking up the flow of this one so much
-			switch(packetDef.Parameters[i].type){
-				case 'uint8':
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToUint8(raw_udp[parseLoc],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'int8': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToInt8(raw_udp[parseLoc],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'uint16': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToUint16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'int16': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToInt16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'uint32':
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToUint32(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'int32': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToInt32(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'uint64': 
-							logger.log('error',"PacketParser: JS can't do 64-bit integers!");
-							break;
-				case 'int64':
-							logger.log('error',"PacketParser: JS can't do 64-bit integers!");
-							break;
-				case 'float32': 
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToFloat32(raw_udp[parseLoc], raw_udp[parseLoc+1],
-																raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
-														'units':packetDef.Parameters[i].units});
-							break;
-				case 'float64':	
-							newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
-														'value':bin.bytesToFloat64(raw_udp[parseLoc+7], raw_udp[parseLoc+6],
-																raw_udp[parseLoc+5], raw_udp[parseLoc+4],
-																raw_udp[parseLoc+3], raw_udp[parseLoc+2],
-																raw_udp[parseLoc+1], raw_udp[parseLoc+0]),
-														'units':packetDef.Parameters[i].units});
-							break;
-				
-				default: console.log("PacketParser: Error in packet definition, type unknown"); break;
-			}
-			parseLoc = newParseLoc;
-			
-			if(looping === true && packetDef.Parameters[i].endLoop === true){
-				i -= loopFieldCount;
-				loopingIndex++;
-			}
-		}
-		
-		newDataParams.crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
-		newDataParams.sequence = sequence;
-		newDataParams.node = packetDef.Node;
-		
-		for(var i = 0;i<this.packetRXCallbacks.length;i++)
+		//Not a fan of the huge blocks of code in this if block but it works for now
+		if(packetDef.DAQ === true)
 		{
-			this.packetRXCallbacks[i](newDataParams);
+			var daqPacket = {'packetName':packetDef.Name,'rxTime':(new Date()).getTime(),'samples':[],'dataType':packetDef.dataType,'sequence':sequence,'packetType':packetType};
+			for(var i = 8;i<(raw_udp.length-2);i+=packetDef.dataSize){
+				switch(packetDef.dataType){
+					case 'uint8':daqPacket.samples.push(bin.bytesToUint8(raw_udp[i],true));break;
+					case 'int8':daqPacket.samples.push(bin.bytesToInt8(raw_udp[i],true));break;
+					case 'uint16':daqPacket.samples.push(bin.bytesToUint16(raw_udp[i], raw_udp[i+1],true));break;
+					case 'int16':daqPacket.samples.push(bin.bytesToInt16(raw_udp[i], raw_udp[i+1],true));break;
+					case 'uint32':daqPacket.samples.push(bin.bytesToUint32(raw_udp[i], raw_udp[i+1],
+																	raw_udp[i+2], raw_udp[i+3],true));break;
+					case 'int32':daqPacket.samples.push(bin.bytesToInt32(raw_udp[i], raw_udp[i+1],
+																	raw_udp[i+2], raw_udp[i+3],true));break;
+					case 'float32':daqPacket.samples.push(bin.bytesToFloat32(raw_udp[i], raw_udp[i+1],
+																	raw_udp[i+2], raw_udp[i+3],true));break;
+					case 'float64':daqPacket.samples.push(bin.bytesToFloat64(raw_udp[i+7], raw_udp[i+6],
+																	raw_udp[i+5], raw_udp[i+4],
+																	raw_udp[i+3], raw_udp[i+2],
+																	raw_udp[i+1], raw_udp[i+0]));break;
+				}
+			}
+
+			for(var i = 0;i<this.daqPacketRXCallbacks.length;i++)
+			{
+				this.daqPacketRXCallbacks[i](daqPacket);
+			}
+		}else{
+			var newDataParams = {
+				'packetName':packetDef.Name,
+				'packetType':packetDef.PacketType,
+				'rxTime':(new Date()).getTime(), //Millis since 1970/1/1
+				'parameters':[]
+				}
+			
+			var parseLoc = 8;
+			var newParseLoc = 8;
+			
+			var looping = false;
+			var loopingIndex = 1;
+			var loopSuffix = '';
+			var loopFieldCount = 0;
+
+			for(var i = 0, len = packetDef.Parameters.length;i<len;i++){
+				var newName = packetDef.Parameters[i];
+				newParseLoc += packetDef.Parameters[i].size;
+				
+				if(newParseLoc > (length+8)){
+					//Needs to be updated to handle looping
+					//logger.log('warn','PacketParser: Error parsing packet, not long enough');
+					break;
+				}
+				
+				//Starting a loop set of fields
+				if(packetDef.Parameters[i].beginLoop === true && looping === false)
+				{
+					looping = true;
+					loopSuffix = 1;
+				}
+				
+				if(looping === true && loopingIndex === 1){
+					loopFieldCount++;
+				}
+					
+				if(looping === true)
+					loopSuffix = loopingIndex.toString() + ' ';
+				
+				//Might put this switch statement in its own function so it's not gunking up the flow of this one so much
+				switch(packetDef.Parameters[i].type){
+					case 'uint8':
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToUint8(raw_udp[parseLoc],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'int8': 
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToInt8(raw_udp[parseLoc],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'uint16': 
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToUint16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'int16': 
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToInt16(raw_udp[parseLoc], raw_udp[parseLoc+1],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'uint32':
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToUint32(raw_udp[parseLoc], raw_udp[parseLoc+1],
+																	raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'int32': 
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToInt32(raw_udp[parseLoc], raw_udp[parseLoc+1],
+																	raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'uint64': 
+								logger.log('error',"PacketParser: JS can't do 64-bit integers!");
+								break;
+					case 'int64':
+								logger.log('error',"PacketParser: JS can't do 64-bit integers!");
+								break;
+					case 'float32': 
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToFloat32(raw_udp[parseLoc], raw_udp[parseLoc+1],
+																	raw_udp[parseLoc+2], raw_udp[parseLoc+3],true),
+															'units':packetDef.Parameters[i].units});
+								break;
+					case 'float64':	
+								newDataParams.parameters.push({'name':packetDef.ParameterPrefix+loopSuffix+packetDef.Parameters[i].Name,
+															'value':bin.bytesToFloat64(raw_udp[parseLoc+7], raw_udp[parseLoc+6],
+																	raw_udp[parseLoc+5], raw_udp[parseLoc+4],
+																	raw_udp[parseLoc+3], raw_udp[parseLoc+2],
+																	raw_udp[parseLoc+1], raw_udp[parseLoc+0]),
+															'units':packetDef.Parameters[i].units});
+								break;
+					
+					default: console.log("PacketParser: Error in packet definition, type unknown"); break;
+				}
+				parseLoc = newParseLoc;
+				
+				if(looping === true && packetDef.Parameters[i].endLoop === true){
+					i -= loopFieldCount;
+					loopingIndex++;
+				}
+			}
+			
+			newDataParams.crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
+			newDataParams.sequence = sequence;
+			newDataParams.node = packetDef.Node;
+			
+			for(var i = 0;i<this.packetRXCallbacks.length;i++)
+			{
+				this.packetRXCallbacks[i](newDataParams);
+			}
 		}
 	}
 }

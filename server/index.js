@@ -75,6 +75,10 @@ udpRxMain.on('message', function(m) {
 		packetStats.gotPacketType(m.data.packetType, m.data.crc, m.data.sequence,m.data.node);
 		daq.gotNewPacket(m.data);
 	}
+	if(m.command === 'newDAQPacket')
+	{
+		poddaq.gotNewPacket(m.data);
+	}
 });
 
 
@@ -91,6 +95,13 @@ var podCommands = require('./udp/podCommands')(udp);
 const daq = require('./daq.js')(packetStats);
 
 /*------------
+ Pod DAQ Data module
+ Records DAQ Packets received to the file system
+ ------------*/
+const poddaq = require('./poddaq.js')(packetStats);
+
+
+/*------------
  Config module
  Saves the config settings
  ------------*/
@@ -104,7 +115,7 @@ var romIDScanner = require('./ROMIDScanner.js')(podCommands, rtDataStore);
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner, poddaq);
 
 /*------------
 	Grabs data from the charger
@@ -133,3 +144,26 @@ var charger = require('./charger')(rtDataStore);
 //testGenerator(0x3201, payloads.battTempSensors, "Power Node B");
 //testGenerator(0x3203, payloads.battTempLocations, "Power Node A");
 //testGenerator(0x3203, payloads.battTempLocations, "Power Node B");
+
+/*
+
+const daqGenerator = require('./DataGenerators/daqGenerator.js')();
+
+//For accelerometer DAQ
+var accelRate = 800;
+var accelPerPacket = 64;
+daqGenerator.simulateDAQ(0x4000, 'uint8', 6, 50, 9100); //CPU Load
+daqGenerator.simulateDAQ(0x4001, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4002, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4003, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4004, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4005, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4006, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4007, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4008, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4009, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x400a, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x400b, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x400c, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+
+*/

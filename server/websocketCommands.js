@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner)
+module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner,poddaq)
 {
 	var updateClientWithDatalogs = true;
 
@@ -297,12 +297,13 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 				console.log("Starting local logging.");
 				daq.isLogging = true;
+				poddaq.isLogging = true;
 
 			},'AllLogging:Stop': function(data){
 
 				console.log("Stopping local logging.");
 				daq.isLogging = false;
-
+				poddaq.isLogging = false;
 			},
 
 			'client event': (data) => {

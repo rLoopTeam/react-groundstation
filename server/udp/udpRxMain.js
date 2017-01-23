@@ -9,7 +9,9 @@ class udpRxMain{
 	  this.rxNewPacket = this.rxNewPacket.bind(this);
 	  this.initializeRXServersFromConfig();
 	  this.parsedPacketCb = this.parsedPacketCb.bind(this);
+	  this.parsedDAQPacketCb = this.parsedDAQPacketCb.bind(this);
 	  packetParser.addPacketListener(this.parsedPacketCb);
+	  packetParser.addDAQPacketListener(this.parsedDAQPacketCb);
 
 	}
 	
@@ -31,6 +33,12 @@ class udpRxMain{
 		process.send({command:'newPacket', data:data});
 	}
 	
+	parsedDAQPacketCb(data)
+	{
+		process.send({command:'newDAQPacket', data:data});
+	}
+	
+
 	//Pass a udp packet from the receivers to the parser
 	rxNewPacket(rawUDP, port)
 	{

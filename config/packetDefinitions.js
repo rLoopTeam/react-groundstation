@@ -6,6 +6,7 @@ module.exports = {
 				"ParameterPrefix":"Power A Temps ",
 				"PacketType":0x3201,
 				"Node":"Power Node A",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
@@ -19,6 +20,7 @@ module.exports = {
 				"ParameterPrefix":"Power B Temps ",
 				"PacketType":0x3201,
 				"Node":"Power Node B",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
@@ -32,6 +34,7 @@ module.exports = {
 				"ParameterPrefix":"Power A Temps Loc ",
 				"PacketType":0x3203,
 				"Node":"Power Node A",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
@@ -47,6 +50,7 @@ module.exports = {
 				"ParameterPrefix":"Power B Temps Loc ",
 				"PacketType":0x3203,
 				"Node":"Power Node B",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
@@ -62,6 +66,7 @@ module.exports = {
 				"ParameterPrefix":"Power A ROM ",
 				"PacketType":0x3205,
 				"Node":"Power Node A",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Index', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Hi', 'type':'uint32', 'units':'', 'size': 4},
@@ -73,6 +78,7 @@ module.exports = {
 				"ParameterPrefix":"Power B ROM ",
 				"PacketType":0x3205,
 				"Node":"Power Node B",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Index', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Hi', 'type':'uint32', 'units':'', 'size': 4},
@@ -84,6 +90,7 @@ module.exports = {
 				"ParameterPrefix":"Auto-test ",
 				"PacketType":0x1901,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'State', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Status', 'type':'uint8', 'units':'', 'size': 1}
@@ -94,6 +101,7 @@ module.exports = {
 				"ParameterPrefix":"Power A BMS ",
 				"PacketType":0x3401,
 				"Node":"Power Node A",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Faults', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Temp State', 'type':'uint8', 'units':'', 'size': 1},
@@ -117,6 +125,7 @@ module.exports = {
 				"ParameterPrefix":"Power B BMS ",
 				"PacketType":0x3401,
 				"Node":"Power Node B",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Faults', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Temp State', 'type':'uint8', 'units':'', 'size': 1},
@@ -140,6 +149,7 @@ module.exports = {
 				"ParameterPrefix":"Accel ",
 				"PacketType":0x1001,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'0 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'0 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -157,6 +167,7 @@ module.exports = {
 				"ParameterPrefix":"Accel ",
 				"PacketType":0x1003,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'0 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'0 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -184,6 +195,7 @@ module.exports = {
 				"ParameterPrefix":"Brake ",
 				"PacketType":0x0000, //defined in the packet section of confluence for FCU
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Parking', 'type':'uint8', 'units':'', 'size': 1},
 								{'Name':'Left Screw Pos', 'type':'float32', 'units':'mm', 'size': 4},
@@ -207,6 +219,7 @@ module.exports = {
 				"ParameterPrefix":"Brake ",
 				"PacketType":0x1402, 
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Fault flags 1', 'type':'uint32', 'units':'A', 'size': 4},
 
@@ -270,6 +283,7 @@ module.exports = {
 				"ParameterPrefix":"Throttle ",
 				"PacketType":0x1503,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Requested RPM 1', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Requested RPM 2', 'type':'uint16', 'units':'', 'size': 2},
@@ -304,6 +318,7 @@ module.exports = {
 				"ParameterPrefix":"Motor ",
 				"PacketType":0x1406,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Microstep Resolution 1', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Max Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
@@ -324,6 +339,7 @@ module.exports = {
 				"ParameterPrefix": "LaserOpto ",
 				"PacketType": 0x1101,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4}, //top-level fault flags
 								{'Name':'Spare', 'type':'uint32', 'units':'', 'size':4},
@@ -391,6 +407,7 @@ module.exports = {
 				"ParameterPrefix": "ForwardLaser ",
 				"PacketType": 0x1201,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'Fault flags', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Spare 0', 'type':'uint32', 'units':'', 'size':4},
@@ -405,6 +422,7 @@ module.exports = {
 				"ParameterPrefix":"LaserContrast0 ",
 				"PacketType":0x1301,
 				"Node":"Flight Control",
+				"DAQ":false,
 				"Parameters":[
 								{'Name':'System Fault Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'Spare 0', 'type':'uint32', 'units':'', 'size': 4},
@@ -540,7 +558,111 @@ module.exports = {
 								{'Name':'Fall_53', 'type':'uint64', 'units':'ns', 'size': 8},
 						]
 			},
-		]
+			{
+				"Name": "FCU DAQ CPU LOAD",
+				"PacketType": 0x4000,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'uint8',
+				'dataSize':1
+			},
+			{
+				"Name": "FCU DAQ ACCEL 0 X",
+				"PacketType": 0x4001,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int16',
+				'dataSize':2
+			},
+			{
+				"Name": "FCU DAQ ACCEL 0 Y",
+				"PacketType": 0x4002,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int16',
+				'dataSize':2
+			},
+			{
+				"Name": "FCU DAQ ACCEL 0 Z",
+				"PacketType": 0x4003,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int16',
+				'dataSize':2
+			},
+			{
+				"Name": "FCU DAQ ACCEL 1 X",
+				"PacketType": 0x4004,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int16',
+				'dataSize':2
+			},
+			{
+				"Name": "FCU DAQ ACCEL 1 Y",
+				"PacketType": 0x4005,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int16',
+				'dataSize':2
+			},
+			{
+				"Name": "FCU DAQ ACCEL 1 Z",
+				"PacketType": 0x4006,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int16',
+				'dataSize':2
+			},
+			{
+				"Name": "FCU DAQ ACCEL 0 ACCEL",
+				"PacketType": 0x4007,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int32',
+				'dataSize':4
+			},
+			{
+				"Name": "FCU DAQ ACCEL 0 VELOCITY",
+				"PacketType": 0x4008,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int32',
+				'dataSize':4
+			},
+			{
+				"Name": "FCU DAQ ACCEL 0 DISPLACEMENT",
+				"PacketType": 0x4009,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int32',
+				'dataSize':4
+			},
+			{
+				"Name": "FCU DAQ ACCEL 1 ACCEL",
+				"PacketType": 0x400a,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int32',
+				'dataSize':4
+			},
+			{
+				"Name": "FCU DAQ ACCEL 1 VELOCITY",
+				"PacketType": 0x400c,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int32',
+				'dataSize':4
+			},
+			{
+				"Name": "FCU DAQ ACCEL 1 DISPLACEMENT",
+				"PacketType": 0x400d,
+				"Node":"Flight Control",
+				"DAQ":true,
+				'dataType':'int32',
+				'dataSize':4
+			}
+	]
 }
 
 
