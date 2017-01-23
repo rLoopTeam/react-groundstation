@@ -322,6 +322,14 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x1, data.cellIndex, 0x0);
         }
 
+        function PowerAPowerLatch(){
+            udp.tx.transmitPodCommand('Power Node A',0x3021, 0xABCD1245,0x0,0x0,0x0);
+        }
+
+        function PowerBPowerLatch(){
+            udp.tx.transmitPodCommand('Power Node B',0x3021, 0xABCD1245,0x1,0x0,0x0);
+        }
+
         //Hover Engines
         function FCUHover_Enable() {
             udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); //TODO
@@ -448,6 +456,8 @@ module.exports = function(udp){
         PowerAStopAllManualDischarging,
         PowerBStopAllManualDischarging,
 		
+        PowerAPowerLatch,
+        PowerBPowerLatch,
         PowerAChargeRelayOff,
         PowerAChargeRelayOn,
         PowerAStreamingOff,

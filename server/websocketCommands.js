@@ -311,7 +311,13 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerBStopAllManualDischarging(data);
 			},
 
+			'PowerA:LatchRelay':(data) => {
+				podCommands.PowerAPowerLatch(data);
+			},
 
+			'PowerB:LatchRelay':(data) => {
+				podCommands.PowerBPowerLatch(data);
+			},
 
 			'AllLogging:Start': function(data){
 
