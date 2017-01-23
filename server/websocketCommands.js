@@ -293,6 +293,20 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerBStopCharging();
 			},
 
+			'PowerA:StartDischarging':(data) => {
+				podCommands.PowerAStartDischarging(data);
+			},
+			'PowerA:StopDischarging':(data) => {
+				podCommands.PowerAStopDischarging(data);
+			},
+
+			'PowerB:StartDischarging':(data) => {
+				podCommands.PowerBStartDischarging(data);
+			},
+			'PowerB:StopDischarging':(data) => {
+				podCommands.PowerBStopDischarging(data);
+			},
+
 			'AllLogging:Start': function(data){
 
 				console.log("Starting local logging.");

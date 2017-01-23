@@ -32,7 +32,7 @@ class Brakes extends Component {
             brake1Distance: null,
 		}
 
-        this.labels = [
+        this.labelsA = [
             {label: "Left I-Beam", value: "Brake I Beam mm 1 Target"},
             {label: "Left Lead screw target", value: "Brake Lead screw mm 1 Target"},
             {label: "Left Lead screw target", value: "Brake Lead screw um 1 Target"},
@@ -56,7 +56,7 @@ class Brakes extends Component {
             {label: "Left Current Screw Position", value: "Brake Current Position 1"},
         ]
 
-        this.labels2 = [
+        this.labelsB = [
             {label: "Right I-Beam", value: "Brake I Beam mm 2 Target"},
             {label: "Right Lead screw target", value: "Brake Lead screw mm 2 Target"},
             {label: "Right Lead screw target", value: "Brake Lead screw um 2 Target"},
@@ -268,7 +268,7 @@ class Brakes extends Component {
                             <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
                         </div>
                     {
-                        this.labels.map(function(item, index){
+                        this.labelsA.map(function(item, index){
                             return (
                                 <div className="row" key={"brakes" + index}>
                                     <label>{item.label}</label>
@@ -286,7 +286,7 @@ class Brakes extends Component {
                             <FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
                         </div>
                     {
-                        this.labels2.map(function(item, index){
+                        this.labelsB.map(function(item, index){
                             return (
                                 <div className="row" key={"brakes" + index}>
                                     <label>{item.label}</label>
