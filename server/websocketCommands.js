@@ -303,9 +303,15 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'PowerB:StartDischarging':(data) => {
 				podCommands.PowerBStartDischarging(data);
 			},
-			'PowerB:StopDischarging':(data) => {
-				podCommands.PowerBStopDischarging(data);
+			'PowerA:StopManualDischarging':(data) => {
+				podCommands.PowerAStopAllManualDischarging(data);
 			},
+
+			'PowerB:StopManualDischarging':(data) => {
+				podCommands.PowerBStopAllManualDischarging(data);
+			},
+
+
 
 			'AllLogging:Start': function(data){
 

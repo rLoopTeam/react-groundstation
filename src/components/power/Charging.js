@@ -101,6 +101,16 @@ class Charging extends Component {
 		socket.emit('PowerA:StopDischarging', data);
 	}
 
+	stopManualDischargingA(data, e) {
+		e.preventDefault();
+		socket.emit('PowerA:StopManualDischarging', data);
+	}
+
+	stopManualDischargingB(data, e) {
+		e.preventDefault();
+		socket.emit('PowerB:StopManualDischarging', data);
+	}
+
 	startDischargeB(data, e) {
 		e.preventDefault();
 		socket.emit('PowerB:StartDischarging', data);
@@ -149,6 +159,8 @@ class Charging extends Component {
                         }, this)
                         }
 
+                        <button type="button" className="btn btn-success" onClick={this.stopManualDischargingA.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
+
 						{
 						this.cellIndexes.map(function(_, cellIndex) {
 							return (
@@ -186,6 +198,8 @@ class Charging extends Component {
                             )
                         }, this)
                         }
+
+                        <button type="button" className="btn btn-success" onClick={this.stopManualDischargingB.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
 
 						{
 						this.cellIndexes.map(function(_, cellIndex) {

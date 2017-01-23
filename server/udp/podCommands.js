@@ -296,12 +296,22 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B',0x3020, 0x11229988,0x0,0x0,0x0);
         }
 
+        function PowerAStopAllManualDischarging()
+        {
+            udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x0,0, 0x0);
+        }
+
+        function PowerBStopAllManualDischarging()
+        {
+            udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x0,0, 0x0);
+        }        
+
         function PowerAStartDischarging(data){
             udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x1, data.cellIndex, 0x1);
         }
 
         function PowerAStopDischarging(data){
-            udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x0, data.cellIndex, 0x1);
+            udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x1, data.cellIndex, 0x0);
         }
 
         function PowerBStartDischarging(data){
@@ -309,7 +319,7 @@ module.exports = function(udp){
         }
 
         function PowerBStopDischarging(data){
-            udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x0, data.cellIndex, 0x1);
+            udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x1, data.cellIndex, 0x0);
         }
 
         //Hover Engines
@@ -434,6 +444,9 @@ module.exports = function(udp){
 
 		FCUContrast_StartStream,
 		FCUContrast_StopStream,	
+
+        PowerAStopAllManualDischarging,
+        PowerBStopAllManualDischarging,
 		
         PowerAChargeRelayOff,
         PowerAChargeRelayOn,
