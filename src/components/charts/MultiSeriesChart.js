@@ -41,12 +41,12 @@ class MultiSeriesChart extends Component {
 				// var vals = this.lineData[i].values;
 	            // if(vals.length > 30)
 	            //     vals.splice(0, 1);
-	            // if (this.state.values[i] != undefined)
 	            // 	vals.push({x: Date.now(), y: this.state.values[i]})
 
 
 				this.lineData["date"] = new Date();
-				this.lineData[this.props.lineNames[i]] = this.state.values[i];
+	            if (this.state.values[i] != undefined)
+					this.lineData[this.props.lineNames[i]] = this.state.values[i];
 				
 			}
 
@@ -116,8 +116,8 @@ class MultiSeriesChart extends Component {
             }
         };
 
-		var fields = this.lineData.map(function (data) { 
-			return data.name;
+		var fields = Object.keys(this.lineData).map(function (data) { 
+			return data;
 		});
 
 
