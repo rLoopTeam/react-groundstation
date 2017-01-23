@@ -28,7 +28,7 @@ class LineChart extends Component{
     render() {
         var chart = {
             axis: {
-                y: { min: 0, max: 10 }
+                y: { min: -20, max: 20 }
             },
             point: {
                 show: false
