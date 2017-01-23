@@ -434,6 +434,9 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x03, 0x0, 0x0, 0x0);
         }
 
+        function PodSafe(){
+            udp.tx.transmitPodCommand('Power Node Broadcast', 0x3000,0x76543210, 0x0, 0x0, 0x0);
+        }
 
     return{
         LGU_PositionChange,
@@ -495,6 +498,8 @@ module.exports = function(udp){
         PowerBRequestBMS,
         PowerAToPowerB,
         PowerBToPowerA,
+
+        PodSafe,
 
         FCUHover_Enable,
         FCUHover_Disable,
