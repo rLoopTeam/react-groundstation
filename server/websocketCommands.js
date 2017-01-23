@@ -319,6 +319,14 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerBPowerLatch(data);
 			},
 
+			'PowerA:ToPowerB':(data) => {
+				podCommands.PowerAToPowerB();
+			},
+
+			'PowerB:ToPowerA':(data) => {
+				podCommands.PowerBToPowerA();
+			},
+
 			'AllLogging:Start': function(data){
 
 				console.log("Starting local logging.");

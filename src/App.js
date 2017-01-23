@@ -22,6 +22,7 @@ import DAQ from './components/DAQ';
 import Charging from './components/power/Charging';
 import PowerA_RawTemperatures from './components/power/unitA/rawTemps';
 import PowerB_RawTemperatures from './components/power/unitB/rawTemps';
+import PowerNodeConfig from './components/PowerNodeConfig.js'
 import './App.css';
 
             // <Route path="powerAVoltage" component={PowerA_Voltage} />
@@ -32,6 +33,7 @@ class App extends Component {
         <Route path="/" component={MainLayout}>
         <IndexRoute component={Overview} />
           <Route path="dashboard" component={Overview} />
+          <Route path="PowerNodeConfig" component={PowerNodeConfig} />
           <Route path="Charging" component={Charging} />
           <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
           <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />

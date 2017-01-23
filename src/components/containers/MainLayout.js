@@ -59,6 +59,7 @@ class MainLayout extends Component {
 			{
 				name: "Config", location: "/config", children: [
 					{name: "Comms", location: "/commConfig"},
+					{name: "Power Node", location: "/PowerNodeConfig"}
 				]
 			},
 		];

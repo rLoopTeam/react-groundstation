@@ -306,6 +306,11 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B',0x3021, 0x34566543, 0x0,0, 0x0);
         }        
 
+        function PowerAStopAllManualDischarging()
+        {
+            udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x0,0, 0x0);
+        }
+
         function PowerAStartDischarging(data){
             udp.tx.transmitPodCommand('Power Node A',0x3021, 0x34566543, 0x1, data.cellIndex, 0x1);
         }
@@ -323,11 +328,21 @@ module.exports = function(udp){
         }
 
         function PowerAPowerLatch(){
-            udp.tx.transmitPodCommand('Power Node A',0x3021, 0xABCD1245,0x0,0x0,0x0);
+            udp.tx.transmitPodCommand('Power Node A',0x3030, 0xABCD1245,0x0,0x0,0x0);
         }
 
         function PowerBPowerLatch(){
-            udp.tx.transmitPodCommand('Power Node B',0x3021, 0xABCD1245,0x1,0x0,0x0);
+            udp.tx.transmitPodCommand('Power Node B',0x3030, 0xABCD1245,0x1,0x0,0x0);
+        }
+
+        function PowerAToPowerB()
+        {
+            udp.tx.transmitPodCommand('Power Node A',0x3031, 0x11223344, 0x1,0, 0x0);
+        }
+
+        function PowerBToPowerA()
+        {
+            udp.tx.transmitPodCommand('Power Node B',0x3031, 0x11223344, 0x0,0, 0x0);
         }
 
         //Hover Engines
@@ -478,7 +493,8 @@ module.exports = function(udp){
         PowerBStopDischarging,
         PowerARequestBMS,
         PowerBRequestBMS,
-		
+        PowerAToPowerB,
+        PowerBToPowerA,
 
         FCUHover_Enable,
         FCUHover_Disable,
