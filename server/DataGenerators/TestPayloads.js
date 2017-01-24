@@ -265,6 +265,20 @@ BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(20,true)); //Temp Scan C
 // 								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},								
 // 							]
 // 			},
+
+
+/*
+ * 0x1901 Auto-sequence state and status
+ */
+var autoSequence1 = [];
+autoSequence1.push.apply(autoSequence1, bin.uint32ToBytes(1, true)); // Idle
+autoSequence1.push.apply(autoSequence1, bin.uint8ToBytes(1, true)); // Pass
+
+var autoSequence2 = [];
+autoSequence2.push.apply(autoSequence2, bin.uint32ToBytes(3, true)); // Brake sensing
+autoSequence2.push.apply(autoSequence2, bin.uint8ToBytes(0, true)); // Fail
+
+
 /*
 * 0x3021 Temperature sensor
 */
@@ -295,6 +309,8 @@ for(var i = 0;i<NumOfTempSensors;i++)
 
 module.exports = {
 	accelerometer,
+	autoSequence1,
+	autoSequence2,
 	brakesStreaming,
 	battTempSensors,
 	battTempLocations,

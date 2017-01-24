@@ -167,3 +167,9 @@ daqGenerator.simulateDAQ(0x400b, 'int32', accelPerPacket, 1000/(accelRate/accelP
 daqGenerator.simulateDAQ(0x400c, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
 
 */
+
+/*
+// Auto-test-sequence packets
+testGenerator(0x1901, payloads.autoSequence1, 'Flight Control');
+testGenerator(0x1901, payloads.autoSequence2, 'Flight Control');
+*/

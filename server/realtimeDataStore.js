@@ -39,7 +39,7 @@ class RealTimeDataStore {
 	*/
 	insertDataPacket(newDataPacket)
 	{
-		this.hasNewData.emit("new_rtData");
+		this.hasNewData.emit("new_rtData", newDataPacket);
 
 		for(var x = 0;x<newDataPacket.parameters.length;x++)
 		{
