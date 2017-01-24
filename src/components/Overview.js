@@ -31,7 +31,7 @@ class Overview extends Component {
 					lineNames={['X Gs', 'Y Gs', 'Z Gs']}
 					yRange={[-20, 20]}
 					yAxisLabel="Gs"
-					xAxisLabel="Time(ms)"
+					xAxisLabel="Time"
 				/>
 			</div>
 		);
