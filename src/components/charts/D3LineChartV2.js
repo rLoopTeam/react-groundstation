@@ -18,6 +18,12 @@ class D3LineChartV2 extends GenericParameterDisplay{
             units: ''
         }
 
+        this.latestValues = {
+            stale: false,
+            values: Array(this.props.parameters.length).fill(Array(this.props.parameters.length)),
+            units: ''
+        }
+
         this.config = {
             chart: {
                 animation: false,
@@ -29,7 +35,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
                             var series = self.chart.series;
                             if (self.chart) {
                                 for (var i = 0; i < series.length; i++) {
-                                    series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
+                                    series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
                                 }
                                 self.chart.redraw()
                             }
@@ -118,11 +124,9 @@ class D3LineChartV2 extends GenericParameterDisplay{
 
     dataCallback(parameterData, i){     
         if(this._isMounted) {
-            const newState = Object.assign({}, this.state);
-            newState.values[i] = parameterData.Value;
-            newState.stale = parameterData.IsStale;
-            newState.units = parameterData.Units;
-            //this.setState(newState);
+            this.latestValues.values[i] = parameterData.Value;
+            this.latestValues.stale = parameterData.IsStale;
+            this.latestValues.units = parameterData.Units;
         }
     }
 
