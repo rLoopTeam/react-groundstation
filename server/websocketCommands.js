@@ -385,6 +385,18 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			},
 
+			'pressurize:start': () => {
+
+				podCommands.Pod_StartRepressuization();
+
+			},
+
+			'pressurize:stop': () => {
+
+				podCommands.Pod_StopRepressuization();
+
+			},
+
 			'power:Pod': () => {
 
 				podCommands.FCUPod_Off();

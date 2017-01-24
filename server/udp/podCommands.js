@@ -455,6 +455,14 @@ module.exports = function(udp){
         function PodSafePowerNodeB(){
             udp.tx.transmitPodCommand('Power Node B', 0x3000,0x76543210, 0x0, 0x0, 0x0);
         }
+        
+        function Pod_StartRepressuization(){
+            udp.tx.transmitPodCommand('Power Node A',0x3040, 0x01,0x0,0x0,0x0);
+        }
+
+        function Pod_StopRepressuization(){
+            udp.tx.transmitPodCommand('Power Node A',0x3040, 0x00,0x0,0x0,0x0);
+        }
 
     return{
         LGU_PositionChange,
@@ -520,6 +528,9 @@ module.exports = function(udp){
 
         PodSafePowerNodeA,
         PodSafePowerNodeB,
+
+        Pod_StartRepressuization,
+        Pod_StopRepressuization,
 
         FCUHover_Enable,
         FCUHover_Disable,
