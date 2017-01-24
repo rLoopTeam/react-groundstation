@@ -48,23 +48,22 @@ class D3LineChartV2 extends GenericParameterDisplay{
                 title: {
                     text: 'G force'
                 }
-                // plotLines: [{
-                //     value: 0,
-                //     width: 1,
-                //     color: '#808080'
-                // },
-                // {
-                //     value: 0,
-                //     width: 1,
-                //     color: '#808080'
-                // },
-                // {
-                //     value: 0,
-                //     width: 1,
-                //     color: '#808080'
-                // }]
             },
-            // create series array from the parameters
+            plotOptions: {
+                series:{
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+           // create series array from the parameters
             series: this.props.parameters.map(function(parametername){
                 return {
                     name: parametername,
