@@ -12,16 +12,22 @@ class D3LineChartV2 extends GenericParameterDisplay{
         
         const self = this;
 
-        this.state = {
+        // this object gets update with the data from the pod
+        this.latestValues = {
             stale: false,
-            values: Array(this.props.parameters).fill(0),
+            values: Array(this.props.parameters.length).fill(Array(this.props.parameters.length)),
             units: ''
         }
 
+        // this is the Highcharts config object that defines the series, render options etc
         this.config = {
+            title: {
+                text: this.props.title
+            },
             chart: {
                 animation: false,
                 events: {
+                    // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValues" object
                     load: function () {
                         setInterval(function () {
                             var x = (new Date()).getTime(), // current time
@@ -29,7 +35,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
                             var series = self.chart.series;
                             if (self.chart) {
                                 for (var i = 0; i < series.length; i++) {
-                                    series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
+                                    series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
                                 }
                                 self.chart.redraw()
                             }
@@ -41,12 +47,15 @@ class D3LineChartV2 extends GenericParameterDisplay{
                 }
             },
             xAxis: {
+                title: {
+                    text: this.props.xAxisLabel
+                },
                 type: 'datetime',
                 tickPixelInterval: 150
             },
             yAxis: {
                 title: {
-                    text: 'G force'
+                    text: this.props.yAxisLabel
                 }
             },
             plotOptions: {
@@ -68,7 +77,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
                 return {
                     name: parametername,
                     data: (function () {
-                        // generate an array of random data
+                        // generate an array of initial data
                         var data = [],
                             time = (new Date()).getTime(),
                             i;
@@ -76,7 +85,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
                         for (i = -19; i <= 0; i += 1) {
                             data.push({
                                 x: time + i * 1000,
-                                y: Math.random()
+                                y: 0
                             });
                         }
                         return data;
@@ -85,6 +94,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
             }),
         }
 
+        // sets up the StreamingPage manager for each parameter we want to display
         for (var i = 0; i < this.props.parameters.length; i++) {
             (function(index){
                 self.props.StreamingPageManager.RequestParameterWithCallback(self.props.parameters[index], function(data){
@@ -97,31 +107,14 @@ class D3LineChartV2 extends GenericParameterDisplay{
     componentDidMount() {
         const self = this;
         self.chart = self.refs[self.props.id+"_chart"].getChart();
-        // setInterval(() => {
-        //     for(var i = 0; i < self.props.parameters.length; i++) 
-        //     {
-        //         //var vals1 = self.state.config.series[i].data;
-        //         var newState = Object.assign({}, this.state)
-        //         newState.config.series[i].data;
-        //         if(newState.config.series[i].data.length > 30)
-        //             newState.config.series[i].data.splice(0, 1); 
-        //         newState.config.series[i].data.push(self.state.values[i]);
-        //         console.log(newState)
-        //         self.setState(newState)
-        //         //self.state.config.series[i].data = vals1;
-        //     }
-            
-        //     //self.forceUpdate()
-        // }, 500);
     }
 
     dataCallback(parameterData, i){     
+        // update the latestValues object with values from the pod
         if(this._isMounted) {
-            const newState = Object.assign({}, this.state);
-            newState.values[i] = parameterData.Value;
-            newState.stale = parameterData.IsStale;
-            newState.units = parameterData.Units;
-            //this.setState(newState);
+            this.latestValues.values[i] = parameterData.Value;
+            this.latestValues.stale = parameterData.IsStale;
+            this.latestValues.units = parameterData.Units;
         }
     }
 
@@ -136,6 +129,10 @@ class D3LineChartV2 extends GenericParameterDisplay{
 }
 
 D3LineChartV2.propTypes = {
-    id: React.PropTypes.string.isRequired
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    xAxisLabel: React.PropTypes.string.isRequired,
+    yAxisLabel: React.PropTypes.string.isRequired,
+    parameters: React.PropTypes.array.isRequired
 }
 export default D3LineChartV2;
