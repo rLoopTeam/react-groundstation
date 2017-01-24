@@ -20,6 +20,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
 
         this.config = {
             chart: {
+                animation: false,
                 events: {
                     load: function () {
                         setInterval(function () {
@@ -28,8 +29,9 @@ class D3LineChartV2 extends GenericParameterDisplay{
                             var series = self.chart.series;
                             if (self.chart) {
                                 for (var i = 0; i < series.length; i++) {
-                                    series[i].addPoint([x, y + (Math.random()*5)], true, true);
+                                    series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
                                 }
+                                self.chart.redraw()
                             }
                             else {
                                 console.log("No chart")
@@ -45,7 +47,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
             yAxis: {
                 title: {
                     text: 'G force'
-                },
+                }
                 // plotLines: [{
                 //     value: 0,
                 //     width: 1,
@@ -81,7 +83,7 @@ class D3LineChartV2 extends GenericParameterDisplay{
                         return data;
                     }())
                 }
-            })
+            }),
         }
 
         for (var i = 0; i < this.props.parameters.length; i++) {
