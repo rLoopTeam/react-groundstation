@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterInput from './GenericParameterInput.js';
-import D3LineChart from './charts/D3LineChart.js';
+import LineChart from './charts/LineChart.js';
 
 import io from 'socket.io-client';
 let socket = io.connect('127.0.0.1:3000', {
@@ -65,16 +65,18 @@ class FlightControl_FullAccel extends Component {
 			
 				<legend>Full Accelerometer Data</legend>
 
-
-				<D3LineChart 
+				<LineChart 
+					id="AccelerometerChart"
 					StreamingPageManager={this.state.streamManager} 
-					parameter='Packet Rx Count 1003' 
+					parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
 					hideUnits='true'
-					title="Packet Count"
-					lineName="RX-Count"
-					width="1000"
+					title="Accelerometer time-series"
+					lineNames={['X Gs', 'Y Gs', 'Z Gs']}
+					yRange={[-20, 20]}
+					yAxisLabel="Gs"
+					xAxisLabel="Time"
 				/>
-					
+				
 				<div className="row margin-bottom-20px">
 					<form className="form-inline col-xs-4">
 						<div className="form-group">

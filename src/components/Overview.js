@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
-import D3LineChartV2 from './charts/D3LineChartV2.js';
+import LineChart from './charts/LineChart.js';
 
 class Overview extends Component {
 	constructor(props) {
@@ -22,8 +22,8 @@ class Overview extends Component {
 
 	    return (
 			<div>
-				<D3LineChartV2 
-					id="AccelerometerChart"
+				<LineChart 
+					id="AccelerometerChart0"
 					StreamingPageManager={this.state.streamManager} 
 					parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
 					hideUnits='true'
