@@ -12,8 +12,9 @@ class LineChart extends GenericParameterDisplay{
         // this object gets update with the data from the pod
         this.latestValues = {
             stale: false,
-            values: Array(this.props.parameters.length).fill(Array(this.props.parameters.length)),
-            units: ''
+            values: Array(this.props.parameters.length).fill(Array(this.props.totalPoints).fill(0)),
+            units: '',
+            startTime: (new Date).getTime()
         }
 
         // this is the Highcharts config object that defines the series, render options etc
@@ -47,8 +48,13 @@ class LineChart extends GenericParameterDisplay{
                 title: {
                     text: this.props.xAxisLabel
                 },
-                type: 'datetime',
-                tickPixelInterval: 150
+                //type: 'datetime',
+                tickPixelInterval: 150,
+                labels: {
+                formatter: function() {
+                    return (this.value - self.latestValues.startTime)/1000;
+                }
+            },
             },
             yAxis: {
                 title: {
@@ -79,7 +85,7 @@ class LineChart extends GenericParameterDisplay{
                             time = (new Date()).getTime(),
                             i;
 
-                        for (i = -19; i <= 0; i += 1) {
+                        for (i = self.props.totalPoints*-1; i <= 0; i += 1) {
                             data.push({
                                 x: time + i * 1000,
                                 y: 0
@@ -130,6 +136,7 @@ LineChart.propTypes = {
     title: React.PropTypes.string.isRequired,
     xAxisLabel: React.PropTypes.string.isRequired,
     yAxisLabel: React.PropTypes.string.isRequired,
-    parameters: React.PropTypes.array.isRequired
+    parameters: React.PropTypes.array.isRequired,
+    totalPoints: React.PropTypes.number.isRequired,
 }
 export default LineChart;
