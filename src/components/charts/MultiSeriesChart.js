@@ -33,7 +33,7 @@ class MultiSeriesChart extends Component {
 
 	}
 	componentDidMount() {
-		setInterval(() => {
+		this.refresh = setInterval(() => {
 			for (var i = 0; i < this.props.parameters.length; i++) {
 				this.lineData["date"] = new Date();
 	            if (this.state.values[i] != undefined)
@@ -45,6 +45,7 @@ class MultiSeriesChart extends Component {
         }, 100);
 	}
 	componentWillUnmount() {
+		clearInterval(this.refresh)
 		this._isMounted = false;
 		this.props.StreamingPageManager.destroy();
 	}
