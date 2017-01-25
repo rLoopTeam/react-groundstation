@@ -17,6 +17,22 @@ class LineChart extends GenericParameterDisplay{
             startTime: (new Date).getTime()
         }
 
+        this.dataTimer = setInterval(function () {
+            var x = (new Date()).getTime(), // current time
+                y = 20;
+            var series = self.chart.series;
+            if (self.chart) {
+                for (var i = 0; i < series.length; i++) {
+                    //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
+                    series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
+                }
+                self.chart.redraw()
+            }
+            else {
+                console.log("No chart")
+            }
+        }, 250);
+
         // this is the Highcharts config object that defines the series, render options etc
         this.config = {
             title: {
@@ -29,21 +45,7 @@ class LineChart extends GenericParameterDisplay{
                 events: {
                     // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValues" object
                     load: function () {
-                        setInterval(function () {
-                            var x = (new Date()).getTime(), // current time
-                                y = 20;
-                            var series = self.chart.series;
-                            if (self.chart) {
-                                for (var i = 0; i < series.length; i++) {
-                                    series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
-                                    //series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
-                                }
-                                self.chart.redraw()
-                            }
-                            else {
-                                console.log("No chart")
-                            }
-                        }, 250);
+                        this.dataTimer;
                     }
                 }
             },
@@ -113,6 +115,11 @@ class LineChart extends GenericParameterDisplay{
     componentDidMount() {
         const self = this;
         self.chart = self.refs[self.props.id+"_chart"].getChart();
+    }
+
+    componentWillUnmount() {
+        const self = this
+        clearInterval(self.dataTimer)
     }
 
     dataCallback(parameterData, i){     
