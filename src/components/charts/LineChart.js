@@ -23,6 +23,8 @@ class LineChart extends GenericParameterDisplay{
                 text: this.props.title
             },
             chart: {
+                width: this.props.width || null,
+                height: this.props.height || null,
                 animation: false,
                 events: {
                     // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValues" object

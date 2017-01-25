@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import LineChart from './charts/LineChart.js';
 import FaultFlagDisplay from './FaultFlagDisplay.js';
+import GenericParameterLabel from './GenericParameterLabel.js';
 import ConfirmButton from './buttons/ConfirmButton.js';
 
 import io from 'socket.io-client';
@@ -46,25 +47,35 @@ class Overview extends Component {
 					<div className="col-md-6">
 						<div className="row">
 							<div className="col-md-6">
+								<label>Pitch</label>
+								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
+								<label>Roll</label>
+								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
 								<LineChart 
 									id="AccelerometerChart1"
 									StreamingPageManager={this.state.streamManager} 
 									parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
 									title="Accelerometer 0"
-									yAxisLabel="Gs"
+									yAxisLabel="Acceleration"
 									xAxisLabel="Time"
 									totalPoints={60}
+									height={250}
 								/>
 							</div>
 							<div className="col-md-6">
+								<label>Pitch</label>
+								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
+								<label>Roll</label>
+								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
 								<LineChart 
 									id="AccelerometerChart3"
 									StreamingPageManager={this.state.streamManager} 
 									parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
 									title="Accelerometer 1"
-									yAxisLabel="Gs"
+									yAxisLabel="Acceleration"
 									xAxisLabel="Time"
 									totalPoints={60}
+									height={250}
 								/>
 							</div>
 						</div>
@@ -80,6 +91,7 @@ class Overview extends Component {
 									yAxisLabel="Pressure"
 									xAxisLabel="Time"
 									totalPoints={60}
+									height={250}
 								/>
 							</div>
 							<div className="col-md-6">
@@ -91,6 +103,7 @@ class Overview extends Component {
 									yAxisLabel="Pressure"
 									xAxisLabel="Time"
 									totalPoints={60}
+									height={250}
 								/>
 							</div>
 						</div>
@@ -104,6 +117,7 @@ class Overview extends Component {
 									yAxisLabel="Temperature"
 									xAxisLabel="Time"
 									totalPoints={60}
+									height={250}
 								/>
 							</div>
 							<div className="col-md-6">
@@ -115,6 +129,7 @@ class Overview extends Component {
 									yAxisLabel="Temperature"
 									xAxisLabel="Time"
 									totalPoints={60}
+									height={250}
 								/>
 							</div>
 						</div>
