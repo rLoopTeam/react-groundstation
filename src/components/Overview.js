@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import LineChart from './charts/LineChart.js';
+import FaultFlagDisplay from './FaultFlagDisplay.js';
+import ConfirmButton from './buttons/ConfirmButton.js';
 
 class Overview extends Component {
 	constructor(props) {
@@ -17,12 +19,21 @@ class Overview extends Component {
 
     }
 
+    resetPod() {
+    	console.log("rest pod")
+    }
 
 	render() {
-
 	    return (
 			<div>
 				<legend>Mission</legend>
+				<div className="row">
+					<ConfirmButton className="btn btn-danger" delay={2000} action={this.resetPod}>Enter pre-run phase</ConfirmButton>
+				</div>
+				<div>
+					<legend>Pod Health</legend>
+					<FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+				</div>
 				<div className="row">
 					<div className="col-md-6">
 						<div className="row">
