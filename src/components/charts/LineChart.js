@@ -1,58 +1,142 @@
-import React, { Component } from 'react';
-import StreamingPageManager from '../../StreamingPageManager.js';
-import GenericParameterLabel from '../GenericParameterLabel.js';
-import config from '../../../config/commConfig';
-import RTChart from 'react-rt-chart';
+// first of course react!
+import React, {Component} from 'react';
+import ReactHighcharts from 'react-highcharts';
+import GenericParameterDisplay from '../GenericParameterDisplay.js';
 
-import io from 'socket.io-client';
-
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket;
-
-class LineChart extends Component{
+class LineChart extends GenericParameterDisplay{
     constructor(props){
         super(props)
+        
+        const self = this;
 
-    }
+        // this object gets update with the data from the pod
+        this.latestValues = {
+            stale: false,
+            values: Array(this.props.parameters.length).fill(Array(this.props.totalPoints).fill(0)),
+            units: '',
+            startTime: (new Date).getTime()
+        }
 
-    componentDidMount() {
-        setInterval(() => this.forceUpdate(), 10);
-    }
-
-    getRandomValue(){
-        return Math.random()*10;
-    }
-    
-    render() {
-        var chart = {
-            axis: {
-                y: { min: -20, max: 20 }
+        // this is the Highcharts config object that defines the series, render options etc
+        this.config = {
+            title: {
+                text: this.props.title
             },
-            point: {
-                show: false
-            }
-        };
+            chart: {
+                animation: false,
+                events: {
+                    // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValues" object
+                    load: function () {
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), // current time
+                                y = 20;
+                            var series = self.chart.series;
+                            if (self.chart) {
+                                for (var i = 0; i < series.length; i++) {
+                                    series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
+                                }
+                                self.chart.redraw()
+                            }
+                            else {
+                                console.log("No chart")
+                            }
+                        }, 250);
+                    }
+                }
+            },
+            xAxis: {
+                title: {
+                    text: this.props.xAxisLabel
+                },
+                //type: 'datetime',
+                tickPixelInterval: 150,
+                labels: {
+                formatter: function() {
+                    return (this.value - self.latestValues.startTime)/1000;
+                }
+            },
+            },
+            yAxis: {
+                title: {
+                    text: this.props.yAxisLabel
+                }
+            },
+            plotOptions: {
+                series:{
+                    marker: {
+                        enabled: false,
+                        symbol: 'circle',
+                        radius: 2,
+                        states: {
+                            hover: {
+                                enabled: true
+                            }
+                        }
+                    }
+                }
+            },
+           // create series array from the parameters
+            series: this.props.parameters.map(function(parametername){
+                return {
+                    name: parametername,
+                    data: (function () {
+                        // generate an array of initial data
+                        var data = [],
+                            time = (new Date()).getTime(),
+                            i;
 
-        var flow = {
-            duration: 200
-        };
+                        for (i = self.props.totalPoints*-1; i <= 0; i += 1) {
+                            data.push({
+                                x: time + i * 1000,
+                                y: 0
+                            });
+                        }
+                        return data;
+                    }())
+                }
+            }),
+        }
 
-        var fields = ['Car','Bus'];
-
-        var data = {
-        date: new Date(),
-        Car: this.getRandomValue(),
-        Bus: this.getRandomValue()
-        };
+        // sets up the StreamingPage manager for each parameter we want to display
+        for (var i = 0; i < this.props.parameters.length; i++) {
+            (function(index){
+                self.props.StreamingPageManager.RequestParameterWithCallback(self.props.parameters[index], function(data){
+                    self.dataCallback(data, index)
+                });
+            })(i)
+        }
+    }
     
-        return <RTChart
-                // flow={flow}
-                chart={chart}
-                fields={fields}
-                data={data} />
+    componentDidMount() {
+        const self = this;
+        self.chart = self.refs[self.props.id+"_chart"].getChart();
+    }
+
+    dataCallback(parameterData, i){     
+        // update the latestValues object with values from the pod
+        if(this._isMounted) {
+            this.latestValues.values[i] = parameterData.Value;
+            this.latestValues.stale = parameterData.IsStale;
+            this.latestValues.units = parameterData.Units;
+        }
+    }
+
+    render()
+    {
+        return(
+            <ReactHighcharts 
+                config={this.config} 
+                ref={this.props.id + "_chart"} />
+        );
     }
 }
 
+LineChart.propTypes = {
+    id: React.PropTypes.string.isRequired,
+    title: React.PropTypes.string.isRequired,
+    xAxisLabel: React.PropTypes.string.isRequired,
+    yAxisLabel: React.PropTypes.string.isRequired,
+    parameters: React.PropTypes.array.isRequired,
+    totalPoints: React.PropTypes.number.isRequired,
+}
 export default LineChart;

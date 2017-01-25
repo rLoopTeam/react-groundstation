@@ -1,0 +1,18 @@
+.clicked-status-wait {
+	/*background: repeating-linear-gradient( 45deg, #ad7337, #ad7337 10px, #cca379 10px, #cca379 20px );*/
+    background-size: 150% 100%;
+	background: repeating-linear-gradient(-45deg, #ad7337, #ad7337 25px, #cca379 25px, #cca379 51px);
+    border-color: #cca379;
+    animation: 2s scroll-background infinite linear;
+}
+
+.clicked-status-ready,
+.clicked-status-ready:focus {
+	background: #449044;
+}
+
+@keyframes scroll-background{
+  100%{
+    background-position:200px 0px;
+  }
+}
