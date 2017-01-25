@@ -3,7 +3,6 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 
 import MainLayout from './components/containers/MainLayout';
 import Overview from './components/Overview';
-import Stop from './components/Stop';
 import LGU from './components/LGU';
 import XilinxSim from './components/XilinxSim';
 import FunctionalTest from './components/FunctionalTest';
@@ -36,7 +35,6 @@ class App extends Component {
           <Route path="Charging" component={Charging} />
           <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
           <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />
-          <Route path="stop" component={Stop} />
           <Route path="lgu" component={LGU} />
           <Route path="XilinxSim" component={XilinxSim} />
           <Route path="FunctionalTest" component={FunctionalTest} />
