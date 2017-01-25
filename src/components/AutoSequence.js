@@ -11,40 +11,39 @@ class AutoSequence extends Component {
 		this.state = { // keyed by FCU state ID (stringified int)
 			streamingPageManager: new StreamingPageManager(),
 
-			testResults: {
-				0x0001: {
-					name: 'IDLE',
-					status: null,
-				},
-				0x0002: {
-					name: 'BRAKES INIT ACTION',
-					status: null,
-				},
-				0x0003: {
-					name: 'BRAKES INIT EXPECTED RESULT',
-					status: null,
-				},
-				0x0004: {
-					name: 'BRAKE FULL EXTEND ACTION',
-					status: null,
-				},
-				0x0005: {
-					name: 'BRAKE FULL EXTEND EXPECTED RESULT',
-					status: null,
-				},
-				0x0006: {
-					name: 'BRAKE FULL RETRACT ACTION',
-					status: null,
-				},
-				0x0007: {
-					name: 'BRAKE FULL RETRACT EXPECTED RESULT',
-					status: null,
-				},
-				0x0008: {
-					name: 'COMPLETE',
-					status: null,
-				},
-			},
+			testResults: [{
+				name: 'IDLE',
+				state: 0x0001,
+				status: '?',
+			}, {
+				name: 'BRAKES INIT ACTION',
+				state: 0x0002,
+				status: '?',
+			}, {
+				name: 'BRAKES INIT EXPECTED RESULT',
+				state: 0x0003,
+				status: '?',
+			}, {
+				name: 'BRAKE FULL EXTEND ACTION',
+				state: 0x0004,
+				status: '?',
+			}, {
+				name: 'BRAKE FULL EXTEND EXPECTED RESULT',
+				state: 0x0005,
+				status: '?',
+			}, {
+				name: 'BRAKE FULL RETRACT ACTION',
+				state: 0x0006,
+				status: '?',
+			}, {
+				name: 'BRAKE FULL RETRACT EXPECTED RESULT',
+				state: 0x0007,
+				status: '?',
+			}, {
+				name: 'COMPLETE',
+				state: 0x0008,
+				status: '?',
+			}],
 		};
 
 		this.state.streamingPageManager.RequestPacketWithCallback('Auto-sequence test', this.dataCallback.bind(this));
@@ -56,40 +55,59 @@ class AutoSequence extends Component {
 		this.state.streamingPageManager.destroy();
 	}
 
-	dataCallback(fcuPacket){
+	dataCallback(newPacket){
 		// TODO: fix this gating logic, assuming it's needed
 		//if (this._isMounted) {
-			var fcuState = 0x0001;
-	        var fcuStatus = null;
-			fcuPacket.parameters.forEach(function(parameter) {
+			var newPacketState = 0x0001;
+	        var newPacketStatus = '?';
+			newPacket.parameters.forEach(function(parameter) {
 				if (parameter.name === 'Auto-test State') {
-					fcuState = parameter.value;
+					newPacketState = parameter.value;
 				}
 				if (parameter.name === 'Auto-test Status') {
-					fcuStatus = parameter.value;
+					newPacketStatus = !!parameter.value ? 'Pass' : 'Fail';
 				}
 			});
 
 			var newComponentState = _.cloneDeep(this.state);
-			newComponentState.testResults[fcuState].status = fcuStatus;
+			newComponentState.testResults = this.state.testResults.map(function(testResult) {
+				if (testResult.state === newPacketState) {
+					return _.assign({}, testResult, {
+						status: newPacketStatus
+					});
+				} else {
+					return testResult;
+				}
+			});
 			this.setState(newComponentState);
 		//}
 	}
 
-	toJSON() {
-		return JSON.stringify(this.state.testResults);
+	getTestResults() {
+		return _.orderBy(this.state.testResults, ['state']);
+	}
+
+	getTestResultClass(status) {
+		return {
+			'?': 'test-result-unknown',
+			'Pass': 'test-result-passed',
+			'Fail': 'test-result-failed',
+		}[status];
 	}
 
 	render() {
 		return (
-			<div>
-				<p>All test results: </p> {this.toJSON()}
-
-				<p>State:</p>
-				<GenericParameterInput StreamingPageManager={this.state.streamingPageManager} parameter='Auto-test State' hideUnits='true' hex='true' readOnly='true'/>
-				<p>Status:</p>
-				<GenericParameterInput StreamingPageManager={this.state.streamingPageManager} parameter='Auto-test Status' hideUnits='true' hex='true' readOnly='true'/>
-			</div>
+			<table className='test-results'><tbody>{
+				this.getTestResults().map(function(testResult) {
+					return <tr
+							key={testResult.state}
+							className={this.getTestResultClass(testResult.status)}
+							>
+						<td>{testResult.name}</td>
+						<td>{testResult.status}</td>
+					</tr>
+				}.bind(this))
+			}</tbody></table>
 		);
 	}
 

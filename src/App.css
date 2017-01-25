@@ -71,3 +71,20 @@ body {
 .no-right-border{
     border-right: none !important;
 }
+
+.test-results td {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.test-result-passed {
+    background-color: lightgreen;
+}
+
+.test-result-failed {
+    background-color: lightcoral;
+}
+
+.test-result-unknown {
+    background-color: lightgray;
+}
