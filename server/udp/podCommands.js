@@ -456,6 +456,10 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B', 0x3000,0x76543210, 0x0, 0x0, 0x0);
         }
 
+        function EnterPreRunPhase(){
+            udp.tx.transmitPodCommand('Enter Prerun Phase', 0x0003,0x00000000, 0x0, 0x0, 0x0); // TODO need to set the correct 3rd parameter (block0 of the command packet)
+        }
+
     return{
         LGU_PositionChange,
         LGU_SpeedChange,
@@ -520,6 +524,7 @@ module.exports = function(udp){
 
         PodSafePowerNodeA,
         PodSafePowerNodeB,
+        EnterPreRunPhase,
 
         FCUHover_Enable,
         FCUHover_Disable,

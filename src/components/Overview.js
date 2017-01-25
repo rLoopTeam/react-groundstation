@@ -4,6 +4,14 @@ import LineChart from './charts/LineChart.js';
 import FaultFlagDisplay from './FaultFlagDisplay.js';
 import ConfirmButton from './buttons/ConfirmButton.js';
 
+import io from 'socket.io-client';
+let socket = io.connect('127.0.0.1:3000', {
+			reconnection: true,
+			reconnectionDelay: 1000,
+			reconnectionDelayMax : 5000,
+			reconnectionAttempts: Infinity
+		});
+
 class Overview extends Component {
 	constructor(props) {
 		super(props)
@@ -20,7 +28,7 @@ class Overview extends Component {
     }
 
     resetPod() {
-    	console.log("rest pod")
+    	socket.emit('EnterPreRunPhase');
     }
 
 	render() {

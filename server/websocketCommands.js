@@ -332,6 +332,10 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PodSafePowerNodeB();
 			},
 
+			'EnterPreRunPhase':() => {
+				podCommands.EnterPreRunPhase();
+			},
+
 			'AllLogging:Start': function(data){
 
 				console.log("Starting local logging.");
