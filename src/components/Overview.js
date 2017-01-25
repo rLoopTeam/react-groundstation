@@ -92,7 +92,7 @@ class Overview extends Component {
 									id="BMSAPressure"
 									StreamingPageManager={this.state.streamManager} 
 									parameters={['Power A BMS Node Temp']}
-									title="Power node A Temperature"
+									title="Power node A temperature"
 									yAxisLabel="Temperature"
 									xAxisLabel="Time"
 									totalPoints={60}
@@ -102,24 +102,13 @@ class Overview extends Component {
 								<LineChart 
 									id="BMSBPressure"
 									StreamingPageManager={this.state.streamManager} 
-									parameters={['Power B BMS Node Temperature']}
+									parameters={['Power B BMS Node Temp']}
 									title="Power node B temperature"
 									yAxisLabel="Temperature"
 									xAxisLabel="Time"
 									totalPoints={60}
 								/>
 							</div>
-						</div>
-						<div className="row">
-							<LineChart 
-								id="BMSBTemp"
-								StreamingPageManager={this.state.streamManager} 
-								parameters={['Power B BMS Node Temp']}
-								title="Power node B temperature"
-								yAxisLabel="Temperature"
-								xAxisLabel="Time"
-								totalPoints={60}
-							/>
 						</div>
 					</div>
 				</div>
