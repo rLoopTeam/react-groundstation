@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import ConfirmButton from './buttons/ConfirmButton.js';
 import StreamingPageManager from '../StreamingPageManager.js';
 import _ from 'lodash';
 import defer from 'defer-promise';
+
+import io from 'socket.io-client';
+let socket = io.connect('127.0.0.1:3000', {
+	reconnection: true,
+	reconnectionDelay: 1000,
+	reconnectionDelayMax : 5000,
+	reconnectionAttempts: Infinity
+});
 
 // Max milliseconds between any two test results
 // (before we give up on all remaining test results).
@@ -77,19 +86,23 @@ class AutoSequence extends Component {
 	 *                               or else we'll give up on all pending tests.
 	 */
 	scheduleNextTestResult(timeout) {
-		this.state.nextTestResult = defer(); // manually resolved when the next packet arrives
+		var nextTestResult = defer(); // manually resolved when the next packet arrives
 		let nextTestResultDeadline = new Promise((resolve, reject) => {
 			if (timeout) {
 				setTimeout(reject, timeout);
 			}
 		})
 		Promise.race([
-			this.state.nextTestResult.promise,
+			nextTestResult.promise,
 			nextTestResultDeadline
 		]).then(
 			this.recordTestResult.bind(this),
 			this.markAllPendingTestResultsAsFailed.bind(this)
 		);
+
+		this.setState({
+			nextTestResult: nextTestResult,
+		});
 	}
 
 	recordTestResult(newPacket) {
@@ -133,6 +146,22 @@ class AutoSequence extends Component {
 		this.setState(newComponentState);
 	}
 
+	sendStartCommand() {
+		socket.emit('AutoSequenceTest:Start');
+	}
+
+	sendSkipCommand() {
+		socket.emit('AutoSequenceTest:Skip');
+	}
+
+	sendKillCommand() {
+		socket.emit('AutoSequenceTest:Kill');
+	}
+
+	sendRestartCommand() {
+		socket.emit('AutoSequenceTest:Restart');
+	}
+
 	getTestResults() {
 		return _.orderBy(this.state.testResults, ['state']);
 	}
@@ -148,17 +177,24 @@ class AutoSequence extends Component {
 
 	render() {
 		return (
-			<table className='test-results'><tbody>{
-				this.getTestResults().map(function(testResult) {
-					return <tr
-							key={testResult.state}
-							className={this.getTestResultClass(testResult.status)}
-							>
-						<td>{testResult.name}</td>
-						<td>{testResult.status}</td>
-					</tr>
-				}.bind(this))
-			}</tbody></table>
+			<div>
+				<button type="button" className="btn btn-success" onClick={this.sendStartCommand}>Start</button>
+				<button type="button" className="btn btn-success" onClick={this.sendRestartCommand}>Restart</button>
+				<ConfirmButton className="btn btn-danger" delay={2000} action={this.sendSkipCommand}>Skip</ConfirmButton>
+				<ConfirmButton className="btn btn-danger" delay={2000} action={this.sendKillCommand}>Kill</ConfirmButton>
+
+				<table className='test-results'><tbody>{
+					this.getTestResults().map(function(testResult) {
+						return <tr
+								key={testResult.state}
+								className={this.getTestResultClass(testResult.status)}
+								>
+							<td>{testResult.name}</td>
+							<td>{testResult.status}</td>
+						</tr>
+					}.bind(this))
+				}</tbody></table>
+			</div>
 		);
 	}
 

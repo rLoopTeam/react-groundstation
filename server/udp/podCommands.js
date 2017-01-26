@@ -447,6 +447,9 @@ module.exports = function(udp){
         function AutoSequenceTest_Kill() {
             udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x03, 0x0, 0x0, 0x0);
         }
+        function AutoSequenceTest_Restart() {
+            udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x04, 0x0, 0x0, 0x0);
+        }
 
         function PodSafePowerNodeA(){
             udp.tx.transmitPodCommand('Power Node A', 0x3000,0x76543210, 0x0, 0x0, 0x0);
@@ -556,6 +559,7 @@ module.exports = function(udp){
 
         AutoSequenceTest_Start,
         AutoSequenceTest_Skip,
-        AutoSequenceTest_Kill
+        AutoSequenceTest_Kill,
+        AutoSequenceTest_Restart,
     }
 }
