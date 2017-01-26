@@ -14,6 +14,13 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(20.123,true)); //Raw Y
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(20.123,true)); //Raw Z Axis data
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(60.0,true)); //Pitch Angle
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(60.0,true)); //Roll Angle
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(2,true)); //Current Accel
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(3,true)); //Current Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(4,true)); //Previous Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(5,true)); //Current Displacement
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(6,true)); //Previous Displacement
+
+
 
 //Accel 2
 accelerometer.push.apply(accelerometer,bin.uint32ToBytes(7,true)); //Fault Flags
@@ -25,6 +32,11 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(200.345,true)); //Raw 
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(200.678,true)); //Raw Z Axis data
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(500.0,true)); //Pitch Angle
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(600.0,true)); //Roll Angle
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(2,true)); //Current Accel
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(3,true)); //Current Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(4,true)); //Previous Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(5,true)); //Current Displacement
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(6,true)); //Previous Displacement
 
 
 /*

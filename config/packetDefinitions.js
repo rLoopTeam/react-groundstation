@@ -248,6 +248,12 @@ module.exports = {
 								{'Name':'0 Z Gs', 'type':'float32', 'units':'Gs', 'size': 4},
 								{'Name':'0 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
 								{'Name':'0 Roll', 'type':'float32', 'units':'degrees', 'size': 4},
+								{'Name':'0 Current Accel', 'type':'int32', 'units':'mmss', 'size': 4},
+								{'Name':'0 Current Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'0 Previous Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'0 Current Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+								{'Name':'0 Previous Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+
 								
 								{'Name':'1 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'1 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -257,7 +263,13 @@ module.exports = {
 								{'Name':'1 Y Gs', 'type':'float32', 'units':'Gs', 'size': 4},
 								{'Name':'1 Z Gs', 'type':'float32', 'units':'Gs', 'size': 4},
 								{'Name':'1 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
-								{'Name':'1 Roll', 'type':'float32', 'units':'degrees', 'size': 4}
+								{'Name':'1 Roll', 'type':'float32', 'units':'degrees', 'size': 4}								
+								{'Name':'1 Current Accel', 'type':'int32', 'units':'mmss', 'size': 4},
+								{'Name':'1 Current Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'1 Previous Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'1 Current Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+								{'Name':'1 Previous Displacement', 'type':'int32', 'units':'mm', 'size': 4}
+
 							]
 			},
 			{
