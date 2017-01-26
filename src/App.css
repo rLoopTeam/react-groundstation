@@ -72,6 +72,11 @@ body {
     border-right: none !important;
 }
 
+.section-title {
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
 .test-results td {
     border: 1px solid black;
     padding: 2px;
@@ -81,10 +86,10 @@ body {
     background-color: lightgreen;
 }
 
-.test-result-failed {
-    background-color: lightcoral;
-}
-
 .test-result-pending {
     background-color: lightgray;
+}
+
+.test-result-failed {
+    background-color: lightcoral;
 }

@@ -130,8 +130,8 @@ class TempSensorROMIDScanner {
 		newData.parameters.push({'name':'Power B ROM ID '+(index+1),'value':toAdd,'units':''});
 		this.rtDataStore.insertDataPacket(newData);
 
-		this.ScanAIndex++;
-		this.PodCommands.PowerARequestRomID(this.ScanBIndex);
+		this.ScanBIndex++;
+		this.PodCommands.PowerBRequestRomID(this.ScanBIndex);
 	}
 
 }

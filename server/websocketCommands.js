@@ -328,7 +328,12 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			},
 
 			'PodSafe':() => {
-				podCommands.PodSafe();
+				podCommands.PodSafePowerNodeA();
+				podCommands.PodSafePowerNodeB();
+			},
+
+			'EnterPreRunPhase':() => {
+				podCommands.EnterPreRunPhase();
 			},
 
 			'AllLogging:Start': function(data){

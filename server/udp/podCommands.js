@@ -283,15 +283,15 @@ module.exports = function(udp){
 		}
 
         function PowerBStreamTempLocations(){
-            udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
+            udp.tx.transmitPodCommand('Power Node B', 0x3010, 0x01, 0x3203, 0x0, 0x0); 
         }
 
         function PowerARequestRomID(data){
-            udp.tx.transmitPodCommand('Power Node A',0x3204, index,0x0,0x0,0x0);
+            udp.tx.transmitPodCommand('Power Node A',0x3204, data,0x0,0x0,0x0);
         }
 
         function PowerBRequestRomID(data){
-            udp.tx.transmitPodCommand('Power Node B',0x3204, index,0x0,0x0,0x0);
+            udp.tx.transmitPodCommand('Power Node B',0x3204, data,0x0,0x0,0x0);
         }
 
         function PowerAStartCharging(){
@@ -448,8 +448,16 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Xilinx Sim', 0x1900, 0x03, 0x0, 0x0, 0x0);
         }
 
-        function PodSafe(){
-            udp.tx.transmitPodCommand('Power Node Broadcast', 0x3000,0x76543210, 0x0, 0x0, 0x0);
+        function PodSafePowerNodeA(){
+            udp.tx.transmitPodCommand('Power Node A', 0x3000,0x76543210, 0x0, 0x0, 0x0);
+        }
+
+        function PodSafePowerNodeB(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3000,0x76543210, 0x0, 0x0, 0x0);
+        }
+
+        function EnterPreRunPhase(){
+            udp.tx.transmitPodCommand('Flight Control', 0x0003,0x00000000, 0x0, 0x0, 0x0); // TODO need to set the correct 3rd parameter (block0 of the command packet)
         }
 
     return{
@@ -514,7 +522,9 @@ module.exports = function(udp){
         PowerAToPowerB,
         PowerBToPowerA,
 
-        PodSafe,
+        PodSafePowerNodeA,
+        PodSafePowerNodeB,
+        EnterPreRunPhase,
 
         FCUHover_Enable,
         FCUHover_Disable,

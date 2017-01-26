@@ -13,7 +13,6 @@ import FlightControl_FullAccel from './components/FlightControl_FullAccel';
 import FlightControl_Contrast from './components/FlightControl_Contrast';
 import FlightControl_NavigationSensors from './components/FlightControl_NavigationSensors';
 import LineChart from './components/charts/LineChart';
-import D3LineChart from './components/charts/D3LineChart';
 import Brakes from './components/Brakes';
 import Throttles from './components/Throttles';
 import Steppers from './components/Steppers';
@@ -49,7 +48,6 @@ class App extends Component {
           <Route path="FlightControl_NavigationSensors" component={FlightControl_NavigationSensors} />
           <Route path="throttles" component={Throttles} />
           <Route path="LineChart" component={LineChart} />
-          <Route path="D3LineChart" component={D3LineChart} />
           <Route path="brakes" component={Brakes} />
           <Route path="Steppers" component={Steppers} />
           <Route path="datasubexample" component={DataStreamExample} />
