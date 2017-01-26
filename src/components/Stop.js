@@ -28,7 +28,7 @@ class Stop extends Component {
 		e.preventDefault();
 		var _enterPodSafe = confirm('Are you sure you would like to enter pod safe mode? This could be CATASTROPHIC...');
 		if(_enterPodSafe)
-			socket.emit('power:Pod');
+			socket.emit('PodSafe');
 	}
 
 	powerLatch(value, e) {

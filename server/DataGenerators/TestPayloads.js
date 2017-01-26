@@ -14,6 +14,13 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(20.123,true)); //Raw Y
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(20.123,true)); //Raw Z Axis data
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(60.0,true)); //Pitch Angle
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(60.0,true)); //Roll Angle
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(2,true)); //Current Accel
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(3,true)); //Current Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(4,true)); //Previous Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(5,true)); //Current Displacement
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(6,true)); //Previous Displacement
+
+
 
 //Accel 2
 accelerometer.push.apply(accelerometer,bin.uint32ToBytes(7,true)); //Fault Flags
@@ -25,6 +32,11 @@ accelerometer.push.apply(accelerometer,bin.float32ToBytes(200.345,true)); //Raw 
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(200.678,true)); //Raw Z Axis data
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(500.0,true)); //Pitch Angle
 accelerometer.push.apply(accelerometer,bin.float32ToBytes(600.0,true)); //Roll Angle
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(2,true)); //Current Accel
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(3,true)); //Current Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(4,true)); //Previous Velocity
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(5,true)); //Current Displacement
+accelerometer.push.apply(accelerometer,bin.int32ToBytes(6,true)); //Previous Displacement
 
 
 /*
@@ -265,6 +277,20 @@ BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(20,true)); //Temp Scan C
 // 								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},								
 // 							]
 // 			},
+
+
+/*
+ * 0x1901 Auto-sequence state and status
+ */
+var autoSequenceTestResult1 = [];
+autoSequenceTestResult1.push.apply(autoSequenceTestResult1, bin.uint32ToBytes(1, true)); // Idle
+autoSequenceTestResult1.push.apply(autoSequenceTestResult1, bin.uint8ToBytes(1, true)); // Pass
+
+var autoSequenceTestResult3 = [];
+autoSequenceTestResult3.push.apply(autoSequenceTestResult3, bin.uint32ToBytes(3, true)); // Brake sensing
+autoSequenceTestResult3.push.apply(autoSequenceTestResult3, bin.uint8ToBytes(0, true)); // Fail
+
+
 /*
 * 0x3021 Temperature sensor
 */
@@ -295,6 +321,8 @@ for(var i = 0;i<NumOfTempSensors;i++)
 
 module.exports = {
 	accelerometer,
+	autoSequenceTestResult1,
+	autoSequenceTestResult3,
 	brakesStreaming,
 	battTempSensors,
 	battTempLocations,

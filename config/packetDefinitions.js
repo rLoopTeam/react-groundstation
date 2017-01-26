@@ -10,11 +10,11 @@ module.exports = {
 				"Parameters":[
 								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
-								
+
 								{'Name':'Temperature', 'type':'float32', 'units':'C', 'size': 4, 'beginLoop':true, 'endLoop':true}
 							]
 			},
-			
+
 			{
 				"Name":"Power B Current Temps",
 				"ParameterPrefix":"Power B Temps ",
@@ -24,7 +24,7 @@ module.exports = {
 				"Parameters":[
 								{'Name':'Count', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
-								
+
 								{'Name':'Temperature', 'type':'float32', 'units':'C', 'size': 4, 'beginLoop':true, 'endLoop':true}
 							]
 			},
@@ -38,7 +38,7 @@ module.exports = {
 				"Parameters":[
 								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
-								
+
 								{'Name':'User Index', 'type':'uint16', 'units':'Hex', 'size': 2, 'beginLoop':true},
 								{'Name':'Resolution', 'type':'uint8', 'units':'bits', 'size': 1},
 								{'Name':'Bus Index', 'type':'uint8', 'units':'', 'size': 1, 'endLoop':true}
@@ -54,7 +54,7 @@ module.exports = {
 				"Parameters":[
 								{'Name':'Number of Temps', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Spare', 'type':'uint16', 'units':'RAW', 'size': 2},
-								
+
 								{'Name':'User Index', 'type':'uint16', 'units':'Hex', 'size': 2, 'beginLoop':true},
 								{'Name':'Resolution', 'type':'uint8', 'units':'bits', 'size': 1},
 								{'Name':'Bus Index', 'type':'uint8', 'units':'', 'size': 1, 'endLoop':true}
@@ -213,7 +213,7 @@ module.exports = {
 								{'Name':'Temp Scan Count','type':'uint32','units':'',  'size':4}
 							]
 			},
-			
+
 			{
 				"Name":"Accel Cal Full",
 				"ParameterPrefix":"Accel ",
@@ -225,7 +225,7 @@ module.exports = {
 								{'Name':'0 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
 								{'Name':'0 Y Raw', 'type':'int16', 'units':'RAW', 'size': 2},
 								{'Name':'0 Z Raw', 'type':'int16', 'units':'RAW', 'size': 2},
-								
+
 								{'Name':'1 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'1 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
 								{'Name':'1 Y Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -248,7 +248,13 @@ module.exports = {
 								{'Name':'0 Z Gs', 'type':'float32', 'units':'Gs', 'size': 4},
 								{'Name':'0 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
 								{'Name':'0 Roll', 'type':'float32', 'units':'degrees', 'size': 4},
-								
+								{'Name':'0 Current Accel', 'type':'int32', 'units':'mmss', 'size': 4},
+								{'Name':'0 Current Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'0 Previous Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'0 Current Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+								{'Name':'0 Previous Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+
+
 								{'Name':'1 Flags', 'type':'uint32', 'units':'', 'size': 4},
 								{'Name':'1 X Raw', 'type':'int16', 'units':'RAW', 'size': 2},
 								{'Name':'1 Y Raw', 'type':'int16', 'units':'RAW', 'size': 2},
@@ -257,7 +263,13 @@ module.exports = {
 								{'Name':'1 Y Gs', 'type':'float32', 'units':'Gs', 'size': 4},
 								{'Name':'1 Z Gs', 'type':'float32', 'units':'Gs', 'size': 4},
 								{'Name':'1 Pitch', 'type':'float32', 'units':'degrees', 'size': 4},
-								{'Name':'1 Roll', 'type':'float32', 'units':'degrees', 'size': 4}
+								{'Name':'1 Roll', 'type':'float32', 'units':'degrees', 'size': 4},
+								{'Name':'1 Current Accel', 'type':'int32', 'units':'mmss', 'size': 4},
+								{'Name':'1 Current Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'1 Previous Velocity', 'type':'int32', 'units':'mms', 'size': 4},
+								{'Name':'1 Current Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+								{'Name':'1 Previous Displacement', 'type':'int32', 'units':'mm', 'size': 4},
+
 							]
 			},
 			{
@@ -287,7 +299,7 @@ module.exports = {
 			{
 				"Name":"Brake data",
 				"ParameterPrefix":"Brake ",
-				"PacketType":0x1402, 
+				"PacketType":0x1402,
 				"Node":"Flight Control",
 				"DAQ":false,
 				"Parameters":[
@@ -345,7 +357,7 @@ module.exports = {
 								{'Name':'Current Position 2', 'type':'int32', 'units':'', 'size': 4},
 
 								{'Name':'State', 'type':'uint8', 'units':'', 'size': 1},
-								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},								
+								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},
 							]
 			},
 			{
@@ -363,7 +375,7 @@ module.exports = {
 								{'Name':'Requested RPM 6', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Requested RPM 7', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Requested RPM 8', 'type':'uint16', 'units':'', 'size': 2},
-									
+
 								{'Name':'Current RPM 1', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Current RPM 2', 'type':'uint16', 'units':'', 'size': 2},
 								{'Name':'Current RPM 3', 'type':'uint16', 'units':'', 'size': 2},
@@ -442,21 +454,21 @@ module.exports = {
 								{'Name':'Raw distance 4', 'type':'float32', 'units':'', 'size':4},
 								{'Name':'Filtered value 4', 'type':'float32', 'units':'mm', 'size':4},
 								{'Name':'Spare 4', 'type':'uint32', 'units':'', 'size':4},
-				
+
 								{'Name':'Fault flags 5', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Laser error packet count 5', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'First byte wrong 5', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Raw distance 5', 'type':'float32', 'units':'', 'size':4},
 								{'Name':'Filtered value 5', 'type':'float32', 'units':'mm', 'size':4},
 								{'Name':'Spare 5', 'type':'uint32', 'units':'', 'size':4},
-				
+
 								{'Name':'Fault flags 6', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Laser error packet count 6', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'First byte wrong 6', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Raw distance 6', 'type':'float32', 'units':'', 'size':4},
 								{'Name':'Filtered value 6', 'type':'float32', 'units':'mm', 'size':4},
 								{'Name':'Spare 6', 'type':'uint32', 'units':'', 'size':4},
-				
+
 								{'Name':'Fault flags 7', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'Laser error packet count 7', 'type':'uint32', 'units':'', 'size':4},
 								{'Name':'First byte wrong 7', 'type':'uint32', 'units':'', 'size':4},
@@ -734,5 +746,3 @@ module.exports = {
 			}
 	]
 }
-
-

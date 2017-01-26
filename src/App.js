@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import MainLayout from './components/containers/MainLayout';
 import Overview from './components/Overview';
 import LGU from './components/LGU';
+import AutoSequence from './components/AutoSequence';
 import XilinxSim from './components/XilinxSim';
 import FunctionalTest from './components/FunctionalTest';
 import FlightControl_CalAccel from './components/FlightControl_CalAccel';
@@ -23,7 +24,23 @@ import PowerB_RawTemperatures from './components/power/unitB/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js'
 import './App.css';
 
-            // <Route path="powerAVoltage" component={PowerA_Voltage} />
+import io from 'socket.io-client';
+let socket = io.connect('127.0.0.1:3000', {
+  reconnection: true,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax : 5000,
+  reconnectionAttempts: Infinity
+});
+
+/*-----------
+  Heartbeat signal
+------------*/
+setInterval(function() {
+  socket.emit('GS_Heartbeat');
+  //udp.tx.transmitPodCommand('Flight Control', 0x0400, 0x0, 0x0, 0x0, 0x0); //Heartbeat packet
+}, 1000);
+
+
 class App extends Component {
   render() {
     return (
@@ -36,6 +53,7 @@ class App extends Component {
           <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
           <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />
           <Route path="lgu" component={LGU} />
+          <Route path="AutoSequence" component={AutoSequence} />
           <Route path="XilinxSim" component={XilinxSim} />
           <Route path="FunctionalTest" component={FunctionalTest} />
           <Route path="FlightControl_FullAccel" component={FlightControl_FullAccel} />

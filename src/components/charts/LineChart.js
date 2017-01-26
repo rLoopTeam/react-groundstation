@@ -21,7 +21,7 @@ class LineChart extends GenericParameterDisplay{
             var x = (new Date()).getTime(), // current time
                 y = 20;
             var series = self.chart.series;
-            if (self.chart) {
+            if (self.chart && series) {
                 for (var i = 0; i < series.length; i++) {
                     series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
                     // series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
