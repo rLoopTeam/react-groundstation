@@ -71,3 +71,8 @@ body {
 .no-right-border{
     border-right: none !important;
 }
+
+.section-title {
+  border-bottom: 1px solid black;
+  text-align: center;
+}

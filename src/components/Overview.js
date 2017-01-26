@@ -13,6 +13,30 @@ let socket = io.connect('127.0.0.1:3000', {
 			reconnectionAttempts: Infinity
 		});
 
+const NamedParameter = (props) => {
+	return (
+		<div className="form-group row">
+			<label className="col-md-6">{props.name}</label>
+			<div className="col-md-6">
+				<GenericParameterLabel {...props}/>
+			</div>
+		</div>
+	);
+}
+
+const LeftRightParameters = ({children}) => {
+	return (
+		<div className="row">
+			<div className="col-sm-6">
+				{children[0]}
+			</div>
+			<div className="col-sm-6">
+				{children[1]}
+			</div>
+		</div>
+	);
+}
+
 class Overview extends Component {
 	constructor(props) {
 		super(props)
@@ -41,7 +65,55 @@ class Overview extends Component {
 				</div>
 				<div>
 					<legend>Pod Health</legend>
-					<FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+					<div className="col-md-6">
+						<div className="row">
+							<div className="col-md-12">
+								<h3 className="section-title">Brakes</h3>
+							</div>
+						</div>
+						<LeftRightParameters>
+							<NamedParameter
+								name="State"
+								parameter="Brake State"
+								hex="true"
+								StreamingPageManager={this.state.streamManager}
+							/>
+							<NamedParameter
+								name="Calibration State"
+								parameter="Brake Calibration State"
+								hex="true"
+								StreamingPageManager={this.state.streamManager}
+							/>
+						</LeftRightParameters>
+						<LeftRightParameters>
+							<FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
+							<FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+						</LeftRightParameters>
+						<LeftRightParameters>
+							<NamedParameter
+								name="FL Beam Dist"
+								parameter="Brake FL I-Beam Dist"
+								StreamingPageManager={this.state.streamManager}
+							/>
+							<NamedParameter
+								name="FR Beam Dist"
+								parameter="Brake FR I-Beam Dist"
+								StreamingPageManager={this.state.streamManager}
+							/>
+						</LeftRightParameters>
+						<LeftRightParameters>
+							<NamedParameter
+								name="RL Beam Dist"
+								parameter="Brake RL I-Beam Dist"
+								StreamingPageManager={this.state.streamManager}
+							/>
+							<NamedParameter
+								name="RR Beam Dist"
+								parameter="Brake RR I-Beam Dist"
+								StreamingPageManager={this.state.streamManager}
+							/>
+						</LeftRightParameters>
+					</div>
 				</div>
 				<div className="row">
 					<div className="col-md-6">
@@ -51,9 +123,9 @@ class Overview extends Component {
 								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
 								<label>Roll</label>
 								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
-								<LineChart 
+								<LineChart
 									id="AccelerometerChart1"
-									StreamingPageManager={this.state.streamManager} 
+									StreamingPageManager={this.state.streamManager}
 									parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
 									title="Accelerometer 0"
 									yAxisLabel="Acceleration"
@@ -67,9 +139,9 @@ class Overview extends Component {
 								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
 								<label>Roll</label>
 								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
-								<LineChart 
+								<LineChart
 									id="AccelerometerChart3"
-									StreamingPageManager={this.state.streamManager} 
+									StreamingPageManager={this.state.streamManager}
 									parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
 									title="Accelerometer 1"
 									yAxisLabel="Acceleration"
@@ -83,9 +155,9 @@ class Overview extends Component {
 					<div className="col-md-6">
 						<div className="row">
 							<div className="col-md-6">
-								<LineChart 
+								<LineChart
 									id="BMSAPressure"
-									StreamingPageManager={this.state.streamManager} 
+									StreamingPageManager={this.state.streamManager}
 									parameters={['Power A BMS Node Pressure']}
 									title="Power node A pressure"
 									yAxisLabel="Pressure"
@@ -95,9 +167,9 @@ class Overview extends Component {
 								/>
 							</div>
 							<div className="col-md-6">
-								<LineChart 
+								<LineChart
 									id="BMSBPressure"
-									StreamingPageManager={this.state.streamManager} 
+									StreamingPageManager={this.state.streamManager}
 									parameters={['Power B BMS Node Pressure']}
 									title="Power node B pressure"
 									yAxisLabel="Pressure"
@@ -109,9 +181,9 @@ class Overview extends Component {
 						</div>
 						<div className="row">
 							<div className="col-md-6">
-								<LineChart 
+								<LineChart
 									id="BMSAPressure"
-									StreamingPageManager={this.state.streamManager} 
+									StreamingPageManager={this.state.streamManager}
 									parameters={['Power A BMS Node Temp']}
 									title="Power node A temperature"
 									yAxisLabel="Temperature"
@@ -121,9 +193,9 @@ class Overview extends Component {
 								/>
 							</div>
 							<div className="col-md-6">
-								<LineChart 
+								<LineChart
 									id="BMSBPressure"
-									StreamingPageManager={this.state.streamManager} 
+									StreamingPageManager={this.state.streamManager}
 									parameters={['Power B BMS Node Temp']}
 									title="Power node B temperature"
 									yAxisLabel="Temperature"
@@ -141,4 +213,3 @@ class Overview extends Component {
 }
 
 export default Overview;
-
