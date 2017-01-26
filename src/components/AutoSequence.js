@@ -57,7 +57,11 @@ class AutoSequence extends Component {
 
 		this.state.streamingPageManager.RequestPacketWithCallback(
 			'Auto-sequence test',
-			this.state.nextTestResult.resolve);
+			// We can't directly pass this.state.nextTestResult.resolve because we want to use the *current* value
+			// of this.state.nextTestResult, even if that state property has been reassigned.
+			(testResult) => {
+				this.state.nextTestResult.resolve(testResult);
+			});
 
 		//this._isMounted = true;
 	}
