@@ -35,7 +35,10 @@ class Stop extends Component {
 		e.preventDefault();
 		var _value = value;
 
-		socket.emit('power:Latch', {powerNode: _value});
+		if(value == 0)
+			socket.emit('PowerA:LatchRelay', {});
+		if(value == 1)
+			socket.emit('PowerB:LatchRelay', {});
 	}
 
 	render() {
@@ -48,15 +51,11 @@ class Stop extends Component {
 					<div className="col-sm-3 pull-right">
 						<button className="btn btn-warning" onClick={this.podPower.bind(this)}>Pod Safe</button>
 					</div>
-					<div className="dropup col-sm-4 pull-right">
-						<button className="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Power Latch
-							<span className="caret"></span>
-						</button>
-						<ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-							<li><a href="#" onClick={this.powerLatch.bind(this, 0)}>Power Node A</a></li>
-							<li><a href="#" onClick={this.powerLatch.bind(this, 1)}>Power Node B</a></li>
-						</ul>
+					<div className="col-sm-3 pull-right">
+						<button className="btn btn-warning" onClick={this.powerLatch.bind(this, 1)}>Latch B</button>
+					</div>
+					<div className="col-sm-3 pull-right">
+						<button className="btn btn-warning" onClick={this.powerLatch.bind(this, 0)}>Latch A</button>
 					</div>
 				</div>
 	    );
