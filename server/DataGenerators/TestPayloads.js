@@ -282,13 +282,13 @@ BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(20,true)); //Temp Scan C
 /*
  * 0x1901 Auto-sequence state and status
  */
-var autoSequence1 = [];
-autoSequence1.push.apply(autoSequence1, bin.uint32ToBytes(1, true)); // Idle
-autoSequence1.push.apply(autoSequence1, bin.uint8ToBytes(1, true)); // Pass
+var autoSequenceTestResult1 = [];
+autoSequenceTestResult1.push.apply(autoSequenceTestResult1, bin.uint32ToBytes(1, true)); // Idle
+autoSequenceTestResult1.push.apply(autoSequenceTestResult1, bin.uint8ToBytes(1, true)); // Pass
 
-var autoSequence2 = [];
-autoSequence2.push.apply(autoSequence2, bin.uint32ToBytes(3, true)); // Brake sensing
-autoSequence2.push.apply(autoSequence2, bin.uint8ToBytes(0, true)); // Fail
+var autoSequenceTestResult3 = [];
+autoSequenceTestResult3.push.apply(autoSequenceTestResult3, bin.uint32ToBytes(3, true)); // Brake sensing
+autoSequenceTestResult3.push.apply(autoSequenceTestResult3, bin.uint8ToBytes(0, true)); // Fail
 
 
 /*
@@ -321,8 +321,8 @@ for(var i = 0;i<NumOfTempSensors;i++)
 
 module.exports = {
 	accelerometer,
-	autoSequence1,
-	autoSequence2,
+	autoSequenceTestResult1,
+	autoSequenceTestResult3,
 	brakesStreaming,
 	battTempSensors,
 	battTempLocations,
