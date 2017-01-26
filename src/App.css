@@ -85,6 +85,6 @@ body {
     background-color: lightcoral;
 }
 
-.test-result-unknown {
+.test-result-pending {
     background-color: lightgray;
 }

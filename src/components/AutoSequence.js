@@ -18,35 +18,35 @@ class AutoSequence extends Component {
 			testResults: [{
 				name: 'IDLE',
 				state: 0x0001,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'BRAKES INIT ACTION',
 				state: 0x0002,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'BRAKES INIT EXPECTED RESULT',
 				state: 0x0003,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'BRAKE FULL EXTEND ACTION',
 				state: 0x0004,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'BRAKE FULL EXTEND EXPECTED RESULT',
 				state: 0x0005,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'BRAKE FULL RETRACT ACTION',
 				state: 0x0006,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'BRAKE FULL RETRACT EXPECTED RESULT',
 				state: 0x0007,
-				status: '?',
+				status: 'Pending',
 			}, {
 				name: 'COMPLETE',
 				state: 0x0008,
-				status: '?',
+				status: 'Pending',
 			}],
 
 			// Added by this.scheduleNextTestResult
@@ -94,7 +94,7 @@ class AutoSequence extends Component {
 
 	recordTestResult(newPacket) {
 		var newPacketState = 0x0001;
-		var newPacketStatus = '?';
+		var newPacketStatus = 'Pending';
 		newPacket.parameters.forEach(function(parameter) {
 			if (parameter.name === 'Auto-test State') {
 				newPacketState = parameter.value;
@@ -122,7 +122,7 @@ class AutoSequence extends Component {
 	markAllPendingTestResultsAsFailed() {
 		var newComponentState = _.cloneDeep(this.state);
 		newComponentState.testResults = this.state.testResults.map(function(testResult) {
-			if (testResult.status === '?') {
+			if (testResult.status === 'Pending') {
 				return _.assign({}, testResult, {
 					status: 'Timeout',
 				});
@@ -139,7 +139,7 @@ class AutoSequence extends Component {
 
 	getTestResultClass(status) {
 		return {
-			'?': 'test-result-unknown',
+			'Pending': 'test-result-pending',
 			'Pass': 'test-result-passed',
 			'Fail': 'test-result-failed',
 			'Timeout': 'test-result-failed',
