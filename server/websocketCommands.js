@@ -485,6 +485,10 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
 			    //console.log('data: %O', data); //DEBUG
                 config.writeCommConfig(data);
+            },
+
+            'GS_Heartbeat': () => {
+            	podCommands.GS_Heartbeat();
             }
 
 

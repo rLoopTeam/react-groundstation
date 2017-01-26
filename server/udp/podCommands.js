@@ -9,6 +9,10 @@ module.exports = function(udp){
 
     var _brakeDevelopmentConfirmation = false;
 
+        function GS_Heartbeat() {
+            udp.tx.transmitPodCommand('Flight Control', 0x0400, 0x0, 0x0, 0x0, 0x0);
+        }
+
         function LGU_PositionChange(liftName, liftDirection) {
             console.log("Name:" + liftName + " Direction:" + liftDirection)
             //udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
@@ -464,6 +468,8 @@ module.exports = function(udp){
         }
 
     return{
+        GS_Heartbeat,
+
         LGU_PositionChange,
         LGU_SpeedChange,
 
