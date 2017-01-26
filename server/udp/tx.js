@@ -92,6 +92,7 @@ module.exports = {
 		
 		//Might want to look into reusing the client instead of instantiating a new one each time
 		var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
+		client.bind( function() { client.setBroadcast(true) } );
         client.send(Buffer.from(packet), 0, packet.length, port, ip, (err) => {
         	console.log(JSON.stringify(err));
             if (err) 
