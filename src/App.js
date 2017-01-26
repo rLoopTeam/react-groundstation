@@ -5,6 +5,7 @@ import MainLayout from './components/containers/MainLayout';
 import Overview from './components/Overview';
 import Stop from './components/Stop';
 import LGU from './components/LGU';
+import AutoSequence from './components/AutoSequence';
 import XilinxSim from './components/XilinxSim';
 import FunctionalTest from './components/FunctionalTest';
 import FlightControl_CalAccel from './components/FlightControl_CalAccel';
@@ -38,6 +39,7 @@ class App extends Component {
           <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />
           <Route path="stop" component={Stop} />
           <Route path="lgu" component={LGU} />
+          <Route path="AutoSequence" component={AutoSequence} />
           <Route path="XilinxSim" component={XilinxSim} />
           <Route path="FunctionalTest" component={FunctionalTest} />
           <Route path="FlightControl_FullAccel" component={FlightControl_FullAccel} />

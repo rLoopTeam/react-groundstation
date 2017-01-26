@@ -62,15 +62,21 @@ class StreamPipeServer
 					rtDataStore.hasNewData.on('new_rtData', sendNewData);
 				}
 
-				function sendNewData() { 
+				/**
+				 * @param {object} newDataPacket: See realtimeDataStore.insertDataPacket for more info.
+				 */
+				function sendNewData(newDataPacket) {
 					//Wait for an acknowledge to send new data, otherwise we fill up the OS buffers and bad things happen
 					if(clientReady){
 						clientReady = false;
 
-						var newData = [];
-					
+						var newData = {
+							packet: newDataPacket,
+							parameters: [],
+						};
+
 						for(var i = 0, len = requestedParams.length;i<len;i++){
-							newData.push(rtDataStore.retrieveDataParameter(requestedParams[i]));
+							newData.parameters.push(rtDataStore.retrieveDataParameter(requestedParams[i]));
 						}
 
 						socket.emit('new data burst',newData, function(data) {clientReady = true;});

@@ -50,7 +50,9 @@ class PowerB_RawTemperatures extends Component {
 		this._isMounted = false;
 	}
 	
-	newPacketCallback(parameterData){
+	newPacketCallback(newData){
+		var parameterData = newData.parameters;
+
 		var field;
 		var newState = {};
 

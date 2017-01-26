@@ -76,3 +76,20 @@ body {
   border-bottom: 1px solid black;
   text-align: center;
 }
+
+.test-results td {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.test-result-passed {
+    background-color: lightgreen;
+}
+
+.test-result-pending {
+    background-color: lightgray;
+}
+
+.test-result-failed {
+    background-color: lightcoral;
+}

@@ -464,6 +464,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
             'AutoSequenceTest:Kill': (data) => {
                 podCommands.AutoSequenceTest_Kill();
             },
+            'AutoSequenceTest:Restart': (data) => {
+                podCommands.AutoSequenceTest_Restart();
+            },
 
 
 			'disconnect': () => {

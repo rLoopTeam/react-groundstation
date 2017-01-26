@@ -132,8 +132,8 @@ var charger = require('./charger')(rtDataStore);
 // const TempSensorsGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 
 //Accelerometer packet generator
-// const payloads = require('./DataGenerators/TestPayloads');
-// const testGenerator = require('./DataGenerators/TestGenerator.js');
+//const payloads = require('./DataGenerators/TestPayloads');
+//const testGenerator = require('./DataGenerators/TestGenerator.js');
 //testGenerator(0x3401, payloads.BMSStreaming,"Power Node A");
 //testGenerator(0x3401, payloads.BMSStreaming,"Power Node B");
 //testGenerator(0x1003, payloads.accelerometer, "Flight Control");
@@ -144,6 +144,8 @@ var charger = require('./charger')(rtDataStore);
 //testGenerator(0x3201, payloads.battTempSensors, "Power Node B");
 //testGenerator(0x3203, payloads.battTempLocations, "Power Node A");
 //testGenerator(0x3203, payloads.battTempLocations, "Power Node B");
+//testGenerator(0x1901, payloads.autoSequenceTestResult1, 'Flight Control');
+//testGenerator(0x1901, payloads.autoSequenceTestResult3, 'Flight Control');
 
 /*
 
