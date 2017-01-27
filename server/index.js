@@ -119,7 +119,7 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
 /*------------
 	Grabs data from the charger
 ------------*/
-var charger = require('./charger')(rtDataStore);
+//var charger = require('./charger')(rtDataStore);
 
 /*------------
   Acclerometer Test Data Generator
