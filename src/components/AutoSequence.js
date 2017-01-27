@@ -62,8 +62,8 @@ class AutoSequence extends Component {
 			//nextTestResult: defer()
 		};
 
-		this.state.streamingPageManager.RequestPacketWithCallback(
-			'Auto-sequence test',
+		this.state.streamingPageManager.RequestParameterWithCallback(
+			'Auto-test State',
 			// We can't directly pass this.state.nextTestResult.resolve because we want to use the *current* value
 			// of this.state.nextTestResult, even if that state property has been reassigned.
 			(testResult) => {
@@ -91,7 +91,7 @@ class AutoSequence extends Component {
 			nextTestResultDeadline
 		]).then(
 			this.recordTestResult.bind(this),
-			this.markAllPendingTestResultsAsFailed.bind(this)
+			this.markAllPendingTestResultsAsTimedOut.bind(this)
 		);
 
 		this.setState({
@@ -99,28 +99,17 @@ class AutoSequence extends Component {
 		});
 	}
 
-	recordTestResult(newPacket) {
-		var newPacketState = 0x0001;
-		var newPacketStatus = 'Pending';
-		newPacket.parameters.forEach(function(parameter) {
-			if (parameter.name === 'Auto-test State') {
-				newPacketState = parameter.value;
-			}
-			if (parameter.name === 'Auto-test Status') {
-				newPacketStatus = !!parameter.value ? 'Pass' : 'Fail';
-			}
-		});
-
-		console.log('' + new Date() + ': got test result from state 0x' + newPacketState.toString(16));
+	recordTestResult(newState) {
+		console.log('' + new Date() + ': got test result from state 0x' + newState.Value.toString(16));
 
 		var newComponentState = _.cloneDeep(this.state);
 		newComponentState.testResults = this.state.testResults.map(function(testResult) {
-			if (testResult.state === newPacketState
+			if (testResult.state === newState.Value
 				// Make sure we don't overwrite test results if the FCU/testGenerator sends repeated states,
 				// or if tests were Started again after the timeout (and not Restarted, which would have reset all statuses).
 				&& testResult.status === 'Pending') {
 				return _.assign({}, testResult, {
-					status: newPacketStatus,
+					status: 'Pass',
 				});
 			} else {
 				return testResult;
@@ -131,7 +120,7 @@ class AutoSequence extends Component {
 		this.scheduleNextTestResult();
 	}
 
-	markAllPendingTestResultsAsFailed() {
+	markAllPendingTestResultsAsTimedOut() {
 		var newComponentState = _.cloneDeep(this.state);
 		newComponentState.testResults = this.state.testResults.map(function(testResult) {
 			if (testResult.status === 'Pending') {
