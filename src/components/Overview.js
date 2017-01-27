@@ -128,8 +128,8 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
 									title="Accelerometer 0"
-									yAxisLabel="Acceleration"
-									xAxisLabel="Time"
+									yAxisLabel="Acceleration (m/s&sup2;)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -144,8 +144,8 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
 									title="Accelerometer 1"
-									yAxisLabel="Acceleration"
-									xAxisLabel="Time"
+									yAxisLabel="Acceleration (m/s&sup2;)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -160,8 +160,8 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Power A BMS Node Pressure']}
 									title="Power node A pressure"
-									yAxisLabel="Pressure"
-									xAxisLabel="Time"
+									yAxisLabel="Pressure (bar)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -172,8 +172,8 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Power B BMS Node Pressure']}
 									title="Power node B pressure"
-									yAxisLabel="Pressure"
-									xAxisLabel="Time"
+									yAxisLabel="Pressure (bar)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -182,24 +182,24 @@ class Overview extends Component {
 						<div className="row">
 							<div className="col-md-6">
 								<LineChart
-									id="BMSAPressure"
+									id="BMSATemperature"
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Power A BMS Node Temp']}
 									title="Power node A temperature"
-									yAxisLabel="Temperature"
-									xAxisLabel="Time"
+									yAxisLabel="Temperature (&deg;C)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
 							</div>
 							<div className="col-md-6">
 								<LineChart
-									id="BMSBPressure"
+									id="BMSBTemperature"
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Power B BMS Node Temp']}
 									title="Power node B temperature"
-									yAxisLabel="Temperature"
-									xAxisLabel="Time"
+									yAxisLabel="Temperature (&deg;C)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
