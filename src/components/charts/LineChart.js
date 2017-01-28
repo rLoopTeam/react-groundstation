@@ -23,8 +23,9 @@ class LineChart extends GenericParameterDisplay{
             var series = self.chart.series;
             if (self.chart && series) {
                 for (var i = 0; i < series.length; i++) {
-                    series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
-                    // series[i].addPoint([x, y + (Math.random()*5)], false, true, false);
+                    var shift = series[i].data.length > self.props.totalPoints;
+                    //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
+                    series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
                 }
                 self.chart.redraw()
             }
@@ -84,20 +85,7 @@ class LineChart extends GenericParameterDisplay{
             series: this.props.parameters.map(function(parametername){
                 return {
                     name: parametername,
-                    data: (function () {
-                        // generate an array of initial data
-                        var data = [],
-                            time = (new Date()).getTime(),
-                            i;
-
-                        for (i = self.props.totalPoints*-1; i <= 0; i += 1) {
-                            data.push({
-                                x: time + i * 1000,
-                                y: 0
-                            });
-                        }
-                        return data;
-                    }())
+                    data: []
                 }
             }),
         }

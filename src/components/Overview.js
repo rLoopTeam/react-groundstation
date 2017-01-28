@@ -156,10 +156,10 @@ class Overview extends Component {
 						<div className="row">
 							<div className="col-md-6">
 								<LineChart
-									id="BMSAPressure"
+									id="BMSPressure"
 									StreamingPageManager={this.state.streamManager}
-									parameters={['Power A BMS Node Pressure']}
-									title="Power node A pressure"
+									parameters={['Power A BMS Node Pressure', 'Power B BMS Node Pressure']}
+									title="Power node Pressure"
 									yAxisLabel="Pressure"
 									xAxisLabel="Time"
 									totalPoints={60}
@@ -168,36 +168,10 @@ class Overview extends Component {
 							</div>
 							<div className="col-md-6">
 								<LineChart
-									id="BMSBPressure"
-									StreamingPageManager={this.state.streamManager}
-									parameters={['Power B BMS Node Pressure']}
-									title="Power node B pressure"
-									yAxisLabel="Pressure"
-									xAxisLabel="Time"
-									totalPoints={60}
-									height={250}
-								/>
-							</div>
-						</div>
-						<div className="row">
-							<div className="col-md-6">
-								<LineChart
 									id="BMSAPressure"
 									StreamingPageManager={this.state.streamManager}
-									parameters={['Power A BMS Node Temp']}
-									title="Power node A temperature"
-									yAxisLabel="Temperature"
-									xAxisLabel="Time"
-									totalPoints={60}
-									height={250}
-								/>
-							</div>
-							<div className="col-md-6">
-								<LineChart
-									id="BMSBPressure"
-									StreamingPageManager={this.state.streamManager}
-									parameters={['Power B BMS Node Temp']}
-									title="Power node B temperature"
+									parameters={['Power A BMS Node Temp', 'Power B BMS Node Temp']}
+									title="Power node Temperature"
 									yAxisLabel="Temperature"
 									xAxisLabel="Time"
 									totalPoints={60}
