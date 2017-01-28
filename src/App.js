@@ -18,7 +18,7 @@ import Steppers from './components/Steppers';
 import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
-import Charging from './components/power/Charging';
+import Power_Overview from './components/power/overview';
 import PowerA_RawTemperatures from './components/power/unitA/rawTemps';
 import PowerB_RawTemperatures from './components/power/unitB/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js'
@@ -49,8 +49,9 @@ class App extends Component {
         <IndexRoute component={Overview} />
           <Route path="dashboard" component={Overview} />
           <Route path="PowerNodeConfig" component={PowerNodeConfig} />
-          <Route path="Charging" component={Charging} />
+          <Route path="powerAOverview" component={Power_Overview} L="A"/>
           <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
+          <Route path="powerBOverview" component={Power_Overview} L="B"/>
           <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />
           <Route path="lgu" component={LGU} />
           <Route path="AutoSequence" component={AutoSequence} />
