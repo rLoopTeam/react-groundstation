@@ -117,6 +117,12 @@ class Overview extends Component {
 				</div>
 				<div className="row">
 					<div className="col-md-6">
+					<div className="row">
+						<div className="col-md-12">
+							<h3 className="section-title">Navigation</h3>
+						</div>
+					</div>
+
 						<div className="row">
 							<div className="col-md-6">
 								<label>Pitch</label>
@@ -152,6 +158,11 @@ class Overview extends Component {
 							</div>
 						</div>
 					</div>
+					<div className="row">
+						<div className="col-md-6">
+							<h3 className="section-title">Power</h3>
+						</div>
+					</div>
 					<div className="col-md-6">
 						<div className="row">
 							<div className="col-md-6">
@@ -173,6 +184,18 @@ class Overview extends Component {
 									parameters={['Power A BMS Node Temp', 'Power B BMS Node Temp']}
 									title="Power node Temperature"
 									yAxisLabel="Temperature (&deg;C)"
+									xAxisLabel="Time (s)" 
+									totalPoints={60}
+									height={250}
+								/>
+							</div>
+							<div className="col-md-6">
+								<LineChart
+									id="BMSVoltage"
+									StreamingPageManager={this.state.streamManager}
+									parameters={['Power A BMS Pack Volts', 'Power B BMS Pack Volts']}
+									title="Power node Voltage"
+									yAxisLabel="Temperature (V)"
 									xAxisLabel="Time (s)" 
 									totalPoints={60}
 									height={250}
