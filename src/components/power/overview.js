@@ -26,7 +26,6 @@ class Power_Overview extends Component {
 			streamManager: new StreamingPageManager(),
 		}
 
-		debugger;
         this.labels = [
             {label: "BMS Faults", value: `Power ${props.route.L} BMS Faults`, hex: "true"},
             {label: "Temp State", value: `Power ${props.route.L} BMS Temp State`},
