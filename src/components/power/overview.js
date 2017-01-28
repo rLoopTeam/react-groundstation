@@ -175,18 +175,18 @@ class Power_Overview extends Component {
 							this.cellIndexes.map(function(_, cellIndex) {
 								return (
 									<div className="col-sm-6" key={"cell" + cellIndex}>
-											<div className="col-sm-3">
+											<div className="col-sm-5">
 												<label>Module {cellIndex + 1} Volts:</label>
 											</div>
 											<div className="row">
-												<div className="col-sm-1">
+												<div className="col-sm-2">
 													<GenericParameterLabel
 														StreamingPageManager={_this.state.streamManager}
 														parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
 												</div>
 											</div>
 											<button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
-											<button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />
+											<button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br /><br />
 									</div>
 								);
 							}, this)
