@@ -217,6 +217,37 @@ module.exports = {
 			},
 
 			{
+				"Name":"Power A Cooling",
+				"ParameterPrefix":"Power A Cooling ",
+				"PacketType":0x3601,
+				"Node":"Power Node A",
+				"DAQ":false,
+				"Parameters":[
+								{'Name':'State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover1/2 Temp', 'type':'int32', 'units':'degF', 'size': 4},
+								{'Name':'Hover1/2 Cooling State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover1/2 Solenoid State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover1/2 Solenoid Pin', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover3/4 Temp', 'type':'int32', 'units':'degF', 'size': 4},
+								{'Name':'Hover3/4 Cooling State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover3/4 Solenoid State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover3/4 Solenoid Pin', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover5/6 Temp', 'type':'int32', 'units':'degF', 'size': 4},
+								{'Name':'Hover5/6 Cooling State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover5/6 Solenoid State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover5/6 Solenoid Pin', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover7/8 Temp', 'type':'int32', 'units':'degF', 'size': 4},
+								{'Name':'Hover7/8 Cooling State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover7/8 Solenoid State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'Hover7/8 Solenoid Pin', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'EddyBrake Temp', 'type':'int32', 'units':'degF', 'size': 4},
+								{'Name':'EddyBrake Cooling State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'EddyBrake Solenoid State', 'type':'uint8', 'units':'', 'size': 1},
+								{'Name':'EddyBrake Solenoid Pin', 'type':'uint8', 'units':'', 'size': 1},
+							]
+			},
+
+			{
 				"Name":"Accel Cal Full",
 				"ParameterPrefix":"Accel ",
 				"PacketType":0x1001,
