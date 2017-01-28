@@ -131,7 +131,7 @@ class Power_Overview extends Component {
 				<div className="row">
 
 					<div className="col-sm-6">
-						<h3>Charge</h3>
+						<h3 className="section-title">Charge</h3>
 
 						<button className="btn btn-primary" onClick={this.requestBMS.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startCharge.bind(this, {})}  style={{margin:10}}>Start Charging</button>
@@ -168,20 +168,25 @@ class Power_Overview extends Component {
 							}
 							</div>
 						</div>
-
-						<button type="button" className="btn btn-success" onClick={this.stopManualDischarging.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
+						<div className="row">
+							<button type="button" className="btn btn-success" onClick={this.stopManualDischarging.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
+						</div>
 						{
 							this.cellIndexes.map(function(_, cellIndex) {
 								return (
-									<div className="row" key={"cell" + cellIndex}>
-										<div>
-											<label>Module {cellIndex + 1} Volts</label>
-											<GenericParameterLabel
-												StreamingPageManager={_this.state.streamManager}
-												parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
-										<button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
-										<button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />
-										</div>
+									<div className="col-sm-6" key={"cell" + cellIndex}>
+											<div className="col-sm-3">
+												<label>Module {cellIndex + 1} Volts:</label>
+											</div>
+											<div className="row">
+												<div className="col-sm-1">
+													<GenericParameterLabel
+														StreamingPageManager={_this.state.streamManager}
+														parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
+												</div>
+											</div>
+											<button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
+											<button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />
 									</div>
 								);
 							}, this)
@@ -189,7 +194,7 @@ class Power_Overview extends Component {
 					</div>
 
 					<div className="col-sm-6">
-						<h3>Cooling</h3>
+						<h3 className="section-title">Cooling</h3>
 
 						<div className="row">
 							<button type="button" className="btn btn-primary" onClick={this.requestCooling.bind(this)}  style={{margin:10}}>Start Stream</button>
