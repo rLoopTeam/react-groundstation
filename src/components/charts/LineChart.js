@@ -26,6 +26,16 @@ class LineChart extends GenericParameterDisplay{
                     var shift = series[i].data.length > self.props.totalPoints;
                     //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
                     series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
+                    //TODO: change to 'true' in production
+                    if (self.latestValues.stale == false) {
+                        self.chart.chartBackground.css({
+                            color: '#FF3300',
+                        });
+                    } else {
+                        self.chart.chartBackground.css({
+                            color: '#FFFFFF',
+                        });
+                    }
                 }
                 self.chart.redraw()
             }
