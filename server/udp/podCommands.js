@@ -259,11 +259,11 @@ module.exports = function(udp){
         }
 
         function PowerARequestBMS(){
-            udp.tx.transmitPodCommand('Power Node A', 0x3400, 0x0, 0x0, 0x0, 0x0);
+            udp.tx.transmitPodCommand('Power Node A', 0x3010, 0x01, 0x3401, 0x0, 0x0); 
         }
 
         function PowerBRequestBMS(){
-            udp.tx.transmitPodCommand('Power Node B', 0x3400, 0x0, 0x0, 0x0, 0x0);
+            udp.tx.transmitPodCommand('Power Node B', 0x3010, 0x01, 0x3401, 0x0, 0x0); 
         }
 
         function PowerARequestCooling(){
