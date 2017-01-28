@@ -51,6 +51,14 @@ class Power_Overview extends Component {
 		];
 
         this.cellIndexes = [...(new Array(18)).keys()];
+
+        this.labels3 = [
+			{label: 'Hover1/2', value: 'Hover1/2'},
+			{label: 'Hover3/4', value: 'Hover3/4'},
+			{label: 'Hover5/6', value: 'Hover5/6'},
+			{label: 'Hover7/8', value: 'Hover7/8'},
+			{label: 'Eddy Brakes', value: 'EddyBrake'},
+		];
     }
 
 	componentDidMount() {
@@ -142,7 +150,7 @@ class Power_Overview extends Component {
 							{
 								this.labels.map(function(item, index){
 									return (
-										<div className="row" key={"brakes" + index}>
+										<div className="row" key={"labels" + index}>
 											<label>{item.label}</label>
 											<GenericParameterLabel
 												StreamingPageManager={_this.state.streamManager}
@@ -157,7 +165,7 @@ class Power_Overview extends Component {
 							{
 								this.labels2.map(function(item, index){
 									return (
-										<div className="row" key={"brakes" + index}>
+										<div className="row" key={"labels2" + index}>
 											<label>{item.label}</label>
 											<GenericParameterLabel
 												StreamingPageManager={_this.state.streamManager}
@@ -200,6 +208,48 @@ class Power_Overview extends Component {
 							<button type="button" className="btn btn-primary" onClick={this.requestCooling.bind(this)}  style={{margin:10}}>Start Stream</button>
 							<button type="button" className="btn btn-success" onClick={this.startCooling.bind(this)}  style={{margin:10}}>Start Cooling</button>
 						</div>
+
+									<div className="row" key={this.props.route.L + 'CoolingState'}>
+										<div className="col-sm-12">
+											<label>General Cooling State</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={`Power ${this.props.route.L} Cooling State`}/>
+										</div>
+									</div>
+						{
+							this.labels3.map(function (item, index) {
+								var coolableUnit = `Power ${this.props.route.L} Cooling ${item.value}`;
+								return (
+									<div className="row" key={coolableUnit}>
+										<div className="col-sm-3">
+											<label>{item.label} Temperature (F)</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={`${coolableUnit} Temp`} hex={item.hex}/>
+										</div>
+										<div className="col-sm-3">
+											<label>{item.label} Cooling State</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={`${coolableUnit} Cooling State`} hex={item.hex}/>
+										</div>
+										<div className="col-sm-3">
+											<label>{item.label} Solenoid State</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={`${coolableUnit} Solenoid State`} hex={item.hex}/>
+										</div>
+										<div className="col-sm-3">
+											<label>{item.label} Solenoid Pin</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={`${coolableUnit} Solenoid Pin`} hex={item.hex}/>
+										</div>
+									</div>
+								)
+							}, this)
+						}
 
 						<div className="row">
 							<button type="button" className="btn btn-success" onClick={this.startRepressurizing.bind(this)}  style={{margin:10}}>Start Repressurizing</button>
