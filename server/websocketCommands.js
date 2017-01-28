@@ -328,6 +328,14 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
                 podCommands.PowerBStartCooling(data);
 			},
 
+            'PowerA:StartRepressurizing': (data) => {
+                podCommands.PowerAStartRepressurizing(data);
+			},
+
+            'PowerB:StartRepressurizing': (data) => {
+                podCommands.PowerBStartRepressurizing(data);
+			},
+
             'PowerA:TestSolenoidPin4': (data) => {
                 podCommands.PowerATestSolenoidPin4(data);
 			},

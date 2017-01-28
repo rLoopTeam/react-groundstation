@@ -114,6 +114,11 @@ class Power_Overview extends Component {
         socket.emit(`Power${this.props.route.L}:TestSolenoidPin${this.state.selectedPin}`);
 	}
 
+	startRepressurizing(e) {
+    	e.preventDefault();
+        socket.emit(`Power${this.props.route.L}:StartRepressurizing`);
+	}
+
 	render() {
 		var _this = this;
         var buttonClasses = "btn btn-primary " + ((this.state.developmentMode) ? "" : "disabled");
@@ -189,6 +194,10 @@ class Power_Overview extends Component {
 						<div className="row">
 							<button type="button" className="btn btn-primary" onClick={this.requestCooling.bind(this)}  style={{margin:10}}>Start Stream</button>
 							<button type="button" className="btn btn-success" onClick={this.startCooling.bind(this)}  style={{margin:10}}>Start Cooling</button>
+						</div>
+
+						<div className="row">
+							<button type="button" className="btn btn-success" onClick={this.startRepressurizing.bind(this)}  style={{margin:10}}>Start Repressurizing</button>
 						</div>
 
 						<div className="row">

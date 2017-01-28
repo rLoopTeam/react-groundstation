@@ -282,6 +282,14 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B', 0x3041, 0x1, 0x0, 0x0, 0x0);
         }
 
+        function PowerAStartRepressurizing(){
+            udp.tx.transmitPodCommand('Power Node A', 0x3040, 0x1, 0x0, 0x0, 0x0);
+        }
+
+        function PowerBStartRepressurizing(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3040, 0x1, 0x0, 0x0, 0x0);
+        }
+
         function PowerATestSolenoidPin4(){
             udp.tx.transmitPodCommand('Power Node A', 0x3602, 0x0, 0x0, 0x0, 0x0);
         }
@@ -588,6 +596,8 @@ module.exports = function(udp){
         PowerAStartCooling,
         PowerBRequestCooling,
         PowerBStartCooling,
+		PowerAStartRepressurizing,
+		PowerBStartRepressurizing,
 		PowerATestSolenoidPin4,
 		PowerATestSolenoidPin8,
 		PowerATestSolenoidPin16,
