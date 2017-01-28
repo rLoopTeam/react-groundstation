@@ -32,7 +32,10 @@ class GenericParameterDisplay extends Component {
 	dataCallback(parameterData){
 		if(this._isMounted)
 		{
-			this.setState({value: Number(parameterData.Value).toFixed(2), stale: parameterData.IsStale, units: parameterData.Units});
+			if(isNaN(parameterData.Value))
+				this.setState({value: parameterData.Value, stale: parameterData.IsStale, units: parameterData.Units});
+			else
+				this.setState({value: Number(parameterData.Value).toFixed(2), stale: parameterData.IsStale, units: parameterData.Units});
 		}
 	}
 	

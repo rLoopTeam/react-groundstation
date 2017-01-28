@@ -86,14 +86,17 @@ class packetStats{
 			newData.parameters.push({'name':'Packet DAQ Count '+this.daqPackets[i].type,'value':this.daqPackets[i].count,'units':'packets'}
 									);
 		}
+
 		var currentTime = (new Date()).getTime();
 		for(var i = 0;i<this.nodeTimes.length;i++){
 			if((currentTime - this.nodeTimes[i].lastSeen) < 2000) //2 seconds
+			{
 				//Node has been seen in the past 2 seconds
 				newData.parameters.push({'name':this.nodeTimes[i].name+" network status",'value':"Online",'units':''});
-			else
+			}else{
 				//Node has not been seen in the past 2 seconds
 				newData.parameters.push({'name':this.nodeTimes[i].name+" network status",'value':"Offline",'units':''});
+			}
 		}
 		this.rtDataStore.insertDataPacket(newData);
 	}

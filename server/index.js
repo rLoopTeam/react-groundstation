@@ -121,6 +121,13 @@ var charger = require('./charger')(rtDataStore);
 ------------*/
 const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner, poddaq,charger);
 
+/*-----------
+  GUI Preload
+  Let the GUI load up in a nicer state
+  */
+  const GUIPreload = require('./preloadGUI.js');
+  GUIPreload();
+
 
 
 /*------------

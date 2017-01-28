@@ -223,7 +223,7 @@ class Power_Overview extends Component {
 								return (
 									<div className="row" key={coolableUnit}>
 										<div className="col-sm-3">
-											<label>{item.label} Temperature (F)</label>
+											<label>{item.label} Temperature C</label>
 											<GenericParameterLabel
 												StreamingPageManager={_this.state.streamManager}
 												parameter={`${coolableUnit} Temp`} hex={item.hex}/>
@@ -256,7 +256,7 @@ class Power_Overview extends Component {
 						</div>
 
 						<div className="row">
-							Test solenoid pin&nbsp;
+							Test Cooling&nbsp;
 							<select value={this.state.selectedPin} onChange={this.handlePinChange.bind(this)}>
 								<option value="4">4</option>
 								<option value="8">8</option>

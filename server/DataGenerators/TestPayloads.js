@@ -248,60 +248,6 @@ CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Edd
 CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Eddy Brakes solenoid state
 CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(23, true)); // Eddy Brakes solenoid pin
 
-// {
-// 				"Name":"Brake data",
-// 				"ParameterPrefix":"Brake ",
-// 				"PacketType":0x1402, 
-// 				"Parameters":[
-// 								{'Name':'Fault flags 1', 'type':'uint32', 'units':'', 'size': 4},
-// 								{'Name':'I Beam mm 1', 'type':'float32', 'units':'mm', 'size': 4},
-// 								{'Name':'Lead screw mm 1', 'type':'float32', 'units':'mm', 'size': 4},
-// 								{'Name':'Lead screw um 1', 'type':'uint32', 'units':'um', 'size': 4},
-// 								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
-// 								{'Name':'Spare 1', 'type':'uint32', 'units':'', 'size': 4},
-
-// 								{'Name':'Limit Extend 1', 'type':'uint8','units':'','size':1},
-// 								{'Name':'Limit Retract 1', 'type':'uint8','units':'','size':1},
-// 								{'Name':'Limit Extend Edge 1', 'type':'uint8','units':'','size':1},
-// 								{'Name':'Limit Retract Edge 1', 'type':'uint8','units':'','size':1},
-// 								{'Name':'SW Error 1', 'type':'uint8','units':'','size':1},
-
-// 								{'Name':'ADC Sample 1', 'type':'uint16', 'units':'', 'size': 2},
-// 								{'Name':'ADC Zero 1', 'type':'uint16', 'units':'', 'size': 2},
-// 								{'Name':'ADC Minus Zero 1', 'type':'int32', 'units':'', 'size': 4},
-// 								{'Name':'System Span 1', 'type':'float32', 'units':'', 'size': 4},
-// 								{'Name':'Position mm 1', 'type':'float32', 'units':'mm', 'size': 4},
-// 								{'Name':'Linear Velocity 1', 'type':'int32', 'units':'', 'size': 4},
-// 								{'Name':'Linear Acceleration 1', 'type':'int32', 'units':'', 'size': 4},
-// 								{'Name':'Current Position 1', 'type':'int32', 'units':'', 'size': 4},
-
-// 								{'Name':'Fault flags 2', 'type':'uint32', 'units':'', 'size': 4},
-// 								{'Name':'I Beam mm 2', 'type':'float32', 'units':'mm', 'size': 4},
-// 								{'Name':'Lead screw mm 2', 'type':'float32', 'units':'mm', 'size': 4},
-// 								{'Name':'Lead screw um 2', 'type':'uint32', 'units':'um', 'size': 4},
-// 								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
-// 								{'Name':'Spare 2', 'type':'uint32', 'units':'', 'size': 4},
-
-// 								{'Name':'Limit Extend 2', 'type':'uint8','units':'','size':1},
-// 								{'Name':'Limit Retract 2', 'type':'uint8','units':'','size':1},
-// 								{'Name':'Limit Extend Edge 2', 'type':'uint8','units':'','size':1},
-// 								{'Name':'Limit Retract Edge 2', 'type':'uint8','units':'','size':1},
-// 								{'Name':'SW Error 2', 'type':'uint8','units':'','size':1},
-
-// 								{'Name':'ADC Sample 2', 'type':'uint16', 'units':'', 'size': 2},
-// 								{'Name':'ADC Zero 2', 'type':'uint16', 'units':'', 'size': 2},
-// 								{'Name':'ADC Minus Zero 2', 'type':'int32', 'units':'', 'size': 4},
-// 								{'Name':'System Span 2', 'type':'float32', 'units':'', 'size': 4},
-// 								{'Name':'Position mm 2', 'type':'float32', 'units':'mm', 'size': 4},
-// 								{'Name':'Linear Velocity 2', 'type':'int32', 'units':'', 'size': 4},
-// 								{'Name':'Linear Acceleration 2', 'type':'int32', 'units':'', 'size': 4},
-// 								{'Name':'Current Position 2', 'type':'int32', 'units':'', 'size': 4},
-
-// 								{'Name':'State', 'type':'uint8', 'units':'', 'size': 1},
-// 								{'Name':'Calibration State', 'type':'uint8', 'units':'', 'size': 1},								
-// 							]
-// 			},
-
 
 /*
  * 0x1901 Auto-sequence state and status
