@@ -463,7 +463,7 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node B', 0x3000,0x76543210, 0x0, 0x0, 0x0);
         }
 
-        function EnterPreRunPhase(){
+        function ForcePreRunPhase(){
             udp.tx.transmitPodCommand('Flight Control', 0x0003,0x00000000, 0x0, 0x0, 0x0); // TODO need to set the correct 3rd parameter (block0 of the command packet)
         }
 
@@ -533,7 +533,7 @@ module.exports = function(udp){
 
         PodSafePowerNodeA,
         PodSafePowerNodeB,
-        EnterPreRunPhase,
+        ForcePreRunPhase,
 
         FCUHover_Enable,
         FCUHover_Disable,

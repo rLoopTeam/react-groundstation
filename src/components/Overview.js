@@ -53,7 +53,7 @@ class Overview extends Component {
     }
 
     resetPod() {
-    	socket.emit('EnterPreRunPhase');
+    	socket.emit('ForcePreRunPhase');
     }
 
 	render() {
@@ -61,7 +61,7 @@ class Overview extends Component {
 			<div>
 				<legend>Mission</legend>
 				<div className="row">
-					<ConfirmButton className="btn btn-danger" delay={2000} action={this.resetPod}>Enter pre-run phase</ConfirmButton>
+					<ConfirmButton className="btn btn-danger" delay={2000} action={this.resetPod}>Force pre-run phase</ConfirmButton>
 				</div>
 				<div>
 					<legend>Pod Health</legend>
@@ -128,8 +128,8 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
 									title="Accelerometer 0"
-									yAxisLabel="Acceleration"
-									xAxisLabel="Time"
+									yAxisLabel="Acceleration (m/s&sup2;)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -144,8 +144,8 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
 									title="Accelerometer 1"
-									yAxisLabel="Acceleration"
-									xAxisLabel="Time"
+									yAxisLabel="Acceleration (m/s&sup2;)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -160,20 +160,20 @@ class Overview extends Component {
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Power A BMS Node Pressure', 'Power B BMS Node Pressure']}
 									title="Power node Pressure"
-									yAxisLabel="Pressure"
-									xAxisLabel="Time"
+									yAxisLabel="Pressure (bar)"
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
 							</div>
 							<div className="col-md-6">
 								<LineChart
-									id="BMSAPressure"
+									id="BMSTemperature"
 									StreamingPageManager={this.state.streamManager}
 									parameters={['Power A BMS Node Temp', 'Power B BMS Node Temp']}
 									title="Power node Temperature"
-									yAxisLabel="Temperature"
-									xAxisLabel="Time"
+									yAxisLabel="Temperature (&deg;C)"
+									xAxisLabel="Time (s)" 
 									totalPoints={60}
 									height={250}
 								/>

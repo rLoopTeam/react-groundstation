@@ -12,8 +12,8 @@ let socket = io.connect('127.0.0.1:3000', {
 	reconnectionAttempts: Infinity
 });
 
-// Max milliseconds between any two test results
-// (before we give up on all remaining test results).
+// Time period (ms) in which the next test result must appear,
+// else we'll give up on all pending tests and marked them as timed out..
 const TEST_TIMEOUT = 10000;
 
 class AutoSequence extends Component {
@@ -62,14 +62,14 @@ class AutoSequence extends Component {
 			//nextTestResult: defer()
 		};
 
-		this.scheduleNextTestResult(null);
-
 		this.state.streamingPageManager.RequestPacketWithCallback(
 			'Auto-sequence test',
 			// We can't directly pass this.state.nextTestResult.resolve because we want to use the *current* value
 			// of this.state.nextTestResult, even if that state property has been reassigned.
 			(testResult) => {
-				this.state.nextTestResult.resolve(testResult);
+				if (this.state.nextTestResult) {
+					this.state.nextTestResult.resolve(testResult);
+				}
 			});
 
 		//this._isMounted = true;
@@ -81,16 +81,10 @@ class AutoSequence extends Component {
 		this.state.streamingPageManager.destroy();
 	}
 
-	/**
-	 * @param {number|null} timeout: Time period (ms) in which the next test result must appear
-	 *                               or else we'll give up on all pending tests.
-	 */
-	scheduleNextTestResult(timeout) {
+	scheduleNextTestResult() {
 		var nextTestResult = defer(); // manually resolved when the next packet arrives
 		let nextTestResultDeadline = new Promise((resolve, reject) => {
-			if (timeout) {
-				setTimeout(reject, timeout);
-			}
+			setTimeout(reject, TEST_TIMEOUT);
 		})
 		Promise.race([
 			nextTestResult.promise,
@@ -117,9 +111,14 @@ class AutoSequence extends Component {
 			}
 		});
 
+		console.log('' + new Date() + ': got test result from state 0x' + newPacketState.toString(16));
+
 		var newComponentState = _.cloneDeep(this.state);
 		newComponentState.testResults = this.state.testResults.map(function(testResult) {
-			if (testResult.state === newPacketState) {
+			if (testResult.state === newPacketState
+				// Make sure we don't overwrite test results if the FCU/testGenerator sends repeated states,
+				// or if tests were Started again after the timeout (and not Restarted, which would have reset all statuses).
+				&& testResult.status === 'Pending') {
 				return _.assign({}, testResult, {
 					status: newPacketStatus,
 				});
@@ -129,7 +128,7 @@ class AutoSequence extends Component {
 		});
 		this.setState(newComponentState);
 
-		this.scheduleNextTestResult(TEST_TIMEOUT);
+		this.scheduleNextTestResult();
 	}
 
 	markAllPendingTestResultsAsFailed() {
@@ -144,22 +143,42 @@ class AutoSequence extends Component {
 			}
 		});
 		this.setState(newComponentState);
+
+		console.log('' + new Date() + ': marked any/all pending test results as timed-out');
+	}
+
+	markAllTestResultsAsPending() {
+		var newComponentState = _.cloneDeep(this.state);
+		newComponentState.testResults = this.state.testResults.map(function(testResult) {
+			return _.assign({}, testResult, {
+				status: 'Pending',
+			});
+		});
+		this.setState(newComponentState);
+
+		console.log('' + new Date() + ': cleared all test results');
 	}
 
 	sendStartCommand() {
 		socket.emit('AutoSequenceTest:Start');
+		this.scheduleNextTestResult();
+		console.log('' + new Date() + ': started tests');
 	}
 
 	sendSkipCommand() {
 		socket.emit('AutoSequenceTest:Skip');
+		console.log('' + new Date() + ': skipped tests');
 	}
 
 	sendKillCommand() {
 		socket.emit('AutoSequenceTest:Kill');
+		console.log('' + new Date() + ': killed pod');
 	}
 
 	sendRestartCommand() {
 		socket.emit('AutoSequenceTest:Restart');
+		this.markAllTestResultsAsPending();
+		console.log('' + new Date() + ': restarted tests');
 	}
 
 	getTestResults() {
@@ -178,8 +197,8 @@ class AutoSequence extends Component {
 	render() {
 		return (
 			<div>
-				<button type="button" className="btn btn-success" onClick={this.sendStartCommand}>Start</button>
-				<button type="button" className="btn btn-success" onClick={this.sendRestartCommand}>Restart</button>
+				<button type="button" className="btn btn-success" onClick={this.sendStartCommand.bind(this)}>Start</button>
+				<button type="button" className="btn btn-success" onClick={this.sendRestartCommand.bind(this)}>Restart</button>
 				<ConfirmButton className="btn btn-danger" delay={2000} action={this.sendSkipCommand}>Skip</ConfirmButton>
 				<ConfirmButton className="btn btn-danger" delay={2000} action={this.sendKillCommand}>Kill</ConfirmButton>
 
