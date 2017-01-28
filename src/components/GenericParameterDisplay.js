@@ -31,7 +31,9 @@ class GenericParameterDisplay extends Component {
 	
 	dataCallback(parameterData){
 		if(this._isMounted)
-			this.setState({value: parameterData.Value, stale: parameterData.IsStale, units: parameterData.Units});
+		{
+			this.setState({value: Number(parameterData.Value).toFixed(2), stale: parameterData.IsStale, units: parameterData.Units});
+		}
 	}
 	
 	isReadOnly() {

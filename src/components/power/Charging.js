@@ -48,6 +48,15 @@ class Charging extends Component {
 			{label: "Pack Current", value: "Power A BMS Pack Current"}
 		];
 
+        this.labelsA3 = [
+            {label: "Charger Voltage", value: "Charger Voltage"},
+            {label: "Current to Batt", value: "Charger Current To Batt"},
+            {label: "Charger AC Current", value: "Charger AC Current"},
+            {label: "Charger Max Battery Current Setpoint", value:"Charger Max Batt Current"},
+            {label: "Charger Boost Current Setpoint", value:"Charger Boost Current"},
+            {label: "Charger Float Current Setpoint", value:"Charger Float Current"},
+		];
+
         this.labelsB = [
             {label: "BMS Faults", value: "Power B BMS Faults", hex: "true"},
             {label: "Temp State", value: "Power B BMS Temp State"},
@@ -143,6 +152,17 @@ class Charging extends Component {
         socket.emit('PowerB:RequestBMS');
     }
 
+    chargerToLowCurrent(data, e) {
+		e.preventDefault();
+        socket.emit('Charger:LowCurrent');
+    }
+
+    chargerToChargingCurrent(data, e) {
+		e.preventDefault();
+        socket.emit('Charger:ChargingCurrent');
+    }
+
+
 	render() {
 		var _this = this;
         var buttonClasses = "btn btn-primary " + ((this.state.developmentMode) ? "" : "disabled");
@@ -153,14 +173,14 @@ class Charging extends Component {
             <div>
                 <div className="row">
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-4">
                     <legend>Pack A</legend>
 
                         <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startChargeA.bind(this, {})}  style={{margin:10}}>Start Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopChargeA.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
 
-						<div className="row"><div className="col-sm-6">
+						<div className="row"><div className="col-sm-4">
 
                         {
 	                        this.labelsA.map(function(item, index){
@@ -174,7 +194,9 @@ class Charging extends Component {
 	                            )
 	                        }, this)
 	                    }
-	                    </div><div className="col-sm-6">
+	                    </div>
+
+	                    <div className="col-sm-4">
 	                    {
 	                        this.labelsA2.map(function(item, index){
 	                            return (
@@ -187,7 +209,9 @@ class Charging extends Component {
 	                            )
 	                        }, this)
                         }
-                        </div></div>
+                        </div>
+
+                        </div>
 
                         <button type="button" className="btn btn-success" onClick={this.stopManualDischargingA.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
 
@@ -209,7 +233,7 @@ class Charging extends Component {
 						}
                     </div>
 
-                    <div className="col-sm-6">
+                    <div className="col-sm-4">
 						<legend>Pack B</legend>
                         
                         <button className="btn btn-primary" onClick={this.requestBMSB.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
@@ -263,6 +287,25 @@ class Charging extends Component {
 							);
 						}, this)
 						}
+                    </div>
+
+                    <div className="col-sm-4">
+                    <legend>Charger Control</legend>
+                    {
+                        this.labelsA3.map(function(item, index){
+                            return (
+                                <div className="row" key={"brakes" + index}>
+                                    <label>{item.label}</label>
+                                    <GenericParameterLabel 
+                                        StreamingPageManager={_this.state.streamManager} 
+                                        parameter={item.value} hex={item.hex}/>
+                                </div>
+                            )
+                        }, this)
+                    }
+                    <br />
+                    <button type="button" className="btn btn-success" onClick={this.chargerToLowCurrent.bind(this,{})}  style={{margin:3}}>Low Charge Current</button>
+                    <button type="button" className="btn btn-success" onClick={this.chargerToChargingCurrent.bind(this,{})}  style={{margin:3}}>High Charge Current</button>
                     </div>
 
                 </div>

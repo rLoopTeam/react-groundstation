@@ -111,15 +111,17 @@ const config = require('./config.js')(packetStats);
 var romIDScanner = require('./ROMIDScanner.js')(podCommands, rtDataStore);
 
 /*------------
+	Grabs data from the charger
+------------*/
+var charger = require('./charger')(rtDataStore);
+
+/*------------
   WEBSOCKETS
   Handles commands from the client to send to the Pod.
 ------------*/
-const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner, poddaq);
+const websocketCommands = require('./websocketCommands.js')(io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner, poddaq,charger);
 
-/*------------
-	Grabs data from the charger
-------------*/
-//var charger = require('./charger')(rtDataStore);
+
 
 /*------------
   Acclerometer Test Data Generator

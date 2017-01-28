@@ -4,6 +4,15 @@ import GenericParameterInput from './GenericParameterInput.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
 import FaultFlagDisplay from './FaultFlagDisplay.js';
 
+import io from 'socket.io-client';
+let socket = io.connect('127.0.0.1:3000', {
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax : 5000,
+            reconnectionAttempts: Infinity
+        });
+
+
 class FlightControl_NavigationSensors extends Component {
 	constructor(props) {
 		super(props)
@@ -26,8 +35,8 @@ class FlightControl_NavigationSensors extends Component {
             {label: "ForwardLaser RAW value", value: "ForwardLaser RAW value"},
         ]
         this.laserheightLabels = [
-            {label: "LaserOpto Raw distance 1", value: "LaserOpto Raw distance 1"},
-            {label: "LaserOpto Raw distance 2", value: "LaserOpto Raw distance 2"},
+            {label: "Forward Right", value: "LaserOpto Raw distance 1"},
+            {label: "Forward Left", value: "LaserOpto Raw distance 2"},
             {label: "LaserOpto Raw distance 3", value: "LaserOpto Raw distance 3"},
             {label: "LaserOpto Raw distance 4", value: "LaserOpto Raw distance 4"},
             {label: "LaserOpto Raw distance 5", value: "LaserOpto Raw distance 5"},
@@ -51,16 +60,21 @@ class FlightControl_NavigationSensors extends Component {
 		this._isMounted = true;
 	}
 
+    streamLaserData( e) {
+        e.preventDefault();
+        socket.emit('FlightControl_Accel:StartStream_Lasers');
+    }
+
 	
 	render(){
 	    return (
 		    <div>
             	<h2>Navigation sensors</h2>
                 <div className="row">
+                {<button type="button" className="btn btn-success" onClick={this.streamLaserData}  style={{margin:10}}>Start Laser Stream</button>}
                     <div className="col-sm-4">
                     	<legend>Accelerometer 0 raw values</legend>
 
-                        {/*<button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button>*/}
                         {this.accelerometerLabels.accelerometer0.map(function(item, index){
                             return (
                                 <div className="row" key={"accelerometer0" + index}>
@@ -107,7 +121,7 @@ class FlightControl_NavigationSensors extends Component {
                     
                     </div>
 					<div className="col-sm-4">
-                    	<legend>Laser Opto raw values</legend>
+                    	<legend>Laser Distance Sensors</legend>
 
                         {/*<button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button>*/}
                         {this.laserheightLabels.map(function(item, index){

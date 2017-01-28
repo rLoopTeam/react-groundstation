@@ -7,32 +7,96 @@ class charger {
 	{
 		this.updateSystemStatus = this.updateSystemStatus.bind(this);
 		this.updateAlarms = this.updateAlarms.bind(this);
+		this.updateCurrentSettings = this.updateCurrentSettings.bind(this);
 		this.rtDataStore = rtDataStore;
 		setInterval(this.updateSystemStatus,400);
 		setInterval(this.updateAlarms,400);
+		setInterval(this.updateCurrentSettings,400);
 	}
 	
-	updateSystemStatus(){
-		request.post('http://192.168.0.55/system.xml', {json: true, body: ''}, function(err, res, body) {
-			if (!err && res.statusCode === 200) {
-				parseString(body, function(err, result){
-					var BatteryVoltage = result.response.fubat0[0].substring(0,result.response.fubat0[0].length-1);
-					var CurrentToBattery = result.response.ibat0[0].substring(0,result.response.ibat0[0].length-1);
-					var CurrentToSystemLoad = result.response.iload0[0].substring(0,result.response.iload0[0].length-1);
-					var ACInputVoltageR = result.response.acr0[0].substring(0,result.response.acr0[0].length-1);
-					var ChargerCabinetTemp = result.response.tcab0[0].substring(0,result.response.tcab0[0].length-1);
+	updateCurrentSettings(){
 
-					var newData ={'packetName':'Charger','packetType':'0','rxTime':0,'parameters':[]};
-					newData.parameters.push({'name':'Charger Voltage','value':BatteryVoltage,'units':'V DC'},
-								{'name':'Charger Current To Batt','value':CurrentToBattery,'units':'Amps'},
-								{'name':'Charger Current To System','value':CurrentToSystemLoad,'units':'Amps'},
-								{'name':'Charger Input AC','value':ACInputVoltageR,'units':'V AC'},
-								{'name':'Charger Cabinet Temp','value':ChargerCabinetTemp,'units':'C'}
-								);
-					this.rtDataStore.insertDataPacket(newData);
-				}.bind(this));
-          }
+		var request = require('request'),
+		    username = "admin",
+		    password = "ipspass",
+		    timeout = 1000,
+		    url = "http://192.168.0.55/current.xml",
+		    auth = "Basic " + new Buffer(username + ":" + password).toString("base64");
+
+		request(
+		    {
+		        url : url,
+		        headers : {
+		            "Authorization" : auth
+		        }
+		    },
+		    function (err, res, body) {
+				if (!err && res.statusCode === 200) {
+					parseString(body, function(err, result){
+
+						var MaxBattCurrent = parseFloat(result.response.zmaxbat0[0].substring(0,result.response.zmaxbat0[0].length-1));
+						var BoostToFloatCurrent = parseFloat(result.response.zb2f0[0].substring(0,result.response.zb2f0[0].length-1));
+						var FloatToBoosCurrent = parseFloat(result.response.zf2b0[0].substring(0,result.response.zf2b0[0].length-1));
+
+						var newData ={'packetName':'Charger','packetType':'0','rxTime':0,'parameters':[]};
+
+						newData.parameters.push({'name':'Charger Max Batt Current','value':MaxBattCurrent,'units':'Amps'},
+									{'name':'Charger Boost Current','value':BoostToFloatCurrent,'units':'Amps'},
+									{'name':'Charger Float Current','value':FloatToBoosCurrent,'units':'Amps'}
+									);
+
+						this.rtDataStore.insertDataPacket(newData);
+					}.bind(this));
+	          	}
+          	}.bind(this)
+		);
+
+
+		request.post('http://192.168.0.55/current.xml', {json: true, body: ''}, function(err, res, body) {
+
 			}.bind(this));
+	}
+
+	updateSystemStatus(){
+	request.post('http://192.168.0.55/system.xml', {json: true, body: '', timeout: 1000}, function(err, res, body) {
+		if (!err && res.statusCode === 200) {
+			parseString(body, function(err, result){
+				var BatteryVoltage = parseFloat(result.response.fubat0[0].substring(0,result.response.fubat0[0].length-1));
+				var CurrentToBattery = parseFloat(result.response.ibat0[0].substring(0,result.response.ibat0[0].length-1));
+				var CurrentToSystemLoad = parseFloat(result.response.iload0[0].substring(0,result.response.iload0[0].length-1)); //Probably just wrong
+				var ACInputVoltageR = parseFloat(result.response.acr0[0].substring(0,result.response.acr0[0].length-1));
+				var ChargerCabinetTemp = parseFloat(result.response.tcab0[0].substring(0,result.response.tcab0[0].length-1));
+
+				var ACInputCurrent = CurrentToBattery * BatteryVoltage / ACInputVoltageR * (1/.95) + 1.2;
+
+				var newData ={'packetName':'Charger','packetType':'0','rxTime':0,'parameters':[]};
+				/*
+				newData.parameters.push({'name':'Charger Voltage','value':BatteryVoltage,'units':'V DC'},
+							{'name':'Charger Current To Batt','value':CurrentToBattery,'units':'Amps'},
+							{'name':'Charger Current To System','value':CurrentToSystemLoad,'units':'Amps'},
+							{'name':'Charger Input AC','value':ACInputVoltageR,'units':'V AC'},
+							{'name':'Charger Cabinet Temp','value':ChargerCabinetTemp,'units':'C'}
+							);
+							*/
+				newData.parameters.push({'name':'Charger Voltage','value':BatteryVoltage,'units':'V DC'},
+							{'name':'Charger Current To Batt','value':CurrentToBattery,'units':'Amps'},
+							{'name':'Charger AC Current','value':ACInputCurrent,'units':'A'},
+							{'name':'Charger Input AC','value':ACInputVoltageR,'units':'V AC'},
+							{'name':'Charger Cabinet Temp','value':ChargerCabinetTemp,'units':'C'}
+							);
+
+				this.rtDataStore.insertDataPacket(newData);
+			}.bind(this));
+      }else{
+      		var newData ={'packetName':'Charger','packetType':'0','rxTime':0,'parameters':[]};
+			newData.parameters.push({'name':'Charger Voltage','value':'Not Connected','units':'V DC'},
+			{'name':'Charger Current To Batt','value':'Not Connected','units':'Amps'},
+			{'name':'Charger AC Current','value':'Not Connected','units':'A'},
+			{'name':'Charger Input AC','value':'Not Connected','units':'V AC'},
+			{'name':'Charger Cabinet Temp','value':'Not Connected','units':'C'}
+			);
+      }
+		}.bind(this));
 	}
 	
 	sendIpsURL(successMsg, failMsg, url)

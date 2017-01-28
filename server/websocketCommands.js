@@ -1,5 +1,5 @@
 
-module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner,poddaq)
+module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner,poddaq, charger)
 {
 	var updateClientWithDatalogs = true;
 
@@ -155,6 +155,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 			'FlightControl_Accel:StartStream_FullData': () => {
 				podCommands.FCUStreamingControlStart_AccelFullData()
 			},
+			'FlightControl_Accel:StartStream_Lasers': () => {
+				podCommands.FCUStreamingControlStart_Lasers()
+			},
 			'FlightControl_Accel:StopStream': () => {
 				podCommands.FCUStreamingControlStop_Accel()
 			},
@@ -183,6 +186,22 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerAChargeRelayOn(data.status)
 			},
 			
+			'PowerB:ChargeRelayOn':(data) => {
+				podCommands.PowerBChargeRelayOn(data.status)
+			},
+
+			'Charger:LowCurrent':(data) => {
+				charger.setMaxBatteryCurrent(1);
+				charger.setBoostToFloatBatteryCurrent(1);
+				charger.setFloatToBoostBatteryCurrent(1);
+			},
+
+			'Charger:ChargingCurrent':(data) => {
+				charger.setMaxBatteryCurrent(14);
+				charger.setBoostToFloatBatteryCurrent(14);
+				charger.setFloatToBoostBatteryCurrent(14);
+			},
+
 		    //Hover Engines
             'FlightControl_Hover:Enable': () => {
                 podCommands.FCUHover_Enable()
