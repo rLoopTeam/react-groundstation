@@ -28,7 +28,7 @@ class GenericParameterLabel extends GenericParameterDisplay {
 		return (
 			<div className="Generic-Value">
 				<span style={valueStyling} title={titleString}>{value}</span>
-				<b>{this.getUnits()}</b>
+				<b> {this.getUnits()}</b>
 			</div>
 		);
 	}

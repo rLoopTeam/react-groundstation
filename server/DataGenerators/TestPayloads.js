@@ -223,6 +223,7 @@ BMSStreaming.push.apply(BMSStreaming, bin.uint8ToBytes(16,true)); //BMS ID16
 
 BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(100,true)); //Volts Update Count
 BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(20,true)); //Temp Scan Count
+BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(330.23,true)); //Pack Current
 
 // {
 // 				"Name":"Brake data",

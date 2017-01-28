@@ -44,7 +44,8 @@ class Charging extends Component {
             {label: "Node Pressure", value: "Power A BMS Node Pressure"},
             {label: "Node Temp", value: "Power A BMS Node Temp"},
 			{label: "Voltage Updates", value: "Power A BMS Voltage Updates"},
-			{label: "Temp Scan Count", value: "Power A BMS Temp Scan Count"}
+			{label: "Temp Scan Count", value: "Power A BMS Temp Scan Count"},
+			{label: "Pack Current", value: "Power A BMS Pack Current"}
 		];
 
         this.labelsB = [
@@ -66,6 +67,7 @@ class Charging extends Component {
             {label: "Node Temp", value: "Power B BMS Node Temp"},
             {label: "Voltage Updates", value: "Power B BMS Voltage Updates"},
 			{label: "Temp Scan Count", value: "Power B BMS Temp Scan Count"},
+			{label: "Pack Current", value: "Power B BMS Pack Current"}
 		];
 
         this.cellIndexes = [...(new Array(18)).keys()];
