@@ -275,7 +275,7 @@ module.exports = function(udp){
         }
 
         function PowerBRequestCooling(){
-            udp.tx.transmitPodCommand('Power Node B', 0x3600, 0x0, 0x0, 0x0, 0x0);
+            udp.tx.transmitPodCommand('Power Node B', 0x3010, 0x01, 0x3601, 0x0, 0x0);
         }
 
         function PowerBStartCooling(){
