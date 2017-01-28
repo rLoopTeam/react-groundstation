@@ -187,7 +187,7 @@ class Power_Overview extends Component {
 												<label>Module {cellIndex + 1} Volts:</label>
 											</div>
 											<div className="row">
-												<div className="col-sm-2">
+												<div className="col-sm-3">
 													<GenericParameterLabel
 														StreamingPageManager={_this.state.streamManager}
 														parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
