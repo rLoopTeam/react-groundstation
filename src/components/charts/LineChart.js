@@ -24,14 +24,14 @@ class LineChart extends GenericParameterDisplay{
             if (self.chart && series) {
                 for (var i = 0; i < series.length; i++) {
                     var shift = series[i].data.length > self.props.totalPoints;
-                    //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
-                    series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
-                    //TODO: change to 'true' in production
-                    if (self.latestValues.stale == false) {
+
+                    if (self.latestValues.stale == true) {
                         self.chart.chartBackground.css({
                             color: '#FF3300',
                         });
                     } else {
+                        //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
+                        series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
                         self.chart.chartBackground.css({
                             color: '#FFFFFF',
                         });
