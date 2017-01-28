@@ -53,7 +53,7 @@ class Overview extends Component {
     }
 
     resetPod() {
-    	socket.emit('EnterPreRunPhase');
+    	socket.emit('ForcePreRunPhase');
     }
 
 	render() {
@@ -61,7 +61,7 @@ class Overview extends Component {
 			<div>
 				<legend>Mission</legend>
 				<div className="row">
-					<ConfirmButton className="btn btn-danger" delay={2000} action={this.resetPod}>Enter pre-run phase</ConfirmButton>
+					<ConfirmButton className="btn btn-danger" delay={2000} action={this.resetPod}>Force pre-run phase</ConfirmButton>
 				</div>
 				<div>
 					<legend>Pod Health</legend>
