@@ -12,21 +12,13 @@ class MainLayout extends Component {
 			},
 			{
 				name: "Power A", location: "/powerA", children: [
-					{name: "Charging", location: "/Charging"},
-					//{name: "Voltage", location: "/powerAVoltage"},
-					//{name: "BMS 1", location: "/powerABMS1"},
-					//{name: "BMS 2", location: "/powerABMS2"},
-					//{name: "BMS 3", location: "/powerABMS3"},
+					{name: "Overview", location: "/powerAOverview"},
 					{name: "Raw Temperatures",location:"/powerARawTemps"}
 				]
 			},
 			{
 				name: "Power B", location: "/powerB", children: [
-					{name: "Charging", location: "/Charging"},
-					//{name: "Voltage", location: "/powerBVoltage"},
-					//{name: "BMS 1", location: "/powerBBMS1"},
-					//{name: "BMS 2", location: "/powerBBMS2"},
-					//{name: "BMS 3", location: "/powerBBMS3"},
+					{name: "Overview", location: "/powerBOverview"},
 					{name: "Raw Temperatures",location:"/powerBRawTemps"}
 				]
 			},
