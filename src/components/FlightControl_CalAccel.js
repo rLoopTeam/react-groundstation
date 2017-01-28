@@ -164,7 +164,7 @@ class FlightControl_CalAccel extends Component {
 							
 							<label htmlFor="last_crc">Last CRC</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Last CRC 1003' hideUnits='true' hex='true' readOnly='true'/>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Last CRC 1001' hideUnits='true' hex='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
@@ -172,13 +172,21 @@ class FlightControl_CalAccel extends Component {
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
 							
-							<label htmlFor="packet_count">Packet Count</label>
+							<label htmlFor="packet_count">Calib Packet Count</label>
 							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003' hideUnits='true' readOnly='true'/>
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001' hideUnits='true' readOnly='true'/>
 							</div>
 						</div>
 					</form>	
-				</div>
+					<form className="form-inline col-xs-4">
+						<div className="form-group">
+								<label htmlFor="packet_count">Full Packet Count</label>
+								<div>
+									<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003' hideUnits='true' readOnly='true'/>
+								</div>
+							</div>
+						</form>	
+					</div>
 				
 				<br></br>
 				<br></br>

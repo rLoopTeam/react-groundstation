@@ -222,12 +222,19 @@ class FlightControl_FullAccel extends Component {
 					<form className="form-inline col-xs-4">
 						<div className="form-group">
 							
-							<label htmlFor="packet_count">Packet Count</label>
+							<label htmlFor="packet_count">Full Data Packet Count</label>
 							<div>
 								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003' hideUnits='true' readOnly='true'/>
 							</div>
+							
 						</div>
 					</form>	
+					<div className="form-inline col-xs-4">
+							<div>
+								<label htmlFor="packet_count">Calib Data Packet Count</label><br />
+								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001' hideUnits='true' readOnly='true'/>
+							</div>
+					</div>
 				</div>
 				
 				<br></br>
