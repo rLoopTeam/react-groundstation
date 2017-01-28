@@ -270,6 +270,18 @@ module.exports = function(udp){
             udp.tx.transmitPodCommand('Power Node A', 0x3600, 0x0, 0x0, 0x0, 0x0);
         }
 
+        function PowerAStartCooling(){
+            udp.tx.transmitPodCommand('Power Node A', 0x3041, 0x1, 0x0, 0x0, 0x0);
+        }
+
+        function PowerBRequestCooling(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3600, 0x0, 0x0, 0x0, 0x0);
+        }
+
+        function PowerBStartCooling(){
+            udp.tx.transmitPodCommand('Power Node B', 0x3041, 0x1, 0x0, 0x0, 0x0);
+        }
+
         function PowerATestSolenoidPin4(){
             udp.tx.transmitPodCommand('Power Node A', 0x3602, 0x0, 0x0, 0x0, 0x0);
         }
@@ -288,10 +300,6 @@ module.exports = function(udp){
 
         function PowerATestSolenoidPin23(){
             udp.tx.transmitPodCommand('Power Node A', 0x3606, 0x0, 0x0, 0x0, 0x0);
-        }
-
-        function PowerBRequestCooling(){
-            udp.tx.transmitPodCommand('Power Node B', 0x3600, 0x0, 0x0, 0x0, 0x0);
         }
 
         function PowerBTestSolenoidPin4(){
@@ -577,12 +585,14 @@ module.exports = function(udp){
         PowerARequestBMS,
         PowerBRequestBMS,
         PowerARequestCooling,
+        PowerAStartCooling,
+        PowerBRequestCooling,
+        PowerBStartCooling,
 		PowerATestSolenoidPin4,
 		PowerATestSolenoidPin8,
 		PowerATestSolenoidPin16,
 		PowerATestSolenoidPin22,
 		PowerATestSolenoidPin23,
-        PowerBRequestCooling,
 		PowerBTestSolenoidPin4,
 		PowerBTestSolenoidPin8,
 		PowerBTestSolenoidPin16,

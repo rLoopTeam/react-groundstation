@@ -97,6 +97,11 @@ class Power_Overview extends Component {
         socket.emit(`Power${this.props.route.L}:RequestCooling`);
 	}
 
+    startCooling(e) {
+    	e.preventDefault();
+        socket.emit(`Power${this.props.route.L}:StartCooling`);
+	}
+
 	handlePinChange(e) {
     	e.preventDefault();
 		this.setState({
@@ -117,10 +122,12 @@ class Power_Overview extends Component {
 
 	    return (
             <div>
-				<legend>Pack {this.props.route.L}</legend>
-
+				<h2>Pack {this.props.route.L}</h2>
 				<div className="row">
+
 					<div className="col-sm-6">
+						<h3>Charge</h3>
+
 						<button className="btn btn-primary" onClick={this.requestBMS.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startCharge.bind(this, {})}  style={{margin:10}}>Start Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopCharge.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
@@ -177,8 +184,11 @@ class Power_Overview extends Component {
 					</div>
 
 					<div className="col-sm-6">
+						<h3>Cooling</h3>
+
 						<div className="row">
-							<button type="button" className="btn btn-primary" onClick={this.requestCooling.bind(this)}  style={{margin:10}}>Start Cooling Stream</button>
+							<button type="button" className="btn btn-primary" onClick={this.requestCooling.bind(this)}  style={{margin:10}}>Start Stream</button>
+							<button type="button" className="btn btn-success" onClick={this.startCooling.bind(this)}  style={{margin:10}}>Start Cooling</button>
 						</div>
 
 						<div className="row">
@@ -193,6 +203,7 @@ class Power_Overview extends Component {
 							<button type="button" className="btn btn-success" onClick={this.testSolenoid.bind(this)}  style={{margin:10}}>Test</button>
 						</div>
 					</div>
+
 				</div>
             </div>
 	    );
