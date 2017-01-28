@@ -225,6 +225,29 @@ BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(100,true)); //Volts Upda
 BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(20,true)); //Temp Scan Count
 BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(330.23,true)); //Pack Current
 
+var CoolingStreaming = []
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(1, true)); // general cooling state
+CoolingStreaming.push.apply(CoolingStreaming, bin.int32ToBytes(149, true)); // Hover1/2 temp
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(1, true)); // Hover1/2 cooling state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(1, true)); // Hover1/2 solenoid state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(4, true)); // Hover1/2 solenoid pin
+CoolingStreaming.push.apply(CoolingStreaming, bin.int32ToBytes(155, true)); // Hover3/4 temp
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Hover3/4 cooling state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Hover3/4 solenoid state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(8, true)); // Hover3/4 solenoid pin
+CoolingStreaming.push.apply(CoolingStreaming, bin.int32ToBytes(156, true)); // Hover5/6 temp
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Hover5/6 cooling state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(1, true)); // Hover5/6 solenoid state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(16, true)); // Hover5/6 solenoid pin
+CoolingStreaming.push.apply(CoolingStreaming, bin.int32ToBytes(143, true)); // Hover7/8 temp
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(1, true)); // Hover7/8 cooling state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Hover7/8 solenoid state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(22, true)); // Hover7/8 solenoid pin
+CoolingStreaming.push.apply(CoolingStreaming, bin.int32ToBytes(150, true)); // Eddy Brakes temp
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Eddy Brakes cooling state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(0, true)); // Eddy Brakes solenoid state
+CoolingStreaming.push.apply(CoolingStreaming, bin.uint8ToBytes(23, true)); // Eddy Brakes solenoid pin
+
 // {
 // 				"Name":"Brake data",
 // 				"ParameterPrefix":"Brake ",
@@ -329,6 +352,7 @@ module.exports = {
 	battTempLocations,
 	optoDistanceSensors,
 	forwardLaserDistanceSensors,
-	BMSStreaming
+	BMSStreaming,
+	CoolingStreaming,
 }
 
