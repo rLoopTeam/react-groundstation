@@ -125,10 +125,18 @@ class Overview extends Component {
 
 						<div className="row">
 							<div className="col-md-6">
-								<label>Pitch</label>
-								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
-								<label>Roll</label>
-								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
+								<div className="col-md-2">
+									<label>Pitch</label>
+									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
+								</div>
+								<div className="col-md-2">
+									<label>Roll</label>
+									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
+								</div>
+								<div className="col-md-2">
+									<label>Yaw</label>
+									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Yaw"/>
+								</div>
 								<LineChart
 									id="AccelerometerChart1"
 									StreamingPageManager={this.state.streamManager}
@@ -141,10 +149,18 @@ class Overview extends Component {
 								/>
 							</div>
 							<div className="col-md-6">
-								<label>Pitch</label>
-								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
-								<label>Roll</label>
-								<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
+								<div className="col-md-2">
+									<label>Pitch</label>
+									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Pitch"/>
+								</div>
+								<div className="col-md-2">
+									<label>Roll</label>
+									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Roll"/>
+								</div>
+								<div className="col-md-2">
+									<label>Yaw</label>
+									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Yaw"/>
+								</div>
 								<LineChart
 									id="AccelerometerChart3"
 									StreamingPageManager={this.state.streamManager}
