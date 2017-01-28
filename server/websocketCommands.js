@@ -314,6 +314,44 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 				podCommands.PowerBStopAllManualDischarging(data);
 			},
 
+            'PowerA:RequestCooling': (data) => {
+                podCommands.PowerARequestCooling(data);
+			},
+            'PowerA:TestSolenoidPin4': (data) => {
+                podCommands.PowerATestSolenoidPin4(data);
+			},
+            'PowerA:TestSolenoidPin8': (data) => {
+                podCommands.PowerATestSolenoidPin8(data);
+			},
+            'PowerA:TestSolenoidPin16': (data) => {
+                podCommands.PowerATestSolenoidPin16(data);
+			},
+            'PowerA:TestSolenoidPin22': (data) => {
+                podCommands.PowerATestSolenoidPin22(data);
+			},
+            'PowerA:TestSolenoidPin23': (data) => {
+                podCommands.PowerATestSolenoidPin23(data);
+			},
+
+            'PowerB:RequestCooling': (data) => {
+                podCommands.PowerBRequestCooling(data);
+			},
+            'PowerB:TestSolenoidPin4': (data) => {
+                podCommands.PowerBTestSolenoidPin4(data);
+			},
+            'PowerB:TestSolenoidPin8': (data) => {
+                podCommands.PowerBTestSolenoidPin8(data);
+			},
+            'PowerB:TestSolenoidPin16': (data) => {
+                podCommands.PowerBTestSolenoidPin16(data);
+			},
+            'PowerB:TestSolenoidPin22': (data) => {
+                podCommands.PowerBTestSolenoidPin22(data);
+			},
+            'PowerB:TestSolenoidPin23': (data) => {
+                podCommands.PowerBTestSolenoidPin23(data);
+			},
+
 			'PowerA:LatchRelay':(data) => {
 				podCommands.PowerAPowerLatch(data);
 			},

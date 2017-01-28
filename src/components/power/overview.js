@@ -24,6 +24,8 @@ class Power_Overview extends Component {
 
 		this.state = {
 			streamManager: new StreamingPageManager(),
+
+			selectedPin: '4',
 		}
 
         this.labels = [
@@ -90,6 +92,23 @@ class Power_Overview extends Component {
         socket.emit(`Power${this.props.route.L}:RequestBMS`);
     }
 
+    requestCooling(e) {
+    	e.preventDefault();
+        socket.emit(`Power${this.props.route.L}:RequestCooling`);
+	}
+
+	handlePinChange(e) {
+    	e.preventDefault();
+		this.setState({
+			selectedPin: e.target.value,
+		});
+	}
+
+    testSolenoid(e) {
+    	e.preventDefault();
+        socket.emit(`Power${this.props.route.L}:TestSolenoidPin${this.state.selectedPin}`);
+	}
+
 	render() {
 		var _this = this;
         var buttonClasses = "btn btn-primary " + ((this.state.developmentMode) ? "" : "disabled");
@@ -100,69 +119,81 @@ class Power_Overview extends Component {
             <div>
 				<legend>Pack {this.props.route.L}</legend>
 
-                <div className="row">
-
-                    <div className="col-sm-6">
-                    	<p>TODO</p>
-
-                        <button className="btn btn-primary" onClick={this.requestBMS.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
+				<div className="row">
+					<div className="col-sm-6">
+						<button className="btn btn-primary" onClick={this.requestBMS.bind(this)}  style={{margin:10}}>Start BMS Stream</button>
 						<button type="button" className="btn btn-success" onClick={this.startCharge.bind(this, {})}  style={{margin:10}}>Start Charging</button>
 						<button type="button" className="btn btn-success" onClick={this.stopCharge.bind(this, {})}  style={{margin:10}}>Stop Charging</button><br />
 
-						<div className="row"><div className="col-sm-6">
+						<div className="row">
+							<div className="col-sm-6">
+							{
+								this.labels.map(function(item, index){
+									return (
+										<div className="row" key={"brakes" + index}>
+											<label>{item.label}</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={item.value} hex={item.hex}/>
+										</div>
+									)
+								}, this)
+							}
+							</div>
 
-                        {
-	                        this.labels.map(function(item, index){
-	                            return (
-	                                <div className="row" key={"brakes" + index}>
-	                                    <label>{item.label}</label>
-	                                    <GenericParameterLabel 
-	                                        StreamingPageManager={_this.state.streamManager} 
-	                                        parameter={item.value} hex={item.hex}/>
-	                                </div>
-	                            )
-	                        }, this)
-	                    }
-	                    </div><div className="col-sm-6">
-	                    {
-	                        this.labels2.map(function(item, index){
-	                            return (
-	                                <div className="row" key={"brakes" + index}>
-	                                    <label>{item.label}</label>
-	                                    <GenericParameterLabel 
-	                                        StreamingPageManager={_this.state.streamManager} 
-	                                        parameter={item.value} hex={item.hex}/>
-	                                </div>
-	                            )
-	                        }, this)
-                        }
-                        </div></div>
+							<div className="col-sm-6">
+							{
+								this.labels2.map(function(item, index){
+									return (
+										<div className="row" key={"brakes" + index}>
+											<label>{item.label}</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={item.value} hex={item.hex}/>
+										</div>
+									)
+								}, this)
+							}
+							</div>
+						</div>
 
-                        <button type="button" className="btn btn-success" onClick={this.stopManualDischarging.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
-
+						<button type="button" className="btn btn-success" onClick={this.stopManualDischarging.bind(this,{})}  style={{margin:10}}>Stop Manual Discharging</button>
 						{
-						this.cellIndexes.map(function(_, cellIndex) {
-							return (
-								<div className="row" key={"cell" + cellIndex}>
-									<div>
-										<label>Module {cellIndex + 1} Volts</label>
-										<GenericParameterLabel
-											StreamingPageManager={_this.state.streamManager}
-											parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
+							this.cellIndexes.map(function(_, cellIndex) {
+								return (
+									<div className="row" key={"cell" + cellIndex}>
+										<div>
+											<label>Module {cellIndex + 1} Volts</label>
+											<GenericParameterLabel
+												StreamingPageManager={_this.state.streamManager}
+												parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
+										<button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
+										<button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />
+										</div>
 									</div>
-									<button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Start Discharging</button>
-									<button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})}  style={{margin:10}}>Stop Discharging</button><br />
-								</div>
-							);
-						}, this)
+								);
+							}, this)
 						}
-                    </div>
+					</div>
 
-                    <div className="col-sm-6">
-						<p>TODO: new inputs</p>
-                    </div>
+					<div className="col-sm-6">
+						<div className="row">
+							<button type="button" className="btn btn-primary" onClick={this.requestCooling.bind(this)}  style={{margin:10}}>Start Cooling Stream</button>
+						</div>
 
-                </div>
+						<div className="row">
+							Test solenoid pin&nbsp;
+							<select value={this.state.selectedPin} onChange={this.handlePinChange.bind(this)}>
+								<option value="4">4</option>
+								<option value="8">8</option>
+								<option value="16">16</option>
+								<option value="22">22</option>
+								<option value="23">23</option>
+							</select>:
+							<button type="button" className="btn btn-success" onClick={this.testSolenoid.bind(this)}  style={{margin:10}}>Test</button>
+						</div>
+					</div>
+				</div>
             </div>
 	    );
 	}
