@@ -152,7 +152,8 @@ module.exports = {
 								{'Name':'16 BMS ID','type':'uint8','units':'',  'size':1},
 								{'Name':'Voltage Updates','type':'uint32','units':'updates',  'size':4},
 								{'Name':'Temp Scan Count','type':'uint32','units':'scans',  'size':4},
-								{'Name':'Pack Current','type':'float32','units':'A',  'size':4}
+								{'Name':'Pack Current','type':'float32','units':'A',  'size':4},
+								{'Name':'DC State','type':'uint8','units':'','size':1}
 							]
 			},
 
@@ -212,7 +213,8 @@ module.exports = {
 								{'Name':'16 BMS ID','type':'uint8','units':'',  'size':1},
 								{'Name':'Voltage Updates','type':'uint32','units':'updates',  'size':4},
 								{'Name':'Temp Scan Count','type':'uint32','units':'scans',  'size':4},
-								{'Name':'Pack Current','type':'float32','units':'A',  'size':4}
+								{'Name':'Pack Current','type':'float32','units':'A',  'size':4},
+								{'Name':'DC State','type':'uint8','units':'','size':1}
 							]
 			},
 

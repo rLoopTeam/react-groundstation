@@ -128,6 +128,11 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
   const GUIPreload = require('./preloadGUI.js');
   GUIPreload();
 
+/*------
+ Translates state enums to english
+*/
+const updateEnums = require('./updateEnums.js')(rtDataStore);
+
 
 
 /*------------
@@ -140,8 +145,8 @@ const websocketCommands = require('./websocketCommands.js')(io, udp, room, logge
 // const TempSensorsGenerator = require('./DataGenerators/BrakeTestDataGenerator.js')(packetParser);
 
 //Accelerometer packet generator
-//const payloads = require('./DataGenerators/TestPayloads');
-//const testGenerator = require('./DataGenerators/TestGenerator.js');
+const payloads = require('./DataGenerators/TestPayloads');
+const testGenerator = require('./DataGenerators/TestGenerator.js');
 //testGenerator(0x3401, payloads.BMSStreaming,"Power Node A");
 //testGenerator(0x3401, payloads.BMSStreaming,"Power Node B");
 //testGenerator(0x3601, payloads.CoolingStreaming, "Power Node A");

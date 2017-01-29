@@ -134,7 +134,7 @@ class PacketParser{
 			var daqPacket = {'packetName':packetDef.Name,'rxTime':(new Date()).getTime(),'samples':[],'dataType':packetDef.dataType,'sequence':sequence,'packetType':packetType};
 			for(var i = 8;i<(raw_udp.length-2);i+=packetDef.dataSize){
 				switch(packetDef.dataType){
-					case 'uint8':daqPacket.samples.push(bin.bytesToUint8(raw_udp[i],true));break;
+					case 'uint8':daqPacket.samples.push(raw_udp[i]);break;
 					case 'int8':daqPacket.samples.push(bin.bytesToInt8(raw_udp[i],true));break;
 					case 'uint16':daqPacket.samples.push(bin.bytesToUint16(raw_udp[i], raw_udp[i+1],true));break;
 					case 'int16':daqPacket.samples.push(bin.bytesToInt16(raw_udp[i], raw_udp[i+1],true));break;

@@ -78,7 +78,7 @@ class Brakes extends Component {
             {label: "Right Linear Velocity", value: "Brake Linear Velocity 2"},
             {label: "Right Linear Acceleration", value: "Brake Linear Acceleration 2"},
             {label: "Right Current Screw Position", value: "Brake Current Position 2"},
-            {label: "State", value:"Brake State", hex:"true"},
+            {label: "State", value:"Brake State Name"},
             {label: "Calibration State", value:"Brake Calibration State", hex:"true"},
         ]
 	}

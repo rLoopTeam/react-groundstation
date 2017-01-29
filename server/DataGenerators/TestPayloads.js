@@ -152,11 +152,11 @@ brakesStreaming.push.apply(brakesStreaming, bin.float32ToBytes(1490,true)); //le
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(0,true)); //spare 2
 brakesStreaming.push.apply(brakesStreaming, bin.uint32ToBytes(0,true)); //spare 2
 
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //limit extend 2
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //limit retract 2
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //limit extend edge 2
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //limit retract edge 2
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //sw error 2
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(1,true)); //limit extend 2
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(2,true)); //limit retract 2
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(3,true)); //limit extend edge 2
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(4,true)); //limit retract edge 2
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(5,true)); //sw error 2
 
 brakesStreaming.push.apply(brakesStreaming, bin.uint16ToBytes(0,true)); //ADC sample 2
 brakesStreaming.push.apply(brakesStreaming, bin.uint16ToBytes(0,true)); //ADC zero 2
@@ -167,8 +167,8 @@ brakesStreaming.push.apply(brakesStreaming, bin.int32ToBytes(0,true)); //linear 
 brakesStreaming.push.apply(brakesStreaming, bin.int32ToBytes(0,true)); //linear acceleration 2
 brakesStreaming.push.apply(brakesStreaming, bin.int32ToBytes(0,true)); //current position 2
 
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //state
-brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(0,true)); //calibration state
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(5,true)); //state
+brakesStreaming.push.apply(brakesStreaming, bin.uint8ToBytes(5,true)); //calibration state
 
 var BMSStreaming = []
 BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(0,true)); //fault flags
