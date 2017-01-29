@@ -131,7 +131,7 @@ class LineChart extends GenericParameterDisplay{
     dataCallback(parameterData, i){
         // update the latestValues object with values from the pod
         if(this._isMounted) {
-            this.latestValue.values = parameterData.Value;
+            this.latestValue.value = parameterData.Value;
             this.latestValue.stale = parameterData.IsStale;
             this.latestValue.units = parameterData.Units;
         }
