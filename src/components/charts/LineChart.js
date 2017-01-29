@@ -10,9 +10,9 @@ class LineChart extends GenericParameterDisplay{
         const self = this;
     
         // this object gets update with the data from the pod
-        this.latestValues = {
+        this.latestValue = {
             stale: false,
-            values: Array(this.props.parameters.length).fill(Array(this.props.totalPoints).fill(0)),
+            value: 0,
             units: '',
             startTime: (new Date).getTime()
         }
@@ -25,13 +25,18 @@ class LineChart extends GenericParameterDisplay{
                 for (var i = 0; i < series.length; i++) {
                     var shift = series[i].data.length > self.props.totalPoints;
 
-                    if (self.latestValues.stale == true) {
+                    if (self.latestValue.stale == true) {
+                        // Update the highchart with real parameter data.
+                        series[i].addPoint([x, self.latestValue.value], false, shift, false);
                         self.chart.chartBackground.css({
                             color: '#FF3300',
                         });
                     } else {
-                        //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
-                        series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
+                        // Update the highchart with real parameter data.
+                        series[i].addPoint([x, self.latestValue.value], false, shift, false);
+                        // FOR TESTING ONLY: update the highchart with fake data specified in this file.
+                        //series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
+
                         self.chart.chartBackground.css({
                             color: '#FFFFFF',
                         });
@@ -54,7 +59,7 @@ class LineChart extends GenericParameterDisplay{
                 height: this.props.height || null,
                 animation: false,
                 events: {
-                    // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValues" object
+                    // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValue" object
                     load: function () {
                         this.dataTimer;
                     }
@@ -71,7 +76,7 @@ class LineChart extends GenericParameterDisplay{
                 tickPixelInterval: 150,
                 labels: {
                 formatter: function() {
-                    return (this.value - self.latestValues.startTime)/1000;
+                    return (this.value - self.latestValue.startTime)/1000;
                 }
             },
             },
@@ -123,12 +128,12 @@ class LineChart extends GenericParameterDisplay{
         clearInterval(self.dataTimer)
     }
 
-    dataCallback(parameterData, i){     
+    dataCallback(parameterData, i){
         // update the latestValues object with values from the pod
         if(this._isMounted) {
-            this.latestValues.values[i] = parameterData.Value;
-            this.latestValues.stale = parameterData.IsStale;
-            this.latestValues.units = parameterData.Units;
+            this.latestValue.values = parameterData.Value;
+            this.latestValue.stale = parameterData.IsStale;
+            this.latestValue.units = parameterData.Units;
         }
     }
 
