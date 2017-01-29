@@ -9,6 +9,12 @@ class LineChart extends GenericParameterDisplay{
         
         const self = this;
 
+        if (this.props.updateRate){
+            var updateRate = this.props.updateRate
+        } else {
+            var updateRate =  250
+        }
+    
         // this object gets update with the data from the pod
         this.latestValues = {
             stale: false,
@@ -30,7 +36,7 @@ class LineChart extends GenericParameterDisplay{
                             color: '#FF3300',
                         });
                     } else {
-                        //series[i].addPoint([x, self.latestValues.values[i]], false, true, false);
+                        //series[i].addPoint([x, self.latestV-alues.values[i]], false, true, false);
                         series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
                         self.chart.chartBackground.css({
                             color: '#FFFFFF',
@@ -42,7 +48,7 @@ class LineChart extends GenericParameterDisplay{
             else {
                 console.log("No chart")
             }
-        }, 250);
+        }, updateRate);
 
         // this is the Highcharts config object that defines the series, render options etc
         this.config = {
@@ -149,5 +155,6 @@ LineChart.propTypes = {
     yAxisLabel: React.PropTypes.string.isRequired,
     parameters: React.PropTypes.array.isRequired,
     totalPoints: React.PropTypes.number.isRequired,
+    updateRate: React.PropTypes.number,
 }
 export default LineChart;
