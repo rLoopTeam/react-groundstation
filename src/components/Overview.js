@@ -125,15 +125,15 @@ class Overview extends Component {
 
 						<div className="row">
 							<div className="col-md-6">
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<label>Pitch</label>
 									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
 								</div>
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<label>Roll</label>
 									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
 								</div>
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<label>Yaw</label>
 									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Yaw"/>
 								</div>
@@ -149,15 +149,15 @@ class Overview extends Component {
 								/>
 							</div>
 							<div className="col-md-6">
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<label>Pitch</label>
 									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Pitch"/>
 								</div>
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<label>Roll</label>
 									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Roll"/>
 								</div>
-								<div className="col-md-2">
+								<div className="col-md-3">
 									<label>Yaw</label>
 									<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Yaw"/>
 								</div>

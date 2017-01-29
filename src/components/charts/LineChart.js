@@ -60,6 +60,9 @@ class LineChart extends GenericParameterDisplay{
                     }
                 }
             },
+            credits: {
+                enabled: false
+            },
             xAxis: {
                 title: {
                     text: this.props.xAxisLabel
