@@ -4,17 +4,17 @@ import StreamingPageManager from '../StreamingPageManager.js';
 
 class FunctionalTest extends Component {
 
-	constructor(props) {
-		super(props)
+  constructor (props) {
+    super(props);
 
-		this.state = {
-			streamManager: new StreamingPageManager(),
-			command: 'FlightControl_Accel',
-		};
-	}
+    this.state = {
+      streamManager: new StreamingPageManager(),
+      command: 'FlightControl_Accel'
+    };
+  }
 
-	render() {
-		return (
+  render () {
+    return (
 			<div>
 				<a href='http://confluence.rloop.org/display/SD/Operational+Procedure#OperationalProcedure-2.FunctionalTest-"Bench"'>See http://confluence.rloop.org/display/SD/Operational+Procedure#OperationalProcedure-2.FunctionalTest-"Bench"</a>
 
@@ -166,8 +166,8 @@ class FunctionalTest extends Component {
 					</div>
 				</div>
 			</div>
-		);
-	}
+    );
+  }
 
 }
 

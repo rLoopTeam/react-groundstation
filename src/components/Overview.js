@@ -7,25 +7,25 @@ import ConfirmButton from './buttons/ConfirmButton.js';
 
 import io from 'socket.io-client';
 let socket = io.connect('127.0.0.1:3000', {
-			reconnection: true,
-			reconnectionDelay: 1000,
-			reconnectionDelayMax : 5000,
-			reconnectionAttempts: Infinity
-		});
+  reconnection: true,
+  reconnectionDelay: 1000,
+  reconnectionDelayMax: 5000,
+  reconnectionAttempts: Infinity
+});
 
 const NamedParameter = (props) => {
-	return (
+  return (
 		<div className="form-group row">
 			<label className="col-md-6">{props.name}</label>
 			<div className="col-md-6">
 				<GenericParameterLabel {...props}/>
 			</div>
 		</div>
-	);
-}
+  );
+};
 
 const LeftRightParameters = ({children}) => {
-	return (
+  return (
 		<div className="row">
 			<div className="col-sm-6">
 				{children[0]}
@@ -34,29 +34,29 @@ const LeftRightParameters = ({children}) => {
 				{children[1]}
 			</div>
 		</div>
-	);
-}
+  );
+};
 
 class Overview extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			streamManager: new StreamingPageManager()
-		}
-	}
+  constructor (props) {
+    super(props);
+    this.state = {
+      streamManager: new StreamingPageManager()
+    };
+  }
 
-	componentWillMount() {
-	}
+  componentWillMount () {
+  }
 
-	componentWillUnmount(){
+  componentWillUnmount () {
 
-    }
+  }
 
-    resetPod() {
+  resetPod () {
     	socket.emit('ForcePreRunPhase');
-    }
+  }
 
-	render() {
+  render () {
 	    return (
 			<div>
 				<legend>Mission</legend>
@@ -86,8 +86,8 @@ class Overview extends Component {
 							/>
 						</LeftRightParameters>
 						<LeftRightParameters>
-							<FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
-							<FaultFlagDisplay   StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+							<FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
+							<FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
 						</LeftRightParameters>
 						<LeftRightParameters>
 							<NamedParameter
@@ -200,7 +200,7 @@ class Overview extends Component {
 									parameters={['Power A BMS Node Temp', 'Power B BMS Node Temp']}
 									title="Power node Temperature"
 									yAxisLabel="Temperature (&deg;C)"
-									xAxisLabel="Time (s)" 
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -212,7 +212,7 @@ class Overview extends Component {
 									parameters={['Power A BMS Pack Volts', 'Power B BMS Pack Volts']}
 									title="Power node Voltage"
 									yAxisLabel="Temperature (V)"
-									xAxisLabel="Time (s)" 
+									xAxisLabel="Time (s)"
 									totalPoints={60}
 									height={250}
 								/>
@@ -221,8 +221,8 @@ class Overview extends Component {
 					</div>
 				</div>
 			</div>
-		);
-	}
+    );
+  }
 }
 
 export default Overview;

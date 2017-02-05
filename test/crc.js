@@ -1,58 +1,58 @@
-const expect    = require("chai").expect;
-const crc = require("../server/udp/crc");
+const expect = require('chai').expect;
+const crc = require('../server/udp/crc');
 const lookupTables = require('../server/udp/lookupTables');
 
 /*
 * Test for the CRC checksum module
 */
-describe("CRC tests: ", function() {
-  describe("CRC generator", function() {
-  	it("testing the algorithm from web against known calculated result from https://www.lammertbies.nl/comm/info/crc-calculation.html", function() {
+describe('CRC tests: ', function () {
+  describe('CRC generator', function () {
+  	it('testing the algorithm from web against known calculated result from https://www.lammertbies.nl/comm/info/crc-calculation.html', function () {
   		var udpData = [
-			"1","2","3","4","5","6","7","8","9"
-		];
-		console.log("Input: " + udpData);
-		var crcResult = crc.CRC16CCITT(udpData, udpData.length).toString(16);
-		expect(crcResult).to.equal('29b1');
-  	})
-  	it("testing the algorithm from web against our own data, with the expected result generated from the same calculator as above", function() {
+    '1', '2', '3', '4', '5', '6', '7', '8', '9'
+  ];
+    console.log('Input: ' + udpData);
+    var crcResult = crc.CRC16CCITT(udpData, udpData.length).toString(16);
+    expect(crcResult).to.equal('29b1');
+  	});
+  	it('testing the algorithm from web against our own data, with the expected result generated from the same calculator as above', function () {
   		// test data from the hardware
   		var udpData = [
-			0x00,0x00,0x00,0x00,0x00,
-			0x50,0x00,0x10,0x01,0x00,
-			0x00,0x00,0x00,0x00,0x00,
-			0x00,0x00,0x00,0x00,0x00,
-			0x00,0x00,0x00,0x00
-		];
+    0x00, 0x00, 0x00, 0x00, 0x00,
+    0x50, 0x00, 0x10, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00
+  ];
 		// convert data to string elements because algorithm needs them as strings
-		udpData = udpData.map(function(a){ 
-			a = String.fromCharCode(a, 16)
-			return a
-		})
-		console.log("Input: " + udpData);
-		var crcResult = crc.CRC16CCITT(udpData, udpData.length).toString(16);
-		expect(crcResult).to.equal('a886');
-  	})
-  	it.skip("testing Lachlan's algorithm against our own data, with the expected result generated from the code on the hardware", function() {
+    udpData = udpData.map(function (a) {
+      a = String.fromCharCode(a, 16);
+      return a;
+    });
+    console.log('Input: ' + udpData);
+    var crcResult = crc.CRC16CCITT(udpData, udpData.length).toString(16);
+    expect(crcResult).to.equal('a886');
+  	});
+  	it.skip("testing Lachlan's algorithm against our own data, with the expected result generated from the code on the hardware", function () {
   		// test data from the hardware
   		var udpData = [
-			0x00,0x00,0x00,0x00,0x00,
-			0x50,0x00,0x10,0x01,0x00,
-			0x00,0x00,0x00,0x00,0x00,
-			0x00,0x00,0x00,0x00,0x00,
-			0x00,0x00,0x00,0x00
-		];
+    0x00, 0x00, 0x00, 0x00, 0x00,
+    0x50, 0x00, 0x10, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00
+  ];
 		// convert data to string elements
-		udpData = udpData.map(function(a){ 
-			a = String.fromCharCode(a, 16)
-			return a
-		})
-		console.log("Input: " + udpData);
-		var crcResult = crc.u16SWCRC__CRC(udpData, udpData.length).toString(16);
-		expect(crcResult).to.equal('0c47');
-  	})
+    udpData = udpData.map(function (a) {
+      a = String.fromCharCode(a, 16);
+      return a;
+    });
+    console.log('Input: ' + udpData);
+    var crcResult = crc.u16SWCRC__CRC(udpData, udpData.length).toString(16);
+    expect(crcResult).to.equal('0c47');
+  	});
 
-  	//CRC-CCITT (0xFFFF)	0x29B1
+  	// CRC-CCITT (0xFFFF)	0x29B1
 
   // 	it("testing the algorithm", function() {
   // 		// var udpData = [
@@ -77,8 +77,8 @@ describe("CRC tests: ", function() {
 		// 	"00","00","00","00"
 		// ];
 		// console.log("Hex: "+udpData)
-		
-		// udpData = udpData.map(function(a){ 
+
+		// udpData = udpData.map(function(a){
 		// 	a = String.fromCharCode(parseInt(a, 16))
 		// 	return a
 		// })
@@ -119,7 +119,6 @@ describe("CRC tests: ", function() {
 	   //  console.log(result, result.toString(16));
 
     // });
-
 
   //   it("generates a crc and compared against a known result from an online calculator: https://www.lammertbies.nl/comm/info/crc-calculation.html", function() {
   //   	let udpData = new Uint8Array([

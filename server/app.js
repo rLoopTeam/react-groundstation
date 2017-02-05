@@ -14,11 +14,6 @@ const app = express();
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
-
-
-
-
-
 if (isDeveloping) {
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
@@ -36,31 +31,30 @@ if (isDeveloping) {
   });
 
   // serve static assets normally
-  app.use(express.static(__dirname + '/public'))
-  
-  // serve static bootstrap file
-  app.use('/jquery', express.static(path.join(__dirname, '..', '/node_modules/jquery/dist')))
-  app.use('/c3Chart', express.static(path.join(__dirname, '..', '/node_modules/c3/')))
-  app.use('/bootstrap', express.static(path.join(__dirname, '..', '/node_modules/bootstrap/dist')))
+  app.use(express.static(__dirname + '/public'));
 
-  //setup middleware
+  // serve static bootstrap file
+  app.use('/jquery', express.static(path.join(__dirname, '..', '/node_modules/jquery/dist')));
+  app.use('/c3Chart', express.static(path.join(__dirname, '..', '/node_modules/c3/')));
+  app.use('/bootstrap', express.static(path.join(__dirname, '..', '/node_modules/bootstrap/dist')));
+
+  // setup middleware
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
-  //handle all routes
+  // handle all routes
   app.get('*', (req, res) => {
     res.write(middleware.fileSystem.readFileSync(pubPath));
     res.end();
   });
-} 
-else {
+} else {
 	// Serve static assets
-	app.use(express.static(path.resolve(__dirname, '..', 'build')));
+  app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 	// Always return the main index.html, so react-router render the route in the client
-	app.get('*', (req, res) => {
-		res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
-	});
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+  });
 }
 
 module.exports = app;
