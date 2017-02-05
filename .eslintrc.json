@@ -1,7 +1,7 @@
 {
   "extends": [
-    "semistandard",
-    "react-app"
+    "react-app",
+    "semistandard"
   ],
   "plugins": [
     "standard",
