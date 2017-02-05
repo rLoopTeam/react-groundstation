@@ -50,7 +50,7 @@ class PowerNodeConfig extends Component {
 
     let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
 
-      return (
+    return (
             <div>
                 <div className="row">
                     <div className="col-sm-6">
@@ -60,7 +60,7 @@ class PowerNodeConfig extends Component {
                     </div>
                 </div>
             </div>
-      );
+    );
   }
 }
 

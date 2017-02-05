@@ -19,7 +19,7 @@ const packetDefinitions = require('../../config/packetDefinitions.js');
 const commConfig = require('../../config/commConfig.js');
 
 class PacketParser {
-  constructor ()  {
+  constructor () {
     this.date = new Date();
     this.gotNewPacket = this.gotNewPacket.bind(this);
     this.addPacketLisenter = this.addPacketListener.bind(this);
@@ -29,31 +29,31 @@ class PacketParser {
     this.daqPacketRXCallbacks = [];
   }
 
-  addPacketListener (cb)  {
+  addPacketListener (cb) {
     this.packetRXCallbacks.push(cb);
   }
 
-  addDAQPacketListener (cb)  {
+  addDAQPacketListener (cb) {
     this.daqPacketRXCallbacks.push(cb);
   }
 
-  verifyCRC (raw_udp)  {
+  verifyCRC (raw_udp) {
     var crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
     return true;
   }
 
-  findPacketDefinition (packetType, port)  {
+  findPacketDefinition (packetType, port) {
     // Use the port number to identify the node that sent the packet
     var node = '';
     for (var i = 0; i < commConfig.RXServers.length; i++) {
-      if (commConfig.RXServers[i].port == port)      {
+      if (commConfig.RXServers[i].port == port) {
         node = commConfig.RXServers[i].hostName;
         break;
       }
     }
 
-    for (var i = 0, len = this.packetDefinitions.length; i < len; i++)    {
-      if (this.packetDefinitions[i].PacketType == packetType && this.packetDefinitions[i].Node === node)      {
+    for (var i = 0, len = this.packetDefinitions.length; i < len; i++) {
+      if (this.packetDefinitions[i].PacketType == packetType && this.packetDefinitions[i].Node === node) {
         return this.packetDefinitions[i];
       }
     }
@@ -80,7 +80,7 @@ class PacketParser {
 
     var logger = this.logger;
 
-    if (this.verifyCRC(raw_udp))    {
+    if (this.verifyCRC(raw_udp)) {
       // Woohoo! Update packet stats that we got a good one
     } else {
       // Uh - oh, update stats that we lost one, abort parsing
@@ -92,7 +92,7 @@ class PacketParser {
     var packetType = bin.bytesToUint16(raw_udp[4], raw_udp[5], true);
     var length = bin.bytesToUint16(raw_udp[6], raw_udp[7], true);
 
-    if ((length + 10) !== raw_udp.length)    {
+    if ((length + 10) !== raw_udp.length) {
       // Packet is the wrong length, abort, should update packet stats too
       // logger.log('warn',"PacketParser: Packet with invalid length received.");
       console.log('XX! UDP.LEN:' + raw_udp.length + ' PayloadLen:' + length);
@@ -103,17 +103,17 @@ class PacketParser {
 
     // See if we know how to decode this particular type of packet
     var packetDef = this.findPacketDefinition(packetType, port);
-    if (packetDef === 0)    {
+    if (packetDef === 0) {
       // Uh-oh, can't decode this packet.
       // Throw an error and abort
       // logger.log('warn', "PacketParser: Got a packet of type "+packetType+" and don't know what to do with it.");
       return;
-    } else    {
+    } else {
        // Got a good packet
     }
 
     // Not a fan of the huge blocks of code in this if block but it works for now
-    if (packetDef.DAQ === true)    {
+    if (packetDef.DAQ === true) {
       var daqPacket = {'packetName': packetDef.Name, 'rxTime': (new Date()).getTime(), 'samples': [], 'dataType': packetDef.dataType, 'sequence': sequence, 'packetType': packetType};
       for (var i = 8; i < (raw_udp.length - 2); i += packetDef.dataSize) {
         switch (packetDef.dataType) {
@@ -134,7 +134,7 @@ class PacketParser {
         }
       }
 
-      for (var i = 0; i < this.daqPacketRXCallbacks.length; i++)      {
+      for (var i = 0; i < this.daqPacketRXCallbacks.length; i++) {
         this.daqPacketRXCallbacks[i](daqPacket);
       }
     } else {
@@ -164,7 +164,7 @@ class PacketParser {
         }
 
         // Starting a loop set of fields
-        if (packetDef.Parameters[i].beginLoop === true && looping === false)        {
+        if (packetDef.Parameters[i].beginLoop === true && looping === false) {
           looping = true;
           loopSuffix = 1;
         }
@@ -173,7 +173,7 @@ class PacketParser {
           loopFieldCount++;
         }
 
-        if (looping === true)          { loopSuffix = loopingIndex.toString() + ' '; }
+        if (looping === true) { loopSuffix = loopingIndex.toString() + ' '; }
 
         // Might put this switch statement in its own function so it's not gunking up the flow of this one so much
         switch (packetDef.Parameters[i].type) {
@@ -244,7 +244,7 @@ class PacketParser {
       newDataParams.sequence = sequence;
       newDataParams.node = packetDef.Node;
 
-      for (var i = 0; i < this.packetRXCallbacks.length; i++)      {
+      for (var i = 0; i < this.packetRXCallbacks.length; i++) {
         this.packetRXCallbacks[i](newDataParams);
       }
     }

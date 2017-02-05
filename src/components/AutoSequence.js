@@ -53,10 +53,10 @@ class AutoSequence extends Component {
         state: 0x0007,
         status: 'Pending'
       }, {
-      name: 'COMPLETE',
-      state: 0x0008,
-      status: 'Pending'
-    }]
+        name: 'COMPLETE',
+        state: 0x0008,
+        status: 'Pending'
+      }]
 
       // Added by this.scheduleNextTestResult
       // nextTestResult: defer()
@@ -67,10 +67,10 @@ class AutoSequence extends Component {
       // We can't directly pass this.state.nextTestResult.resolve because we want to use the *current* value
       // of this.state.nextTestResult, even if that state property has been reassigned.
       (testResult) => {
-  if (this.state.nextTestResult) {
-    this.state.nextTestResult.resolve(testResult);
-  }
-});
+        if (this.state.nextTestResult) {
+          this.state.nextTestResult.resolve(testResult);
+        }
+      });
 
     // this._isMounted = true;
   }
@@ -204,14 +204,14 @@ class AutoSequence extends Component {
 
         <table className='test-results'><tbody>{
           this.getTestResults().map(function (testResult) {
-  return <tr
+            return <tr
                 key={testResult.state}
                 className={this.getTestResultClass(testResult.status)}
                 >
               <td>{testResult.name}</td>
               <td>{testResult.status}</td>
             </tr>;
-}.bind(this))
+          }.bind(this))
         }</tbody></table>
       </div>
     );

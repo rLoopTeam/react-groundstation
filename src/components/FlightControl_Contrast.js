@@ -34,7 +34,7 @@ class FlightControl_Contrast extends Component {
   }
 
   render () {
-      return (
+    return (
         <div className="Overview-content">
 
         <legend>Contrast Sensor - Streaming</legend>
@@ -46,7 +46,7 @@ class FlightControl_Contrast extends Component {
             </div>
           </form>
       </div>
-      );
+    );
   }
 }
 

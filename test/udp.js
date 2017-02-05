@@ -93,9 +93,9 @@ describe('UDP tests: ', function () {
       ];
 
       var logger = new (winston.Logger)({
-          transports: [
-              new (winston.transports.File)({ filename: './logs/winston_csv.log' })
-          ]
+        transports: [
+          new (winston.transports.File)({ filename: './logs/winston_csv.log' })
+        ]
       });
       logger.level = 'debug';
 

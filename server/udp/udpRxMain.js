@@ -14,8 +14,8 @@ class udpRxMain {
     packetParser.addDAQPacketListener(this.parsedDAQPacketCb);
   }
 
-  initializeRXServersFromConfig ()  {
-    for (var i = 0; i < commConfig.RXServers.length; i++)    {
+  initializeRXServersFromConfig () {
+    for (var i = 0; i < commConfig.RXServers.length; i++) {
       this.RXServers.push(new udprx(commConfig.RXServers[i].port,
                     commConfig.RXServers[i].hostIP,
                     commConfig.RXServers[i].hostName,
@@ -24,16 +24,16 @@ class udpRxMain {
     }
   }
 
-  parsedPacketCb (data)  {
+  parsedPacketCb (data) {
     process.send({command: 'newPacket', data: data});
   }
 
-  parsedDAQPacketCb (data)  {
+  parsedDAQPacketCb (data) {
     process.send({command: 'newDAQPacket', data: data});
   }
 
   // Pass a udp packet from the receivers to the parser
-  rxNewPacket (rawUDP, port)  {
+  rxNewPacket (rawUDP, port) {
     packetParser.gotNewPacket(rawUDP, port);
   }
 }

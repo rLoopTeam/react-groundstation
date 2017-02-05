@@ -51,7 +51,7 @@ class FlightControl_FullAccel extends Component {
   }
 
   render () {
-      return (
+    return (
         <div className="Overview-content">
         <legend>Streaming Control</legend>
           <form className="form-inline">
@@ -240,7 +240,7 @@ class FlightControl_FullAccel extends Component {
         <br></br>
         <br></br>
       </div>
-      );
+    );
   }
 }
 

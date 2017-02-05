@@ -51,9 +51,9 @@ function udpTX () {
   // var message = new Buffer('Telemetry data ');
   var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
   client.send(buffer, 0, buffer.length, config.PodTxPort, config.PodTxHost, function (err, bytes) {
-      if (err) throw err;
-      console.log('POD - SENT: ' + config.PodTxHost + ':' + config.PodTxPort + ' - ' + JSON.stringify(fakePodState));
-      client.close();
+    if (err) throw err;
+    console.log('POD - SENT: ' + config.PodTxHost + ':' + config.PodTxPort + ' - ' + JSON.stringify(fakePodState));
+    client.close();
   });
 }
 

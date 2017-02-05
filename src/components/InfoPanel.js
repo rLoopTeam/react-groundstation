@@ -31,7 +31,7 @@ class InfoPanel extends Component {
   }
 
   render () {
-      return (
+    return (
       <footer className="footer navbar-fixed-bottom navbar-default" >
         <div className="container-fluid">
           <div className="info-panel">
@@ -50,7 +50,7 @@ class InfoPanel extends Component {
           </div>
         </div>
       </footer>
-      );
+    );
   }
 }
 

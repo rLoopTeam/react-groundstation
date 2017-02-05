@@ -23,12 +23,12 @@ class FlightControl_NavigationSensors extends Component {
               {label: 'Accelerometer 0 X Raw', value: 'Accel 0 X Raw'},
               {label: 'Accelerometer 0 Y Raw', value: 'Accel 0 Y Raw'},
               {label: 'Accelerometer 0 Z Raw', value: 'Accel 0 Z Raw'}
-          ],
-          accelerometer1: [
+      ],
+      accelerometer1: [
               {label: 'Accelerometer 1 X Raw', value: 'Accel 1 X Raw'},
               {label: 'Accelerometer 1 Y Raw', value: 'Accel 1 Y Raw'},
               {label: 'Accelerometer 1 Z Raw', value: 'Accel 1 Z Raw'}
-          ]
+      ]
     };
     this.rangefinderLabels = [
             {label: 'ForwardLaser RAW value', value: 'ForwardLaser RAW value'}
@@ -65,7 +65,7 @@ class FlightControl_NavigationSensors extends Component {
   }
 
   render () {
-      return (
+    return (
         <div>
               <h2>Navigation sensors</h2>
                 <div className="row">
@@ -136,7 +136,7 @@ class FlightControl_NavigationSensors extends Component {
                     </div>
                 </div>
       </div>
-      );
+    );
   }
 }
 

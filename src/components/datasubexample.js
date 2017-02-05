@@ -14,12 +14,12 @@ class DataStreamExample extends Component {
   }
 
   render () {
-      return (
+    return (
           <div className="Overview-content">
         <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Test 1: x' />
         <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Test 1: f' />
         </div>
-      );
+    );
   }
 }
 

@@ -68,35 +68,35 @@ class PowerA_RawTemperatures extends Component {
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 11, parameterData[i].Name.length) === 'Temperature')        {
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 11, parameterData[i].Name.length) === 'Temperature') {
           field = 'temperatureValues' + parameterData[i].Name.split(' ')[3];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'User Index')        {
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'User Index') {
           field = 'userIndex' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'Resolution')        {
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'Resolution') {
           field = 'resolution' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 9, parameterData[i].Name.length) === 'Bus Index')        {
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 9, parameterData[i].Name.length) === 'Bus Index') {
           field = 'busIndex' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(0, 14) === 'Power A ROM ID')        {
+        if (parameterData[i].Name.substring(0, 14) === 'Power A ROM ID') {
           field = 'ROMID' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
@@ -135,7 +135,7 @@ class PowerA_RawTemperatures extends Component {
       _keyCount = 0;
 
     var rows = [];
-    for (var i = 1; i <= this.state.numberofSensors; i++)    {
+    for (var i = 1; i <= this.state.numberofSensors; i++) {
       // rows.push(<tr key={"row"+i}><td>{this.state['temperatureValues'+i.toString()]} C</td><td>{this.state['userIndex'+i.toString()]}</td></tr>)
       rows.push(<tr key={'row' + i}>
         <td>{i - 1}</td>
@@ -147,7 +147,7 @@ class PowerA_RawTemperatures extends Component {
         </tr>);
     }
 
-      return (
+    return (
         <div>
         <legend>Power Node A - Stream Control</legend>
           <form className="form-inline">
@@ -169,7 +169,7 @@ class PowerA_RawTemperatures extends Component {
           </tbody></table>
 
         </div>
-      );
+    );
   }
 }
 

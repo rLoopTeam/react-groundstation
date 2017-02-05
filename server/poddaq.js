@@ -1,14 +1,14 @@
 fs = require('fs');
 
 class poddaq {
-  constructor (packetStats)  {
+  constructor (packetStats) {
     this.isLogging = false;
     this.gotNewPacket = this.gotNewPacket.bind(this);
     this.packetStats = packetStats;
   }
 
-  gotNewPacket (packet)  {
-    if (this.isLogging === false)      { return; }
+  gotNewPacket (packet) {
+    if (this.isLogging === false) { return; }
 
     var filename = 'logs/' + packet.packetName + '.csv';
 
@@ -23,9 +23,9 @@ class poddaq {
     // TODO: reuse stream instead of opening and closing it all the time
     fs.open(filename, 'a', 666, function (e, id) {
       fs.write(id, toWrite, null, 'utf8', function () {
-    fs.close(id, function () {
+        fs.close(id, function () {
 
-    });
+        });
       });
     });
 

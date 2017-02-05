@@ -71,8 +71,8 @@ FaultFlagDisplay.propTypes = {
 };
 
 FaultFlagDisplay.defaultProps = {
-    hex: 'true',
-    hexType: 32,
+  hex: 'true',
+  hexType: 32,
   bits: 32
 };
 export default FaultFlagDisplay;

@@ -53,11 +53,11 @@ class Overview extends Component {
   }
 
   resetPod () {
-      socket.emit('ForcePreRunPhase');
+    socket.emit('ForcePreRunPhase');
   }
 
   render () {
-      return (
+    return (
       <div>
         <legend>Mission</legend>
         <div className="row">

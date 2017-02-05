@@ -12,7 +12,7 @@ for (var i = 0; i < 1000; i++) {
 }
 
 class StreamPipeServer {
-  constructor (app, io, rtDataStore)  {
+  constructor (app, io, rtDataStore) {
     var dataStreamServer = io.of('/dataStreamServer');
     dataStreamServer.on('connection', function (socket) {
       var dataStreamServer = io.of('/dataStreamServer');
@@ -27,7 +27,7 @@ class StreamPipeServer {
 
       socket.on('request parameters', function (msg) {
         console.log('StreamPipeServer: ' + clientID + ' requested: ' + JSON.stringify(msg));
-        for (var y = 0; y < msg.length; y++)          {
+        for (var y = 0; y < msg.length; y++) {
           requestedParams.push(msg[y]);
         }
       });

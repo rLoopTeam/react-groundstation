@@ -26,7 +26,7 @@ class DataStreamClient {
 
   RequestParameter (parameter) {
     this.RequestedParameters.push(parameter);
-    if (this.connected)    {
+    if (this.connected) {
       this.socket.emit('request parameter', parameter);
     }
   }

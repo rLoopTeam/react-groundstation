@@ -63,7 +63,7 @@ class MainLayout extends Component {
   }
 
   render () {
-      return (
+    return (
         <div className="container-fluid">
           <nav className="navbar navbar-inverse navbar-fixed-top">
         <div className="col-xs-12">
@@ -80,27 +80,27 @@ class MainLayout extends Component {
             <ul className="nav navbar-nav">
               {
                 this.links.map(function (item, index) {
-  if (item.children) {
-    return (
+                  if (item.children) {
+                    return (
                       <li key={index} className="dropdown">
                         <Link to={item.location} className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{item.name}<span className="caret"></span></Link>
                         <ul className="dropdown-menu">
                           {
                             item.children.map(function (child, chIndex) {
-  return (
+                              return (
                                 <li key={chIndex}><Link to={child.location}>{child.name}</Link></li>
-  );
-})
+                              );
+                            })
                           }
                         </ul>
                       </li>
-    );
-  } else {
-    return (
+                    );
+                  } else {
+                    return (
                       <li key={index}><Link to={item.location}>{item.name}</Link></li>
-    );
-  }
-})
+                    );
+                  }
+                })
               }
             </ul>
           </div>
@@ -116,7 +116,7 @@ class MainLayout extends Component {
         </div>
           </div>
     </div>
-      );
+    );
   }
 }
 

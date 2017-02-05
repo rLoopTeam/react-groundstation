@@ -60,11 +60,11 @@ class LGU extends Component {
   }
 
   handleInterlockDirection (e) {
-    if (this.interlockDirection)      { this.interlockDirection = false; } else      { this.interlockDirection = true; }
+    if (this.interlockDirection) { this.interlockDirection = false; } else { this.interlockDirection = true; }
   }
 
   handleInterlockSpeed (e) {
-    if (this.interlockSpeed)      { this.interlockSpeed = false; } else      { this.interlockSpeed = true; }
+    if (this.interlockSpeed) { this.interlockSpeed = false; } else { this.interlockSpeed = true; }
   }
 
   handleSpeedChange (e, index) {
@@ -83,12 +83,12 @@ class LGU extends Component {
     var val = _speed.value = liftSpeed;
 
     // set the value for all speed inputs to match the others
-    if (this.interlockSpeed)    {
-      for (var _ind in liftArr)      {
+    if (this.interlockSpeed) {
+      for (var _ind in liftArr) {
         if (_ind)// eslint prefers to have for in body wrapped in if statement
         {
           var lifts = liftArr[_ind];
-          for (var lift in lifts)          {
+          for (var lift in lifts) {
             if (lift)// eslint prefers to have for in body wrapped in if statement
             {
               var _liftName = Object.keys(lifts)[0];
@@ -127,18 +127,18 @@ class LGU extends Component {
     var downVal = _direction.down = true;
 
     // set values if position is up
-    if (liftDirection === 'up')    {
+    if (liftDirection === 'up') {
       upVal = _direction.up = true;
       downVal = _direction.down = false;
     }
 
         // set the value for all speed inputs to match the others
-    if (this.interlockDirection)    {
-      for (var _ind in liftArr)      {
+    if (this.interlockDirection) {
+      for (var _ind in liftArr) {
         if (_ind)// eslint prefers to have for in body wrapped in if statement
         {
           var lifts = liftArr[_ind];
-          for (var lift in lifts)          {
+          for (var lift in lifts) {
             if (lift)// eslint prefers to have for in body wrapped in if statement
             {
               var _liftName = Object.keys(lifts)[0];
@@ -150,7 +150,7 @@ class LGU extends Component {
               downVal = _direction.down = true;
 
                 // set values if position is up
-              if (liftDirection === 'up')                {
+              if (liftDirection === 'up') {
                 upVal = _direction.up = true;
                 downVal = _direction.down = false;
               }
@@ -161,7 +161,7 @@ class LGU extends Component {
           }
         }
       }
-    } else    {
+    } else {
       // send name of LGU and new values to server
       socket.emit('lgu:positionChange', {liftName: liftName, liftDirection: liftDirection});
     }
@@ -172,7 +172,7 @@ class LGU extends Component {
 
   render () {
     var _this = this;
-      return (
+    return (
           <div className="Overview-content">
           <fieldset>
           <legend>
@@ -248,7 +248,7 @@ class LGU extends Component {
                                     </form>);
                         })}
         </div>
-      );
+    );
   }
 }
 

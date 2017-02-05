@@ -134,7 +134,7 @@ function int32ToBytes (int32, littleEndian) {
 
 function float32ToBytes (float, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
-   arr = new ArrayBuffer(4);
+  arr = new ArrayBuffer(4);
   view = new DataView(arr);
   view.setFloat32(0, float, littleEndian); // byteOffset = 0; litteEndian = false
   tmpArr = [view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3)];
@@ -143,7 +143,7 @@ function float32ToBytes (float, littleEndian) {
 
 function float64ToBytes (float, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
-   arr = new ArrayBuffer(8);
+  arr = new ArrayBuffer(8);
   view = new DataView(arr);
   view.setFloat64(0, float, littleEndian); // byteOffset = 0; litteEndian = false
   tmpArr = [view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3),

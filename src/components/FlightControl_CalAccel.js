@@ -50,7 +50,7 @@ class FlightControl_CalAccel extends Component {
   }
 
   render () {
-      return (
+    return (
         <div className="Overview-content">
 
         <legend>Streaming Control</legend>
@@ -202,7 +202,7 @@ class FlightControl_CalAccel extends Component {
         <br></br>
         <br></br>
       </div>
-      );
+    );
   }
 }
 

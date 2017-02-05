@@ -11,11 +11,11 @@ class daqGenerator {
     this.makeNewPacket = this.makeNewPacket.bind(this);
   }
 
-  simulateDAQ (packetType, sampleType, sampleQuantity, timeout, port)  {
+  simulateDAQ (packetType, sampleType, sampleQuantity, timeout, port) {
     this.sequences.push({'type': packetType, 'sequence': 0, 'start': 0});
-      setInterval(function () {
-          this.makeNewPacket(sampleType, packetType, sampleQuantity, port);
-      }.bind(this), timeout);
+    setInterval(function () {
+      this.makeNewPacket(sampleType, packetType, sampleQuantity, port);
+    }.bind(this), timeout);
   }
 
   makeNewPacket (sampleType, packetType, sampleQuantity, port) {
@@ -44,34 +44,34 @@ class daqGenerator {
     }
     this.sequences[index].start += sampleQuantity;
 
-      var testPacket = this.makeSafetyUDP(this.sequences[index].sequence++, packetType, payload);
-      var packetBuf = new Buffer(testPacket);
-      var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
-      client.bind();
-      client.on('listening', function () {
-          client.setBroadcast(true);
-          client.send(packetBuf, 0, packetBuf.length, port, '255.255.255.255', function (err, bytes) {
-              client.close();
-          });
+    var testPacket = this.makeSafetyUDP(this.sequences[index].sequence++, packetType, payload);
+    var packetBuf = new Buffer(testPacket);
+    var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
+    client.bind();
+    client.on('listening', function () {
+      client.setBroadcast(true);
+      client.send(packetBuf, 0, packetBuf.length, port, '255.255.255.255', function (err, bytes) {
+        client.close();
       });
+    });
   }
 
   makeSafetyUDP (sequence, packetType, payload) {
-      var finalPacket = [];
+    var finalPacket = [];
 
-      finalPacket.push.apply(finalPacket, bin.uint32ToBytes(sequence, true)); // Sequence
-      finalPacket.push.apply(finalPacket, bin.uint16ToBytes(packetType, true)); // PacketType
-      finalPacket.push.apply(finalPacket, bin.uint16ToBytes(0, true)); // Length
+    finalPacket.push.apply(finalPacket, bin.uint32ToBytes(sequence, true)); // Sequence
+    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(packetType, true)); // PacketType
+    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(0, true)); // Length
 
-      finalPacket.push.apply(finalPacket, payload);
+    finalPacket.push.apply(finalPacket, payload);
 
-      var packetLength = payload.length; // Strictly the payload. Header & CRC not included
-      finalPacket[6] = bin.uint16ToBytes(packetLength, true)[0];
-      finalPacket[7] = bin.uint16ToBytes(packetLength, true)[1];
+    var packetLength = payload.length; // Strictly the payload. Header & CRC not included
+    finalPacket[6] = bin.uint16ToBytes(packetLength, true)[0];
+    finalPacket[7] = bin.uint16ToBytes(packetLength, true)[1];
 
-      finalPacket.push.apply(finalPacket, bin.uint16ToBytes(crc.u16SWCRC__CRC(finalPacket, finalPacket.length), true));
+    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(crc.u16SWCRC__CRC(finalPacket, finalPacket.length), true));
 
-      return finalPacket;
+    return finalPacket;
   }
 }
 

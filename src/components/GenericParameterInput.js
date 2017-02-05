@@ -8,7 +8,7 @@ class GenericParameterInput extends GenericParameterDisplay {
   render () {
     return (
         <span>
-          <input   type="text"
+          <input type="text"
               className="form-control"
               value={this.getFormattedValue()} readOnly={this.isReadOnly()} /><b>{this.getUnits()}</b>
         </span>

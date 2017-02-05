@@ -17,7 +17,7 @@ const bin = require('./binary.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
 
 class packetStats {
-  constructor (rtDataStore)  {
+  constructor (rtDataStore) {
     this.rtDataStore = rtDataStore;
     this.rxPackets = [];
     this.daqPackets = [];
@@ -30,7 +30,7 @@ class packetStats {
   gotPacketType (packetType, CRC, sequence, node) {
     var found = false;
     for (var i = 0; i < this.rxPackets.length; i++) {
-      if (this.rxPackets[i].type == packetType.toString(16))      {
+      if (this.rxPackets[i].type == packetType.toString(16)) {
         this.rxPackets[i].count++;
         this.rxPackets[i].crc = CRC;
         if (sequence - this.rxPackets[i].lastSequence > 1) {
@@ -41,12 +41,12 @@ class packetStats {
         break;
       }
     }
-    if (found === false)      { this.rxPackets.push({'type': packetType.toString(16), 'count': 1, 'lastSequence': sequence, 'sequenceJumps': 0}); }
+    if (found === false) { this.rxPackets.push({'type': packetType.toString(16), 'count': 1, 'lastSequence': sequence, 'sequenceJumps': 0}); }
 
     // Records last time a node was seen
     found = false;
-    for (var i = 0; i < this.nodeTimes.length; i++)    {
-      if (this.nodeTimes[i].name == node)      {
+    for (var i = 0; i < this.nodeTimes.length; i++) {
+      if (this.nodeTimes[i].name == node) {
         this.nodeTimes[i].lastSeen = (new Date()).getTime();
         found = true;
         break;
@@ -57,9 +57,9 @@ class packetStats {
     }
   }
 
-  loggedPacketType (packetType)  {
+  loggedPacketType (packetType) {
     for (var i = 0; i < this.daqPackets.length; i++) {
-      if (this.daqPackets[i].type == packetType.toString(16))      {
+      if (this.daqPackets[i].type == packetType.toString(16)) {
         this.daqPackets[i].count++;
         return;
       }

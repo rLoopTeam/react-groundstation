@@ -27,19 +27,19 @@ class Stop extends Component {
   podPower (e) {
     e.preventDefault();
     var _enterPodSafe = confirm('Are you sure you would like to enter pod safe mode? This could be CATASTROPHIC...');
-    if (_enterPodSafe)      { socket.emit('PodSafe'); }
+    if (_enterPodSafe) { socket.emit('PodSafe'); }
   }
 
   powerLatch (value, e) {
     e.preventDefault();
     var _value = value;
 
-    if (value == 0)      { socket.emit('PowerA:LatchRelay', {}); }
-    if (value == 1)      { socket.emit('PowerB:LatchRelay', {}); }
+    if (value == 0) { socket.emit('PowerA:LatchRelay', {}); }
+    if (value == 1) { socket.emit('PowerB:LatchRelay', {}); }
   }
 
   render () {
-      return (
+    return (
           <div className="col-xs-5 pull-right">
           <div className="col-sm-2 pull-right">
             <button className="btn btn-danger" onClick={this.stopPod.bind(this)}>STOP</button>
@@ -54,7 +54,7 @@ class Stop extends Component {
             <button className="btn btn-warning" onClick={this.powerLatch.bind(this, 0)}>Latch A</button>
           </div>
         </div>
-      );
+    );
   }
 }
 

@@ -255,7 +255,7 @@ class Brakes extends Component {
 
     let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
 
-      return (
+    return (
             <div>
                 <button type="button" className="btn btn-success" onClick={this.accelStartStream_Brakes} style={{margin: 10}}>Stream Brakes Data</button>
                 <div className="row">
@@ -380,7 +380,7 @@ class Brakes extends Component {
                     </div>
                 </div>
             </div>
-      );
+    );
   }
 }
 

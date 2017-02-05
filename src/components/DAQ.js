@@ -36,7 +36,7 @@ class DAQ extends Component {
   }
 
   render () {
-      return (
+    return (
         <div className="Overview-content">
         <br /><br />
         <legend>All Local Logging</legend>
@@ -57,7 +57,7 @@ class DAQ extends Component {
         <br></br>
         <br></br>
       </div>
-      );
+    );
   }
 }
 

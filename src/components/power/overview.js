@@ -96,34 +96,34 @@ class Power_Overview extends Component {
   }
 
   requestBMS (data, e) {
-      e.preventDefault();
+    e.preventDefault();
     socket.emit(`Power${this.props.route.L}:RequestBMS`);
   }
 
   requestCooling (e) {
-      e.preventDefault();
+    e.preventDefault();
     socket.emit(`Power${this.props.route.L}:RequestCooling`);
   }
 
   startCooling (e) {
-      e.preventDefault();
+    e.preventDefault();
     socket.emit(`Power${this.props.route.L}:StartCooling`);
   }
 
   handlePinChange (e) {
-      e.preventDefault();
+    e.preventDefault();
     this.setState({
       selectedPin: e.target.value
     });
   }
 
   testSolenoid (e) {
-      e.preventDefault();
+    e.preventDefault();
     socket.emit(`Power${this.props.route.L}:TestSolenoidPin${this.state.selectedPin}`);
   }
 
   startRepressurizing (e) {
-      e.preventDefault();
+    e.preventDefault();
     socket.emit(`Power${this.props.route.L}:StartRepressurizing`);
   }
 
@@ -133,7 +133,7 @@ class Power_Overview extends Component {
 
     let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
 
-      return (
+    return (
             <div>
         <h2>Pack {this.props.route.L}</h2>
         <div className="row">
@@ -149,30 +149,30 @@ class Power_Overview extends Component {
               <div className="col-sm-6">
               {
                 this.labels.map(function (item, index) {
-  return (
+                  return (
                     <div className="row" key={'labels' + index}>
                       <label>{item.label}</label>
                       <GenericParameterLabel
                         StreamingPageManager={_this.state.streamManager}
                         parameter={item.value} hex={item.hex}/>
                     </div>
-  );
-}, this)
+                  );
+                }, this)
               }
               </div>
 
               <div className="col-sm-6">
               {
                 this.labels2.map(function (item, index) {
-  return (
+                  return (
                     <div className="row" key={'labels2' + index}>
                       <label>{item.label}</label>
                       <GenericParameterLabel
                         StreamingPageManager={_this.state.streamManager}
                         parameter={item.value} hex={item.hex}/>
                     </div>
-  );
-}, this)
+                  );
+                }, this)
               }
               </div>
             </div>
@@ -181,7 +181,7 @@ class Power_Overview extends Component {
             </div>
             {
               this.cellIndexes.map(function (_, cellIndex) {
-  return (
+                return (
                   <div className="col-sm-6" key={'cell' + cellIndex}>
                       <div className="col-sm-5">
                         <label>Module {cellIndex + 1} Volts:</label>
@@ -196,8 +196,8 @@ class Power_Overview extends Component {
                       <button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})} style={{margin: 10}}>Start Discharging</button>
                       <button type="button" className="btn btn-success" onClick={this.stopDischarge.bind(this, {cellIndex: cellIndex})} style={{margin: 10}}>Stop Discharging</button><br /><br />
                   </div>
-  );
-}, this)
+                );
+              }, this)
             }
           </div>
 
@@ -219,8 +219,8 @@ class Power_Overview extends Component {
                   </div>
             {
               this.labels3.map(function (item, index) {
-  var coolableUnit = `Power ${this.props.route.L} Cooling ${item.value}`;
-  return (
+                var coolableUnit = `Power ${this.props.route.L} Cooling ${item.value}`;
+                return (
                   <div className="row" key={coolableUnit}>
                     <div className="col-sm-3">
                       <label>{item.label} Temperature C</label>
@@ -247,8 +247,8 @@ class Power_Overview extends Component {
                         parameter={`${coolableUnit} Solenoid Pin`} hex={item.hex}/>
                     </div>
                   </div>
-  );
-}, this)
+                );
+              }, this)
             }
 
             <div className="row">
@@ -270,7 +270,7 @@ class Power_Overview extends Component {
 
         </div>
             </div>
-      );
+    );
   }
 }
 

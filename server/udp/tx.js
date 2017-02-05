@@ -41,7 +41,7 @@ module.exports = {
     console.log('GS->Pod theoretically: ' + messageStr);
   },
 
-  transmitPodCommand: function (node, packetType, u32Block0, u32Block1, u32Block2, u32Block3)  {
+  transmitPodCommand: function (node, packetType, u32Block0, u32Block1, u32Block2, u32Block3) {
     // TODO Sequence counters
 
     // Find the IP and port for the node we're transmitting to
@@ -49,7 +49,7 @@ module.exports = {
     var port = 0;
     var ip = '';
     for (var i = 0; i < commConfig.RXServers.length; i++) {
-      if (commConfig.RXServers[i].hostName === node)      {
+      if (commConfig.RXServers[i].hostName === node) {
         found = true;
         port = commConfig.RXServers[i].port;
         ip = commConfig.RXServers[i].hostIP;
@@ -57,7 +57,7 @@ module.exports = {
       }
     }
 
-    if (found === false)    {
+    if (found === false) {
       console.log("Couldn't transmit to " + node + ' command ' + packetType);
       return;
     } else {
@@ -68,10 +68,10 @@ module.exports = {
 
     // These if blocks look odd but I think it'll do the correct handling for everything
     // everything: + numbers, - numbers, unsigned numbers above the max uint32 / 2
-    if (u32Block0 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block0, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block0, true)); }
-    if (u32Block1 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block1, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block1, true)); }
-    if (u32Block2 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block2, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block2, true)); }
-    if (u32Block3 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block3, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block3, true)); }
+    if (u32Block0 > 0) { packet.push.apply(packet, bin.uint32ToBytes(u32Block0, true)); } else { packet.push.apply(packet, bin.int32ToBytes(u32Block0, true)); }
+    if (u32Block1 > 0) { packet.push.apply(packet, bin.uint32ToBytes(u32Block1, true)); } else { packet.push.apply(packet, bin.int32ToBytes(u32Block1, true)); }
+    if (u32Block2 > 0) { packet.push.apply(packet, bin.uint32ToBytes(u32Block2, true)); } else { packet.push.apply(packet, bin.int32ToBytes(u32Block2, true)); }
+    if (u32Block3 > 0) { packet.push.apply(packet, bin.uint32ToBytes(u32Block3, true)); } else { packet.push.apply(packet, bin.int32ToBytes(u32Block3, true)); }
 
     packet = this.makeSafetyUDP(0, packetType, packet);
 
@@ -79,13 +79,13 @@ module.exports = {
     var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
     client.bind(function () { client.setBroadcast(true); });
     client.send(Buffer.from(packet), 0, packet.length, port, ip, (err) => {
-      if (err)       {
+      if (err) {
         throw err;
       }
       client.close();
     });
 
-    if (commConfig.MirrorLocal == true)    {
+    if (commConfig.MirrorLocal == true) {
       var client2 = dgram.createSocket({type: 'udp4', reuseAddr: true});
       client2.send(Buffer.from(packet), 0, packet.length, port, '127.0.0.1', function (err, bytes) {
         if (err) throw err;

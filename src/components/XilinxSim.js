@@ -14,9 +14,9 @@ class XilinxSim extends Component {
     var _this = this;
 
     socket.on('server event', function (data) {
-          console.log(data);
-          socket.emit('client event', { socket: 'io connected' });
-      });
+      console.log(data);
+      socket.emit('client event', { socket: 'io connected' });
+    });
   }
 
   startRun (e) {
@@ -53,7 +53,7 @@ class XilinxSim extends Component {
   }
 
   render () {
-      return (
+    return (
         <div>
           <div className="Overview-content">
             <legend>FPGA Run Control</legend>
@@ -76,7 +76,7 @@ class XilinxSim extends Component {
             <button className="btn btn-danger" onClick={this.Laser2_Off.bind(this)}>Laser2 Off</button>
           </div>
         </div>
-      );
+    );
   }
 }
 

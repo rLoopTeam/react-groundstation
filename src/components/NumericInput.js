@@ -11,7 +11,7 @@ class NumericInput extends Component {
     return (
       <span>
         <label>{this.props.label}</label>
-        <input   type="number"
+        <input type="number"
             className="form-control"
             value={this.state.value}
             onChange={this.props.onChange}
