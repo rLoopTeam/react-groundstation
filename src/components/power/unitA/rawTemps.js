@@ -35,7 +35,7 @@ class PowerA_RawTemperatures extends Component {
   }
 
   requestParameterFromServer (parameter) {
-		// console.log("requesting: "+parameter);
+    // console.log("requesting: "+parameter);
     this.DataStreamClient.RequestParameter(parameter);
   }
 
@@ -53,8 +53,8 @@ class PowerA_RawTemperatures extends Component {
 
     var field;
     var newState = {};
-		// console.log("here");
-		// console.log(JSON.stringify(parameterData));
+    // console.log("here");
+    // console.log(JSON.stringify(parameterData));
     if (this._isMounted) {
       for (var i = 0; i < parameterData.length; i++) {
         if (parameterData[i].Name === 'Power A Temps Count' && this.state.numberofSensors !== parameterData[i].Value) {
@@ -68,35 +68,35 @@ class PowerA_RawTemperatures extends Component {
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 11, parameterData[i].Name.length) === 'Temperature')				{
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 11, parameterData[i].Name.length) === 'Temperature')        {
           field = 'temperatureValues' + parameterData[i].Name.split(' ')[3];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'User Index')				{
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'User Index')        {
           field = 'userIndex' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'Resolution')				{
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'Resolution')        {
           field = 'resolution' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 9, parameterData[i].Name.length) === 'Bus Index')				{
+        if (parameterData[i].Name.substring(parameterData[i].Name.length - 9, parameterData[i].Name.length) === 'Bus Index')        {
           field = 'busIndex' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
           }
         }
 
-        if (parameterData[i].Name.substring(0, 14) === 'Power A ROM ID')				{
+        if (parameterData[i].Name.substring(0, 14) === 'Power A ROM ID')        {
           field = 'ROMID' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
@@ -135,41 +135,41 @@ class PowerA_RawTemperatures extends Component {
       _keyCount = 0;
 
     var rows = [];
-    for (var i = 1; i <= this.state.numberofSensors; i++)		{
-			// rows.push(<tr key={"row"+i}><td>{this.state['temperatureValues'+i.toString()]} C</td><td>{this.state['userIndex'+i.toString()]}</td></tr>)
+    for (var i = 1; i <= this.state.numberofSensors; i++)    {
+      // rows.push(<tr key={"row"+i}><td>{this.state['temperatureValues'+i.toString()]} C</td><td>{this.state['userIndex'+i.toString()]}</td></tr>)
       rows.push(<tr key={'row' + i}>
-				<td>{i - 1}</td>
-				<td>{this.state['temperatureValues' + i.toString()]} C</td>
-				<td>{this.state['userIndex' + i.toString()]}</td>
-				<td>{this.state['resolution' + i.toString()]}</td>
-				<td>{this.state['busIndex' + i.toString()]}</td>
-				<td>{this.state['ROMID' + i.toString()]}</td>
-				</tr>);
+        <td>{i - 1}</td>
+        <td>{this.state['temperatureValues' + i.toString()]} C</td>
+        <td>{this.state['userIndex' + i.toString()]}</td>
+        <td>{this.state['resolution' + i.toString()]}</td>
+        <td>{this.state['busIndex' + i.toString()]}</td>
+        <td>{this.state['ROMID' + i.toString()]}</td>
+        </tr>);
     }
 
-	    return (
-				<div>
-				<legend>Power Node A - Stream Control</legend>
-					<form className="form-inline">
-						<div className="form-group">
-							<button className="btn btn-success" onClick={this.PowerAStreamingOff.bind(this, {})} style={{margin: 10}}>Stream Off</button>
-							<button className="btn btn-success" onClick={this.PowerAStreamCurrentTemps.bind(this, {})} style={{margin: 10}}>Stream Temperatures</button>
-							<button className="btn btn-success" onClick={this.PowerAStreamTempLocations.bind(this, {})} style={{margin: 10}}>Stream Sensor Locations</button>
-							<button className="btn btn-success" onClick={this.PowerAROMIDScan.bind(this, {})} style={{margin: 10}}>Get ROM IDs</button>
-							<br /><br />
-						</div>
-					</form>
+      return (
+        <div>
+        <legend>Power Node A - Stream Control</legend>
+          <form className="form-inline">
+            <div className="form-group">
+              <button className="btn btn-success" onClick={this.PowerAStreamingOff.bind(this, {})} style={{margin: 10}}>Stream Off</button>
+              <button className="btn btn-success" onClick={this.PowerAStreamCurrentTemps.bind(this, {})} style={{margin: 10}}>Stream Temperatures</button>
+              <button className="btn btn-success" onClick={this.PowerAStreamTempLocations.bind(this, {})} style={{margin: 10}}>Stream Sensor Locations</button>
+              <button className="btn btn-success" onClick={this.PowerAROMIDScan.bind(this, {})} style={{margin: 10}}>Get ROM IDs</button>
+              <br /><br />
+            </div>
+          </form>
 
-					<table className="table">
-					<thead><tr>
-						<th>Index</th><th>Temperature</th><th>User Field</th><th>Resolution</th><th>Bus ID</th><th>ROM ID</th>
-					</tr></thead>
-					<tbody>
-					{rows}
-					</tbody></table>
+          <table className="table">
+          <thead><tr>
+            <th>Index</th><th>Temperature</th><th>User Field</th><th>Resolution</th><th>Bus ID</th><th>ROM ID</th>
+          </tr></thead>
+          <tbody>
+          {rows}
+          </tbody></table>
 
-				</div>
-	    );
+        </div>
+      );
   }
 }
 

@@ -28,20 +28,20 @@ class ConfirmButton extends Component {
   confirmClick () {
     const self = this;
 
-    if (this.state.disabled)		{
+    if (this.state.disabled)    {
       this.clearMainTimeout();
       this.clearInnerTimeout();
       this.setState({disabled: false, ready: false});
       return;
-    } else if (this.state.ready)		{
+    } else if (this.state.ready)    {
       this.props.action();
       return;
     }
 
-    if (this.state.disabled === false) 		{
-			// disable button for some time
+    if (this.state.disabled === false)     {
+      // disable button for some time
       this.setMainTimeout(function () {
-				// enable button for one second
+        // enable button for one second
         self.setInnerTimeout(function () {
           self.setState({disabled: false, ready: false});
         });
@@ -53,14 +53,14 @@ class ConfirmButton extends Component {
 
   render () {
     let classes = this.props.className;
-    if (this.state.disabled === true) 		{
+    if (this.state.disabled === true)     {
       classes += ' clicked-status-wait';
-    } else if (this.state.ready === true) 		{
+    } else if (this.state.ready === true)     {
       classes += ' clicked-status-ready';
     }
 
     return (
-			<button type="button" className={classes} onClick={this.confirmClick.bind(this)} style={this.props.style}>{this.props.children}</button>
+      <button type="button" className={classes} onClick={this.confirmClick.bind(this)} style={this.props.style}>{this.props.children}</button>
     );
   }
 }

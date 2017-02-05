@@ -26,10 +26,10 @@ class GenericParameterLabel extends GenericParameterDisplay {
       titleString = 'Min: ' + this.props.minValue + ', Max: ' + this.props.maxValue;
     }
     return (
-			<div className="Generic-Value">
-				<span style={valueStyling} title={titleString}>{value}</span>
-				<b> {this.getUnits()}</b>
-			</div>
+      <div className="Generic-Value">
+        <span style={valueStyling} title={titleString}>{value}</span>
+        <b> {this.getUnits()}</b>
+      </div>
     );
   }
 }

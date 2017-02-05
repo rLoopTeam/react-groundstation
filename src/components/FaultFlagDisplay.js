@@ -11,7 +11,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
     this.preFilledArray = Array(this.props.bits).fill(0);
     this.template = this.definition.template;
 
-		// map the property contained in the faulFlagDefinitions with a css class
+    // map the property contained in the faulFlagDefinitions with a css class
     this.severityClassMap = {
       'warning': 'warning-row',
       'danger': 'danger-row',
@@ -19,13 +19,13 @@ class FaultFlagDisplay extends GenericParameterDisplay {
     };
   }
 
-	/*
-	* This component inherits all code from GenericParameterDisplay. Look there for implemetation details
-	*/
+  /*
+  * This component inherits all code from GenericParameterDisplay. Look there for implemetation details
+  */
   render () {
     const self = this;
 
-		// get value as bits
+    // get value as bits
     const value = this.state.value.toString(2);
 
     var renderedFaultFlags;
@@ -35,9 +35,9 @@ class FaultFlagDisplay extends GenericParameterDisplay {
       renderedFaultFlags = (<tr className="nominal-row"><td></td><td>Status nominal</td></tr>);
     }
 
-		/*
-		* Callback
-		*/
+    /*
+    * Callback
+    */
     function renderRow (_, i) {
       var result;
       if (self.template[i] !== undefined && self.template[i].severity) {
@@ -51,16 +51,16 @@ class FaultFlagDisplay extends GenericParameterDisplay {
       return result;
     }
     return (
-			<div className="fault-flag-display">
-				<div className="table-responsive flag-wrapper">
-					<b>{this.props.label}</b>
-					<table className="table-bordered">
-						<tbody>
-							{renderedFaultFlags}
-						</tbody>
-					</table>
-				</div>
-			</div>
+      <div className="fault-flag-display">
+        <div className="table-responsive flag-wrapper">
+          <b>{this.props.label}</b>
+          <table className="table-bordered">
+            <tbody>
+              {renderedFaultFlags}
+            </tbody>
+          </table>
+        </div>
+      </div>
     );
   }
 }
@@ -71,8 +71,8 @@ FaultFlagDisplay.propTypes = {
 };
 
 FaultFlagDisplay.defaultProps = {
-  	hex: 'true',
-  	hexType: 32,
+    hex: 'true',
+    hexType: 32,
   bits: 32
 };
 export default FaultFlagDisplay;

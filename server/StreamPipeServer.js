@@ -12,7 +12,7 @@ for (var i = 0; i < 1000; i++) {
 }
 
 class StreamPipeServer {
-  constructor (app, io, rtDataStore)	{
+  constructor (app, io, rtDataStore)  {
     var dataStreamServer = io.of('/dataStreamServer');
     dataStreamServer.on('connection', function (socket) {
       var dataStreamServer = io.of('/dataStreamServer');
@@ -27,7 +27,7 @@ class StreamPipeServer {
 
       socket.on('request parameters', function (msg) {
         console.log('StreamPipeServer: ' + clientID + ' requested: ' + JSON.stringify(msg));
-        for (var y = 0; y < msg.length; y++)					{
+        for (var y = 0; y < msg.length; y++)          {
           requestedParams.push(msg[y]);
         }
       });
@@ -39,29 +39,29 @@ class StreamPipeServer {
 
       var clientReady = true;
 
-				// add event listener (ensure that there is only once instance of this)
-				// if(!rtDataStore.hasNewData.listenerCount("new_rtData"))
-				// {
-					// when no others have been created
+        // add event listener (ensure that there is only once instance of this)
+        // if(!rtDataStore.hasNewData.listenerCount("new_rtData"))
+        // {
+          // when no others have been created
       addNewEventListener();
-			//	}
-			//	else
-			//	{
-					// clean up all listeners to ensure we have just the one we need
-					// we might need to refine this. (i am not 100% sure on the reprecussions of doing this)
-				//	rtDataStore.hasNewData.removeAllListeners('new_rtData')
-			//		addNewEventListener()
-			//	}
+      //  }
+      //  else
+      //  {
+          // clean up all listeners to ensure we have just the one we need
+          // we might need to refine this. (i am not 100% sure on the reprecussions of doing this)
+        //  rtDataStore.hasNewData.removeAllListeners('new_rtData')
+      //    addNewEventListener()
+      //  }
 
       function addNewEventListener () {
         rtDataStore.hasNewData.on('new_rtData', sendNewData);
       }
 
-				/**
-				 * @param {object} newDataPacket: See realtimeDataStore.insertDataPacket for more info.
-				 */
+        /**
+         * @param {object} newDataPacket: See realtimeDataStore.insertDataPacket for more info.
+         */
       function sendNewData (newDataPacket) {
-					// Wait for an acknowledge to send new data, otherwise we fill up the OS buffers and bad things happen
+          // Wait for an acknowledge to send new data, otherwise we fill up the OS buffers and bad things happen
         if (clientReady) {
           clientReady = false;
 
@@ -79,7 +79,7 @@ class StreamPipeServer {
       }
 
       socket.on('disconnect', function () {
-					// clearInterval(updateTimer);
+          // clearInterval(updateTimer);
       });
     });
   }

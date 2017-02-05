@@ -9,14 +9,14 @@ class NumericInput extends Component {
   }
   render () {
     return (
-			<span>
-				<label>{this.props.label}</label>
-				<input 	type="number"
-						className="form-control"
-						value={this.state.value}
-						onChange={this.props.onChange}
-						onBlur={this.props.onBlur} />
-			</span>
+      <span>
+        <label>{this.props.label}</label>
+        <input   type="number"
+            className="form-control"
+            value={this.state.value}
+            onChange={this.props.onChange}
+            onBlur={this.props.onBlur} />
+      </span>
     );
   }
 }

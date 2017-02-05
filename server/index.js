@@ -8,7 +8,7 @@ const app = require('./app');
 
 /* ------------
     SERVER
-	Serves up the client http files
+  Serves up the client http files
 ------------ */
 const PORT = process.env.PORT || commConfig.Appserver.port;
 const env = process.env.NODE_ENV || 'development';
@@ -26,40 +26,40 @@ var room = {
 };
 
 /* ------------
-	Sets up winston for our apps data logging needs
+  Sets up winston for our apps data logging needs
 ------------ */
 
 var logger = require('./datalogging.js')(logger);
 
 /* ------------
-	RTDATASTORE
-	Holds the last parameter values received from the pod.
-	Queried by the stream pipe server for data to send to the client
+  RTDATASTORE
+  Holds the last parameter values received from the pod.
+  Queried by the stream pipe server for data to send to the client
 ------------ */
 // TODO pass a hook to connect the UDP rx with the real time data store,
 // TODO pass or return a hook to give the stream pipe server access to this data store
 var rtDataStore = require('./realtimeDataStore')(logger);
 
 /* ------------
-	Stats on packets for various things that get added back to the rtDataStore
+  Stats on packets for various things that get added back to the rtDataStore
 ------------ */
 var packetStats = require('./udp/packetStats.js')(rtDataStore);
 
 /* ------------
     Stream Pipe
-	Sits between the data store and the client.
-	Sends requested parameters to the client at a fixed interval.
+  Sits between the data store and the client.
+  Sends requested parameters to the client at a fixed interval.
 ------------ */
 const StreamPipeServer = require('./StreamPipeServer.js')(app, io, rtDataStore);
 
 /* ------------
-	All UDP I/O directly to/from pod.
-	***commands to the pod are currently down in websocketCommands, that should be abstracted out to here.
+  All UDP I/O directly to/from pod.
+  ***commands to the pod are currently down in websocketCommands, that should be abstracted out to here.
 ------------ */
 const udp = require('./udp/udpMain.js')(logger);
 
 /* -----------
-	Put the UDP RX in it's own process
+  Put the UDP RX in it's own process
 ------------ */
 var cp = require('child_process');
 
@@ -67,19 +67,19 @@ var cp = require('child_process');
 // found this fix here: https://github.com/nodejs/node/issues/3469
 const udpRxMain = cp.fork('./server/udp/udpRxMain.js', [], {execArgv: ['--debug=5859']});
 udpRxMain.on('message', function (m) {
-  if (m.command === 'newPacket')	{
+  if (m.command === 'newPacket')  {
     rtDataStore.insertDataPacket(m.data);
     packetStats.gotPacketType(m.data.packetType, m.data.crc, m.data.sequence, m.data.node);
     daq.gotNewPacket(m.data);
   }
-  if (m.command === 'newDAQPacket')	{
+  if (m.command === 'newDAQPacket')  {
     poddaq.gotNewPacket(m.data);
   }
 });
 
 /* ------------
-	All UDP I/O directly to/from pod.
-	***commands to the pod are currently down in websocketCommands, that should be abstracted out to here.
+  All UDP I/O directly to/from pod.
+  ***commands to the pod are currently down in websocketCommands, that should be abstracted out to here.
 ------------ */
 var podCommands = require('./udp/podCommands')(udp);
 
@@ -106,7 +106,7 @@ const config = require('./config.js')(packetStats);
 var romIDScanner = require('./ROMIDScanner.js')(podCommands, rtDataStore);
 
 /* ------------
-	Grabs data from the charger
+  Grabs data from the charger
 ------------ */
 var charger = require('./charger')(rtDataStore);
 

@@ -15,7 +15,7 @@ class StreamingPageManager {
     var parameterList = newData.parameters;
     for (var i = 0, len1 = this.parameterCallbacks.length; i < len1; i++) {
       var name = this.parameterCallbacks[i].parameter;
-      for (var y = 0, len2 = parameterList.length; y < len2; y++)			{
+      for (var y = 0, len2 = parameterList.length; y < len2; y++)      {
         if (parameterList[y].Name === name) {
           this.parameterCallbacks[i].callback(parameterList[y]);
           break;
@@ -34,21 +34,21 @@ class StreamingPageManager {
 
   }
 
-	/**
-	 * Allows a component to subscribe to an entire packet (by type) from the pod
-	 * @param {string} packetName
-	 * @param {function} callback
-	 */
+  /**
+   * Allows a component to subscribe to an entire packet (by type) from the pod
+   * @param {string} packetName
+   * @param {function} callback
+   */
   RequestPacketWithCallback (packetName, callback) {
     this.packetCallbacks.push({packetName: packetName, callback: callback});
   }
 
-	/**
-	 * Allows a component to subscribe to a single packet parameter from the pod
-	 * @param {string} parameter The
-	 * @param {function} callback
-	 */
-  RequestParameterWithCallback (parameter, callback)	{
+  /**
+   * Allows a component to subscribe to a single packet parameter from the pod
+   * @param {string} parameter The
+   * @param {function} callback
+   */
+  RequestParameterWithCallback (parameter, callback)  {
     this.parameterCallbacks.push({parameter: parameter, callback: callback});
     this.requestParameterFromServer(parameter);
   }

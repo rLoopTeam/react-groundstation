@@ -2,36 +2,36 @@
 module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, config, romIDScanner, poddaq, charger) {
   var updateClientWithDatalogs = true;
 
-	// flag used to allow/disallow Move Motor Raw command (EXTREAM DANGER WILL DAMAGE MAGNETS)
+  // flag used to allow/disallow Move Motor Raw command (EXTREAM DANGER WILL DAMAGE MAGNETS)
   var _brakeDevelopmentConfirmation = false;
 
   var _timer;
 
   var websocket = {};
 
-	// socket.io demo
+  // socket.io demo
   io.on('connection', function (socket) {
-	  /*
-	  if(!udp.rx.listeningForUdp)
-		startListening(); */
+    /*
+    if(!udp.rx.listeningForUdp)
+    startListening(); */
 
-	  function startListening () { // listen for udp packets
-	  /*
-		udp.rx.listeningForUdp = true;
-		udp.rx.server().on('message', function (message, remote) {
-			console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
-			logger.log("debug", "GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
+    function startListening () { // listen for udp packets
+    /*
+    udp.rx.listeningForUdp = true;
+    udp.rx.server().on('message', function (message, remote) {
+      console.log("GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
+      logger.log("debug", "GROUNSTATION UDP - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
 
-			if(updateClientWithDatalogs)
-			{
-			  socket.in('dataLogging').emit('udp:event', {
-				log: remote.address + ':' + remote.port +' - ' + message
-			  });
-			}
-		}); */
-	  }
+      if(updateClientWithDatalogs)
+      {
+        socket.in('dataLogging').emit('udp:event', {
+        log: remote.address + ':' + remote.port +' - ' + message
+        });
+      }
+    }); */
+    }
 
-	  websocket.events = {
+    websocket.events = {
 
     'forceDisconnect': () => {
       socket.disconnect();
@@ -63,40 +63,40 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
     },
 
     'FlightControl_Brake:MoveMotorRAW': (data) => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
 
       podCommands.FCUBrake_MoveMotorRAW(data);
     },
 
     'FlightControl_Brake:MoveMotorIBeam': (data) => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
 
       podCommands.FCUBrake_MoveMotorIBeam(data);
     },
 
     'FlightControl_Brake:BeginInit': (data) => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
 
       podCommands.FCUBrake_BeginInit(data);
     },
 
     'FlightControl_Brake:SetZeroLeftBrake': () => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
       podCommands.FCUBrake_MLPSetZeroLeftBrake();
     },
 
     'FlightControl_Brake:SetZeroRightBrake': () => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
       podCommands.FCUBrake_MLPSetZeroRightBrake();
     },
 
     'FlightControl_Brake:SetSpanLeftBrake': () => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
       podCommands.FCUBrake_MLPSetSpanLeftBrake();
     },
 
     'FlightControl_Brake:SetSpanRightBrake': () => {
-				// THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
+        // THIS IS EXTREAMLY DANGEROUS (WILL DAMAGE MAGNETS)
       podCommands.FCUBrake_MLPSetSpanRightBrake();
     },
 
@@ -121,7 +121,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
     },
 
     'FlightControl_Brake:EnableDevelopmentMode': () => {
-				// THIS IS VERY VERY DANGEROUS
+        // THIS IS VERY VERY DANGEROUS
 
       podCommands.FCUBrake_EnableDevelopmentMode();
     },
@@ -130,7 +130,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       podCommands.FCUBrake_RequestDevelopmentMode();
     },
 
-			// accels
+      // accels
     'FlightControl_Accel:StartStream_CalData': () => {
       podCommands.FCUStreamingControlStart_AccelCalData();
     },
@@ -156,7 +156,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       podCommands.FCUStreamingControlStart_MotorsRaw();
     },
 
-			// Contrast sensor streaming control
+      // Contrast sensor streaming control
     'FlightControl_Contrast:StartStream': () => {
       podCommands.FCUContrast_StartStream();
     },
@@ -184,7 +184,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       charger.setFloatToBoostBatteryCurrent(14);
     },
 
-		    // Hover Engines
+        // Hover Engines
     'FlightControl_Hover:Enable': () => {
       podCommands.FCUHover_Enable();
     },
@@ -218,7 +218,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       podCommands.FCUHover_OpenSolenoid(data.solenoidName);
     },
 
-		    // Aux Propulsion
+        // Aux Propulsion
     'FlightControl_AuxProp:Enable': (data) => {
       podCommands.FCUAuxProp_Enable();
     },
@@ -229,7 +229,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       podCommands.FCUAuxProp_SetSpeed(data.speed);
     },
 
-		    // Gimbals
+        // Gimbals
     'FlightControl_Gimbal:StaticGimbaling': (data) => {
       podCommands.FCUGimbal_Static();
     },
@@ -269,7 +269,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       romIDScanner.BeginScanB(data.numOfSensors);
     },
 
-			// These are BMS Streams
+      // These are BMS Streams
     'PowerA:RequestBMS': (data) => {
       podCommands.PowerARequestBMS();
     },
@@ -407,7 +407,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
     },
 
     'start:dataLogs': (data) => {
-      if (_timer)				{
+      if (_timer)        {
         clearInterval(_timer);
       }
 
@@ -419,7 +419,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
     },
 
     'stop:dataLogs': (data) => {
-      if (_timer)				{
+      if (_timer)        {
         clearInterval(_timer);
       }
 
@@ -496,20 +496,20 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
     },
 
     'update_commConfig': (data) => {
-			    // console.log('data: %O', data); //DEBUG
+          // console.log('data: %O', data); //DEBUG
       config.writeCommConfig(data);
     },
 
     'GS_Heartbeat': () => {
-            	podCommands.GS_Heartbeat();
+              podCommands.GS_Heartbeat();
     }
 
-	  };
+    };
 
-	  for (const event in websocket.events) {
-		  socket.on(event, (data) => {
+    for (const event in websocket.events) {
+      socket.on(event, (data) => {
     websocket.events[event](data);
-		  });
-	  }
+      });
+    }
   });
 };

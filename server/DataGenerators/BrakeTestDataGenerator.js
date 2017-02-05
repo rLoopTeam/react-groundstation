@@ -30,7 +30,7 @@ class BrakeTestDataGenerator {
   SendNewPacketToGS () {
     var payload = [];
 
-		// Accel 1
+    // Accel 1
     payload.push.apply(payload, bin.uint8ToBytes(5, true)); // Fault Flags
     payload.push.apply(payload, bin.float32ToBytes(90.1, true)); // Raw X Axis data
     payload.push.apply(payload, bin.float32ToBytes(2.1, true)); // Raw X Axis data

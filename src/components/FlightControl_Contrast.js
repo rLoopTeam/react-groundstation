@@ -34,19 +34,19 @@ class FlightControl_Contrast extends Component {
   }
 
   render () {
-	    return (
-		    <div className="Overview-content">
+      return (
+        <div className="Overview-content">
 
-				<legend>Contrast Sensor - Streaming</legend>
-					<form className="form-inline">
-						<div className="form-group">
-							<button type="button" className="btn btn-success" onClick={this.FCUContrast_StartStream}>Start Stream</button>
-							<button type="button" className="btn btn-danger" onClick={this.preventDefault}>Stop Stream</button>
+        <legend>Contrast Sensor - Streaming</legend>
+          <form className="form-inline">
+            <div className="form-group">
+              <button type="button" className="btn btn-success" onClick={this.FCUContrast_StartStream}>Start Stream</button>
+              <button type="button" className="btn btn-danger" onClick={this.preventDefault}>Stop Stream</button>
 
-						</div>
-					</form>
-			</div>
-	    );
+            </div>
+          </form>
+      </div>
+      );
   }
 }
 

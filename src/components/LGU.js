@@ -60,11 +60,11 @@ class LGU extends Component {
   }
 
   handleInterlockDirection (e) {
-    if (this.interlockDirection)			{ this.interlockDirection = false; } else			{ this.interlockDirection = true; }
+    if (this.interlockDirection)      { this.interlockDirection = false; } else      { this.interlockDirection = true; }
   }
 
   handleInterlockSpeed (e) {
-    if (this.interlockSpeed)			{ this.interlockSpeed = false; } else			{ this.interlockSpeed = true; }
+    if (this.interlockSpeed)      { this.interlockSpeed = false; } else      { this.interlockSpeed = true; }
   }
 
   handleSpeedChange (e, index) {
@@ -82,15 +82,15 @@ class LGU extends Component {
         // set value on object item
     var val = _speed.value = liftSpeed;
 
-		// set the value for all speed inputs to match the others
-    if (this.interlockSpeed)		{
-      for (var _ind in liftArr)			{
+    // set the value for all speed inputs to match the others
+    if (this.interlockSpeed)    {
+      for (var _ind in liftArr)      {
         if (_ind)// eslint prefers to have for in body wrapped in if statement
-				{
+        {
           var lifts = liftArr[_ind];
-          for (var lift in lifts)					{
+          for (var lift in lifts)          {
             if (lift)// eslint prefers to have for in body wrapped in if statement
-						{
+            {
               var _liftName = Object.keys(lifts)[0];
 
               _speed = lifts[lift].speed.value = liftSpeed;
@@ -122,47 +122,47 @@ class LGU extends Component {
     var _direction = this.state.lift[_index][liftName].direction;
     var liftArr = this.state.lift;
 
-		// set value on object items
+    // set value on object items
     var upVal = _direction.up = false;
     var downVal = _direction.down = true;
 
-		// set values if position is up
-    if (liftDirection === 'up')		{
+    // set values if position is up
+    if (liftDirection === 'up')    {
       upVal = _direction.up = true;
       downVal = _direction.down = false;
     }
 
         // set the value for all speed inputs to match the others
-    if (this.interlockDirection)		{
-      for (var _ind in liftArr)			{
+    if (this.interlockDirection)    {
+      for (var _ind in liftArr)      {
         if (_ind)// eslint prefers to have for in body wrapped in if statement
-				{
+        {
           var lifts = liftArr[_ind];
-          for (var lift in lifts)					{
+          for (var lift in lifts)          {
             if (lift)// eslint prefers to have for in body wrapped in if statement
-						{
+            {
               var _liftName = Object.keys(lifts)[0];
 
               _direction = lifts[lift].direction;
 
-								// set value on object items
+                // set value on object items
               upVal = _direction.up = false;
               downVal = _direction.down = true;
 
-								// set values if position is up
-              if (liftDirection === 'up')								{
+                // set values if position is up
+              if (liftDirection === 'up')                {
                 upVal = _direction.up = true;
                 downVal = _direction.down = false;
               }
 
-								// send name of LGU and new values to server
+                // send name of LGU and new values to server
               socket.emit('lgu:positionChange', {liftName: _liftName, liftDirection: liftDirection});
             }
           }
         }
       }
-    } else		{
-			// send name of LGU and new values to server
+    } else    {
+      // send name of LGU and new values to server
       socket.emit('lgu:positionChange', {liftName: liftName, liftDirection: liftDirection});
     }
 
@@ -172,27 +172,27 @@ class LGU extends Component {
 
   render () {
     var _this = this;
-	    return (
-		    	<div className="Overview-content">
-		    	<fieldset>
-					<legend>
-						Interlock controls
-					</legend>
-					<div className="form-group">
-						<input type="checkbox" name="interlockDirection" id="interlockDirection" onChange={_this.handleInterlockDirection.bind(_this)} value={_this.interlockDirection} />
+      return (
+          <div className="Overview-content">
+          <fieldset>
+          <legend>
+            Interlock controls
+          </legend>
+          <div className="form-group">
+            <input type="checkbox" name="interlockDirection" id="interlockDirection" onChange={_this.handleInterlockDirection.bind(_this)} value={_this.interlockDirection} />
 
-						<label htmlFor="interlockDirection">
-							&nbsp; Interlock Direction
-						</label>
-					</div>
-					<div className="form-group">
-						<input type="checkbox" name="interlockSpeed" id="interlockSpeed" onChange={_this.handleInterlockSpeed.bind(_this)} value={_this.interlockSpeed} />
+            <label htmlFor="interlockDirection">
+              &nbsp; Interlock Direction
+            </label>
+          </div>
+          <div className="form-group">
+            <input type="checkbox" name="interlockSpeed" id="interlockSpeed" onChange={_this.handleInterlockSpeed.bind(_this)} value={_this.interlockSpeed} />
 
-						<label htmlFor="interlockSpeed">
-							&nbsp; Interlock Speed
-						</label>
-					</div>
-				</fieldset>
+            <label htmlFor="interlockSpeed">
+              &nbsp; Interlock Speed
+            </label>
+          </div>
+        </fieldset>
 
                     {
                         this.state.lift.map(function (item, index) {
@@ -211,28 +211,28 @@ class LGU extends Component {
                           return (<form key={index}>
                                         <fieldset>
                                             <legend>
-                                            	{itemName}
+                                              {itemName}
                                             </legend>
 
                                             <div className="form-group">
                                                 <label htmlFor={itemName + '-' + speedkey}>{speedkey}
                                             </label>
 
-											<span>
-												&nbsp; {parseFloat(((speedVal / speedHigh) * 100).toString()).toFixed(4)}%
-											</span>
+                      <span>
+                        &nbsp; {parseFloat(((speedVal / speedHigh) * 100).toString()).toFixed(4)}%
+                      </span>
                                                 <input type="range" name={itemName} id={itemName + '-' + speedkey} onChange={_this.handleSpeedChange.bind(_this, index)} value={speedVal} min={speedLow} max={speedHigh} />
                                                 <div className="row">
-                                                	<div className="col-xs-5">
-                                                		0%
-                                                	</div>
-                                                	<div className="col-xs-2 text-center">
-                                                		50%
-                                                	</div>
-                                                	<div className="col-xs-5 text-right">
-                                                		100%
-                                                	</div>
-												</div>
+                                                  <div className="col-xs-5">
+                                                    0%
+                                                  </div>
+                                                  <div className="col-xs-2 text-center">
+                                                    50%
+                                                  </div>
+                                                  <div className="col-xs-5 text-right">
+                                                    100%
+                                                  </div>
+                        </div>
                                             </div>
 
                                             <div className="form-group">
@@ -247,8 +247,8 @@ class LGU extends Component {
                                         </fieldset>
                                     </form>);
                         })}
-				</div>
-	    );
+        </div>
+      );
   }
 }
 

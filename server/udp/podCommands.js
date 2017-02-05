@@ -197,7 +197,7 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x01, 0x1406, 0x0, 0x0);
   }
 
-		// Accel control
+    // Accel control
   function FCUAccel_FineZero (data) {
     udp.tx.transmitPodCommand('Flight Control', 0x1005, data.accel, data.axis, 0x0, 0x0);
   }
@@ -205,7 +205,7 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x1004, data.accel, 0x00000000, 0x0, 0x0);
   }
 
-		// contrast sensors
+    // contrast sensors
   function FCUContrast_StartStream () {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x01, 0x1301, 0x0, 0x0);
   }

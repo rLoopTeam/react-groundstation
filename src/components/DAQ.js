@@ -36,28 +36,28 @@ class DAQ extends Component {
   }
 
   render () {
-	    return (
-		    <div className="Overview-content">
-				<br /><br />
-				<legend>All Local Logging</legend>
-					<form className="form-inline">
-						<div className="form-group">
-							<button className="btn btn-success" onClick={this.startAllLogging.bind(this, {})}>Start</button>
-							<button className="btn btn-danger" onClick={this.stopAllLogging.bind(this, {})}>Stop</button><br /><br />
+      return (
+        <div className="Overview-content">
+        <br /><br />
+        <legend>All Local Logging</legend>
+          <form className="form-inline">
+            <div className="form-group">
+              <button className="btn btn-success" onClick={this.startAllLogging.bind(this, {})}>Start</button>
+              <button className="btn btn-danger" onClick={this.stopAllLogging.bind(this, {})}>Stop</button><br /><br />
 
-						</div>
-					</form>
+            </div>
+          </form>
 
-				<legend>Stats</legend>
-				<form className="form-inline">
-					<div>Logged Full Accel Packets:</div>
-					<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet DAQ Count 1003' hideUnits='true' readOnly='true'/>
-				</form>
+        <legend>Stats</legend>
+        <form className="form-inline">
+          <div>Logged Full Accel Packets:</div>
+          <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet DAQ Count 1003' hideUnits='true' readOnly='true'/>
+        </form>
 
-				<br></br>
-				<br></br>
-			</div>
-	    );
+        <br></br>
+        <br></br>
+      </div>
+      );
   }
 }
 

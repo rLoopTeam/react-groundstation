@@ -48,10 +48,10 @@ if (isDeveloping) {
     res.end();
   });
 } else {
-	// Serve static assets
+  // Serve static assets
   app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
-	// Always return the main index.html, so react-router render the route in the client
+  // Always return the main index.html, so react-router render the route in the client
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
   });

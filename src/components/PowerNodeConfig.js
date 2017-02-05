@@ -50,17 +50,17 @@ class PowerNodeConfig extends Component {
 
     let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
 
-	    return (
+      return (
             <div>
                 <div className="row">
                     <div className="col-sm-6">
                     <legend>Pack Personality Config</legend>
-						<button type="button" className="btn btn-success" onClick={this.PowerAToPowerB.bind(this, {})} style={{margin: 10}}>Power A To Power B</button><br />
-						<button type="button" className="btn btn-success" onClick={this.PowerBToPowerA.bind(this, {})} style={{margin: 10}}>Power B To Power A</button>
+            <button type="button" className="btn btn-success" onClick={this.PowerAToPowerB.bind(this, {})} style={{margin: 10}}>Power A To Power B</button><br />
+            <button type="button" className="btn btn-success" onClick={this.PowerBToPowerA.bind(this, {})} style={{margin: 10}}>Power B To Power A</button>
                     </div>
                 </div>
             </div>
-	    );
+      );
   }
 }
 

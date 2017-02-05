@@ -41,206 +41,206 @@ class FlightControl_FullAccel extends Component {
 
   accelFineZero (data, e) {
     e.preventDefault();
-		// data.accel, data.axis
+    // data.accel, data.axis
     socket.emit('FlightControl_Accel:FineZero', data);
   }
   accelAutoZero (data, e) {
     e.preventDefault();
-		// data.accel, data.axis
+    // data.accel, data.axis
     socket.emit('FlightControl_Accel:AutoZero', data);
   }
 
   render () {
-	    return (
-		    <div className="Overview-content">
-				<legend>Streaming Control</legend>
-					<form className="form-inline">
-						<div className="form-group">
-							<button type="button" className="btn btn-success" onClick={this.accelStartStream_CalData} style={{margin: 10}}>Start Cal Stream</button>
-							<button type="button" className="btn btn-success" onClick={this.accelStartStream_FullData} style={{margin: 10}}>Start Full Stream</button>
-							<button type="button" className="btn btn-danger" onClick={this.accelStopStream} style={{margin: 10}}>Stop Stream</button>
+      return (
+        <div className="Overview-content">
+        <legend>Streaming Control</legend>
+          <form className="form-inline">
+            <div className="form-group">
+              <button type="button" className="btn btn-success" onClick={this.accelStartStream_CalData} style={{margin: 10}}>Start Cal Stream</button>
+              <button type="button" className="btn btn-success" onClick={this.accelStartStream_FullData} style={{margin: 10}}>Start Full Stream</button>
+              <button type="button" className="btn btn-danger" onClick={this.accelStopStream} style={{margin: 10}}>Stop Stream</button>
 
-						</div>
-					</form>
+            </div>
+          </form>
 
-				<legend>Full Accelerometer Data</legend>
+        <legend>Full Accelerometer Data</legend>
 
-				<LineChart
-					id="AccelerometerChart"
-					StreamingPageManager={this.state.streamManager}
-					parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
-					hideUnits='true'
-					title="Accelerometer time-series"
-					yRange={[-20, 20]}
-					yAxisLabel="Gs"
-					xAxisLabel="Time"
-					totalPoints={60}
-				/>
+        <LineChart
+          id="AccelerometerChart"
+          StreamingPageManager={this.state.streamManager}
+          parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
+          hideUnits='true'
+          title="Accelerometer time-series"
+          yRange={[-20, 20]}
+          yAxisLabel="Gs"
+          xAxisLabel="Time"
+          totalPoints={60}
+        />
 
-				<div className="row margin-bottom-20px">
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-								<label htmlFor="a0_x">A0:X-Axis</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Gs' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+        <div className="row margin-bottom-20px">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+                <label htmlFor="a0_x">A0:X-Axis</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Gs' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-							<label htmlFor="a0_y">A0:Y-Axis</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Gs' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+              <label htmlFor="a0_y">A0:Y-Axis</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Gs' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-							<label htmlFor="a0_z">A0:Z-Axis</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Gs' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
-				</div>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+              <label htmlFor="a0_z">A0:Z-Axis</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Gs' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+        </div>
 
-				<div className="row">
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
+        <div className="row">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
 
-								<label htmlFor="a1_x">A0:Pitch</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Pitch' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+                <label htmlFor="a1_x">A0:Pitch</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Pitch' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-							<label htmlFor="a1_y">A0:Roll</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Roll' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+              <label htmlFor="a1_y">A0:Roll</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Roll' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-				</div>
+        </div>
 
-				<br /><br />
+        <br /><br />
 
-				<div className="row">
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-								<label htmlFor="a1_x">A1:X-Axis</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+        <div className="row">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+                <label htmlFor="a1_x">A1:X-Axis</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-							<label htmlFor="a0_y">A1:Y-Axis</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+              <label htmlFor="a0_y">A1:Y-Axis</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-							<label htmlFor="a0_z">A1:Z-Axis</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
-				</div>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+              <label htmlFor="a0_z">A1:Z-Axis</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+        </div>
 
-				<br />
+        <br />
 
-				<div className="row">
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
+        <div className="row">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
 
-								<label htmlFor="a1_x">A1:Pitch</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+                <label htmlFor="a1_x">A1:Pitch</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
-							<label htmlFor="a1_y">A1:Roll</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' hideUnits='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
-				</div>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+              <label htmlFor="a1_y">A1:Roll</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+        </div>
 
-				<br></br>
-				<br></br>
+        <br></br>
+        <br></br>
 
-				<legend>Device Status</legend>
-				<div className="row">
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
+        <legend>Device Status</legend>
+        <div className="row">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
 
-							<label htmlFor="a0_flags">A0:Flags</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
-							</div>
-						</div>
-					</form>
+              <label htmlFor="a0_flags">A0:Flags</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
 
-							<label htmlFor="a1_flags">A1:Flags</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
-							</div>
-						</div>
-					</form>
-				</div>
+              <label htmlFor="a1_flags">A1:Flags</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
+              </div>
+            </div>
+          </form>
+        </div>
 
-				<div className="row">
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
+        <div className="row">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
 
-							<label htmlFor="last_crc">Last CRC</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Last CRC 1003' hideUnits='true' hex='true' readOnly='true'/>
-							</div>
-						</div>
-					</form>
+              <label htmlFor="last_crc">Last CRC</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Last CRC 1003' hideUnits='true' hex='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
 
-					<form className="form-inline col-xs-4">
-						<div className="form-group">
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
 
-							<label htmlFor="packet_count">Full Data Packet Count</label>
-							<div>
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003' hideUnits='true' readOnly='true'/>
-							</div>
+              <label htmlFor="packet_count">Full Data Packet Count</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1003' hideUnits='true' readOnly='true'/>
+              </div>
 
-						</div>
-					</form>
-					<div className="form-inline col-xs-4">
-							<div>
-								<label htmlFor="packet_count">Calib Data Packet Count</label><br />
-								<GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001' hideUnits='true' readOnly='true'/>
-							</div>
-					</div>
-				</div>
+            </div>
+          </form>
+          <div className="form-inline col-xs-4">
+              <div>
+                <label htmlFor="packet_count">Calib Data Packet Count</label><br />
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Packet Rx Count 1001' hideUnits='true' readOnly='true'/>
+              </div>
+          </div>
+        </div>
 
-				<br></br>
-				<br></br>
-			</div>
-	    );
+        <br></br>
+        <br></br>
+      </div>
+      );
   }
 }
 

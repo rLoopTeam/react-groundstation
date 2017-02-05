@@ -30,7 +30,7 @@ class AccelTestDataGenerator {
   SendNewPacketToGS () {
     var payload = [];
 
-		// Accel 1
+    // Accel 1
     payload.push.apply(payload, bin.uint32ToBytes(5, true)); // Fault Flags
     payload.push.apply(payload, bin.int16ToBytes(-100, true)); // Raw X Axis data
     payload.push.apply(payload, bin.int16ToBytes(-666, true)); // Raw Y Axis data
@@ -41,7 +41,7 @@ class AccelTestDataGenerator {
     payload.push.apply(payload, bin.float32ToBytes(60.0, true)); // Pitch Angle
     payload.push.apply(payload, bin.float32ToBytes(60.0, true)); // Roll Angle
 
-		// Accel 2
+    // Accel 2
     payload.push.apply(payload, bin.uint32ToBytes(50, true)); // Fault Flags
     payload.push.apply(payload, bin.int16ToBytes(-2002, true)); // Raw X Axis data
     payload.push.apply(payload, bin.int16ToBytes(-5005, true)); // Raw Y Axis data

@@ -23,8 +23,8 @@ var logger = new (winston.Logger)({
 logger.level = 'debug';
 
 module.exports = {
-	/*
-	Commented this out to see what breaks, should just delete later
+  /*
+  Commented this out to see what breaks, should just delete later
     sendMessage: function (messageStr){
         var message = new Buffer(messageStr);
         var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
@@ -36,20 +36,20 @@ module.exports = {
         });
     }, */
 
-	// Probably need to do something about these:
+  // Probably need to do something about these:
   sendMessage: function (messageStr) {
     console.log('GS->Pod theoretically: ' + messageStr);
   },
 
-  transmitPodCommand: function (node, packetType, u32Block0, u32Block1, u32Block2, u32Block3)	{
-		// TODO Sequence counters
+  transmitPodCommand: function (node, packetType, u32Block0, u32Block1, u32Block2, u32Block3)  {
+    // TODO Sequence counters
 
-		// Find the IP and port for the node we're transmitting to
+    // Find the IP and port for the node we're transmitting to
     var found = false;
     var port = 0;
     var ip = '';
     for (var i = 0; i < commConfig.RXServers.length; i++) {
-      if (commConfig.RXServers[i].hostName === node)			{
+      if (commConfig.RXServers[i].hostName === node)      {
         found = true;
         port = commConfig.RXServers[i].port;
         ip = commConfig.RXServers[i].hostIP;
@@ -57,7 +57,7 @@ module.exports = {
       }
     }
 
-    if (found === false)		{
+    if (found === false)    {
       console.log("Couldn't transmit to " + node + ' command ' + packetType);
       return;
     } else {
@@ -66,26 +66,26 @@ module.exports = {
 
     var packet = [];
 
-		// These if blocks look odd but I think it'll do the correct handling for everything
-		// everything: + numbers, - numbers, unsigned numbers above the max uint32 / 2
-    if (u32Block0 > 0)			{ packet.push.apply(packet, bin.uint32ToBytes(u32Block0, true)); } else			{ packet.push.apply(packet, bin.int32ToBytes(u32Block0, true)); }
-    if (u32Block1 > 0)			{ packet.push.apply(packet, bin.uint32ToBytes(u32Block1, true)); } else			{ packet.push.apply(packet, bin.int32ToBytes(u32Block1, true)); }
-    if (u32Block2 > 0)			{ packet.push.apply(packet, bin.uint32ToBytes(u32Block2, true)); } else			{ packet.push.apply(packet, bin.int32ToBytes(u32Block2, true)); }
-    if (u32Block3 > 0)			{ packet.push.apply(packet, bin.uint32ToBytes(u32Block3, true)); } else			{ packet.push.apply(packet, bin.int32ToBytes(u32Block3, true)); }
+    // These if blocks look odd but I think it'll do the correct handling for everything
+    // everything: + numbers, - numbers, unsigned numbers above the max uint32 / 2
+    if (u32Block0 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block0, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block0, true)); }
+    if (u32Block1 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block1, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block1, true)); }
+    if (u32Block2 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block2, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block2, true)); }
+    if (u32Block3 > 0)      { packet.push.apply(packet, bin.uint32ToBytes(u32Block3, true)); } else      { packet.push.apply(packet, bin.int32ToBytes(u32Block3, true)); }
 
     packet = this.makeSafetyUDP(0, packetType, packet);
 
-		// Might want to look into reusing the client instead of instantiating a new one each time
+    // Might want to look into reusing the client instead of instantiating a new one each time
     var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
     client.bind(function () { client.setBroadcast(true); });
     client.send(Buffer.from(packet), 0, packet.length, port, ip, (err) => {
-      if (err) 			{
+      if (err)       {
         throw err;
       }
       client.close();
     });
 
-    if (commConfig.MirrorLocal == true)		{
+    if (commConfig.MirrorLocal == true)    {
       var client2 = dgram.createSocket({type: 'udp4', reuseAddr: true});
       client2.send(Buffer.from(packet), 0, packet.length, port, '127.0.0.1', function (err, bytes) {
         if (err) throw err;
@@ -103,7 +103,7 @@ module.exports = {
 
     finalPacket.push.apply(finalPacket, payload);
 
-		// TODO: move this above, probably left here after refactoring but can be moved above and reverified.
+    // TODO: move this above, probably left here after refactoring but can be moved above and reverified.
     var packetLength = payload.length; // Strictly the payload. Header & CRC not included
     finalPacket[6] = bin.uint16ToBytes(packetLength, true)[0];
     finalPacket[7] = bin.uint16ToBytes(packetLength, true)[1];

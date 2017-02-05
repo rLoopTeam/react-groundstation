@@ -58,26 +58,26 @@ class AutoSequence extends Component {
       status: 'Pending'
     }]
 
-			// Added by this.scheduleNextTestResult
-			// nextTestResult: defer()
+      // Added by this.scheduleNextTestResult
+      // nextTestResult: defer()
     };
 
     this.state.streamingPageManager.RequestPacketWithCallback(
-			'Auto-sequence test',
-			// We can't directly pass this.state.nextTestResult.resolve because we want to use the *current* value
-			// of this.state.nextTestResult, even if that state property has been reassigned.
-			(testResult) => {
+      'Auto-sequence test',
+      // We can't directly pass this.state.nextTestResult.resolve because we want to use the *current* value
+      // of this.state.nextTestResult, even if that state property has been reassigned.
+      (testResult) => {
   if (this.state.nextTestResult) {
     this.state.nextTestResult.resolve(testResult);
   }
 });
 
-		// this._isMounted = true;
+    // this._isMounted = true;
   }
 
   componentWillUnmount () {
-		// TODO
-		// this._isMounted = false;
+    // TODO
+    // this._isMounted = false;
     this.state.streamingPageManager.destroy();
   }
 
@@ -90,9 +90,9 @@ class AutoSequence extends Component {
       nextTestResult.promise,
       nextTestResultDeadline
     ]).then(
-			this.recordTestResult.bind(this),
-			this.markAllPendingTestResultsAsFailed.bind(this)
-		);
+      this.recordTestResult.bind(this),
+      this.markAllPendingTestResultsAsFailed.bind(this)
+    );
 
     this.setState({
       nextTestResult: nextTestResult
@@ -116,9 +116,9 @@ class AutoSequence extends Component {
     var newComponentState = _.cloneDeep(this.state);
     newComponentState.testResults = this.state.testResults.map(function (testResult) {
       if (testResult.state === newPacketState &&
-				// Make sure we don't overwrite test results if the FCU/testGenerator sends repeated states,
-				// or if tests were Started again after the timeout (and not Restarted, which would have reset all statuses).
-				testResult.status === 'Pending') {
+        // Make sure we don't overwrite test results if the FCU/testGenerator sends repeated states,
+        // or if tests were Started again after the timeout (and not Restarted, which would have reset all statuses).
+        testResult.status === 'Pending') {
         return _.assign({}, testResult, {
           status: newPacketStatus
         });
@@ -196,24 +196,24 @@ class AutoSequence extends Component {
 
   render () {
     return (
-			<div>
-				<button type="button" className="btn btn-success" onClick={this.sendStartCommand.bind(this)}>Start</button>
-				<button type="button" className="btn btn-success" onClick={this.sendRestartCommand.bind(this)}>Restart</button>
-				<ConfirmButton className="btn btn-danger" delay={2000} action={this.sendSkipCommand}>Skip</ConfirmButton>
-				<ConfirmButton className="btn btn-danger" delay={2000} action={this.sendKillCommand}>Kill</ConfirmButton>
+      <div>
+        <button type="button" className="btn btn-success" onClick={this.sendStartCommand.bind(this)}>Start</button>
+        <button type="button" className="btn btn-success" onClick={this.sendRestartCommand.bind(this)}>Restart</button>
+        <ConfirmButton className="btn btn-danger" delay={2000} action={this.sendSkipCommand}>Skip</ConfirmButton>
+        <ConfirmButton className="btn btn-danger" delay={2000} action={this.sendKillCommand}>Kill</ConfirmButton>
 
-				<table className='test-results'><tbody>{
-					this.getTestResults().map(function (testResult) {
+        <table className='test-results'><tbody>{
+          this.getTestResults().map(function (testResult) {
   return <tr
-								key={testResult.state}
-								className={this.getTestResultClass(testResult.status)}
-								>
-							<td>{testResult.name}</td>
-							<td>{testResult.status}</td>
-						</tr>;
+                key={testResult.state}
+                className={this.getTestResultClass(testResult.status)}
+                >
+              <td>{testResult.name}</td>
+              <td>{testResult.status}</td>
+            </tr>;
 }.bind(this))
-				}</tbody></table>
-			</div>
+        }</tbody></table>
+      </div>
     );
   }
 

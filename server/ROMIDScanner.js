@@ -11,7 +11,7 @@ class TempSensorROMIDScanner {
     this.rtDataStore = rtDataStore;
   }
 
-  BeginScanA (numberOfSensors)	{
+  BeginScanA (numberOfSensors)  {
     this.ScanAIndex = 0;
     this.ScanAROMID = '';
     this.ScanALastIndex = numberOfSensors - 1;
@@ -22,7 +22,7 @@ class TempSensorROMIDScanner {
     console.log('Beginning to scan the temperature sensor IDs on Power Node A.');
   }
 
-  BeginScanB (numberOfSensors)	{
+  BeginScanB (numberOfSensors)  {
     this.ScanBIndex = 0;
     this.ScanBROMID = '';
     this.ScanBLastIndex = numberOfSensors - 1;
@@ -33,7 +33,7 @@ class TempSensorROMIDScanner {
     console.log('Beginning to scan the temperature sensor IDs on Power Node B.');
   }
 
-  ScanACB ()	{
+  ScanACB ()  {
     var IDHi = this.rtDataStore.retrieveDataParameter('Power A ROM Hi').Value;
     var IDLo = this.rtDataStore.retrieveDataParameter('Power A ROM Lo').Value;
     var index = this.rtDataStore.retrieveDataParameter('Power A ROM Index').Value;
@@ -42,7 +42,7 @@ class TempSensorROMIDScanner {
     IDArray = IDArray.concat(bin.uint32ToBytes(IDHi).reverse());
     IDArray = IDArray.concat(bin.uint32ToBytes(IDLo).reverse());
 
-    if (this.ScanATimeout == 100)		{
+    if (this.ScanATimeout == 100)    {
       this.PodCommands.PowerARequestRomID(this.ScanAIndex);
     }
 
@@ -57,12 +57,12 @@ class TempSensorROMIDScanner {
     }
 
     var newByte = IDArray[0].toString(16);
-    if (newByte.length == 1)			{ newByte = '0' + newByte; }
+    if (newByte.length == 1)      { newByte = '0' + newByte; }
     var toAdd = newByte;
 
     for (var i = 1; i < 8; i++) {
       newByte = IDArray[i].toString(16);
-      if (newByte.length == 1)				{ newByte = '0' + newByte; }
+      if (newByte.length == 1)        { newByte = '0' + newByte; }
       toAdd += ' ' + newByte;
     }
 
@@ -78,7 +78,7 @@ class TempSensorROMIDScanner {
     this.PodCommands.PowerARequestRomID(this.ScanAIndex);
   }
 
-  ScanBCB ()	{
+  ScanBCB ()  {
     var IDHi = this.rtDataStore.retrieveDataParameter('Power B ROM Hi').Value;
     var IDLo = this.rtDataStore.retrieveDataParameter('Power B ROM Lo').Value;
     var index = this.rtDataStore.retrieveDataParameter('Power B ROM Index').Value;
@@ -87,7 +87,7 @@ class TempSensorROMIDScanner {
     IDArray = IDArray.concat(bin.uint32ToBytes(IDHi).reverse());
     IDArray = IDArray.concat(bin.uint32ToBytes(IDLo).reverse());
 
-    if (this.ScanBTimeout == 100)		{
+    if (this.ScanBTimeout == 100)    {
       this.PodCommands.PowerBRequestRomID(this.ScanAIndex);
     }
 
@@ -102,12 +102,12 @@ class TempSensorROMIDScanner {
     }
 
     var newByte = IDArray[0].toString(16);
-    if (newByte.length == 1)			{ newByte = '0' + newByte; }
+    if (newByte.length == 1)      { newByte = '0' + newByte; }
     var toAdd = newByte;
 
     for (var i = 1; i < 8; i++) {
       newByte = IDArray[i].toString(16);
-      if (newByte.length == 1)				{ newByte = '0' + newByte; }
+      if (newByte.length == 1)        { newByte = '0' + newByte; }
       toAdd += ' ' + newByte;
     }
 

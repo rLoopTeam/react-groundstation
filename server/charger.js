@@ -3,7 +3,7 @@ var request = require('request');
 var parseString = require('xml2js').parseString;
 
 class charger {
-  constructor (rtDataStore)	{
+  constructor (rtDataStore)  {
     this.updateSystemStatus = this.updateSystemStatus.bind(this);
     this.updateAlarms = this.updateAlarms.bind(this);
     this.updateCurrentSettings = this.updateCurrentSettings.bind(this);
@@ -15,20 +15,20 @@ class charger {
 
   updateCurrentSettings () {
     var request = require('request'),
-		    username = 'admin',
-		    password = 'ipspass',
-		    timeout = 1000,
-		    url = 'http://192.168.0.55/current.xml',
-		    auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+        username = 'admin',
+        password = 'ipspass',
+        timeout = 1000,
+        url = 'http://192.168.0.55/current.xml',
+        auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 
     request(
-		    {
-		        url: url,
-		        headers: {
-		            'Authorization': auth
-		        }
-		    },
-		    function (err, res, body) {
+        {
+            url: url,
+            headers: {
+                'Authorization': auth
+            }
+        },
+        function (err, res, body) {
       if (!err && res.statusCode === 200) {
         parseString(body, function (err, result) {
           var MaxBattCurrent = parseFloat(result.response.zmaxbat0[0].substring(0, result.response.zmaxbat0[0].length - 1));
@@ -38,15 +38,15 @@ class charger {
           var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
 
           newData.parameters.push({'name': 'Charger Max Batt Current', 'value': MaxBattCurrent, 'units': 'Amps'},
-									{'name': 'Charger Boost Current', 'value': BoostToFloatCurrent, 'units': 'Amps'},
-									{'name': 'Charger Float Current', 'value': FloatToBoosCurrent, 'units': 'Amps'}
-									);
+                  {'name': 'Charger Boost Current', 'value': BoostToFloatCurrent, 'units': 'Amps'},
+                  {'name': 'Charger Float Current', 'value': FloatToBoosCurrent, 'units': 'Amps'}
+                  );
 
           this.rtDataStore.insertDataPacket(newData);
         }.bind(this));
-	          	}
-          	}.bind(this)
-		);
+              }
+            }.bind(this)
+    );
 
     request.post('http://192.168.0.55/current.xml', {json: true, body: ''}, function (err, res, body) {
 
@@ -66,36 +66,36 @@ class charger {
           var ACInputCurrent = CurrentToBattery * BatteryVoltage / ACInputVoltageR * (1 / 0.95) + 1.2;
 
           var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
-				/*
-				newData.parameters.push({'name':'Charger Voltage','value':BatteryVoltage,'units':'V DC'},
-							{'name':'Charger Current To Batt','value':CurrentToBattery,'units':'Amps'},
-							{'name':'Charger Current To System','value':CurrentToSystemLoad,'units':'Amps'},
-							{'name':'Charger Input AC','value':ACInputVoltageR,'units':'V AC'},
-							{'name':'Charger Cabinet Temp','value':ChargerCabinetTemp,'units':'C'}
-							);
-							*/
+        /*
+        newData.parameters.push({'name':'Charger Voltage','value':BatteryVoltage,'units':'V DC'},
+              {'name':'Charger Current To Batt','value':CurrentToBattery,'units':'Amps'},
+              {'name':'Charger Current To System','value':CurrentToSystemLoad,'units':'Amps'},
+              {'name':'Charger Input AC','value':ACInputVoltageR,'units':'V AC'},
+              {'name':'Charger Cabinet Temp','value':ChargerCabinetTemp,'units':'C'}
+              );
+              */
           newData.parameters.push({'name': 'Charger Voltage', 'value': BatteryVoltage, 'units': 'V DC'},
-							{'name': 'Charger Current To Batt', 'value': CurrentToBattery, 'units': 'Amps'},
-							{'name': 'Charger AC Current', 'value': ACInputCurrent, 'units': 'A'},
-							{'name': 'Charger Input AC', 'value': ACInputVoltageR, 'units': 'V AC'},
-							{'name': 'Charger Cabinet Temp', 'value': ChargerCabinetTemp, 'units': 'C'}
-							);
+              {'name': 'Charger Current To Batt', 'value': CurrentToBattery, 'units': 'Amps'},
+              {'name': 'Charger AC Current', 'value': ACInputCurrent, 'units': 'A'},
+              {'name': 'Charger Input AC', 'value': ACInputVoltageR, 'units': 'V AC'},
+              {'name': 'Charger Cabinet Temp', 'value': ChargerCabinetTemp, 'units': 'C'}
+              );
 
           this.rtDataStore.insertDataPacket(newData);
         }.bind(this));
       } else {
-      		var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
+          var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
         newData.parameters.push({'name': 'Charger Voltage', 'value': 'Not Connected', 'units': 'V DC'},
-			{'name': 'Charger Current To Batt', 'value': 'Not Connected', 'units': 'Amps'},
-			{'name': 'Charger AC Current', 'value': 'Not Connected', 'units': 'A'},
-			{'name': 'Charger Input AC', 'value': 'Not Connected', 'units': 'V AC'},
-			{'name': 'Charger Cabinet Temp', 'value': 'Not Connected', 'units': 'C'}
-			);
+      {'name': 'Charger Current To Batt', 'value': 'Not Connected', 'units': 'Amps'},
+      {'name': 'Charger AC Current', 'value': 'Not Connected', 'units': 'A'},
+      {'name': 'Charger Input AC', 'value': 'Not Connected', 'units': 'V AC'},
+      {'name': 'Charger Cabinet Temp', 'value': 'Not Connected', 'units': 'C'}
+      );
       }
     }.bind(this));
   }
 
-  sendIpsURL (successMsg, failMsg, url)	{
+  sendIpsURL (successMsg, failMsg, url)  {
     var http = require('http');
     var client = http.createClient(80, '192.168.0.55');
 
@@ -108,7 +108,7 @@ class charger {
 
     request.end();
     request.on('response', function (response) {
-      if (response.statusCode == 200)			{
+      if (response.statusCode == 200)      {
         console.log(successMsg);
         console.log();
       } else {
@@ -228,7 +228,7 @@ class charger {
             if (HighBatteryTemperature != '0') { error += 'High Battery Temperature, '; }
             if (LVDActive != '0') { error += 'LVD active, '; }
 
-            if (error.length > 0) { error = error.substring(0, error.length - 2); } else						{ error = 'none'; }
+            if (error.length > 0) { error = error.substring(0, error.length - 2); } else            { error = 'none'; }
 
             var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
             newData.parameters.push({'name': 'Charger Faults', 'value': error, 'units': ''});

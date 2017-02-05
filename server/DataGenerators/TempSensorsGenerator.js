@@ -35,7 +35,7 @@ class TempSensorsGenerator {
     payload.push.apply(payload, bin.uint16ToBytes(NumOfSensors, true)); // Number of temperature sensors
     payload.push.apply(payload, bin.uint16ToBytes(0, true)); // Spare slot
 
-    for (var i = 0; i < NumOfSensors; i++)		{
+    for (var i = 0; i < NumOfSensors; i++)    {
       payload.push.apply(payload, bin.float32ToBytes(23 + i / 10, true));
     }
 

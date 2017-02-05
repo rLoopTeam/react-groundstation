@@ -1,11 +1,11 @@
 /* ------------
     This module should:
-		-receive packets from the udp server
-		-verify packet checksum
-		-read the config file to determine how to parse the packet types
-		-read the config file to determine how to parse fields in a given packet type
-		-Enums & bitfields are not decoded here.
-		-Provide a AddSubscriber() function so data stores can add a callback to receive new decoded parameter data
+    -receive packets from the udp server
+    -verify packet checksum
+    -read the config file to determine how to parse the packet types
+    -read the config file to determine how to parse fields in a given packet type
+    -Enums & bitfields are not decoded here.
+    -Provide a AddSubscriber() function so data stores can add a callback to receive new decoded parameter data
 ------------ */
 
 /*
@@ -17,7 +17,7 @@ const bin = require('./binary.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
 
 class packetStats {
-  constructor (rtDataStore)	{
+  constructor (rtDataStore)  {
     this.rtDataStore = rtDataStore;
     this.rxPackets = [];
     this.daqPackets = [];
@@ -30,7 +30,7 @@ class packetStats {
   gotPacketType (packetType, CRC, sequence, node) {
     var found = false;
     for (var i = 0; i < this.rxPackets.length; i++) {
-      if (this.rxPackets[i].type == packetType.toString(16))			{
+      if (this.rxPackets[i].type == packetType.toString(16))      {
         this.rxPackets[i].count++;
         this.rxPackets[i].crc = CRC;
         if (sequence - this.rxPackets[i].lastSequence > 1) {
@@ -41,12 +41,12 @@ class packetStats {
         break;
       }
     }
-    if (found === false)			{ this.rxPackets.push({'type': packetType.toString(16), 'count': 1, 'lastSequence': sequence, 'sequenceJumps': 0}); }
+    if (found === false)      { this.rxPackets.push({'type': packetType.toString(16), 'count': 1, 'lastSequence': sequence, 'sequenceJumps': 0}); }
 
-		// Records last time a node was seen
+    // Records last time a node was seen
     found = false;
-    for (var i = 0; i < this.nodeTimes.length; i++)		{
-      if (this.nodeTimes[i].name == node)			{
+    for (var i = 0; i < this.nodeTimes.length; i++)    {
+      if (this.nodeTimes[i].name == node)      {
         this.nodeTimes[i].lastSeen = (new Date()).getTime();
         found = true;
         break;
@@ -57,9 +57,9 @@ class packetStats {
     }
   }
 
-  loggedPacketType (packetType)	{
+  loggedPacketType (packetType)  {
     for (var i = 0; i < this.daqPackets.length; i++) {
-      if (this.daqPackets[i].type == packetType.toString(16))			{
+      if (this.daqPackets[i].type == packetType.toString(16))      {
         this.daqPackets[i].count++;
         return;
       }
@@ -71,23 +71,23 @@ class packetStats {
     var newData = {'packetName': 'Packet Stats', 'packetType': '0', 'rxTime': 0, 'parameters': []};
     for (var i = 0; i < this.rxPackets.length; i++) {
       newData.parameters.push({'name': 'Packet Rx Count ' + this.rxPackets[i].type, 'value': this.rxPackets[i].count, 'units': 'packets'},
-									{'name': 'Packet Last CRC ' + this.rxPackets[i].type, 'value': this.rxPackets[i].crc, 'units': ''},
-									{'name': 'Packet Sequence Jumps ' + this.rxPackets[i].type, 'value': this.rxPackets[i].sequenceJumps, 'units': ''}
-									);
+                  {'name': 'Packet Last CRC ' + this.rxPackets[i].type, 'value': this.rxPackets[i].crc, 'units': ''},
+                  {'name': 'Packet Sequence Jumps ' + this.rxPackets[i].type, 'value': this.rxPackets[i].sequenceJumps, 'units': ''}
+                  );
     }
     for (var i = 0; i < this.daqPackets.length; i++) {
       newData.parameters.push({'name': 'Packet DAQ Count ' + this.daqPackets[i].type, 'value': this.daqPackets[i].count, 'units': 'packets'}
-									);
+                  );
     }
 
     var currentTime = (new Date()).getTime();
     for (var i = 0; i < this.nodeTimes.length; i++) {
       if ((currentTime - this.nodeTimes[i].lastSeen) < 2000) // 2 seconds
-			{
-				// Node has been seen in the past 2 seconds
+      {
+        // Node has been seen in the past 2 seconds
         newData.parameters.push({'name': this.nodeTimes[i].name + ' network status', 'value': 'Online', 'units': ''});
       } else {
-				// Node has not been seen in the past 2 seconds
+        // Node has not been seen in the past 2 seconds
         newData.parameters.push({'name': this.nodeTimes[i].name + ' network status', 'value': 'Offline', 'units': ''});
       }
     }

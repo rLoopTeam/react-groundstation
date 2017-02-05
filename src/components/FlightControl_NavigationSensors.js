@@ -20,15 +20,15 @@ class FlightControl_NavigationSensors extends Component {
     };
     this.accelerometerLabels = {
       accelerometer0: [
-	            {label: 'Accelerometer 0 X Raw', value: 'Accel 0 X Raw'},
-	            {label: 'Accelerometer 0 Y Raw', value: 'Accel 0 Y Raw'},
-	            {label: 'Accelerometer 0 Z Raw', value: 'Accel 0 Z Raw'}
-	        ],
-	        accelerometer1: [
-	            {label: 'Accelerometer 1 X Raw', value: 'Accel 1 X Raw'},
-	            {label: 'Accelerometer 1 Y Raw', value: 'Accel 1 Y Raw'},
-	            {label: 'Accelerometer 1 Z Raw', value: 'Accel 1 Z Raw'}
-	        ]
+              {label: 'Accelerometer 0 X Raw', value: 'Accel 0 X Raw'},
+              {label: 'Accelerometer 0 Y Raw', value: 'Accel 0 Y Raw'},
+              {label: 'Accelerometer 0 Z Raw', value: 'Accel 0 Z Raw'}
+          ],
+          accelerometer1: [
+              {label: 'Accelerometer 1 X Raw', value: 'Accel 1 X Raw'},
+              {label: 'Accelerometer 1 Y Raw', value: 'Accel 1 Y Raw'},
+              {label: 'Accelerometer 1 Z Raw', value: 'Accel 1 Z Raw'}
+          ]
     };
     this.rangefinderLabels = [
             {label: 'ForwardLaser RAW value', value: 'ForwardLaser RAW value'}
@@ -65,13 +65,13 @@ class FlightControl_NavigationSensors extends Component {
   }
 
   render () {
-	    return (
-		    <div>
-            	<h2>Navigation sensors</h2>
+      return (
+        <div>
+              <h2>Navigation sensors</h2>
                 <div className="row">
                 {<button type="button" className="btn btn-success" onClick={this.streamLaserData} style={{margin: 10}}>Start Laser Stream</button>}
                     <div className="col-sm-4">
-                    	<legend>Accelerometer 0 raw values</legend>
+                      <legend>Accelerometer 0 raw values</legend>
 
                         {this.accelerometerLabels.accelerometer0.map(function (item, index) {
                           return (
@@ -86,7 +86,7 @@ class FlightControl_NavigationSensors extends Component {
 
                     </div>
                     <div className="col-sm-4">
-                    	<legend>Accelerometer 1 raw values</legend>
+                      <legend>Accelerometer 1 raw values</legend>
 
                         {/* <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button> */}
                         {this.accelerometerLabels.accelerometer1.map(function (item, index) {
@@ -103,7 +103,7 @@ class FlightControl_NavigationSensors extends Component {
                 </div>
                 <div className="row">
                     <div className="col-sm-4">
-                    	<legend>Laser Range finder raw values</legend>
+                      <legend>Laser Range finder raw values</legend>
 
                         {/* <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button> */}
                         {this.rangefinderLabels.map(function (item, index) {
@@ -118,8 +118,8 @@ class FlightControl_NavigationSensors extends Component {
                         }, this)}
 
                     </div>
-					<div className="col-sm-4">
-                    	<legend>Laser Distance Sensors</legend>
+          <div className="col-sm-4">
+                      <legend>Laser Distance Sensors</legend>
 
                         {/* <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button> */}
                         {this.laserheightLabels.map(function (item, index) {
@@ -135,8 +135,8 @@ class FlightControl_NavigationSensors extends Component {
 
                     </div>
                 </div>
-			</div>
-	    );
+      </div>
+      );
   }
 }
 

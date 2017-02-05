@@ -4,8 +4,8 @@ const commConfig = require('../../config/commConfig');
 
 class udp {
   constructor (logger, packetProcessorCb) {
-	  this.tx = udptx;
-	  this.logger = logger;
+    this.tx = udptx;
+    this.logger = logger;
   }
 }
 

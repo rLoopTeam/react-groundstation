@@ -92,7 +92,7 @@ class Throttles extends Component {
     });
 
     socket.on('connect', function () {
-			// join pubsub group
+      // join pubsub group
       socket.emit('join', {name: 'hoverEngines', room: 'hoverEngines'});
     });
 

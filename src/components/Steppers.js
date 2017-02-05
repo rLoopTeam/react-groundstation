@@ -96,7 +96,7 @@ class Steppers extends Component {
     var _this = this;
     var buttonClasses = 'btn btn-primary ';
 
-	    return (
+      return (
             <div className="row">
 
                 <div className="col-md-6">
@@ -169,7 +169,7 @@ class Steppers extends Component {
                 </div>
 
             </div>
-	    );
+      );
   }
 }
 
