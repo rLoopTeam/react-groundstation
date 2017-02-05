@@ -11,6 +11,7 @@
   "rules": {
     "mocha/no-exclusive-tests": "error",
     "camelcase": ["warn"],
-    "brace-style": ["warn"]
+    "brace-style": ["warn"],
+    "no-unused-vars": ["warn", { "vars": "all", "args": "none", "varsIgnorePattern": "^_" }]
   }
 }
