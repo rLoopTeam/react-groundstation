@@ -1,4 +1,4 @@
-fs = require('fs');
+var fs = require('fs');
 
 class poddaq {
   constructor (packetStats) {

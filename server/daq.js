@@ -1,4 +1,4 @@
-fs = require('fs');
+var fs = require('fs');
 
 class daq {
   constructor (packetStats) {

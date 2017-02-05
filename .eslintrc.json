@@ -9,6 +9,8 @@
     "react"
   ],
   "rules": {
-    "mocha/no-exclusive-tests": "error"
+    "mocha/no-exclusive-tests": "error",
+    "camelcase": ["warn"],
+    "brace-style": ["warn"]
   }
 }

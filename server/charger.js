@@ -1,4 +1,4 @@
-fs = require('fs');
+var fs = require('fs');
 var request = require('request');
 var parseString = require('xml2js').parseString;
 

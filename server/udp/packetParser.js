@@ -62,7 +62,7 @@ class PacketParser {
   }
 
   logPacket (packet) {
-    data = '';
+    var data = '';
     for (var i = 0, len = packet.Parameters.length; i < len; i++) {
       if (i > 0) {
         data += ',';

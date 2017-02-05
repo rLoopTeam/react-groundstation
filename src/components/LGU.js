@@ -85,12 +85,10 @@ class LGU extends Component {
     // set the value for all speed inputs to match the others
     if (this.interlockSpeed) {
       for (var _ind in liftArr) {
-        if (_ind)// eslint prefers to have for in body wrapped in if statement
-        {
+        if (_ind) { // eslint prefers to have for in body wrapped in if statement
           var lifts = liftArr[_ind];
           for (var lift in lifts) {
-            if (lift)// eslint prefers to have for in body wrapped in if statement
-            {
+            if (lift) { // eslint prefers to have for in body wrapped in if statement
               var _liftName = Object.keys(lifts)[0];
 
               _speed = lifts[lift].speed.value = liftSpeed;
