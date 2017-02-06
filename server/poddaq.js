@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-class poddaq {
+class PodDAQ {
   constructor (packetStats) {
     this.isLogging = false;
     this.gotNewPacket = this.gotNewPacket.bind(this);
@@ -34,5 +34,5 @@ class poddaq {
 }
 
 module.exports = function (packetStats) {
-  return new poddaq(packetStats);
+  return new PodDAQ(packetStats);
 };

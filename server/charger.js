@@ -1,8 +1,7 @@
-var fs = require('fs');
 var request = require('request');
 var parseString = require('xml2js').parseString;
 
-class charger {
+class Charger {
   constructor (rtDataStore) {
     this.updateSystemStatus = this.updateSystemStatus.bind(this);
     this.updateAlarms = this.updateAlarms.bind(this);
@@ -14,12 +13,12 @@ class charger {
   }
 
   updateCurrentSettings () {
-    var request = require('request'),
-      username = 'admin',
-      password = 'ipspass',
-      timeout = 1000,
-      url = 'http://192.168.0.55/current.xml',
-      auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
+    var request = require('request');
+    var username = 'admin';
+    var password = 'ipspass';
+    var timeout = 1000;
+    var url = 'http://192.168.0.55/current.xml';
+    var auth = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
 
     request(
       {
@@ -31,6 +30,12 @@ class charger {
         function (err, res, body) {
           if (!err && res.statusCode === 200) {
             parseString(body, function (err, result) {
+              if (err) {
+                console.error('Error parsing current.xml');
+                console.error(err);
+                return;
+              }
+
               var MaxBattCurrent = parseFloat(result.response.zmaxbat0[0].substring(0, result.response.zmaxbat0[0].length - 1));
               var BoostToFloatCurrent = parseFloat(result.response.zb2f0[0].substring(0, result.response.zb2f0[0].length - 1));
               var FloatToBoosCurrent = parseFloat(result.response.zf2b0[0].substring(0, result.response.zf2b0[0].length - 1));
@@ -47,16 +52,18 @@ class charger {
           }
         }.bind(this)
     );
-
-    request.post('http://192.168.0.55/current.xml', {json: true, body: ''}, function (err, res, body) {
-
-    });
   }
 
   updateSystemStatus () {
     request.post('http://192.168.0.55/system.xml', {json: true, body: '', timeout: 1000}, function (err, res, body) {
       if (!err && res.statusCode === 200) {
         parseString(body, function (err, result) {
+          if (err) {
+            console.error('Error parsing system.xml');
+            console.error(err);
+            return;
+          }
+
           var BatteryVoltage = parseFloat(result.response.fubat0[0].substring(0, result.response.fubat0[0].length - 1));
           var CurrentToBattery = parseFloat(result.response.ibat0[0].substring(0, result.response.ibat0[0].length - 1));
           var CurrentToSystemLoad = parseFloat(result.response.iload0[0].substring(0, result.response.iload0[0].length - 1)); // Probably just wrong
@@ -108,7 +115,7 @@ class charger {
 
     request.end();
     request.on('response', function (response) {
-      if (response.statusCode == 200) {
+      if (response.statusCode === 200) {
         console.log(successMsg);
         console.log();
       } else {
@@ -124,7 +131,7 @@ class charger {
       return;
     }
 
-    var voltsFormatted = new Number(volts);
+    var voltsFormatted = Number(volts);
     voltsFormatted *= 100;
 
     var url = '/voltage.htm?fubat=' + voltsFormatted.toFixed(0);
@@ -137,7 +144,7 @@ class charger {
       return;
     }
 
-    var voltsFormatted = new Number(volts);
+    var voltsFormatted = Number(volts);
     voltsFormatted *= 100;
 
     var url = '/voltage.htm?bubat=' + voltsFormatted.toFixed(0);
@@ -150,7 +157,7 @@ class charger {
       return;
     }
 
-    var currentFormatted = new Number(current);
+    var currentFormatted = Number(current);
     currentFormatted *= 10;
 
     var url = '/current.htm?max=' + currentFormatted.toFixed(0);
@@ -163,7 +170,7 @@ class charger {
       return;
     }
 
-    var currentFormatted = new Number(current);
+    var currentFormatted = Number(current);
     currentFormatted *= 10;
 
     var url = '/current.htm?b2f=' + currentFormatted.toFixed(0);
@@ -176,16 +183,11 @@ class charger {
       return;
     }
 
-    var currentFormatted = new Number(current);
+    var currentFormatted = Number(current);
     currentFormatted *= 10;
 
     var url = '/current.htm?f2b=' + currentFormatted.toFixed(0);
     this.sendIpsURL('Charger float to boost battery current set to: ' + (current), 'Error setting float to boost charger current.', url);
-  }
-
-  setVoltage (volts) {
-    setFloatVoltage(volts);
-    setBoostVoltage(volts);
   }
 
   setVoltage (volts) {
@@ -194,7 +196,7 @@ class charger {
       return;
     }
 
-    var voltsFormatted = new Number(volts);
+    var voltsFormatted = Number(volts);
     voltsFormatted *= 100;
 
     var url = '/voltage.htm?fubat=' + voltsFormatted.toFixed(0) + '&bubat=' + voltsFormatted.toFixed(0);
@@ -202,44 +204,48 @@ class charger {
   }
 
   updateAlarms () {
-    {
-      request.post('http://192.168.0.55/status.xml', {json: true, body: ''}, function (err, res, body) {
-        if (!err && res.statusCode === 200) {
-          parseString(body, function (err, result) {
-            var AnyMalfunction = result.response.led0[0];
-            var LoadFuseBlown = result.response.led1[0];
-            var BatteryFuseBlown = result.response.led2[0];
-            var PhasesOutageFailure = result.response.led3[0];
-            var LowBatteryVoltage = result.response.led4[0];
-            var HighBatteryVoltage = result.response.led5[0];
-            var ModuleFailure = result.response.led6[0];
-            var HighBatteryTemperature = result.response.led7[0];
-            var LVDActive = result.response.led8[0];
+    request.post('http://192.168.0.55/status.xml', {json: true, body: ''}, function (err, res, body) {
+      if (!err && res.statusCode === 200) {
+        parseString(body, function (err, result) {
+          if (err) {
+            console.error('Error parsing status.xml');
+            console.error(err);
+            return;
+          }
 
-            var error = '';
+          var AnyMalfunction = result.response.led0[0];
+          var LoadFuseBlown = result.response.led1[0];
+          var BatteryFuseBlown = result.response.led2[0];
+          var PhasesOutageFailure = result.response.led3[0];
+          var LowBatteryVoltage = result.response.led4[0];
+          var HighBatteryVoltage = result.response.led5[0];
+          var ModuleFailure = result.response.led6[0];
+          var HighBatteryTemperature = result.response.led7[0];
+          var LVDActive = result.response.led8[0];
 
-            if (AnyMalfunction != '0') { error += 'General Fault, '; }
-            if (LoadFuseBlown != '0') { error += 'Load fuse blown, '; }
-            if (BatteryFuseBlown != '0') { error += 'Battery Fuse Blown, '; }
-            if (PhasesOutageFailure != '0') { error += '3 phases outage failure, '; }
-            if (LowBatteryVoltage != '0') { error += 'Low Battery Voltage, '; }
-            if (HighBatteryVoltage != '0') { error += 'High Battery Voltage, '; }
-            if (ModuleFailure != '0') { error += 'Module Failure, '; }
-            if (HighBatteryTemperature != '0') { error += 'High Battery Temperature, '; }
-            if (LVDActive != '0') { error += 'LVD active, '; }
+          var error = '';
 
-            if (error.length > 0) { error = error.substring(0, error.length - 2); } else { error = 'none'; }
+          if (AnyMalfunction != '0') { error += 'General Fault, '; }
+          if (LoadFuseBlown != '0') { error += 'Load fuse blown, '; }
+          if (BatteryFuseBlown != '0') { error += 'Battery Fuse Blown, '; }
+          if (PhasesOutageFailure != '0') { error += '3 phases outage failure, '; }
+          if (LowBatteryVoltage != '0') { error += 'Low Battery Voltage, '; }
+          if (HighBatteryVoltage != '0') { error += 'High Battery Voltage, '; }
+          if (ModuleFailure != '0') { error += 'Module Failure, '; }
+          if (HighBatteryTemperature != '0') { error += 'High Battery Temperature, '; }
+          if (LVDActive != '0') { error += 'LVD active, '; }
 
-            var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
-            newData.parameters.push({'name': 'Charger Faults', 'value': error, 'units': ''});
-            this.rtDataStore.insertDataPacket(newData);
-          }.bind(this));
-        }
-      }.bind(this));
-    }
+          if (error.length > 0) { error = error.substring(0, error.length - 2); } else { error = 'none'; }
+
+          var newData = {'packetName': 'Charger', 'packetType': '0', 'rxTime': 0, 'parameters': []};
+          newData.parameters.push({'name': 'Charger Faults', 'value': error, 'units': ''});
+          this.rtDataStore.insertDataPacket(newData);
+        }.bind(this));
+      }
+    }.bind(this));
   }
 }
 
 module.exports = function (rtDataStore) {
-  return new charger(rtDataStore);
+  return new Charger(rtDataStore);
 };

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
-import GenericParameterLabel from './GenericParameterLabel.js';
-import DataStreamClient from '../StreamPipeClient.js';
-import NumericInput from './NumericInput.js';
 import config from '../../config/commConfig';
 
 import io from 'socket.io-client';
@@ -48,15 +45,15 @@ class PowerNodeConfig extends Component {
     var _this = this;
     var buttonClasses = 'btn btn-primary ' + ((this.state.developmentMode) ? '' : 'disabled');
 
-    let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
+    let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%'};
 
     return (
             <div>
                 <div className="row">
                     <div className="col-sm-6">
                     <legend>Pack Personality Config</legend>
-            <button type="button" className="btn btn-success" onClick={this.PowerAToPowerB.bind(this, {})} style={{margin: 10}}>Power A To Power B</button><br />
-            <button type="button" className="btn btn-success" onClick={this.PowerBToPowerA.bind(this, {})} style={{margin: 10}}>Power B To Power A</button>
+                    <button type="button" className="btn btn-success" onClick={this.PowerAToPowerB.bind(this, {})} style={{margin: 10}}>Power A To Power B</button><br />
+                    <button type="button" className="btn btn-success" onClick={this.PowerBToPowerA.bind(this, {})} style={{margin: 10}}>Power B To Power A</button>
                     </div>
                 </div>
             </div>

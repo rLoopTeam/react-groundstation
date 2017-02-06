@@ -2,7 +2,7 @@ const udptx = require('./tx');
 const udprx = require('./rx');
 const commConfig = require('../../config/commConfig');
 
-class udp {
+class UDP {
   constructor (logger, packetProcessorCb) {
     this.tx = udptx;
     this.logger = logger;
@@ -10,5 +10,5 @@ class udp {
 }
 
 module.exports = function (logger, packetProcessorCb) {
-  return new udp(logger, packetProcessorCb);
+  return new UDP(logger, packetProcessorCb);
 };

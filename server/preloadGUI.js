@@ -34,7 +34,7 @@ module.exports = function () {
     client.bind();
     client.on('listening', function () {
       client.setBroadcast(true);
-      client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function (err, bytes) {
+      client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function (_err, bytes) {
         client.close();
       });
     });

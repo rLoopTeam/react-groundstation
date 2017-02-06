@@ -34,8 +34,8 @@ class Stop extends Component {
     e.preventDefault();
     var _value = value;
 
-    if (value == 0) { socket.emit('PowerA:LatchRelay', {}); }
-    if (value == 1) { socket.emit('PowerB:LatchRelay', {}); }
+    if (value === 0) { socket.emit('PowerA:LatchRelay', {}); }
+    if (value === 1) { socket.emit('PowerB:LatchRelay', {}); }
   }
 
   render () {

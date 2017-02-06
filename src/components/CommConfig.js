@@ -68,10 +68,10 @@ class CommConfig extends Component {
   }
 
   handleChange (legend, key, e) {
-    var _this = this,
-      _name = e.currentTarget.name,
-      _value = e.currentTarget.value,
-      _commConfig = _this.state.commConfig;
+    var _this = this;
+    var _name = e.currentTarget.name;
+    var _value = e.currentTarget.value;
+    var _commConfig = _this.state.commConfig;
 
     if (!isNaN(_value) && _value !== '') { _value = parseInt(_value, 10); }
 
@@ -93,8 +93,8 @@ class CommConfig extends Component {
     return (
           <div className="Overview-content">
         {Object.keys(this.state.commConfig).map(function (item, index) {
-          var label = item,
-            input = _this.state.commConfig[label];
+          var label = item;
+          var input = _this.state.commConfig[label];
 
           switch (typeof (input)) {
             case 'object':
@@ -106,16 +106,16 @@ class CommConfig extends Component {
                       aoInputGroup.push({legend: label, key: aIndex});
 
                       Object.keys(aItem).map(function (aoItem, aoIndex) {
-                        var aoLabel = aoItem,
-                          aoInput = aItem[aoLabel];
+                        var aoLabel = aoItem;
+                        var aoInput = aItem[aoLabel];
 
                         return aoInputGroup.push({input: aoInput, label: aoLabel});
                       });
 
                       return inputs.push(aoInputGroup);
                     } else {
-                      var aLabel = Object.keys(aItem),
-                        aInput = aItem;
+                      var aLabel = Object.keys(aItem);
+                      var aInput = aItem;
 
                       return inputs.push({legend: label, input: aInput, label: aLabel});
                     }
@@ -125,8 +125,8 @@ class CommConfig extends Component {
                   oInputGroup.push({legend: label, key: null});
 
                   Object.keys(input).map(function (oItem, oIndex) {
-                    var oLabel = oItem,
-                      oInput = input[oLabel];
+                    var oLabel = oItem;
+                    var oInput = input[oLabel];
 
                     return oInputGroup.push({input: oInput, label: oLabel});
                   });
@@ -152,8 +152,7 @@ class CommConfig extends Component {
                   return (<fieldset>
                   <legend>{elem[0].legend}</legend>
                     {elem.map(function (e, i) {
-                      if (e.label) // do not show empty inputs
-                      {
+                      if (e.label) { // do not show empty inputs
                         return (
                           <div key={inx + '-' + i} className="form-group">
                             <label htmlFor={e.label}>{e.label}</label>

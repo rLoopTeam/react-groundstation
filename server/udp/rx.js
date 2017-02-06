@@ -4,7 +4,7 @@ var dgram = require('dgram');
 * UDP data receiver
 */
 
-class udpServer {
+class UDPServer {
   constructor (port, ip, name, rxCallback) {
     this.udpServer = dgram.createSocket({type: 'udp4', reuseAddr: true});
     this.rxCallback = rxCallback;
@@ -20,7 +20,7 @@ class udpServer {
     }.bind(this));
 
     this.udpServer.on('disconnect', function () {
-      udpServer.bind(port, function () {
+      this.udpServer.bind(port, function () {
         this.udpServer.setBroadcast(true);
       }.bind(this));
     }.bind(this));
@@ -32,5 +32,5 @@ class udpServer {
 }
 
 module.exports = function (port, ip, name, rxCallback) {
-  return new udpServer(port, ip, name, rxCallback);
+  return new UDPServer(port, ip, name, rxCallback);
 };

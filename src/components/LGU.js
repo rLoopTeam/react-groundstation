@@ -93,18 +93,18 @@ class LGU extends Component {
 
               _speed = lifts[lift].speed.value = liftSpeed;
 
-                            // send name of LGU and new value set
+              // send name of LGU and new value set
               socket.emit('lgu:speedChange', {liftName: _liftName, liftSpeed: liftSpeed});
             }
           }
         }
       }
     } else {
-            // send name of LGU and new value set
+      // send name of LGU and new value set
       socket.emit('lgu:speedChange', {liftName: liftName, liftSpeed: liftSpeed});
     }
 
-        // set state
+    // set state
     this.setState({_speed: _speed});
   }
 
@@ -194,17 +194,17 @@ class LGU extends Component {
 
                     {
                         this.state.lift.map(function (item, index) {
-                          var itemName = Object.keys(item),
-                            speedkey = Object.keys(item[itemName])[1],
-                            speedLow = item[itemName].speed.low,
-                            speedHigh = item[itemName].speed.high,
-                            speedVal = item[itemName].speed.value,
-                            directionkey = Object.keys(item[itemName])[0],
-                            direction = Object.keys(item[itemName].direction),
-                            upKey = direction[0],
-                            upVal = item[itemName].direction.up,
-                            downKey = direction[1],
-                            downVal = item[itemName].direction.down;
+                          var itemName = Object.keys(item);
+                          var speedkey = Object.keys(item[itemName])[1];
+                          var speedLow = item[itemName].speed.low;
+                          var speedHigh = item[itemName].speed.high;
+                          var speedVal = item[itemName].speed.value;
+                          var directionkey = Object.keys(item[itemName])[0];
+                          var direction = Object.keys(item[itemName].direction);
+                          var upKey = direction[0];
+                          var upVal = item[itemName].direction.up;
+                          var downKey = direction[1];
+                          var downVal = item[itemName].direction.down;
 
                           return (<form key={index}>
                                         <fieldset>

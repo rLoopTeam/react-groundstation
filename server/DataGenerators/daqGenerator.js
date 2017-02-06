@@ -4,7 +4,7 @@ const dgram = require('dgram');
 const bin = require('../udp/binary.js');
 const crc = require('../udp/crc.js');
 
-class daqGenerator {
+class DAQGenerator {
   constructor () {
     this.daqTypes = [];
     this.sequences = [];
@@ -22,7 +22,7 @@ class daqGenerator {
     var payload = [];
     var index;
 
-    for (var i = 0; i < this.sequences.length; i++) {
+    for (let i = 0; i < this.sequences.length; i++) {
       if (this.sequences[i].type === packetType) {
         index = i;
         break;
@@ -30,7 +30,7 @@ class daqGenerator {
     }
 
     // should do something more creativ but eh
-    for (var i = 0; i < sampleQuantity; i++) {
+    for (let i = 0; i < sampleQuantity; i++) {
       switch (sampleType) {
         case 'uint8':payload.push.apply(payload, bin.uint8ToBytes(i + this.sequences[index].start, true)); break;
         case 'int8':payload.push.apply(payload, bin.int8ToBytes(i + this.sequences[index].start, true)); break;
@@ -50,7 +50,7 @@ class daqGenerator {
     client.bind();
     client.on('listening', function () {
       client.setBroadcast(true);
-      client.send(packetBuf, 0, packetBuf.length, port, '255.255.255.255', function (err, bytes) {
+      client.send(packetBuf, 0, packetBuf.length, port, '255.255.255.255', function (_err, bytes) {
         client.close();
       });
     });
@@ -76,5 +76,5 @@ class daqGenerator {
 }
 
 module.exports = function () {
-  return new daqGenerator();
+  return new DAQGenerator();
 };

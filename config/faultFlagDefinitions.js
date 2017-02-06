@@ -24,14 +24,6 @@ module.exports = {
     ]
   },
 
-  // Accel Data Full
-  'Accel 0 Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
-    ]
-  },
-
   /*
   * LCCM655 Accel
   */
@@ -333,20 +325,6 @@ module.exports = {
       {'name': 'B1TCM ADDX Fault', 'severity': 'critical'},
       {'name': 'FLASH ATCM ADDX Fault', 'severity': 'critical'},
       {'name': 'RTI WWD NMI Group2 24 Fault', 'severity': 'critical'}
-    ]
-  },
-
-  /*
-  * RM4 Brakes
-  */
-  'Brake Core Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'MLP range limit low', 'severity': 'critical'},
-      {'name': 'MLP range limit high', 'severity': 'critical'},
-      {'name': 'Calibration data reload', 'severity': 'critical'},
-      {'name': 'Development mode enabled', 'severity': 'critical'}
     ]
   },
 

@@ -42,27 +42,27 @@ class TempSensorROMIDScanner {
     IDArray = IDArray.concat(bin.uint32ToBytes(IDHi).reverse());
     IDArray = IDArray.concat(bin.uint32ToBytes(IDLo).reverse());
 
-    if (this.ScanATimeout == 100) {
+    if (this.ScanATimeout === 100) {
       this.PodCommands.PowerARequestRomID(this.ScanAIndex);
     }
 
-    if (this.ScanATimeout >= 300 || this.ScanALastIndex == index) {
+    if (this.ScanATimeout >= 300 || this.ScanALastIndex === index) {
       console.log('Scan A done.');
       clearInterval(this.timerA);
     }
 
-    if (index != this.ScanAIndex) {
+    if (index !== this.ScanAIndex) {
       this.ScanATimeout++;
       return;
     }
 
     var newByte = IDArray[0].toString(16);
-    if (newByte.length == 1) { newByte = '0' + newByte; }
+    if (newByte.length === 1) { newByte = '0' + newByte; }
     var toAdd = newByte;
 
     for (var i = 1; i < 8; i++) {
       newByte = IDArray[i].toString(16);
-      if (newByte.length == 1) { newByte = '0' + newByte; }
+      if (newByte.length === 1) { newByte = '0' + newByte; }
       toAdd += ' ' + newByte;
     }
 
@@ -87,27 +87,27 @@ class TempSensorROMIDScanner {
     IDArray = IDArray.concat(bin.uint32ToBytes(IDHi).reverse());
     IDArray = IDArray.concat(bin.uint32ToBytes(IDLo).reverse());
 
-    if (this.ScanBTimeout == 100) {
+    if (this.ScanBTimeout === 100) {
       this.PodCommands.PowerBRequestRomID(this.ScanAIndex);
     }
 
-    if (this.ScanBTimeout >= 300 || this.ScanBLastIndex == index) {
+    if (this.ScanBTimeout >= 300 || this.ScanBLastIndex === index) {
       console.log('Scan B done.');
       clearInterval(this.timerB);
     }
 
-    if (index != this.ScanBIndex) {
+    if (index !== this.ScanBIndex) {
       this.ScanBTimeout++;
       return;
     }
 
     var newByte = IDArray[0].toString(16);
-    if (newByte.length == 1) { newByte = '0' + newByte; }
+    if (newByte.length === 1) { newByte = '0' + newByte; }
     var toAdd = newByte;
 
     for (var i = 1; i < 8; i++) {
       newByte = IDArray[i].toString(16);
-      if (newByte.length == 1) { newByte = '0' + newByte; }
+      if (newByte.length === 1) { newByte = '0' + newByte; }
       toAdd += ' ' + newByte;
     }
 

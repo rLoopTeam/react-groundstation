@@ -45,15 +45,15 @@ class PacketParser {
   findPacketDefinition (packetType, port) {
     // Use the port number to identify the node that sent the packet
     var node = '';
-    for (var i = 0; i < commConfig.RXServers.length; i++) {
-      if (commConfig.RXServers[i].port == port) {
+    for (let i = 0; i < commConfig.RXServers.length; i++) {
+      if (commConfig.RXServers[i].port === port) {
         node = commConfig.RXServers[i].hostName;
         break;
       }
     }
 
-    for (var i = 0, len = this.packetDefinitions.length; i < len; i++) {
-      if (this.packetDefinitions[i].PacketType == packetType && this.packetDefinitions[i].Node === node) {
+    for (let i = 0, len = this.packetDefinitions.length; i < len; i++) {
+      if (this.packetDefinitions[i].PacketType === packetType && this.packetDefinitions[i].Node === node) {
         return this.packetDefinitions[i];
       }
     }
@@ -63,13 +63,14 @@ class PacketParser {
 
   logPacket (packet) {
     var data = '';
-    for (var i = 0, len = packet.Parameters.length; i < len; i++) {
+
+    for (let i = 0, len = packet.Parameters.length; i < len; i++) {
       if (i > 0) {
         data += ',';
         data += packet.Parameters[i];
       }
     }
-    logger.log('info', data);
+    console.log(data);
   }
 
   gotNewPacket (raw_udp, port) {
@@ -115,7 +116,7 @@ class PacketParser {
     // Not a fan of the huge blocks of code in this if block but it works for now
     if (packetDef.DAQ === true) {
       var daqPacket = {'packetName': packetDef.Name, 'rxTime': (new Date()).getTime(), 'samples': [], 'dataType': packetDef.dataType, 'sequence': sequence, 'packetType': packetType};
-      for (var i = 8; i < (raw_udp.length - 2); i += packetDef.dataSize) {
+      for (let i = 8; i < (raw_udp.length - 2); i += packetDef.dataSize) {
         switch (packetDef.dataType) {
           case 'uint8':daqPacket.samples.push(bin.bytesToUint8(raw_udp[i], true)); break;
           case 'int8':daqPacket.samples.push(bin.bytesToInt8(raw_udp[i], true)); break;
@@ -134,7 +135,7 @@ class PacketParser {
         }
       }
 
-      for (var i = 0; i < this.daqPacketRXCallbacks.length; i++) {
+      for (let i = 0; i < this.daqPacketRXCallbacks.length; i++) {
         this.daqPacketRXCallbacks[i](daqPacket);
       }
     } else {
@@ -153,8 +154,8 @@ class PacketParser {
       var loopSuffix = '';
       var loopFieldCount = 0;
 
-      for (var i = 0, len = packetDef.Parameters.length; i < len; i++) {
-        var newName = packetDef.Parameters[i];
+      for (let i = 0, len = packetDef.Parameters.length; i < len; i++) {
+        var _newName = packetDef.Parameters[i];
         newParseLoc += packetDef.Parameters[i].size;
 
         if (newParseLoc > (length + 8)) {
@@ -244,7 +245,7 @@ class PacketParser {
       newDataParams.sequence = sequence;
       newDataParams.node = packetDef.Node;
 
-      for (var i = 0; i < this.packetRXCallbacks.length; i++) {
+      for (let i = 0; i < this.packetRXCallbacks.length; i++) {
         this.packetRXCallbacks[i](newDataParams);
       }
     }

@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const udp = require('../server/udp/udpParser');
 
-const pParser = require('../server/udp/packetParser.js');
+const PacketParser = require('../server/udp/packetParser.js');
 const winston = require('winston');
 /*
 * Test for the CRC checksum module
@@ -99,7 +99,7 @@ describe('UDP tests: ', function () {
       });
       logger.level = 'debug';
 
-      parser = new pParser(logger, console.log);
+      var parser = new PacketParser(logger, console.log);
 
       // Parse raw udp data
       var parsedUdpMessage = parser.gotNewPacket(raw);

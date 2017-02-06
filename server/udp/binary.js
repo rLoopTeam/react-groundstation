@@ -5,21 +5,21 @@
 */
 
 function bytesToUint8 (byte1, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(1));
   dataView.setInt8(0, byte1);
   return dataView.getUint8(0, littleEndian);
 }
 
 function bytesToInt8 (byte1, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(1));
   dataView.setInt8(0, byte1);
   return dataView.getInt8(0, littleEndian);
 }
 
 function bytesToUint16 (byte1, byte2, littleEndian) {
-  if (arguments.length > 3 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 3 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(2));
   dataView.setInt8(0, byte1);
   dataView.setInt8(1, byte2);
@@ -27,7 +27,7 @@ function bytesToUint16 (byte1, byte2, littleEndian) {
 }
 
 function bytesToInt16 (byte1, byte2, littleEndian) {
-  if (arguments.length > 3 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 3 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(2));
   dataView.setInt8(0, byte1);
   dataView.setInt8(1, byte2);
@@ -35,7 +35,7 @@ function bytesToInt16 (byte1, byte2, littleEndian) {
 }
 
 function bytesToUint32 (byte1, byte2, byte3, byte4, littleEndian) {
-  if (arguments.length > 5 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 5 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(4));
   dataView.setInt8(0, byte1);
   dataView.setInt8(1, byte2);
@@ -45,7 +45,7 @@ function bytesToUint32 (byte1, byte2, byte3, byte4, littleEndian) {
 }
 
 function bytesToInt32 (byte1, byte2, byte3, byte4, littleEndian) {
-  if (arguments.length > 5 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 5 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(4));
   dataView.setInt8(0, byte1);
   dataView.setInt8(1, byte2);
@@ -55,7 +55,7 @@ function bytesToInt32 (byte1, byte2, byte3, byte4, littleEndian) {
 }
 
 function bytesToFloat32 (byte1, byte2, byte3, byte4, littleEndian) {
-  if (arguments.length > 5 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 5 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(4));
   dataView.setInt8(0, byte1);
   dataView.setInt8(1, byte2);
@@ -65,7 +65,7 @@ function bytesToFloat32 (byte1, byte2, byte3, byte4, littleEndian) {
 }
 
 function bytesToFloat64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, littleEndian) {
-  if (arguments.length > 9 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 9 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var dataView = new DataView(new ArrayBuffer(8));
   dataView.setInt8(0, byte1);
   dataView.setInt8(1, byte2);
@@ -79,7 +79,7 @@ function bytesToFloat64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8,
 }
 
 function uint8ToBytes (uint8, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(1);
   var view = new DataView(arr);
   view.setUint8(0, uint8, littleEndian); // byteOffset = 0; litteEndian = false
@@ -88,7 +88,7 @@ function uint8ToBytes (uint8, littleEndian) {
 }
 
 function uint16ToBytes (uint16, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(2);
   var view = new DataView(arr);
   view.setUint16(0, uint16, littleEndian); // byteOffset = 0; litteEndian = false
@@ -97,7 +97,7 @@ function uint16ToBytes (uint16, littleEndian) {
 }
 
 function uint32ToBytes (uint32, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(4);
   var view = new DataView(arr);
   view.setUint32(0, uint32, littleEndian); // byteOffset = 0; litteEndian = false
@@ -106,7 +106,7 @@ function uint32ToBytes (uint32, littleEndian) {
 }
 
 function int8ToBytes (int8, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(1);
   var view = new DataView(arr);
   view.setInt8(0, int8, littleEndian); // byteOffset = 0; litteEndian = false
@@ -115,7 +115,7 @@ function int8ToBytes (int8, littleEndian) {
 }
 
 function int16ToBytes (int16, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(2);
   var view = new DataView(arr);
   view.setInt16(0, int16, littleEndian); // byteOffset = 0; litteEndian = false
@@ -124,7 +124,7 @@ function int16ToBytes (int16, littleEndian) {
 }
 
 function int32ToBytes (int32, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(4);
   var view = new DataView(arr);
   view.setInt32(0, int32, littleEndian); // byteOffset = 0; litteEndian = false
@@ -133,7 +133,7 @@ function int32ToBytes (int32, littleEndian) {
 }
 
 function float32ToBytes (float, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(4);
   var view = new DataView(arr);
   view.setFloat32(0, float, littleEndian); // byteOffset = 0; litteEndian = false
@@ -142,7 +142,7 @@ function float32ToBytes (float, littleEndian) {
 }
 
 function float64ToBytes (float, littleEndian) {
-  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian != undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(8);
   var view = new DataView(arr);
   view.setFloat64(0, float, littleEndian); // byteOffset = 0; litteEndian = false

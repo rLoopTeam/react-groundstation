@@ -131,7 +131,7 @@ class Power_Overview extends Component {
     var _this = this;
     var buttonClasses = 'btn btn-primary ' + ((this.state.developmentMode) ? '' : 'disabled');
 
-    let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
+    let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%'};
 
     return (
             <div>

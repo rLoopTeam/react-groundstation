@@ -1,5 +1,5 @@
 
-var fakeDataStore = new Array();
+var fakeDataStore = [];
 
 for (var i = 0; i < 1000; i++) {
   var fakeDataItem1 = {
@@ -15,13 +15,9 @@ class StreamPipeServer {
   constructor (app, io, rtDataStore) {
     var dataStreamServer = io.of('/dataStreamServer');
     dataStreamServer.on('connection', function (socket) {
-      var dataStreamServer = io.of('/dataStreamServer');
-
-      var requestedParams = new Array();
+      var requestedParams = [];
 
       var clientID = socket.id;
-
-      var i = 0;
 
       console.log('StreamPipeServer: New client id ' + socket.id);
 

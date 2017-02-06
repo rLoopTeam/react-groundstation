@@ -85,7 +85,7 @@ module.exports = {
       client.close();
     });
 
-    if (commConfig.MirrorLocal == true) {
+    if (commConfig.MirrorLocal === true) {
       var client2 = dgram.createSocket({type: 'udp4', reuseAddr: true});
       client2.send(Buffer.from(packet), 0, packet.length, port, '127.0.0.1', function (err, bytes) {
         if (err) throw err;

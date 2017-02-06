@@ -1,5 +1,5 @@
 // first of course react!
-import React, {Component} from 'react';
+import React from 'react';
 import ReactHighcharts from 'react-highcharts';
 import GenericParameterDisplay from '../GenericParameterDisplay.js';
 
@@ -18,14 +18,15 @@ class LineChart extends GenericParameterDisplay {
     };
 
     this.dataTimer = setInterval(function () {
-      var x = (new Date()).getTime(), // current time
-        y = 20;
+      var x = (new Date()).getTime(); // current time
+      var y = 20;
       var series = self.chart.series;
+
       if (self.chart && series) {
         for (var i = 0; i < series.length; i++) {
           var shift = series[i].data.length > self.props.totalPoints;
 
-          if (self.latestValue.stale == true) {
+          if (self.latestValue.stale === true) {
                         // Update the highchart with real parameter data.
             series[i].addPoint([x, self.latestValue.value], false, shift, false);
             self.chart.chartBackground.css({

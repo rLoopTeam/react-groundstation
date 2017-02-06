@@ -253,7 +253,7 @@ class Brakes extends Component {
       }
     }
 
-    let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%' };
+    let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%'};
 
     return (
             <div>

@@ -34,6 +34,7 @@ function parseDataOfType (raw_udp, type) {
   switch (type) {
     case dataTypes.ACCELEROMETERS.id: {
       data = getAccelerometersData(raw_udp);
+      break;
     }
     default:
       break;
@@ -43,11 +44,6 @@ function parseDataOfType (raw_udp, type) {
 
 function parseCrc (raw_udp) {
   return bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
-}
-
-function createBinaryMessageOfType (...dataBytes) {
-  dataBytes;
-  return message;
 }
 
 function getAccelerometersData (raw_udp) {

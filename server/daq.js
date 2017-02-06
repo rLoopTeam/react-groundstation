@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-class daq {
+class DAQ {
   constructor (packetStats) {
     this.isLogging = false;
     this.gotNewPacket = this.gotNewPacket.bind(this);
@@ -34,5 +34,5 @@ class daq {
 }
 
 module.exports = function (packetStats) {
-  return new daq(packetStats);
+  return new DAQ(packetStats);
 };

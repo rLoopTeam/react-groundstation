@@ -194,9 +194,9 @@ class Throttles extends Component {
   }
 
   handleHoverEngineModeToggle (hoverEngineName, e) {
-    var _this = this,
-      hoverEngineMode = this.state['hoverEngineMode'], // get the hoverEngineMode array
-      hoverEngineModeSelection = this.state['hoverEngineModeSelection'];// get the hoverEngineModeSelection array
+    var _this = this;
+    var hoverEngineMode = this.state['hoverEngineMode']; // get the hoverEngineMode array
+    var hoverEngineModeSelection = this.state['hoverEngineModeSelection'];// get the hoverEngineModeSelection array
 
     if (e.currentTarget.value === 'true') {
       var shouldEnableHoverEngineMode = confirm('WARNING: You are about to enable hoverEngine mode.');

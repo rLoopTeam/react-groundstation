@@ -129,10 +129,10 @@ class PowerA_RawTemperatures extends Component {
   }
 
   render () {
-    var _this = this,
-      _className = 'col-xs-1_5 text-center',
-      _showKeys = true,
-      _keyCount = 0;
+    var _this = this;
+    var _className = 'col-xs-1_5 text-center';
+    var _showKeys = true;
+    var _keyCount = 0;
 
     var rows = [];
     for (var i = 1; i <= this.state.numberofSensors; i++) {

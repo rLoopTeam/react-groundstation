@@ -1,10 +1,10 @@
-const udprx = require('./rx');
+const UDPRx = require('./rx');
 const commConfig = require('../../config/commConfig');
 const packetParser = require('./packetParser.js')();
 
-class udpRxMain {
+class UDPRxMain {
   constructor () {
-    this.rx = udprx;
+    this.rx = UDPRx;
     this.RXServers = [];
     this.rxNewPacket = this.rxNewPacket.bind(this);
     this.initializeRXServersFromConfig();
@@ -16,7 +16,7 @@ class udpRxMain {
 
   initializeRXServersFromConfig () {
     for (var i = 0; i < commConfig.RXServers.length; i++) {
-      this.RXServers.push(new udprx(commConfig.RXServers[i].port,
+      this.RXServers.push(new UDPRx(commConfig.RXServers[i].port,
                     commConfig.RXServers[i].hostIP,
                     commConfig.RXServers[i].hostName,
                     this.rxNewPacket
@@ -38,4 +38,4 @@ class udpRxMain {
   }
 }
 
-var newUDP = new udpRxMain();
+var _newUDP = new UDPRxMain();

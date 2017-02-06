@@ -5,9 +5,7 @@ const webpack = require('webpack');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('../config/webpack/webpack.config');
-const commConfig = require('../config/commConfig');
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
 var pubPath = path.join(__dirname, '..', 'public/index.html');
 const app = express();
 
@@ -31,7 +29,7 @@ if (isDeveloping) {
   });
 
   // serve static assets normally
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(path.join(__dirname, '/public')));
 
   // serve static bootstrap file
   app.use('/jquery', express.static(path.join(__dirname, '..', '/node_modules/jquery/dist')));

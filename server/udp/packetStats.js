@@ -16,7 +16,7 @@
 const bin = require('./binary.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
 
-class packetStats {
+class PacketStats {
   constructor (rtDataStore) {
     this.rtDataStore = rtDataStore;
     this.rxPackets = [];
@@ -29,8 +29,8 @@ class packetStats {
 
   gotPacketType (packetType, CRC, sequence, node) {
     var found = false;
-    for (var i = 0; i < this.rxPackets.length; i++) {
-      if (this.rxPackets[i].type == packetType.toString(16)) {
+    for (let i = 0; i < this.rxPackets.length; i++) {
+      if (this.rxPackets[i].type === packetType.toString(16)) {
         this.rxPackets[i].count++;
         this.rxPackets[i].crc = CRC;
         if (sequence - this.rxPackets[i].lastSequence > 1) {
@@ -45,8 +45,8 @@ class packetStats {
 
     // Records last time a node was seen
     found = false;
-    for (var i = 0; i < this.nodeTimes.length; i++) {
-      if (this.nodeTimes[i].name == node) {
+    for (let i = 0; i < this.nodeTimes.length; i++) {
+      if (this.nodeTimes[i].name === node) {
         this.nodeTimes[i].lastSeen = (new Date()).getTime();
         found = true;
         break;
@@ -58,8 +58,8 @@ class packetStats {
   }
 
   loggedPacketType (packetType) {
-    for (var i = 0; i < this.daqPackets.length; i++) {
-      if (this.daqPackets[i].type == packetType.toString(16)) {
+    for (let i = 0; i < this.daqPackets.length; i++) {
+      if (this.daqPackets[i].type === packetType.toString(16)) {
         this.daqPackets[i].count++;
         return;
       }
@@ -69,19 +69,19 @@ class packetStats {
 
   updateRtDataStore () {
     var newData = {'packetName': 'Packet Stats', 'packetType': '0', 'rxTime': 0, 'parameters': []};
-    for (var i = 0; i < this.rxPackets.length; i++) {
+    for (let i = 0; i < this.rxPackets.length; i++) {
       newData.parameters.push({'name': 'Packet Rx Count ' + this.rxPackets[i].type, 'value': this.rxPackets[i].count, 'units': 'packets'},
                   {'name': 'Packet Last CRC ' + this.rxPackets[i].type, 'value': this.rxPackets[i].crc, 'units': ''},
                   {'name': 'Packet Sequence Jumps ' + this.rxPackets[i].type, 'value': this.rxPackets[i].sequenceJumps, 'units': ''}
                   );
     }
-    for (var i = 0; i < this.daqPackets.length; i++) {
+    for (let i = 0; i < this.daqPackets.length; i++) {
       newData.parameters.push({'name': 'Packet DAQ Count ' + this.daqPackets[i].type, 'value': this.daqPackets[i].count, 'units': 'packets'}
                   );
     }
 
     var currentTime = (new Date()).getTime();
-    for (var i = 0; i < this.nodeTimes.length; i++) {
+    for (let i = 0; i < this.nodeTimes.length; i++) {
       if ((currentTime - this.nodeTimes[i].lastSeen) < 2000) // 2 seconds
       {
         // Node has been seen in the past 2 seconds
@@ -96,5 +96,5 @@ class packetStats {
 }
 
 module.exports = function (rtDataStore) {
-  return new packetStats(rtDataStore);
+  return new PacketStats(rtDataStore);
 };
