@@ -93,7 +93,6 @@ module.exports = {
 				"DAQ":false,
 				"Parameters":[
 								{'Name':'State', 'type':'uint32', 'units':'', 'size': 4},
-								{'Name':'Status', 'type':'uint8', 'units':'', 'size': 1}
 							]
 			},
 			{
