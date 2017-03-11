@@ -2,6 +2,8 @@
 
 A React.js / Node.js app using [Express 4](http://expressjs.com/) and websockets with [Socket.io](socket.io).
 
+This is the main codebase authored by the [Sftw](https://rloop.slack.com/messages/eng-sftw/) team. It presents a web interface at [localhost:3000](http://localhost:3000/) that an operator can use to monitor and control the rPod.
+
 ## Running Locally
 
 Make sure you have [Node.js](http://nodejs.org/) installed.
