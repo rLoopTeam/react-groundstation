@@ -14,7 +14,7 @@
 
 var REACT_APP = /^REACT_APP_/i;
 
-function getClientEnvironment(publicUrl) {
+function getClientEnvironment (publicUrl) {
   var processEnv = Object
     .keys(process.env)
     .filter(key => REACT_APP.test(key))
@@ -34,7 +34,7 @@ function getClientEnvironment(publicUrl) {
       'PUBLIC_URL': JSON.stringify(publicUrl)
     });
 
-    console.log(process.env.NODE_ENV)
+  console.log(process.env.NODE_ENV);
   return {'process.env': processEnv};
 }
 module.exports = getClientEnvironment;

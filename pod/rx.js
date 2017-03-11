@@ -12,7 +12,7 @@ var config = require('../config/commConfig');
 * UDP data receiver
 */
 udpServer.on('message', function (message, remote) {
-    console.log("POD - RECEIVED: " + remote.address + ':' + remote.port +' - ' + message);
+  console.log('POD - RECEIVED: ' + remote.address + ':' + remote.port + ' - ' + message);
 });
 
 udpServer.bind(config.PodRxPort, config.PodRxHost);

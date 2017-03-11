@@ -1,4 +1,3 @@
-'use strict';
 
 var path = require('path');
 var webpack = require('webpack');
@@ -10,13 +9,10 @@ var fs = require('fs');
 var publicUrl = '';
 var env = getClientEnvironment(publicUrl);
 
-
-
-
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
 var appDirectory = fs.realpathSync(process.cwd());
-function resolveApp(relativePath) {
+function resolveApp (relativePath) {
   return path.resolve(appDirectory, relativePath);
 }
 
@@ -27,7 +23,7 @@ var nodePaths = (process.env.NODE_PATH || '')
   .map(resolveApp);
 
 module.exports = {
-  devtool: 'eval', //this is a dev optimization - need 'source-map' for production
+  devtool: 'eval', // this is a dev optimization - need 'source-map' for production
   watch: true,
   profile: true,
   entry: [
@@ -48,8 +44,8 @@ module.exports = {
   },
   plugins: [
     new webpack.WatchIgnorePlugin([
-            path.resolve(__dirname, '../commConfig.js'),
-        ]),
+      path.resolve(__dirname, '../commConfig.js')
+    ]),
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.
@@ -58,7 +54,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: resolveApp('public/index.html'),
-      inject: true,
+      inject: true
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
@@ -72,7 +68,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
-        include: resolveApp('src'),
+        include: resolveApp('src')
       }
     ],
     loaders: [

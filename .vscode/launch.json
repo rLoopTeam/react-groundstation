@@ -1,21 +1,21 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Attach to Node",
-			"type": "node",
-			"request": "attach",
-			"port": 5858,
-			"restart": true
-		},
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Node",
+      "type": "node",
+      "request": "attach",
+      "port": 5858,
+      "restart": true
+    },
 
-		{
-			"cwd": "${workspaceRoot}",
-			"program": "${workspaceRoot}/node_modules/.bin/mocha",
-			"name": "Run tests",
-			"type": "node",
-			"request": "launch",
-			"port": 5858
-		}
-	]
+    {
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/.bin/mocha",
+      "name": "Run tests",
+      "type": "node",
+      "request": "launch",
+      "port": 5858
+    }
+  ]
 }

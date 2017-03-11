@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "semistandard",
+    "react-app"
+  ],
+  "plugins": [
+    "standard",
+    "mocha",
+    "react"
+  ],
+  "rules": {
+    "mocha/no-exclusive-tests": "error"
+  }
+}

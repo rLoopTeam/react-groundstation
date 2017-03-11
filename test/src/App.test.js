@@ -8,7 +8,7 @@ describe('App Test Suite', () => {
     ReactDOM.render(<App />, div);
   });
 
-  it('has a valid State component',  () => {  
+  it('has a valid State component', () => {
     console.log(<App />);
-  })
-})
+  });
+});
