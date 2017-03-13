@@ -225,6 +225,9 @@ class Charger {
 
           var error = '';
 
+          /* eslint-disable eqeqeq */
+          // TODO: Ask whoever has physical access to the battery charger what the JSON responses are.
+          // More specifically, find out if the led types are strs or ints.
           if (AnyMalfunction != '0') { error += 'General Fault, '; }
           if (LoadFuseBlown != '0') { error += 'Load fuse blown, '; }
           if (BatteryFuseBlown != '0') { error += 'Battery Fuse Blown, '; }
@@ -234,6 +237,7 @@ class Charger {
           if (ModuleFailure != '0') { error += 'Module Failure, '; }
           if (HighBatteryTemperature != '0') { error += 'High Battery Temperature, '; }
           if (LVDActive != '0') { error += 'LVD active, '; }
+          /* eslint-enable eqeqeq */
 
           if (error.length > 0) { error = error.substring(0, error.length - 2); } else { error = 'none'; }
 
