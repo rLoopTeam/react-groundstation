@@ -241,35 +241,6 @@ module.exports = {
   },
 
   /*
-  * RM4 Self test
-  */
-  'RM4 ESM G2 Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'EFC Stuck Zero Fault', 'severity': 'critical'},
-      {'name': 'EFC Fault', 'severity': 'critical'},
-      {'name': 'VIM Parity Fault', 'severity': 'critical'},
-      {'name': 'DMA Parity Fault', 'severity': 'critical'},
-      {'name': 'SPI 1 Parity Fault', 'severity': 'critical'},
-      {'name': 'SPI 3 Parity Fault', 'severity': 'critical'},
-      {'name': 'SPI 5 Parity Fault', 'severity': 'critical'},
-      {'name': 'N2HTE 1 Parity Fault', 'severity': 'critical'},
-      {'name': 'RAM ECC Fault', 'severity': 'critical'},
-      {'name': 'RAM ECC 2 Fault', 'severity': 'critical'},
-      {'name': 'CAN 1 Parity Fault', 'severity': 'critical'},
-      {'name': 'CAN 2 Parity Fault', 'severity': 'critical'},
-      {'name': 'CAN 3 Parity Fault', 'severity': 'critical'},
-      {'name': 'N2HTE 2 Parity Fault', 'severity': 'critical'},
-      {'name': 'CCM Check 1 Fault', 'severity': 'critical'},
-      {'name': 'CCM Check 2 Fault', 'severity': 'critical'},
-      {'name': 'CCM Check 3 Fault', 'severity': 'critical'},
-      {'name': 'CCM Check 4 Fault', 'severity': 'critical'}
-
-    ]
-  },
-
-  /*
   * RM4 ESM
   */
   'RM4 ESM Fault Flags': {
