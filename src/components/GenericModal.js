@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './GenericModal.css';
 
 class GenericModal extends Component {
-  render(){
-    const display = {"display": ((this.props.visibility) ? "block" : "none" )};
+  render () {
+    const display = {'display': ((this.props.visibility) ? 'block' : 'none')};
     return (
       <div className="modal" style={display}>
         <div className="modal-dialog" role="document">
@@ -26,7 +26,6 @@ class GenericModal extends Component {
     );
   }
 }
-
 
 export default GenericModal;
 
