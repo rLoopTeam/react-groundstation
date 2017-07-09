@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import config from '../../config/commConfig';
 
-import io from 'socket.io-client';
-
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
+import createSocket from '../shared/socket';
 
 let socket;
 
@@ -21,46 +18,17 @@ class CommConfig extends Component {
     };
   }
 
-  newSocketConnection (host, socketPort, serverName) {
-    socket = io.connect(ip + ':' + port, {
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      reconnectionAttempts: Infinity
+  startServer () {
+    socket = createSocket();
+    socket.emit('join', {name: 'configs', room: 'commConfig'});
+
+    socket.on('udp:event', function (data) {
+      console.log(data);
     });
-
-    var _this = this;
-
-    socket.on('connect', function () {
-      console.log('Client now connected!');
-
-      // join pubsub group
-      socket.emit('join', {name: 'configs', room: 'commConfig'});
-
-      socket.on('udp:event', function (data) {
-        console.log(data);
-      });
-    });
-
-    socket.on('disconnected', function () {
-      console.log('Client got disconnected!');
-      console.log('Opening new connection');
-
-      if (serverName === 'one') { this.startServerTwo(); }
-      if (serverName === 'two') { this.startServerOne(); }
-    });
-  }
-
-  startServerOne () {
-    this.newSocketConnection(this.state.socketIp, this.state.socketPort, 'one');
-  }
-
-  startServerTwo () {
-    this.newSocketConnection(this.state.socketIp, this.state.socketPort, 'two');
   }
 
   componentWillMount () {
-    this.startServerOne();
+    this.startServer();
   }
 
   componentDidMount () {

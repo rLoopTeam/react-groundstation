@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-import config from '../../config/commConfig';
+import createSocket from '../shared/socket';
 
-import io from 'socket.io-client';
-
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket;
+let socket = createSocket();
 
 class Throttles extends Component {
 
@@ -84,18 +79,6 @@ class Throttles extends Component {
   }
 
   newSocketConnection (host, socketPort, serverName) {
-    socket = io.connect(ip + ':' + port, {
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      reconnectionAttempts: Infinity
-    });
-
-    socket.on('connect', function () {
-      // join pubsub group
-      socket.emit('join', {name: 'hoverEngines', room: 'hoverEngines'});
-    });
-
     socket.on('disconnected', function () {
       if (serverName === 'one') { this.startServerTwo(); }
       if (serverName === 'two') { this.startServerOne(); }

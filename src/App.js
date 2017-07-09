@@ -24,13 +24,8 @@ import PowerB_RawTemperatures from './components/power/unitB/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
 import './App.css';
 
-import io from 'socket.io-client';
-let socket = io.connect('127.0.0.1:3000', {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+import createSocket from './shared/socket';
+let socket = createSocket();
 
 /* -----------
   Heartbeat signal

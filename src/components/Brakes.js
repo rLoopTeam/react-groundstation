@@ -5,17 +5,8 @@ import FaultFlagDisplay from './FaultFlagDisplay';
 import NumericInput from './NumericInput.js';
 import config from '../../config/commConfig';
 
-import io from 'socket.io-client';
-
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket = io.connect(ip + ':' + port, {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+import createSocket from '../shared/socket';
+let socket = createSocket();
 
 class Brakes extends Component {
   constructor (props) {
