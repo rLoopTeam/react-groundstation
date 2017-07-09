@@ -17,8 +17,7 @@ module.exports = {
   {'port':9130,'hostIP':'192.168.0.130','hostName':'Gimbal Control'},
   {'port':9170,'hostIP':'192.168.1.170','hostName':'Xilinx Sim'} */
 
-    
-    //http://confluence.rloop.org/display/SD/Static+IP+Assignments
+  // http://confluence.rloop.org/display/SD/Static+IP+Assignments
   {'port': 9110, 'hostIP': '192.168.0.255', 'hostName': 'Power Node A'},
   {'port': 9111, 'hostIP': '192.168.0.255', 'hostName': 'Power Node B'},
   {'port': 9100, 'hostIP': '192.168.0.255', 'hostName': 'Flight Control'},
