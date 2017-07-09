@@ -2,7 +2,7 @@
 const commConfig = require('../../config/commConfig');
 const dgram = require('dgram');
 const bin = require('../udp/binary.js');
-const crc = require('../udp/crc.js');
+const makeSafetyUDP = require('../udp/helpers.js').makeSafetyUDP;
 
 class DAQGenerator {
   constructor () {
@@ -44,7 +44,7 @@ class DAQGenerator {
     }
     this.sequences[index].start += sampleQuantity;
 
-    var testPacket = this.makeSafetyUDP(this.sequences[index].sequence++, packetType, payload);
+    var testPacket = makeSafetyUDP(this.sequences[index].sequence++, packetType, payload);
     var packetBuf = new Buffer(testPacket);
     var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
     client.bind();
@@ -54,24 +54,6 @@ class DAQGenerator {
         client.close();
       });
     });
-  }
-
-  makeSafetyUDP (sequence, packetType, payload) {
-    var finalPacket = [];
-
-    finalPacket.push.apply(finalPacket, bin.uint32ToBytes(sequence, true)); // Sequence
-    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(packetType, true)); // PacketType
-    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(0, true)); // Length
-
-    finalPacket.push.apply(finalPacket, payload);
-
-    var packetLength = payload.length; // Strictly the payload. Header & CRC not included
-    finalPacket[6] = bin.uint16ToBytes(packetLength, true)[0];
-    finalPacket[7] = bin.uint16ToBytes(packetLength, true)[1];
-
-    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(crc.u16SWCRC__CRC(finalPacket, finalPacket.length), true));
-
-    return finalPacket;
   }
 }
 

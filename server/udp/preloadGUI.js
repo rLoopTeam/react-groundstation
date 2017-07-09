@@ -1,30 +1,12 @@
 // Preload some dummy packets so the GUI loads up a bit nicer.
 // Very similar to TestPayload
-const makeSafeUDPPackage = require('./udp/makeSafeUDPPackage');
 const bin = require('./udp/binary');
 const crc = require('./udp/crc.js');
 const commConfig = require('../config/commConfig.js');
 var dgram = require('dgram');
+const makeSafetyUDP = require('../udp/helpers.js').makeSafetyUDP;
 
 module.exports = function () {
-  function makeSafetyUDP (sequence, packetType, payload) {
-    var finalPacket = [];
-
-    finalPacket.push.apply(finalPacket, bin.uint32ToBytes(0, true)); // Sequence
-    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(packetType, true)); // PacketType
-    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(0, true)); // Length
-
-    finalPacket.push.apply(finalPacket, payload);
-
-    var packetLength = payload.length; // Strictly the payload. Header & CRC not included
-    finalPacket[6] = bin.uint16ToBytes(packetLength, true)[0];
-    finalPacket[7] = bin.uint16ToBytes(packetLength, true)[1];
-
-    finalPacket.push.apply(finalPacket, bin.uint16ToBytes(crc.u16SWCRC__CRC(finalPacket, finalPacket.length), true));
-
-    return finalPacket;
-  }
-
   function sendPacket (sequence, type, payload, port) {
     var testPacket = makeSafetyUDP(sequence, type, payload);
     var packetBuf = new Buffer(testPacket);

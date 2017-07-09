@@ -1,23 +1,5 @@
 const bin = require('./udp/binary.js');
-const crc = require('./udp/crc.js');
-
-function makeSafetyUDP (sequence, packetType, payload) {
-  var finalPacket = [];
-
-  finalPacket.push.apply(finalPacket, bin.uint32ToBytes(sequence, true)); // Sequence
-  finalPacket.push.apply(finalPacket, bin.uint16ToBytes(packetType, true)); // PacketType
-  finalPacket.push.apply(finalPacket, bin.uint16ToBytes(0, true)); // Length
-
-  finalPacket.push.apply(finalPacket, payload);
-
-  var packetLength = payload.length; // Strictly the payload. Header & CRC not included
-  finalPacket[6] = bin.uint16ToBytes(packetLength, true)[0];
-  finalPacket[7] = bin.uint16ToBytes(packetLength, true)[1];
-
-  finalPacket.push.apply(finalPacket, bin.uint16ToBytes(crc.u16SWCRC__CRC(finalPacket, finalPacket.length), true));
-
-  return finalPacket;
-}
+const makeSafetyUDP = require('../udp/helpers.js').makeSafetyUDP;
 
 function makeNewPacket () {
   var payload = [];

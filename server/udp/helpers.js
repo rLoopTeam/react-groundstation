@@ -18,6 +18,7 @@ function makeSafetyUDP (sequence, packetType, payload) {
 
   return finalPacket;
 }
+
 function makeCommandPacket (PacketType, block1, block2, block3, block4) {
   var payload = [];
 
@@ -25,13 +26,14 @@ function makeCommandPacket (PacketType, block1, block2, block3, block4) {
   payload.push.apply(payload, bin.uint32ToBytes(block2, true));
   payload.push.apply(payload, bin.uint32ToBytes(block3, true));
   payload.push.apply(payload, bin.uint32ToBytes(block4, true));
-    // TODO:reincorporate this all into a class and store the sequence number to increment on each command
+  // TODO: reincorporate this all into a class and store the sequence number to increment on each command
   var sequenceNum = 0;
   var commandPacket = makeSafetyUDP(sequenceNum, PacketType, payload);
 
   return commandPacket;
 }
 
-module.exports = function (PacketType, block1, block2, block3, block4) {
-  return makeCommandPacket(PacketType, block1, block2, block3, block4);
+module.exports = {
+  makeSafetyUDP: makeSafetyUDP,
+  makeCommandPacket: makeCommandPacket
 };
