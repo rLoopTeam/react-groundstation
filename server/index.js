@@ -65,7 +65,7 @@ var cp = require('child_process');
 
 // added "[], {execArgv: ['--debug=5859']}" becuase this was blocking the debugger by using the 5858 port
 // found this fix here: https://github.com/nodejs/node/issues/3469
-const udpRxMain = cp.fork('./server/udp/udpRxMain.js', [], {execArgv: ['--debug=5859']});
+const udpRxMain = cp.fork('./server/udp/udpRxMain.js', [], {execArgv: ['--inspect=5859']});
 udpRxMain.on('message', function (m) {
   if (m.command === 'newPacket') {
     rtDataStore.insertDataPacket(m.data);
