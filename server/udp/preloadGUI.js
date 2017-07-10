@@ -1,7 +1,6 @@
 // Preload some dummy packets so the GUI loads up a bit nicer.
 // Very similar to TestPayload
 const bin = require('./udp/binary');
-const crc = require('./udp/crc.js');
 const commConfig = require('../config/commConfig.js');
 var dgram = require('dgram');
 const makeSafetyUDP = require('../udp/helpers.js').makeSafetyUDP;
