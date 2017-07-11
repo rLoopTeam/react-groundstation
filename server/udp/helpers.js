@@ -1,5 +1,7 @@
 const bin = require('./binary.js');
 const crc = require('./crc.js');
+const dgram = require('dgram');
+const commConfig = require('../../config/commConfig.js');
 
 function makeSafetyUDP (sequence, packetType, payload) {
   var finalPacket = [];
@@ -33,7 +35,23 @@ function makeCommandPacket (PacketType, block1, block2, block3, block4) {
   return commandPacket;
 }
 
+function sendPacket (sequence, type, payload, port) {
+  var testPacket = makeSafetyUDP(sequence, type, payload);
+  var packetBuf = new Buffer(testPacket);
+  var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
+  client.bind();
+  client.on('listening', function () {
+    client.setBroadcast(true);
+    client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function (_err, bytes) {
+      client.close();
+    });
+  });
+
+  return testPacket;
+}
+
 module.exports = {
   makeSafetyUDP: makeSafetyUDP,
-  makeCommandPacket: makeCommandPacket
+  makeCommandPacket: makeCommandPacket,
+  sendPacket: sendPacket
 };

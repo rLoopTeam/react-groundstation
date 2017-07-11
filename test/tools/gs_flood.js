@@ -2,9 +2,9 @@ const packetDefinitions = require('../../config/packetDefinitions.js').packetDef
 const bin = require('../../server/udp/binary.js');
 const commConfig = require('../../config/commConfig.js');
 const dgram = require('dgram');
-const makeSafetyUDP = require('../../server/udp/helpers.js').makeSafetyUDP;
+const udpHelpers = require('../../server/udp/helpers.js');
 
-const PACKET_INTERVAL = 5;
+const PACKET_INTERVAL = parseInt(process.env.RLOOP_PACKET_INTERVAL) || 1;
 
 function toBytes (parameterType, data) {
   switch (parameterType) {
@@ -56,7 +56,6 @@ function generatePacket (packetName) {
     }
 
     if (parameter.Name.search(/fault/i) > -1) {
-      // payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 10) + 2));
       payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 10)));
     } else {
       payload.push.apply(payload, toBytes(parameter.type, (Math.random() * 2000) - 1000));
@@ -64,21 +63,6 @@ function generatePacket (packetName) {
   }
 
   return payload;
-}
-
-function sendPacket (sequence, type, payload, port) {
-  var testPacket = makeSafetyUDP(sequence, type, payload);
-  var packetBuf = new Buffer(testPacket);
-  var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
-  client.bind();
-  client.on('listening', function () {
-    client.setBroadcast(true);
-    client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function (_err, bytes) {
-      client.close();
-    });
-  });
-
-  return testPacket;
 }
 
 function getPort (nodeName) {
@@ -100,7 +84,7 @@ setInterval(() => {
     return;
   }
 
-  sendPacket(sequence, packetMeta.PacketType, packetData, getPort(packetMeta.Node));
-  console.log(`Generated packet for '${packetMeta.Name}'`);
+  udpHelpers.sendPacket(sequence, packetMeta.PacketType, packetData, getPort(packetMeta.Node));
+  // console.log(`Generated packet for '${packetMeta.Name}'`);
   sequence++;
 }, PACKET_INTERVAL);

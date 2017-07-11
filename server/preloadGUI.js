@@ -1,27 +1,10 @@
 // Preload some dummy packets so the GUI loads up a bit nicer.
 // Very similar to TestPayload
 const bin = require('./udp/binary');
-const commConfig = require('../config/commConfig.js');
-var dgram = require('dgram');
-const makeSafetyUDP = require('./udp/helpers.js').makeSafetyUDP;
+const udpHelpers = require('./udp/helpers.js');
 
 module.exports = function () {
   GUIPreload();
-
-  function sendPacket (sequence, type, payload, port) {
-    var testPacket = makeSafetyUDP(sequence, type, payload);
-    var packetBuf = new Buffer(testPacket);
-    var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
-    client.bind();
-    client.on('listening', function () {
-      client.setBroadcast(true);
-      client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function (_err, bytes) {
-        client.close();
-      });
-    });
-
-    return testPacket;
-  }
 
   function preloadFCU () {
     var accelerometer = [];
@@ -56,7 +39,7 @@ module.exports = function () {
     accelerometer.push.apply(accelerometer, bin.int32ToBytes(0, true)); // Current Displacement
     accelerometer.push.apply(accelerometer, bin.int32ToBytes(0, true)); // Previous Displacement
 
-    sendPacket(0, 0x1003, accelerometer, 9100);
+    udpHelpers.sendPacket(0, 0x1003, accelerometer, 9100);
   }
 
   function preloadPowerNodes () {
@@ -115,8 +98,8 @@ module.exports = function () {
     BMSStreaming.push.apply(BMSStreaming, bin.uint32ToBytes(0, true)); // Temp Scan Count
     BMSStreaming.push.apply(BMSStreaming, bin.float32ToBytes(0.12345, true)); // Pack Current
 
-    sendPacket(0, 0x3401, BMSStreaming, 9110);
-    sendPacket(0, 0x3401, BMSStreaming, 9111);
+    udpHelpers.sendPacket(0, 0x3401, BMSStreaming, 9110);
+    udpHelpers.sendPacket(0, 0x3401, BMSStreaming, 9111);
   }
 
   function GUIPreload () {
