@@ -19,8 +19,7 @@ import DataStreamExample from './components/datasubexample';
 import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
 import Power_Overview from './components/power/overview';
-import PowerA_RawTemperatures from './components/power/unitA/rawTemps';
-import PowerB_RawTemperatures from './components/power/unitB/rawTemps';
+import Power_RawTemperatures from './components/power/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
 import './App.css';
 
@@ -49,9 +48,9 @@ class App extends Component {
           <Route path="dashboard" component={Overview} />
           <Route path="PowerNodeConfig" component={PowerNodeConfig} />
           <Route path="powerAOverview" component={Power_Overview} L="A"/>
-          <Route path="powerARawTemps" component={PowerA_RawTemperatures} />
+          <Route path="powerARawTemps" component={Power_RawTemperatures} L="A" />
           <Route path="powerBOverview" component={Power_Overview} L="B"/>
-          <Route path="powerBRawTemps" component={PowerB_RawTemperatures} />
+          <Route path="powerBRawTemps" component={Power_RawTemperatures} L="B" />
           <Route path="lgu" component={LGU} />
           <Route path="AutoSequence" component={AutoSequence} />
           <Route path="XilinxSim" component={XilinxSim} />
