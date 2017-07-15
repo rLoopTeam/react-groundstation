@@ -1,4 +1,3 @@
-const makeSafeUDPPackage = require('./makeSafeUDPPackage');
 const bin = require('./binary');
 var chalk = require('chalk');// using this to show messages in color
 
