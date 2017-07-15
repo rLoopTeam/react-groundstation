@@ -1,5 +1,5 @@
 var fs = require('fs');
-var outfile = fs.createWriteStream('lgos/output.csv');
+var outfile = fs.createWriteStream('logs/output.csv');
 
 class DAQ {
   constructor (packetStats) {
