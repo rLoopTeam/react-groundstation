@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import config from '../../../config/commConfig';
 import DataStreamClient from '../../StreamPipeClient.js';
-import io from 'socket.io-client';
+import createSocket from '../../shared/socket';
 
 let socket = createSocket();
 
