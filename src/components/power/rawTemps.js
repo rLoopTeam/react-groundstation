@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import config from '../../../../config/commConfig';
-import DataStreamClient from '../../../StreamPipeClient.js';
-import createSocket from '../../../shared/socket';
+import config from '../../../config/commConfig';
+import DataStreamClient from '../../StreamPipeClient.js';
+import io from 'socket.io-client';
 
 let socket = createSocket();
 
 /*
-*   PowerA_RawTemperatures class
+*   Power_RawTemperatures class
 */
 
-class PowerA_RawTemperatures extends Component {
+class Power_RawTemperatures extends Component {
   constructor (props) {
     super(props);
 
@@ -17,13 +17,13 @@ class PowerA_RawTemperatures extends Component {
     this.requestParameterFromServer = this.requestParameterFromServer.bind(this);
 
     this.state = {
-      command: 'PowerA_RawTemperatures',
+      command: `Power${props.route.L}_RawTemperatures`,
       numberofSensors: 0
     };
 
     this.newPacketCallback = this.newPacketCallback.bind(this);
     this.DataStreamClient = new DataStreamClient(this.newPacketCallback);
-    this.requestParameterFromServer('Power A Temps Count');
+    this.requestParameterFromServer(`Power ${props.route.L} Temps Count`);
   }
 
   requestParameterFromServer (parameter) {
@@ -49,14 +49,14 @@ class PowerA_RawTemperatures extends Component {
     // console.log(JSON.stringify(parameterData));
     if (this._isMounted) {
       for (var i = 0; i < parameterData.length; i++) {
-        if (parameterData[i].Name === 'Power A Temps Count' && this.state.numberofSensors !== parameterData[i].Value) {
+        if (parameterData[i].Name === `Power ${this.props.route.L} Temps Count` && this.state.numberofSensors !== parameterData[i].Value) {
           this.setState({numberofSensors: parameterData[i].Value});
           for (var x = 1; x <= parameterData[i].Value; x++) {
-            this.requestParameterFromServer('Power A Temps ' + x + ' Temperature');
-            this.requestParameterFromServer('Power A Temps Loc ' + x + ' User Index');
-            this.requestParameterFromServer('Power A Temps Loc ' + x + ' Resolution');
-            this.requestParameterFromServer('Power A Temps Loc ' + x + ' Bus Index');
-            this.requestParameterFromServer('Power A ROM ID ' + x);
+            this.requestParameterFromServer(`Power ${this.props.route.L} Temps ${x} Temperature`);
+            this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} User Index`);
+            this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} Resolution`);
+            this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} Bus Index`);
+            this.requestParameterFromServer(`Power ${this.props.route.L} ROM ID ${x}`);
           }
         }
 
@@ -88,7 +88,7 @@ class PowerA_RawTemperatures extends Component {
           }
         }
 
-        if (parameterData[i].Name.substring(0, 14) === 'Power A ROM ID') {
+        if (parameterData[i].Name.substring(0, 14) === `Power ${this.props.route.L} ROM ID`) {
           field = 'ROMID' + parameterData[i].Name.split(' ')[4];
           if (this.state[field] !== parameterData[i].Value) {
             newState[field] = parameterData[i].Value;
@@ -99,25 +99,25 @@ class PowerA_RawTemperatures extends Component {
     }
   }
 
-  PowerAStreamingOff (data, e) {
+  PowerStreamingOff (data, e) {
     e.preventDefault();
-    socket.emit('PowerA:StreamingOff', data);
+    socket.emit(`Power${this.props.route.L}:StreamingOff`, data);
   }
 
-  PowerAStreamCurrentTemps (data, e) {
+  PowerStreamCurrentTemps (data, e) {
     e.preventDefault();
-    socket.emit('PowerA:StreamCurrentTemps', data);
+    socket.emit(`Power${this.props.route.L}:StreamCurrentTemps`, data);
   }
 
-  PowerAStreamTempLocations (data, e) {
+  PowerStreamTempLocations (data, e) {
     e.preventDefault();
-    socket.emit('PowerA:StreamTempLocations', data);
+    socket.emit(`Power${this.props.route.L}:StreamTempLocations`, data);
   }
 
-  PowerAROMIDScan (data, e) {
+  PowerROMIDScan (data, e) {
     e.preventDefault();
     data.numberofSensors = this.state.numberofSensors;
-    socket.emit('PowerA:TempSensorROMIDScan', data);
+    socket.emit(`Power${this.props.route.L}:TempSensorROMIDScan`, data);
   }
 
   render () {
@@ -141,13 +141,13 @@ class PowerA_RawTemperatures extends Component {
 
     return (
         <div>
-        <legend>Power Node A - Stream Control</legend>
+        <legend>Power Node {this.props.route.L} - Stream Control</legend>
           <form className="form-inline">
             <div className="form-group">
-              <button className="btn btn-success" onClick={this.PowerAStreamingOff.bind(this, {})} style={{margin: 10}}>Stream Off</button>
-              <button className="btn btn-success" onClick={this.PowerAStreamCurrentTemps.bind(this, {})} style={{margin: 10}}>Stream Temperatures</button>
-              <button className="btn btn-success" onClick={this.PowerAStreamTempLocations.bind(this, {})} style={{margin: 10}}>Stream Sensor Locations</button>
-              <button className="btn btn-success" onClick={this.PowerAROMIDScan.bind(this, {})} style={{margin: 10}}>Get ROM IDs</button>
+              <button className="btn btn-success" onClick={this.PowerStreamingOff.bind(this, {})} style={{margin: 10}}>Stream Off</button>
+              <button className="btn btn-success" onClick={this.PowerStreamCurrentTemps.bind(this, {})} style={{margin: 10}}>Stream Temperatures</button>
+              <button className="btn btn-success" onClick={this.PowerStreamTempLocations.bind(this, {})} style={{margin: 10}}>Stream Sensor Locations</button>
+              <button className="btn btn-success" onClick={this.PowerROMIDScan.bind(this, {})} style={{margin: 10}}>Get ROM IDs</button>
               <br /><br />
             </div>
           </form>
@@ -165,4 +165,4 @@ class PowerA_RawTemperatures extends Component {
   }
 }
 
-export default PowerA_RawTemperatures;
+export default Power_RawTemperatures;

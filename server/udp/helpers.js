@@ -1,5 +1,7 @@
 const bin = require('./binary.js');
 const crc = require('./crc.js');
+const dgram = require('dgram');
+const commConfig = require('../../config/commConfig.js');
 
 function makeSafetyUDP (sequence, packetType, payload) {
   var finalPacket = [];
@@ -18,6 +20,7 @@ function makeSafetyUDP (sequence, packetType, payload) {
 
   return finalPacket;
 }
+
 function makeCommandPacket (PacketType, block1, block2, block3, block4) {
   var payload = [];
 
@@ -25,13 +28,30 @@ function makeCommandPacket (PacketType, block1, block2, block3, block4) {
   payload.push.apply(payload, bin.uint32ToBytes(block2, true));
   payload.push.apply(payload, bin.uint32ToBytes(block3, true));
   payload.push.apply(payload, bin.uint32ToBytes(block4, true));
-    // TODO:reincorporate this all into a class and store the sequence number to increment on each command
+  // TODO: reincorporate this all into a class and store the sequence number to increment on each command
   var sequenceNum = 0;
   var commandPacket = makeSafetyUDP(sequenceNum, PacketType, payload);
 
   return commandPacket;
 }
 
-module.exports = function (PacketType, block1, block2, block3, block4) {
-  return makeCommandPacket(PacketType, block1, block2, block3, block4);
+function sendPacket (sequence, type, payload, port) {
+  var testPacket = makeSafetyUDP(sequence, type, payload);
+  var packetBuf = new Buffer(testPacket);
+  var client = dgram.createSocket({type: 'udp4', reuseAddr: true});
+  client.bind();
+  client.on('listening', function () {
+    client.setBroadcast(true);
+    client.send(packetBuf, 0, packetBuf.length, port, commConfig.testDataGeneratorTargetHost, function (_err, bytes) {
+      client.close();
+    });
+  });
+
+  return testPacket;
+}
+
+module.exports = {
+  makeSafetyUDP: makeSafetyUDP,
+  makeCommandPacket: makeCommandPacket,
+  sendPacket: sendPacket
 };

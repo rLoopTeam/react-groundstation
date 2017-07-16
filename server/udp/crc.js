@@ -1,4 +1,4 @@
-const lookupTables = require('./lookupTables');
+const lookupTables = require('./crcLookupTables');
 
 // LACHLAN'S ORIGINAL CODE
 /*
