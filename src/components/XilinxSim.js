@@ -13,11 +13,6 @@ class XilinxSim extends Component {
 
   componentDidMount () {
     var _this = this;
-
-    socket.on('server event', function (data) {
-      console.log(data);
-      socket.emit('client event', { socket: 'io connected' });
-    });
   }
 
   startRun (e) {
