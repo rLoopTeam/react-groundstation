@@ -21,10 +21,6 @@ class CommConfig extends Component {
   startServer () {
     socket = createSocket();
     socket.emit('join', {name: 'configs', room: 'commConfig'});
-
-    socket.on('udp:event', function (data) {
-      console.log(data);
-    });
   }
 
   componentWillMount () {

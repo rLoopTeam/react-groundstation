@@ -3,7 +3,6 @@ import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
 import FaultFlagDisplay from './FaultFlagDisplay';
 import NumericInput from './NumericInput.js';
-import config from '../../config/commConfig';
 
 import createSocket from '../shared/socket';
 let socket = createSocket();
@@ -77,15 +76,18 @@ class Brakes extends Component {
   componentDidMount () {
     var _this = this;
     socket.emit('FlightControl_Brake:RequestDevelopmentMode');
-    socket.on('connect', function () {
-      socket.on('FlightControl_Brake:DevelopmentMode', function (data) {
-                // FlightControl_Brake:RequestDevelopmentMode
-        console.log('\n\n\n\n\n\nUI UPDATE DEV MODE FROM POD\n\n\n\n\n', data.developmentMode);
-        _this.setState({
-          developmentModeSelection: (data.developmentMode) ? 1 : 0,
-          developmentMode: data.developmentMode
-        });
-      });
+    socket.on('FlightControl_Brake:DevelopmentMode', _this.updateStateFromPod);
+  }
+
+  componentWillUnmount () {
+    socket.off('FlightControl_Brake:DevelopmentMode', this.updateStateFromPod);
+  }
+
+  updateStateFromPod (data) {
+    console.log('\n\n\n\n\n\nUI UPDATE DEV MODE FROM POD\n\n\n\n\n', data.developmentMode);
+    this.setState({
+      developmentModeSelection: (data.developmentMode) ? 1 : 0,
+      developmentMode: data.developmentMode
     });
   }
 
@@ -98,7 +100,7 @@ class Brakes extends Component {
   brakesDevModeHandler (changeEvent) {
     var _this = this;
 
-        // turn on dev mode
+    // turn on dev mode
     if (changeEvent.currentTarget.value === '1') {
       var shouldUpdateBrakePosition = confirm('WARNING: You are about to enable development mode. This is a dangerous operation and will damage the magnets.');
       if (shouldUpdateBrakePosition) {
@@ -113,9 +115,8 @@ class Brakes extends Component {
           developmentMode: false
         });
       }
-    }
-        // turn off dev mode
-    else {
+    } else {
+      // turn off dev mode
       _this.setState({
         developmentModeSelection: 0,
         developmentMode: false
