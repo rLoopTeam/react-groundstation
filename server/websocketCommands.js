@@ -140,6 +140,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       'FlightControl_Accel:StartStream_Lasers': () => {
         podCommands.FCUStreamingControlStart_Lasers();
       },
+	  'FlightControl_Accel:StartStream_ForwardLaser': () => {
+        podCommands.FCUStreamingControlStart_ForwardLaser();
+      },
       'FlightControl_Accel:StopStream': () => {
         podCommands.FCUStreamingControlStop_Accel();
       },

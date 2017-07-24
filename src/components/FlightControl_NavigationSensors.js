@@ -31,7 +31,17 @@ class FlightControl_NavigationSensors extends Component {
       ]
     };
     this.rangefinderLabels = [
-            {label: 'ForwardLaser RAW value', value: 'ForwardLaser RAW value'}
+            {label: 'Faults', value: 'ForwardLaser Fault flags'},
+            {label: 'Spare 0', value: 'ForwardLaser Spare 0'},
+            {label: 'Spare 1', value: 'ForwardLaser Spare 1'},
+            {label: 'Spare 2', value: 'ForwardLaser Spare 2'},
+            {label: 'Spare 3', value: 'ForwardLaser Spare 3'},
+            {label: 'RAW value', value: 'ForwardLaser RAW value'},
+            {label: 'Filtered value', value: 'ForwardLaser Filtered Value'},
+            {label: 'Binary?', value: 'ForwardLaser Binary Distance'},
+            {label: 'Missed Start', value: 'ForwardLaser Missed Start'},
+            {label: 'Bad Distance', value: 'ForwardLaser Bad Distance'},
+            {label: 'Error Code', value: 'ForwardLaser Error Code'}
     ];
     this.laserheightLabels = [
             {label: 'Forward Right', value: 'LaserOpto Raw distance 1'},
@@ -64,12 +74,18 @@ class FlightControl_NavigationSensors extends Component {
     socket.emit('FlightControl_Accel:StartStream_Lasers');
   }
 
+  streamForwardLaserData (e) {
+    e.preventDefault();
+    socket.emit('FlightControl_Accel:StartStream_ForwardLaser');
+  }
+
   render () {
     return (
         <div>
               <h2>Navigation sensors</h2>
                 <div className="row">
-                {<button type="button" className="btn btn-success" onClick={this.streamLaserData} style={{margin: 10}}>Start Laser Stream</button>}
+                {<button type="button" className="btn btn-success" onClick={this.streamLaserData} style={{margin: 10}}>Stream Opto Lasers</button>}
+                {<button type="button" className="btn btn-success" onClick={this.streamForwardLaserData} style={{margin: 10}}>Stream Forward Laser</button>}
                     <div className="col-sm-4">
                       <legend>Accelerometer 0 raw values</legend>
 

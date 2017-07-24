@@ -183,6 +183,10 @@ module.exports = function (udp) {
   function FCUStreamingControlStart_Lasers () {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001101, 0x0, 0x0);
   }
+  
+  function FCUStreamingControlStart_ForwardLaser () {
+    udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001201, 0x0, 0x0);
+  }
 
   function FCUStreamingControlStop_Accel () {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0);
@@ -512,6 +516,7 @@ module.exports = function (udp) {
     FCUStreamingControlStart_Brakes,
     FCUStreamingControlStart_MotorsRaw,
     FCUStreamingControlStart_Lasers,
+	FCUStreamingControlStart_ForwardLaser,
     FCUAccel_FineZero,
     FCUAccel_AutoZero,
 
