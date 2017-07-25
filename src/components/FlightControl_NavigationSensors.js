@@ -37,7 +37,7 @@ class FlightControl_NavigationSensors extends Component {
             {label: 'Spare 2', value: 'ForwardLaser Spare 2'},
             {label: 'Spare 3', value: 'ForwardLaser Spare 3'},
             {label: 'RAW value', value: 'ForwardLaser RAW value'},
-            {label: 'Filtered value', value: 'ForwardLaser Filtered Value'},
+            {label: 'Filtered value', value: 'ForwardLaser Filtered value'},
             {label: 'Binary?', value: 'ForwardLaser Binary Distance'},
             {label: 'Missed Start', value: 'ForwardLaser Missed Start'},
             {label: 'Bad Distance', value: 'ForwardLaser Bad Distance'},

@@ -104,12 +104,12 @@ optoDistanceSensors.push.apply(optoDistanceSensors, bin.uint32ToBytes(0, true));
 */
 var forwardLaserDistanceSensors = [];
 forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(1, true)); // fault flags
-forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(2, true)); // spare 0
-forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(3, true)); // spare 1
-forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(3, true)); // spare 2
-forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.float32ToBytes(100.5, true)); // raw value
-forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.float32ToBytes(18.82, true)); // filtered value
-forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(4, true)); // spare 3
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.int32ToBytes(2, true)); // spare 0
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.int32ToBytes(3, true)); // spare 1
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.int32ToBytes(3, true)); // spare 2
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.int32ToBytes(100, true)); // raw value
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.int32ToBytes(182, true)); // filtered value
+forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.int32ToBytes(4, true)); // spare 3
 forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(5, true)); // Binary
 forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(6, true)); // Missed Start
 forwardLaserDistanceSensors.push.apply(forwardLaserDistanceSensors, bin.uint32ToBytes(7, true)); // Bad Distance
