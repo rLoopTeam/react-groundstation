@@ -8,6 +8,7 @@ class DataStreamClient {
     this.newPacketCallback = newPacketCallback;
 
     this.initialRequest = this.initialRequest.bind(this);
+    this.handleStoppedBurst = this.handleStoppedBurst.bind(this);
     this.handleDataBurst = this.handleDataBurst.bind(this);
 
     this.socket = createSocket('dataStream', '/dataStreamServer');
@@ -56,12 +57,22 @@ class DataStreamClient {
     fn('');
   }
 
+  handleStoppedBurst (msg) {
+    if (this.RequestedParameters.indexOf(msg) === -1) {
+      return;
+    }
+
+    console.warn(`${msg} was stopped but we're still listening to it.`);
+    this.socket.emit('request parameter', msg);
+  }
+
   /**
    * Opens a socket.
    * This doesn't actually open a socket because of the single shared "dataStream" socket.
    * Instead, this adds our handlers to the socket.
    */
   openSocket () {
+    this.socket.on('stopped burst', this.handleStoppedBurst);
     this.socket.on('new data burst', this.handleDataBurst);
     this.socket.on('connect', this.initialRequest);
   }
@@ -71,15 +82,18 @@ class DataStreamClient {
    * This doesn't actually close the socket because of the single shared "dataStream" socket.
    * Instead, this removes our handlers on the socket.
    *
-   * @param {Object} fuck test sample text
+   * @param {Object} Pre/Post socket closing flags.
    * @param {boolean} options.clearParameters Clears all parameters this client is listening to.
    */
   closeSocket (options) {
-    // Use caution with this flag because it will also stop the parameter bursts for other clients.
+    // This is stopped first so we do not relisten to our stopped parameters.
+    this.socket.removeListener('stopped burst', this.handleStoppedBurst);
+
     if (options.clearParameters) {
       this.socket.emit('stop parameters', this.RequestedParameters);
       this.RequestedParameters = [];
     }
+
     this.socket.removeListener('new data burst', this.handleDataBurst);
     this.socket.removeListener('connection', this.initialRequest);
   }

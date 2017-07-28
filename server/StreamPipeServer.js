@@ -26,12 +26,14 @@ class StreamPipeServer {
       socket.on('stop parameter', function (msg) {
         console.log('StreamPipeServer: ' + clientID + ' stopping: ' + JSON.stringify(msg));
         self.removeParameter(clientID, msg);
+        socket.emit('stopped burst', msg);
       });
 
       socket.on('stop parameters', function (msg) {
         console.log('StreamPipeServer: ' + clientID + ' stopping: ' + JSON.stringify(msg));
         for (var y = 0; y < msg.length; y++) {
           self.removeParameter(clientID, msg[y]);
+          socket.emit('stopped burst', msg);
         }
       });
 
