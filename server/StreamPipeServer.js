@@ -70,7 +70,7 @@ class StreamPipeServer {
       return;
     }
 
-    if (typeof parameter === 'undefined' || parameter === null) {
+    if (typeof parameter === 'undefined' || parameter === null || !parameter) {
       return;
     }
 

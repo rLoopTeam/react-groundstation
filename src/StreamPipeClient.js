@@ -15,6 +15,10 @@ class DataStreamClient {
   }
 
   RequestParameter (parameter) {
+    if (typeof parameter === 'undefined' || parameter === null || !parameter) {
+      return;
+    }
+
     this.RequestedParameters.push(parameter);
     if (this.socket.connected) {
       this.socket.emit('request parameter', parameter);
@@ -22,6 +26,10 @@ class DataStreamClient {
   }
 
   stopParameter (parameter) {
+    if (typeof parameter === 'undefined' || parameter === null || !parameter) {
+      return;
+    }
+
     let parameterIndex = this.RequestedParameters.indexOf(parameter);
     if (parameter === -1) {
       return;
@@ -62,9 +70,11 @@ class DataStreamClient {
    * "Closes" the socket.
    * This doesn't actually close the socket because of the single shared "dataStream" socket.
    * Instead, this removes our handlers on the socket.
+   *
+   * @param {Object} fuck test sample text
+   * @param {boolean} options.clearParameters Clears all parameters this client is listening to.
    */
   closeSocket (options) {
-    // Clears all parameters this client is listening to.
     // Use caution with this flag because it will also stop the parameter bursts for other clients.
     if (options.clearParameters) {
       this.socket.emit('stop parameters', this.RequestedParameters);
