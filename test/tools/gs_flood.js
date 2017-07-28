@@ -7,6 +7,8 @@ const udpHelpers = require('../../server/udp/helpers.js');
 const PACKET_INTERVAL = parseInt(process.env.RLOOP_PACKET_INTERVAL) || 1;
 
 function toBytes (parameterType, data) {
+  data = truncateForBytes(parameterType, data);
+
   switch (parameterType) {
     case 'uint8': return bin.uint8ToBytes(data, true);
     case 'int8': return bin.int8ToBytes(data, true);
@@ -16,6 +18,20 @@ function toBytes (parameterType, data) {
     case 'int32': return bin.int32ToBytes(data, true);
     case 'float32': return bin.float32ToBytes(data, true);
     case 'float64': return bin.float64ToBytes(data, true);
+    default: console.error(`Unknown data type '${parameterType}'`); break;
+  }
+}
+
+function truncateForBytes (parameterType, data) {
+  switch (parameterType) {
+    case 'uint8': return Math.max(Math.min(data, 128), -128);
+    case 'int8': return Math.min(data, 256);
+    case 'int16': return Math.max(Math.min(data, 32767), -32768);
+    case 'uint16': return Math.min(data, 65535);
+    case 'uint32': return Math.max(Math.min(data, 2147483647), -2147483648);
+    case 'int32': return Math.min(data, 4294967295);
+    case 'float32': return Math.max(Math.min(data, 3.40282347e+38), -3.40282347e+38);
+    case 'float64': return data; // JS max should cover this case.
     default: console.error(`Unknown data type '${parameterType}'`); break;
   }
 }
@@ -56,9 +72,14 @@ function generatePacket (packetName) {
     }
 
     if (parameter.Name.search(/fault/i) > -1) {
-      payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 10)));
+      payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 16)));
     } else {
-      payload.push.apply(payload, toBytes(parameter.type, (Math.random() * 2000) - 1000));
+      let data = Math.random() * 8192;
+      if (!parameter.type.startsWith('u')) {
+        data = data - 4096;
+      }
+
+      payload.push.apply(payload, toBytes(parameter.type, data));
     }
   }
 
