@@ -21,8 +21,25 @@ class DataStreamClient {
     }
   }
 
+  stopParameter (parameter) {
+    let parameterIndex = this.RequestedParameters.indexOf(parameter);
+    if (parameter === -1) {
+      return;
+    }
+
+    this.RequestedParameters.splice(parameterIndex, 1);
+    if (this.socket.connected) {
+      this.socket.emit('stop parameter', parameter);
+    }
+  }
+
+  stopParameters (parameters) {
+    for (let parameter of parameters) {
+      this.stopParameter(parameter);
+    }
+  }
+
   initialRequest () {
-    console.log('initials');
     this.socket.emit('request parameters', this.RequestedParameters);
   }
 
@@ -48,7 +65,7 @@ class DataStreamClient {
    */
   closeSocket (options) {
     // Clears all parameters this client is listening to.
-    // Use caution with this flag because it will also stop the parameter bursts for other clients.   
+    // Use caution with this flag because it will also stop the parameter bursts for other clients.
     if (options.clearParameters) {
       this.socket.emit('stop parameters', this.RequestedParameters);
       this.RequestedParameters = [];

@@ -3,6 +3,7 @@ import DataStreamClient from './StreamPipeClient.js';
 class StreamingPageManager {
 
   constructor () {
+    this.parameters = [];
     this.parameterCallbacks = [];
     this.packetCallbacks = [];
 
@@ -30,8 +31,13 @@ class StreamingPageManager {
     }
   }
 
+  /**
+   * Destroys a StreamingPageManager by blanking the client's
+   * and object's parameters.
+   */
   destroy () {
-
+    this.DataStreamClient.stopParameters(this.parameters);
+    this.parameters = [];
   }
 
   /**
@@ -54,6 +60,7 @@ class StreamingPageManager {
   }
 
   requestParameterFromServer (parameter) {
+    this.parameters.push(parameter);
     this.DataStreamClient.RequestParameter(parameter);
   }
 }
