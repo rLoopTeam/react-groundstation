@@ -9,8 +9,11 @@ class LineChart extends GenericParameterDisplay {
 
     const self = this;
 
-        // this object gets update with the data from the pod
-    this.latestValue = {
+    // this object gets update with the data from the pod
+    this.latestValue = {};
+    this.startTime = (new Date()).getTime();
+
+    this.defaultValue = {
       stale: false,
       value: 0,
       units: '',
@@ -18,30 +21,21 @@ class LineChart extends GenericParameterDisplay {
     };
 
     this.dataTimer = setInterval(function () {
-      var x = (new Date()).getTime(); // current time
-      var y = 20;
+      var currentTime = (new Date()).getTime(); // current time
       var series = self.chart.series;
 
       if (self.chart && series) {
         for (var i = 0; i < series.length; i++) {
-          var shift = series[i].data.length > self.props.totalPoints;
+          let shift = series[i].data.length > self.props.totalPoints;
+          let latestValue = self.latestValue[series[i].name];
 
-          if (self.latestValue.stale === true) {
-                        // Update the highchart with real parameter data.
-            series[i].addPoint([x, self.latestValue.value], false, shift, false);
-            self.chart.chartBackground.css({
-              color: '#FF3300'
-            });
-          } else {
-                        // Update the highchart with real parameter data.
-            series[i].addPoint([x, self.latestValue.value], false, shift, false);
-                        // FOR TESTING ONLY: update the highchart with fake data specified in this file.
-                        // series[i].addPoint([x, y + (Math.random()*5)], false, shift, false);
+          // Update the highchart with real parameter data.
+          series[i].addPoint([currentTime, latestValue.value], false, shift, false);
 
-            self.chart.chartBackground.css({
-              color: '#FFFFFF'
-            });
-          }
+          // Chart background: #FF3300 (red) if stale, #FFFFFF (white) if not.
+          self.chart.chartBackground.css({
+            color: latestValue.stale === true ? '#FF3300' : '#FFFFFF'
+          });
         }
         self.chart.redraw();
       } else {
@@ -49,7 +43,7 @@ class LineChart extends GenericParameterDisplay {
       }
     }, this.props.updateRate || 250);
 
-        // this is the Highcharts config object that defines the series, render options etc
+    // this is the Highcharts config object that defines the series, render options etc
     this.config = {
       title: {
         text: this.props.title
@@ -57,13 +51,7 @@ class LineChart extends GenericParameterDisplay {
       chart: {
         width: this.props.width || null,
         height: this.props.height || null,
-        animation: false,
-        events: {
-                    // this function gets called on Load, and sets up an interval that updates the chart itself based on the "latestValue" object
-          load: function () {
-            this.dataTimer;
-          }
-        }
+        animation: false
       },
       credits: {
         enabled: false
@@ -72,11 +60,11 @@ class LineChart extends GenericParameterDisplay {
         title: {
           text: this.props.xAxisLabel
         },
-                // type: 'datetime',
+        // type: 'datetime',
         tickPixelInterval: 150,
         labels: {
           formatter: function () {
-            return (this.value - self.latestValue.startTime) / 1000;
+            return (this.value - self.startTime) / 1000;
           }
         }
       },
@@ -99,7 +87,7 @@ class LineChart extends GenericParameterDisplay {
           }
         }
       },
-           // create series array from the parameters
+      // create series array from the parameters
       series: this.props.parameters.map(function (parametername) {
         return {
           name: parametername,
@@ -108,9 +96,14 @@ class LineChart extends GenericParameterDisplay {
       })
     };
 
-        // sets up the StreamingPage manager for each parameter we want to display
+    // sets up the StreamingPage manager for each parameter we want to display
     for (var i = 0; i < this.props.parameters.length; i++) {
       (function (index) {
+        self.latestValue[self.props.parameters[index]] = {
+          stale: false,
+          value: 0,
+          units: ''
+        };
         self.props.StreamingPageManager.RequestParameterWithCallback(self.props.parameters[index], function (data) {
           self.dataCallback(data, index);
         });
@@ -129,19 +122,19 @@ class LineChart extends GenericParameterDisplay {
   }
 
   dataCallback (parameterData, i) {
-        // update the latestValues object with values from the pod
+    // update the latestValues object with values from the pod
     if (this._isMounted) {
-      this.latestValue.value = parameterData.Value;
-      this.latestValue.stale = parameterData.IsStale;
-      this.latestValue.units = parameterData.Units;
+      this.latestValue[parameterData.Name].value = parameterData.Value;
+      this.latestValue[parameterData.Name].stale = parameterData.IsStale;
+      this.latestValue[parameterData.Name].units = parameterData.Units;
     }
   }
 
   render () {
     return (
-            <ReactHighcharts
-                config={this.config}
-                ref={this.props.id + '_chart'} />
+      <ReactHighcharts
+          config={this.config}
+          ref={this.props.id + '_chart'} />
     );
   }
 }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../../StreamingPageManager.js';
 import GenericParameterLabel from './../GenericParameterLabel.js';
-import DataStreamClient from '../../StreamPipeClient.js';
 import NumericInput from './../NumericInput.js';
-import config from '../../../config/commConfig';
 
 import createSocket from '../../shared/socket';
 let socket = createSocket();
