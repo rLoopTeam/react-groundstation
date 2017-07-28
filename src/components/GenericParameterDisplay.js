@@ -49,7 +49,9 @@ class GenericParameterDisplay extends Component {
       formattedValue = this.state.value.toString(16);
       if (this.props.hexType !== null && this.props.hexType !== undefined) {
         var padding = this.hexTypeMap[this.props.hexType] - formattedValue.length;
-        if (padding < 0) { throw new Error('Error - Value has more bytes than the hexType allows. Check the datatype.'); }
+        if (padding < 0) {
+          throw new Error(`Error - Value has more bytes than the hexType allows. Check the datatype. [parameter ${this.props.parameter}; type ${this.props.hexType}; value ${this.state.value}]`);
+        }
         formattedValue = new Array(padding + 1).join(0) + formattedValue;
       }
       formattedValue = '0x' + formattedValue;
