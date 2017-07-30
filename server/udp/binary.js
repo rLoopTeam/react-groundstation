@@ -1,4 +1,4 @@
-/*
+*
 * Module for converting between numbers and bytes and vice versa
 * Each function has an optional parameter for setting the endianness
 * where true is little-endian and false is big-endian
@@ -167,6 +167,29 @@ function int32ToBytes (int32, littleEndian) {
   return tmpArr;
 }
 
+function int64ToBytes (int64, littleEndian) { 
+	if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { 
+	throw new Error('Error - Wrong number or type of arguments'); 
+	}
+	 //var arr = new ArrayBuffer(8); 
+	 //var view = new DataView(arr);
+	var view = new Int8Array(Int64BE(int64).toArrayBuffer());
+	var tmpArr = [view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3)]; 
+	return tmpArr;
+}
+
+function uint64ToBytes (uint64, littleEndian) { 
+	if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { 
+	throw new Error('Error - Wrong number or type of arguments'); 
+	}
+	 //var arr = new ArrayBuffer(8); 
+	// var view = new DataView(arr);
+	var buf = new Int8Array(Uint64BE(uint64).toArrayBuffer());
+	var tmpArr = [view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3)]; 
+	return tmpArr;
+	}
+
+
 function float32ToBytes (float, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(4);
@@ -202,6 +225,8 @@ module.exports = {
   int8ToBytes,
   int16ToBytes,
   int32ToBytes,
+  int64ToBytes,
+  uint64ToBytes,
   float32ToBytes,
   float64ToBytes,
   bytesToFloat32,
