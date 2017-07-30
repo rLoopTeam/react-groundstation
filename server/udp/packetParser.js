@@ -126,6 +126,8 @@ class PacketParser {
                                   raw_udp[i + 2], raw_udp[i + 3], true)); break;
           case 'int32':daqPacket.samples.push(bin.bytesToInt32(raw_udp[i], raw_udp[i + 1],
                                   raw_udp[i + 2], raw_udp[i + 3], true)); break;
+	  case 'int64':daqPacket.samples.push(bin.bytesToInt64(raw_udp[i + 7], raw_udp[i + 6], raw_udp[i + 5], raw_udp[i + 4], raw_udp[i + 3], raw_udp[i + 2], raw_udp[i + 1], raw_udp[i + 0])); break;
+	  case 'uint64':daqPacket.samples.push(bin.bytesToUint64(raw_udp[i + 7], raw_udp[i + 6], raw_udp[i + 5], raw_udp[i + 4], raw_udp[i + 3], raw_udp[i + 2], raw_udp[i + 1], raw_udp[i + 0])); break;
           case 'float32':daqPacket.samples.push(bin.bytesToFloat32(raw_udp[i], raw_udp[i + 1],
                                   raw_udp[i + 2], raw_udp[i + 3], true)); break;
           case 'float64':daqPacket.samples.push(bin.bytesToFloat64(raw_udp[i + 7], raw_udp[i + 6],
@@ -211,10 +213,14 @@ class PacketParser {
               'units': packetDef.Parameters[i].units});
             break;
           case 'uint64':
-            logger.log('error', "PacketParser: JS can't do 64-bit integers!");
+            newDataParams.parameters.push({'name': packetDef.ParameterPrefix + loopSuffix + packetDef.Parameters[i].Name, 
+		'value': bin.bytesToUint64(raw_udp[parseLoc], raw_udp[parseLoc + 1], raw_udp[parseLoc + 2], raw_udp[parseLoc + 3], raw_udp[parseLoc + 4], raw_udp[parseLoc + 5], raw_udp[parseLoc + 6], raw_udp[parseLoc + 7],true), 
+		'units': packetDef.Parameters[i].units});
             break;
           case 'int64':
-            logger.log('error', "PacketParser: JS can't do 64-bit integers!");
+            newDataParams.parameters.push({'name': packetDef.ParameterPrefix + loopSuffix + packetDef.Parameters[i].Name,
+		'value': bin.bytesToInt64(raw_udp[parseLoc], raw_udp[parseLoc + 1], raw_udp[parseLoc + 2], raw_udp[parseLoc + 3], raw_udp[parseLoc + 4], raw_udp[parseLoc + 5], raw_udp[parseLoc + 6], raw_udp[parseLoc + 7],true), 
+		'units': packetDef.Parameters[i].units});
             break;
           case 'float32':
             newDataParams.parameters.push({'name': packetDef.ParameterPrefix + loopSuffix + packetDef.Parameters[i].Name,
