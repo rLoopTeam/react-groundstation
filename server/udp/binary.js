@@ -1,11 +1,9 @@
-*
+/*
 * Module for converting between numbers and bytes and vice versa
 * Each function has an optional parameter for setting the endianness
 * where true is little-endian and false is big-endian
 */
-var Uint64BE = require("int64-buffer").Uint64BE;
-var Int64BE = require("int64-buffer").Int64BE;
-
+const int64Buffer = require('int64-buffer');
 
 function bytesToUint8 (byte1, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
@@ -92,25 +90,23 @@ function bytesToInt64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, l
   dataView.setInt8(5, byte6);
   dataView.setInt8(6, byte7);
   dataView.setInt8(7, byte8);
-  let bigNumber = new Int64BE(dataView);
-console.log(bigNumber.toNumber());
+  let bigNumber = new int64Buffer.Int64BE(dataView);
   return bigNumber.toNumber();
 }
 
 function bytesToUint64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, littleEndian) {
-if (arguments.length > 9 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
-var dataView = new DataView(new ArrayBuffer(8));
-dataView.setInt8(0, byte1);
-dataView.setInt8(1, byte2);
-dataView.setInt8(2, byte3);
-dataView.setInt8(3, byte4);
-dataView.setInt8(4, byte5);
-dataView.setInt8(5, byte6);
-dataView.setInt8(6, byte7);
-dataView.setInt8(7, byte8);
-let bigNumber = new Uint64BE(dataview);
-console.log(bigNumber.toNumber());
-return bigNumber.toNumber();
+  if (arguments.length > 9 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  var dataView = new DataView(new ArrayBuffer(8));
+  dataView.setInt8(0, byte1);
+  dataView.setInt8(1, byte2);
+  dataView.setInt8(2, byte3);
+  dataView.setInt8(3, byte4);
+  dataView.setInt8(4, byte5);
+  dataView.setInt8(5, byte6);
+  dataView.setInt8(6, byte7);
+  dataView.setInt8(7, byte8);
+  let bigNumber = new int64Buffer.Uint64BE(dataView);
+  return bigNumber.toNumber();
 }
 
 function uint8ToBytes (uint8, littleEndian) {
@@ -167,28 +163,22 @@ function int32ToBytes (int32, littleEndian) {
   return tmpArr;
 }
 
-function int64ToBytes (int64, littleEndian) { 
-	if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { 
-	throw new Error('Error - Wrong number or type of arguments'); 
-	}
-	 //var arr = new ArrayBuffer(8); 
-	 //var view = new DataView(arr);
-	var view = new Int8Array(Int64BE(int64).toArrayBuffer());
-	var tmpArr = [view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3)]; 
-	return tmpArr;
+function int64ToBytes (int64, littleEndian) {
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) {
+    throw new Error('Error - Wrong number or type of arguments');
+  }
+  var tmpArr = new Int8Array(int64Buffer.Int64BE(int64).toArrayBuffer());
+  return tmpArr;
 }
 
-function uint64ToBytes (uint64, littleEndian) { 
-	if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { 
-	throw new Error('Error - Wrong number or type of arguments'); 
-	}
-	 //var arr = new ArrayBuffer(8); 
-	// var view = new DataView(arr);
-	var buf = new Int8Array(Uint64BE(uint64).toArrayBuffer());
-	var tmpArr = [view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3)]; 
-	return tmpArr;
-	}
-
+function uint64ToBytes (uint64, littleEndian) {
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) {
+    throw new Error('Error - Wrong number or type of arguments');
+  }
+  var tmpArr = new Int8Array(int64Buffer.Uint64BE(uint64).toArrayBuffer());
+  console.log(tmpArr);
+  return tmpArr;
+}
 
 function float32ToBytes (float, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
@@ -214,19 +204,19 @@ module.exports = {
   bytesToUint8,
   bytesToUint16,
   bytesToUint32,
+  bytesToUint64,
   bytesToInt8,
   bytesToInt16,
   bytesToInt32,
   bytesToInt64,
-  bytesToInt64,
   uint8ToBytes,
   uint16ToBytes,
   uint32ToBytes,
+  uint64ToBytes,
   int8ToBytes,
   int16ToBytes,
   int32ToBytes,
   int64ToBytes,
-  uint64ToBytes,
   float32ToBytes,
   float64ToBytes,
   bytesToFloat32,
