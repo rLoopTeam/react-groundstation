@@ -45,36 +45,37 @@ class Throttles extends Component {
      * @memberOf Throttles
      */
     this.Requested_RPM = [
-            {label: 'Requested RPM 1', value: 'Requested RPM 1'},
-            {label: 'Requested RPM 2', value: 'Requested RPM 2'},
-            {label: 'Requested RPM 3', value: 'Requested RPM 3'},
-            {label: 'Requested RPM 4', value: 'Requested RPM 4'},
-            {label: 'Requested RPM 5', value: 'Requested RPM 5'},
-            {label: 'Requested RPM 6', value: 'Requested RPM 6'},
-            {label: 'Requested RPM 7', value: 'Requested RPM 7'},
-            {label: 'Requested RPM 8', value: 'Requested RPM 8'}
+            {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
+            {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
+            {label: 'Requested RPM 2', value: 'Throttle Requested RPM 2'},
+            {label: 'Requested RPM 3', value: 'Throttle Requested RPM 3'},
+            {label: 'Requested RPM 4', value: 'Throttle Requested RPM 4'},
+            {label: 'Requested RPM 5', value: 'Throttle Requested RPM 5'},
+            {label: 'Requested RPM 6', value: 'Throttle Requested RPM 6'},
+            {label: 'Requested RPM 7', value: 'Throttle Requested RPM 7'},
+            {label: 'Requested RPM 8', value: 'Throttle Requested RPM 8'}
     ];
 
     this.Current_RPM = [
-            {label: 'Current RPM 1', value: 'Current RPM 1'},
-            {label: 'Current RPM 2', value: 'Current RPM 2'},
-            {label: 'Current RPM 3', value: 'Current RPM 3'},
-            {label: 'Current RPM 4', value: 'Current RPM 4'},
-            {label: 'Current RPM 5', value: 'Current RPM 5'},
-            {label: 'Current RPM 6', value: 'Current RPM 6'},
-            {label: 'Current RPM 7', value: 'Current RPM 7'},
-            {label: 'Current RPM 8', value: 'Current RPM 8'}
+            {label: 'Current RPM 1', value: 'Throttle Current RPM 1'},
+            {label: 'Current RPM 2', value: 'Throttle Current RPM 2'},
+            {label: 'Current RPM 3', value: 'Throttle Current RPM 3'},
+            {label: 'Current RPM 4', value: 'Throttle Current RPM 4'},
+            {label: 'Current RPM 5', value: 'Throttle Current RPM 5'},
+            {label: 'Current RPM 6', value: 'Throttle Current RPM 6'},
+            {label: 'Current RPM 7', value: 'Throttle Current RPM 7'},
+            {label: 'Current RPM 8', value: 'Throttle Current RPM 8'}
     ];
 
     this.ASI_RPM = [
-            {label: 'ASI RPM 1', value: 'ASI RPM 1'},
-            {label: 'ASI RPM 2', value: 'ASI RPM 2'},
-            {label: 'ASI RPM 3', value: 'ASI RPM 3'},
-            {label: 'ASI RPM 4', value: 'ASI RPM 4'},
-            {label: 'ASI RPM 5', value: 'ASI RPM 5'},
-            {label: 'ASI RPM 6', value: 'ASI RPM 6'},
-            {label: 'ASI RPM 7', value: 'ASI RPM 7'},
-            {label: 'ASI RPM 8', value: 'ASI RPM 8'}
+            {label: 'ASI RPM 1', value: 'Throttle ASI RPM 1'},
+            {label: 'ASI RPM 2', value: 'Throttle ASI RPM 2'},
+            {label: 'ASI RPM 3', value: 'Throttle ASI RPM 3'},
+            {label: 'ASI RPM 4', value: 'Throttle ASI RPM 4'},
+            {label: 'ASI RPM 5', value: 'Throttle ASI RPM 5'},
+            {label: 'ASI RPM 6', value: 'Throttle ASI RPM 6'},
+            {label: 'ASI RPM 7', value: 'Throttle ASI RPM 7'},
+            {label: 'ASI RPM 8', value: 'Throttle ASI RPM 8'}
     ];
   }
 
