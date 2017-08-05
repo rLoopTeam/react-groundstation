@@ -71,12 +71,14 @@ class Brakes extends Component {
             {label: 'State', value: 'Brake State', hex: 'true'},
             {label: 'Calibration State', value: 'Brake Calibration State', hex: 'true'}
     ];
+
+    this.updateStateFromPod = this.updateStateFromPod.bind(this);
   }
 
   componentDidMount () {
     var _this = this;
     socket.emit('FlightControl_Brake:RequestDevelopmentMode');
-    socket.on('FlightControl_Brake:DevelopmentMode', _this.updateStateFromPod);
+    socket.on('FlightControl_Brake:DevelopmentMode', this.updateStateFromPod);
   }
 
   componentWillUnmount () {
