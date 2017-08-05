@@ -5,15 +5,14 @@ const ip = config.Appserver.ip;
 const port = config.Appserver.port;
 var sockets = {};
 
+/**
+ * Creates a socket and caches it in the sockets object.
+ *
+ * @param {string} socketName Name of the socket to get or set in the cache. [Defaults to 'default']
+ * @param {string} endpoint URI of the client facing endpoint the socket is connected to.
+ *
+ */
 function createSocket (socketName, endpoint) {
-  /**
-   * Creates a socket and caches it in the sockets object.
-   *
-   * @param {string} socketName Name of the socket to get or set in the cache. [Defaults to 'default']
-   * @param {string} endpoint URI of the client facing endpoint the socket is connected to.
-   *
-   */
-
   if (typeof socketName === 'undefined') {
     socketName = 'default';
   }
