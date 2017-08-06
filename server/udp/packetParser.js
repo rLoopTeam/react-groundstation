@@ -15,6 +15,7 @@
 * e.g. [u32 Sequence][u16 PacketType][u16 Length][u32 Flags0][u16 X0][u16 Y0][u16 Z0][u32 Flags1][u16 X1][u16 Y1][u16 Z1][u16 CRC16]
 */
 const bin = require('./binary.js');
+const crc = require('./crc.js');
 const packetDefinitions = require('../../config/packetDefinitions.js');
 const commConfig = require('../../config/commConfig.js');
 
@@ -37,9 +38,18 @@ class PacketParser {
     this.daqPacketRXCallbacks.push(cb);
   }
 
-  verifyCRC (raw_udp) {
-    var crc = bin.bytesToUint16(raw_udp[raw_udp.length - 2], raw_udp[raw_udp.length - 1]);
-    return true;
+  verifyCRC (rawUDP) {
+    let packetLength = rawUDP.length - 2; // Packet length minus CRC (2).
+    let packetCRC = bin.bytesToUint16(rawUDP[rawUDP.length - 2], rawUDP[rawUDP.length - 1], true);
+
+    let partsCRC = bin.uint16ToBytes(crc.u16SWCRC__CRC(rawUDP.slice(0, packetLength), packetLength), true);
+    let calculatedCRC = bin.bytesToUint16(partsCRC[0], partsCRC[1], true);
+
+    if (calculatedCRC === packetCRC) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   findPacketDefinition (packetType, port) {
