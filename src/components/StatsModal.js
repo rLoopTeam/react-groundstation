@@ -20,8 +20,8 @@ class StatsModal extends Component {
               <h2>Flight Control</h2>
               <div className="col-md-4">
                   <h3>Accelerometers</h3>
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 0 Fault flags" parameter='Accel 0 Flags' />
                 <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 1 Fault flags" parameter='Accel 1 Flags' />
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 2 Fault flags" parameter='Accel 2 Flags' />
               </div>
               <div className="col-md-4">
                   <h3>Brakes</h3>

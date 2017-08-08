@@ -6,7 +6,7 @@ module.exports = {
   // Accel Cal Full
   // e.g. 0x00000007 = 00000000 00000000 00000000 00000111
   // is represented by the following definition:
-  'Accel 1 Flags': {
+  'Accel 0 Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'} // 1
@@ -17,7 +17,7 @@ module.exports = {
       // ... and so on for the rest of the bits
     ]
   },
-  'Accel 2 Flags': {
+  'Accel 1 Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}

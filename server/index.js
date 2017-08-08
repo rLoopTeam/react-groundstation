@@ -157,17 +157,17 @@ const daqGenerator = require('./DataGenerators/daqGenerator.js')();
 var accelRate = 800;
 var accelPerPacket = 64;
 daqGenerator.simulateDAQ(0x4000, 'uint8', 6, 50, 9100); //CPU Load
-daqGenerator.simulateDAQ(0x4001, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4002, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4003, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4004, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4005, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4006, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4007, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4008, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x4009, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x400a, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x400b, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
-daqGenerator.simulateDAQ(0x400c, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //accel 1 X
+daqGenerator.simulateDAQ(0x4001, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4002, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4003, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4004, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4005, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4006, 'int16', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4007, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4008, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x4009, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x400a, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x400b, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
+daqGenerator.simulateDAQ(0x400c, 'int32', accelPerPacket, 1000/(accelRate/accelPerPacket), 9100); //Accel 0 X
 
 */

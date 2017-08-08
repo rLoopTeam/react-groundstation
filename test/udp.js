@@ -59,14 +59,14 @@ describe('UDP tests: ', function () {
       var parsedUdpMessage = udp.parseUdpMessage(raw);
 
       // We expect it to be accelerometer data
+      expect(parsedUdpMessage.data.accelerometer0.flags).to.equal(4294967295)
+      expect(parsedUdpMessage.data.accelerometer0.x).to.equal(65535)
+      expect(parsedUdpMessage.data.accelerometer0.y).to.equal(65535)
+      expect(parsedUdpMessage.data.accelerometer0.z).to.equal(65535)
       expect(parsedUdpMessage.data.accelerometer1.flags).to.equal(4294967295)
       expect(parsedUdpMessage.data.accelerometer1.x).to.equal(65535)
       expect(parsedUdpMessage.data.accelerometer1.y).to.equal(65535)
       expect(parsedUdpMessage.data.accelerometer1.z).to.equal(65535)
-      expect(parsedUdpMessage.data.accelerometer2.flags).to.equal(4294967295)
-      expect(parsedUdpMessage.data.accelerometer2.x).to.equal(65535)
-      expect(parsedUdpMessage.data.accelerometer2.y).to.equal(65535)
-      expect(parsedUdpMessage.data.accelerometer2.z).to.equal(65535)
     })
   })
   */
@@ -105,14 +105,14 @@ describe('UDP tests: ', function () {
       var parsedUdpMessage = parser.gotNewPacket(raw);
 
       // We expect it to be accelerometer data
+      // expect(parsedUdpMessage.data.accelerometer0.flags).to.equal(4294967295)
+      // expect(parsedUdpMessage.data.accelerometer0.x).to.equal(65535)
+      // expect(parsedUdpMessage.data.accelerometer0.y).to.equal(65535)
+      // expect(parsedUdpMessage.data.accelerometer0.z).to.equal(65535)
       // expect(parsedUdpMessage.data.accelerometer1.flags).to.equal(4294967295)
       // expect(parsedUdpMessage.data.accelerometer1.x).to.equal(65535)
       // expect(parsedUdpMessage.data.accelerometer1.y).to.equal(65535)
       // expect(parsedUdpMessage.data.accelerometer1.z).to.equal(65535)
-      // expect(parsedUdpMessage.data.accelerometer2.flags).to.equal(4294967295)
-      // expect(parsedUdpMessage.data.accelerometer2.x).to.equal(65535)
-      // expect(parsedUdpMessage.data.accelerometer2.y).to.equal(65535)
-      // expect(parsedUdpMessage.data.accelerometer2.z).to.equal(65535)
     });
   });
 });

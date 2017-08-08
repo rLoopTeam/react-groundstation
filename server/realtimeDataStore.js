@@ -8,7 +8,7 @@ class RealTimeDataStore {
 
     /* ---------
     Data Store Structure:
-      [{'PacketName':'Accel 2 Packet',
+      [{'PacketName':'Accel 1 Packet',
         'RxTime':'', Linux time in millis
         'Name':'',
         'Value':'',
