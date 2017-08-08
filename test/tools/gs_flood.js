@@ -1,4 +1,4 @@
-const packetDefinitions = require('../../config/packetDefinitions.js').packetDefinitions;
+const packetDefinitions = require('../../config/packetDefinitions.json').packetDefinitions;
 const bin = require('../../server/udp/binary.js');
 const commConfig = require('../../config/commConfig.js');
 const dgram = require('dgram');
@@ -27,6 +27,10 @@ function generatePacket (packetName) {
 
   let packetDefintion;
   let payload = [];
+  let inLoop = false;
+  let loopIterations = Math.floor(Math.random() * 55);
+  let loopIteration = 0;
+  let loopBeginIndex = -1;
 
   for (let i = 0, len = packetDefinitions.length; i < len; i++) {
     if (packetDefinitions[i].Name === packetName) {
@@ -49,10 +53,23 @@ function generatePacket (packetName) {
     return;
   }
 
-  for (let parameter of packetDefintion.Parameters) {
+  for (let x = 0; x < packetDefintion.Parameters.length; x++) {
+    let parameter = packetDefintion.Parameters[x];
     // TODO: Can we make JS do 64 bit integers?
     if (parameter.type === 'uint64') {
       return;
+    }
+    if (parameter.endLoop && inLoop) {
+      if (loopIteration > loopIterations) {
+        inLoop = false;
+        loopIteration = 0;
+      } else {
+        x = loopBeginIndex;
+        loopIteration++;
+      }
+    } else if (parameter.beginLoop && !inLoop) {
+      inLoop = true;
+      loopBeginIndex = x;
     }
 
     if (parameter.Name.search(/fault/i) > -1) {
