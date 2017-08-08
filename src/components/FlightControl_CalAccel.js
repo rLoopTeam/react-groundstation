@@ -70,7 +70,7 @@ class FlightControl_CalAccel extends Component {
             <div className="form-group">
                 <label htmlFor="a0_x">A0:X-Axis</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 X Raw' hideUnits='true' readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' hideUnits='true' readOnly='true'/>
                 <button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 0})}>Fine Zero</button>
               </div>
             </div>
@@ -80,7 +80,7 @@ class FlightControl_CalAccel extends Component {
             <div className="form-group">
               <label htmlFor="a0_y">A0:Y-Axis</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Y Raw' hideUnits='true' readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' hideUnits='true' readOnly='true'/>
                 <button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 1})}>Fine Zero</button>
               </div>
             </div>
@@ -90,7 +90,7 @@ class FlightControl_CalAccel extends Component {
             <div className="form-group">
               <label htmlFor="a0_z">A0:Z-Axis</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Z Raw' hideUnits='true' readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Raw' hideUnits='true' readOnly='true'/>
                 <button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 0, axis: 2})}>Fine Zero</button>
                 <button className="btn btn-danger" onClick={this.accelAutoZero.bind(this, {accel: 0, axis: 2})}>Auto Zero</button>
               </div>
@@ -104,7 +104,7 @@ class FlightControl_CalAccel extends Component {
 
                 <label htmlFor="a1_x">A1:X-Axis</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Raw' hideUnits='true' readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 X Raw' hideUnits='true' readOnly='true'/>
                 <button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 0})}>Fine Zero</button>
               </div>
             </div>
@@ -114,7 +114,7 @@ class FlightControl_CalAccel extends Component {
             <div className="form-group">
               <label htmlFor="a1_y">A1:Y-Axis</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Raw' hideUnits='true' readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Y Raw' hideUnits='true' readOnly='true'/>
                 <button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 1})}>Fine Zero</button>
               </div>
             </div>
@@ -124,7 +124,7 @@ class FlightControl_CalAccel extends Component {
             <div className="form-group">
               <label htmlFor="a1_z">A1:Z-Axis</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Raw' hideUnits='true' readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Z Raw' hideUnits='true' readOnly='true'/>
                 <button className="btn btn-primary" onClick={this.accelFineZero.bind(this, {accel: 1, axis: 2})}>Fine Zero</button>
                 <button className="btn btn-danger" onClick={this.accelAutoZero.bind(this, {accel: 1, axis: 2})}>Auto Zero</button>
               </div>
@@ -142,7 +142,7 @@ class FlightControl_CalAccel extends Component {
 
               <label htmlFor="a0_flags">A0:Flags</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 0 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
               </div>
             </div>
           </form>
@@ -152,7 +152,7 @@ class FlightControl_CalAccel extends Component {
 
               <label htmlFor="a1_flags">A1:Flags</label>
               <div>
-                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
               </div>
             </div>
           </form>

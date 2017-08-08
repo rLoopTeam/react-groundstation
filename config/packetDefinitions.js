@@ -686,7 +686,7 @@ module.exports = {
       'dataSize': 1
     },
     {
-      'Name': 'FCU DAQ ACCEL 0 X',
+      'Name': 'FCU DAQ ACCEL 1 X',
       'PacketType': 0x4001,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -694,7 +694,7 @@ module.exports = {
       'dataSize': 2
     },
     {
-      'Name': 'FCU DAQ ACCEL 0 Y',
+      'Name': 'FCU DAQ ACCEL 1 Y',
       'PacketType': 0x4002,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -702,7 +702,7 @@ module.exports = {
       'dataSize': 2
     },
     {
-      'Name': 'FCU DAQ ACCEL 0 Z',
+      'Name': 'FCU DAQ ACCEL 1 Z',
       'PacketType': 0x4003,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -710,7 +710,7 @@ module.exports = {
       'dataSize': 2
     },
     {
-      'Name': 'FCU DAQ ACCEL 1 X',
+      'Name': 'FCU DAQ ACCEL 2 X',
       'PacketType': 0x4004,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -718,7 +718,7 @@ module.exports = {
       'dataSize': 2
     },
     {
-      'Name': 'FCU DAQ ACCEL 1 Y',
+      'Name': 'FCU DAQ ACCEL 2 Y',
       'PacketType': 0x4005,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -726,7 +726,7 @@ module.exports = {
       'dataSize': 2
     },
     {
-      'Name': 'FCU DAQ ACCEL 1 Z',
+      'Name': 'FCU DAQ ACCEL 2 Z',
       'PacketType': 0x4006,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -734,7 +734,7 @@ module.exports = {
       'dataSize': 2
     },
     {
-      'Name': 'FCU DAQ ACCEL 0 ACCEL',
+      'Name': 'FCU DAQ ACCEL 1 ACCEL',
       'PacketType': 0x4007,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -742,7 +742,7 @@ module.exports = {
       'dataSize': 4
     },
     {
-      'Name': 'FCU DAQ ACCEL 0 VELOCITY',
+      'Name': 'FCU DAQ ACCEL 1 VELOCITY',
       'PacketType': 0x4008,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -750,7 +750,7 @@ module.exports = {
       'dataSize': 4
     },
     {
-      'Name': 'FCU DAQ ACCEL 0 DISPLACEMENT',
+      'Name': 'FCU DAQ ACCEL 1 DISPLACEMENT',
       'PacketType': 0x4009,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -758,7 +758,7 @@ module.exports = {
       'dataSize': 4
     },
     {
-      'Name': 'FCU DAQ ACCEL 1 ACCEL',
+      'Name': 'FCU DAQ ACCEL 2 ACCEL',
       'PacketType': 0x400a,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -766,7 +766,7 @@ module.exports = {
       'dataSize': 4
     },
     {
-      'Name': 'FCU DAQ ACCEL 1 VELOCITY',
+      'Name': 'FCU DAQ ACCEL 2 VELOCITY',
       'PacketType': 0x400c,
       'Node': 'Flight Control',
       'DAQ': true,
@@ -774,7 +774,7 @@ module.exports = {
       'dataSize': 4
     },
     {
-      'Name': 'FCU DAQ ACCEL 1 DISPLACEMENT',
+      'Name': 'FCU DAQ ACCEL 2 DISPLACEMENT',
       'PacketType': 0x400d,
       'Node': 'Flight Control',
       'DAQ': true,
