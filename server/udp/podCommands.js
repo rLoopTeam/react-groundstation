@@ -64,19 +64,20 @@ module.exports = function (udp) {
     if (allowDangerousCommands) {
       console.warn('Brake development mode has been enabled. This is dangerous and will damage the magnets.');
       udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0);
+      this.setBrakeDevelopmentMode(true);
     } else {
       console.warn('Brake development mode request denied. Please rerun the ground station with environ ' +
                   'RLOOP_DANGER=I_KNOW_WHAT_I_AM_DOING');
     }
   }
 
+  /**
+   * THIS IS VERY VERY DANGEROUS
+   * data.command (0 = Left, 1 = Right, 2 = Both)
+   * data.position (microns)
+   */
   function FCUBrake_MoveMotorRAW (data) {
     console.log('move motor raw ', data);
-    // THIS IS VERY VERY DANGEROUS
-
-    // data.command (0 = Left, 1 = Right, 2 = Both)
-
-    // data.position (microns)
 
     if (_brakeDevelopmentConfirmation) {
       udp.tx.transmitPodCommand('Flight Control', 0x1401, data.command, data.position, 0x0, 0x0);
@@ -89,7 +90,7 @@ module.exports = function (udp) {
     // data.position (mm)
 
     if (_brakeDevelopmentConfirmation) {
-                // sending floats in annoying but this is how to do it
+      // sending floats in annoying but this is how to do it
       var bytes = bin.float32ToBytes(data.position);
       udp.tx.transmitPodCommand('Flight Control', 0x1403, bin.bytesToUint32(bytes[0], bytes[1], bytes[2], bytes[3], false), 0x0, 0x0, 0x0);
     }
