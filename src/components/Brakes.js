@@ -85,10 +85,9 @@ class Brakes extends Component {
 
   componentDidMount () {
     var _this = this;
-    socket.emit('FlightControl_Brake:RequestDevelopmentMode');
+
     socket.on('connect', function () {
       socket.on('FlightControl_Brake:DevelopmentMode', function (data) {
-                // FlightControl_Brake:RequestDevelopmentMode
         console.log('\n\n\n\n\n\nUI UPDATE DEV MODE FROM POD\n\n\n\n\n', data.developmentMode);
         _this.setState({
           developmentModeSelection: (data.developmentMode) ? 1 : 0,

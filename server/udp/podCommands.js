@@ -1,9 +1,11 @@
 const bin = require('./binary');
 var chalk = require('chalk');// using this to show messages in color
 
+const allowDangerousCommands = process.env.RLOOP_DANGER === 'I_KNOW_WHAT_I_AM_DOING';
+
 module.exports = function (udp) {
-    // flag allow/disallow the use of FCUBrake_MoveMotorRAW which is
-    // extreamly dangerous and will damage the magnets
+  // flag allow/disallow the use of FCUBrake_MoveMotorRAW which is
+  // extreamly dangerous and will damage the magnets
 
   var _brakeDevelopmentConfirmation = false;
 
@@ -13,25 +15,25 @@ module.exports = function (udp) {
 
   function LGU_PositionChange (liftName, liftDirection) {
     console.log('Name:' + liftName + ' Direction:' + liftDirection);
-            // udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
+    // udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
   }
 
   function LGU_SpeedChange (liftName, liftSpeed) {
     console.log('Name:' + liftName + ' Speed:' + liftSpeed);
-            // udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
+    // udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
   }
 
   function setBrakeDevelopmentMode (value) {
     console.log('podcommands: set eddv mode', value);
-            // this is used as a flag to allow/disallow the use of FCUBrake_MoveMotorRAW which is
-            // extreamly dangerous and will damage the magnets
+    // this is used as a flag to allow/disallow the use of FCUBrake_MoveMotorRAW which is
+    // extreamly dangerous and will damage the magnets
 
     _brakeDevelopmentConfirmation = value;
   }
 
-        /**
-         * Pod Safe
-         */
+  /**
+   * Pod Safe
+   */
   function FCUPod_Off () {
     udp.tx.transmitPodCommand('Flight Control', 0x3000, 0x76543210, 0x0, 0x0, 0x0);
   }
@@ -40,43 +42,41 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x0001, 0x1234ABCD, 0x0, 0x0, 0x0);
   }
 
-        /**
-         *
-         * Power Latch
-         * @param {any} data - data.powerNode (0 or 1) for Power Node A or Power Node B
-         */
+  /**
+   *
+   * Power Latch
+   * @param {any} data - data.powerNode (0 or 1) for Power Node A or Power Node B
+   */
   function FCUPod_PowerLatch (data) {
     udp.tx.transmitPodCommand('Flight Control', 0x3030, 0xABCD1245, data.powerNode, 0x0, 0x0);
   }
 
   function FCUBrake_DisableDevelopmentMode () {
     this.setBrakeDevelopmentMode(false);
-
-            // using 0x000000 value to disable development mode (any value other than 0x01293847 will disable this setting)
-
+    // using 0x000000 value to disable development mode (any value other than 0x01293847 will disable this setting)
     udp.tx.transmitPodCommand('Flight Control', 0x1400, 0x000000, 0x0, 0x0, 0x0);
   }
 
+  /**
+   * THIS IS VERY VERY DANGEROUS
+   */
   function FCUBrake_EnableDevelopmentMode () {
-            // THIS IS VERY VERY DANGEROUS
-
-    this.setBrakeDevelopmentMode(true);
-
-    udp.tx.transmitPodCommand('Flight Control', 0x1400, 0x01293847, 0x0, 0x0, 0x0);
-  }
-
-  function FCUBrake_RequestDevelopmentMode () {
-            // udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0);
-    console.log("SEND 'REQUESTDEVELOPMENTMODE'");
+    if (allowDangerousCommands) {
+      console.warn('Brake development mode has been enabled. This is dangerous and will damage the magnets.');
+      udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001003, 0x0, 0x0);
+    } else {
+      console.warn('Brake development mode request denied. Please rerun the ground station with environ ' +
+                  'RLOOP_DANGER=I_KNOW_WHAT_I_AM_DOING');
+    }
   }
 
   function FCUBrake_MoveMotorRAW (data) {
     console.log('move motor raw ', data);
-            // THIS IS VERY VERY DANGEROUS
+    // THIS IS VERY VERY DANGEROUS
 
-            // data.command (0 = Left, 1 = Right, 2 = Both)
+    // data.command (0 = Left, 1 = Right, 2 = Both)
 
-            // data.position (microns)
+    // data.position (microns)
 
     if (_brakeDevelopmentConfirmation) {
       udp.tx.transmitPodCommand('Flight Control', 0x1401, data.command, data.position, 0x0, 0x0);
@@ -85,8 +85,8 @@ module.exports = function (udp) {
 
   function FCUBrake_MoveMotorIBeam (data) {
     console.log('move motor i-beam', data);
-            // THIS IS VERY VERY DANGEROUS
-            // data.position (mm)
+    // THIS IS VERY VERY DANGEROUS
+    // data.position (mm)
 
     if (_brakeDevelopmentConfirmation) {
                 // sending floats in annoying but this is how to do it
@@ -133,7 +133,7 @@ module.exports = function (udp) {
 
   function FCUBrake_MLPSetSpanRightBrake () {
     console.log('Brakes: Set Span Right Brake');
-            // THIS IS VERY VERY DANGEROUS
+    // THIS IS VERY VERY DANGEROUS
 
     if (_brakeDevelopmentConfirmation) {
       udp.tx.transmitPodCommand('Flight Control', 0x1409, 0x55660123, 0x01, 0x1, 0x0);
@@ -183,7 +183,7 @@ module.exports = function (udp) {
   function FCUStreamingControlStart_Lasers () {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001101, 0x0, 0x0);
   }
-  
+
   function FCUStreamingControlStart_ForwardLaser () {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001201, 0x0, 0x0);
   }
@@ -384,39 +384,47 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Power Node B', 0x3031, 0x11223344, 0x0, 0, 0x0);
   }
 
-        // Hover Engines
+  // Hover Engines
   function FCUHover_Enable () {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_Disable () {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_EnableStaticHovering () {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_ReleaseStaticHovering () {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_EnableHEX (hexName) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_DisableHEX (hexName) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
   function FCUHover_SetHEXSpeed (hexName, hexSpeed) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_StartCooling (coolingName) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_StopCooling (coolingName) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
+
   function FCUHover_OpenSolenoid (solenoidName) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
 
-        // Aux Propulsion
+    // Aux Propulsion
   function FCUAuxProp_Enable () {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
@@ -509,14 +517,13 @@ module.exports = function (udp) {
     FCUStepper_SetPicoMetersPerRev,
     FCUStepper_SetMaxRPM,
     FCUStepper_SetMicroStepResolution,
-    FCUBrake_RequestDevelopmentMode,
     FCUStreamingControlStart_AccelCalData,
     FCUStreamingControlStart_AccelFullData,
     FCUStreamingControlStop_Accel,
     FCUStreamingControlStart_Brakes,
     FCUStreamingControlStart_MotorsRaw,
     FCUStreamingControlStart_Lasers,
-	FCUStreamingControlStart_ForwardLaser,
+    FCUStreamingControlStart_ForwardLaser,
     FCUAccel_FineZero,
     FCUAccel_AutoZero,
 
