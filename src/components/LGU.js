@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
-let socket = io();
+import createSocket from '../shared/socket';
+
+let socket = createSocket();
 
 class LGU extends Component {
   constructor (props) {

@@ -1,17 +1,9 @@
 import React, {Component} from 'react';
 import config from '../../../config/commConfig';
 import DataStreamClient from '../../StreamPipeClient.js';
-import io from 'socket.io-client';
+import createSocket from '../../shared/socket';
 
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket = io.connect(ip + ':' + port, {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+let socket = createSocket();
 
 /*
 *   Power_RawTemperatures class
@@ -31,80 +23,83 @@ class Power_RawTemperatures extends Component {
 
     this.newPacketCallback = this.newPacketCallback.bind(this);
     this.DataStreamClient = new DataStreamClient(this.newPacketCallback);
-    this.requestParameterFromServer(`Power ${props.route.L} Temps Count`);
   }
 
   requestParameterFromServer (parameter) {
-    // console.log("requesting: "+parameter);
     this.DataStreamClient.RequestParameter(parameter);
   }
 
   componentDidMount () {
-    var _this = this;
     this._isMounted = true;
+    this.DataStreamClient.openSocket();
+    this.requestParameterFromServer(`Power ${this.props.route.L} Temps Count`);
   }
 
   componentWillUnmount () {
     this._isMounted = false;
+    this.DataStreamClient.closeSocket({clearParameters: true});
   }
 
   newPacketCallback (newData) {
+    if (!this._isMounted) {
+      return;
+    }
+
     var parameterData = newData.parameters;
 
     var field;
     var newState = {};
     // console.log("here");
     // console.log(JSON.stringify(parameterData));
-    if (this._isMounted) {
-      for (var i = 0; i < parameterData.length; i++) {
-        if (parameterData[i].Name === `Power ${this.props.route.L} Temps Count` && this.state.numberofSensors !== parameterData[i].Value) {
-          this.setState({numberofSensors: parameterData[i].Value});
-          for (var x = 1; x <= parameterData[i].Value; x++) {
-            this.requestParameterFromServer(`Power ${this.props.route.L} Temps ${x} Temperature`);
-            this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} User Index`);
-            this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} Resolution`);
-            this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} Bus Index`);
-            this.requestParameterFromServer(`Power ${this.props.route.L} ROM ID ${x}`);
-          }
-        }
 
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 11, parameterData[i].Name.length) === 'Temperature') {
-          field = 'temperatureValues' + parameterData[i].Name.split(' ')[3];
-          if (this.state[field] !== parameterData[i].Value) {
-            newState[field] = parameterData[i].Value;
-          }
-        }
-
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'User Index') {
-          field = 'userIndex' + parameterData[i].Name.split(' ')[4];
-          if (this.state[field] !== parameterData[i].Value) {
-            newState[field] = parameterData[i].Value;
-          }
-        }
-
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'Resolution') {
-          field = 'resolution' + parameterData[i].Name.split(' ')[4];
-          if (this.state[field] !== parameterData[i].Value) {
-            newState[field] = parameterData[i].Value;
-          }
-        }
-
-        if (parameterData[i].Name.substring(parameterData[i].Name.length - 9, parameterData[i].Name.length) === 'Bus Index') {
-          field = 'busIndex' + parameterData[i].Name.split(' ')[4];
-          if (this.state[field] !== parameterData[i].Value) {
-            newState[field] = parameterData[i].Value;
-          }
-        }
-
-        if (parameterData[i].Name.substring(0, 14) === `Power ${this.props.route.L} ROM ID`) {
-          field = 'ROMID' + parameterData[i].Name.split(' ')[4];
-          if (this.state[field] !== parameterData[i].Value) {
-            newState[field] = parameterData[i].Value;
-          }
+    for (var i = 0; i < parameterData.length; i++) {
+      if (parameterData[i].Name === `Power ${this.props.route.L} Temps Count` && this.state.numberofSensors !== parameterData[i].Value) {
+        this.setState({numberofSensors: parameterData[i].Value});
+        for (var x = 1; x <= parameterData[i].Value; x++) {
+          this.requestParameterFromServer(`Power ${this.props.route.L} Temps ${x} Temperature`);
+          this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} User Index`);
+          this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} Resolution`);
+          this.requestParameterFromServer(`Power ${this.props.route.L} Temps Loc ${x} Bus Index`);
+          this.requestParameterFromServer(`Power ${this.props.route.L} ROM ID ${x}`);
         }
       }
-      this.setState(newState);
+
+      if (parameterData[i].Name.substring(parameterData[i].Name.length - 11, parameterData[i].Name.length) === 'Temperature') {
+        field = 'temperatureValues' + parameterData[i].Name.split(' ')[3];
+        if (this.state[field] !== parameterData[i].Value) {
+          newState[field] = parameterData[i].Value;
+        }
+      }
+
+      if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'User Index') {
+        field = 'userIndex' + parameterData[i].Name.split(' ')[4];
+        if (this.state[field] !== parameterData[i].Value) {
+          newState[field] = parameterData[i].Value;
+        }
+      }
+
+      if (parameterData[i].Name.substring(parameterData[i].Name.length - 10, parameterData[i].Name.length) === 'Resolution') {
+        field = 'resolution' + parameterData[i].Name.split(' ')[4];
+        if (this.state[field] !== parameterData[i].Value) {
+          newState[field] = parameterData[i].Value;
+        }
+      }
+
+      if (parameterData[i].Name.substring(parameterData[i].Name.length - 9, parameterData[i].Name.length) === 'Bus Index') {
+        field = 'busIndex' + parameterData[i].Name.split(' ')[4];
+        if (this.state[field] !== parameterData[i].Value) {
+          newState[field] = parameterData[i].Value;
+        }
+      }
+
+      if (parameterData[i].Name.substring(0, 14) === `Power ${this.props.route.L} ROM ID`) {
+        field = 'ROMID' + parameterData[i].Name.split(' ')[4];
+        if (this.state[field] !== parameterData[i].Value) {
+          newState[field] = parameterData[i].Value;
+        }
+      }
     }
+    this.setState(newState);
   }
 
   PowerStreamingOff (data, e) {

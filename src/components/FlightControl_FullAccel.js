@@ -3,13 +3,8 @@ import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterInput from './GenericParameterInput.js';
 import LineChart from './charts/LineChart.js';
 
-import io from 'socket.io-client';
-let socket = io.connect('127.0.0.1:3000', {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+import createSocket from '../shared/socket';
+let socket = createSocket();
 
 class FlightControl_FullAccel extends Component {
   constructor (props) {
