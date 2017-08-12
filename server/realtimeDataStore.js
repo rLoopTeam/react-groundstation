@@ -53,7 +53,6 @@ class RealTimeDataStore {
 
       // No entry found, add a new one
       if (found === false) {
-        console.log(newDataPacket.parameters[x].name);
         this.rtDataStore.push({'PacketName': newDataPacket.packetName,
           'RxTime': newDataPacket.rxTime,
           'Name': newDataPacket.parameters[x].name,
