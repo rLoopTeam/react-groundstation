@@ -8,7 +8,7 @@ class RealTimeDataStore {
 
     /* ---------
     Data Store Structure:
-      [{'PacketName':'Accel 1 Packet',
+      [{'PacketName':'Accel 2 Packet',
         'RxTime':'', Linux time in millis
         'Name':'',
         'Value':'',
@@ -53,6 +53,7 @@ class RealTimeDataStore {
 
       // No entry found, add a new one
       if (found === false) {
+        console.log(newDataPacket.parameters[x].name);
         this.rtDataStore.push({'PacketName': newDataPacket.packetName,
           'RxTime': newDataPacket.rxTime,
           'Name': newDataPacket.parameters[x].name,

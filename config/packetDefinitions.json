@@ -1,6 +1,729 @@
 {
     "packetDefinitions": [
         {
+            "Name": "Laser Contrast 0",
+            "PacketType": 4865,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "LaserContrast0 ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "System Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Laser Fault Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Rising Count"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Falling Count"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Max Stripes"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 0"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 1"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 2"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 3"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 4"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 5"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 6"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 7"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 8"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 9"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 10"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 11"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 12"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 13"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 14"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 15"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 16"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 17"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 18"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 19"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 20"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 21"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 22"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 23"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 24"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 25"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 26"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 27"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 28"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 29"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 30"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 31"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 32"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 33"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 34"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 35"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 36"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 37"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 38"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 39"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 40"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 41"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 42"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 43"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 44"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 45"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 46"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 47"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 48"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 49"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 50"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 51"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 52"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 53"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 54"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 0"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 1"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 2"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 3"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 4"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 5"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 6"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 7"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 8"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 9"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 10"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 11"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 12"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 13"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 14"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 15"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 16"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 17"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 18"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 19"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 20"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 21"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 22"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 23"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 24"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 25"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 26"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 27"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 28"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 29"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 30"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 31"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 32"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 33"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 34"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 35"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 36"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 37"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 38"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 39"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 40"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 41"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 42"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 43"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 44"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 45"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 46"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 47"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 48"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 49"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 50"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 51"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 52"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 53"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 54"
+                }
+            ]
+        },
+        {
             "Name": "FCU DAQ CPU LOAD",
             "PacketType": 16384,
             "Node": "Flight Control",
@@ -9,7 +732,7 @@
             "dataSize": 1
         },
         {
-            "Name": "FCU DAQ ACCEL 1 X",
+            "Name": "FCU DAQ ACCEL 0 X",
             "PacketType": 16385,
             "Node": "Flight Control",
             "DAQ": true,
@@ -17,7 +740,7 @@
             "dataSize": 2
         },
         {
-            "Name": "FCU DAQ ACCEL 1 Y",
+            "Name": "FCU DAQ ACCEL 0 Y",
             "PacketType": 16386,
             "Node": "Flight Control",
             "DAQ": true,
@@ -25,7 +748,7 @@
             "dataSize": 2
         },
         {
-            "Name": "FCU DAQ ACCEL 1 Z",
+            "Name": "FCU DAQ ACCEL 0 Z",
             "PacketType": 16387,
             "Node": "Flight Control",
             "DAQ": true,
@@ -33,7 +756,7 @@
             "dataSize": 2
         },
         {
-            "Name": "FCU DAQ ACCEL 2 X",
+            "Name": "FCU DAQ ACCEL 1 X",
             "PacketType": 16388,
             "Node": "Flight Control",
             "DAQ": true,
@@ -41,7 +764,7 @@
             "dataSize": 2
         },
         {
-            "Name": "FCU DAQ ACCEL 2 Y",
+            "Name": "FCU DAQ ACCEL 1 Y",
             "PacketType": 16389,
             "Node": "Flight Control",
             "DAQ": true,
@@ -49,7 +772,7 @@
             "dataSize": 2
         },
         {
-            "Name": "FCU DAQ ACCEL 2 Z",
+            "Name": "FCU DAQ ACCEL 1 Z",
             "PacketType": 16390,
             "Node": "Flight Control",
             "DAQ": true,
@@ -57,7 +780,7 @@
             "dataSize": 2
         },
         {
-            "Name": "FCU DAQ ACCEL 1 ACCEL",
+            "Name": "FCU DAQ ACCEL 0 ACCEL",
             "PacketType": 16391,
             "Node": "Flight Control",
             "DAQ": true,
@@ -65,7 +788,7 @@
             "dataSize": 4
         },
         {
-            "Name": "FCU DAQ ACCEL 1 VELOCITY",
+            "Name": "FCU DAQ ACCEL 0 VELOCITY",
             "PacketType": 16392,
             "Node": "Flight Control",
             "DAQ": true,
@@ -73,7 +796,7 @@
             "dataSize": 4
         },
         {
-            "Name": "FCU DAQ ACCEL 1 DISPLACEMENT",
+            "Name": "FCU DAQ ACCEL 0 DISPLACEMENT",
             "PacketType": 16393,
             "Node": "Flight Control",
             "DAQ": true,
@@ -81,7 +804,7 @@
             "dataSize": 4
         },
         {
-            "Name": "FCU DAQ ACCEL 2 ACCEL",
+            "Name": "FCU DAQ ACCEL 1 ACCEL",
             "PacketType": 16394,
             "Node": "Flight Control",
             "DAQ": true,
@@ -89,7 +812,7 @@
             "dataSize": 4
         },
         {
-            "Name": "FCU DAQ ACCEL 2 VELOCITY",
+            "Name": "FCU DAQ ACCEL 1 VELOCITY",
             "PacketType": 16396,
             "Node": "Flight Control",
             "DAQ": true,
@@ -97,12 +820,195 @@
             "dataSize": 4
         },
         {
-            "Name": "FCU DAQ ACCEL 2 DISPLACEMENT",
+            "Name": "FCU DAQ ACCEL 1 DISPLACEMENT",
             "PacketType": 16397,
             "Node": "Flight Control",
             "DAQ": true,
             "dataType": "int32",
             "dataSize": 4
+        },
+        {
+            "Name": "Throttle Parameters",
+            "PacketType": 5379,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "Throttle ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "AMC Fault Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 5"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 6"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 7"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 8"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 5"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 6"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 7"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 8"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 5"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 6"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 7"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 8"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Current Index"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "AMC State"
+                }
+            ]
         },
         {
             "Name": "Accel Cal Full",
@@ -235,65 +1141,6 @@
             ]
         },
         {
-            "Name": "Laser Opto Sensor",
-            "PacketType": 4353,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "LaserOpto ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare"
-                },
-                {
-                    "type": "uint32",
-                    "beginLoop": true,
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Laser error packet count"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "First byte wrong"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Raw distance"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Filtered value"
-                },
-                {
-                    "type": "uint32",
-                    "endLoop": true,
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare"
-                }
-            ]
-        },
-        {
             "Name": "Forward Laser Distance Sensor",
             "PacketType": 4609,
             "Node": "Flight Control",
@@ -307,22 +1154,22 @@
                     "Name": "Fault Flags"
                 },
                 {
+                    "units": "mm",
                     "type": "int32",
-                    "units": "",
                     "size": 4,
-                    "Name": "Spare 0"
+                    "Name": "Distance"
+                },
+                {
+                    "units": "mm",
+                    "type": "int32",
+                    "size": 4,
+                    "Name": "Precious Distance"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Spare 1"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2"
+                    "Name": "Velocity"
                 },
                 {
                     "type": "int32",
@@ -334,13 +1181,13 @@
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Distance Filtered"
+                    "Name": "Acceleration"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Spare 3"
+                    "Name": "Previous Acceleration"
                 },
                 {
                     "type": "uint32",
@@ -365,1015 +1212,6 @@
                     "units": "",
                     "size": 4,
                     "Name": "Error Code"
-                }
-            ]
-        },
-        {
-            "Name": "Laser Contrast 0",
-            "PacketType": 4865,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "LaserContrast0 ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "System Fault Flags"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Laser Fault Flags"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Rising Count"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Falling Count"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Max Stripes"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_00"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_01"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_02"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_03"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_04"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_05"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_06"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_07"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_08"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_09"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_10"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_11"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_12"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_13"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_14"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_15"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_16"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_17"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_18"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_19"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_20"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_21"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_22"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_23"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_24"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_25"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_26"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_27"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_28"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_29"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_30"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_31"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_32"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_33"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_34"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_35"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_36"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_37"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_38"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_39"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_40"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_41"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_42"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_43"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_44"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_45"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_46"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_47"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_48"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_49"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_50"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_51"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_52"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_53"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Rise_54"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_00"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_01"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_02"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_03"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_04"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_05"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_06"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_07"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_08"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_09"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_10"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_11"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_12"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_13"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_14"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_15"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_16"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_17"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_18"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_19"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_20"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_21"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_22"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_23"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_24"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_25"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_26"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_27"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_28"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_29"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_30"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_31"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_32"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_33"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_34"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_35"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_36"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_37"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_38"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_39"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_40"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_41"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_42"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_43"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_44"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_45"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_46"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_47"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_48"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_49"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_50"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_51"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_52"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_53"
-                },
-                {
-                    "type": "uint64",
-                    "units": "ns",
-                    "size": 8,
-                    "Name": "Fall_54"
-                }
-            ]
-        },
-        {
-            "Name": "Brake Data",
-            "PacketType": 5122,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "Brake ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "a",
-                    "beginLoop": true,
-                    "size": 4,
-                    "Name": "Fault Flags"
-                },
-                {
-                    "units": "mm",
-                    "type": "float32",
-                    "size": 4,
-                    "Name": "I Beam mm Target"
-                },
-                {
-                    "units": "mm",
-                    "type": "float32",
-                    "size": 4,
-                    "Name": "Lead Screw mm Target"
-                },
-                {
-                    "units": "um",
-                    "type": "uint32",
-                    "size": 4,
-                    "Name": "Lead Screw um Target"
-                },
-                {
-                    "units": "mm",
-                    "type": "float32",
-                    "size": 4,
-                    "Name": "I Beam mm Current"
-                },
-                {
-                    "units": "mm",
-                    "type": "float32",
-                    "size": 4,
-                    "Name": "Lead Screw mm Current"
-                },
-                {
-                    "units": "mm",
-                    "type": "float32",
-                    "size": 4,
-                    "Name": "MLP Current"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Limit Extend"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Limit Retract"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Limit Extend Edge"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Limit Retract Edge"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "SW Error"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ADC Sample"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ADC Zero"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "ADC Minus Zero"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "System Span"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Brake Position"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Linear Velocity"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Linear Acceleration"
-                },
-                {
-                    "type": "int32",
-                    "endLoop": true,
-                    "units": "",
-                    "size": 4,
-                    "Name": "Current Position"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Calibration State"
-                }
-            ]
-        },
-        {
-            "Name": "Motor Parameters",
-            "PacketType": 5126,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "Motor ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "beginLoop": true,
-                    "units": "",
-                    "size": 4,
-                    "Name": "Microstep Resolution"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Max Acceleration"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Microns per Revolution"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Steps per Revolution"
-                },
-                {
-                    "type": "int32",
-                    "endLoop": true,
-                    "units": "",
-                    "size": 4,
-                    "Name": "Max Angular Velocity"
-                },
-                {
-                    "type": "int8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Unknown Timer"
-                }
-            ]
-        },
-        {
-            "Name": "Throttle Parameters",
-            "PacketType": 5379,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "Throttle ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "AMC Fault Flags"
-                },
-                {
-                    "type": "uint16",
-                    "beginLoop": true,
-                    "endLoop": true,
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM"
-                },
-                {
-                    "type": "uint16",
-                    "beginLoop": true,
-                    "endLoop": true,
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM"
-                },
-                {
-                    "type": "uint16",
-                    "beginLoop": true,
-                    "endLoop": true,
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Current Index"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "AMC State"
-                }
-            ]
-        },
-        {
-            "Name": "Auto-sequence test",
-            "PacketType": 6401,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "Auto-test ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Status"
                 }
             ]
         },
@@ -1561,19 +1399,219 @@
                 },
                 {
                     "type": "float32",
-                    "beginLoop": true,
-                    "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Module Voltage"
+                    "Name": "1 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "3 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "4 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "5 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "6 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "7 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "8 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "9 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "10 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "11 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "12 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "13 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "14 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "15 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "16 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "17 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "18 Module Voltage"
                 },
                 {
                     "type": "uint8",
-                    "beginLoop": true,
-                    "endLoop": true,
                     "units": "",
                     "size": 1,
-                    "Name": "BMS ID"
+                    "Name": "1 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "2 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "3 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "4 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "5 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "6 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "7 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "8 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "9 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "10 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "11 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "12 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "13 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "14 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "15 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "16 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "17 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "18 BMS ID"
                 },
                 {
                     "type": "uint32",
@@ -1607,6 +1645,338 @@
                     "units": "",
                     "size": 4,
                     "Name": "Fault Flags"
+                }
+            ]
+        },
+        {
+            "Name": "Brake Data",
+            "PacketType": 5122,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "Brake ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "A",
+                    "size": 4,
+                    "Name": "Fault Flags 1"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "I Beam mm 1 Target"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "Lead Screw mm 1 Target"
+                },
+                {
+                    "units": "um",
+                    "type": "uint32",
+                    "size": 4,
+                    "Name": "Lead Screw um 1 Target"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "I Beam mm 1 Current"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "Lead Screw mm 1 Current"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "MLP 1 Current"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Extend 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Retract 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Extend Edge 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Retract Edge 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "SW Error 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Sample 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Zero 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "ADC Minus Zero 1"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "System Span 1"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Position 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Linear Velocity 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Linear Acceleration 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Current Position 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "A",
+                    "size": 4,
+                    "Name": "Fault Flags 2"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "I Beam mm 2 Target"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "Lead Screw mm 2 Target"
+                },
+                {
+                    "units": "um",
+                    "type": "uint32",
+                    "size": 4,
+                    "Name": "Lead Screw um 2 Target"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "I Beam mm 2 Current"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "Lead Screw mm 2 Current"
+                },
+                {
+                    "units": "mm",
+                    "type": "float32",
+                    "size": 4,
+                    "Name": "MLP 2 Current"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Extend 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Retract 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Extend Edge 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Limit Retract Edge 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "SW Error 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Sample 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Zero 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "ADC Minus Zero 2"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "System Span 2"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Position 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Linear Velocity 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Linear Acceleration 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Current Position 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Calibration State"
+                }
+            ]
+        },
+        {
+            "Name": "Motor Parameters",
+            "PacketType": 5126,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "Motor ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "beginLoop": true,
+                    "units": "",
+                    "size": 4,
+                    "Name": "Microstep Resolution"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Max Acceleration"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Microns per Revolution"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Steps per Revolution"
+                },
+                {
+                    "type": "int32",
+                    "endLoop": true,
+                    "units": "",
+                    "size": 4,
+                    "Name": "Max Angular Velocity"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Compare Timer"
                 }
             ]
         },
@@ -1794,19 +2164,219 @@
                 },
                 {
                     "type": "float32",
-                    "beginLoop": true,
-                    "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Module Voltage"
+                    "Name": "1 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "3 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "4 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "5 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "6 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "7 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "8 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "9 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "10 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "11 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "12 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "13 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "14 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "15 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "16 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "17 Module Voltage"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "18 Module Voltage"
                 },
                 {
                     "type": "uint8",
-                    "beginLoop": true,
-                    "endLoop": true,
                     "units": "",
                     "size": 1,
-                    "Name": "BMS ID"
+                    "Name": "1 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "2 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "3 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "4 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "5 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "6 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "7 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "8 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "9 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "10 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "11 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "12 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "13 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "14 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "15 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "16 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "17 BMS ID"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "18 BMS ID"
                 },
                 {
                     "type": "uint32",
@@ -1840,6 +2410,86 @@
                     "units": "",
                     "size": 4,
                     "Name": "Fault Flags"
+                }
+            ]
+        },
+        {
+            "Name": "Auto-sequence test",
+            "PacketType": 6401,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "Auto-test ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Status"
+                }
+            ]
+        },
+        {
+            "Name": "Laser Opto Sensor",
+            "PacketType": 4353,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "LaserOpto ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare"
+                },
+                {
+                    "type": "uint32",
+                    "beginLoop": true,
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Laser error packet count"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "First byte wrong"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Raw distance"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Filtered value"
+                },
+                {
+                    "type": "uint32",
+                    "endLoop": true,
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare"
                 }
             ]
         }

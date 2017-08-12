@@ -19,15 +19,15 @@ class FlightControl_NavigationSensors extends Component {
       streamManager: new StreamingPageManager()
     };
     this.accelerometerLabels = {
-      accelerometer0: [
-              {label: 'Accelerometer 0 X Raw', value: 'Accel 0 X Raw'},
-              {label: 'Accelerometer 0 Y Raw', value: 'Accel 0 Y Raw'},
-              {label: 'Accelerometer 0 Z Raw', value: 'Accel 0 Z Raw'}
-      ],
       accelerometer1: [
               {label: 'Accelerometer 1 X Raw', value: 'Accel 1 X Raw'},
               {label: 'Accelerometer 1 Y Raw', value: 'Accel 1 Y Raw'},
               {label: 'Accelerometer 1 Z Raw', value: 'Accel 1 Z Raw'}
+      ],
+      accelerometer2: [
+              {label: 'Accelerometer 2 X Raw', value: 'Accel 2 X Raw'},
+              {label: 'Accelerometer 2 Y Raw', value: 'Accel 2 Y Raw'},
+              {label: 'Accelerometer 2 Z Raw', value: 'Accel 2 Z Raw'}
       ]
     };
     this.rangefinderLabels = [
@@ -87,11 +87,11 @@ class FlightControl_NavigationSensors extends Component {
                 {<button type="button" className="btn btn-success" onClick={this.streamLaserData} style={{margin: 10}}>Stream Opto Lasers</button>}
                 {<button type="button" className="btn btn-success" onClick={this.streamForwardLaserData} style={{margin: 10}}>Stream Forward Laser</button>}
                     <div className="col-sm-4">
-                      <legend>Accelerometer 0 raw values</legend>
+                      <legend>Accelerometer 1 raw values</legend>
 
-                        {this.accelerometerLabels.accelerometer0.map(function (item, index) {
+                        {this.accelerometerLabels.accelerometer1.map(function (item, index) {
                           return (
-                                <div className="row" key={'accelerometer0' + index}>
+                                <div className="row" key={'accelerometer1' + index}>
                                     <label>{item.label}</label>
                                     <GenericParameterLabel
                                         StreamingPageManager={this.state.streamManager}
@@ -102,12 +102,12 @@ class FlightControl_NavigationSensors extends Component {
 
                     </div>
                     <div className="col-sm-4">
-                      <legend>Accelerometer 1 raw values</legend>
+                      <legend>Accelerometer 2 raw values</legend>
 
                         {/* <button className="btn btn-primary" onClick={this.requestBMSA.bind(this)}  style={{margin:10}}>Start BMS Stream</button> */}
-                        {this.accelerometerLabels.accelerometer1.map(function (item, index) {
+                        {this.accelerometerLabels.accelerometer2.map(function (item, index) {
                           return (
-                                <div className="row" key={'accelerometer1' + index}>
+                                <div className="row" key={'accelerometer2' + index}>
                                     <label>{item.label}</label>
                                     <GenericParameterLabel
                                         StreamingPageManager={this.state.streamManager}
