@@ -1,21 +1,10 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../../StreamingPageManager.js';
 import GenericParameterLabel from './../GenericParameterLabel.js';
-import DataStreamClient from '../../StreamPipeClient.js';
 import NumericInput from './../NumericInput.js';
-import config from '../../../config/commConfig';
 
-import io from 'socket.io-client';
-
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket = io.connect(ip + ':' + port, {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+import createSocket from '../../shared/socket';
+let socket = createSocket();
 
 class Power_Overview extends Component {
   constructor (props) {

@@ -53,6 +53,7 @@ module.exports = function (udp) {
 
   function FCUBrake_DisableDevelopmentMode () {
     this.setBrakeDevelopmentMode(false);
+
     // using 0x000000 value to disable development mode (any value other than 0x01293847 will disable this setting)
     udp.tx.transmitPodCommand('Flight Control', 0x1400, 0x000000, 0x0, 0x0, 0x0);
   }

@@ -2,17 +2,9 @@ import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import config from '../../config/commConfig';
 
-import io from 'socket.io-client';
+import createSocket from '../shared/socket';
 
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket = io.connect(ip + ':' + port, {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+let socket = createSocket();
 
 class PowerNodeConfig extends Component {
   constructor (props) {

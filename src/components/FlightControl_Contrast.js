@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 
-import io from 'socket.io-client';
-let socket = io.connect('127.0.0.1:3000', {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+import createSocket from '../shared/socket';
+let socket = createSocket();
 
 class FlightControl_Contrast extends Component {
   constructor (props) {
