@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import io from 'socket.io-client';
-let socket = io();
+import createSocket from '../shared/socket';
+
+let socket = createSocket();
 
 class XilinxSim extends Component {
   constructor (props) {
@@ -12,11 +13,6 @@ class XilinxSim extends Component {
 
   componentDidMount () {
     var _this = this;
-
-    socket.on('server event', function (data) {
-      console.log(data);
-      socket.emit('client event', { socket: 'io connected' });
-    });
   }
 
   startRun (e) {

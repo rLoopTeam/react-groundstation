@@ -4,13 +4,8 @@ import StreamingPageManager from '../StreamingPageManager.js';
 import _ from 'lodash';
 import defer from 'defer-promise';
 
-import io from 'socket.io-client';
-let socket = io.connect('127.0.0.1:3000', {
-  reconnection: true,
-  reconnectionDelay: 1000,
-  reconnectionDelayMax: 5000,
-  reconnectionAttempts: Infinity
-});
+import createSocket from '../shared/socket';
+let socket = createSocket();
 
 // Time period (ms) in which the next test result must appear,
 // else we'll give up on all pending tests and marked them as timed out..

@@ -89,7 +89,7 @@ function generatePacket (packetName) {
     }
 
     if (parameter.Name.search(/fault/i) > -1) {
-      payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 10)));
+      payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 16)));
     } else {
       let data = Math.random() * 8192;
       if (!parameter.type.startsWith('u')) {

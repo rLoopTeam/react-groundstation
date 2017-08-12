@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-import config from '../../config/commConfig';
+import createSocket from '../shared/socket';
 
-import io from 'socket.io-client';
-
-let ip = config.Appserver.ip;
-let port = config.Appserver.port;
-
-let socket;
+let socket = createSocket();
 
 class Throttles extends Component {
 
@@ -41,14 +36,14 @@ class Throttles extends Component {
       ]
     };
 
-        /**
-         * Creates a list of object used to iterate over elements.
-         *
-         * @param {string} label //contains label element text that will be seen on page
-         * @param {string} value //contains parameter name from packetDefinition file
-         *
-         * @memberOf Throttles
-         */
+    /**
+     * Creates a list of object used to iterate over elements.
+     *
+     * @param {string} label //contains label element text that will be seen on page
+     * @param {string} value //contains parameter name from packetDefinition file
+     *
+     * @memberOf Throttles
+     */
     this.Requested_RPM = [
             {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
             {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
@@ -84,47 +79,19 @@ class Throttles extends Component {
     ];
   }
 
-  newSocketConnection (host, socketPort, serverName) {
-    socket = io.connect(ip + ':' + port, {
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 5000,
-      reconnectionAttempts: Infinity
-    });
-
-    socket.on('connect', function () {
-      // join pubsub group
-      socket.emit('join', {name: 'hoverEngines', room: 'hoverEngines'});
-    });
-
-    socket.on('disconnected', function () {
-      if (serverName === 'one') { this.startServerTwo(); }
-      if (serverName === 'two') { this.startServerOne(); }
-    });
-  }
-
-  startServerOne () {
-    this.newSocketConnection(this.state.socketIp, this.state.socketPort, 'one');
-  }
-
-  startServerTwo () {
-    this.newSocketConnection(this.state.socketIp, this.state.socketPort, 'two');
-  }
-
   componentWillMount () {
-    this.startServerOne();
   }
 
-    /**
-     * toggles the hover engine status
-     *
-     * @param {object} e -input change Event
-     *
-     * @memberOf Throttles
-     */
+  /**
+   * toggles the hover engine status
+   *
+   * @param {object} e -input change Event
+   *
+   * @memberOf Throttles
+   */
   handleHoverToggle (e) {
     var hovering = this.state.hovering;
-        // toggles the hover engine status {bool}
+    // toggles the hover engine status {bool}
     if (e.currentTarget.value === 'true') {
       hovering[0] = 1;
       hovering[1] = 0;
@@ -140,13 +107,13 @@ class Throttles extends Component {
     }
   }
 
-    /**
-     * toggles the hover engine status
-     *
-     * @param {object} e -input change Event
-     *
-     * @memberOf Throttles
-     */
+  /**
+   * toggles the hover engine status
+   *
+   * @param {object} e -input change Event
+   *
+   * @memberOf Throttles
+   */
   handleStaticHoveringToggle (e) {
     var staticHovering = this.state.staticHovering;
         // toggles the hover engine status {bool}
@@ -165,17 +132,17 @@ class Throttles extends Component {
     }
   }
 
-    /**
-     * toggles the hover engine status
-     *
-     * @param {object} e -input change Event
-     *
-     * @memberOf Throttles
-     */
+  /**
+   * toggles the hover engine status
+   *
+   * @param {object} e -input change Event
+   *
+   * @memberOf Throttles
+   */
   handleCoolingToggle (cooling, e) {
     var coolingControl = this.state.coolingControl;
 
-        // toggles the hover engine status {bool}
+    // toggles the hover engine status {bool}
     if (e.currentTarget.value === 'true') {
       coolingControl[cooling.name - 1] = 1;
       this.setState({coolingControl: coolingControl});
@@ -222,7 +189,7 @@ class Throttles extends Component {
         socket.emit('FlightControl_Hover:DisableHEX', {hoverEngineName: hoverEngineName});
       }
     }
-        // turn off hoverEngine mode
+    // turn off hoverEngine mode
     else {
       hoverEngineModeSelection[hoverEngineName] = 0; // set a value in the hoverEngineModeSelection array
       hoverEngineMode[hoverEngineName] = false; // set a value in the hoverEngineMode array

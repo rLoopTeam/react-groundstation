@@ -8,8 +8,6 @@ class GenericParameterDisplay extends Component {
     super(props);
     this.dataCallback = this.dataCallback.bind(this);
 
-    this.props.StreamingPageManager.RequestParameterWithCallback(this.props.parameter, this.dataCallback);
-
     this.state = {
       stale: false,
       value: 0,
@@ -22,6 +20,10 @@ class GenericParameterDisplay extends Component {
       '64': 16
     };
     this._isMounted = true;
+  }
+
+  componentDidMount () {
+    this.props.StreamingPageManager.RequestParameterWithCallback(this.props.parameter, this.dataCallback);
   }
 
   componentWillUnmount () {
