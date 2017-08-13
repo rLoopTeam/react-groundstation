@@ -23,7 +23,10 @@ module.exports = {
   {'port': 9531, 'hostIP': '192.168.0.255', 'hostName': 'Flight Control'},
   {'port': 9548, 'hostIP': '192.168.0.255', 'hostName': 'Landing Gear'},
   {'port': 9619, 'hostIP': '192.168.0.255', 'hostName': 'Gimbal Control'},
-  {'port': 9170, 'hostIP': '192.168.0.255', 'hostName': 'Xilinx Sim'}
+  {'port': 9170, 'hostIP': '192.168.0.255', 'hostName': 'Xilinx Sim'},
+  {'port': 9608, 'hostIP': '192.168.0.255', 'hostName': 'HE Thermal Monitor'},
+  {'port': 9616, 'hostIP': '192.168.0.255', 'hostName': 'ASI Monitor System'},
+  {'port': 9631, 'hostIP': '192.168.0.255', 'hostName': 'Charger'}    
   ],
   MirrorLocal: true
 };
