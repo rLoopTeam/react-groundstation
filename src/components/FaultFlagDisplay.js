@@ -25,8 +25,8 @@ class FaultFlagDisplay extends GenericParameterDisplay {
   render () {
     const self = this;
 
-    // get value as bits
-    const value = this.state.value.toString(2);
+    // Get value as bits
+    const value = Number(this.state.value).toString(2);
 
     var renderedFaultFlags;
     if (value.indexOf('1') > -1) {
