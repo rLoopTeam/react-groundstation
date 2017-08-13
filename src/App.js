@@ -22,6 +22,7 @@ import Power_Overview from './components/power/overview';
 import Power_RawTemperatures from './components/power/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
 import './App.css';
+import HC from './components/HC.js';
 
 import createSocket from './shared/socket';
 let socket = createSocket();
@@ -61,6 +62,7 @@ class App extends Component {
           <Route path="datasubexample" component={DataStreamExample} />
           <Route path="commConfig" component={CommConfig} />
           <Route path="DAQ" component={DAQ} />
+          <Route path="hc" component={HC} />
         </Route>
       </Router>
     );
