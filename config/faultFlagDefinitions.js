@@ -67,55 +67,98 @@ module.exports = {
   'LaserOpto Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'CRC Reloaded', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'},
+      {'name': 'Injection Mode Enabled', 'severity': 'critical'}
     ]
   },
   'LaserOpto 1 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 2 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 3 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 4 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 5 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 6 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 7 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
   'LaserOpto 8 Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Transceiver Failure', 'severity': 'critical'},
+      {'name': 'Byte Timeout', 'severity': 'critical'},
+      {'name': 'Packet Timeout', 'severity': 'critical'},
+      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
+      {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
 
