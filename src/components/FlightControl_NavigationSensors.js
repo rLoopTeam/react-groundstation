@@ -27,13 +27,13 @@ class FlightControl_NavigationSensors extends Component {
     };
     this.rangefinderLabels = [
             {label: 'Faults', value: 'ForwardLaser Fault Flags'},
-            {label: 'Spare 0', value: 'ForwardLaser Spare 0'},
-            {label: 'Spare 1', value: 'ForwardLaser Spare 1'},
-            {label: 'Spare 2', value: 'ForwardLaser Spare 2'},
-            {label: 'Spare 3', value: 'ForwardLaser Spare 3'},
-            {label: 'RAW value', value: 'ForwardLaser RAW value'},
-            {label: 'Filtered value', value: 'ForwardLaser Filtered value'},
-            {label: 'Binary?', value: 'ForwardLaser Binary Distance'},
+            {label: 'Distance', value: 'ForwardLaser Distance'},
+            {label: 'Previous Distance', value: 'ForwardLaser Previous Distance'},
+            {label: 'Velocity', value: 'ForwardLaser Velocity'},
+            {label: 'Distance Raw', value: 'ForwardLaser Distance Raw'},
+            {label: 'Acceleration', value: 'ForwardLaser Acceleration'},
+            {label: 'Previous Acceleration', value: 'ForwardLaser Previous Acceleration'},
+            {label: 'Binary Distance', value: 'ForwardLaser Binary Distance'},
             {label: 'Missed Start', value: 'ForwardLaser Missed Start'},
             {label: 'Bad Distance', value: 'ForwardLaser Bad Distance'},
             {label: 'Error Code', value: 'ForwardLaser Error Code'}

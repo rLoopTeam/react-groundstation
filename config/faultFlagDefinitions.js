@@ -168,7 +168,9 @@ module.exports = {
   'ForwardLaser Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'No Bytes', 'severity': 'critical'},
+      {'name': 'No Packets', 'severity': 'critical'}
     ]
   },
 
