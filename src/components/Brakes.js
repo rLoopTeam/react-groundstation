@@ -255,7 +255,7 @@ class Brakes extends Component {
 
                     <div className="col-sm-4">
                         <div className="row">
-                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
+                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault Flags 1' />
                         </div>
                     {
                         this.labelsA.map(function (item, index) {
@@ -273,7 +273,7 @@ class Brakes extends Component {
 
                     <div className="col-sm-4">
                         <div className="row">
-                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault Flags 2' />
                         </div>
                     {
                         this.labelsB.map(function (item, index) {

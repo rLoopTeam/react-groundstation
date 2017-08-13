@@ -26,7 +26,7 @@ class FlightControl_NavigationSensors extends Component {
       ]
     };
     this.rangefinderLabels = [
-            {label: 'Faults', value: 'ForwardLaser Fault flags'},
+            {label: 'Faults', value: 'ForwardLaser Fault Flags'},
             {label: 'Spare 0', value: 'ForwardLaser Spare 0'},
             {label: 'Spare 1', value: 'ForwardLaser Spare 1'},
             {label: 'Spare 2', value: 'ForwardLaser Spare 2'},

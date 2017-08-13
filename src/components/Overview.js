@@ -81,8 +81,8 @@ class Overview extends Component {
               />
             </LeftRightParameters>
             <LeftRightParameters>
-              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
-              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault Flags 1' />
+              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault Flags 2' />
             </LeftRightParameters>
             <LeftRightParameters>
               <NamedParameter

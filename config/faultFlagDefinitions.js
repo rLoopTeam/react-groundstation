@@ -48,13 +48,13 @@ module.exports = {
       {'name': 'Development mode enabled', 'severity': 'critical'}
     ]
   },
-  'Brake Fault flags 1': {
+  'Brake Fault Flags 1': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'Brake Fault flags 2': {
+  'Brake Fault Flags 2': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
@@ -64,55 +64,55 @@ module.exports = {
   /*
   *  Laser Opto Sensor
   */
-  'LaserOpto Fault flags': {
+  'LaserOpto Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 1': {
+  'LaserOpto 1 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 2': {
+  'LaserOpto 2 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 3': {
+  'LaserOpto 3 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 4': {
+  'LaserOpto 4 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 5': {
+  'LaserOpto 5 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 6': {
+  'LaserOpto 6 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 7': {
+  'LaserOpto 7 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'LaserOpto Fault flags 8': {
+  'LaserOpto 8 Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
@@ -122,7 +122,7 @@ module.exports = {
   /*
   *  Forward Laser Distance Sensor
   */
-  'ForwardLaser Fault flags': {
+  'ForwardLaser Fault Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'Guarding Fault', 'severity': 'critical'}
