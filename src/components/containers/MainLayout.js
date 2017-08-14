@@ -11,6 +11,14 @@ class MainLayout extends Component {
         name: 'Overview', location: '/'
       },
       {
+        name: 'Health Check',
+        location: '/healthcheck'
+      },
+      {
+        name: 'Aux Prop',
+        location: '/auxprop'
+      },
+      {
         name: 'Power A',
         location: '/powerA',
         children: [

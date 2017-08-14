@@ -81,8 +81,8 @@ class Overview extends Component {
               />
             </LeftRightParameters>
             <LeftRightParameters>
-              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
-              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault Flags 1' />
+              <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault Flags 2' />
             </LeftRightParameters>
             <LeftRightParameters>
               <NamedParameter
@@ -122,30 +122,6 @@ class Overview extends Component {
               <div className="col-md-6">
                 <div className="col-md-3">
                   <label>Pitch</label>
-                  <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Pitch"/>
-                </div>
-                <div className="col-md-3">
-                  <label>Roll</label>
-                  <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Roll"/>
-                </div>
-                <div className="col-md-3">
-                  <label>Yaw</label>
-                  <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 0 Yaw"/>
-                </div>
-                <LineChart
-                  id="AccelerometerChart1"
-                  StreamingPageManager={this.state.streamManager}
-                  parameters={['Accel 0 X Gs', 'Accel 0 Y Gs', 'Accel 0 Z Gs']}
-                  title="Accelerometer 0"
-                  yAxisLabel="Acceleration (m/s&sup2;)"
-                  xAxisLabel="Time (s)"
-                  totalPoints={60}
-                  height={250}
-                />
-              </div>
-              <div className="col-md-6">
-                <div className="col-md-3">
-                  <label>Pitch</label>
                   <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Pitch"/>
                 </div>
                 <div className="col-md-3">
@@ -157,10 +133,34 @@ class Overview extends Component {
                   <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 1 Yaw"/>
                 </div>
                 <LineChart
-                  id="AccelerometerChart3"
+                  id="AccelerometerChart1"
                   StreamingPageManager={this.state.streamManager}
                   parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
                   title="Accelerometer 1"
+                  yAxisLabel="Acceleration (m/s&sup2;)"
+                  xAxisLabel="Time (s)"
+                  totalPoints={60}
+                  height={250}
+                />
+              </div>
+              <div className="col-md-6">
+                <div className="col-md-3">
+                  <label>Pitch</label>
+                  <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 2 Pitch"/>
+                </div>
+                <div className="col-md-3">
+                  <label>Roll</label>
+                  <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 2 Roll"/>
+                </div>
+                <div className="col-md-3">
+                  <label>Yaw</label>
+                  <GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter="Accel 2 Yaw"/>
+                </div>
+                <LineChart
+                  id="AccelerometerChart3"
+                  StreamingPageManager={this.state.streamManager}
+                  parameters={['Accel 2 X Gs', 'Accel 2 Y Gs', 'Accel 2 Z Gs']}
+                  title="Accelerometer 2"
                   yAxisLabel="Acceleration (m/s&sup2;)"
                   xAxisLabel="Time (s)"
                   totalPoints={60}
