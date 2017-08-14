@@ -6,6 +6,8 @@ import FaultFlagDisplay from './FaultFlagDisplay.js';
 
 import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
 import createSocket from '../shared/socket';
+import './HealthCheck.css';
+
 let socket = createSocket();
 
 class HealthCheck extends Component {
