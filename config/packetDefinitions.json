@@ -1194,7 +1194,7 @@
         {
             "Name": "LGU Status",
             "PacketType": 28674,
-            "Node": "Flight Control",
+            "Node": "Landing Gear",
             "DAQ": false,
             "ParameterPrefix": "LGU ",
             "Parameters": [
@@ -1449,7 +1449,7 @@
         {
             "Name": "LGU ADC Calibration",
             "PacketType": 28674,
-            "Node": "Flight Control",
+            "Node": "Landing Gear",
             "DAQ": false,
             "ParameterPrefix": "ADC ",
             "Parameters": [
@@ -1773,7 +1773,7 @@
         {
             "Name": "ASI Data",
             "PacketType": 5889,
-            "Node": "Flight Control",
+            "Node": "ASI Monitor System",
             "DAQ": false,
             "ParameterPrefix": "ASI ",
             "Parameters": [
