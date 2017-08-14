@@ -75,7 +75,7 @@ class FlightControl_FullAccel extends Component {
         <div className="row margin-bottom-20px">
           <form className="form-inline col-xs-4">
             <div className="form-group">
-                <label htmlFor="a0_x">A0:X-Axis</label>
+                <label htmlFor="a0_x">A1:X-Axis</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 X Gs' hideUnits='true' readOnly='true'/>
               </div>
@@ -84,7 +84,7 @@ class FlightControl_FullAccel extends Component {
 
           <form className="form-inline col-xs-4">
             <div className="form-group">
-              <label htmlFor="a0_y">A0:Y-Axis</label>
+              <label htmlFor="a0_y">A1:Y-Axis</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Y Gs' hideUnits='true' readOnly='true'/>
               </div>
@@ -93,7 +93,7 @@ class FlightControl_FullAccel extends Component {
 
           <form className="form-inline col-xs-4">
             <div className="form-group">
-              <label htmlFor="a0_z">A0:Z-Axis</label>
+              <label htmlFor="a0_z">A1:Z-Axis</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Z Gs' hideUnits='true' readOnly='true'/>
               </div>
@@ -105,7 +105,7 @@ class FlightControl_FullAccel extends Component {
           <form className="form-inline col-xs-4">
             <div className="form-group">
 
-                <label htmlFor="a1_x">A0:Pitch</label>
+                <label htmlFor="a1_x">A1:Pitch</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Pitch' hideUnits='true' readOnly='true'/>
               </div>
@@ -114,7 +114,7 @@ class FlightControl_FullAccel extends Component {
 
           <form className="form-inline col-xs-4">
             <div className="form-group">
-              <label htmlFor="a1_y">A0:Roll</label>
+              <label htmlFor="a1_y">A1:Roll</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Roll' hideUnits='true' readOnly='true'/>
               </div>
@@ -128,7 +128,7 @@ class FlightControl_FullAccel extends Component {
         <div className="row">
           <form className="form-inline col-xs-4">
             <div className="form-group">
-                <label htmlFor="a1_x">A1:X-Axis</label>
+                <label htmlFor="a1_x">A2:X-Axis</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 X Gs' hideUnits='true' readOnly='true'/>
               </div>
@@ -137,7 +137,7 @@ class FlightControl_FullAccel extends Component {
 
           <form className="form-inline col-xs-4">
             <div className="form-group">
-              <label htmlFor="a0_y">A1:Y-Axis</label>
+              <label htmlFor="a0_y">A2:Y-Axis</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Y Gs' hideUnits='true' readOnly='true'/>
               </div>
@@ -146,7 +146,7 @@ class FlightControl_FullAccel extends Component {
 
           <form className="form-inline col-xs-4">
             <div className="form-group">
-              <label htmlFor="a0_z">A1:Z-Axis</label>
+              <label htmlFor="a0_z">A2:Z-Axis</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Z Gs' hideUnits='true' readOnly='true'/>
               </div>
@@ -160,7 +160,7 @@ class FlightControl_FullAccel extends Component {
           <form className="form-inline col-xs-4">
             <div className="form-group">
 
-                <label htmlFor="a1_x">A1:Pitch</label>
+                <label htmlFor="a1_x">A2:Pitch</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 X Raw' hideUnits='true' readOnly='true'/>
               </div>
@@ -169,7 +169,7 @@ class FlightControl_FullAccel extends Component {
 
           <form className="form-inline col-xs-4">
             <div className="form-group">
-              <label htmlFor="a1_y">A1:Roll</label>
+              <label htmlFor="a1_y">A2:Roll</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Y Raw' hideUnits='true' readOnly='true'/>
               </div>
@@ -185,7 +185,7 @@ class FlightControl_FullAccel extends Component {
           <form className="form-inline col-xs-4">
             <div className="form-group">
 
-              <label htmlFor="a0_flags">A0:Flags</label>
+              <label htmlFor="a0_flags">A1:Flags</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 1 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
               </div>
@@ -195,7 +195,7 @@ class FlightControl_FullAccel extends Component {
           <form className="form-inline col-xs-4">
             <div className="form-group">
 
-              <label htmlFor="a1_flags">A1:Flags</label>
+              <label htmlFor="a1_flags">A2:Flags</label>
               <div>
                 <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel 2 Flags' hideUnits='true' hex='true' hexType={32} readOnly='true'/>
               </div>

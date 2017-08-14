@@ -2562,35 +2562,63 @@
             "Parameters": [
                 {
                     "type": "uint32",
-                    "beginLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Microstep Resolution"
+                    "Name": "Microstep Resolution 1"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Max Acceleration"
+                    "Name": "Max Acceleration 1"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Microns per Revolution"
+                    "Name": "Microns per Revolution 1"
                 },
                 {
                     "type": "uint32",
                     "units": "",
                     "size": 4,
-                    "Name": "Steps per Revolution"
+                    "Name": "Steps per Revolution 1"
                 },
                 {
                     "type": "int32",
-                    "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Max Angular Velocity"
+                    "Name": "Max Angular Velocity 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Microstep Resolution 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Max Acceleration 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Microns per Revolution 2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Steps per Revolution 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Max Angular Velocity 2"
                 },
                 {
                     "type": "uint8",
