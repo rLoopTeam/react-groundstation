@@ -56,10 +56,10 @@ function getAccelerometersData (raw_udp) {
   var y1 = bin.bytesToUint16(raw_udp[24], raw_udp[25]);
   var z1 = bin.bytesToUint16(raw_udp[26], raw_udp[27]);
   return {
-    accelerometer0: {
+    accelerometer1: {
       flags: flags0, x: x0, y: y0, z: z0
     },
-    accelerometer1: {
+    accelerometer2: {
       flags: flags1, x: x1, y: y1, z: z1
     }
   };

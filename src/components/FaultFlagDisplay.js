@@ -7,7 +7,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
   constructor (props) {
     super(props);
     this.definition = faultFlagDefinitions[this.props.parameter];
-    if (!this.definition) { throw new Error('Fault flag definition not found in packetDefinitions.js: ' + this.props.parameter); }
+    if (!this.definition) { throw new Error('Fault flag definition not found in packetDefinitions.json: ' + this.props.parameter); }
     this.preFilledArray = Array(this.props.bits).fill(0);
     this.template = this.definition.template;
 
@@ -25,8 +25,8 @@ class FaultFlagDisplay extends GenericParameterDisplay {
   render () {
     const self = this;
 
-    // get value as bits
-    const value = this.state.value.toString(2);
+    // Get value as bits
+    const value = Number(this.state.value).toString(2);
 
     var renderedFaultFlags;
     if (value.indexOf('1') > -1) {

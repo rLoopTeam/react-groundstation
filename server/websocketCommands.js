@@ -126,10 +126,6 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
         podCommands.FCUBrake_EnableDevelopmentMode();
       },
 
-      'FlightControl_Brake:RequestDevelopmentMode': () => {
-        podCommands.FCUBrake_RequestDevelopmentMode();
-      },
-
       // accels
       'FlightControl_Accel:StartStream_CalData': () => {
         podCommands.FCUStreamingControlStart_AccelCalData();
@@ -140,7 +136,7 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       'FlightControl_Accel:StartStream_Lasers': () => {
         podCommands.FCUStreamingControlStart_Lasers();
       },
-	  'FlightControl_Accel:StartStream_ForwardLaser': () => {
+      'FlightControl_Accel:StartStream_ForwardLaser': () => {
         podCommands.FCUStreamingControlStart_ForwardLaser();
       },
       'FlightControl_Accel:StopStream': () => {

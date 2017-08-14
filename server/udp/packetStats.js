@@ -14,7 +14,7 @@
 * e.g. [u32 Sequence][u16 PacketType][u16 Length][u32 Flags0][u16 X0][u16 Y0][u16 Z0][u32 Flags1][u16 X1][u16 Y1][u16 Z1][u16 CRC16]
 */
 const bin = require('./binary.js');
-const packetDefinitions = require('../../config/packetDefinitions.js');
+const packetDefinitions = require('../../config/packetDefinitions.json');
 
 class PacketStats {
   constructor (rtDataStore) {

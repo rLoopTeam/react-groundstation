@@ -8,7 +8,7 @@ module.exports = function () {
 
   function preloadFCU () {
     var accelerometer = [];
-            // Accel 1
+    // Accel 1
     accelerometer.push.apply(accelerometer, bin.uint32ToBytes(0, true)); // Fault Flags
     accelerometer.push.apply(accelerometer, bin.int16ToBytes(0, true)); // Raw X Axis data
     accelerometer.push.apply(accelerometer, bin.int16ToBytes(0, true)); // Raw Y Axis data
@@ -24,6 +24,7 @@ module.exports = function () {
     accelerometer.push.apply(accelerometer, bin.int32ToBytes(0, true)); // Current Displacement
     accelerometer.push.apply(accelerometer, bin.int32ToBytes(0, true)); // Previous Displacement
 
+    // Accel 2
     accelerometer.push.apply(accelerometer, bin.uint32ToBytes(0, true)); // Fault Flags
     accelerometer.push.apply(accelerometer, bin.int16ToBytes(0, true)); // Raw X Axis data
     accelerometer.push.apply(accelerometer, bin.int16ToBytes(0, true)); // Raw Y Axis data

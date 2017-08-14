@@ -20,37 +20,37 @@ class StatsModal extends Component {
               <h2>Flight Control</h2>
               <div className="col-md-4">
                   <h3>Accelerometers</h3>
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 0 Fault flags" parameter='Accel 0 Flags' />
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 1 Fault flags" parameter='Accel 1 Flags' />
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 1 Fault Flags" parameter='Accel 1 Flags' />
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Accel 2 Fault Flags" parameter='Accel 2 Flags' />
               </div>
               <div className="col-md-4">
                   <h3>Brakes</h3>
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Brake Fault Flags" parameter='Brake Fault flags 1' />
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Brake Fault Flags" parameter='Brake Fault flags 2' />
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Brake Fault Flags" parameter='Brake Fault Flags 1' />
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Brake Fault Flags" parameter='Brake Fault Flags 2' />
               </div>
               <div className="col-md-4">
                   <h3>Contrast sensors</h3>
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="System Fault flags" parameter='LaserContrast0 System Fault Flags' />
-                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Fault flags 1" parameter='LaserContrast0 Laser Fault Flags' />
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="System Fault Flags" parameter='LaserContrast0 System Fault Flags' />
+                <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Fault Flags 1" parameter='LaserContrast0 Laser Fault Flags' />
               </div>
               <div className="col-md-12">
                   <h3>Distance sensors</h3>
                 <div className="row">
                   <div className="col-md-4">
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags" parameter='LaserOpto Fault flags' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 1" parameter='LaserOpto Fault flags 1' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 2" parameter='LaserOpto Fault flags 2' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 3" parameter='LaserOpto Fault flags 3' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 4" parameter='LaserOpto Fault flags 4' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault Flags" parameter='LaserOpto Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 1 Fault Flags" parameter='LaserOpto 1 Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 2 Fault Flags" parameter='LaserOpto 2 Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 3 Fault Flags" parameter='LaserOpto 3 Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 4 Fault Flags" parameter='LaserOpto 4 Fault Flags' />
                   </div>
                   <div className="col-md-4">
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 5" parameter='LaserOpto Fault flags 5' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 6" parameter='LaserOpto Fault flags 6' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 7" parameter='LaserOpto Fault flags 7' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto Fault flags 8" parameter='LaserOpto Fault flags 8' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 5 Fault Flags" parameter='LaserOpto 5 Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 6 Fault Flags" parameter='LaserOpto 6 Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 7 Fault Flags" parameter='LaserOpto 7 Fault Flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 8 Fault Flags" parameter='LaserOpto 8 Fault Flags' />
                   </div>
                   <div className="col-md-12">
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="ForwardLaser Fault flags" parameter='ForwardLaser Fault flags' />
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="ForwardLaser Fault Flags" parameter='ForwardLaser Fault Flags' />
                   </div>
                 </div>
               </div>
