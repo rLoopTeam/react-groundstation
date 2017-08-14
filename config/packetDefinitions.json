@@ -52,6 +52,510 @@
             ]
         },
         {
+            "Name": "LGU Status",
+            "PacketType": 28674,
+            "Node": "Landing Gear",
+            "DAQ": false,
+            "ParameterPrefix": "LGU ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags Root"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Value 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Computed Height 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Value 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Computed Height 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Value 3"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 3"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Computed Height 3"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 3"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ADC Value 4"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 4"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Computed Height 4"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 4"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_4"
+                }
+            ]
+        },
+        {
+            "Name": "LGU ADC Calibration",
+            "PacketType": 28674,
+            "Node": "Landing Gear",
+            "DAQ": false,
+            "ParameterPrefix": "ADC ",
+            "Parameters": [
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Value 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Zero 1"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Span 1"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 1"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Value 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Zero 2"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Span 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Value 3"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Zero 3"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Span 3"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 3"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 3"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Value 4"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Zero 4"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Span 4"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Actual Extension 4"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Extend 4"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Switch Retract 4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1_4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2_4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3_4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4_4"
+                }
+            ]
+        },
+        {
             "Name": "Laser Contrast 0",
             "PacketType": 4865,
             "Node": "Flight Control",
@@ -1192,510 +1696,6 @@
             ]
         },
         {
-            "Name": "LGU Status",
-            "PacketType": 28674,
-            "Node": "Landing Gear",
-            "DAQ": false,
-            "ParameterPrefix": "LGU ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags Root"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags 1"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ADC Value 1"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 1"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Computed Height 1"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 1"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags 2"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ADC Value 2"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 2"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Computed Height 2"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 2"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags 3"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ADC Value 3"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 3"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Computed Height 3"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 3"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags 4"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ADC Value 4"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 4"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Computed Height 4"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 4"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_4"
-                }
-            ]
-        },
-        {
-            "Name": "LGU ADC Calibration",
-            "PacketType": 28674,
-            "Node": "Landing Gear",
-            "DAQ": false,
-            "ParameterPrefix": "ADC ",
-            "Parameters": [
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Value 1"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Zero 1"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Span 1"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 1"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 1"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_1"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_1"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Value 2"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Zero 2"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Span 2"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 2"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 2"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_2"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_2"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Value 3"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Zero 3"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Span 3"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 3"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 3"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_3"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_3"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Value 4"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Zero 4"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Span 4"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Actual Extension 4"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Extend 4"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Switch Retract 4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 1_4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 2_4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 3_4"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Spare 4_4"
-                }
-            ]
-        },
-        {
             "Name": "Forward Laser Distance Sensor",
             "PacketType": 4609,
             "Node": "Flight Control",
@@ -1767,71 +1767,6 @@
                     "units": "",
                     "size": 4,
                     "Name": "Error Code"
-                }
-            ]
-        },
-        {
-            "Name": "ASI Data",
-            "PacketType": 5889,
-            "Node": "ASI Monitor System",
-            "DAQ": false,
-            "ParameterPrefix": "ASI ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags Root"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Scan Index"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current Command"
-                },
-                {
-                    "type": "uint16",
-                    "beginLoop": true,
-                    "units": "",
-                    "size": 2,
-                    "Name": "Controller Fault"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Temperature"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Motor Current"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "HE RPM"
-                },
-                {
-                    "type": "float32",
-                    "endLoop": true,
-                    "units": "",
-                    "size": 4,
-                    "Name": "Throttle V"
                 }
             ]
         },
@@ -2259,6 +2194,21 @@
             "Node": "Power Node B",
             "DAQ": false,
             "ParameterPrefix": "Power B Cooling ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                }
+            ]
+        },
+        {
+            "Name": "AuxProp Data",
+            "PacketType": 8451,
+            "Node": "Aux Prop Controller",
+            "DAQ": false,
+            "ParameterPrefix": "AuxProp ",
             "Parameters": [
                 {
                     "type": "uint32",
@@ -3058,6 +3008,71 @@
                     "units": "",
                     "size": 4,
                     "Name": "Fault Flags"
+                }
+            ]
+        },
+        {
+            "Name": "ASI Data",
+            "PacketType": 5889,
+            "Node": "ASI Monitor System",
+            "DAQ": false,
+            "ParameterPrefix": "ASI ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags Root"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Scan Index"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current Command"
+                },
+                {
+                    "type": "uint16",
+                    "beginLoop": true,
+                    "units": "",
+                    "size": 2,
+                    "Name": "Controller Fault"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Temperature"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Motor Current"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "HE RPM"
+                },
+                {
+                    "type": "float32",
+                    "endLoop": true,
+                    "units": "",
+                    "size": 4,
+                    "Name": "Throttle V"
                 }
             ]
         },

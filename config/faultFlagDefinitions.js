@@ -434,5 +434,13 @@ module.exports = {
     'template': [
       {'name': 'Guarding Fault', 'severity': 'critical'}
     ]
+  },
+
+  // AuxProp
+  'AuxProp Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
   }
 };
