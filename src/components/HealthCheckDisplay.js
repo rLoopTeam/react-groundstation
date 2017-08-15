@@ -9,11 +9,11 @@ class HealthCheckDisplay extends GenericParameterDisplay {
   isDangerous () {
     if (this.state.value === '?') {
       return true;
-    } else if (Number(this.state.value) > this.props.Max) {
-      console.log('overmax', this.state.value);
+    } else if (Number(this.state.value) > this.props.max) {
+      console.log('overmax', this.props.label, this.state.value);
       return true;
-    } else if (Number(this.state.value) < this.props.Min) {
-      console.log('undermin', this.state.value);
+    } else if (Number(this.state.value) < this.props.min) {
+      console.log('undermin', this.props.label, this.state.value);
       return true;
     }
 
