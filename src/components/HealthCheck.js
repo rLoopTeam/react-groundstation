@@ -135,8 +135,8 @@ class HealthCheck extends Component {
                         StreamingPageManager={this.state.streamManager}
                         parameter={item.fullParam}
                         label={item.fullParam}
-                        max={item.Max}
-                        min={item.Min}
+                        max={item.max}
+                        min={item.min}
                         readOnly='true'
                         hideUnits='true'
                     />
