@@ -4,7 +4,6 @@ import GenericParameterInput from './GenericParameterInput.js';
 import HealthCheckDisplay from './HealthCheckDisplay.js';
 import FaultFlagDisplay from './FaultFlagDisplay.js';
 
-import packetDefinitions from '../../config/packetDefinitions.json';
 import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
 import nominalConditions from '../../config/nominalConditions.js';
 import createSocket from '../shared/socket';
@@ -13,14 +12,6 @@ import './HealthCheck.css';
 let socket = createSocket();
 
 class HealthCheck extends Component {
-
-  lookupPacket (packetName) {
-    for (let i = 0, len = packetDefinitions.packetDefinitions.length; i < len; i++) {
-      if (packetDefinitions.packetDefinitions[i].Name === packetName) {
-        return packetDefinitions.packetDefinitions[i];
-      }
-    }
-  }
 
   constructor (props) {
     super(props);
@@ -34,13 +25,12 @@ class HealthCheck extends Component {
 
     for (let prefix in nominalConditions) {
       for (let param in nominalConditions[prefix]) {
-        let packet = this.lookupPacket(prefix);
         if (nominalConditions[prefix][param].Fault) {
-          this.watchFaults.push(packet.ParameterPrefix + param);
+          this.watchFaults.push(prefix + ' ' + param);
           continue;
         } else {
           this.watchParams.push({
-            fullParam: packet.ParameterPrefix + param,
+            fullParam: prefix + ' ' + param,
             max: nominalConditions[prefix][param].Max,
             min: nominalConditions[prefix][param].Min
           });

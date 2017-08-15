@@ -83,8 +83,8 @@ module.exports = {
             "Max": 40
         }
     },
-    "Accel Data Full": {
-        "flags": {
+    "Accel 1": {
+        "Flags": {
             "Fault": true
         },
         "X Gs": {
@@ -103,7 +103,27 @@ module.exports = {
             "Max": 3
         }
     },
-    "Forward Laser Distance Sensor": {
+    "Accel 2": {
+      "Flags": {
+          "Fault": true
+      },
+      "X Gs": {
+          "Fault": false,
+          "Min": -3,
+          "Max": 3
+      },
+      "Y Gs": {
+          "Fault": false,
+          "Min": -3,
+          "Max": 3
+      },
+      "Z Gs": {
+          "Fault": false,
+          "Min": -3,
+          "Max": 3
+      }
+  },
+    "ForwardLaser": {
         "Fault Flags": {
             "Fault": true
         },
@@ -112,27 +132,27 @@ module.exports = {
             "Max": 300000
         }
     },
-    "Laser Opto Sensor": {
+    "LaserOpto": {
         "Fault Flags": {
             "Fault": true
         }
     },
-    "Laser Contrast 0": {
+    "LaserContrast0": {
         "System Fault Flags": {
             "Fault": true
         }
     },
-    "Laser Contrast 1": {
+    "LaserContrast1": {
         "System Fault Flags": {
             "Fault": true
         }
     },
-    "Laser Contrast 2": {
+    "LaserContrast2": {
         "System Fault Flags": {
             "Fault": true
         }
     },
-    "Brake Data": {
+    "Brake": {
         "Calibration State": {
             "Fault": true
         },
