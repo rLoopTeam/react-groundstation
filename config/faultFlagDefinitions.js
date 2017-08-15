@@ -578,17 +578,17 @@ module.exports = {
   'Pod Health Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Battery Pack Temperature Out of Range', 'severity': 'critical'},
-      {'name': 'Battery Cell Temperature Out of Range', 'severity': 'critical'},
-      {'name': 'Battery Voltage Out of Range', 'severity': 'critical'},
-      {'name': 'Battery Cell Voltage Out of Range', 'severity': 'critical'},
-      {'name': 'Battery Current Out of Range', 'severity': 'critical'},
-      {'name': 'HE Temp Out of Range', 'severity': 'critical'},
-      {'name': 'HE Current Out of Range', 'severity': 'critical'},
-      {'name': 'HE Voltage Out of Range', 'severity': 'critical'},
-      {'name': 'HE RPMs Out of Range', 'severity': 'critical'},
-      {'name': 'PV Pressure Out of Range', 'severity': 'critical'},
-      {'name': 'PV Temperature Out of Range', 'severity': 'critical'}
+      {'name': 'Battery Pack Temperature Range', 'severity': 'critical'},
+      {'name': 'Battery Cell Temperature Range', 'severity': 'critical'},
+      {'name': 'Battery Voltage Range', 'severity': 'critical'},
+      {'name': 'Battery Cell Voltage Range', 'severity': 'critical'},
+      {'name': 'Battery Current Range', 'severity': 'critical'},
+      {'name': 'HE Temp Range', 'severity': 'critical'},
+      {'name': 'HE Current Range', 'severity': 'critical'},
+      {'name': 'HE Voltage Range', 'severity': 'critical'},
+      {'name': 'HE RPMs Range', 'severity': 'critical'},
+      {'name': 'PV Pressure Range', 'severity': 'critical'},
+      {'name': 'PV Temperature Range', 'severity': 'critical'}
     ]
   },
 
