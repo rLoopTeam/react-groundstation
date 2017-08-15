@@ -47,7 +47,7 @@ module.exports = {
   /*
   * Brakes
   */
-  'Brake Core Fault Flags': {
+  'Brake Fault Flags 1': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'},
@@ -57,16 +57,14 @@ module.exports = {
       {'name': 'Development mode enabled', 'severity': 'critical'}
     ]
   },
-  'Brake Fault Flags 1': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
-    ]
-  },
   'Brake Fault Flags 2': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'MLP range limit low', 'severity': 'critical'},
+      {'name': 'MLP range limit high', 'severity': 'critical'},
+      {'name': 'Calibration data reload', 'severity': 'critical'},
+      {'name': 'Development mode enabled', 'severity': 'critical'}
     ]
   },
 
