@@ -1,8 +1,6 @@
-.health input {
-    background-color: rgba(0, 255, 0, 0.5);
-}
-
-.health input[value="?"],
-.health input.bad {
-    background-color: rgba(255, 0, 0, 0.5);
+.health.data {
+    width: 250px;
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 4px;
 }

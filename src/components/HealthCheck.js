@@ -1,22 +1,53 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterInput from './GenericParameterInput.js';
-import GenericParameterLabel from './GenericParameterLabel.js';
+import HealthCheckDisplay from './HealthCheckDisplay.js';
 import FaultFlagDisplay from './FaultFlagDisplay.js';
 
+import packetDefinitions from '../../config/packetDefinitions.json';
 import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
+import nominalConditions from '../../config/nominalConditions.js';
 import createSocket from '../shared/socket';
 import './HealthCheck.css';
 
 let socket = createSocket();
 
 class HealthCheck extends Component {
+
+  lookupPacket (packetName) {
+    for (let i = 0, len = packetDefinitions.packetDefinitions.length; i < len; i++) {
+      if (packetDefinitions.packetDefinitions[i].Name === packetName) {
+        return packetDefinitions.packetDefinitions[i];
+      }
+    }
+  }
+
   constructor (props) {
     super(props);
 
     this.state = {
       streamManager: new StreamingPageManager()
     };
+
+    this.watchParams = [];
+    this.watchFaults = [];
+
+    for (let prefix in nominalConditions) {
+      for (let param in nominalConditions[prefix]) {
+        let packet = this.lookupPacket(prefix);
+        if (nominalConditions[prefix][param].Fault) {
+          this.watchFaults.push(packet.ParameterPrefix + param);
+          continue;
+        } else {
+          this.watchParams.push({
+            fullParam: packet.ParameterPrefix + param,
+            max: nominalConditions[prefix][param].Max,
+            min: nominalConditions[prefix][param].Min
+          });
+        }
+        // console.log(packet.ParameterPrefix + param);
+      }
+    }
 
     // Best attempt to fit in http://confluence.rloop.org/display/KIR/Ground+Station%3A+Pod+Health+Check
     this.labels = [
@@ -64,12 +95,12 @@ class HealthCheck extends Component {
       {label: 'Accel 1 Z Gs', param: 'Accel 1 Z Gs'},
       {label: 'Accel 2 Z Gs', param: 'Accel 2 Z Gs'},
       {label: 'Laser Range Finder distance', param: 'ForwardLaser Distance'},
-      {label: 'Height optoNCDT laser distance 1', param: 'LaserOpto 1 Raw distance'},
-      {label: 'Height optoNCDT laser distance 2', param: 'LaserOpto 2 Raw distance'},
-      {label: 'Height optoNCDT laser distance 3', param: 'LaserOpto 3 Raw distance'},
-      {label: 'Height optoNCDT laser distance 4', param: 'LaserOpto 4 Raw distance'},
-      {label: 'I-beam optoNCDT laser distance 1', param: 'LaserOpto 5 Raw distance'},
-      {label: 'I-beam optoNCDT laser distance 2', param: 'LaserOpto 6 Raw distance'},
+      {label: 'Height optoNCDT raw distance 1', param: 'LaserOpto 1 Raw distance'},
+      {label: 'Height optoNCDT raw distance 2', param: 'LaserOpto 2 Raw distance'},
+      {label: 'Height optoNCDT raw distance 3', param: 'LaserOpto 3 Raw distance'},
+      {label: 'Height optoNCDT raw distance 4', param: 'LaserOpto 4 Raw distance'},
+      {label: 'I-beam optoNCDT raw distance 1', param: 'LaserOpto 5 Raw distance'},
+      {label: 'I-beam optoNCDT raw distance 2', param: 'LaserOpto 6 Raw distance'},
 
       // LGU
       // MLP Flag / MLP Value not in?
@@ -95,15 +126,17 @@ class HealthCheck extends Component {
         <div className="Overview-content">
         <legend>Pod Health</legend>
         <div className="col-md-12">
-          {this.labels.map(function (item, index) {
+          {this.watchParams.map(function (item, index) {
             return (
-              <form className="form-inline col-xs-6 col-md-4" key={'health' + index}>
+              <form className="form-inline col-xs-6 col-md-2" key={'health' + index}>
                 <div className="form-group">
-                  <label htmlFor="a0_y">{item.label}</label>
                   <div className="health">
-                  <GenericParameterInput
+                  <HealthCheckDisplay
                         StreamingPageManager={this.state.streamManager}
-                        parameter={item.param}
+                        parameter={item.fullParam}
+                        label={item.fullParam}
+                        max={item.Max}
+                        min={item.Min}
                         readOnly='true'
                         hideUnits='true'
                     />
@@ -114,10 +147,22 @@ class HealthCheck extends Component {
           }, this)}
         </div>
 
+        {/* {this.watchFaults.map(function (item, index) {
+          return (
+              <form className="form-inline col-xs-6 col-md-4" key={'healthfault' + index}>
+                <div className="form-group">
+                  <label htmlFor="a0_y">{item.label}</label>
+                  <div className="health">
+                  <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
+                  </div>
+                </div>
+              </form>
+          );
+        }, this)} */}
+
         <legend>All Fault Flags</legend>
         <div className="col-md-12">
         {Object.keys(faultFlagDefinitions).map(function (item, index) {
-          console.log(item);
           return (
               <form className="form-inline col-xs-6 col-md-4" key={'healthfault' + index}>
                 <div className="form-group">
