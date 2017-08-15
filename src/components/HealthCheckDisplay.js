@@ -22,17 +22,24 @@ class HealthCheckDisplay extends GenericParameterDisplay {
 
   render () {
     let className = 'health data';
-    let extraElements = '';
+    let extraElements = [];
 
     if (this.isDangerous()) {
       className += ' danger-row';
     } else {
       className += ' nominal-row';
     }
+
+    if (this.props.viewMode === 'detailed') {
+      extraElements.push(<p>{this.state.value}</p>);
+    }
+
     return (
         <div className={className}>
           <label>{this.props.label}</label>
-          {extraElements}
+          {extraElements.map((item, index) => {
+            return item;
+          })}
         </div>
     );
   }

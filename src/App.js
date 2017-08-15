@@ -63,7 +63,9 @@ class App extends Component {
           <Route path="datasubexample" component={DataStreamExample} />
           <Route path="commConfig" component={CommConfig} />
           <Route path="DAQ" component={DAQ} />
-          <Route path="HealthCheck" component={HealthCheck} />
+          <Route path="healthcheck" component={HealthCheck} />
+          <Route path="healthcheck/overview" component={HealthCheck} viewMode="overview" />
+          <Route path="healthcheck/detailed" component={HealthCheck} viewMode="detailed" />
           <Route path="AuxProp" component={AuxProp} />
         </Route>
       </Router>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterInput from './GenericParameterInput.js';
 import HealthCheckDisplay from './HealthCheckDisplay.js';
@@ -112,6 +113,8 @@ class HealthCheck extends Component {
     ];
   }
   render () {
+    let viewMode = this.props.route.viewMode || 'overview';
+
     return (
         <div className="Overview-content">
         <legend>Pod Health</legend>
@@ -129,6 +132,7 @@ class HealthCheck extends Component {
                         min={item.min}
                         readOnly='true'
                         hideUnits='true'
+                        viewMode={viewMode}
                     />
                   </div>
                 </div>
