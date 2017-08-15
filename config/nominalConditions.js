@@ -1,128 +1,149 @@
 module.exports = {
-  "Power A BMS":
-  {
-    "Average Temp":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 50
+    "Power A BMS": {
+        "Average Temp": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 50
+        },
+        "Highest Sensor Value": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 50
+        },
+        "Pack Volts": {
+            "Fault": false,
+            "Min": 62.1,
+            "Max": 75.6
+        },
+        "Highest Cell Volts": {
+            "Fault": false,
+            "Min": 3.45,
+            "Max": 4.2
+        },
+        "Lowest Cell Volts": {
+            "Fault": false,
+            "Min": 3.45,
+            "Max": 4.2
+        },
+        "Pack Current": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 550
+        },
+        "Node Pressure": {
+            "Fault": false,
+            "Min": 0.7,
+            "Max": 1.1
+        },
+        "Node Temp": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 40
+        }
     },
-    "Highest Sensor Value":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 50
+    "Power B BMS": {
+        "Average Temp": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 50
+        },
+        "Highest Sensor Value": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 50
+        },
+        "Pack Volts": {
+            "Fault": false,
+            "Min": 62.1,
+            "Max": 75.6
+        },
+        "Highest Cell Volts": {
+            "Fault": false,
+            "Min": 3.45,
+            "Max": 4.2
+        },
+        "Lowest Cell Volts": {
+            "Fault": false,
+            "Min": 3.45,
+            "Max": 4.2
+        },
+        "Pack Current": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 550
+        },
+        "Node Pressure": {
+            "Fault": false,
+            "Min": 0.7,
+            "Max": 1.1
+        },
+        "Node Temp": {
+            "Fault": false,
+            "Min": 0,
+            "Max": 40
+        }
     },
-    "Pack Volts":
-    {
-      "Faults": false,
-      "Min": 62.1,
-      "Max": 75.6
+    "Accel Data Full": {
+        "flags": {
+            "Fault": true
+        },
+        "X Gs": {
+            "Fault": false,
+            "Min": -3,
+            "Max": 3
+        },
+        "Y Gs": {
+            "Fault": false,
+            "Min": -3,
+            "Max": 3
+        },
+        "Z Gs": {
+            "Fault": false,
+            "Min": -3,
+            "Max": 3
+        }
     },
-    "Highest Cell Volts":
-    {
-      "Faults": false,
-      "Min": 3.45,
-      "Max": 4.2
+    "Forward Laser Distance Sensor": {
+        "Fault Flags": {
+            "Fault": true
+        },
+        "Distance": {
+            "Min": 0,
+            "Max": 300000
+        }
     },
-    "Lowest Cell Volts":
-    {
-      "Faults": false,
-      "Min": 3.45,
-      "Max": 4.2
+    "Laser Opto Sensor": {
+        "Fault Flags": {
+            "Fault": true
+        }
     },
-    "Pack Current":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 550
+    "Laser Contrast 0": {
+        "System Fault Flags": {
+            "Fault": true
+        }
     },
-    "Node Pressure":
-    {
-      "Faults": false,
-      "Min": 0.7,
-      "Max": 1.1
+    "Laser Contrast 1": {
+        "System Fault Flags": {
+            "Fault": true
+        }
     },
-    "Node Temp":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 40
+    "Laser Contrast 2": {
+        "System Fault Flags": {
+            "Fault": true
+        }
+    },
+    "Brake Data": {
+        "Calibration State": {
+            "Fault": true
+        },
+        "State": {
+            "Fault": true
+        },
+        "SW Error 1": {
+            "Fault": true
+        },
+        "SW Error 2": {
+            "Fault": true
+        }
     }
-  },
-  "Power B BMS":
-  {
-    "Average Temp":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 50
-    },
-    "Highest Sensor Value":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 50
-    },
-    "Pack Volts":
-    {
-      "Faults": false,
-      "Min": 62.1,
-      "Max": 75.6
-    },
-    "Highest Cell Volts":
-    {
-      "Faults": false,
-      "Min": 3.45,
-      "Max": 4.2
-    },
-    "Lowest Cell Volts":
-    {
-      "Faults": false,
-      "Min": 3.45,
-      "Max": 4.2
-    },
-    "Pack Current":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 550
-    },
-    "Node Pressure":
-    {
-      "Faults": false,
-      "Min": 0.7,
-      "Max": 1.1
-    },
-    "Node Temp":
-    {
-      "Faults": false,
-      "Min": 0,
-      "Max": 40
-    }
-  },
-  "Accel Data Full":
-  {
-    "flags":{
-      "Faults": true
-    },
-    "X Gs":
-    {
-      "Faults": false,
-      "Min": -3,
-      "Max": 3
-    },
-    "Y Gs":
-    {
-      "Faults": false,
-      "Min": -3,
-      "Max": 3
-    },
-    "Z Gs":
-    {
-      "Faults": false,
-      "Min": -3,
-      "Max": 3
-    }
-  }
 };
