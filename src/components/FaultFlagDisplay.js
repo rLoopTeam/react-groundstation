@@ -10,7 +10,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
     if (!this.definition) { throw new Error('Fault flag definition not found in packetDefinitions.json: ' + this.props.parameter); }
     this.preFilledArray = Array(this.props.bits).fill(0);
     this.template = this.definition.template;
-    this.littleEndian = this.definition.littleEndian;
+    this.smallEndian = this.definition.smallEndian;
 
     // map the property contained in the faulFlagDefinitions with a css class
     this.severityClassMap = {
@@ -35,7 +35,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 
     // Get value as bits
     var _value = Number(this.state.value);
-    if (this.littleEndian) {
+    if (this.smallEndian) {
       _value = this.swap32(_value);
     }
     const value = _value.toString(2);
