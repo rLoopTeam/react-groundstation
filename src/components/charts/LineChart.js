@@ -32,9 +32,9 @@ class LineChart extends GenericParameterDisplay {
           // Update the highchart with real parameter data.
           series[i].addPoint([currentTime, latestValue.value], false, shift, false);
 
-          // Chart background: #FF3300 (red) if stale, #FFFFFF (white) if not.
+          // Chart background: rgba(255,0,0,0.5) (transparent red) if stale, no color if not.
           self.chart.chartBackground.css({
-            color: latestValue.stale === true ? '#FF3300' : '#FFFFFF'
+            color: latestValue.stale === true ? 'rgba(255,0,0,0.5)' : ''
           });
         }
         self.chart.redraw();
