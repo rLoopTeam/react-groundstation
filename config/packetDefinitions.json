@@ -3594,111 +3594,111 @@
                     "Name": "18 Module Spare"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "1 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "2 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "3 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "4 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "5 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "6 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "7 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "8 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "9 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "10 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "11 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "12 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "13 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "14 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "15 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "16 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "17 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "18 Module Resistor"
                 },
                 {
@@ -4507,111 +4507,111 @@
                     "Name": "18 Module Spare"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "1 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "2 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "3 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "4 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "5 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "6 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "7 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "8 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "9 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "10 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "11 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "12 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "13 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "14 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "15 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "16 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "17 Module Resistor"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
+                    "size": 1,
                     "Name": "18 Module Resistor"
                 },
                 {
