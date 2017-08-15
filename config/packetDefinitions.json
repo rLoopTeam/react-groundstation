@@ -3889,6 +3889,39 @@
             ]
         },
         {
+            "Name": "FCU Data",
+            "PacketType": 512,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "All Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Mission State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Mission TrackDB"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Pod Health Fault Flags"
+                }
+            ]
+        },
+        {
             "Name": "All Fault Flags",
             "PacketType": 768,
             "Node": "Flight Control",
