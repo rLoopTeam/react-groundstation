@@ -3035,29 +3035,51 @@
             "Parameters": [
                 {
                     "type": "uint32",
-                    "beginLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Flags"
+                    "Name": "1 Flags"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "X Raw"
+                    "Name": "1 X Raw"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "Y Raw"
+                    "Name": "1 Y Raw"
                 },
                 {
                     "type": "int16",
-                    "endLoop": true,
                     "units": "",
                     "size": 2,
-                    "Name": "Z Raw"
+                    "Name": "1 Z Raw"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Flags"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 X Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Y Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Z Raw"
                 }
             ]
         },
@@ -3070,89 +3092,171 @@
             "Parameters": [
                 {
                     "type": "uint32",
-                    "beginLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Flags"
+                    "Name": "1 Flags"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "X Raw"
+                    "Name": "1 X Raw"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "Y Raw"
+                    "Name": "1 Y Raw"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "Z Raw"
+                    "Name": "1 Z Raw"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "X Gs"
+                    "Name": "1 X Gs"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Y Gs"
+                    "Name": "1 Y Gs"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Z Gs"
+                    "Name": "1 Z Gs"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Pitch"
+                    "Name": "1 Pitch"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Roll"
+                    "Name": "1 Roll"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Current Accel"
+                    "Name": "1 Current Accel"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Current Velocity"
+                    "Name": "1 Current Velocity"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Previous Velocity"
+                    "Name": "1 Previous Velocity"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Current Displacement"
+                    "Name": "1 Current Displacement"
                 },
                 {
                     "type": "int32",
-                    "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Previous Displacement"
+                    "Name": "1 Previous Displacement"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Flags"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 X Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Y Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Z Raw"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 X Gs"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Y Gs"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Z Gs"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Pitch"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Roll"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Current Accel"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Current Velocity"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Previous Velocity"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Current Displacement"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Previous Displacement"
                 }
             ]
         },
