@@ -3330,7 +3330,7 @@
         },
         {
             "Name": "Power B BMS",
-            "PacketType": 13317,
+            "PacketType": 13313,
             "Node": "Power Node B",
             "DAQ": false,
             "ParameterPrefix": "Power B BMS ",
@@ -4243,7 +4243,7 @@
         },
         {
             "Name": "Power A BMS",
-            "PacketType": 13317,
+            "PacketType": 13313,
             "Node": "Power Node A",
             "DAQ": false,
             "ParameterPrefix": "Power A BMS ",
