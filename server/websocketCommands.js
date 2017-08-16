@@ -501,6 +501,14 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
       'GS_Heartbeat': () => {
         podCommands.GS_Heartbeat();
+      },
+
+      'IPS:ChargeV': (data) => {
+        podCommands.setChargerV(data);
+      },
+
+      'IPS:ChargeI': (data) => {
+        podCommands.setChargerI(data);
       }
 
     };

@@ -24,6 +24,7 @@ import PowerNodeConfig from './components/PowerNodeConfig.js';
 import './App.css';
 import HealthCheck from './components/HealthCheck.js';
 import AuxProp from './components/AuxProp.js';
+import IPSCharger from './components/power/IPSCharger.js';
 
 import createSocket from './shared/socket';
 let socket = createSocket();
@@ -65,6 +66,7 @@ class App extends Component {
           <Route path="DAQ" component={DAQ} />
           <Route path="HealthCheck" component={HealthCheck} />
           <Route path="AuxProp" component={AuxProp} />
+          <Route path="IPSCharger" component={IPSCharger} />
         </Route>
       </Router>
     );

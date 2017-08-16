@@ -494,6 +494,14 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x0003, 0x00000000, 0x0, 0x0, 0x0); // TODO need to set the correct 3rd parameter (block0 of the command packet)
   }
 
+  function setChargerV (data){
+    udp.tx.transmitPodCommand('IPS Charger', 0x9123, 0x76543210, data.voltage, 0x0, 0x0);
+  }
+
+  function setChargerI (data){
+    udp.tx.transmitPodCommand('IPS Charger', 0x9124, 0x76543210, data.current, 0x0, 0x0);
+  }
+
   return {
     GS_Heartbeat,
 
@@ -609,6 +617,9 @@ module.exports = function (udp) {
     AutoSequenceTest_Start,
     AutoSequenceTest_Skip,
     AutoSequenceTest_Kill,
-    AutoSequenceTest_Restart
+    AutoSequenceTest_Restart,
+
+    setChargerV,
+    setChargerI
   };
 };
