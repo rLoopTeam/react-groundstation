@@ -70,3 +70,17 @@ body {
 .test-result-failed {
     background-color: lightcoral;
 }
+
+/* Bootstrap 4 future classes. */
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}

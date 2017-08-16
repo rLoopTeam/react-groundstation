@@ -109,56 +109,35 @@ class HealthCheck extends Component {
         <div className="col-md-12">
           {this.watchParams.map(function (item, index) {
             return (
-              <form className="form-inline col-xs-12 col-sm-6 col-md-2" key={'health' + index}>
-                <div className="form-group">
-                  <div className="health">
-                  <HealthCheckDisplay
-                        StreamingPageManager={this.state.streamManager}
-                        parameters={[item.fullParam]}
-                        label={item.fullParam}
-                        max={item.max}
-                        min={item.min}
-                        hideUnits='true'
-                        viewMode={viewMode}
-                    />
-                  </div>
-                </div>
-              </form>
+              <div className="health d-inline-block" key={'health' + index}>
+                <HealthCheckDisplay
+                      StreamingPageManager={this.state.streamManager}
+                      parameters={[item.fullParam]}
+                      label={item.fullParam}
+                      max={item.max}
+                      min={item.min}
+                      hideUnits='true'
+                      viewMode={viewMode}
+                  />
+              </div>
             );
           }, this)}
           {this.placeholderParams.map(function (item, index) {
             return (
-              <form className="form-inline col-xs-12 col-sm-6 col-md-2" key={'health' + index}>
-                <div className="form-group">
-                  <div className="health">
-                  <HealthCheckDisplay
-                        StreamingPageManager={this.state.streamManager}
-                        parameters={[item.param]}
-                        label={item.label}
-                        max={0}
-                        min={0}
-                        hideUnits='true'
-                        viewMode={viewMode}
-                    />
-                  </div>
-                </div>
-              </form>
+              <div className="health d-inline-block" key={'health' + index}>
+                <HealthCheckDisplay
+                      StreamingPageManager={this.state.streamManager}
+                      parameters={[item.param]}
+                      label={item.label}
+                      max={0}
+                      min={0}
+                      hideUnits='true'
+                      viewMode={viewMode}
+                  />
+              </div>
             );
           }, this)}
         </div>
-
-        {/* {this.watchFaults.map(function (item, index) {
-          return (
-              <form className="form-inline col-xs-6 col-md-4" key={'healthfault' + index}>
-                <div className="form-group">
-                  <label htmlFor="a0_y">{item.label}</label>
-                  <div className="health">
-                  <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
-                  </div>
-                </div>
-              </form>
-          );
-        }, this)} */}
 
         <legend>All Fault Flags</legend>
         <div className="col-md-12">

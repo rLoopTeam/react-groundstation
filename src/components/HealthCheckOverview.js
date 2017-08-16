@@ -36,7 +36,8 @@ class HealthCheckOverview extends Component {
         'Power B BMS Pack Volts',
         'Power B BMS Highest Cell Volts',
         'Power B BMS Lowest Cell Volts',
-        'Power B BMS Pack Current'
+        'Power B BMS Pack Current',
+        'ForwardLaser Distance'
       ],
       groups: {
         'Accel X Gs': {
@@ -146,21 +147,17 @@ class HealthCheckOverview extends Component {
         <div className="col-md-12">
           {this.watchParams.map(function (item, index) {
             return (
-              <form className="form-inline col-xs-12 col-sm-6 col-md-2" key={'health' + index}>
-                <div className="form-group">
-                  <div className="health">
-                  <HealthCheckDisplay
-                        StreamingPageManager={this.state.streamManager}
-                        parameters={item.params}
-                        label={item.label}
-                        max={item.max}
-                        min={item.min}
-                        hideUnits='true'
-                        viewMode={viewMode}
-                    />
-                  </div>
-                </div>
-              </form>
+              <div className="health d-inline-block" key={'health' + index}>
+                <HealthCheckDisplay
+                      StreamingPageManager={this.state.streamManager}
+                      parameters={item.params}
+                      label={item.label}
+                      max={item.max}
+                      min={item.min}
+                      hideUnits='true'
+                      viewMode={viewMode}
+                  />
+              </div>
             );
           }, this)}
         </div>
