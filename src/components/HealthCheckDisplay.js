@@ -32,6 +32,14 @@ class HealthCheckDisplay extends GenericParameterDisplay {
 
   dataCallback (parameterData) {
     if (this._isMounted) {
+      // Do nothing if the states are equal.
+      if (
+        parameterData.Value === this.packetValues[parameterData.Name] ||
+        Number(parameterData.Value).toFixed(2) === this.packetValues[parameterData.Name]
+      ) {
+        return;
+      }
+
       this.setState({counter: this.state.counter + 1});
 
       if (isNaN(parameterData.Value)) {

@@ -34,7 +34,7 @@ class LineChart extends GenericParameterDisplay {
 
           // Chart background: rgba(255,0,0,0.5) (transparent red) if stale, no color if not.
           self.chart.chartBackground.css({
-            color: latestValue.stale === true ? 'rgba(255,0,0,0.5)' : ''
+            color: latestValue.stale === true ? 'rgba(255,0,0,0.5)' : 'rgba(0,0,0,0)'
           });
         }
         self.chart.redraw();
