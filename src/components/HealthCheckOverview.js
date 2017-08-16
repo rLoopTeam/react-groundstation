@@ -29,7 +29,6 @@ class HealthCheckOverview extends Component {
         'Power A BMS Highest Cell Volts',
         'Power A BMS Lowest Cell Volts',
         'Power A BMS Pack Current',
-        'Power A BMS Node Pressure',
         'Power A BMS Node Temp',
         'Power B BMS Average Temp',
         'Power B BMS Highest Sensor Value',
@@ -37,10 +36,28 @@ class HealthCheckOverview extends Component {
         'Power B BMS Highest Cell Volts',
         'Power B BMS Lowest Cell Volts',
         'Power B BMS Pack Current',
-        'ForwardLaser Distance'
+        'ForwardLaser Distance',
+        'Brake State',
+        'Brake Calibration State'
       ],
       groups: {
-        'Accel X Gs': {
+        'Node Pressure A/B': {
+          min: 0.7,
+          max: 1.1,
+          params: [
+            'Power A BMS Node Pressure',
+            'Power B BMS Node Pressure'
+          ]
+        },
+        'Node Temp A/B': {
+          min: 0,
+          max: 40,
+          params: [
+            'Power A BMS Node Pressure',
+            'Power B BMS Node Pressure'
+          ]
+        },
+        'Accel 1/2 X Gs': {
           min: 0,
           max: 3,
           params: [
@@ -48,7 +65,7 @@ class HealthCheckOverview extends Component {
             'Accel 2 X Gs'
           ]
         },
-        'Accel Y Gs': {
+        'Accel 1/2 Y Gs': {
           min: 0,
           max: 3,
           params: [
@@ -56,7 +73,7 @@ class HealthCheckOverview extends Component {
             'Accel 2 Y Gs'
           ]
         },
-        'Accel Z Gs': {
+        'Accel 1/2 Z Gs': {
           min: 0,
           max: 3,
           params: [
@@ -104,6 +121,46 @@ class HealthCheckOverview extends Component {
             'ASI 8 HE RPM'
           ]
         },
+        'HE Controller Currents Left': {
+          min: 0,
+          max: 70,
+          params: [
+            'ASI 1 Motor Current',
+            'ASI 2 Motor Current',
+            'ASI 3 Motor Current',
+            'ASI 4 Motor Current'
+          ]
+        },
+        'HE Controller Currents Right': {
+          min: 0,
+          max: 70,
+          params: [
+            'ASI 5 Motor Current',
+            'ASI 6 Motor Current',
+            'ASI 7 Motor Current',
+            'ASI 8 Motor Current'
+          ]
+        },
+        'HE Controller Voltages Left': {
+          min: 0,
+          max: 70,
+          params: [
+            'ASI 1 Throttle Voltage',
+            'ASI 2 Throttle Voltage',
+            'ASI 3 Throttle Voltage',
+            'ASI 4 Throttle Voltage'
+          ]
+        },
+        'HE Controller Voltages Right': {
+          min: 0,
+          max: 70,
+          params: [
+            'ASI 5 Throttle Voltage',
+            'ASI 6 Throttle Voltage',
+            'ASI 7 Throttle Voltage',
+            'ASI 8 Throttle Voltage'
+          ]
+        },
         'optoNCDT Height Filtered Distance': {
           min: 6,
           max: 20,
@@ -120,6 +177,36 @@ class HealthCheckOverview extends Component {
           params: [
             'LaserOpto 5 Filtered value',
             'LaserOpto 6 Filtered value'
+          ]
+        },
+        'Pusher Switch 1/2 State': {
+          min: 0,
+          max: 1,
+          params: [
+            'Pusher Switch State 1',
+            'Pusher Switch State 2'
+          ]
+        },
+        'Brake 1/2 MLP Current': {
+          min: 0,
+          max: 75,
+          params: [
+            'Brake MLP 1 Current',
+            'Brake MLP 2 Current'
+          ]
+        },
+        'Brake 1/2 Limit Switches': {
+          min: 1,
+          max: 2,
+          params: [
+            'Limit Extend 1',
+            'Limit Retract 1',
+            'Limit Extend Edge 1',
+            'Limit Retract Edge 1',
+            'Limit Extend 2',
+            'Limit Retract 2',
+            'Limit Extend Edge 2',
+            'Limit Retract Edge 2'
           ]
         }
       }

@@ -2725,6 +2725,699 @@
             ]
         },
         {
+            "Name": "HE Data",
+            "PacketType": 24577,
+            "Node": "HE Thermal Monitor",
+            "DAQ": false,
+            "ParameterPrefix": "HE ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Solenoid Faults"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DS2482 1 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DS2482 2 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DS18B20 Fault Flags"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Sensors Count"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "1 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "1 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "1 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "3 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "3 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "3 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "4 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "4 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "4 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "5 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "5 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "5 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "6 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "6 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "6 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "7 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "7 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "7 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "8 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "8 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "8 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "9 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "9 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "9 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "10 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "10 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "10 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "11 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "11 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "11 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "12 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "12 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "12 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "13 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "13 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "13 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "14 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "14 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "14 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "15 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "15 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "15 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "16 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "16 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "16 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "17 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "17 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "17 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "18 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "18 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "18 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "19 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "19 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "19 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "20 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "20 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "20 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "21 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "21 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "21 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "22 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "22 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "22 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "23 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "23 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "23 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "24 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "24 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "24 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "25 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "25 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "25 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "26 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "26 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "26 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "27 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "27 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "27 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "28 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "28 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "28 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "29 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "29 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "29 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "30 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "30 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "30 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "31 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "31 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "31 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "32 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "32 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "32 ROM ID Low"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Left Highest Sensor Index"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Right Highest Sensor Index"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Brake Motor Highest Sensor Index"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Left Highest Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Right Highest Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Motor Highest Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Left Average Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Right Average Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Motor Average Temp"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Left Overtemp State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Right Overtemp State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Brake Motor Overtemp State"
+                }
+            ]
+        },
+        {
             "Name": "FCU DAQ CPU LOAD",
             "PacketType": 16384,
             "Node": "Flight Control",
@@ -5126,7 +5819,7 @@
                     "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Throttle V"
+                    "Name": "Throttle Voltage"
                 }
             ]
         },

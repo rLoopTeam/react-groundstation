@@ -184,16 +184,70 @@ module.exports = {
   },
   'Brake': {
     'Calibration State': {
-      'fault': true
+      'fault': false,
+      'min': 6,
+      'max': 6
     },
     'State': {
-      'fault': true
+      'fault': false,
+      'min': 0,
+      'max': 5
     },
     'SW Error 1': {
       'fault': true
     },
     'SW Error 2': {
       'fault': true
+    },
+    'MLP 1 Current': {
+      'fault': false,
+      'min': 0,
+      'max': 75
+    },
+    'MLP 2 Current': {
+      'fault': false,
+      'min': 0,
+      'max': 75
+    },
+    'Limit Extend 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Retract 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Extend Edge 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Retract Edge 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Extend 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Retract 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Extend Edge 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Limit Retract Edge 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
     }
   },
   'ASI': {
@@ -276,6 +330,58 @@ module.exports = {
       'fault': false,
       'min': 0,
       'max': 3000
+    },
+    '1 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '2 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '3 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '4 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '5 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '6 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '7 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    },
+    '8 Motor Current': {
+      'fault': false,
+      'min': 0,
+      'max': 70
+    }
+  },
+  'Pusher': {
+    'Switch State 1': {
+      'fault': false,
+      'min': 0,
+      'max': 1
+    },
+    'Switch State 2': {
+      'fault': false,
+      'min': 0,
+      'max': 1
     }
   }
 };

@@ -53,26 +53,6 @@ class HealthCheck extends Component {
 
       // PV packets are vague
 
-      // ASI
-      {label: 'ASI 1 Temperature', param: 'ASI 1 Temperature'},
-      {label: 'ASI 2 Temperature', param: 'ASI 2 Temperature'},
-      {label: 'ASI 3 Temperature', param: 'ASI 3 Temperature'},
-      {label: 'ASI 4 Temperature', param: 'ASI 4 Temperature'},
-      {label: 'ASI 5 Temperature', param: 'ASI 5 Temperature'},
-      {label: 'ASI 6 Temperature', param: 'ASI 6 Temperature'},
-      {label: 'ASI 7 Temperature', param: 'ASI 7 Temperature'},
-      {label: 'ASI 8 Temperature', param: 'ASI 8 Temperature'},
-      // ASI Voltage not in packets or code.
-      {label: 'ASI 1 Motor Current', param: 'ASI 1 Motor Current'},
-      {label: 'ASI 2 Motor Current', param: 'ASI 2 Motor Current'},
-      {label: 'ASI 3 Motor Current', param: 'ASI 3 Motor Current'},
-      {label: 'ASI 4 Motor Current', param: 'ASI 4 Motor Current'},
-      {label: 'ASI 5 Motor Current', param: 'ASI 5 Motor Current'},
-      {label: 'ASI 6 Motor Current', param: 'ASI 6 Motor Current'},
-      {label: 'ASI 7 Motor Current', param: 'ASI 7 Motor Current'},
-      {label: 'ASI 8 Motor Current', param: 'ASI 8 Motor Current'},
-      // Throttles (it's all fault flags)
-
       // LGU
       // MLP Flag / MLP Value not in?
       {label: 'LGU Switch Extend 1', param: 'LGU Switch Extend 1'},
