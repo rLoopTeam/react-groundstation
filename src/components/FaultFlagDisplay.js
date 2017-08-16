@@ -30,6 +30,14 @@ class FaultFlagDisplay extends GenericParameterDisplay {
           ((val >> 24) & 0xFF);
   }
 
+  shouldComponentUpdate (nextProps, nextState) {
+    if (isNaN(nextState.value) && nextState.value !== '?') {
+      return false;
+    }
+
+    return true;
+  }
+
   render () {
     const self = this;
 
