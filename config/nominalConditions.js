@@ -135,6 +135,36 @@ module.exports = {
   'LaserOpto': {
     'Fault Flags': {
       'fault': true
+    },
+    '1 Filtered value': {
+      'fault': false,
+      'min': 6,
+      'max': 20
+    },
+    '2 Filtered value': {
+      'fault': false,
+      'min': 6,
+      'max': 20
+    },
+    '3 Filtered value': {
+      'fault': false,
+      'min': 6,
+      'max': 20
+    },
+    '4 Filtered value': {
+      'fault': false,
+      'min': 6,
+      'max': 20
+    },
+    '5 Filtered value': {
+      'fault': false,
+      'min': 20,
+      'max': 30
+    },
+    '6 Filtered value': {
+      'fault': false,
+      'min': 20,
+      'max': 30
     }
   },
   'LaserContrast0': {

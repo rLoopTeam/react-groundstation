@@ -103,6 +103,24 @@ class HealthCheckOverview extends Component {
             'ASI 7 HE RPM',
             'ASI 8 HE RPM'
           ]
+        },
+        'optoNCDT Height Filtered Distance': {
+          min: 6,
+          max: 20,
+          params: [
+            'LaserOpto 1 Filtered value',
+            'LaserOpto 2 Filtered value',
+            'LaserOpto 3 Filtered value',
+            'LaserOpto 4 Filtered value'
+          ]
+        },
+        'optoNCDT I-Beam Filtered Distance': {
+          min: 20,
+          max: 30,
+          params: [
+            'LaserOpto 5 Filtered value',
+            'LaserOpto 6 Filtered value'
+          ]
         }
       }
     };

@@ -73,14 +73,6 @@ class HealthCheck extends Component {
       {label: 'ASI 8 Motor Current', param: 'ASI 8 Motor Current'},
       // Throttles (it's all fault flags)
 
-      // Navigational
-      {label: 'Height optoNCDT raw distance 1', param: 'LaserOpto 1 Raw distance'},
-      {label: 'Height optoNCDT raw distance 2', param: 'LaserOpto 2 Raw distance'},
-      {label: 'Height optoNCDT raw distance 3', param: 'LaserOpto 3 Raw distance'},
-      {label: 'Height optoNCDT raw distance 4', param: 'LaserOpto 4 Raw distance'},
-      {label: 'I-beam optoNCDT raw distance 1', param: 'LaserOpto 5 Raw distance'},
-      {label: 'I-beam optoNCDT raw distance 2', param: 'LaserOpto 6 Raw distance'},
-
       // LGU
       // MLP Flag / MLP Value not in?
       {label: 'LGU Switch Extend 1', param: 'LGU Switch Extend 1'},
