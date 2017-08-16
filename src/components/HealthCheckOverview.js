@@ -12,7 +12,7 @@ import './HealthCheck.css';
 
 let socket = createSocket();
 
-class HealthCheck extends Component {
+class HealthCheckOverview extends Component {
 
   constructor (props) {
     super(props);
