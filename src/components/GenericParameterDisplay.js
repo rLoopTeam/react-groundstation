@@ -48,7 +48,11 @@ class GenericParameterDisplay extends Component {
   getFormattedValue () {
     var formattedValue = this.state.value;
     if (this.props.hex === 'true') {
-      formattedValue = this.state.value.toString(16);
+      formattedValue = Number(this.state.value).toString(16);
+      if (formattedValue === 'NaN') {
+        return '?';
+      }
+
       if (this.props.hexType !== null && this.props.hexType !== undefined) {
         var padding = this.hexTypeMap[this.props.hexType] - formattedValue.length;
         if (padding < 0) {

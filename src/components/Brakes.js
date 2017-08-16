@@ -24,8 +24,8 @@ class Brakes extends Component {
 
     this.labelsA = [
             {label: 'Left I-Beam', value: 'Brake I Beam mm 1 Target'},
-            {label: 'Left Lead screw target', value: 'Brake Lead screw mm 1 Target'},
-            {label: 'Left Lead screw target', value: 'Brake Lead screw um 1 Target'},
+            {label: 'Left Lead screw target', value: 'Brake Lead Screw mm 1 Target'},
+            {label: 'Left Lead screw target', value: 'Brake Lead Screw um 1 Target'},
 
             {label: 'I Beam mm Current', value: 'Brake I Beam mm 1 Current'},
             {label: 'Lead Screw mm Current', value: 'Brake Lead Screw mm 1 Current'},
@@ -40,7 +40,7 @@ class Brakes extends Component {
             {label: 'Left ADC Sample', value: 'Brake ADC Sample 1'},
             {label: 'Left ADC Zero', value: 'Brake ADC Zero 1'},
             {label: 'Left System Span', value: 'Brake System Span 1'},
-            {label: 'Left Brake Position', value: 'Brake Position mm 1'},
+            {label: 'Left Brake Position', value: 'Brake Position 1'},
             {label: 'Left Linear Velocity', value: 'Brake Linear Velocity 1'},
             {label: 'Left Linear Acceleration', value: 'Brake Linear Acceleration 1'},
             {label: 'Left Current Screw Position', value: 'Brake Current Position 1'}
@@ -48,8 +48,8 @@ class Brakes extends Component {
 
     this.labelsB = [
             {label: 'Right I-Beam', value: 'Brake I Beam mm 2 Target'},
-            {label: 'Right Lead screw target', value: 'Brake Lead screw mm 2 Target'},
-            {label: 'Right Lead screw target', value: 'Brake Lead screw um 2 Target'},
+            {label: 'Right Lead screw target', value: 'Brake Lead Screw mm 2 Target'},
+            {label: 'Right Lead screw target', value: 'Brake Lead Screw um 2 Target'},
 
             {label: 'I Beam mm Current', value: 'Brake I Beam mm 2 Current'},
             {label: 'Lead Screw mm Current', value: 'Brake Lead Screw mm 2 Current'},
@@ -64,7 +64,7 @@ class Brakes extends Component {
             {label: 'Right ADC Sample', value: 'Brake ADC Sample 2'},
             {label: 'Right ADC Zero', value: 'Brake ADC Zero 2'},
             {label: 'Right System Span', value: 'Brake System Span 2'},
-            {label: 'Right Brake Position', value: 'Brake Position mm 2'},
+            {label: 'Right Brake Position', value: 'Brake Position 2'},
             {label: 'Right Linear Velocity', value: 'Brake Linear Velocity 2'},
             {label: 'Right Linear Acceleration', value: 'Brake Linear Acceleration 2'},
             {label: 'Right Current Screw Position', value: 'Brake Current Position 2'},
@@ -255,7 +255,7 @@ class Brakes extends Component {
 
                     <div className="col-sm-4">
                         <div className="row">
-                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault flags 1' />
+                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Left Fault Flags" parameter='Brake Fault Flags 1' />
                         </div>
                     {
                         this.labelsA.map(function (item, index) {
@@ -273,7 +273,7 @@ class Brakes extends Component {
 
                     <div className="col-sm-4">
                         <div className="row">
-                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault flags 2' />
+                            <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="Right Fault Flags" parameter='Brake Fault Flags 2' />
                         </div>
                     {
                         this.labelsB.map(function (item, index) {

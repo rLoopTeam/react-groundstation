@@ -16,7 +16,7 @@
 */
 const bin = require('./binary.js');
 const crc = require('./crc.js');
-const packetDefinitions = require('../../config/packetDefinitions.js');
+const packetDefinitions = require('../../config/packetDefinitions.json');
 const commConfig = require('../../config/commConfig.js');
 
 class PacketParser {
