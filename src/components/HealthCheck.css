@@ -4,3 +4,7 @@
     padding: 5px;
     margin-bottom: 4px;
 }
+
+.health.data p {
+    margin: 0;
+}

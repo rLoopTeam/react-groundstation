@@ -36,9 +36,7 @@ class HealthCheckOverview extends Component {
         'Power B BMS Pack Volts',
         'Power B BMS Highest Cell Volts',
         'Power B BMS Lowest Cell Volts',
-        'Power B BMS Pack Current',
-        'Power B BMS Node Pressure',
-        'Power B BMS Node Temp'
+        'Power B BMS Pack Current'
       ],
       groups: {
         'Accel X Gs': {
@@ -90,9 +88,9 @@ class HealthCheckOverview extends Component {
           max: 3000,
           params: [
             'ASI 1 HE RPM',
-            'ASI 2 Temperature',
-            'ASI 3 Temperature',
-            'ASI 4 Temperature'
+            'ASI 2 HE RPM',
+            'ASI 3 HE RPM',
+            'ASI 4 HE RPM'
           ]
         },
         'HE RPMs Right': {
@@ -100,9 +98,9 @@ class HealthCheckOverview extends Component {
           max: 3000,
           params: [
             'ASI 5 HE RPM',
-            'ASI 6 Temperature',
-            'ASI 7 Temperature',
-            'ASI 8 Temperature'
+            'ASI 6 HE RPM',
+            'ASI 7 HE RPM',
+            'ASI 8 HE RPM'
           ]
         }
       }
