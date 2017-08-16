@@ -21,10 +21,12 @@ import DAQ from './components/DAQ';
 import Power_Overview from './components/power/overview';
 import Power_RawTemperatures from './components/power/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
-import './App.css';
 import HealthCheck from './components/HealthCheck.js';
+import HealthCheckOverview from './components/HealthCheckOverview.js';
 import AuxProp from './components/AuxProp.js';
 import IPSCharger from './components/power/IPSCharger.js';
+
+import './App.css';
 
 import createSocket from './shared/socket';
 let socket = createSocket();
@@ -64,7 +66,9 @@ class App extends Component {
           <Route path="datasubexample" component={DataStreamExample} />
           <Route path="commConfig" component={CommConfig} />
           <Route path="DAQ" component={DAQ} />
-          <Route path="HealthCheck" component={HealthCheck} />
+          <Route path="healthcheck" component={HealthCheckOverview} />
+          <Route path="healthcheck/overview" component={HealthCheckOverview} viewMode="overview" />
+          <Route path="healthcheck/detailed" component={HealthCheck} viewMode="detailed" />
           <Route path="AuxProp" component={AuxProp} />
           <Route path="IPSCharger" component={IPSCharger} />
         </Route>

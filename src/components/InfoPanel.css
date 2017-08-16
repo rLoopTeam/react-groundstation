@@ -1,3 +1,7 @@
+.info-panel {
+    padding-top: 6px;
+    border-top: 1px solid #ddd;
+}
 
 .info-panel legend {
 	font-size: 1em;

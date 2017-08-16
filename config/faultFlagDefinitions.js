@@ -6,10 +6,11 @@ module.exports = {
   // Accel Cal Full
   // e.g. 0x00000007 = 00000000 00000000 00000000 00000111
   // is represented by the following definition:
-  'Accel 1 Flags': {
+  'Accel Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'} // 1
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'MMA Init Fault', 'severity': 'critical'} // 1
       // {"name":"Fault 2 (this one is dangerous)", "severity":"critical"}, // 1
       // {"name":"Fault 3 (this one is critical!)", "severity":"critical"}, // 1
       // ... 0
@@ -17,10 +18,18 @@ module.exports = {
       // ... and so on for the rest of the bits
     ]
   },
+  'Accel 1 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'MMA Init Fault', 'severity': 'critical'}
+    ]
+  },
   'Accel 2 Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'MMA Init Fault', 'severity': 'critical'}
     ]
   },
 
@@ -38,7 +47,7 @@ module.exports = {
   /*
   * Brakes
   */
-  'Brake Core Fault Flags': {
+  'Brake Fault Flags 1': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'},
@@ -48,16 +57,14 @@ module.exports = {
       {'name': 'Development mode enabled', 'severity': 'critical'}
     ]
   },
-  'Brake Fault Flags 1': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
-    ]
-  },
   'Brake Fault Flags 2': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'MLP range limit low', 'severity': 'critical'},
+      {'name': 'MLP range limit high', 'severity': 'critical'},
+      {'name': 'Calibration data reload', 'severity': 'critical'},
+      {'name': 'Development mode enabled', 'severity': 'critical'}
     ]
   },
 
@@ -177,10 +184,23 @@ module.exports = {
   /*
   * FCU Throttle
   */
-  'FCU Throttle Fault Flags': {
+  'Throttle Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'AMC Fault', 'severity': 'critical'},
+      {'name': 'Indexing Fault', 'severity': 'critical'},
+      {'name': 'Throttle not in run mode', 'severity': 'critical'},
+      {'name': 'Development mode enabled', 'severity': 'critical'}
+    ]
+  },
+
+  'Throttle AMC Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'DAC Indexing Fault', 'severity': 'critical'},
+      {'name': 'I2C Fault', 'severity': 'critical'}
     ]
   },
 
@@ -240,14 +260,70 @@ module.exports = {
   /*
   * SC16
   */
-  'SC16 Fault Flags': {
+  'SC16 1 Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'}
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
     ]
   },
-
+  'SC16 2 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
+  'SC16 3 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
+  'SC16 4 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
+  'SC16 5 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
+  'SC16 6 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
+  'SC16 7 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
+  'SC16 8 Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Receive FIFI overflow Fault', 'severity': 'critical'},
+      {'name': 'Device Index Fault', 'severity': 'critical'}
+    ]
+  },
   /*
   * ETH
   */
@@ -441,6 +517,85 @@ module.exports = {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+
+  // All Fault Flags
+  'All Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'Accel Subsystem Fault', 'severity': 'critical'},
+      {'name': 'ASI Subsystem Fault', 'severity': 'critical'},
+      {'name': 'Brakes Subsystem Fault', 'severity': 'critical'},
+      {'name': 'DAQ Fault', 'severity': 'critical'},
+      {'name': 'FCU Fault', 'severity': 'critical'},
+      {'name': 'Laser Contrast Fault', 'severity': 'critical'},
+      {'name': 'Laser Distance Fault', 'severity': 'critical'},
+      {'name': 'OptoNCDT Fault', 'severity': 'critical'},
+      {'name': 'Networking Fault', 'severity': 'critical'},
+      {'name': 'Pusher Subsystem Fault', 'severity': 'critical'},
+      {'name': 'Throttle Subsystem Fault', 'severity': 'critical'}
+    ]
+  },
+
+  // ASI
+  'ASI Fault Flags Root': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'PHY Failure', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+
+  // DAQ
+  'DAQ Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+
+  // Networking
+  'Networking Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+
+  // Pusher
+  'Pusher Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+
+  // Pod Health
+  'Pod Health Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'Battery Pack Temperature Range', 'severity': 'critical'},
+      {'name': 'Battery Cell Temperature Range', 'severity': 'critical'},
+      {'name': 'Battery Voltage Range', 'severity': 'critical'},
+      {'name': 'Battery Cell Voltage Range', 'severity': 'critical'},
+      {'name': 'Battery Current Range', 'severity': 'critical'},
+      {'name': 'HE Temp Range', 'severity': 'critical'},
+      {'name': 'HE Current Range', 'severity': 'critical'},
+      {'name': 'HE Voltage Range', 'severity': 'critical'},
+      {'name': 'HE RPMs Range', 'severity': 'critical'},
+      {'name': 'PV Pressure Range', 'severity': 'critical'},
+      {'name': 'PV Temperature Range', 'severity': 'critical'}
+    ]
+  },
+
+  // TrackDB
+  'TrackDB Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Struct size mismatch', 'severity': 'critical'}
     ]
   }
 };
