@@ -10,10 +10,10 @@ class HealthCheckDisplay extends GenericParameterDisplay {
     if (this.state.value === '?') {
       return true;
     } else if (Number(this.state.value) > this.props.max) {
-      console.log('overmax', this.props.label, this.state.value);
+      console.debug('overmax', this.props.label, this.state.value);
       return true;
     } else if (Number(this.state.value) < this.props.min) {
-      console.log('undermin', this.props.label, this.state.value);
+      console.debug('undermin', this.props.label, this.state.value);
       return true;
     }
 
@@ -30,7 +30,7 @@ class HealthCheckDisplay extends GenericParameterDisplay {
       className += ' nominal-row';
     }
 
-    if (this.props.viewMode === 'detailed') {
+    if (this.props.viewMode === 'everything') {
       extraElements.push(<p>{this.state.value}</p>);
     }
 

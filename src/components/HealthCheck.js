@@ -33,7 +33,8 @@ class HealthCheck extends Component {
           this.watchParams.push({
             fullParam: prefix + ' ' + param,
             max: nominalConditions[prefix][param].Max,
-            min: nominalConditions[prefix][param].Min
+            min: nominalConditions[prefix][param].Min,
+            detailedOnly: nominalConditions[prefix][param].detailed
           });
         }
         // console.log(packet.ParameterPrefix + param);
@@ -120,24 +121,28 @@ class HealthCheck extends Component {
         <legend>Pod Health</legend>
         <div className="col-md-12">
           {this.watchParams.map(function (item, index) {
-            return (
-              <form className="form-inline col-xs-12 col-sm-6 col-md-2" key={'health' + index}>
-                <div className="form-group">
-                  <div className="health">
-                  <HealthCheckDisplay
-                        StreamingPageManager={this.state.streamManager}
-                        parameter={item.fullParam}
-                        label={item.fullParam}
-                        max={item.max}
-                        min={item.min}
-                        readOnly='true'
-                        hideUnits='true'
-                        viewMode={viewMode}
-                    />
+            if (viewMode === 'overview' && item.detailedOnly) {
+              return;
+            } else {
+              return (
+                <form className="form-inline col-xs-12 col-sm-6 col-md-2" key={'health' + index}>
+                  <div className="form-group">
+                    <div className="health">
+                    <HealthCheckDisplay
+                          StreamingPageManager={this.state.streamManager}
+                          parameter={item.fullParam}
+                          label={item.fullParam}
+                          max={item.max}
+                          min={item.min}
+                          readOnly='true'
+                          hideUnits='true'
+                          viewMode={viewMode}
+                      />
+                    </div>
                   </div>
-                </div>
-              </form>
-            );
+                </form>
+              );
+            }
           }, this)}
         </div>
 
