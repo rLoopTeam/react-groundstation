@@ -42,14 +42,10 @@ class HealthCheckOverview extends Component {
     // Best attempt to fit in http://confluence.rloop.org/display/KIR/Ground+Station%3A+Pod+Health+Check
     this.labels = [
       // Power
-      {label: 'Power A Average Temp', param: 'Power A BMS Average Temp'},
-      {label: 'Power B Average Temp', param: 'Power B BMS Average Temp'},
       {label: 'Power A Highest Cell Temp', param: 'TODO:PLACEHOLDER'},
       {label: 'Power B Highest Cell Temp', param: 'TODO:PLACEHOLDER'},
       {label: 'Power A Voltage Range', param: 'TODO:PLACEHOLDER'},
       {label: 'Power B Voltage Range', param: 'TODO:PLACEHOLDER'},
-      {label: 'Power A Pack Current', param: 'Power A BMS Pack Current'},
-      {label: 'Power B Pack Current', param: 'Power A BMS Pack Current'},
 
       // HEs
       {label: 'Hover Engine Temperature', param: 'ASI Temperature'},
@@ -78,13 +74,6 @@ class HealthCheckOverview extends Component {
       // Throttles (it's all fault flags)
 
       // Navigational
-      {label: 'Accel 1 X Gs', param: 'Accel 1 X Gs'},
-      {label: 'Accel 2 X Gs', param: 'Accel 2 X Gs'},
-      {label: 'Accel 1 Y Gs', param: 'Accel 1 Y Gs'},
-      {label: 'Accel 2 Y Gs', param: 'Accel 2 Y Gs'},
-      {label: 'Accel 1 Z Gs', param: 'Accel 1 Z Gs'},
-      {label: 'Accel 2 Z Gs', param: 'Accel 2 Z Gs'},
-      {label: 'Laser Range Finder distance', param: 'ForwardLaser Distance'},
       {label: 'Height optoNCDT raw distance 1', param: 'LaserOpto 1 Raw distance'},
       {label: 'Height optoNCDT raw distance 2', param: 'LaserOpto 2 Raw distance'},
       {label: 'Height optoNCDT raw distance 3', param: 'LaserOpto 3 Raw distance'},
@@ -172,4 +161,4 @@ class HealthCheckOverview extends Component {
     );
   }
 }
-export default HealthCheck;
+export default HealthCheckOverview;
