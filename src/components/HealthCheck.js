@@ -40,7 +40,7 @@ class HealthCheck extends Component {
     }
 
     // Best attempt to fit in http://confluence.rloop.org/display/KIR/Ground+Station%3A+Pod+Health+Check
-    this.labels = [
+    this.placeholderParams = [
       // Power
       {label: 'Power A Highest Cell Temp', param: 'TODO:PLACEHOLDER'},
       {label: 'Power B Highest Cell Temp', param: 'TODO:PLACEHOLDER'},
@@ -118,6 +118,26 @@ class HealthCheck extends Component {
                         label={item.fullParam}
                         max={item.max}
                         min={item.min}
+                        readOnly='true'
+                        hideUnits='true'
+                        viewMode={viewMode}
+                    />
+                  </div>
+                </div>
+              </form>
+            );
+          }, this)}
+          {this.placeholderParams.map(function (item, index) {
+            return (
+              <form className="form-inline col-xs-12 col-sm-6 col-md-2" key={'health' + index}>
+                <div className="form-group">
+                  <div className="health">
+                  <HealthCheckDisplay
+                        StreamingPageManager={this.state.streamManager}
+                        parameter={item.param}
+                        label={item.label}
+                        max={0}
+                        min={0}
                         readOnly='true'
                         hideUnits='true'
                         viewMode={viewMode}

@@ -30,7 +30,7 @@ class HealthCheckDisplay extends GenericParameterDisplay {
       className += ' nominal-row';
     }
 
-    if (this.props.viewMode === 'everything') {
+    if (this.props.viewMode === 'detailed') {
       extraElements.push(<p>{this.state.value}</p>);
     }
 

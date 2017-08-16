@@ -68,7 +68,6 @@ class App extends Component {
           <Route path="healthcheck" component={HealthCheckOverview} />
           <Route path="healthcheck/overview" component={HealthCheckOverview} viewMode="overview" />
           <Route path="healthcheck/detailed" component={HealthCheck} viewMode="detailed" />
-          <Route path="healthcheck/everything" component={HealthCheck} viewMode="everything" />
           <Route path="AuxProp" component={AuxProp} />
         </Route>
       </Router>
