@@ -18,25 +18,24 @@ class Power_Overview extends Component {
     };
 
     this.labels = [
-            {label: 'BMS Faults', value: `Power ${props.route.L} BMS Faults`, hex: 'true'},
-            {label: 'Temp State', value: `Power ${props.route.L} BMS Temp State`},
-            {label: 'Charger State', value: `Power ${props.route.L} BMS Charger State`},
-            {label: 'Num Temp Sensors', value: `Power ${props.route.L} BMS Num Temp Sensors`},
-            {label: 'Highest Sensor Value', value: `Power ${props.route.L} BMS Highest Sensor Value`},
-            {label: 'Average Temp', value: `Power ${props.route.L} BMS Average Temp`},
-            {label: 'Highest Sensor Index', value: `Power ${props.route.L} BMS Highest Sensor Index`},
-            {label: 'Pack Volts', value: `Power ${props.route.L} BMS Pack Volts`}
+      {label: 'BMS Faults', value: `Power ${props.route.L} BMS Faults`, hex: 'true'},
+      {label: 'Temp State', value: `Power ${props.route.L} BMS Temp State`},
+      {label: 'Charger State', value: `Power ${props.route.L} BMS Charger State`},
+      {label: 'Num Temp Sensors', value: `Power ${props.route.L} BMS Num Temp Sensors`},
+      {label: 'Highest Sensor Value', value: `Power ${props.route.L} BMS Highest Sensor Value`},
+      {label: 'Average Temp', value: `Power ${props.route.L} BMS Average Temp`},
+      {label: 'Highest Sensor Index', value: `Power ${props.route.L} BMS Highest Sensor Index`},
+      {label: 'Pack Current', value: `Power ${props.route.L} BMS Pack Current`}
     ];
 
     this.labels2 = [
-            {label: 'Highest Cell Volts', value: `Power ${props.route.L} BMS Highest Cell Volts`},
-            {label: 'Lowest Cell Volts', value: `Power ${props.route.L} BMS Lowest Cell Volts`},
-            {label: 'Board Temp', value: `Power ${props.route.L} BMS Board Temp`},
-            {label: 'Node Pressure', value: `Power ${props.route.L} BMS Node Pressure`},
-            {label: 'Node Temp', value: `Power ${props.route.L} BMS Node Temp`},
+      {label: 'Pack Volts', value: `Power ${props.route.L} BMS Pack Volts`},
+      {label: 'Highest Cell Volts', value: `Power ${props.route.L} BMS Highest Cell Volts`},
+      {label: 'Lowest Cell Volts', value: `Power ${props.route.L} BMS Lowest Cell Volts`},
+      {label: 'Node Pressure', value: `Power ${props.route.L} BMS Node Pressure`},
+      {label: 'Node Temp', value: `Power ${props.route.L} BMS Node Temp`},
       {label: 'Voltage Updates', value: `Power ${props.route.L} BMS Voltage Updates`},
-      {label: 'Temp Scan Count', value: `Power ${props.route.L} BMS Temp Scan Count`},
-      {label: 'Pack Current', value: `Power ${props.route.L} BMS Pack Current`}
+      {label: 'Temp Scan Count', value: `Power ${props.route.L} BMS Temp Scan Count`}
     ];
 
     this.cellIndexes = [...(new Array(18)).keys()];

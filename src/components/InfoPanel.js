@@ -32,21 +32,16 @@ class InfoPanel extends Component {
 
   render () {
     return (
-      <footer className="footer navbar-fixed-bottom navbar-default" >
+      <footer className="footer navbar-fixed-bottom navbar-default info-panel" >
         <div className="container-fluid">
-          <div className="info-panel">
-            <StatsModal className="col-xs-2" isVisible={this.state.showConnectionModal} isVisibleHandler={this.toggleModalVisibility.bind(this)}/>
+          <StatsModal className="col-xs-2" isVisible={this.state.showConnectionModal} isVisibleHandler={this.toggleModalVisibility.bind(this)}/>
 
-            <legend>Global Stats</legend>
-
-            <div className="InfoPanel-content">
-              <button className="btn btn-primary col-sm-1" onClick={this.toggleModalVisibility.bind(this)}>Faults</button>
-              <div className="col-sm-2">Power A Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node A network status'/></div>
-              <div className="col-sm-2">Power B Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node B network status'/></div>
-              <div className="col-sm-2">FCU Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Flight Control network status'/></div>
-              <Stop />
-            </div>
-
+          <div className="InfoPanel-content">
+            <button className="btn btn-primary col-sm-1" onClick={this.toggleModalVisibility.bind(this)}>Faults</button>
+            <div className="col-sm-2">Power A Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node A network status'/></div>
+            <div className="col-sm-2">Power B Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node B network status'/></div>
+            <div className="col-sm-2">FCU Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Flight Control network status'/></div>
+            <Stop />
           </div>
         </div>
       </footer>

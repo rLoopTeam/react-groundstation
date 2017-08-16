@@ -308,7 +308,7 @@
         },
         {
             "Name": "LGU ADC Calibration",
-            "PacketType": 28674,
+            "PacketType": 28675,
             "Node": "Landing Gear",
             "DAQ": false,
             "ParameterPrefix": "ADC ",
@@ -1279,6 +1279,2145 @@
             ]
         },
         {
+            "Name": "Laser Contrast 1",
+            "PacketType": 4866,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "LaserContrast1 ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "System Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Laser Fault Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Rising Count"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Falling Count"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Max Stripes"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 0"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 1"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 2"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 3"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 4"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 5"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 6"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 7"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 8"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 9"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 10"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 11"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 12"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 13"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 14"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 15"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 16"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 17"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 18"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 19"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 20"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 21"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 22"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 23"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 24"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 25"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 26"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 27"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 28"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 29"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 30"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 31"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 32"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 33"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 34"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 35"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 36"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 37"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 38"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 39"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 40"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 41"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 42"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 43"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 44"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 45"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 46"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 47"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 48"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 49"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 50"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 51"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 52"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 53"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 54"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 0"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 1"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 2"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 3"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 4"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 5"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 6"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 7"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 8"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 9"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 10"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 11"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 12"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 13"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 14"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 15"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 16"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 17"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 18"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 19"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 20"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 21"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 22"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 23"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 24"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 25"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 26"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 27"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 28"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 29"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 30"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 31"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 32"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 33"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 34"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 35"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 36"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 37"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 38"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 39"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 40"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 41"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 42"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 43"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 44"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 45"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 46"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 47"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 48"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 49"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 50"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 51"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 52"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 53"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 54"
+                }
+            ]
+        },
+        {
+            "Name": "Laser Contrast 2",
+            "PacketType": 4867,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "LaserContrast2 ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "System Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 4"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Laser Fault Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Rising Count"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Falling Count"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Max Stripes"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 0"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 1"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 2"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 3"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 4"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 5"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 6"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 7"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 8"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 9"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 10"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 11"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 12"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 13"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 14"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 15"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 16"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 17"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 18"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 19"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 20"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 21"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 22"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 23"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 24"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 25"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 26"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 27"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 28"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 29"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 30"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 31"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 32"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 33"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 34"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 35"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 36"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 37"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 38"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 39"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 40"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 41"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 42"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 43"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 44"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 45"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 46"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 47"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 48"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 49"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 50"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 51"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 52"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 53"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Rise 54"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 0"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 1"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 2"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 3"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 4"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 5"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 6"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 7"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 8"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 9"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 10"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 11"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 12"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 13"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 14"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 15"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 16"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 17"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 18"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 19"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 20"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 21"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 22"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 23"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 24"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 25"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 26"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 27"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 28"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 29"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 30"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 31"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 32"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 33"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 34"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 35"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 36"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 37"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 38"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 39"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 40"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 41"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 42"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 43"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 44"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 45"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 46"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 47"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 48"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 49"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 50"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 51"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 52"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 53"
+                },
+                {
+                    "type": "uint64",
+                    "units": "ns",
+                    "size": 8,
+                    "Name": "Fall 54"
+                }
+            ]
+        },
+        {
+            "Name": "HE Data",
+            "PacketType": 24577,
+            "Node": "HE Thermal Monitor",
+            "DAQ": false,
+            "ParameterPrefix": "HE ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Solenoid Faults"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DS2482 1 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DS2482 2 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DS18B20 Fault Flags"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Sensors Count"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "1 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "1 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "1 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "3 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "3 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "3 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "4 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "4 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "4 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "5 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "5 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "5 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "6 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "6 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "6 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "7 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "7 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "7 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "8 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "8 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "8 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "9 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "9 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "9 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "10 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "10 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "10 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "11 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "11 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "11 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "12 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "12 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "12 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "13 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "13 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "13 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "14 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "14 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "14 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "15 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "15 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "15 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "16 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "16 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "16 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "17 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "17 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "17 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "18 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "18 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "18 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "19 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "19 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "19 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "20 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "20 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "20 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "21 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "21 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "21 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "22 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "22 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "22 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "23 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "23 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "23 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "24 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "24 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "24 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "25 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "25 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "25 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "26 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "26 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "26 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "27 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "27 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "27 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "28 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "28 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "28 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "29 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "29 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "29 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "30 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "30 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "30 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "31 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "31 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "31 ROM ID Low"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "32 Temperature"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "32 ROM ID Hi"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "32 ROM ID Low"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Left Highest Sensor Index"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Right Highest Sensor Index"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Brake Motor Highest Sensor Index"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Left Highest Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Right Highest Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Motor Highest Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Left Average Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Right Average Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Motor Average Temp"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Left Overtemp State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Right Overtemp State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Brake Motor Overtemp State"
+                }
+            ]
+        },
+        {
             "Name": "FCU DAQ CPU LOAD",
             "PacketType": 16384,
             "Node": "Flight Control",
@@ -1566,6 +3705,21 @@
             ]
         },
         {
+            "Name": "AuxProp Data",
+            "PacketType": 8451,
+            "Node": "Aux Prop Controller",
+            "DAQ": false,
+            "ParameterPrefix": "AuxProp ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                }
+            ]
+        },
+        {
             "Name": "Accel Cal Full",
             "PacketType": 4097,
             "Node": "Flight Control",
@@ -1574,29 +3728,51 @@
             "Parameters": [
                 {
                     "type": "uint32",
-                    "beginLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Flags"
+                    "Name": "1 Flags"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "X Raw"
+                    "Name": "1 X Raw"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "Y Raw"
+                    "Name": "1 Y Raw"
                 },
                 {
                     "type": "int16",
-                    "endLoop": true,
                     "units": "",
                     "size": 2,
-                    "Name": "Z Raw"
+                    "Name": "1 Z Raw"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Flags"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 X Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Y Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Z Raw"
                 }
             ]
         },
@@ -1609,89 +3785,171 @@
             "Parameters": [
                 {
                     "type": "uint32",
-                    "beginLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Flags"
+                    "Name": "1 Flags"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "X Raw"
+                    "Name": "1 X Raw"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "Y Raw"
+                    "Name": "1 Y Raw"
                 },
                 {
                     "type": "int16",
                     "units": "",
                     "size": 2,
-                    "Name": "Z Raw"
+                    "Name": "1 Z Raw"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "X Gs"
+                    "Name": "1 X Gs"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Y Gs"
+                    "Name": "1 Y Gs"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Z Gs"
+                    "Name": "1 Z Gs"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Pitch"
+                    "Name": "1 Pitch"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Roll"
+                    "Name": "1 Roll"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Current Accel"
+                    "Name": "1 Current Accel"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Current Velocity"
+                    "Name": "1 Current Velocity"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Previous Velocity"
+                    "Name": "1 Previous Velocity"
                 },
                 {
                     "type": "int32",
                     "units": "",
                     "size": 4,
-                    "Name": "Current Displacement"
+                    "Name": "1 Current Displacement"
                 },
                 {
                     "type": "int32",
-                    "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Previous Displacement"
+                    "Name": "1 Previous Displacement"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Flags"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 X Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Y Raw"
+                },
+                {
+                    "type": "int16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "2 Z Raw"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 X Gs"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Y Gs"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Z Gs"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Pitch"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Roll"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Current Accel"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Current Velocity"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Previous Velocity"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Current Displacement"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Previous Displacement"
                 }
             ]
         },
@@ -1869,7 +4127,7 @@
         },
         {
             "Name": "Power B BMS",
-            "PacketType": 13317,
+            "PacketType": 13313,
             "Node": "Power Node B",
             "DAQ": false,
             "ParameterPrefix": "Power B BMS ",
@@ -1881,40 +4139,22 @@
                     "Name": "Faults"
                 },
                 {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Temp State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Charger State"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Num Temp Sensors"
-                },
-                {
-                    "type": "float32",
+                    "type": "uint32",
                     "units": "",
                     "size": 4,
-                    "Name": "Highest Sensor Value"
+                    "Name": "Device Faults 1"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint32",
                     "units": "",
                     "size": 4,
-                    "Name": "Average Temp"
+                    "Name": "Device Faults 2"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint32",
                     "units": "",
-                    "size": 2,
-                    "Name": "Highest Sensor Index"
+                    "size": 4,
+                    "Name": "Device Faults 3"
                 },
                 {
                     "type": "float32",
@@ -1933,24 +4173,6 @@
                     "units": "",
                     "size": 4,
                     "Name": "Lowest Cell Volts"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Board Temp"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Node Pressure"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Node Temp"
                 },
                 {
                     "type": "float32",
@@ -2061,112 +4283,220 @@
                     "Name": "18 Module Voltage"
                 },
                 {
-                    "type": "uint8",
+                    "type": "float32",
                     "units": "",
-                    "size": 1,
-                    "Name": "1 BMS ID"
+                    "size": 4,
+                    "Name": "1 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "3 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "4 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "5 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "6 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "7 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "8 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "9 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "10 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "11 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "12 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "13 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "14 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "15 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "16 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "17 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "18 Module Spare"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "2 BMS ID"
+                    "Name": "1 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "3 BMS ID"
+                    "Name": "2 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "4 BMS ID"
+                    "Name": "3 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "5 BMS ID"
+                    "Name": "4 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "6 BMS ID"
+                    "Name": "5 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "7 BMS ID"
+                    "Name": "6 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "8 BMS ID"
+                    "Name": "7 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "9 BMS ID"
+                    "Name": "8 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "10 BMS ID"
+                    "Name": "9 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "11 BMS ID"
+                    "Name": "10 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "12 BMS ID"
+                    "Name": "11 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "13 BMS ID"
+                    "Name": "12 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "14 BMS ID"
+                    "Name": "13 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "15 BMS ID"
+                    "Name": "14 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "16 BMS ID"
+                    "Name": "15 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "17 BMS ID"
+                    "Name": "16 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "18 BMS ID"
+                    "Name": "17 Module Resistor"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "18 Module Resistor"
                 },
                 {
                     "type": "uint32",
@@ -2178,13 +4508,61 @@
                     "type": "uint32",
                     "units": "",
                     "size": 4,
+                    "Name": "Battery Spare"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Charger State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Temp State"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Num Temp Sensors"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Highest Sensor Value"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Average Temp"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Highest Sensor Index"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
                     "Name": "Temp Scan Count"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Pack Current"
+                    "Name": "Node Pressure"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Node Temp"
                 }
             ]
         },
@@ -2204,17 +4582,266 @@
             ]
         },
         {
-            "Name": "AuxProp Data",
-            "PacketType": 8451,
-            "Node": "Aux Prop Controller",
+            "Name": "FCU Data",
+            "PacketType": 512,
+            "Node": "Flight Control",
             "DAQ": false,
-            "ParameterPrefix": "AuxProp ",
+            "ParameterPrefix": "",
             "Parameters": [
                 {
                     "type": "uint32",
                     "units": "",
                     "size": 4,
-                    "Name": "Fault Flags"
+                    "Name": "All Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Mission State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Mission TrackDB"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Pod Health Fault Flags"
+                }
+            ]
+        },
+        {
+            "Name": "All Fault Flags",
+            "PacketType": 768,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "All Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Accel Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Accel 1 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Accel 2 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 1 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 2 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 3 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 4 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 5 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 6 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 7 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "SC16 8 Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "ASI Fault Flags Root"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Brake Fault Flags 1"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "DAQ Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserContrast0 System Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserContrast0 Laser Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserContrast1 Laser Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserContrast2 Laser Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "ForwardLaser Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto 1 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto 2 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto 3 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto 4 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto 5 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "LaserOpto 6 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Networking Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Pusher Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Throttle AMC Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Throttle Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Pod Health Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 1 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 2 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Spare 3 Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "FCU Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "TrackDB Fault Flags"
                 }
             ]
         },
@@ -2677,7 +5304,7 @@
         },
         {
             "Name": "Power A BMS",
-            "PacketType": 13317,
+            "PacketType": 13313,
             "Node": "Power Node A",
             "DAQ": false,
             "ParameterPrefix": "Power A BMS ",
@@ -2689,40 +5316,22 @@
                     "Name": "Faults"
                 },
                 {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Temp State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Charger State"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Num Temp Sensors"
-                },
-                {
-                    "type": "float32",
+                    "type": "uint32",
                     "units": "",
                     "size": 4,
-                    "Name": "Highest Sensor Value"
+                    "Name": "Device Faults 1"
                 },
                 {
-                    "type": "float32",
+                    "type": "uint32",
                     "units": "",
                     "size": 4,
-                    "Name": "Average Temp"
+                    "Name": "Device Faults 2"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint32",
                     "units": "",
-                    "size": 2,
-                    "Name": "Highest Sensor Index"
+                    "size": 4,
+                    "Name": "Device Faults 3"
                 },
                 {
                     "type": "float32",
@@ -2741,24 +5350,6 @@
                     "units": "",
                     "size": 4,
                     "Name": "Lowest Cell Volts"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Board Temp"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Node Pressure"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Node Temp"
                 },
                 {
                     "type": "float32",
@@ -2869,112 +5460,220 @@
                     "Name": "18 Module Voltage"
                 },
                 {
-                    "type": "uint8",
+                    "type": "float32",
                     "units": "",
-                    "size": 1,
-                    "Name": "1 BMS ID"
+                    "size": 4,
+                    "Name": "1 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "2 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "3 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "4 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "5 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "6 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "7 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "8 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "9 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "10 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "11 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "12 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "13 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "14 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "15 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "16 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "17 Module Spare"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "18 Module Spare"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "2 BMS ID"
+                    "Name": "1 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "3 BMS ID"
+                    "Name": "2 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "4 BMS ID"
+                    "Name": "3 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "5 BMS ID"
+                    "Name": "4 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "6 BMS ID"
+                    "Name": "5 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "7 BMS ID"
+                    "Name": "6 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "8 BMS ID"
+                    "Name": "7 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "9 BMS ID"
+                    "Name": "8 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "10 BMS ID"
+                    "Name": "9 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "11 BMS ID"
+                    "Name": "10 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "12 BMS ID"
+                    "Name": "11 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "13 BMS ID"
+                    "Name": "12 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "14 BMS ID"
+                    "Name": "13 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "15 BMS ID"
+                    "Name": "14 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "16 BMS ID"
+                    "Name": "15 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "17 BMS ID"
+                    "Name": "16 Module Resistor"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "18 BMS ID"
+                    "Name": "17 Module Resistor"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "18 Module Resistor"
                 },
                 {
                     "type": "uint32",
@@ -2986,13 +5685,61 @@
                     "type": "uint32",
                     "units": "",
                     "size": 4,
+                    "Name": "Battery Spare"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Charger State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Temp State"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Num Temp Sensors"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Highest Sensor Value"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Average Temp"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Highest Sensor Index"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
                     "Name": "Temp Scan Count"
                 },
                 {
                     "type": "float32",
                     "units": "",
                     "size": 4,
-                    "Name": "Pack Current"
+                    "Name": "Node Pressure"
+                },
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Node Temp"
                 }
             ]
         },
@@ -3072,7 +5819,7 @@
                     "endLoop": true,
                     "units": "",
                     "size": 4,
-                    "Name": "Throttle V"
+                    "Name": "Throttle Voltage"
                 }
             ]
         },
@@ -3153,6 +5900,57 @@
                     "units": "",
                     "size": 4,
                     "Name": "Spare"
+                }
+            ]
+        },
+		{
+            "Name": "IPS Charger",
+            "PacketType": 37157,
+            "Node": "IPS Charger",
+            "DAQ": false,
+            "ParameterPrefix": "IPS Charger ",
+            "Parameters": [
+                {
+                    "type": "float32",
+                    "units": "V",
+                    "size": 4,
+                    "Name": "Current V"
+                },
+                {
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Current I"
+                },
+                {
+                    "type": "float32",
+                    "units": "V",
+                    "size": 4,
+                    "Name": "Float V SP"
+                },
+                {
+                    "type": "float32",
+                    "units": "V",
+                    "size": 4,
+                    "Name": "Boost V SP"
+                },
+				{
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Max Current SP"
+                },
+				{
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Boost to Float Current SP"
+                },
+				{
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Float to Boost Current SP"
                 }
             ]
         }

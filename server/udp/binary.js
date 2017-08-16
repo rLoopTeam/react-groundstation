@@ -3,6 +3,7 @@
 * Each function has an optional parameter for setting the endianness
 * where true is little-endian and false is big-endian
 */
+const int64Buffer = require('int64-buffer');
 
 function bytesToUint8 (byte1, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
@@ -78,6 +79,36 @@ function bytesToFloat64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8,
   return dataView.getFloat64(0, littleEndian);
 }
 
+function bytesToInt64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, littleEndian) {
+  if (arguments.length > 9 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  var dataView = new DataView(new ArrayBuffer(8));
+  dataView.setInt8(0, byte1);
+  dataView.setInt8(1, byte2);
+  dataView.setInt8(2, byte3);
+  dataView.setInt8(3, byte4);
+  dataView.setInt8(4, byte5);
+  dataView.setInt8(5, byte6);
+  dataView.setInt8(6, byte7);
+  dataView.setInt8(7, byte8);
+  let bigNumber = new int64Buffer.Int64BE(dataView);
+  return bigNumber.toNumber();
+}
+
+function bytesToUint64 (byte1, byte2, byte3, byte4, byte5, byte6, byte7, byte8, littleEndian) {
+  if (arguments.length > 9 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
+  var dataView = new DataView(new ArrayBuffer(8));
+  dataView.setInt8(0, byte1);
+  dataView.setInt8(1, byte2);
+  dataView.setInt8(2, byte3);
+  dataView.setInt8(3, byte4);
+  dataView.setInt8(4, byte5);
+  dataView.setInt8(5, byte6);
+  dataView.setInt8(6, byte7);
+  dataView.setInt8(7, byte8);
+  let bigNumber = new int64Buffer.Uint64BE(dataView);
+  return bigNumber.toNumber();
+}
+
 function uint8ToBytes (uint8, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(1);
@@ -132,6 +163,23 @@ function int32ToBytes (int32, littleEndian) {
   return tmpArr;
 }
 
+function int64ToBytes (int64, littleEndian) {
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) {
+    throw new Error('Error - Wrong number or type of arguments');
+  }
+  var tmpArr = new Int8Array(int64Buffer.Int64BE(int64).toArrayBuffer());
+  return tmpArr;
+}
+
+function uint64ToBytes (uint64, littleEndian) {
+  if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) {
+    throw new Error('Error - Wrong number or type of arguments');
+  }
+  var tmpArr = new Int8Array(int64Buffer.Uint64BE(uint64).toArrayBuffer());
+  console.log(tmpArr);
+  return tmpArr;
+}
+
 function float32ToBytes (float, littleEndian) {
   if (arguments.length > 2 || (typeof littleEndian !== 'boolean' && littleEndian !== undefined)) { throw new Error('Error - Wrong number or type of arguments'); }
   var arr = new ArrayBuffer(4);
@@ -156,15 +204,19 @@ module.exports = {
   bytesToUint8,
   bytesToUint16,
   bytesToUint32,
+  bytesToUint64,
   bytesToInt8,
   bytesToInt16,
   bytesToInt32,
+  bytesToInt64,
   uint8ToBytes,
   uint16ToBytes,
   uint32ToBytes,
+  uint64ToBytes,
   int8ToBytes,
   int16ToBytes,
   int32ToBytes,
+  int64ToBytes,
   float32ToBytes,
   float64ToBytes,
   bytesToFloat32,

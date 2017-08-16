@@ -44,7 +44,7 @@ function generatePacket (packetName) {
   let packetDefintion;
   let payload = [];
   let inLoop = false;
-  let loopIterations = Math.floor(Math.random() * 4);
+  let loopIterations = Math.floor(Math.random() * 16);
   let loopIteration = 0;
   let loopBeginIndex = -1;
 
