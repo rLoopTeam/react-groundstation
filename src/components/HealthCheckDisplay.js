@@ -3,18 +3,57 @@ import GenericParameterDisplay from './GenericParameterDisplay.js';
 import nominalConditions from '../../config/nominalConditions.js';
 
 class HealthCheckDisplay extends GenericParameterDisplay {
-  /*
-  * This component inherits all code from GenericParameterDisplay. Look there for implemetation details
-  */
+  constructor (props) {
+    super(props);
+    this.dataCallback = this.dataCallback.bind(this);
+
+    this.state = {
+      counter: 0
+    };
+    this.packetValues = {};
+
+    for (let parameter of this.props.parameters) {
+      this.packetValues[parameter] = 0;
+    }
+
+    this._isMounted = true;
+  }
+
+  componentDidMount () {
+    for (let parameter of this.props.parameters) {
+      this.props.StreamingPageManager.RequestParameterWithCallback(parameter, this.dataCallback);
+    }
+  }
+
+  componentWillUnmount () {
+    this._isMounted = false;
+    this.props.StreamingPageManager.destroy();
+  }
+
+  dataCallback (parameterData) {
+    if (this._isMounted) {
+      this.setState({counter: this.state.counter + 1});
+
+      if (isNaN(parameterData.Value)) {
+        this.packetValues[parameterData.Name] = parameterData.Value;
+      } else {
+        this.packetValues[parameterData.Name] = Number(parameterData.Value).toFixed(2);
+      }
+    }
+  }
+
   isDangerous () {
-    if (this.state.value === '?') {
-      return true;
-    } else if (Number(this.state.value) > this.props.max) {
-      console.debug('overmax', this.props.label, this.state.value);
-      return true;
-    } else if (Number(this.state.value) < this.props.min) {
-      console.debug('undermin', this.props.label, this.state.value);
-      return true;
+    for (let valueIndex in this.packetValues) {
+      let value = this.packetValues[valueIndex];
+      if (value === '?') {
+        return true;
+      } else if (Number(value) > this.props.max) {
+        console.debug('overmax', this.props.label, value);
+        return true;
+      } else if (Number(value) < this.props.min) {
+        console.debug('undermin', this.props.label, value);
+        return true;
+      }
     }
 
     return false;
@@ -31,7 +70,11 @@ class HealthCheckDisplay extends GenericParameterDisplay {
     }
 
     if (this.props.viewMode === 'detailed') {
-      extraElements.push(<p>{this.state.value}</p>);
+      let valueTotals = [];
+      for (let packetName in this.packetValues) {
+        valueTotals.push(this.packetValues[packetName]);
+      }
+      extraElements.push(<p key={'packetDetail'}>{valueTotals.join(', ')}</p>);
     }
 
     return (

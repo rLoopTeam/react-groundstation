@@ -21,24 +21,124 @@ class HealthCheckOverview extends Component {
       streamManager: new StreamingPageManager()
     };
 
+    this.overviewParameters = {
+      nominals: [
+        'Power A BMS Average Temp',
+        'Power A BMS Highest Sensor Value',
+        'Power A BMS Pack Volts',
+        'Power A BMS Highest Cell Volts',
+        'Power A BMS Lowest Cell Volts',
+        'Power A BMS Pack Current',
+        'Power A BMS Node Pressure',
+        'Power A BMS Node Temp',
+        'Power B BMS Average Temp',
+        'Power B BMS Highest Sensor Value',
+        'Power B BMS Pack Volts',
+        'Power B BMS Highest Cell Volts',
+        'Power B BMS Lowest Cell Volts',
+        'Power B BMS Pack Current',
+        'Power B BMS Node Pressure',
+        'Power B BMS Node Temp'
+      ],
+      groups: {
+        'Accel X Gs': {
+          min: 0,
+          max: 3,
+          params: [
+            'Accel 1 X Gs',
+            'Accel 2 X Gs'
+          ]
+        },
+        'Accel Y Gs': {
+          min: 0,
+          max: 3,
+          params: [
+            'Accel 1 Y Gs',
+            'Accel 2 Y Gs'
+          ]
+        },
+        'Accel Z Gs': {
+          min: 0,
+          max: 3,
+          params: [
+            'Accel 1 Y Gs',
+            'Accel 2 Y Gs'
+          ]
+        },
+        'HE Temps Left': {
+          min: 0,
+          max: 80,
+          params: [
+            'ASI 1 Temperature',
+            'ASI 2 Temperature',
+            'ASI 3 Temperature',
+            'ASI 4 Temperature'
+          ]
+        },
+        'HE Temps Right': {
+          min: 0,
+          max: 80,
+          params: [
+            'ASI 5 Temperature',
+            'ASI 6 Temperature',
+            'ASI 7 Temperature',
+            'ASI 8 Temperature'
+          ]
+        },
+        'HE RPMs Left': {
+          min: 0,
+          max: 3000,
+          params: [
+            'ASI 1 HE RPM',
+            'ASI 2 Temperature',
+            'ASI 3 Temperature',
+            'ASI 4 Temperature'
+          ]
+        },
+        'HE RPMs Right': {
+          min: 0,
+          max: 3000,
+          params: [
+            'ASI 5 HE RPM',
+            'ASI 6 Temperature',
+            'ASI 7 Temperature',
+            'ASI 8 Temperature'
+          ]
+        }
+      }
+    };
     this.watchParams = [];
-    this.watchFaults = [];
 
-    for (let prefix in nominalConditions) {
-      for (let param in nominalConditions[prefix]) {
-        if (nominalConditions[prefix][param].Fault) {
-          this.watchFaults.push(prefix + ' ' + param);
-          continue;
-        } else {
-          this.watchParams.push({
-            fullParam: prefix + ' ' + param,
-            max: nominalConditions[prefix][param].Max,
-            min: nominalConditions[prefix][param].Min
-          });
+    for (let paramName of this.overviewParameters.nominals) {
+      console.log(paramName, this.lookupNominal(paramName));
+      this.watchParams.push({
+        label: paramName,
+        min: this.lookupNominal(paramName).Min,
+        max: this.lookupNominal(paramName).Max,
+        params: [paramName]
+      });
+    }
+
+    for (let groupName in this.overviewParameters.groups) {
+      this.watchParams.push({
+        label: groupName,
+        min: this.overviewParameters.groups[groupName].min,
+        max: this.overviewParameters.groups[groupName].max,
+        params: this.overviewParameters.groups[groupName].params
+      });
+    }
+  }
+
+  lookupNominal (param) {
+    for (let nominalPrefix in nominalConditions) {
+      for (let nominalParam in nominalConditions[nominalPrefix]) {
+        if (nominalPrefix + ' ' + nominalParam === param) {
+          return nominalConditions[nominalPrefix][nominalParam];
         }
       }
     }
   }
+
   render () {
     let viewMode = this.props.route.viewMode || 'overview';
 
@@ -53,11 +153,10 @@ class HealthCheckOverview extends Component {
                   <div className="health">
                   <HealthCheckDisplay
                         StreamingPageManager={this.state.streamManager}
-                        parameter={item.fullParam}
-                        label={item.fullParam}
+                        parameters={item.params}
+                        label={item.label}
                         max={item.max}
                         min={item.min}
-                        readOnly='true'
                         hideUnits='true'
                         viewMode={viewMode}
                     />

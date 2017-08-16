@@ -114,11 +114,10 @@ class HealthCheck extends Component {
                   <div className="health">
                   <HealthCheckDisplay
                         StreamingPageManager={this.state.streamManager}
-                        parameter={item.fullParam}
+                        parameters={[item.fullParam]}
                         label={item.fullParam}
                         max={item.max}
                         min={item.min}
-                        readOnly='true'
                         hideUnits='true'
                         viewMode={viewMode}
                     />
@@ -134,11 +133,10 @@ class HealthCheck extends Component {
                   <div className="health">
                   <HealthCheckDisplay
                         StreamingPageManager={this.state.streamManager}
-                        parameter={item.param}
+                        parameters={[item.param]}
                         label={item.label}
                         max={0}
                         min={0}
-                        readOnly='true'
                         hideUnits='true'
                         viewMode={viewMode}
                     />

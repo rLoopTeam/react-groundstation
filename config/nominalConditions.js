@@ -165,5 +165,87 @@ module.exports = {
         "SW Error 2": {
             "Fault": true
         }
+    },
+    "ASI": {
+      "1 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "2 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "3 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "4 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "5 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "6 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "7 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "8 Temperature": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 80
+      },
+      "1 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "2 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "3 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "4 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "5 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "6 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "7 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      },
+      "8 HE RPM": {
+        "Fault": false,
+        "Min": 0,
+        "Max": 3000
+      }
     }
 };
