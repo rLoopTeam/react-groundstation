@@ -24,7 +24,8 @@ class Power_Overview extends Component {
       {label: 'Num Temp Sensors', value: `Power ${props.route.L} BMS Num Temp Sensors`},
       {label: 'Highest Sensor Value', value: `Power ${props.route.L} BMS Highest Sensor Value`},
       {label: 'Average Temp', value: `Power ${props.route.L} BMS Average Temp`},
-      {label: 'Highest Sensor Index', value: `Power ${props.route.L} BMS Highest Sensor Index`}
+      {label: 'Highest Sensor Index', value: `Power ${props.route.L} BMS Highest Sensor Index`},
+      {label: 'Pack Current', value: `Power ${props.route.L} BMS Pack Current`}
     ];
 
     this.labels2 = [
