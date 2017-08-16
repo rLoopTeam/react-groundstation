@@ -597,5 +597,57 @@ module.exports = {
       {'name': 'General Fault', 'severity': 'critical'},
       {'name': 'Struct size mismatch', 'severity': 'critical'}
     ]
+  },
+
+  // Power Nodes
+  'Power Node A BMS Faults': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node A BMS Device Faults 1': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node A BMS Device Faults 2': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node A BMS Device Faults 3': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node B BMS Faults': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node B BMS Device Faults 1': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node B BMS Device Faults 2': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'Power Node B BMS Device Faults 3': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
   }
 };
