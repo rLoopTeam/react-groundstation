@@ -32,8 +32,8 @@ class HealthCheck extends Component {
         } else {
           this.watchParams.push({
             fullParam: prefix + ' ' + param,
-            max: nominalConditions[prefix][param].Max,
-            min: nominalConditions[prefix][param].Min
+            max: nominalConditions[prefix][param].max,
+            min: nominalConditions[prefix][param].min
           });
         }
       }

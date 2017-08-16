@@ -111,8 +111,8 @@ class HealthCheckOverview extends Component {
       console.log(paramName, this.lookupNominal(paramName));
       this.watchParams.push({
         label: paramName,
-        min: this.lookupNominal(paramName).Min,
-        max: this.lookupNominal(paramName).Max,
+        min: this.lookupNominal(paramName).min,
+        max: this.lookupNominal(paramName).max,
         params: [paramName]
       });
     }
