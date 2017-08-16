@@ -166,14 +166,12 @@ class HealthCheckOverview extends Component {
         <div className="col-md-12">
         {Object.keys(faultFlagDefinitions).map(function (item, index) {
           return (
-              <form className="form-inline col-xs-12 col-md-4" key={'healthfault' + index}>
-                <div className="form-group">
-                  <label htmlFor="a0_y">{item.label}</label>
-                  <div className="health">
+              <form className="d-inline-block" key={'healthfault' + index}>
+                <label htmlFor="a0_y">{item.label}</label>
+                <div className="health">
                   <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
-                  </div>
                 </div>
-              </form>
+              </div>
           );
         }, this)}
         </div>

@@ -109,7 +109,7 @@ class HealthCheck extends Component {
         <div className="col-md-12">
           {this.watchParams.map(function (item, index) {
             return (
-              <div className="health d-inline-block" key={'health' + index}>
+              <div className="health d-inline-block" key={'health_param' + index}>
                 <HealthCheckDisplay
                       StreamingPageManager={this.state.streamManager}
                       parameters={[item.fullParam]}
@@ -124,7 +124,7 @@ class HealthCheck extends Component {
           }, this)}
           {this.placeholderParams.map(function (item, index) {
             return (
-              <div className="health d-inline-block" key={'health' + index}>
+              <div className="health d-inline-block" key={'health_placeholder' + index}>
                 <HealthCheckDisplay
                       StreamingPageManager={this.state.streamManager}
                       parameters={[item.param]}
@@ -143,14 +143,12 @@ class HealthCheck extends Component {
         <div className="col-md-12">
         {Object.keys(faultFlagDefinitions).map(function (item, index) {
           return (
-              <form className="form-inline col-xs-12 col-md-4" key={'healthfault' + index}>
-                <div className="form-group">
-                  <label htmlFor="a0_y">{item.label}</label>
-                  <div className="health">
+              <div className="d-inline-block" key={'healthfault' + index}>
+                <label htmlFor="a0_y">{item.label}</label>
+                <div className="health">
                   <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
-                  </div>
                 </div>
-              </form>
+              </div>
           );
         }, this)}
         </div>
