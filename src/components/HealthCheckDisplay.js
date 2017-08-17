@@ -15,11 +15,10 @@ class HealthCheckDisplay extends GenericParameterDisplay {
     for (let parameter of this.props.parameters) {
       this.packetValues[parameter] = 0;
     }
-
-    this._isMounted = true;
   }
 
   componentDidMount () {
+    this._isMounted = true;
     for (let parameter of this.props.parameters) {
       this.props.StreamingPageManager.RequestParameterWithCallback(parameter, this.dataCallback);
     }
