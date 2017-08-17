@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import StreamingPageManager from '../../StreamingPageManager.js';
-import GenericParameterLabel from './../GenericParameterLabel.js';
-import NumericInput from './../NumericInput.js';
+import StreamingPageManager from '../StreamingPageManager.js';
+import GenericParameterLabel from './GenericParameterLabel.js';
+import NumericInput from './NumericInput.js';
 
-import createSocket from '../../shared/socket';
+import createSocket from '../shared/socket';
 let socket = createSocket();
 
-class PowerCooling extends Component {
+class Cooling extends Component {
   constructor (props) {
     super(props);
 
@@ -76,22 +76,22 @@ class PowerCooling extends Component {
 
   testSolenoid (e) {
     e.preventDefault();
-    socket.emit(`Power${this.props.route.L}:TestSolenoidPin${this.state.selectedPin}`);
+    socket.emit(`PowerA:TestSolenoidPin${this.state.selectedPin}`);
   }
 
   startRepressurizing (e) {
     e.preventDefault();
-    socket.emit(`Power${this.props.route.L}:StartRepressurizing`);
+    socket.emit(`PowerA:StartRepressurizing`);
   }
 
   requestCooling (e) {
     e.preventDefault();
-    socket.emit(`Power${this.props.route.L}:RequestCooling`);
+    socket.emit(`PowerA:RequestCooling`);
   }
 
   startCooling (e) {
     e.preventDefault();
-    socket.emit(`Power${this.props.route.L}:StartCooling`);
+    socket.emit(`PowerA:StartCooling`);
   }
 
   render () {
@@ -102,7 +102,7 @@ class PowerCooling extends Component {
 
     return (
       <div>
-      <h2>Pack {this.props.route.L}</h2>
+      <h2>Cooling</h2>
       <div className="col-md-12">
         <h3 className="section-title">Cooling</h3>
 
@@ -111,17 +111,17 @@ class PowerCooling extends Component {
           <button type="button" className="btn btn-success" onClick={this.startCooling.bind(this)} style={{margin: 10}}>Start Cooling</button>
         </div>
 
-        <div className="row" key={this.props.route.L + 'CoolingState'}>
+        <div className="row" key={'CoolingState'}>
           <div className="col-sm-12">
             <label>General Cooling State</label>
             <GenericParameterLabel
             StreamingPageManager={_this.state.streamManager}
-            parameter={`Power ${this.props.route.L} Cooling State`}/>
+            parameter={`Power A Cooling State`}/>
           </div>
         </div>
         {
           this.labels.map(function (item, index) {
-            var coolableUnit = `Power ${this.props.route.L} Cooling ${item.value}`;
+            var coolableUnit = `Power A Cooling ${item.value}`;
             return (
             <div className="row" key={coolableUnit}>
               <div className="col-sm-3">
@@ -290,4 +290,4 @@ class PowerCooling extends Component {
   }
 }
 
-export default PowerCooling;
+export default Cooling;

@@ -19,16 +19,15 @@ class MainLayout extends Component {
         ]
       },
       {
-        name: 'Aux Prop',
-        location: '/auxprop'
+        name: 'Cooling',
+        location: '/cooling'
       },
       {
         name: 'Power A',
         location: '/powerA',
         children: [
           {name: 'Overview', location: '/powerAOverview'},
-          {name: 'Raw Temperatures', location: '/powerARawTemps'},
-          {name: 'Cooling', location: '/powerACooling'}
+          {name: 'Raw Temperatures', location: '/powerARawTemps'}
         ]
       },
       {

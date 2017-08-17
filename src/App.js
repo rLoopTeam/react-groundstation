@@ -24,7 +24,7 @@ import PowerNodeConfig from './components/PowerNodeConfig.js';
 import HealthCheck from './components/HealthCheck.js';
 import HealthCheckOverview from './components/HealthCheckOverview.js';
 import AuxProp from './components/AuxProp.js';
-import PowerCooling from './components/power/cooling.js';
+import Cooling from './components/Cooling.js';
 
 import './App.css';
 
@@ -51,8 +51,7 @@ class App extends Component {
           <Route path="powerARawTemps" component={Power_RawTemperatures} L="A" />
           <Route path="powerBOverview" component={Power_Overview} L="B"/>
           <Route path="powerBRawTemps" component={Power_RawTemperatures} L="B" />
-          <Route path="powerACooling" component={PowerCooling} L="A" />
-          <Route path="powerBCooling" component={PowerCooling} L="B" />
+          <Route path="cooling" component={Cooling} />
           <Route path="lgu" component={LGU} />
           <Route path="AutoSequence" component={AutoSequence} />
           <Route path="XilinxSim" component={XilinxSim} />
