@@ -208,6 +208,16 @@ class HealthCheckOverview extends Component {
             'Limit Extend Edge 2',
             'Limit Retract Edge 2'
           ]
+        },
+        'LGU Limit Switches': {
+          min: 1,
+          max: 2,
+          params: [
+            'LGU Switch Extend 1',
+            'LGU Switch Retract 1',
+            'LGU Switch Extend 2',
+            'LGU Switch Retract 2'
+          ]
         }
       }
     };

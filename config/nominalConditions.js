@@ -383,5 +383,27 @@ module.exports = {
       'min': 0,
       'max': 1
     }
+  },
+  'LGU': {
+    'Switch Extend 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Extend 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Retract 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Retract 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    }
   }
 };

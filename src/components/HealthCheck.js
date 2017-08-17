@@ -47,29 +47,14 @@ class HealthCheck extends Component {
       {label: 'Power A Voltage Range', param: 'TODO:PLACEHOLDER'},
       {label: 'Power B Voltage Range', param: 'TODO:PLACEHOLDER'},
 
-      // HEs
-      {label: 'Hover Engine Temperature', param: 'ASI Temperature'},
-      {label: 'Hover Engine RPM', param: 'ASI HE RPM'},
-
-      // PV packets are vague
-
       // LGU
       // MLP Flag / MLP Value not in?
-      {label: 'LGU Switch Extend 1', param: 'LGU Switch Extend 1'},
-      {label: 'LGU Switch Extend 2', param: 'LGU Switch Extend 2'},
-      {label: 'LGU Switch Retract 1', param: 'LGU Switch Retract 1'},
-      {label: 'LGU Switch Retract 2', param: 'LGU Switch Retract 2'},
 
       // Brakes
-      {label: 'Brake Calibration State', param: 'Brake Calibration State'},
-      {label: 'Brake State', param: 'Brake State'},
       // Brake Limit Switches State?
       {label: 'Brake MLP 1', param: 'Brake MLP 1'},
-      {label: 'Brake MLP 2', param: 'Brake MLP 2'},
+      {label: 'Brake MLP 2', param: 'Brake MLP 2'}
       // Brake Stepper Temperature soon to come
-
-      // Pusher
-      {label: 'Pusher Status', param: 'Pusher Status'}
     ];
   }
   render () {
