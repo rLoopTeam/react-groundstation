@@ -47,9 +47,6 @@ class HealthCheck extends Component {
       {label: 'Power A Voltage Range', param: 'TODO:PLACEHOLDER'},
       {label: 'Power B Voltage Range', param: 'TODO:PLACEHOLDER'},
 
-      // LGU
-      // MLP Flag / MLP Value not in?
-
       // Brakes
       // Brake Limit Switches State?
       {label: 'Brake MLP 1', param: 'Brake MLP 1'},
