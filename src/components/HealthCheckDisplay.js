@@ -39,13 +39,13 @@ class HealthCheckDisplay extends GenericParameterDisplay {
         return;
       }
 
-      this.setState({counter: this.state.counter + 1});
-
       if (isNaN(parameterData.Value)) {
         this.packetValues[parameterData.Name] = parameterData.Value;
       } else {
         this.packetValues[parameterData.Name] = Number(parameterData.Value).toFixed(2);
       }
+
+      this.setState({counter: this.state.counter + 1});
     }
   }
 
