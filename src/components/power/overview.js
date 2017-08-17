@@ -123,7 +123,7 @@ class Power_Overview extends Component {
               {
                 this.labels.map(function (item, index) {
                   return (
-                    <div className="row" key={'labels' + index}>
+                    <div className="row" key={'labels' + index + this.props.route.L}>
                       <label>{item.label}</label>
                       <GenericParameterLabel
                         StreamingPageManager={_this.state.streamManager}
@@ -138,7 +138,7 @@ class Power_Overview extends Component {
               {
                 this.labels2.map(function (item, index) {
                   return (
-                    <div className="row" key={'labels2' + index}>
+                    <div className="row" key={'labels2' + index + this.props.route.L}>
                       <label>{item.label}</label>
                       <GenericParameterLabel
                         StreamingPageManager={_this.state.streamManager}
@@ -155,7 +155,7 @@ class Power_Overview extends Component {
             {
               this.cellIndexes.map(function (_, cellIndex) {
                 return (
-                  <div className="col-sm-6" key={'cell' + cellIndex}>
+                  <div className="col-sm-6" key={'cell' + cellIndex + this.props.route.L}>
                       <div className="col-sm-5">
                         <label>Module {cellIndex + 1} Volts:</label>
                       </div>
@@ -185,7 +185,7 @@ class Power_Overview extends Component {
                 {
                   this.labels3.map(function (item, index) {
                     return (
-                      <div className="row" key={'labels' + index}>
+                      <div className="row" key={'labels' + index + this.props.route.L}>
                         <label>{item.label}</label>
                         <GenericParameterLabel
                           StreamingPageManager={_this.state.streamManager}
