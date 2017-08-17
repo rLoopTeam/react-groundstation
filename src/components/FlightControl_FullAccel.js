@@ -69,7 +69,7 @@ class FlightControl_FullAccel extends Component {
           yRange={[-20, 20]}
           yAxisLabel="Gs"
           xAxisLabel="Time"
-          totalPoints={60}
+          totalPoints={120}
         />
 
         <div className="row margin-bottom-20px">

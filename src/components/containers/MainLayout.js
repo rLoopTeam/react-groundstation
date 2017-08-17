@@ -19,16 +19,15 @@ class MainLayout extends Component {
         ]
       },
       {
-        name: 'Aux Prop',
-        location: '/auxprop'
+        name: 'Cooling',
+        location: '/cooling'
       },
       {
         name: 'Power A',
         location: '/powerA',
         children: [
           {name: 'Overview', location: '/powerAOverview'},
-          {name: 'Raw Temperatures', location: '/powerARawTemps'},
-          {name: 'IPS Charger', location: '/IPSCharger'}
+          {name: 'Raw Temperatures', location: '/powerARawTemps'}
         ]
       },
       {
@@ -37,7 +36,7 @@ class MainLayout extends Component {
         children: [
           {name: 'Overview', location: '/powerBOverview'},
           {name: 'Raw Temperatures', location: '/powerBRawTemps'},
-          {name: 'IPS Charger', location: '/IPSCharger'}
+          {name: 'Cooling', location: '/powerBCooling'}
         ]
       },
       {

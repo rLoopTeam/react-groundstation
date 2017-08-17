@@ -139,7 +139,7 @@ class Overview extends Component {
                   title="Accelerometer 1"
                   yAxisLabel="Acceleration (m/s&sup2;)"
                   xAxisLabel="Time (s)"
-                  totalPoints={60}
+                  totalPoints={120}
                   height={250}
                 />
               </div>
@@ -163,7 +163,7 @@ class Overview extends Component {
                   title="Accelerometer 2"
                   yAxisLabel="Acceleration (m/s&sup2;)"
                   xAxisLabel="Time (s)"
-                  totalPoints={60}
+                  totalPoints={120}
                   height={250}
                 />
               </div>
@@ -184,7 +184,7 @@ class Overview extends Component {
                   title="Power node Pressure"
                   yAxisLabel="Pressure (bar)"
                   xAxisLabel="Time (s)"
-                  totalPoints={60}
+                  totalPoints={120}
                   height={250}
                 />
               </div>
@@ -196,7 +196,7 @@ class Overview extends Component {
                   title="Power node Temperature"
                   yAxisLabel="Temperature (&deg;C)"
                   xAxisLabel="Time (s)"
-                  totalPoints={60}
+                  totalPoints={120}
                   height={250}
                 />
               </div>
@@ -208,7 +208,7 @@ class Overview extends Component {
                   title="Power node Voltage"
                   yAxisLabel="Temperature (V)"
                   xAxisLabel="Time (s)"
-                  totalPoints={60}
+                  totalPoints={120}
                   height={250}
                 />
               </div>
