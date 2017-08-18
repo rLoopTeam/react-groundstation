@@ -314,23 +314,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       'PowerA:RequestCooling': (data) => {
         podCommands.PowerARequestCooling(data);
       },
-      'PowerA:StartCooling': (data) => {
-        podCommands.PowerAStartCooling(data);
-      },
-
-      'PowerB:RequestCooling': (data) => {
-        podCommands.PowerBRequestCooling(data);
-      },
-      'PowerB:StartCooling': (data) => {
-        podCommands.PowerBStartCooling(data);
-      },
 
       'PowerA:StartRepressurizing': (data) => {
         podCommands.PowerAStartRepressurizing(data);
-      },
-
-      'PowerB:StartRepressurizing': (data) => {
-        podCommands.PowerBStartRepressurizing(data);
       },
 
       'PowerA:TestSolenoidPin4': (data) => {
@@ -379,6 +365,10 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
 
       'PowerB:ToPowerA': (data) => {
         podCommands.PowerBToPowerA();
+      },
+
+      'HETherm:ControlCooling': (data) => {
+        podCommands.HETherm_ControlCooling(data);
       },
 
       'PodSafe': () => {
