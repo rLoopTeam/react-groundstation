@@ -4,50 +4,44 @@ import './ConfirmButton.css';
 class ConfirmButton extends Component {
   constructor (props) {
     super(props);
+
     this.state = {
       disabled: false,
       ready: false
     };
     this.mainTimeout = null;
-    this.innerTimeout = null;
   }
 
   setMainTimeout (callback) {
     this.mainTimeout = setTimeout(callback, this.props.delay);
   }
+
   clearMainTimeout () {
     clearTimeout(this.mainTimeout);
-  }
-  setInnerTimeout (callback) {
-    this.innerTimeout = setTimeout(callback, 1000);
-  }
-  clearInnerTimeout () {
-    clearTimeout(this.innerTimeout);
   }
 
   confirmClick () {
     const self = this;
 
+    // Clear timeout before doing any actions that set timeouts.
+    this.clearMainTimeout();
+
     if (this.state.disabled) {
-      this.clearMainTimeout();
-      this.clearInnerTimeout();
       this.setState({disabled: false, ready: false});
       return;
     } else if (this.state.ready) {
       this.props.action();
+      this.setState({disabled: false, ready: false});
       return;
     }
 
     if (this.state.disabled === false) {
-      // disable button for some time
+      // Enable button for some time.
+      this.setState({disabled: false, ready: true});
+
       this.setMainTimeout(function () {
-        // enable button for one second
-        self.setInnerTimeout(function () {
-          self.setState({disabled: false, ready: false});
-        });
-        self.setState({disabled: false, ready: true});
+        self.setState({disabled: false, ready: false});
       });
-      this.setState({disabled: true});
     }
   }
 

@@ -2725,6 +2725,293 @@
             ]
         },
         {
+            "Name": "FCU DAQ CPU LOAD",
+            "PacketType": 16384,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "uint8",
+            "dataSize": 1
+        },
+        {
+            "Name": "FCU DAQ ACCEL 0 X",
+            "PacketType": 16385,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int16",
+            "dataSize": 2
+        },
+        {
+            "Name": "FCU DAQ ACCEL 0 Y",
+            "PacketType": 16386,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int16",
+            "dataSize": 2
+        },
+        {
+            "Name": "FCU DAQ ACCEL 0 Z",
+            "PacketType": 16387,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int16",
+            "dataSize": 2
+        },
+        {
+            "Name": "FCU DAQ ACCEL 1 X",
+            "PacketType": 16388,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int16",
+            "dataSize": 2
+        },
+        {
+            "Name": "FCU DAQ ACCEL 1 Y",
+            "PacketType": 16389,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int16",
+            "dataSize": 2
+        },
+        {
+            "Name": "FCU DAQ ACCEL 1 Z",
+            "PacketType": 16390,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int16",
+            "dataSize": 2
+        },
+        {
+            "Name": "FCU DAQ ACCEL 0 ACCEL",
+            "PacketType": 16391,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int32",
+            "dataSize": 4
+        },
+        {
+            "Name": "FCU DAQ ACCEL 0 VELOCITY",
+            "PacketType": 16392,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int32",
+            "dataSize": 4
+        },
+        {
+            "Name": "FCU DAQ ACCEL 0 DISPLACEMENT",
+            "PacketType": 16393,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int32",
+            "dataSize": 4
+        },
+        {
+            "Name": "FCU DAQ ACCEL 1 ACCEL",
+            "PacketType": 16394,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int32",
+            "dataSize": 4
+        },
+        {
+            "Name": "FCU DAQ ACCEL 1 VELOCITY",
+            "PacketType": 16396,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int32",
+            "dataSize": 4
+        },
+        {
+            "Name": "FCU DAQ ACCEL 1 DISPLACEMENT",
+            "PacketType": 16397,
+            "Node": "Flight Control",
+            "DAQ": true,
+            "dataType": "int32",
+            "dataSize": 4
+        },
+        {
+            "Name": "Throttle Parameters",
+            "PacketType": 5379,
+            "Node": "Flight Control",
+            "DAQ": false,
+            "ParameterPrefix": "Throttle ",
+            "Parameters": [
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Fault Flags"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "AMC Fault Flags"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 5"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 6"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 7"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Requested RPM 8"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 5"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 6"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 7"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "Current RPM 8"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 1"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 2"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 3"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 4"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 5"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 6"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 7"
+                },
+                {
+                    "type": "uint16",
+                    "units": "",
+                    "size": 2,
+                    "Name": "ASI RPM 8"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Current Index"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "AMC State"
+                }
+            ]
+        },
+        {
             "Name": "HE Data",
             "PacketType": 24577,
             "Node": "HE Thermal Monitor",
@@ -3200,150 +3487,6 @@
                     "Name": "24 ROM ID Low"
                 },
                 {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "25 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "25 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "25 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "26 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "26 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "26 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "27 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "27 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "27 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "28 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "28 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "28 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "29 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "29 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "29 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "30 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "30 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "30 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "31 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "31 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "31 ROM ID Low"
-                },
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "32 Temperature"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "32 ROM ID Hi"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "32 ROM ID Low"
-                },
-                {
                     "type": "uint16",
                     "units": "",
                     "size": 2,
@@ -3414,293 +3557,6 @@
                     "units": "",
                     "size": 1,
                     "Name": "Brake Motor Overtemp State"
-                }
-            ]
-        },
-        {
-            "Name": "FCU DAQ CPU LOAD",
-            "PacketType": 16384,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "uint8",
-            "dataSize": 1
-        },
-        {
-            "Name": "FCU DAQ ACCEL 0 X",
-            "PacketType": 16385,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int16",
-            "dataSize": 2
-        },
-        {
-            "Name": "FCU DAQ ACCEL 0 Y",
-            "PacketType": 16386,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int16",
-            "dataSize": 2
-        },
-        {
-            "Name": "FCU DAQ ACCEL 0 Z",
-            "PacketType": 16387,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int16",
-            "dataSize": 2
-        },
-        {
-            "Name": "FCU DAQ ACCEL 1 X",
-            "PacketType": 16388,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int16",
-            "dataSize": 2
-        },
-        {
-            "Name": "FCU DAQ ACCEL 1 Y",
-            "PacketType": 16389,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int16",
-            "dataSize": 2
-        },
-        {
-            "Name": "FCU DAQ ACCEL 1 Z",
-            "PacketType": 16390,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int16",
-            "dataSize": 2
-        },
-        {
-            "Name": "FCU DAQ ACCEL 0 ACCEL",
-            "PacketType": 16391,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int32",
-            "dataSize": 4
-        },
-        {
-            "Name": "FCU DAQ ACCEL 0 VELOCITY",
-            "PacketType": 16392,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int32",
-            "dataSize": 4
-        },
-        {
-            "Name": "FCU DAQ ACCEL 0 DISPLACEMENT",
-            "PacketType": 16393,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int32",
-            "dataSize": 4
-        },
-        {
-            "Name": "FCU DAQ ACCEL 1 ACCEL",
-            "PacketType": 16394,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int32",
-            "dataSize": 4
-        },
-        {
-            "Name": "FCU DAQ ACCEL 1 VELOCITY",
-            "PacketType": 16396,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int32",
-            "dataSize": 4
-        },
-        {
-            "Name": "FCU DAQ ACCEL 1 DISPLACEMENT",
-            "PacketType": 16397,
-            "Node": "Flight Control",
-            "DAQ": true,
-            "dataType": "int32",
-            "dataSize": 4
-        },
-        {
-            "Name": "Throttle Parameters",
-            "PacketType": 5379,
-            "Node": "Flight Control",
-            "DAQ": false,
-            "ParameterPrefix": "Throttle ",
-            "Parameters": [
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Fault Flags"
-                },
-                {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "AMC Fault Flags"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 1"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 2"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 3"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 4"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 5"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 6"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 7"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Requested RPM 8"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 1"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 2"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 3"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 4"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 5"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 6"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 7"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "Current RPM 8"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 1"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 2"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 3"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 4"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 5"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 6"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 7"
-                },
-                {
-                    "type": "uint16",
-                    "units": "",
-                    "size": 2,
-                    "Name": "ASI RPM 8"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "State"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "Current Index"
-                },
-                {
-                    "type": "uint8",
-                    "units": "",
-                    "size": 1,
-                    "Name": "AMC State"
                 }
             ]
         },
@@ -3950,6 +3806,60 @@
                     "units": "",
                     "size": 4,
                     "Name": "2 Previous Displacement"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Validity Active"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Validity Is Valid"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Validity Accel Valid"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Validity Velocity Valid"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Validity Displacement Valid"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Thresholding Active"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Thresholding Time"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Thresholding Accel"
+                },
+                {
+                    "type": "uint32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Thresholding Counter"
                 }
             ]
         },
@@ -5759,6 +5669,57 @@
             ]
         },
         {
+            "Name": "IPS Charger",
+            "PacketType": 37157,
+            "Node": "IPS Charger",
+            "DAQ": false,
+            "ParameterPrefix": "IPS Charger ",
+            "Parameters": [
+                {
+                    "type": "float32",
+                    "units": "V",
+                    "size": 4,
+                    "Name": "Current V"
+                },
+                {
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Current I"
+                },
+                {
+                    "type": "float32",
+                    "units": "V",
+                    "size": 4,
+                    "Name": "Float V SP"
+                },
+                {
+                    "type": "float32",
+                    "units": "V",
+                    "size": 4,
+                    "Name": "Boost V SP"
+                },
+                {
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Max Current SP"
+                },
+                {
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Boost to Float Current SP"
+                },
+                {
+                    "type": "float32",
+                    "units": "I",
+                    "size": 4,
+                    "Name": "Float to Boost Current SP"
+                }
+            ]
+        },
+        {
             "Name": "ASI Data",
             "PacketType": 5889,
             "Node": "ASI Monitor System",
@@ -5900,57 +5861,6 @@
                     "units": "",
                     "size": 4,
                     "Name": "Spare"
-                }
-            ]
-        },
-		{
-            "Name": "IPS Charger",
-            "PacketType": 37157,
-            "Node": "IPS Charger",
-            "DAQ": false,
-            "ParameterPrefix": "IPS Charger ",
-            "Parameters": [
-                {
-                    "type": "float32",
-                    "units": "V",
-                    "size": 4,
-                    "Name": "Current V"
-                },
-                {
-                    "type": "float32",
-                    "units": "I",
-                    "size": 4,
-                    "Name": "Current I"
-                },
-                {
-                    "type": "float32",
-                    "units": "V",
-                    "size": 4,
-                    "Name": "Float V SP"
-                },
-                {
-                    "type": "float32",
-                    "units": "V",
-                    "size": 4,
-                    "Name": "Boost V SP"
-                },
-				{
-                    "type": "float32",
-                    "units": "I",
-                    "size": 4,
-                    "Name": "Max Current SP"
-                },
-				{
-                    "type": "float32",
-                    "units": "I",
-                    "size": 4,
-                    "Name": "Boost to Float Current SP"
-                },
-				{
-                    "type": "float32",
-                    "units": "I",
-                    "size": 4,
-                    "Name": "Float to Boost Current SP"
                 }
             ]
         }

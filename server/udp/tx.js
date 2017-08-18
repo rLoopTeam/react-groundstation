@@ -61,7 +61,10 @@ module.exports = {
       console.log("Couldn't transmit to " + node + ' command ' + packetType);
       return;
     } else {
-      console.log('Transmitting type 0x' + packetType.toString(16) + ' to ' + node + ' ' + ip + ':' + port + ' blocks: ' + u32Block0 + ' ' + u32Block1 + ' ' + u32Block2 + ' ' + u32Block3);
+      console.log(
+        'Transmitting type 0x' + packetType.toString(16) + ' to ' + node + ' ' + ip + ':' + port + ' blocks: ' +
+        u32Block0.toString(16) + ' ' + u32Block1.toString(16) + ' ' + u32Block2.toString(16) + ' ' + u32Block3.toString(16)
+      );
     }
 
     var packet = [];
