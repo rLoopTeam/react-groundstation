@@ -1,8 +1,5 @@
-import config from '../../config/commConfig';
 import io from 'socket.io-client';
 
-const ip = config.Appserver.ip;
-const port = config.Appserver.port;
 var sockets = {};
 
 /**
@@ -18,11 +15,11 @@ function createSocket (socketName, endpoint) {
   }
 
   if (typeof endpoint === 'undefined') {
-    endpoint = '';
+    endpoint = '/';
   }
 
   if (typeof sockets[socketName] === 'undefined') {
-    sockets[socketName] = io.connect(ip + ':' + port + endpoint, {
+    sockets[socketName] = io.connect(endpoint, {
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
