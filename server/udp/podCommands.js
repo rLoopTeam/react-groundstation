@@ -444,10 +444,10 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
   }
 
-  //HE Thermal Board
+  // HE Thermal Board
 
-  function HETherm_ControlCooling (data){
-    udp.tx.transmitPodCommand('HE Thermal Monitor',0x6002,0xAA117788,data.solenoid,data.action );
+  function HETherm_ControlCooling (data) {
+    udp.tx.transmitPodCommand('HE Thermal Monitor', 0x6002, 0xAA117788, data.solenoid, data.action, 0x0);
   }
 
   function XilinxSim_Start () {

@@ -68,7 +68,7 @@ class Cooling extends Component {
 
       socket.emit('HETherm:ControlCooling', {
         solenoid: cooling.name,
-        control: 1
+        action: 1
       });
     } else {
       coolingControl[cooling.name - 1] = 2;
@@ -76,7 +76,7 @@ class Cooling extends Component {
 
       socket.emit('HETherm:ControlCooling', {
         solenoid: cooling.name,
-        control: 0
+        action: 0
       });
     }
   }

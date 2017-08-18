@@ -45,12 +45,9 @@ class HealthCheck extends Component {
       {label: 'Power A Highest Cell Temp', param: 'TODO:PLACEHOLDER'},
       {label: 'Power B Highest Cell Temp', param: 'TODO:PLACEHOLDER'},
       {label: 'Power A Voltage Range', param: 'TODO:PLACEHOLDER'},
-      {label: 'Power B Voltage Range', param: 'TODO:PLACEHOLDER'},
+      {label: 'Power B Voltage Range', param: 'TODO:PLACEHOLDER'}
 
       // Brakes
-      // Brake Limit Switches State?
-      {label: 'Brake MLP 1', param: 'Brake MLP 1'},
-      {label: 'Brake MLP 2', param: 'Brake MLP 2'}
       // Brake Stepper Temperature soon to come
     ];
   }
