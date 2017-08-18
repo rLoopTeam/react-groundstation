@@ -8,11 +8,20 @@
 
 .clicked-status-ready,
 .clicked-status-ready:focus {
-	background: #449044;
+  background-size: 150% 100%;
+	background: repeating-linear-gradient(-45deg, #449044, #449044 25px, #4CA64C 25px, #4CA64C 51px);
+  border-color: #449044;
+  animation: 2s scroll-background infinite linear;
+  font-size: 0;
 }
 
-@keyframes scroll-background{
-  100%{
+.clicked-status-ready:after {
+  content: 'Confirm?';
+  font-size: 14px;
+}
+
+@keyframes scroll-background {
+  100% {
     background-position:200px 0px;
   }
 }
