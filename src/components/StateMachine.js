@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterInput from './GenericParameterInput.js';
-import NumericInput from './NumericInput.js';
+import ConfirmButton from './buttons/ConfirmButton.js';
 
 import createSocket from '../shared/socket';
 
@@ -62,10 +62,11 @@ class StateMachine extends Component {
         <div className='col-md-12'>
           <h2 className='d-block'>Manual Control</h2>
           {this.pod_commands.map(function (item, index) {
+            let cleanName = item.replace('_', ' ');
             return (
               <div className='form-group stateswitches' key={'SwitchGroup_' + item}>
-                <button className="btn btn-warning" onClick={this.doPodCommand.bind(this, 'unlock', index)}>Unlock - {item}</button>
-                <button className="btn btn-danger" onClick={this.doPodCommand.bind(this, 'execute', index)}>Execute - {item}</button>
+                <ConfirmButton delay={2000} className="btn btn-warning" action={this.doPodCommand.bind(this, 'unlock', index)}>Unlock - {cleanName}</ConfirmButton>
+                <ConfirmButton delay={2000} className="btn btn-danger" action={this.doPodCommand.bind(this, 'execute', index)}>Execute - {cleanName}</ConfirmButton>
               </div>
             );
           }, this)}
