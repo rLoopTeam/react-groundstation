@@ -503,14 +503,19 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
         podCommands.GS_Heartbeat();
       },
 
+      // IPS
       'IPS:ChargeV': (data) => {
         podCommands.setChargerV(data);
       },
 
       'IPS:ChargeI': (data) => {
         podCommands.setChargerI(data);
-      }
+      },
 
+      // State Machine
+      'FlightControl:GenPodCommand': (data) => {
+        podCommands.FCUGenPodCommand(data);
+      }
     };
 
     for (const event in websocket.events) {

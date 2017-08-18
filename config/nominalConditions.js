@@ -383,5 +383,67 @@ module.exports = {
       'min': 0,
       'max': 1
     }
+  },
+  'LGU': {
+    'Computed Height 1': {
+      'fault': false,
+      'min': 5,
+      'max': 17
+    },
+    'Computed Height 2': {
+      'fault': false,
+      'min': 5,
+      'max': 17
+    },
+    'Computed Height 3': {
+      'fault': false,
+      'min': 5,
+      'max': 17
+    },
+    'Computed Height 4': {
+      'fault': false,
+      'min': 5,
+      'max': 17
+    },
+    'Switch Extend 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Extend 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Extend 3': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Extend 4': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Retract 1': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Retract 2': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Retract 3': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    },
+    'Switch Retract 4': {
+      'fault': false,
+      'min': 1,
+      'max': 2
+    }
   }
 };

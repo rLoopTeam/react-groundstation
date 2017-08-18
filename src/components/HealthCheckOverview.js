@@ -208,6 +208,30 @@ class HealthCheckOverview extends Component {
             'Limit Extend Edge 2',
             'Limit Retract Edge 2'
           ]
+        },
+        'LGU Limit Switches': {
+          min: 1,
+          max: 2,
+          params: [
+            'LGU Switch Extend 1',
+            'LGU Switch Extend 2',
+            'LGU Switch Extend 3',
+            'LGU Switch Extend 4',
+            'LGU Switch Retract 1',
+            'LGU Switch Retract 2',
+            'LGU Switch Retract 3',
+            'LGU Switch Retract 4'
+          ]
+        },
+        'LGU Computed Height': {
+          min: 5,
+          max: 17,
+          params: [
+            'LGU Computed Height 1',
+            'LGU Computed Height 2',
+            'LGU Computed Height 3',
+            'LGU Computed Height 4'
+          ]
         }
       }
     };
