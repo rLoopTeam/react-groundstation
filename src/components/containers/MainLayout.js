@@ -11,14 +11,6 @@ class MainLayout extends Component {
         name: 'Overview', location: '/'
       },
       {
-        name: 'Health Check',
-        location: '/healthcheck',
-        children: [
-          {name: 'Overview', location: '/healthcheck/overview'},
-          {name: 'Detailed', location: '/healthcheck/detailed'}
-        ]
-      },
-      {
         name: 'Cooling',
         location: '/cooling'
       },
@@ -61,7 +53,8 @@ class MainLayout extends Component {
         children: [
           {name: 'Auto Sequence', location: '/autoSequence'},
           {name: 'Functional Test', location: '/functionalTest'},
-          {name: 'Xilinx Sim', location: '/xilinxsim'}
+          {name: 'Xilinx Sim', location: '/xilinxsim'},
+          {name: 'State Machine', location: '/statemachine'}
         ]
       },
       {
