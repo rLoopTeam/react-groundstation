@@ -77,6 +77,17 @@ class Throttles extends Component {
             {label: 'ASI RPM 7', value: 'Throttle ASI RPM 7'},
             {label: 'ASI RPM 8', value: 'Throttle ASI RPM 8'}
     ];
+
+    this.ASI_Data = [
+      {label: 'Fault Flags', value: 'Fault Flags Root'},
+      {label: 'State', value: 'State'},
+      {label: 'Scan index', value: 'Scan Index'},
+      {label: 'Current command', value: 'Current Command'},
+      {label: 'Controller fault', value: 'Controller Fault'},
+      {label: 'Temperature', value: 'Temperature'},
+      {label: 'HE RPM', value: 'HE RPM'},
+      {label: 'Throttle (V)', value: 'Throttle Voltage'}
+    ];
   }
 
   componentWillMount () {
@@ -314,6 +325,24 @@ class Throttles extends Component {
                                     <GenericParameterLabel
                                         StreamingPageManager={_this.state.streamManager}
                                         parameter={item.value} hoverEngine={item.hoverEngine}/>
+                                </div>
+                          );
+                        }, this) // bind keyword this to contained method calls
+                    }
+                    </div>
+                </div>
+
+                <div className="row">
+                  <h2>ASI Data</h2>
+                    <div className="col-sm-4">
+                    {
+                        this.ASI_Data.map(function (item, index) {
+                          return (
+                                <div className="row" key={'ASI' + index}>
+                                    <label>{item.label}</label>
+                                    <GenericParameterLabel
+                                        StreamingPageManager={_this.state.streamManager}
+                                        parameter={item.value}/>
                                 </div>
                           );
                         }, this) // bind keyword this to contained method calls
