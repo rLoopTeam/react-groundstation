@@ -21,11 +21,16 @@ class Cooling extends Component {
     };
 
     this.labels = [
-      {label: 'Hover1/2', value: 'Hover1/2'},
-      {label: 'Hover3/4', value: 'Hover3/4'},
-      {label: 'Hover5/6', value: 'Hover5/6'},
-      {label: 'Hover7/8', value: 'Hover7/8'},
-      {label: 'Eddy Brakes', value: 'EddyBrake'}
+      {label: 'Hover 1', value: '1'},
+      {label: 'Hover 2', value: '3'},
+      {label: 'Hover 3', value: '5'},
+      {label: 'Hover 4', value: '7'},
+      {label: 'Hover 5', value: '9'},
+      {label: 'Hover 6', value: '11'},
+      {label: 'Hover 7', value: '13'},
+      {label: 'Hover 8', value: '15'},
+      {label: 'Brakes 1', value: '17'},
+      {label: 'Brakes 2', value: '21'}
     ];
   }
 
@@ -101,6 +106,7 @@ class Cooling extends Component {
     let borderStyle = {border: '2px solid black', borderRadius: '10px', padding: '10px', width: '50%'};
 
     return (
+
       <div>
       <h2>Cooling</h2>
       <div className="col-md-12">
@@ -116,37 +122,28 @@ class Cooling extends Component {
             <label>General Cooling State</label>
             <GenericParameterLabel
             StreamingPageManager={_this.state.streamManager}
-            parameter={`Power A Cooling State`}/>
+            parameter={`HE Fault Flags`}/>
           </div>
         </div>
         {
           this.labels.map(function (item, index) {
-            var coolableUnit = `Power A Cooling ${item.value}`;
+            let coolableUnit = `HE ${item.value}`;
+            let spareValue = parseInt(item.value) + 1;
+            let spareUnit = `HE ${spareValue}`;
             return (
             <div className="row" key={coolableUnit}>
               <div className="col-sm-3">
                 <label>{item.label} Temperature C</label>
                 <GenericParameterLabel
                 StreamingPageManager={_this.state.streamManager}
-                parameter={`${coolableUnit} Temp`} hex={item.hex}/>
+                parameter={`${coolableUnit} Temperature`} hex={item.hex}/>
               </div>
+
               <div className="col-sm-3">
-                <label>{item.label} Cooling State</label>
+                <label>{item.label} Temperature Spare</label>
                 <GenericParameterLabel
                 StreamingPageManager={_this.state.streamManager}
-                parameter={`${coolableUnit} Cooling State`} hex={item.hex}/>
-              </div>
-              <div className="col-sm-3">
-                <label>{item.label} Solenoid State</label>
-                <GenericParameterLabel
-                StreamingPageManager={_this.state.streamManager}
-                parameter={`${coolableUnit} Solenoid State`} hex={item.hex}/>
-              </div>
-              <div className="col-sm-3">
-                <label>{item.label} Solenoid Pin</label>
-                <GenericParameterLabel
-                StreamingPageManager={_this.state.streamManager}
-                parameter={`${coolableUnit} Solenoid Pin`} hex={item.hex}/>
+                parameter={`${spareUnit} Temperature`} hex={item.hex}/>
               </div>
             </div>
             );
