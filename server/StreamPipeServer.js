@@ -4,9 +4,12 @@ class StreamPipeServer {
 
     this.dataStreamServer = io.of('/dataStreamServer');
     this.requestedParams = {};
+    this.lastParams = {};
 
     this.dataStreamServer.on('connection', function (socket) {
       var clientID = socket.id;
+
+      self.lastParams[clientID] = {};
       self.requestedParams[clientID] = [];
 
       console.log(`StreamPipeServer: New client id ${socket.id}`);
@@ -54,7 +57,17 @@ class StreamPipeServer {
           };
 
           for (var i = 0, len = self.requestedParams[clientID].length; i < len; i++) {
-            newData.parameters.push(rtDataStore.retrieveDataParameter(self.requestedParams[clientID][i]));
+            let paramName = self.requestedParams[clientID][i];
+            let paramData = rtDataStore.retrieveDataParameter(paramName);
+
+            // Do not send what the client already has in their datastore.
+            if (paramData.Value === self.lastParams[clientID][paramName]) {
+              continue;
+            }
+
+            // Send and cache if they don't have it.
+            newData.parameters.push(paramData);
+            self.lastParams[clientID][paramName] = paramData.Value;
           }
 
           socket.emit('new data burst', newData, function (data) { clientReady = true; });
@@ -63,6 +76,8 @@ class StreamPipeServer {
 
       socket.on('disconnect', function () {
         rtDataStore.hasNewData.removeListener('new_rtData', sendNewData);
+        delete self.requestedParams[clientID];
+        delete self.lastParams[clientID];
       });
     });
   }
@@ -88,6 +103,7 @@ class StreamPipeServer {
     }
 
     this.requestedParams[clientID].splice(parameterIndex, 1);
+    delete this.lastParams[clientID][parameter];
   }
 }
 
