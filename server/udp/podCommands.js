@@ -451,7 +451,7 @@ module.exports = function (udp) {
   }
 
   function HETherm_ControlMode (data) {
-    udp.tx.transmitPodCommand('HE Thermal Monitor', 0x6005, 0xAA117799, data, 0x0, 0x0);
+    udp.tx.transmitPodCommand('HE Thermal Monitor', 0x6002, 0xAA117799, data, 0x0, 0x0);
   }
 
   function XilinxSim_Start () {
