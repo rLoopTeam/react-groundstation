@@ -450,6 +450,10 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('HE Thermal Monitor', 0x6002, 0xAA117788, data.solenoid, data.action, 0x0);
   }
 
+  function HETherm_ControlMode (data) {
+    udp.tx.transmitPodCommand('HE Thermal Monitor', 0x6005, 0xAA117799, data, 0x0, 0x0);
+  }
+
   function XilinxSim_Start () {
     udp.tx.transmitPodCommand('Xilinx Sim', 0x5000, 0x1, 0x0, 0x0, 0x0);
   }
@@ -626,6 +630,7 @@ module.exports = function (udp) {
     FCUGimbal_FullBackwards,
 
     HETherm_ControlCooling,
+    HETherm_ControlMode,
 
     XilinxSim_Start,
     XilinxSim_Stop,

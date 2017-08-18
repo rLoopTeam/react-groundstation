@@ -59,7 +59,6 @@ class Cooling extends Component {
   */
   handleCoolingToggle (cooling, action) {
     var coolingControl = this.state.coolingControl;
-    console.log(cooling, action);
 
     // toggles the hover engine status {bool}
     if (action === 'open_solenoid') {
@@ -78,6 +77,19 @@ class Cooling extends Component {
         solenoid: cooling.name,
         action: 0
       });
+    }
+  }
+
+  /**
+   * Sets the automatic/manual control state for the HET solenoids.
+   * @param {bool} setManual Toggles the hover engine manual status if true, auto if false.
+   */
+  handleModeToggle (setManual) {
+    //  {bool}
+    if (setManual) {
+      socket.emit('HETherm:ControlMode', 1);
+    } else {
+      socket.emit('HETherm:ControlMode', 0);
     }
   }
 
@@ -173,6 +185,11 @@ class Cooling extends Component {
         {/* Cooling */}
         <fieldset>
           <legend>Cooling</legend>
+          <div className='col-md-12 buttonpad'>
+            <h4>Mode</h4>
+            <ConfirmButton className="btn btn-success" delay={2000} action={_this.handleModeToggle.bind(_this, false)}>Automatic Control</ConfirmButton>
+            <ConfirmButton className="btn btn-danger" delay={2000} action={_this.handleModeToggle.bind(_this, true)}>Manual Control</ConfirmButton>
+          </div>
           {this.state['coolingControl'].map((item, index) => {
             return (
               <div className="col-sm-3" key={'CoolingGroup_' + (index + 1)}>

@@ -371,6 +371,10 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
         podCommands.HETherm_ControlCooling(data);
       },
 
+      'HETherm:ControlMode': (data) => {
+        podCommands.HETherm_ControlMode(data);
+      },
+
       'PodSafe': () => {
         podCommands.PodSafePowerNodeA();
         podCommands.PodSafePowerNodeB();
