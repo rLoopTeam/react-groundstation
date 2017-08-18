@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-import NumericInput from './NumericInput.js';
+import ConfirmButton from './buttons/ConfirmButton.js';
 
 import createSocket from '../shared/socket';
 let socket = createSocket();
@@ -57,25 +57,27 @@ class Cooling extends Component {
   *
   * @memberOf Throttles
   */
-  handleCoolingToggle (cooling, e) {
+  handleCoolingToggle (cooling, action) {
     var coolingControl = this.state.coolingControl;
+    console.log(cooling, action);
 
     // toggles the hover engine status {bool}
-    if (e.currentTarget.value === 'true') {
-      coolingControl[cooling.name - 1] = 1;
-      this.setState({coolingControl: coolingControl});
-
-      socket.emit('FlightControl_Hover:StartCooling', {coolingName: cooling.name});
-    } else if (e.currentTarget.value === 'initiate') {
+    if (action === 'open_solenoid') {
       coolingControl[cooling.name - 1] = 2;
       this.setState({coolingControl: coolingControl});
 
-      socket.emit('FlightControl_Hover:OpenSolenoid', {solenoidName: cooling.name});
+      socket.emit('HETherm:ControlCooling', {
+        solenoid: cooling.name,
+        control: 1
+      });
     } else {
-      coolingControl[cooling.name - 1] = 0;
+      coolingControl[cooling.name - 1] = 2;
       this.setState({coolingControl: coolingControl});
 
-      socket.emit('FlightControl_Hover:StopCooling', {coolingName: cooling.name});
+      socket.emit('HETherm:ControlCooling', {
+        solenoid: cooling.name,
+        control: 0
+      });
     }
   }
 
@@ -171,7 +173,18 @@ class Cooling extends Component {
         {/* Cooling */}
         <fieldset>
           <legend>Cooling</legend>
-          <div className="col-sm-3">
+          {this.state['coolingControl'].map((item, index) => {
+            return (
+              <div className="col-sm-3" key={'CoolingGroup_' + (index + 1)}>
+                <h4>Group {index + 1}</h4>
+                <div className='form-group buttonpad'>
+                  <ConfirmButton className="btn btn-success" delay={2000} action={_this.handleCoolingToggle.bind(_this, {name: index}, 'open_solenoid')}>Open Solenoid</ConfirmButton>
+                  <ConfirmButton className="btn btn-danger" delay={2000} action={_this.handleCoolingToggle.bind(_this, {name: index}, 'close_solenoid')}>Close Solenoid</ConfirmButton>
+                </div>
+              </div>
+            );
+          })}
+          {/* <div className="col-sm-3">
             <h4>Group 1</h4>
 
             <div className='form-group'>
@@ -278,7 +291,7 @@ class Cooling extends Component {
                 initiate
               </label>
             </div>
-          </div>
+          </div> */}
         </fieldset>
       </div>
 

@@ -84,3 +84,8 @@ body {
 .d-inline-block {
   display: inline-block;
 }
+
+/* Buttons */
+.buttonpad button {
+  margin-right: 5px;
+}
