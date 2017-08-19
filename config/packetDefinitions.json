@@ -3413,7 +3413,37 @@
                     "units": "",
                     "size": 1,
                     "Name": "Brake Motor Overtemp State"
-                }
+                },
+              {
+                "type": "uint8",
+                "units": "",
+                "size": 1,
+                "Name": "Solenoid 1 Open State"
+              },
+              {
+                "type": "uint8",
+                "units": "",
+                "size": 1,
+                "Name": "Solenoid 2 Open State"
+              },
+              {
+                "type": "uint8",
+                "units": "",
+                "size": 1,
+                "Name": "Solenoid 3 Open State"
+              },
+              {
+                "type": "uint8",
+                "units": "",
+                "size": 1,
+                "Name": "Solenoid 4 Open State"
+              },
+              {
+                "type": "uint8",
+                "units": "",
+                "size": 1,
+                "Name": "Manual Control Mode"
+              }
             ]
         },
         {
