@@ -186,7 +186,9 @@ class Cooling extends Component {
         <fieldset>
           <legend>Cooling</legend>
           <div className='col-md-12 buttonpad'>
-            <h4>Mode</h4>
+            <h4>Mode: </h4> <GenericParameterLabel
+            StreamingPageManager={_this.state.streamManager}
+            parameter={`HE Manual Control Mode`}/>
             <ConfirmButton className="btn btn-success" delay={2000} action={_this.handleModeToggle.bind(_this, false)}>Automatic Control</ConfirmButton>
             <ConfirmButton className="btn btn-danger" delay={2000} action={_this.handleModeToggle.bind(_this, true)}>Manual Control</ConfirmButton>
           </div>
