@@ -3418,25 +3418,25 @@
                 "type": "uint8",
                 "units": "",
                 "size": 1,
-                "Name": "Solenoid 1 Open State"
+                "Name": "1 Solenoid Open State"
               },
               {
                 "type": "uint8",
                 "units": "",
                 "size": 1,
-                "Name": "Solenoid 2 Open State"
+                "Name": "2 Solenoid Open State"
               },
               {
                 "type": "uint8",
                 "units": "",
                 "size": 1,
-                "Name": "Solenoid 3 Open State"
+                "Name": "3 Solenoid Open State"
               },
               {
                 "type": "uint8",
                 "units": "",
                 "size": 1,
-                "Name": "Solenoid 4 Open State"
+                "Name": "4 Solenoid Open State"
               },
               {
                 "type": "uint8",

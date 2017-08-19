@@ -20,6 +20,10 @@ class Cooling extends Component {
       ]
     };
 
+    this.solenoids = [
+      1, 2, 3, 4
+    ];
+
     this.labels = [
       {label: 'Hover 1', value: '1'},
       {label: 'Hover 2', value: '3'},
@@ -192,6 +196,18 @@ class Cooling extends Component {
             <ConfirmButton className="btn btn-success" delay={2000} action={_this.handleModeToggle.bind(_this, false)}>Automatic Control</ConfirmButton>
             <ConfirmButton className="btn btn-danger" delay={2000} action={_this.handleModeToggle.bind(_this, true)}>Manual Control</ConfirmButton>
           </div>
+          {
+            this.solenoids.map((item, index) => {
+              return (
+                <div className="col-sm-3">
+                  <label>State:</label>
+                  <GenericParameterLabel
+                    StreamingPageManager={_this.state.streamManager}
+                    parameter={`HE ${item} Solenoid Open State`} hex={item.hex}/>
+                </div>
+              );
+            }, this)
+          }
           {this.state['coolingControl'].map((item, index) => {
             return (
               <div className="col-sm-3" key={'CoolingGroup_' + (index + 1)}>
