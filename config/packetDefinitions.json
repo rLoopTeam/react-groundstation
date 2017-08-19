@@ -3414,36 +3414,36 @@
                     "size": 1,
                     "Name": "Brake Motor Overtemp State"
                 },
-              {
-                "type": "uint8",
-                "units": "",
-                "size": 1,
-                "Name": "1 Solenoid Open State"
-              },
-              {
-                "type": "uint8",
-                "units": "",
-                "size": 1,
-                "Name": "2 Solenoid Open State"
-              },
-              {
-                "type": "uint8",
-                "units": "",
-                "size": 1,
-                "Name": "3 Solenoid Open State"
-              },
-              {
-                "type": "uint8",
-                "units": "",
-                "size": 1,
-                "Name": "4 Solenoid Open State"
-              },
-              {
-                "type": "uint8",
-                "units": "",
-                "size": 1,
-                "Name": "Manual Control Mode"
-              }
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "1 Solenoid Open State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "2 Solenoid Open State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "3 Solenoid Open State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "4 Solenoid Open State"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "Manual Control Mode"
+                }
             ]
         },
         {
@@ -4394,13 +4394,13 @@
                     "type": "uint16",
                     "units": "",
                     "size": 2,
-                    "Name": "Mission State"
+                    "Name": "FCU Mission State"
                 },
                 {
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "Mission TrackDB"
+                    "Name": "FCU Mission TrackDB"
                 },
                 {
                     "type": "uint32",
