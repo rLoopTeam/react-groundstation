@@ -23,85 +23,49 @@ class HealthCheckOverview extends Component {
 
     this.overviewParameters = {
       nominals: [
-        'Power A BMS Average Temp',
-        'Power A BMS Highest Sensor Value',
-        'Power A BMS Pack Volts',
-        'Power A BMS Highest Cell Volts',
-        'Power A BMS Lowest Cell Volts',
-        'Power A BMS Pack Current',
-        'Power A BMS Node Temp',
-        'Power B BMS Average Temp',
-        'Power B BMS Highest Sensor Value',
-        'Power B BMS Pack Volts',
-        'Power B BMS Highest Cell Volts',
-        'Power B BMS Lowest Cell Volts',
-        'Power B BMS Pack Current',
-        'ForwardLaser Distance',
-        'Brake State',
-        'Brake Calibration State'
+        {paramName: 'Power A BMS Average Temp', labelName: 'Battery A avg temp (C)'},
+        {paramName: 'Power A BMS Highest Sensor Value', labelName: 'Battery A max cell temp (C)'},
+        {paramName: 'Power A BMS Pack Volts', labelName: 'Battery A pack voltage'},
+        {paramName: 'Power A BMS Highest Cell Volts', labelName: 'Battery A highest cell volts'},
+        {paramName: 'Power A BMS Lowest Cell Volts', labelName: 'Battery A lowest cell volts'},
+        {paramName: 'Power A BMS Pack Current', labelName: 'Battery A current'},
+        {paramName: 'Power A BMS Node Temp', labelName: 'Battery A node temp (C)'},
+        {paramName: 'Power B BMS Average Temp', labelName: 'Battery B avg temp (C)'},
+        {paramName: 'Power B BMS Highest Sensor Value', labelName: 'Battery B max cell temp (C)'},
+        {paramName: 'Power B BMS Pack Volts', labelName: 'Battery B pack voltage'},
+        {paramName: 'Power B BMS Highest Cell Volts', labelName: 'Battery B highest cell volts'},
+        {paramName: 'Power B BMS Lowest Cell Volts', labelName: 'Battery B lowest cell volts'},
+        {paramName: 'Power B BMS Pack Current', labelName: 'Battery B current'},
+        {paramName: 'ForwardLaser Distance', labelName: 'Laser Range Finder distance'},
+        {paramName: 'Brake Calibration State', labelName: ''},
+        {paramName: 'Brake State', labelName: ''}
       ],
       groups: {
-        'Node Pressure A/B': {
-          min: 0.7,
-          max: 1.1,
-          params: [
-            'Power A BMS Node Pressure',
-            'Power B BMS Node Pressure'
-          ]
-        },
-        'Node Temp A/B': {
-          min: 0,
-          max: 40,
-          params: [
-            'Power A BMS Node Pressure',
-            'Power B BMS Node Pressure'
-          ]
-        },
-        'Accel 1/2 X Gs': {
-          min: 0,
-          max: 3,
-          params: [
-            'Accel 1 X Gs',
-            'Accel 2 X Gs'
-          ]
-        },
-        'Accel 1/2 Y Gs': {
-          min: 0,
-          max: 3,
-          params: [
-            'Accel 1 Y Gs',
-            'Accel 2 Y Gs'
-          ]
-        },
-        'Accel 1/2 Z Gs': {
-          min: 0,
-          max: 3,
-          params: [
-            'Accel 1 Y Gs',
-            'Accel 2 Y Gs'
-          ]
-        },
-        'HE Temps Left': {
+        'Hover engine Temp left': {
           min: 0,
           max: 80,
           params: [
-            'ASI 1 Temperature',
-            'ASI 2 Temperature',
-            'ASI 3 Temperature',
-            'ASI 4 Temperature'
+            'HE 1 Temperature',
+            'HE 2 Temperature',
+            'HE 3 Temperature',
+            'HE 4 Temperature',
+            'HE 5 Temperature',
+            'HE 6 Temperature'
           ]
         },
-        'HE Temps Right': {
+        'Hover engine temp right': {
           min: 0,
           max: 80,
           params: [
-            'ASI 5 Temperature',
-            'ASI 6 Temperature',
-            'ASI 7 Temperature',
-            'ASI 8 Temperature'
+            'HE 7 Temperature',
+            'HE 8 Temperature',
+            'HE 9 Temperature',
+            'HE 10 Temperature',
+            'HE 11 Temperature',
+            'HE 12 Temperature'
           ]
         },
-        'HE RPMs Left': {
+        'Hover engine RPMs Left': {
           min: 0,
           max: 3000,
           params: [
@@ -111,7 +75,7 @@ class HealthCheckOverview extends Component {
             'ASI 4 HE RPM'
           ]
         },
-        'HE RPMs Right': {
+        'Hover engine RPMs Right': {
           min: 0,
           max: 3000,
           params: [
@@ -121,44 +85,86 @@ class HealthCheckOverview extends Component {
             'ASI 8 HE RPM'
           ]
         },
-        'HE Controller Currents Left': {
-          min: 0,
-          max: 70,
+        'Pressure vessel pressure (atm)': {
+          min: 0.7,
+          max: 1.1,
           params: [
-            'ASI 1 Motor Current',
-            'ASI 2 Motor Current',
-            'ASI 3 Motor Current',
-            'ASI 4 Motor Current'
+            'Power A BMS Node Pressure',
+            'Power B BMS Node Pressure'
           ]
         },
-        'HE Controller Currents Right': {
+        'Pressure vessel temp (C)': {
           min: 0,
-          max: 70,
+          max: 40,
           params: [
-            'ASI 5 Motor Current',
-            'ASI 6 Motor Current',
-            'ASI 7 Motor Current',
-            'ASI 8 Motor Current'
+            'Power A BMS Node Pressure',
+            'Power B BMS Node Pressure'
           ]
         },
-        'HE Controller Voltages Left': {
+        'Controller temperature (C)': {
+          min: 0,
+          max: 80,
+          params: [
+            'ASI 1 Temperature',
+            'ASI 2 Temperature',
+            'ASI 3 Temperature',
+            'ASI 4 Temperature',
+            'ASI 5 Temperature',
+            'ASI 6 Temperature',
+            'ASI 7 Temperature',
+            'ASI 8 Temperature'
+          ]
+        },
+        'Controller Voltages (V)': {
           min: 0,
           max: 70,
           params: [
             'ASI 1 Throttle Voltage',
             'ASI 2 Throttle Voltage',
             'ASI 3 Throttle Voltage',
-            'ASI 4 Throttle Voltage'
-          ]
-        },
-        'HE Controller Voltages Right': {
-          min: 0,
-          max: 70,
-          params: [
+            'ASI 4 Throttle Voltage',
             'ASI 5 Throttle Voltage',
             'ASI 6 Throttle Voltage',
             'ASI 7 Throttle Voltage',
             'ASI 8 Throttle Voltage'
+          ]
+        },
+        'Controller Currents (A)': {
+          min: 0,
+          max: 70,
+          params: [
+            'ASI 1 Motor Current',
+            'ASI 2 Motor Current',
+            'ASI 3 Motor Current',
+            'ASI 4 Motor Current',
+            'ASI 5 Motor Current',
+            'ASI 6 Motor Current',
+            'ASI 7 Motor Current',
+            'ASI 8 Motor Current'
+          ]
+        },
+        'Accel 1/2 X Raw': {
+          min: -3,
+          max: 3,
+          params: [
+            'Accel 1 X Raw',
+            'Accel 2 X Raw'
+          ]
+        },
+        'Accel 1/2 Y Raw': {
+          min: -3,
+          max: 3,
+          params: [
+            'Accel 1 Y Raw',
+            'Accel 2 Y Raw'
+          ]
+        },
+        'Accel 1/2 Z Raw': {
+          min: -3,
+          max: 3,
+          params: [
+            'Accel 1 Z Raw',
+            'Accel 2 Z Raw'
           ]
         },
         'optoNCDT Height Filtered Distance': {
@@ -199,14 +205,8 @@ class HealthCheckOverview extends Component {
           min: 1,
           max: 2,
           params: [
-            'Limit Extend 1',
-            'Limit Retract 1',
-            'Limit Extend Edge 1',
-            'Limit Retract Edge 1',
-            'Limit Extend 2',
-            'Limit Retract 2',
-            'Limit Extend Edge 2',
-            'Limit Retract Edge 2'
+            'Brake SW Error 1',
+            'Brake SW Error 2'
           ]
         },
         'LGU Limit Switches': {
@@ -251,13 +251,13 @@ class HealthCheckOverview extends Component {
     };
     this.watchParams = [];
 
-    for (let paramName of this.overviewParameters.nominals) {
-      console.log(paramName, this.lookupNominal(paramName));
+    for (let param of this.overviewParameters.nominals) {
+      console.log(param.paranName, this.lookupNominal(param.paramName));
       this.watchParams.push({
-        label: paramName,
-        min: this.lookupNominal(paramName).min,
-        max: this.lookupNominal(paramName).max,
-        params: [paramName]
+        label: param.labelName === '' ? param.paramName : param.labelName,
+        min: this.lookupNominal(param.paramName).min,
+        max: this.lookupNominal(param.paramName).max,
+        params: [param.paramName]
       });
     }
 

@@ -511,6 +511,30 @@ module.exports = {
       {'name': 'Guarding Fault', 'severity': 'critical'}
     ]
   },
+  'LaserContrast1 System Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+  'LaserContrast1 Laser Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+  'LaserContrast2 System Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+  'LaserContrast2 Laser Fault Flags': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
 
   // AuxProp
   'AuxProp Fault Flags': {
@@ -545,6 +569,54 @@ module.exports = {
       {'name': 'General Fault', 'severity': 'critical'},
       {'name': 'PHY Failure', 'severity': 'critical'},
       {'name': 'Guarding Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 1 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 2 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 3 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 4 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 5 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 6 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 7 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'ASI Fault 8 Controller Fault': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
 
@@ -645,6 +717,37 @@ module.exports = {
     ]
   },
   'Power B BMS Device Faults 3': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  // LGU
+  'LGU Fault Flags Root': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'LGU Fault Flags 1': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'LGU Fault Flags 2': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'LGU Fault Flags 3': {
+    'smallEndian': true,
+    'template': [
+      {'name': 'General Fault', 'severity': 'critical'}
+    ]
+  },
+  'LGU Fault Flags 4': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
