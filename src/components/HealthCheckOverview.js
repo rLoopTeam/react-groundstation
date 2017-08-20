@@ -143,28 +143,28 @@ class HealthCheckOverview extends Component {
             'ASI 8 Motor Current'
           ]
         },
-        'Accel 1/2 X Raw': {
+        'Accel 1/2 X Gs': {
           min: -3,
           max: 3,
           params: [
-            'Accel 1 X Raw',
-            'Accel 2 X Raw'
+            'Accel 1 X Gs',
+            'Accel 2 X Gs'
           ]
         },
-        'Accel 1/2 Y Raw': {
+        'Accel 1/2 Y Gs': {
           min: -3,
           max: 3,
           params: [
-            'Accel 1 Y Raw',
-            'Accel 2 Y Raw'
+            'Accel 1 Y Gs',
+            'Accel 2 Y Gs'
           ]
         },
-        'Accel 1/2 Z Raw': {
+        'Accel 1/2 Z Gs': {
           min: -3,
           max: 3,
           params: [
-            'Accel 1 Z Raw',
-            'Accel 2 Z Raw'
+            'Accel 1 Z Gs',
+            'Accel 2 Z Gs'
           ]
         },
         'optoNCDT Height Filtered Distance': {
