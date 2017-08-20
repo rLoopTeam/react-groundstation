@@ -151,14 +151,14 @@ class Cooling extends Component {
             return (
             <div className="row" key={coolableUnit}>
               <div className="col-sm-3">
-                <label>{item.label} Temperature C</label>
+                <label>{item.label} Temperature (C)</label>
                 <GenericParameterLabel
                 StreamingPageManager={_this.state.streamManager}
                 parameter={`${coolableUnit} Temperature`} hex={item.hex}/>
               </div>
 
               <div className="col-sm-3">
-                <label>{item.label} Temperature Spare</label>
+                <label>{item.label} Temperature cofirm spare (C)</label>
                 <GenericParameterLabel
                 StreamingPageManager={_this.state.streamManager}
                 parameter={`${spareUnit} Temperature`} hex={item.hex}/>

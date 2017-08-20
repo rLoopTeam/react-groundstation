@@ -232,6 +232,20 @@ class HealthCheckOverview extends Component {
             'LGU Computed Height 3',
             'LGU Computed Height 4'
           ]
+        },
+        'Brake stepper temp (C)': {
+          min: 5,
+          max: 75,
+          params: [
+            ''
+          ]
+        },
+        'Brake air gap (mm)': {
+          min: 2.5,
+          max: 25,
+          params: [
+            ''
+          ]
         }
       }
     };
