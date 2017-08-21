@@ -72,6 +72,12 @@ module.exports = {
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env),
 
+    // Provides jQuery and other essentials.
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery'
+    }),
+
     // Seperates out jQuery, Bootstrap, React code away from our main bundle.
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor'

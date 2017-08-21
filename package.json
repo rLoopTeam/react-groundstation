@@ -16,6 +16,7 @@
     "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.9.0",
+    "extract-text-webpack-plugin": "^3.0.0",
     "fs": "0.0.1-security",
     "html-webpack-plugin": "^2.30.1",
     "interpolate-html-css-modules-webpack-plugin": "0.0.9",
