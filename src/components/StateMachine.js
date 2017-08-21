@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Isvg from 'react-inlinesvg';
 import StreamingPageManager from '../StreamingPageManager.js';
 import EnumStatusDisplay from './EnumStatusDisplay.js';
 import ConfirmButton from './buttons/ConfirmButton.js';
@@ -124,13 +125,18 @@ class StateMachine extends Component {
 
     return (
       <div>
-        <div className='col-md-4'>
-          <h2>State Machine</h2>
-          <label htmlFor="a0_x">Current State</label>
-          <EnumStatusDisplay StreamingPageManager={this.state.streamManager} parameter='FCU Mission State' hideUnits='true' readOnly='true' enumMap={STATEMACHINE_STATES_INT_INDEXED}/>
+        <div className='stateStatus'>
+          <div className='stateBlock'>
+            <span className='stateStatusText d-bold'>CURRENT STATE: </span>
+            <EnumStatusDisplay StreamingPageManager={this.state.streamManager} parameter='FCU Mission State' hideUnits='true' inline={true} enumMap={STATEMACHINE_STATES_INT_INDEXED}/>
+          </div>
         </div>
-        <div className='col-md-12'>
-          <h2 className='d-block'>Manual Transitions</h2>
+        <div className='margin-top-50px'/>
+        <div className={'col-md-6 active_' + STATEMACHINE_STATES_INT_INDEXED[this.state.currentState]}>
+          <Isvg src='/assets/stateDiagram.svg'/>
+        </div>
+        <div className='col-md-6'>
+          <h2 className='d-block margin-none'>Manual Transitions</h2>
           <h3 className='d-block'>Available</h3>
           {Object.keys(STATEMACHINE_STATES).map(function (item, index) {
             if (this.availableStates.indexOf(item) === -1) {

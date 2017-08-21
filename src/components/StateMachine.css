@@ -2,3 +2,39 @@
     margin-right: 5px;
     text-transform: capitalize;
 }
+
+.stateStatus {
+    position: fixed;
+    background-color: #424242;
+    color: #FFF;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    padding: 10px 25px;
+    font-family: 'Courier New';
+    text-align: center;
+    z-index: 1;
+}
+
+@keyframes state-active-flash {
+    0%   {fill: #b536da}
+    50%  {fill: rgba(181, 54, 218, 0.25)}
+    100% {fill: #b536da;}
+}
+
+.active_UNKNOWN_STATE .STATE_UNKNOWN_STATE,
+.active_NO_COMMAND .STATE_NO_COMMAND,
+.active_IDLE .STATE_IDLE,
+.active_TEST_MODE .STATE_TEST_MODE,
+.active_DRIVE .STATE_DRIVE,
+.active_ARMED_WAIT .STATE_ARMED_WAIT,
+.active_FLIGHT_PREP .STATE_FLIGHT_PREP,
+.active_READY .STATE_READY,
+.active_ACCEL .STATE_ACCEL,
+.active_COAST_INTERLOCK .STATE_COAST_INTERLOCK,
+.active_BRAKE .STATE_BRAKE,
+.active_SPINDOWN .STATE_SPINDOWN {
+	animation-name: state-active-flash;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+}

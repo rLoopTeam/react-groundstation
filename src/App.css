@@ -12,8 +12,12 @@ body {
   margin-bottom: 40px !important;
 }
 
-.margin-top-20px{
-  margin-top: 20px !important;
+.margin-top-50px{
+  margin-top: 50px !important;
+}
+
+.margin-none {
+  margin: 0;
 }
 
 .height-300 {
@@ -88,4 +92,9 @@ body {
 /* Buttons */
 .buttonpad button {
   margin-right: 5px;
+}
+
+/* Modifiers */
+.d-bold {
+  font-weight: bold;
 }
