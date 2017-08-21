@@ -97,8 +97,8 @@ class HealthCheckOverview extends Component {
           min: 0,
           max: 40,
           params: [
-            'Power A BMS Node Pressure',
-            'Power B BMS Node Pressure'
+            'Power A BMS Node Temp',
+            'Power B BMS Node Temp'
           ]
         },
         'Controller temperature (C)': {
