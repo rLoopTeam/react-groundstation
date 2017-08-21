@@ -71,7 +71,8 @@ class StateMachine extends Component {
 
     this.state = {
       streamManager: new StreamingPageManager(),
-      currentState: 0
+      currentState: 0,
+      availableStates: []
     };
 
     this.availableStates = [];
@@ -91,18 +92,22 @@ class StateMachine extends Component {
 
   dataCallback (parameterData) {
     if (this._isMounted) {
-      if (
-        parameterData.Value === this.state.currentState &&
-        Number(parameterData.Value) === this.state.currentState
-      ) {
+      let availableStates = STATEMACHINE_TRANSITIONS[STATEMACHINE_STATES_INT_INDEXED[Number(parameterData.Value)]] || [];
+      if (availableStates === this.state.availableStates) {
         return;
       }
 
       if (isNaN(parameterData.Value)) {
-        this.setState({currentState: STATEMACHINE_STATES.UNKNOWN_STATE});
-      } else {
-        this.setState({currentState: Number(parameterData.Value)});
+        this.setState({
+          currentState: STATEMACHINE_STATES.UNKNOWN_STATE,
+          availableStates: availableStates
+        });
       }
+
+      this.setState({
+        currentState: Number(parameterData.Value),
+        availableStates: availableStates
+      });
     }
   }
 
@@ -121,8 +126,6 @@ class StateMachine extends Component {
   render () {
     var _this = this;
 
-    this.availableStates = STATEMACHINE_TRANSITIONS[STATEMACHINE_STATES_INT_INDEXED[this.state.currentState]] || [];
-
     return (
       <div>
         <div className='stateStatus'>
@@ -139,7 +142,7 @@ class StateMachine extends Component {
           <h2 className='d-block margin-none'>Manual Transitions</h2>
           <h3 className='d-block'>Available</h3>
           {Object.keys(STATEMACHINE_STATES).map(function (item, index) {
-            if (this.availableStates.indexOf(item) === -1) {
+            if (this.state.availableStates.indexOf(item) === -1) {
               return;
             }
             let cleanName = item.replace('_', ' ').toLowerCase();
@@ -153,7 +156,7 @@ class StateMachine extends Component {
           }, this)}
           <h3 className='d-block'>Unavailable</h3>
           {Object.keys(STATEMACHINE_STATES).map(function (item, index) {
-            if (this.availableStates.indexOf(item) !== -1) {
+            if (this.state.availableStates.indexOf(item) !== -1) {
               return;
             }
             let cleanName = item.replace('_', ' ').toLowerCase();
