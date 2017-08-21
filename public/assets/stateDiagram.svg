@@ -150,7 +150,7 @@
     </g>
     <path d="M 536 208 L 536 143 Q 536 133 526 133 L 474.35 133" fill="none" stroke="#0066cc" stroke-width="3" stroke-miterlimit="10" pointer-events="none" />
     <path d="M 469.35 133 L 474.35 130.5 L 474.35 135.5 Z" fill="#0066cc" stroke="#0066cc" stroke-width="3" stroke-miterlimit="10" pointer-events="none" />
-    <rect x="506" y="208" width="120" height="60" fill="#ffffff" stroke="#000000" pointer-events="none" />
+    <rect class="STATE_DRIVE" x="506" y="208" width="120" height="60" fill="#ffffff" stroke="#000000" pointer-events="none" />
     <g transform="translate(547.5,231.5)">
       <switch>
         <foreignObject style="overflow:visible;" pointer-events="all" width="36" height="12" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
