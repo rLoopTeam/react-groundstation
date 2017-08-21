@@ -176,7 +176,6 @@ function uint64ToBytes (uint64, littleEndian) {
     throw new Error('Error - Wrong number or type of arguments');
   }
   var tmpArr = new Int8Array(int64Buffer.Uint64BE(uint64).toArrayBuffer());
-  console.log(tmpArr);
   return tmpArr;
 }
 
