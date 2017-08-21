@@ -26,10 +26,20 @@ module.exports = {
   devtool: 'eval', // this is a dev optimization - need 'source-map' for production
   watch: true,
   profile: true,
-  entry: [
+  entry: {
     // Finally, this is your app's code:
-    resolveApp('src/index.js')
-  ],
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router',
+      'socket.io-client',
+      'socket.io-parser',
+      'lodash',
+      'jquery',
+      'bootstrap'
+    ],
+    app: resolveApp('src/index.js')
+  },
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:
     path: resolveApp('public'),
@@ -38,7 +48,7 @@ module.exports = {
     // This does not produce a real file. It's just the virtual path that is
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
-    filename: 'static/js/bundle.js',
+    filename: 'static/js/[name]_bundle.js',
     // This is the URL that app is served from. We use "/" in development.
     publicPath: '/'
   },
@@ -56,22 +66,26 @@ module.exports = {
       template: resolveApp('public/index.html'),
       inject: true
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
 
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
-    new webpack.DefinePlugin(env)
+    new webpack.DefinePlugin(env),
+
+    // Seperates out jQuery, Bootstrap, React code away from our main bundle.
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    })
   ],
   module: {
-    preLoaders: [
+    rules: [
+      // Pre loaders
       {
         test: /\.(js|jsx)$/,
-        loader: 'eslint',
+        enforce: 'pre',
+        loader: 'eslint-loader',
         include: resolveApp('src')
-      }
-    ],
-    loaders: [
+      },
       // Default loader: load all assets that are not handled
       // by other loaders with the url loader.
       // Note: This list needs to be updated with every change of extensions
@@ -94,7 +108,7 @@ module.exports = {
           /\.json$/,
           /\.svg$/
         ],
-        loader: 'url',
+        loader: 'url-loader',
         query: {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]'
@@ -104,7 +118,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: resolveApp('src'),
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           // @remove-on-eject-begin
           babelrc: false,
@@ -133,12 +147,12 @@ module.exports = {
       // allow it implicitly so we also enable it.
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       // "file" loader for svg
       {
         test: /\.svg$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
         }
