@@ -8,7 +8,7 @@ class MainLayout extends Component {
 
     this.links = [
       {
-        name: 'Overview', location: '/'
+        name: 'HOT POTATO', location: '/'
       },
       {
         name: 'Health Check',

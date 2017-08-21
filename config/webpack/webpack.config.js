@@ -22,7 +22,7 @@ var nodePaths = (process.env.NODE_PATH || '')
   .filter(folder => !path.isAbsolute(folder))
   .map(resolveApp);
 
-module.exports = {
+var webpackOptions = {
   devtool: 'eval', // this is a dev optimization - need 'source-map' for production
   watch: true,
   profile: true,
@@ -66,6 +66,7 @@ module.exports = {
       template: resolveApp('public/index.html'),
       inject: true
     }),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
 
     // Makes some environment variables available to the JS code, for example:
@@ -124,17 +125,19 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: resolveApp('src'),
-        loader: 'babel-loader',
-        query: {
-          // @remove-on-eject-begin
-          babelrc: false,
-          presets: [require.resolve('babel-preset-react-app')],
-          // @remove-on-eject-end
-          // This is a feature of `babel-loader` for webpack (not Babel itself).
-          // It enables caching results in ./node_modules/.cache/babel-loader/
-          // directory for faster rebuilds.
-          cacheDirectory: true
-        }
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            // @remove-on-eject-begin
+            babelrc: false,
+            presets: [require.resolve('babel-preset-react-app')],
+            // @remove-on-eject-end
+            // This is a feature of `babel-loader` for webpack (not Babel itself).
+            // It enables caching results in ./node_modules/.cache/babel-loader/
+            // directory for faster rebuilds.
+            cacheDirectory: true
+          }
+        }]
       },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
@@ -147,6 +150,16 @@ module.exports = {
           'style-loader',
           'css-loader?importLoaders=1',
           'postcss-loader'
+        ]
+      },
+      // SCSS is CSS but with nesting, variables, and other cool features.
+      {
+        test: /\.scss$/,
+        loaders: [
+          'style-loader',
+          'css-loader?importLoaders=1',
+          'postcss-loader',
+          'sass-loader'
         ]
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
@@ -166,3 +179,17 @@ module.exports = {
     ]
   }
 };
+
+if (process.env.NODE_ENV === 'development') {
+  webpackOptions.entry.app = [
+    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch',
+    resolveApp('src/index.js')
+  ];
+  webpackOptions.module.rules[2].use.unshift({
+    loader: 'react-hot-loader/webpack'
+  });
+}
+
+module.exports = webpackOptions;
