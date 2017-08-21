@@ -252,7 +252,7 @@ class HealthCheckOverview extends Component {
     this.watchParams = [];
 
     for (let param of this.overviewParameters.nominals) {
-      console.log(param.paranName, this.lookupNominal(param.paramName));
+      console.log(param.paramName, this.lookupNominal(param.paramName));
       this.watchParams.push({
         label: param.labelName === '' ? param.paramName : param.labelName,
         min: this.lookupNominal(param.paramName).min,
@@ -273,10 +273,8 @@ class HealthCheckOverview extends Component {
 
   lookupNominal (param) {
     for (let nominalPrefix in nominalConditions) {
-      for (let nominalParam in nominalConditions[nominalPrefix]) {
-        if (nominalPrefix + ' ' + nominalParam === param) {
-          return nominalConditions[nominalPrefix][nominalParam];
-        }
+      if (nominalPrefix === param) {
+        return nominalConditions[nominalPrefix];
       }
     }
   }
