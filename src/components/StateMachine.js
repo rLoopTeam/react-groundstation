@@ -3,13 +3,11 @@ import Isvg from 'react-inlinesvg';
 import StreamingPageManager from '../StreamingPageManager.js';
 import EnumStatusDisplay from './EnumStatusDisplay.js';
 import ConfirmButton from './buttons/ConfirmButton.js';
+import StateMachineControl from './StateMachineControl';
 
-import createSocket from '../shared/socket';
 import { STATEMACHINE_STATES, STATEMACHINE_STATES_INT_INDEXED, STATEMACHINE_TRANSITIONS } from '../shared/constants';
 
 import './StateMachine.css';
-
-let socket = createSocket();
 
 class StateMachine extends Component {
   constructor (props) {
@@ -57,18 +55,6 @@ class StateMachine extends Component {
     }
   }
 
-  doPodCommand (action, command) {
-    if (action !== 'unlock' && action !== 'execute') {
-      console.error(`Unknown pod action command. ${action}`);
-      return;
-    }
-
-    socket.emit('FlightControl:GenPodCommand', {
-      action: action,
-      command: command
-    });
-  }
-
   render () {
     var _this = this;
 
@@ -87,33 +73,9 @@ class StateMachine extends Component {
         <div className='col-md-6'>
           <h2 className='d-block margin-none'>Manual Transitions</h2>
           <h3 className='d-block'>Available</h3>
-          {Object.keys(STATEMACHINE_STATES).map(function (item, index) {
-            if (this.state.availableStates.indexOf(item) === -1) {
-              return;
-            }
-            let cleanName = item.replace('_', ' ').toLowerCase();
-            let stateIndex = STATEMACHINE_STATES[item];
-            return (
-              <div className='form-group stateswitches' key={'SwitchGroup_' + item}>
-                <ConfirmButton delay={2000} className="btn btn-warning" action={this.doPodCommand.bind(this, 'unlock', stateIndex)}>Unlock - {cleanName}</ConfirmButton>
-                <ConfirmButton delay={2000} className="btn btn-danger" action={this.doPodCommand.bind(this, 'execute', stateIndex)}>Execute - {cleanName}</ConfirmButton>
-              </div>
-            );
-          }, this)}
+          <StateMachineControl availableStates={this.state.availableStates} showAvailable={true} />
           <h3 className='d-block'>Unavailable</h3>
-          {Object.keys(STATEMACHINE_STATES).map(function (item, index) {
-            if (this.state.availableStates.indexOf(item) !== -1) {
-              return;
-            }
-            let cleanName = item.replace('_', ' ').toLowerCase();
-            let stateIndex = STATEMACHINE_STATES[item];
-            return (
-              <div className='form-group stateswitches' key={'SwitchGroup_' + item}>
-                <ConfirmButton delay={2000} className="btn btn-warning" action={this.doPodCommand.bind(this, 'unlock', stateIndex)}>Unlock - {cleanName}</ConfirmButton>
-                <ConfirmButton delay={2000} className="btn btn-danger" action={this.doPodCommand.bind(this, 'execute', stateIndex)}>Execute - {cleanName}</ConfirmButton>
-              </div>
-            );
-          }, this)}
+          <StateMachineControl availableStates={this.state.availableStates} showAvailable={false} />
         </div>
       </div>
     );
