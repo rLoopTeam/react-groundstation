@@ -25,17 +25,15 @@ class HealthCheck extends Component {
     this.watchFaults = [];
 
     for (let prefix in nominalConditions) {
-      for (let param in nominalConditions[prefix]) {
-        if (nominalConditions[prefix][param].Fault) {
-          this.watchFaults.push(prefix + ' ' + param);
-          continue;
-        } else {
-          this.watchParams.push({
-            fullParam: prefix + ' ' + param,
-            max: nominalConditions[prefix][param].max,
-            min: nominalConditions[prefix][param].min
-          });
-        }
+      if (nominalConditions[prefix].fault) {
+        this.watchFaults.push(prefix);
+        continue;
+      } else {
+        this.watchParams.push({
+          fullParam: prefix,
+          max: nominalConditions[prefix].max,
+          min: nominalConditions[prefix].min
+        });
       }
     }
 
