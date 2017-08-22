@@ -30,6 +30,16 @@ export const STATEMACHINE_STATES_INT_INDEXED = {
   11: 'SPINDOWN'
 };
 
+export const STATEMACHINE_COMMANDS = [
+  'NO_COMMAND',
+  'IDLE',
+  'TEST_MODE',
+  'DRIVE',
+  'FLIGHT_PREP',
+  'ARMED_WAIT',
+  'READY'
+];
+
 export const STATEMACHINE_TRANSITIONS = {
   'IDLE': [
     'TEST_MODE',
