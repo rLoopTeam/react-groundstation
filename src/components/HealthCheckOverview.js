@@ -103,7 +103,7 @@ class HealthCheckOverview extends Component {
         },
         'Controller temperature (C)': {
           min: 0,
-          max: 80,
+          max: 50,
           params: [
             'ASI 1 Temperature',
             'ASI 2 Temperature',
@@ -117,7 +117,7 @@ class HealthCheckOverview extends Component {
         },
         'Controller Voltages (V)': {
           min: 0,
-          max: 70,
+          max: 72,
           params: [
             'ASI 1 Throttle Voltage',
             'ASI 2 Throttle Voltage',
@@ -257,7 +257,8 @@ class HealthCheckOverview extends Component {
         label: param.labelName === '' ? param.paramName : param.labelName,
         min: this.lookupNominal(param.paramName).min,
         max: this.lookupNominal(param.paramName).max,
-        params: [param.paramName]
+        params: [param.paramName],
+        group: false
       });
     }
 
@@ -266,7 +267,8 @@ class HealthCheckOverview extends Component {
         label: groupName,
         min: this.overviewParameters.groups[groupName].min,
         max: this.overviewParameters.groups[groupName].max,
-        params: this.overviewParameters.groups[groupName].params
+        params: this.overviewParameters.groups[groupName].params,
+        group: true
       });
     }
   }
@@ -281,43 +283,94 @@ class HealthCheckOverview extends Component {
 
   render () {
     let viewMode = this.props.route.viewMode || 'overview';
+    let topcount = 0;
 
-    return (
-        <div className="Overview-content">
+    if (viewMode === 'overview')
+      {
+      return (
+          <div className="Overview-content">
+          <legend>Pod Health</legend>
+          <div className="col-md-12">
+            {this.watchParams.map(function (item, index) {
+              return (
+                <div className="health d-inline-block" key={'health' + index}>
+                  <HealthCheckDisplay
+                        StreamingPageManager={this.state.streamManager}
+                        parameters={item.params}
+                        label={item.label}
+                        max={item.max}
+                        min={item.min}
+                        hideUnits='true'
+                        viewMode={viewMode}
+                    />
+                </div>
+              );
+            }, this)}
+          </div>
+
+          <legend>All Fault Flags</legend>
+          <div className="col-md-12">
+          {Object.keys(faultFlagDefinitions).map(function (item, index) {
+            return (
+                <div className="d-inline-block" key={'healthfault' + index}>
+                  <label htmlFor="a0_y">{item.label}</label>
+                  <div className="health">
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
+                  </div>
+                </div>
+            );
+          }, this)}
+          </div>
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="detailed-content">
         <legend>Pod Health</legend>
         <div className="col-md-12">
           {this.watchParams.map(function (item, index) {
-            return (
-              <div className="health d-inline-block" key={'health' + index}>
-                <HealthCheckDisplay
-                      StreamingPageManager={this.state.streamManager}
-                      parameters={item.params}
-                      label={item.label}
-                      max={item.max}
-                      min={item.min}
-                      hideUnits='true'
-                      viewMode={viewMode}
-                  />
-              </div>
-            );
+            if (item.group)
+            {
+              return (
+                item.params.map((iitem, iindex) => {
+                  return (
+                    <div className="health d-inline-block" key={'health' + (topcount++ + iindex)}>
+                      <HealthCheckDisplay
+                        StreamingPageManager={this.state.streamManager}
+                        parameters={[iitem]}
+                        label={iitem}
+                        max={item.max}
+                        min={item.min}
+                        hideUnits='false'
+                        viewMode='detailed'
+                      />
+                    </div>
+                  );
+                })
+              );
+            }
+            else
+            {
+              return (
+                <div className="health d-inline-block" key={'health' + index}>
+                  <HealthCheckDisplay
+                        StreamingPageManager={this.state.streamManager}
+                        parameters={item.params}
+                        label={item.label}
+                        max={item.max}
+                        min={item.min}
+                        hideUnits='true'
+                        viewMode={viewMode}
+                    />
+                </div>
+              );
+            }
           }, this)}
         </div>
-
-        <legend>All Fault Flags</legend>
-        <div className="col-md-12">
-        {Object.keys(faultFlagDefinitions).map(function (item, index) {
-          return (
-              <div className="d-inline-block" key={'healthfault' + index}>
-                <label htmlFor="a0_y">{item.label}</label>
-                <div className="health">
-                  <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
-                </div>
-              </div>
-          );
-        }, this)}
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 export default HealthCheckOverview;
