@@ -1,31 +1,33 @@
 export const STATEMACHINE_STATES = {
   UNKNOWN_STATE: '?',
   NO_COMMAND: 0,
-  IDLE: 1,
-  TEST_MODE: 2,
-  DRIVE: 3,
-  ARMED_WAIT: 4,
-  FLIGHT_PREP: 5,
-  READY: 6,
-  ACCEL: 7,
-  COAST_INTERLOCK: 8,
-  BRAKE: 9,
-  SPINDOWN: 10
+  INIT: 1,
+  IDLE: 2,
+  TEST_MODE: 3,
+  DRIVE: 4,
+  ARMED_WAIT: 5,
+  FLIGHT_PREP: 6,
+  READY: 7,
+  ACCEL: 8,
+  COAST_INTERLOCK: 9,
+  BRAKE: 10,
+  SPINDOWN: 11
 };
 
 export const STATEMACHINE_STATES_INT_INDEXED = {
   '?': 'UNKNOWN_STATE',
   0: 'NO_COMMAND',
-  1: 'IDLE',
-  2: 'TEST_MODE',
-  3: 'DRIVE',
-  4: 'ARMED_WAIT',
-  5: 'FLIGHT_PREP',
-  6: 'READY',
-  7: 'ACCEL',
-  8: 'COAST_INTERLOCK',
-  9: 'BRAKE',
-  10: 'SPINDOWN'
+  1: 'INIT',
+  2: 'IDLE',
+  3: 'TEST_MODE',
+  4: 'DRIVE',
+  5: 'ARMED_WAIT',
+  6: 'FLIGHT_PREP',
+  7: 'READY',
+  8: 'ACCEL',
+  9: 'COAST_INTERLOCK',
+  10: 'BRAKE',
+  11: 'SPINDOWN'
 };
 
 export const STATEMACHINE_TRANSITIONS = {
