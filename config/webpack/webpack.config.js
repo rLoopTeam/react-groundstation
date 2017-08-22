@@ -66,6 +66,7 @@ module.exports = {
       template: resolveApp('public/index.html'),
       inject: true
     }),
+
     new webpack.NoEmitOnErrorsPlugin(),
 
     // Makes some environment variables available to the JS code, for example:
@@ -92,6 +93,7 @@ module.exports = {
         loader: 'eslint-loader',
         include: resolveApp('src')
       },
+
       // Default loader: load all assets that are not handled
       // by other loaders with the url loader.
       // Note: This list needs to be updated with every change of extensions
