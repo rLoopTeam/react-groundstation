@@ -29,7 +29,6 @@ class HealthCheckOverview extends Component {
         {paramName: 'Power A BMS Highest Cell Volts', labelName: 'Battery A highest cell volts'},
         {paramName: 'Power A BMS Lowest Cell Volts', labelName: 'Battery A lowest cell volts'},
         {paramName: 'Power A BMS Pack Current', labelName: 'Battery A current'},
-        {paramName: 'Power A BMS Node Temp', labelName: 'Battery A node temp (C)'},
         {paramName: 'Power B BMS Average Temp', labelName: 'Battery B avg temp (C)'},
         {paramName: 'Power B BMS Highest Sensor Value', labelName: 'Battery B max cell temp (C)'},
         {paramName: 'Power B BMS Pack Volts', labelName: 'Battery B pack voltage'},
@@ -85,7 +84,7 @@ class HealthCheckOverview extends Component {
             'ASI 8 HE RPM'
           ]
         },
-        'Pressure vessel pressure (atm)': {
+        'Node pressure (A/B) (atm)': {
           min: 0.7,
           max: 1.1,
           params: [
@@ -93,7 +92,7 @@ class HealthCheckOverview extends Component {
             'Power B BMS Node Pressure'
           ]
         },
-        'Pressure vessel temp (C)': {
+        'Node temp (A/B) (C)': {
           min: 0,
           max: 40,
           params: [
@@ -312,7 +311,7 @@ class HealthCheckOverview extends Component {
           <div className="col-md-12">
           {Object.keys(faultFlagDefinitions).map(function (item, index) {
             return (
-                <div className="d-inline-block" key={'healthfault' + index}>
+                <div className="col-xs-2 faultbox" key={'healthfault' + index}>
                   <label htmlFor="a0_y">{item.label}</label>
                   <div className="health">
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
