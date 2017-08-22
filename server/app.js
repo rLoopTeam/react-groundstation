@@ -29,7 +29,7 @@ if (isDeveloping) {
   });
 
   // serve static assets normally
-  app.use(express.static(path.join(__dirname, '/public')));
+  app.use('/assets', express.static(path.join(__dirname, '..', 'public/assets')));
 
   // serve static bootstrap file
   app.use('/jquery', express.static(path.join(__dirname, '..', '/node_modules/jquery/dist')));
