@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import './ConfirmButton.css';
 
 class ConfirmButton extends Component {
@@ -60,8 +62,8 @@ class ConfirmButton extends Component {
 }
 
 ConfirmButton.propTypes = {
-  action: React.PropTypes.func.isRequired,
-  delay: React.PropTypes.number.isRequired
+  action: PropTypes.func.isRequired,
+  delay: PropTypes.number.isRequired
 };
 
 export default ConfirmButton;

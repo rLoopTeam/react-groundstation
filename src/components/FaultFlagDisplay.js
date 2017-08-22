@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GenericParameterDisplay from './GenericParameterDisplay.js';
 import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
 import './FaultFlagDisplay.css';
@@ -86,8 +87,8 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 }
 
 FaultFlagDisplay.propTypes = {
-  parameter: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired
+  parameter: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 FaultFlagDisplay.defaultProps = {
