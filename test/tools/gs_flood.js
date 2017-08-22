@@ -5,6 +5,7 @@ const dgram = require('dgram');
 const udpHelpers = require('../../server/udp/helpers.js');
 
 const PACKET_INTERVAL = parseInt(process.env.RLOOP_PACKET_INTERVAL) || 1;
+const MAX_RANGE = parseInt(process.env.RLOOP_MAX_RANGE) || 8192;
 
 function toBytes (parameterType, data) {
   data = truncateForBytes(parameterType, data);
@@ -91,7 +92,7 @@ function generatePacket (packetName) {
     if (parameter.Name.search(/fault/i) > -1) {
       payload.push.apply(payload, toBytes(parameter.type, Math.floor(Math.random() * 16)));
     } else {
-      let data = Math.random() * 8192;
+      let data = Math.random() * MAX_RANGE;
       if (!parameter.type.startsWith('u')) {
         data = data - 4096;
       }
