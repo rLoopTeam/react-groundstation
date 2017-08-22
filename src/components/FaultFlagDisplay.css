@@ -25,6 +25,10 @@
     animation-iteration-count: infinite;
 }
 
+.noData-row{
+	background-color: #ffffff;
+}
+
 @keyframes critical-flash {
     0%   {background-color: #d03535; color: white;}
     50%  {background-color: #ffffff; color: black;}
