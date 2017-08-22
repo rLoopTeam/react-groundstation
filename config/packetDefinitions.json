@@ -4781,6 +4781,12 @@
                     "Name": "Current Position 1"
                 },
                 {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Limit Interrupt 1"
+                },
+                {
                     "type": "uint32",
                     "units": "A",
                     "size": 4,
@@ -4911,6 +4917,12 @@
                     "units": "",
                     "size": 4,
                     "Name": "Current Position 2"
+                },
+                {
+                    "type": "int32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Limit Interrupt 2"
                 },
                 {
                     "type": "uint8",
