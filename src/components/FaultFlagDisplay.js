@@ -56,8 +56,8 @@ class FaultFlagDisplay extends GenericParameterDisplay {
       renderedFaultFlags = (<tr className="inhibited-row"><td></td><td>Inhibited</td></tr>);
     } else if (value.indexOf('1') > -1) {
       renderedFaultFlags = this.preFilledArray.map(renderRow);
-    } else if (_IntValue === 0) {
-      renderedFaultFlags = (<tr className="nominal-row"><td></td><td>Status nominal</td></tr>);
+    } else if (!isNaN(_IntValue)) {
+      renderedFaultFlags = (<tr className="nominal-row"><td></td><td>Nominal</td></tr>);
     } else {
       renderedFaultFlags = (<tr className="noData-row"><td></td><td>No Data</td></tr>);
     }
