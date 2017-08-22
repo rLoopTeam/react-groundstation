@@ -4359,6 +4359,24 @@
                     "units": "",
                     "size": 4,
                     "Name": "Node Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Battery Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Charging Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "%",
+                    "size": 4,
+                    "Name": "State of Charge"
                 }
             ]
         },
@@ -5536,6 +5554,24 @@
                     "units": "",
                     "size": 4,
                     "Name": "Node Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Battery Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Charging Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "%",
+                    "size": 4,
+                    "Name": "State of Charge"
                 }
             ]
         },
