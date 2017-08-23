@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-import createSocket from '../shared/socket';
+// import createSocket from '../shared/socket';
 
-let socket = createSocket();
+// let socket = createSocket();
 
 class Throttles extends Component {
 
@@ -44,6 +44,13 @@ class Throttles extends Component {
      *
      * @memberOf Throttles
      */
+
+    this.HoverEnginesData = [
+      {label: 'Requested RPM ', value: 'Throttle Requested RPM '},
+      {label: 'Current RPM ', value: 'Throttle Current RPM '},
+      {label: 'ASI RPM ', value: 'Throttle ASI RPM '}
+    ];
+
     this.Requested_RPM = [
             {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
             {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
@@ -94,12 +101,17 @@ class Throttles extends Component {
   }
 
   /**
+   * ! All HE controls will be performed by the rpod control tool !
+  */
+
+  /**
    * toggles the hover engine status
    *
    * @param {object} e -input change Event
    *
    * @memberOf Throttles
    */
+  /*
   handleHoverToggle (e) {
     var hovering = this.state.hovering;
     // toggles the hover engine status {bool}
@@ -117,7 +129,7 @@ class Throttles extends Component {
       socket.emit('FlightControl_Hover:Disable');
     }
   }
-
+*/
   /**
    * toggles the hover engine status
    *
@@ -125,6 +137,8 @@ class Throttles extends Component {
    *
    * @memberOf Throttles
    */
+
+   /*
   handleStaticHoveringToggle (e) {
     var staticHovering = this.state.staticHovering;
         // toggles the hover engine status {bool}
@@ -232,15 +246,16 @@ class Throttles extends Component {
     }
     return hoverEngineInputs;
   }
-
+*/
   render () {
     var _this = this;
 
     return (
             <div className="container-fluid">
-                <div className="row">{/* Commands */}
+              {/* <div className="row"> */}{/* Commands */}
 
                     {/* Hover */}
+                    {/*
                     <fieldset>
                         <legend>Hover</legend>
                         <div className='form-group'>
@@ -259,8 +274,9 @@ class Throttles extends Component {
                             </label>
                         </div>
                     </fieldset>
-
+                    */}
                     {/* Static Hovering */}
+                    {/*
                     <fieldset>
                         <legend>Static Hovering</legend>
                         <div className='form-group'>
@@ -279,20 +295,24 @@ class Throttles extends Component {
                             </label>
                         </div>
                     </fieldset>
-
+                    */}
                 {/* Development Mode */}
+                {/*
                 <fieldset>
                     <legend>Hover Engine Mode</legend>
                     {_this.createHoverEngineInputLoop()}
                 </fieldset>
                 </div>
-
+                */}
+                <h2>Hover Engines</h2>
+                <br/>
                 <div className="row">{/* Values returned */}
+                <legend>Hover Engines Data</legend>
                     <div className="col-sm-4">
                     {
                         this.Requested_RPM.map(function (item, index) {
                           return (
-                                <div className="row" key={'brakes' + index}>
+                                <div className="row" key={'HE' + index}>
                                     <label>{item.label}</label>
                                     <GenericParameterLabel
                                         StreamingPageManager={_this.state.streamManager}
@@ -306,7 +326,7 @@ class Throttles extends Component {
                     {
                         this.Current_RPM.map(function (item, index) {
                           return (
-                                <div className="row" key={'brakes' + index}>
+                                <div className="row" key={'HE' + index}>
                                     <label>{item.label}</label>
                                     <GenericParameterLabel
                                         StreamingPageManager={_this.state.streamManager}
@@ -320,7 +340,7 @@ class Throttles extends Component {
                     {
                         this.ASI_RPM.map(function (item, index) {
                           return (
-                                <div className="row" key={'brakes' + index}>
+                                <div className="row" key={'HE' + index}>
                                     <label>{item.label}</label>
                                     <GenericParameterLabel
                                         StreamingPageManager={_this.state.streamManager}
@@ -333,7 +353,7 @@ class Throttles extends Component {
                 </div>
 
                 <div className="row">
-                  <h2>ASI Data</h2>
+                  <legend>ASI Data</legend>
                     <div className="col-sm-4">
                     {
                         this.ASI_Data.map(function (item, index) {
