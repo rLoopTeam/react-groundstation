@@ -26,6 +26,7 @@ import HealthCheckOverview from './components/HealthCheckOverview.js';
 import AuxProp from './components/AuxProp.js';
 import Cooling from './components/Cooling.js';
 import StateMachine from './components/StateMachine.js';
+import LandingGear from './components/LandingGear.js';
 
 import './App.css';
 
@@ -73,6 +74,7 @@ class App extends Component {
           <Route path="healthcheck/detailed" component={HealthCheckOverview} viewMode="detailed" />
           <Route path="AuxProp" component={AuxProp} />
           <Route path="statemachine" component={StateMachine} />
+          <Route path="landinggear" component={LandingGear} />
         </Route>
       </Router>
     );

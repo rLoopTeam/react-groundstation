@@ -52,7 +52,8 @@ class MainLayout extends Component {
           {name: 'Brakes', location: '/brakes'},
           {name: 'Steppers', location: '/steppers'},
           {name: 'Throttles', location: '/throttles'},
-          {name: 'Navigation Sensors', location: '/FlightControl_NavigationSensors'}
+          {name: 'Navigation Sensors', location: '/FlightControl_NavigationSensors'},
+          {name: 'Landing Gear', location: '/landinggear'}
         ]
       },
       {
