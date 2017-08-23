@@ -5644,7 +5644,7 @@
         {
             "Name": "ASI Data",
             "PacketType": 5889,
-            "Node": "ASI Monitor System",
+            "Node": "Flight Control",
             "DAQ": false,
             "ParameterPrefix": "ASI ",
             "Parameters": [
