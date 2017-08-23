@@ -226,10 +226,10 @@ class HealthCheckOverview extends Component {
           min: 5,
           max: 17,
           params: [
-            'LGU Computed Height 1',
-            'LGU Computed Height 2',
-            'LGU Computed Height 3',
-            'LGU Computed Height 4'
+            'LGU Actual Extension 1',
+            'LGU Actual Extension 2',
+            'LGU Actual Extension 3',
+            'LGU Actual Extension 4'
           ]
         },
         'Brake stepper temp (C)': {
