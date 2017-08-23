@@ -18,6 +18,8 @@ class DAQ {
       toWrite = toWrite + packet.parameters[i].value + ',';
     }
 
+	toWrite += "\n";
+	
     outfile.write(toWrite);
 
     this.packetStats.loggedPacketType(packet.packetType);
