@@ -39,6 +39,7 @@ let socket = createSocket();
 ------------ */
 setInterval(function () {
   socket.emit('GS_Heartbeat');
+  socket.emit('Pwr_Heartbeat');
   // udp.tx.transmitPodCommand('Flight Control', 0x0400, 0x0, 0x0, 0x0, 0x0); //Heartbeat packet
 }, 1000);
 
