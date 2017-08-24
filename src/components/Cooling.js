@@ -27,14 +27,16 @@ class Cooling extends Component {
     this.labels = [
       {label: 'Hover 1', value: '1'},
       {label: 'Hover 2', value: '3'},
-      {label: 'Hover 3', value: '5'},
-      {label: 'Hover 4', value: '7'},
-      {label: 'Hover 5', value: '9'},
-      {label: 'Hover 6', value: '11'},
-      {label: 'Hover 7', value: '13'},
-      {label: 'Hover 8', value: '15'},
-      {label: 'Brakes 1', value: '17'},
-      {label: 'Brakes 2', value: '21'}
+      {label: 'Brakes 1', value: '5'},
+      {label: 'Brakes 1', value: '7'},
+      {label: 'Hover 3', value: '9'},
+      {label: 'Hover 4', value: '11'},
+      {label: 'Hover 5', value: '13'},
+      {label: 'Hover 6', value: '15'},
+      {label: 'Brakes 2', value: '17'},
+      {label: 'Brakes 2', value: '19'},
+      {label: 'Hover 7', value: '21'},
+      {label: 'Hover 8', value: '23'}
     ];
   }
 
@@ -158,7 +160,7 @@ class Cooling extends Component {
               </div>
 
               <div className="col-sm-3">
-                <label>{item.label} Temperature cofirm spare (C)</label>
+                <label>{item.label} Temperature confirm (C)</label>
                 <GenericParameterLabel
                 StreamingPageManager={_this.state.streamManager}
                 parameter={`${spareUnit} Temperature`} hex={item.hex}/>
