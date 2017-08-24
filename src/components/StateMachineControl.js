@@ -20,7 +20,7 @@ class StateMachineControl extends Component {
   }
 
   render () {
-    return (<div>
+    return (<div className='stateBlock'>
       {STATEMACHINE_COMMANDS.map(function (item, index) {
         // Excludes NO_COMMAND from transitions.
         if (index < 1) {
@@ -33,9 +33,10 @@ class StateMachineControl extends Component {
 
         let cleanName = item.replace('_', ' ').toLowerCase();
         return (
-          <div className='form-group stateswitches' key={'SwitchGroup_' + item}>
-            <ConfirmButton delay={2000} className="btn btn-warning" action={this.doPodCommand.bind(this, 'unlock', index)}>Unlock - {cleanName}</ConfirmButton>
-            <ConfirmButton delay={2000} className="btn btn-danger" action={this.doPodCommand.bind(this, 'execute', index)}>Execute - {cleanName}</ConfirmButton>
+          <div className='d-inline-block' key={'SwitchGroup_' + item}>
+            <legend>{cleanName}</legend>
+            <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'unlock', index)}>Unlock</ConfirmButton>
+            <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'execute', index)}>Execute</ConfirmButton>
           </div>
         );
       }, this)}
