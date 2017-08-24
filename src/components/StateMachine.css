@@ -1,3 +1,5 @@
+/* CSS variables would be very nice for all the magic numbers in here. */
+
 .stateStatus {
     background-color: #424242;
     color: #FFF;
@@ -21,6 +23,14 @@
 .stateBlock {
     text-transform: capitalize;
     flex: 1;
+}
+
+.stateBlock .unavailable {
+    opacity: 0.5;
+}
+
+.stateBlock .unavailable legend {
+    color: red;
 }
 
 .stateBlock div:nth-child(1) {
