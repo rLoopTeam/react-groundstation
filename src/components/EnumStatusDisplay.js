@@ -21,6 +21,8 @@ class EnumStatusDisplay extends GenericParameterDisplay {
       value = this.state.value;
     } else if (this.state.stale) {
       color = 'red';
+    } else if (this.props.color) {
+      color = this.props.color || 'inherit';
     } else if (this.props.colorMap) {
       color = this.props.colorMap[this.state.value] || 'inherit';
     }

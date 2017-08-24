@@ -62,7 +62,7 @@ class StateMachine extends Component {
       <div>
         <div className='stateStatus'>
           <div className='stateBlock currentState'>
-            <EnumStatusDisplay StreamingPageManager={this.state.streamManager} parameter='FCU Mission State' hideUnits='true' inline={true} enumMap={STATEMACHINE_STATES_INT_INDEXED}/>
+            <EnumStatusDisplay StreamingPageManager={this.state.streamManager} parameter='FCU Mission State' hideUnits='true' inline={true} enumMap={STATEMACHINE_STATES_INT_INDEXED} color='#FFF'/>
           </div>
           <StateMachineControl availableStates={this.state.availableStates} showAvailable={true} />
           <StateMachineControl availableStates={this.state.availableStates} showAvailable={false} />

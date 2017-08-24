@@ -13,6 +13,9 @@
 .stateBlock.currentState {
     font-size: 32px;
     flex: 0 1 10%;
+    background-color: #0f68c9;
+    height: 100%;
+    padding: 28px 15px;
 }
 
 .stateBlock {
@@ -48,6 +51,10 @@
     width: 92px;
 }
 
+.btn-state:hover {
+    color: #FFF;
+}
+
 @keyframes state-active-flash {
     0%   {fill: #b536da}
     50%  {fill: rgba(181, 54, 218, 0.25)}
@@ -71,17 +78,22 @@
     animation-iteration-count: infinite;
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1700px) {
     .stateStatus {
         flex-flow: column;
     }
 
     .stateBlock.currentState {
         width: 100%;
+        padding: 10px;
     }
 
     .stateBlock div {
         border: 1px solid white;
         margin: 5px;
+    }
+
+    .stateBlock .float-left {
+        float: none;
     }
 }

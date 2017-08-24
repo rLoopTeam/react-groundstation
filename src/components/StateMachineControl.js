@@ -33,7 +33,7 @@ class StateMachineControl extends Component {
 
         let cleanName = item.replace('_', ' ').toLowerCase();
         return (
-          <div className='d-inline-block' key={'SwitchGroup_' + item}>
+          <div className='d-inline-block float-left' key={'SwitchGroup_' + item}>
             <legend>{cleanName}</legend>
             <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'unlock', index)}>Unlock</ConfirmButton>
             <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'execute', index)}>Execute</ConfirmButton>
