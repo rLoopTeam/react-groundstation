@@ -1,10 +1,17 @@
 .health.data {
     width: 250px;
     text-align: center;
-    padding: 5px;
-    margin: 4px;
+    padding: 2px;
+    margin: 1px;
 }
 
 .health.data p {
     margin: 0;
+}
+
+.faultbox {
+    height: 45px;
+}
+legend {
+    margin: 0 !important;
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import StreamingPageManager from '../StreamingPageManager.js';
 import GenericParameterLabel from './GenericParameterLabel.js';
-import createSocket from '../shared/socket';
+// import createSocket from '../shared/socket';
 
-let socket = createSocket();
+// let socket = createSocket();
 
 class Throttles extends Component {
 
@@ -44,8 +44,14 @@ class Throttles extends Component {
      *
      * @memberOf Throttles
      */
+
+    this.HoverEnginesData = [
+      {label: 'Requested RPM ', value: 'Throttle Requested RPM '},
+      {label: 'Current RPM ', value: 'Throttle Current RPM '},
+      {label: 'ASI RPM ', value: 'Throttle ASI RPM '}
+    ];
+
     this.Requested_RPM = [
-            {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
             {label: 'Requested RPM 1', value: 'Throttle Requested RPM 1'},
             {label: 'Requested RPM 2', value: 'Throttle Requested RPM 2'},
             {label: 'Requested RPM 3', value: 'Throttle Requested RPM 3'},
@@ -94,12 +100,17 @@ class Throttles extends Component {
   }
 
   /**
+   * ! All HE controls will be performed by the rpod control tool !
+  */
+
+  /**
    * toggles the hover engine status
    *
    * @param {object} e -input change Event
    *
    * @memberOf Throttles
    */
+  /*
   handleHoverToggle (e) {
     var hovering = this.state.hovering;
     // toggles the hover engine status {bool}
@@ -117,7 +128,7 @@ class Throttles extends Component {
       socket.emit('FlightControl_Hover:Disable');
     }
   }
-
+*/
   /**
    * toggles the hover engine status
    *
@@ -125,6 +136,8 @@ class Throttles extends Component {
    *
    * @memberOf Throttles
    */
+
+   /*
   handleStaticHoveringToggle (e) {
     var staticHovering = this.state.staticHovering;
         // toggles the hover engine status {bool}
@@ -232,108 +245,58 @@ class Throttles extends Component {
     }
     return hoverEngineInputs;
   }
-
+*/
   render () {
     var _this = this;
 
+    var hes = [];
+    for (var he = 1; he < 9; he++) {
+      var paramsArr = [];
+      paramsArr.push(this.Requested_RPM[he - 1]);
+      paramsArr.push(this.Current_RPM[he - 1]);
+      paramsArr.push(this.ASI_RPM[he - 1]);
+      hes.push({name: 'HE ' + he, params: paramsArr});
+    }
     return (
             <div className="container-fluid">
-                <div className="row">{/* Commands */}
-
-                    {/* Hover */}
-                    <fieldset>
-                        <legend>Hover</legend>
-                        <div className='form-group'>
-                            <input type="radio" name="Hover" id="HoverTrue" value="true" checked={this.state['hovering'][0]} onChange={_this.handleHoverToggle.bind(_this)} />
-
-                            <label htmlFor="HoverTrue">
-                                on
-                            </label>
-                        </div>
-
-                        <div className='form-group'>
-                            <input type="radio" name="Hover" id="HoverFalse" value="false" checked={this.state['hovering'][1]} onChange={_this.handleHoverToggle.bind(_this)}/>
-
-                            <label htmlFor="HoverFalse">
-                                off
-                            </label>
-                        </div>
-                    </fieldset>
-
-                    {/* Static Hovering */}
-                    <fieldset>
-                        <legend>Static Hovering</legend>
-                        <div className='form-group'>
-                            <input type="radio" name="StaticHovering" id="StaticHoveringTrue" value="true" checked={this.state['staticHovering'][0]} onChange={_this.handleStaticHoveringToggle.bind(_this)} />
-
-                            <label htmlFor="StaticHoveringTrue">
-                                on
-                            </label>
-                        </div>
-
-                        <div className='form-group'>
-                            <input type="radio" name="StaticHovering" id="StaticHoveringFalse" value="false" checked={this.state['staticHovering'][1]} onChange={_this.handleStaticHoveringToggle.bind(_this)}/>
-
-                            <label htmlFor="StaticHoveringFalse">
-                                off
-                            </label>
-                        </div>
-                    </fieldset>
-
-                {/* Development Mode */}
-                <fieldset>
-                    <legend>Hover Engine Mode</legend>
-                    {_this.createHoverEngineInputLoop()}
-                </fieldset>
+                <legend>Hover Engines Data</legend>
+                <div className='col-xs-6'>
+                  {hes.map(function (item, index) {
+                    if (index < 4) {
+                      return (
+                          <div className='col-xs-3'><p>{item.name}</p>
+                          {item.params.map(function (iitem, iindex) {
+                            return (
+                              <div className='col-xs-12'>{iitem.label}
+                              <GenericParameterLabel StreamingPageManager={_this.state.streamManager} parameter={iitem.value}/>
+                              </div>
+                            );
+                          })}
+                          </div>
+                      ); }
+                  })
+                  }
                 </div>
-
-                <div className="row">{/* Values returned */}
-                    <div className="col-sm-4">
-                    {
-                        this.Requested_RPM.map(function (item, index) {
-                          return (
-                                <div className="row" key={'brakes' + index}>
-                                    <label>{item.label}</label>
-                                    <GenericParameterLabel
-                                        StreamingPageManager={_this.state.streamManager}
-                                        parameter={item.value} hoverEngine={item.hoverEngine}/>
-                                </div>
-                          );
-                        }, this) // bind keyword this to contained method calls
-                    }
-                    </div>
-                    <div className="col-sm-4">
-                    {
-                        this.Current_RPM.map(function (item, index) {
-                          return (
-                                <div className="row" key={'brakes' + index}>
-                                    <label>{item.label}</label>
-                                    <GenericParameterLabel
-                                        StreamingPageManager={_this.state.streamManager}
-                                        parameter={item.value} hoverEngine={item.hoverEngine}/>
-                                </div>
-                          );
-                        }, this) // bind keyword this to contained method calls
-                    }
-                    </div>
-                    <div className="col-sm-4">
-                    {
-                        this.ASI_RPM.map(function (item, index) {
-                          return (
-                                <div className="row" key={'brakes' + index}>
-                                    <label>{item.label}</label>
-                                    <GenericParameterLabel
-                                        StreamingPageManager={_this.state.streamManager}
-                                        parameter={item.value} hoverEngine={item.hoverEngine}/>
-                                </div>
-                          );
-                        }, this) // bind keyword this to contained method calls
-                    }
-                    </div>
+                <div className='col-xs-6'>
+                  {hes.map(function (item, index) {
+                    if (index >= 4 && index < 8) {
+                      return (
+                          <div className='col-xs-3'><p>{item.name}</p>
+                          {item.params.map(function (iitem, iindex) {
+                            return (
+                              <div className='col-xs-12'>{iitem.label}
+                              <GenericParameterLabel StreamingPageManager={_this.state.streamManager} parameter={iitem.value}/>
+                              </div>
+                            );
+                          })}
+                          </div>
+                      ); }
+                  })
+                  }
                 </div>
-
+                <br />
                 <div className="row">
-                  <h2>ASI Data</h2>
+                  <legend>ASI Data</legend>
                     <div className="col-sm-4">
                     {
                         this.ASI_Data.map(function (item, index) {

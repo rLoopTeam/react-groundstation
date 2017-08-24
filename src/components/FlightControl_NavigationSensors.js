@@ -39,14 +39,12 @@ class FlightControl_NavigationSensors extends Component {
             {label: 'Error Code', value: 'ForwardLaser Error Code'}
     ];
     this.laserheightLabels = [
-            {label: 'Forward Right', value: 'LaserOpto 1 Raw distance'},
             {label: 'Forward Left', value: 'LaserOpto 1 Raw distance'},
-            {label: 'LaserOpto Raw distance 3', value: 'LaserOpto 3 Raw distance'},
-            {label: 'LaserOpto Raw distance 4', value: 'LaserOpto 4 Raw distance'},
-            {label: 'LaserOpto Raw distance 5', value: 'LaserOpto 5 Raw distance'},
-            {label: 'LaserOpto Raw distance 6', value: 'LaserOpto 6 Raw distance'},
-            {label: 'LaserOpto Raw distance 7', value: 'LaserOpto 7 Raw distance'},
-            {label: 'LaserOpto Raw distance 8', value: 'LaserOpto 8 Raw distance'}
+            {label: 'Forward Right', value: 'LaserOpto 2 Raw distance'},
+            {label: 'Rear Left', value: 'LaserOpto 3 Raw distance'},
+            {label: 'Rear Right', value: 'LaserOpto 4 Raw distance'},
+            {label: 'Yaw Forward', value: 'LaserOpto 5 Raw distance'},
+            {label: 'Yaw Rear', value: 'LaserOpto 6 Raw distance'}
     ];
     this.contrastsensorLabels = [
             {label: 'LaserContrast0 Rising Count', value: 'LaserContrast0 Rising Count'}

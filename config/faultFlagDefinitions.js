@@ -545,7 +545,7 @@ module.exports = {
   },
 
   // All Fault Flags
-  'All Fault Flags': {
+  'All Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'Accel Subsystem Fault', 'severity': 'critical'},
@@ -571,49 +571,49 @@ module.exports = {
       {'name': 'Guarding Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 1 Controller Fault': {
+  'ASI 1 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 2 Controller Fault': {
+  'ASI 2 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 3 Controller Fault': {
+  'ASI 3 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 4 Controller Fault': {
+  'ASI 4 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 5 Controller Fault': {
+  'ASI 5 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 6 Controller Fault': {
+  'ASI 6 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 7 Controller Fault': {
+  'ASI 7 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 8 Controller Fault': {
+  'ASI 8 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GenericParameterDisplay from './GenericParameterDisplay.js';
 import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
 import './FaultFlagDisplay.css';
@@ -43,16 +44,22 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 
     // Get value as bits
     var _value = Number(this.state.value);
+    var _IntValue = this.state.value;
     if (this.smallEndian) {
       _value = this.swap32(_value);
     }
+
     const value = _value.toString(2);
 
     var renderedFaultFlags;
-    if (value.indexOf('1') > -1) {
+    if (_IntValue > 4000000000) {
+      renderedFaultFlags = (<tr className="inhibited-row"><td></td><td>Inhibited</td></tr>);
+    } else if (value.indexOf('1') > -1) {
       renderedFaultFlags = this.preFilledArray.map(renderRow);
+    } else if (!isNaN(_IntValue)) {
+      renderedFaultFlags = (<tr className="nominal-row"><td></td><td>{_IntValue}</td></tr>);
     } else {
-      renderedFaultFlags = (<tr className="nominal-row"><td></td><td>Status nominal</td></tr>);
+      renderedFaultFlags = (<tr className="noData-row"><td></td><td>No Data</td></tr>);
     }
 
     /*
@@ -86,8 +93,8 @@ class FaultFlagDisplay extends GenericParameterDisplay {
 }
 
 FaultFlagDisplay.propTypes = {
-  parameter: React.PropTypes.string.isRequired,
-  label: React.PropTypes.string.isRequired
+  parameter: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
 };
 
 FaultFlagDisplay.defaultProps = {

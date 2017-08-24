@@ -20,7 +20,10 @@ class HealthCheckDisplay extends GenericParameterDisplay {
   componentDidMount () {
     this._isMounted = true;
     for (let parameter of this.props.parameters) {
-      this.props.StreamingPageManager.RequestParameterWithCallback(parameter, this.dataCallback);
+      this.props.StreamingPageManager.RequestParameterWithCallback(
+        parameter,
+        this.dataCallback
+      );
     }
   }
 
@@ -34,7 +37,8 @@ class HealthCheckDisplay extends GenericParameterDisplay {
       // Do nothing if the states are equal.
       if (
         parameterData.Value === this.packetValues[parameterData.Name] ||
-        Number(parameterData.Value).toFixed(2) === this.packetValues[parameterData.Name]
+        Number(parameterData.Value).toFixed(2) ===
+          this.packetValues[parameterData.Name]
       ) {
         return;
       }
@@ -42,10 +46,12 @@ class HealthCheckDisplay extends GenericParameterDisplay {
       if (isNaN(parameterData.Value)) {
         this.packetValues[parameterData.Name] = parameterData.Value;
       } else {
-        this.packetValues[parameterData.Name] = Number(parameterData.Value).toFixed(2);
+        this.packetValues[parameterData.Name] = Number(
+          parameterData.Value
+        ).toFixed(2);
       }
 
-      this.setState({counter: this.state.counter + 1});
+      this.setState({ counter: this.state.counter + 1 });
     }
   }
 
@@ -68,7 +74,7 @@ class HealthCheckDisplay extends GenericParameterDisplay {
 
   render () {
     let className = 'health data';
-    let extraElements = [];
+    let detailedElements = [];
 
     if (this.isDangerous()) {
       className += ' danger-row';
@@ -76,24 +82,27 @@ class HealthCheckDisplay extends GenericParameterDisplay {
       className += ' nominal-row';
     }
 
-    if (this.props.viewMode === 'detailed') {
-      let valueTotals = [];
-      for (let packetName in this.packetValues) {
-        valueTotals.push(this.packetValues[packetName]);
-      }
-      extraElements.push(<p key={'packetDetail'}>{valueTotals.join(', ')}</p>);
-    }
-
-    return (
+    if (this.props.viewMode !== 'detailed') {
+      return (
         <div className={className}>
           <label>{this.props.label}</label>
-          {extraElements.map((item, index) => {
-            return item;
-          })}
         </div>
-    );
+      );
+    }
+    else
+    {
+      var packetName;
+      for (let pn in this.packetValues) {
+        packetName = pn;
+      }
+      return (
+        <div className={className}>
+          <label>{this.props.label}</label>
+          <p key='packetDetail'>{this.packetValues[packetName]}</p>
+        </div>
+      );
+    }
   }
 }
 
 export default HealthCheckDisplay;
-
