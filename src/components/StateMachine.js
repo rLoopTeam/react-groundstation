@@ -61,22 +61,23 @@ class StateMachine extends Component {
     return (
       <div>
         <div className='stateStatus'>
-          <div className='stateBlock'>
-            <span className='stateStatusText d-bold'>CURRENT STATE: </span>
+          <div className='stateBlock currentState'>
             <EnumStatusDisplay StreamingPageManager={this.state.streamManager} parameter='FCU Mission State' hideUnits='true' inline={true} enumMap={STATEMACHINE_STATES_INT_INDEXED}/>
           </div>
+          <StateMachineControl availableStates={this.state.availableStates} showAvailable={true} />
+          <StateMachineControl availableStates={this.state.availableStates} showAvailable={false} />
         </div>
         <div className='margin-top-50px'/>
-        <div className={'col-md-6 active_' + STATEMACHINE_STATES_INT_INDEXED[this.state.currentState]}>
+        <div className={'col-md-12 active_' + STATEMACHINE_STATES_INT_INDEXED[this.state.currentState]}>
           <Isvg src='/assets/stateDiagram.svg'/>
         </div>
-        <div className='col-md-6'>
+        {/* <div className='col-md-6'>
           <h2 className='d-block margin-none'>Manual Transitions</h2>
           <h3 className='d-block'>Available</h3>
           <StateMachineControl availableStates={this.state.availableStates} showAvailable={true} />
           <h3 className='d-block'>Unavailable</h3>
           <StateMachineControl availableStates={this.state.availableStates} showAvailable={false} />
-        </div>
+        </div> */}
       </div>
     );
   }

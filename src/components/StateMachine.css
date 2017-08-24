@@ -1,19 +1,51 @@
-.stateswitches button {
-    margin-right: 5px;
-    text-transform: capitalize;
-}
-
 .stateStatus {
-    position: fixed;
     background-color: #424242;
     color: #FFF;
-    top: 50px;
-    left: 0;
     width: 100%;
-    padding: 10px 25px;
-    font-family: 'Courier New';
     text-align: center;
     z-index: 1;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.stateBlock.currentState {
+    font-size: 32px;
+    flex: 0 1 10%;
+}
+
+.stateBlock {
+    text-transform: capitalize;
+    flex: 1;
+}
+
+.stateBlock div:nth-child(1) {
+    border-left: 1px solid #FFF;
+}
+
+.stateBlock div {
+    margin-right: 10px;
+    border-right: 1px solid #FFF;
+    padding: 10px;
+}
+
+.stateBlock:empty {
+    display: none;
+}
+
+.stateBlock legend {
+    border-bottom: none;
+    color: #FFF;
+}
+
+.btn-state {
+    background-color: transparent;
+    border: 1px solid white;
+    margin-right: 5px;
+    border-radius: 0;
+    padding: 15px;
+    width: 92px;
 }
 
 @keyframes state-active-flash {
@@ -37,4 +69,19 @@
 	animation-name: state-active-flash;
     animation-duration: 2.5s;
     animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 1600px) {
+    .stateStatus {
+        flex-flow: column;
+    }
+
+    .stateBlock.currentState {
+        width: 100%;
+    }
+
+    .stateBlock div {
+        border: 1px solid white;
+        margin: 5px;
+    }
 }
