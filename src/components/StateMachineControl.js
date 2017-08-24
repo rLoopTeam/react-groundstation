@@ -35,8 +35,12 @@ class StateMachineControl extends Component {
         return (
           <div className='d-inline-block' key={'SwitchGroup_' + item}>
             <legend>{cleanName}</legend>
-            <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'unlock', index)}>Unlock</ConfirmButton>
-            <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'execute', index)}>Execute</ConfirmButton>
+            {/*
+              <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'unlock', index)}>Set</ConfirmButton>
+              <ConfirmButton delay={2000} className="btn btn-state" action={this.doPodCommand.bind(this, 'execute', index)}>Go</ConfirmButton>
+            */}
+              <button className="sm-button btn " action={this.doPodCommand.bind(this, 'unlock', index)}>Set</button>
+              <button className="sm-button btn " action={this.doPodCommand.bind(this, 'execute', index)}>Go</button>
           </div>
         );
       }, this)}

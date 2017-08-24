@@ -1,5 +1,6 @@
 .stateStatus {
-    background-color: #424242;
+    /* background-color: #424242; */
+    background-color: #DFDFDF;
     color: #FFF;
     width: 100%;
     text-align: center;
@@ -8,6 +9,7 @@
     flex-flow: row;
     justify-content: space-around;
     align-items: center;
+    border-bottom: 1px solid #333333;
 }
 
 .stateBlock.currentState {
@@ -16,17 +18,27 @@
 }
 
 .stateBlock {
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
+    text-transform: uppercase;
     flex: 1;
 }
 
-.stateBlock div:nth-child(1) {
-    border-left: 1px solid #FFF;
-}
 
 .stateBlock div {
-    margin-right: 10px;
-    border-right: 1px solid #FFF;
+    border: 1px solid green;
+}
+/*
+.stateBlock div:nth-child(1) {
+    border-left: 1px solid #FFF;
+    border: 1px solid red;
+}
+*/
+
+
+.stateBlock div {
+    /*margin-right: 10px; */
+    /* border-right: 1px solid #FFF; */
+    border: 1px solid #B0B0B0;
     padding: 10px;
 }
 
@@ -36,7 +48,8 @@
 
 .stateBlock legend {
     border-bottom: none;
-    color: #FFF;
+    color: #333333;
+    font-size: 20pt;
 }
 
 .btn-state {
@@ -44,7 +57,7 @@
     border: 1px solid white;
     margin-right: 5px;
     border-radius: 0;
-    padding: 15px;
+    padding: 10px;
     width: 92px;
 }
 
@@ -84,4 +97,12 @@
         border: 1px solid white;
         margin: 5px;
     }
+}
+
+.sm-button {
+    font-size: 20px;
+    margin: 10px;
+    background-color: green;
+    width: 50pt;
+    height: 35pt;
 }
