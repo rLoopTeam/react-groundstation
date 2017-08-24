@@ -20,6 +20,7 @@ import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
 import Power_Overview from './components/power/overview';
 import Power_RawTemperatures from './components/power/rawTemps';
+import Power_TempsCStruct from './components/power/tempStructure';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
 import HealthCheck from './components/HealthCheck.js';
 import HealthCheckOverview from './components/HealthCheckOverview.js';
@@ -51,8 +52,10 @@ class App extends Component {
           <Route path="PowerNodeConfig" component={PowerNodeConfig} />
           <Route path="powerAOverview" component={Power_Overview} L="A"/>
           <Route path="powerARawTemps" component={Power_RawTemperatures} L="A" />
+          <Route path="tempsACStruct" component={Power_TempsCStruct} L="A" />
           <Route path="powerBOverview" component={Power_Overview} L="B"/>
           <Route path="powerBRawTemps" component={Power_RawTemperatures} L="B" />
+          <Route path="tempsBCStruct" component={Power_TempsCStruct} L="B" />
           <Route path="cooling" component={Cooling} />
           <Route path="lgu" component={LGU} />
           <Route path="AutoSequence" component={AutoSequence} />
