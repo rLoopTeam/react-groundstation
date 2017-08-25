@@ -18,6 +18,8 @@ function toBytes (parameterType, data) {
     case 'uint32': return bin.uint32ToBytes(data, true);
     case 'int32': return bin.int32ToBytes(data, true);
     case 'float32': return bin.float32ToBytes(data, true);
+    case 'int64': return bin.int64ToBytes(data, true);
+    case 'uint64': return bin.uint64ToBytes(data, true);
     case 'float64': return bin.float64ToBytes(data, true);
     default: console.error(`Unknown data type '${parameterType}'`); break;
   }
@@ -32,7 +34,9 @@ function truncateForBytes (parameterType, data) {
     case 'uint32': return Math.max(Math.min(data, 2147483647), -2147483648);
     case 'int32': return Math.min(data, 4294967295);
     case 'float32': return Math.max(Math.min(data, 3.40282347e+38), -3.40282347e+38);
-    case 'float64': return data; // JS max should cover this case.
+    case 'float64':
+    case 'int64':
+    case 'uint64': return data; // JS max should cover this case.
     default: console.error(`Unknown data type '${parameterType}'`); break;
   }
 }
@@ -72,10 +76,7 @@ function generatePacket (packetName) {
 
   for (let x = 0; x < packetDefintion.Parameters.length; x++) {
     let parameter = packetDefintion.Parameters[x];
-    // TODO: Can we make JS do 64 bit integers?
-    if (parameter.type === 'uint64') {
-      return;
-    }
+
     if (parameter.endLoop && inLoop) {
       if (loopIteration > loopIterations) {
         inLoop = false;
