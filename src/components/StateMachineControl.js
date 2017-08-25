@@ -17,6 +17,8 @@ class StateMachineControl extends PureComponent {
       unlocked: []
     };
 
+    this.timeouts = {};
+
     // Binded functions so that we do not create new functions on every render.
     this.doUnlock = this.doUnlock.bind(this);
     this.doExecute = this.doExecute.bind(this);
@@ -31,18 +33,25 @@ class StateMachineControl extends PureComponent {
      */
     let newState = this.state.unlocked.slice();
     if (action === 'unlock') {
-      newState.push(index);
+      // Push the state onto the state list if it does not exists.
+      if (newState.indexOf(index) === -1) {
+        newState.push(index);
+      }
 
       // Set a timer to remove the index if an execute is not called.
-      setTimeout(() => {
+      if (this.timeouts[index]) {
+        clearTimeout(this.timeouts[index]);
+      }
+
+      this.timeouts[index] = setTimeout(() => {
         this.updateLockState('timeout', index);
       }, STATE_LOCK_TIMEOUT);
     } else if (action === 'execute' || action === 'timeout') {
       let stateIndex = newState.indexOf(index);
-      // Element not found.
       if (stateIndex === -1) {
         return;
       }
+
       newState.splice(stateIndex, 1);
     }
 
