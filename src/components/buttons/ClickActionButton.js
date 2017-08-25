@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class ClickActionButton extends Component {
+class ClickActionButton extends PureComponent {
   /**
    * A button class that has a on click handler to pass back its props.
    */

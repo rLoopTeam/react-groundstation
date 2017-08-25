@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ClickActionButton from './buttons/ClickActionButton.js';
 import { STATEMACHINE_STATES, STATEMACHINE_COMMANDS } from '../shared/constants';
 
@@ -9,7 +9,7 @@ let socket = createSocket();
 // Assuming 1s latency over the 10s unlock time.
 const STATE_LOCK_TIMEOUT = 9000;
 
-class StateMachineControl extends Component {
+class StateMachineControl extends PureComponent {
   constructor (props) {
     super(props);
 
@@ -24,6 +24,11 @@ class StateMachineControl extends Component {
   }
 
   updateLockState (action, index) {
+    /**
+     * Updater function that updates the unlocked controls on the client side.
+     * We have to update states by copying the array with slice() and manipulate the copy
+     * because of the way JS treats arrays and React's comparasion logic.
+     */
     let newState = this.state.unlocked.slice();
     if (action === 'unlock') {
       newState.push(index);

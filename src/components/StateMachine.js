@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Isvg from 'react-inlinesvg';
 import StreamingPageManager from '../StreamingPageManager.js';
 import EnumStatusDisplay from './EnumStatusDisplay.js';
-import ConfirmButton from './buttons/ConfirmButton.js';
 import StateMachineControl from './StateMachineControl';
 
 import { STATEMACHINE_STATES, STATEMACHINE_STATES_INT_INDEXED, STATEMACHINE_TRANSITIONS } from '../shared/constants';
 
 import './StateMachine.scss';
 
-class StateMachine extends Component {
+class StateMachine extends PureComponent {
   constructor (props) {
     super(props);
 
@@ -19,7 +18,6 @@ class StateMachine extends Component {
       availableStates: []
     };
 
-    this.availableStates = [];
     this.dataCallback = this.dataCallback.bind(this);
   }
 
@@ -70,13 +68,6 @@ class StateMachine extends Component {
         <div className={'col-md-12 active_' + STATEMACHINE_STATES_INT_INDEXED[this.state.currentState]}>
           <Isvg src='/assets/stateDiagram.svg'/>
         </div>
-        {/* <div className='col-md-6'>
-          <h2 className='d-block margin-none'>Manual Transitions</h2>
-          <h3 className='d-block'>Available</h3>
-          <StateMachineControl availableStates={this.state.availableStates} showAvailable={true} />
-          <h3 className='d-block'>Unavailable</h3>
-          <StateMachineControl availableStates={this.state.availableStates} showAvailable={false} />
-        </div> */}
       </div>
     );
   }
