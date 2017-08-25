@@ -26,6 +26,7 @@ import AuxProp from './components/AuxProp.js';
 import Cooling from './components/Cooling.js';
 import StateMachine from './components/StateMachine.js';
 import LandingGear from './components/LandingGear.js';
+import HealthCheckFaultFlags from './components/HealthCheckFaultFlags.js';
 
 const APP_ROUTES = (
   <Route path="/" component={MainLayout}>
@@ -55,6 +56,7 @@ const APP_ROUTES = (
     <Route path="healthcheck" component={HealthCheckOverview} />
     <Route path="healthcheck/overview" component={HealthCheckOverview} viewMode="overview" />
     <Route path="healthcheck/detailed" component={HealthCheck} viewMode="detailed" />
+    <Route path="healthcheck/faultflags" component={HealthCheckFaultFlags} />
     <Route path="AuxProp" component={AuxProp} />
     <Route path="statemachine" component={StateMachine} />
     <Route path="landinggear" component={LandingGear} />

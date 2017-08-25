@@ -15,7 +15,8 @@ class MainLayout extends Component {
         location: '/healthcheck',
         children: [
           {name: 'Overview', location: '/healthcheck/overview'},
-          {name: 'Detailed', location: '/healthcheck/detailed'}
+          {name: 'Detailed', location: '/healthcheck/detailed'},
+          {name: 'Faultl Flags', location: '/healthcheck/faultflags'}
         ]
       },
       {

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import StreamingPageManager from '../StreamingPageManager.js';
-import GenericParameterInput from './GenericParameterInput.js';
 import HealthCheckDisplay from './HealthCheckDisplay.js';
-import FaultFlagDisplay from './FaultFlagDisplay.js';
 
-import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
 import nominalConditions from '../../config/nominalConditions.js';
 import createSocket from '../shared/socket';
 import './HealthCheck.css';
@@ -313,20 +309,6 @@ class HealthCheckOverview extends Component {
                 </div>
               );
             }, this)}
-          </div>
-
-          <legend>All Fault Flags</legend>
-          <div className="col-md-12">
-          {Object.keys(faultFlagDefinitions).map(function (item, index) {
-            return (
-                <div className="col-xs-2 faultbox" key={'healthfault' + index}>
-                  <label htmlFor="a0_y">{item.label}</label>
-                  <div className="health">
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
-                  </div>
-                </div>
-            );
-          }, this)}
           </div>
         </div>
       );
