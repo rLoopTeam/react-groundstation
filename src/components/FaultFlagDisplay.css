@@ -33,6 +33,11 @@
 	background-color: #f9ce80;
 }
 
+.faultarea {
+    clear: both;
+    margin-bottom: 23px;
+}
+
 @keyframes critical-flash {
     0%   {background-color: #d03535; color: white;}
     50%  {background-color: #ffffff; color: black;}

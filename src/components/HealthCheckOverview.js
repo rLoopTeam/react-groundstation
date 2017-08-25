@@ -6,6 +6,7 @@ import HealthCheckDisplay from './HealthCheckDisplay.js';
 import FaultFlagDisplay from './FaultFlagDisplay.js';
 
 import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
+import criticalFaultFlagDefinitions from '../../config/criticalFaultFlagDefinitions.js';
 import nominalConditions from '../../config/nominalConditions.js';
 import createSocket from '../shared/socket';
 import './HealthCheck.css';
@@ -19,6 +20,41 @@ class HealthCheckOverview extends Component {
 
     this.state = {
       streamManager: new StreamingPageManager()
+    };
+
+    this.criticalParameters = {
+      nominals: [
+        {paramName: 'Power A BMS Average Temp', labelName: 'Battery A avg temp (C)'},
+        {paramName: 'Power A BMS Highest Sensor Value', labelName: 'Battery A max cell temp (C)'},
+        {paramName: 'Power A BMS Pack Volts', labelName: 'Battery A pack voltage'},
+        {paramName: 'Power A BMS Highest Cell Volts', labelName: 'Battery A highest cell volts'},
+        {paramName: 'Power A BMS Lowest Cell Volts', labelName: 'Battery A lowest cell volts'},
+        {paramName: 'Power A BMS Battery Current', labelName: 'Battery A current'},
+        {paramName: 'Power B BMS Average Temp', labelName: 'Battery B avg temp (C)'},
+        {paramName: 'Power B BMS Highest Sensor Value', labelName: 'Battery B max cell temp (C)'},
+        {paramName: 'Power B BMS Pack Volts', labelName: 'Battery B pack voltage'},
+        {paramName: 'Power B BMS Highest Cell Volts', labelName: 'Battery B highest cell volts'},
+        {paramName: 'Power B BMS Lowest Cell Volts', labelName: 'Battery B lowest cell volts'},
+        {paramName: 'Power B BMS Battery Current', labelName: 'Battery B current'}
+      ],
+      groups: {
+        'Node pressure (A/B) (atm)': {
+          min: 0.7,
+          max: 1.1,
+          params: [
+            'Power A BMS Node Pressure',
+            'Power B BMS Node Pressure'
+          ]
+        },
+        'Node temp (A/B) (C)': {
+          min: 0,
+          max: 40,
+          params: [
+            'Power A BMS Node Temp',
+            'Power B BMS Node Temp'
+          ]
+        }
+      }
     };
 
     this.overviewParameters = {
@@ -257,6 +293,7 @@ class HealthCheckOverview extends Component {
       }
     };
     this.watchParams = [];
+    this.criticalParams = [];
 
     for (let param of this.overviewParameters.nominals) {
       console.log(param.paramName, this.lookupNominal(param.paramName));
@@ -278,6 +315,27 @@ class HealthCheckOverview extends Component {
         group: true
       });
     }
+
+    for (let param of this.criticalParameters.nominals) {
+      console.log(param.paramName, this.lookupNominal(param.paramName));
+      this.criticalParams.push({
+        label: param.labelName === '' ? param.paramName : param.labelName,
+        min: this.lookupNominal(param.paramName).min,
+        max: this.lookupNominal(param.paramName).max,
+        params: [param.paramName],
+        group: false
+      });
+    }
+
+    for (let groupName in this.criticalParameters.groups) {
+      this.criticalParams.push({
+        label: groupName,
+        min: this.criticalParameters.groups[groupName].min,
+        max: this.criticalParameters.groups[groupName].max,
+        params: this.criticalParameters.groups[groupName].params,
+        group: true
+      });
+    }
   }
 
   lookupNominal (param) {
@@ -291,6 +349,7 @@ class HealthCheckOverview extends Component {
   render () {
     let viewMode = this.props.route.viewMode || 'overview';
     let topcount = 0;
+    let criticalFaultFlagNames = [];
 
     if (viewMode === 'overview')
       {
@@ -315,6 +374,20 @@ class HealthCheckOverview extends Component {
             }, this)}
           </div>
 
+          <legend>Critical Fault Flags</legend>
+          <div className="col-md-12 faultarea">
+          {Object.keys(criticalFaultFlagDefinitions).map(function (item, index) {
+            criticalFaultFlagNames.push(item.label);
+            return (
+                <div className="col-xs-2 faultbox" key={'healthfault' + index}>
+                  <label htmlFor="a0_y">{item.label}</label>
+                  <div className="health">
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label={item} parameter={item} />
+                  </div>
+                </div>
+            );
+          }, this)}
+          </div>
           <legend>All Fault Flags</legend>
           <div className="col-md-12">
           {Object.keys(faultFlagDefinitions).map(function (item, index) {
@@ -334,6 +407,47 @@ class HealthCheckOverview extends Component {
     else {
       return (
         <div className="detailed-content">
+          <legend>Pod Ctitical Health</legend>
+            <div className="col-md-12">
+              {this.criticalParams.map(function (item, index) {
+                if (item.group)
+                {
+                  return (
+                    item.params.map((iitem, iindex) => {
+                      return (
+                        <div className="health d-inline-block" key={'health' + (topcount++ + iindex)}>
+                          <HealthCheckDisplay
+                            StreamingPageManager={this.state.streamManager}
+                            parameters={[iitem]}
+                            label={iitem}
+                            max={item.max}
+                            min={item.min}
+                            hideUnits='false'
+                            viewMode='detailed'
+                          />
+                        </div>
+                      );
+                    })
+                  );
+                }
+                else
+                {
+                  return (
+                    <div className="health d-inline-block" key={'health' + index}>
+                      <HealthCheckDisplay
+                            StreamingPageManager={this.state.streamManager}
+                            parameters={item.params}
+                            label={item.label}
+                            max={item.max}
+                            min={item.min}
+                            hideUnits='true'
+                            viewMode={viewMode}
+                        />
+                    </div>
+                  );
+                }
+              }, this)}
+            </div>
         <legend>Pod Health</legend>
         <div className="col-md-12">
           {this.watchParams.map(function (item, index) {
