@@ -10,12 +10,7 @@ $state_button_color: #4CAF50;
 $state_button_width: 95px;
 $state_button_count: 6;
 
-// Internal variables
-// TODO: Calculate these variables from what is given above later.
-$_state_block_width: 222px;
-$_state_current_state_width: 305.6px;
-// current_state width + button widths + margin/pad width
-$_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_button_count) + ($state_button_count * 20);
+$state_machine_states: 'UNKNOWN_STATE', 'NO_COMMAND', 'IDLE', 'TEST_MODE', 'DRIVE', 'ARMED_WAIT', 'FLIGHT_PREP', 'READY', 'ACCEL', 'COAST_INTERLOCK', 'BRAKE', 'SPINDOWN';
 
 .stateStatus {
     background-color: $color_state_panel;
@@ -24,7 +19,7 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
     text-align: center;
     z-index: 1;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: space-around;
     align-items: center;
 }
@@ -40,32 +35,29 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
     }
 
     &.currentState {
+        width: 100%;
         font-size: 32px;
         flex: 0 1 10%;
         background-color: $color_current_state;
         height: 100%;
-        padding: 32px 15px;
+        padding: 10px;
     }
 
     div.unavailable,
     div.available button.unavailable {
         opacity: 0.25;
     }
-
-    div:nth-child(1) {
-        border-left: 1px solid $border_color;
-    }
     
     div {
-        margin-right: 10px;
-        border-right: 1px solid $border_color;
         padding: 10px;
         transition: all 0.25s ease-in-out;
+        border: 1px solid $border_color;
+        margin: 10px 15px;
     }
 
     legend {
         border-bottom: none;
-        padding-bottom: 10px;
+        margin-bottom: 5px!important;
         color: $text_color;
     }
 }
@@ -93,39 +85,10 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
     100% {fill: #b536da;}
 }
 
-.active_UNKNOWN_STATE .STATE_UNKNOWN_STATE,
-.active_NO_COMMAND .STATE_NO_COMMAND,
-.active_IDLE .STATE_IDLE,
-.active_TEST_MODE .STATE_TEST_MODE,
-.active_DRIVE .STATE_DRIVE,
-.active_ARMED_WAIT .STATE_ARMED_WAIT,
-.active_FLIGHT_PREP .STATE_FLIGHT_PREP,
-.active_READY .STATE_READY,
-.active_ACCEL .STATE_ACCEL,
-.active_COAST_INTERLOCK .STATE_COAST_INTERLOCK,
-.active_BRAKE .STATE_BRAKE,
-.active_SPINDOWN .STATE_SPINDOWN {
-	animation-name: state-active-flash;
-    animation-duration: 2.5s;
-    animation-iteration-count: infinite;
-}
-
-@media only screen and (max-width: $_bar_wrap_width) {
-    .stateStatus {
-        flex-flow: column;
-    }
-
-    .stateBlock.currentState {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .stateBlock div {
-        border: 1px solid $border_color;
-        margin: 5px;
-    }
-
-    .stateBlock .float-left {
-        float: none;
+@each $_state in $state_machine_states {
+    .active_#{$_state} .STATE_#{$_state} {
+        animation-name: state-active-flash;
+        animation-duration: 2.5s;
+        animation-iteration-count: infinite;
     }
 }

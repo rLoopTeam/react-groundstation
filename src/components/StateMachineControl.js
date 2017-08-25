@@ -103,7 +103,7 @@ class StateMachineControl extends PureComponent {
 
     let cleanName = item.replace('_', ' ').toUpperCase();
     return (
-      <div className={'d-inline-block float-left ' + extraClasses.join(' ')} key={'SwitchGroup_' + item}>
+      <div className={'d-inline-block ' + extraClasses.join(' ')} key={'SwitchGroup_' + item}>
         <legend>{cleanName}</legend>
         <ClickActionButton className='btn btn-state ' index={index} action={this.doUnlock}>Set</ClickActionButton>
         <ClickActionButton className={'btn btn-state ' + goButtonClasses.join(' ')} index={index} action={this.doExecute} disabled={disableGo}>Go</ClickActionButton>
