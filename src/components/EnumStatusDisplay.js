@@ -19,8 +19,10 @@ class EnumStatusDisplay extends GenericParameterDisplay {
     if (typeof value === 'undefined') {
       extraInfo = 'Unknown Enum Value - ';
       value = this.state.value;
-    } else if (this.state.stale) {
+    } else if (this.props.showStale && this.state.stale) {
       color = 'red';
+    } else if (this.props.color) {
+      color = this.props.color || 'inherit';
     } else if (this.props.colorMap) {
       color = this.props.colorMap[this.state.value] || 'inherit';
     }

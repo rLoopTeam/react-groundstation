@@ -4397,22 +4397,37 @@
                     "Name": "Node Temp"
                 },
                 {
-                    "type": "float32",
                     "units": "Amps",
+                    "type": "float32",
                     "size": 4,
                     "Name": "Battery Current"
                 },
                 {
-                    "type": "float32",
                     "units": "Amps",
+                    "type": "float32",
                     "size": 4,
                     "Name": "Charging Current"
                 },
                 {
-                    "type": "float32",
                     "units": "%",
+                    "type": "float32",
                     "size": 4,
                     "Name": "State of Charge"
+                }
+            ]
+        },
+        {
+            "Name": "Power B Current Sensor",
+            "PacketType": 14337,
+            "Node": "Power Node B",
+            "DAQ": false,
+            "ParameterPrefix": "Power B Charger ",
+            "Parameters": [
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Current"
                 }
             ]
         },
@@ -5640,22 +5655,37 @@
                     "Name": "Node Temp"
                 },
                 {
-                    "type": "float32",
                     "units": "Amps",
+                    "type": "float32",
                     "size": 4,
                     "Name": "Battery Current"
                 },
                 {
-                    "type": "float32",
                     "units": "Amps",
+                    "type": "float32",
                     "size": 4,
                     "Name": "Charging Current"
                 },
                 {
-                    "type": "float32",
                     "units": "%",
+                    "type": "float32",
                     "size": 4,
                     "Name": "State of Charge"
+                }
+            ]
+        },
+        {
+            "Name": "Power A Current Sensor",
+            "PacketType": 14337,
+            "Node": "Power Node A",
+            "DAQ": false,
+            "ParameterPrefix": "Power A Charger ",
+            "Parameters": [
+                {
+                    "type": "float32",
+                    "units": "",
+                    "size": 4,
+                    "Name": "Current"
                 }
             ]
         },
