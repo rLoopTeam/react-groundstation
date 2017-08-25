@@ -200,12 +200,20 @@ class HealthCheckOverview extends Component {
             'Brake MLP 2 Current'
           ]
         },
-        'Brake 1/2 Limit Switches': {
+        'Brake 1 Limit Switches': {
           min: 1,
           max: 2,
           params: [
-            'Brake SW Error 1',
-            'Brake SW Error 2'
+            'Limit Extend 1',
+            'Limit Retract 1'
+          ]
+        },
+        'Brake 2 Limit Switches': {
+          min: 1,
+          max: 2,
+          params: [
+            'Limit Extend 2',
+            'Limit Retract 2'
           ]
         },
         'LGU Limit Switches': {
