@@ -66,7 +66,7 @@ class FaultFlagDisplay extends GenericParameterDisplay {
     * Callback
     */
     function renderRow (_, i) {
-      var result;
+      var result = (<tr key={'fault_flag_' + i} className='critical'><td>{i}</td><td>unknown</td></tr>);
       if (self.template[i] !== undefined && self.template[i].severity) {
         const isTriggered = (value[i] === '1');
         const severityClass = (isTriggered) ? self.severityClassMap[self.template[i].severity] : '';

@@ -88,7 +88,7 @@ class HealthCheckDisplay extends GenericParameterDisplay {
     let detailedElements = [];
 
     if (this.isDangerous()) {
-      className += ' danger-row';
+      className += ' warning-row';
     } else if (this.isUnknown()) {
       className += ' noData-row';
     } else {
