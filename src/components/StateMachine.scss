@@ -1,10 +1,11 @@
 // User variables
 
-$color_current_state: #0f68c9;
-$color_state_panel: #424242;
+$color_current_state: #004FA5;
+$color_state_panel: #1976d2;
 $text_color: #FFF;
-$border_color: #FFF;
+$border_color: #EEE;
 
+$state_button_color: #4CAF50;
 $state_button_width: 95px;
 $state_button_count: 6;
 
@@ -29,6 +30,7 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
 
 .stateBlock {
     & {
+        transition: all 1s ease-in-out;
         text-transform: capitalize;
         flex: 1;
     }
@@ -42,11 +44,12 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
         flex: 0 1 10%;
         background-color: $color_current_state;
         height: 100%;
-        padding: 28px 15px;
+        padding: 32px 15px;
     }
 
-    .unavailable {
-        opacity: 0.5;
+    div.unavailable,
+    div.available button.unavailable {
+        opacity: 0.25;
     }
 
     div:nth-child(1) {
@@ -61,19 +64,23 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
 
     legend {
         border-bottom: none;
+        padding-bottom: 10px;
         color: $text_color;
     }
 }
 
 .btn-state {
-    background-color: transparent;
-    border: 1px solid $border_color;
+    background-color: $state_button_color;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     margin-right: 5px;
     border-radius: 0;
-    padding: 15px;
+    padding: 10px;
     width: $state_button_width;
+    font-size: 2rem;
+    transition: all 0.25s ease;
 
-    &:hover {
+    &:hover,
+    &:focus {
         color: $text_color;
     }
 }
