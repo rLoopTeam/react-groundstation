@@ -7,7 +7,7 @@ import StateMachineControl from './StateMachineControl';
 
 import { STATEMACHINE_STATES, STATEMACHINE_STATES_INT_INDEXED, STATEMACHINE_TRANSITIONS } from '../shared/constants';
 
-import './StateMachine.css';
+import './StateMachine.scss';
 
 class StateMachine extends Component {
   constructor (props) {
