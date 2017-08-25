@@ -497,6 +497,10 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
         podCommands.GS_Heartbeat();
       },
 
+      'Pwr_Heartbeat': () => {
+        podCommands.Pwr_Heartbeat();
+      },
+
       // IPS
       'IPS:ChargeV': (data) => {
         podCommands.setChargerV(data);

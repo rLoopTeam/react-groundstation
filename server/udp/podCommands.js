@@ -13,6 +13,11 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x0400, 0x0, 0x0, 0x0, 0x0);
   }
 
+  function Pwr_Heartbeat () {
+    udp.tx.transmitPodCommand('Power Node A', 0x3FFF, 0x1234ABCD, 0x0, 0x0, 0x0);
+    udp.tx.transmitPodCommand('Power Node B', 0x3FFF, 0x1234ABCD, 0x0, 0x0, 0x0);
+  }
+
   function LGU_PositionChange (liftName, liftDirection) {
     console.log('Name:' + liftName + ' Direction:' + liftDirection);
     // udp.tx.transmitPodCommand('????', 0x0000, 0x000000, 0x0, 0x0, 0x0) //TODO
@@ -528,6 +533,7 @@ module.exports = function (udp) {
 
   return {
     GS_Heartbeat,
+    Pwr_Heartbeat,
 
     LGU_PositionChange,
     LGU_SpeedChange,

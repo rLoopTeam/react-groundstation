@@ -41,13 +41,11 @@ class StatsModal extends Component {
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 1 Fault Flags" parameter='LaserOpto 1 Fault Flags' />
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 2 Fault Flags" parameter='LaserOpto 2 Fault Flags' />
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 3 Fault Flags" parameter='LaserOpto 3 Fault Flags' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 4 Fault Flags" parameter='LaserOpto 4 Fault Flags' />
                   </div>
                   <div className="col-md-4">
+                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 4 Fault Flags" parameter='LaserOpto 4 Fault Flags' />
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 5 Fault Flags" parameter='LaserOpto 5 Fault Flags' />
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 6 Fault Flags" parameter='LaserOpto 6 Fault Flags' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 7 Fault Flags" parameter='LaserOpto 7 Fault Flags' />
-                    <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="LaserOpto 8 Fault Flags" parameter='LaserOpto 8 Fault Flags' />
                   </div>
                   <div className="col-md-12">
                     <FaultFlagDisplay StreamingPageManager={this.state.streamManager} label="ForwardLaser Fault Flags" parameter='ForwardLaser Fault Flags' />
