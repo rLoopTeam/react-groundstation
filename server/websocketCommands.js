@@ -493,11 +493,11 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
         config.writeCommConfig(data);
       },
 
-      'GS_Heartbeat': () => {
+      'Heartbeat:GS': () => {
         podCommands.GS_Heartbeat();
       },
 
-      'Pwr_Heartbeat': () => {
+      'Heartbeat:Power': () => {
         podCommands.Pwr_Heartbeat();
       },
 
