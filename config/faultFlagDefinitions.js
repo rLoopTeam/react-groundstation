@@ -18,29 +18,36 @@ module.exports = {
       // ... and so on for the rest of the bits
     ]
   },
+
+  /*
+  * LCCM655 Accel
+  */
   'Accel 1 Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'MMA Init Fault', 'severity': 'critical'}
+      {'name': 'Sensor Index Not Found Fault', 'severity': 'critical'},
+      {'name': 'Device Not Working Fault', 'severity': 'critical'},
+      {'name': 'Status Register Read Fail Fault', 'severity': 'critical'},
+      {'name': 'Interrupt Lost Fault', 'severity': 'critical'},
+      {'name': 'Unable To Calibrate Fault', 'severity': 'critical'},
+      {'name': 'Reset Calibration Data Fault', 'severity': 'critical'},
+      {'name': 'Cal Dara CRC Fault', 'severity': 'critical'},
+      {'name': 'Calibration In Progress Fault', 'severity': 'critical'}
     ]
   },
   'Accel 2 Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'MMA Init Fault', 'severity': 'critical'}
-    ]
-  },
-
-  /*
-  * LCCM655 Accel
-  */
-  'LCCM655 Accel Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'MMA Init Fault', 'severity': 'critical'}
+      {'name': 'Sensor Index Not Found Fault', 'severity': 'critical'},
+      {'name': 'Device Not Working Fault', 'severity': 'critical'},
+      {'name': 'Status Register Read Fail Fault', 'severity': 'critical'},
+      {'name': 'Interrupt Lost Fault', 'severity': 'critical'},
+      {'name': 'Unable To Calibrate Fault', 'severity': 'critical'},
+      {'name': 'Reset Calibration Data Fault', 'severity': 'critical'},
+      {'name': 'Cal Dara CRC Fault', 'severity': 'critical'},
+      {'name': 'Calibration In Progress Fault', 'severity': 'critical'}
     ]
   },
 
@@ -146,28 +153,6 @@ module.exports = {
       {'name': 'Laser Out of Range', 'severity': 'critical'}
     ]
   },
-  'LaserOpto 7 Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'Transceiver Failure', 'severity': 'critical'},
-      {'name': 'Byte Timeout', 'severity': 'critical'},
-      {'name': 'Packet Timeout', 'severity': 'critical'},
-      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
-      {'name': 'Laser Out of Range', 'severity': 'critical'}
-    ]
-  },
-  'LaserOpto 8 Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'Transceiver Failure', 'severity': 'critical'},
-      {'name': 'Byte Timeout', 'severity': 'critical'},
-      {'name': 'Packet Timeout', 'severity': 'critical'},
-      {'name': 'Packet Byte 1 Counter High', 'severity': 'critical'},
-      {'name': 'Laser Out of Range', 'severity': 'critical'}
-    ]
-  },
 
   /*
   *  Forward Laser Distance Sensor
@@ -215,45 +200,6 @@ module.exports = {
       {'name': 'MLP Range Limit High Fault', 'severity': 'critical'},
       {'name': 'Calibration Data Reload Fault', 'severity': 'critical'},
       {'name': 'Development Mode Enable Fault', 'severity': 'critical'}
-    ]
-  },
-
-  /*
-  * MCP23S17
-  */
-  'MCP23S17 Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
-    ]
-  },
-
-  /*
-  * ATA6870
-  */
-  'ATA6870 Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
-    ]
-  },
-
-  /*
-  * MMA8541
-  */
-  'MMA8541 Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'Sensor Index Not Found Fault', 'severity': 'critical'},
-      {'name': 'Device Not Working Fault', 'severity': 'critical'},
-      {'name': 'Status Register Read Fail Fault', 'severity': 'critical'},
-      {'name': 'Interrupt Lost Fault', 'severity': 'critical'},
-      {'name': 'Unable To Calibrate Fault', 'severity': 'critical'},
-      {'name': 'Reset Calibration Data Fault', 'severity': 'critical'},
-      {'name': 'Cal Dara CRC Fault', 'severity': 'critical'},
-      {'name': 'Calibration In Progress Fault', 'severity': 'critical'}
-
     ]
   },
 
@@ -357,7 +303,6 @@ module.exports = {
       {'name': 'Error Not Available Fault', 'severity': 'critical'},
       {'name': 'Generic Fail', 'severity': 'critical'},
       {'name': 'ECC Buffer Length Fault', 'severity': 'critical'}
-
     ]
   },
 
@@ -487,52 +432,47 @@ module.exports = {
     ]
   },
 
-  /*
-  * FCU - Flight control unit
-  */
-  'FCU Core Fault Flags': {
-    'smallEndian': true,
-    'template': [
-      {'name': 'General Fault', 'severity': 'critical'},
-      {'name': 'Guarding Fault', 'severity': 'critical'}
-    ]
-  },
-
   // Flight Control - Laser Contrast 0"
   'LaserContrast0 System Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'},
+      {'name': 'Timing list exceeded', 'severity': 'critical'}
     ]
   },
   'LaserContrast0 Laser Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
   'LaserContrast1 System Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'},
+      {'name': 'Timing list exceeded', 'severity': 'critical'}
     ]
   },
   'LaserContrast1 Laser Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
   'LaserContrast2 System Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Guarding Fault', 'severity': 'critical'},
+      {'name': 'Timing list exceeded', 'severity': 'critical'}
     ]
   },
   'LaserContrast2 Laser Fault Flags': {
     'smallEndian': true,
     'template': [
-      {'name': 'Guarding Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
 
@@ -545,7 +485,7 @@ module.exports = {
   },
 
   // All Fault Flags
-  'All Fault Flags': {
+  'All Flags': {
     'smallEndian': true,
     'template': [
       {'name': 'Accel Subsystem Fault', 'severity': 'critical'},
@@ -571,49 +511,49 @@ module.exports = {
       {'name': 'Guarding Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 1 Controller Fault': {
+  'ASI 1 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 2 Controller Fault': {
+  'ASI 2 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 3 Controller Fault': {
+  'ASI 3 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 4 Controller Fault': {
+  'ASI 4 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 5 Controller Fault': {
+  'ASI 5 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 6 Controller Fault': {
+  'ASI 6 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 7 Controller Fault': {
+  'ASI 7 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
     ]
   },
-  'ASI Fault 8 Controller Fault': {
+  'ASI 8 Controller Fault': {
     'smallEndian': true,
     'template': [
       {'name': 'General Fault', 'severity': 'critical'}
@@ -682,19 +622,28 @@ module.exports = {
   'Power A BMS Device Faults 1': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Undervoltage Fault', 'severity': 'critical'},
+      {'name': 'Overvoltage Fault', 'severity': 'critical'},
+      {'name': 'No voltage updates', 'severity': 'critical'}
     ]
   },
   'Power A BMS Device Faults 2': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Undervoltage Fault', 'severity': 'critical'},
+      {'name': 'Overvoltage Fault', 'severity': 'critical'},
+      {'name': 'No voltage updates', 'severity': 'critical'}
     ]
   },
   'Power A BMS Device Faults 3': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Undervoltage Fault', 'severity': 'critical'},
+      {'name': 'Overvoltage Fault', 'severity': 'critical'},
+      {'name': 'No voltage updates', 'severity': 'critical'}
     ]
   },
   'Power B BMS Faults': {
@@ -707,19 +656,28 @@ module.exports = {
   'Power B BMS Device Faults 1': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Undervoltage Fault', 'severity': 'critical'},
+      {'name': 'Overvoltage Fault', 'severity': 'critical'},
+      {'name': 'No voltage updates', 'severity': 'critical'}
     ]
   },
   'Power B BMS Device Faults 2': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Undervoltage Fault', 'severity': 'critical'},
+      {'name': 'Overvoltage Fault', 'severity': 'critical'},
+      {'name': 'No voltage updates', 'severity': 'critical'}
     ]
   },
   'Power B BMS Device Faults 3': {
     'smallEndian': true,
     'template': [
-      {'name': 'General Fault', 'severity': 'critical'}
+      {'name': 'General Fault', 'severity': 'critical'},
+      {'name': 'Undervoltage Fault', 'severity': 'critical'},
+      {'name': 'Overvoltage Fault', 'severity': 'critical'},
+      {'name': 'No voltage updates', 'severity': 'critical'}
     ]
   },
   // LGU

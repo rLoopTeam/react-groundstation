@@ -3908,16 +3908,52 @@
                     "Name": "Index"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint8",
                     "units": "",
-                    "size": 2,
-                    "Name": "Hi"
+                    "size": 1,
+                    "Name": "1"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint8",
                     "units": "",
-                    "size": 2,
-                    "Name": "Lo"
+                    "size": 1,
+                    "Name": "2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "3"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "4"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "5"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "6"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "7"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "8"
                 }
             ]
         },
@@ -4359,6 +4395,24 @@
                     "units": "",
                     "size": 4,
                     "Name": "Node Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Battery Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Charging Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "%",
+                    "size": 4,
+                    "Name": "State of Charge"
                 }
             ]
         },
@@ -5097,16 +5151,52 @@
                     "Name": "Index"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint8",
                     "units": "",
-                    "size": 2,
-                    "Name": "Hi"
+                    "size": 1,
+                    "Name": "1"
                 },
                 {
-                    "type": "uint16",
+                    "type": "uint8",
                     "units": "",
-                    "size": 2,
-                    "Name": "Lo"
+                    "size": 1,
+                    "Name": "2"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "3"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "4"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "5"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "6"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "7"
+                },
+                {
+                    "type": "uint8",
+                    "units": "",
+                    "size": 1,
+                    "Name": "8"
                 }
             ]
         },
@@ -5548,6 +5638,24 @@
                     "units": "",
                     "size": 4,
                     "Name": "Node Temp"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Battery Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "Amps",
+                    "size": 4,
+                    "Name": "Charging Current"
+                },
+                {
+                    "type": "float32",
+                    "units": "%",
+                    "size": 4,
+                    "Name": "State of Charge"
                 }
             ]
         },
@@ -5620,7 +5728,7 @@
         {
             "Name": "ASI Data",
             "PacketType": 5889,
-            "Node": "ASI Monitor System",
+            "Node": "Flight Control",
             "DAQ": false,
             "ParameterPrefix": "ASI ",
             "Parameters": [
@@ -5675,10 +5783,16 @@
                 },
                 {
                     "type": "float32",
-                    "endLoop": true,
                     "units": "",
                     "size": 4,
                     "Name": "Throttle Voltage"
+                },
+                {
+                    "type": "float32",
+                    "endLoop": true,
+                    "units": "",
+                    "size": 4,
+                    "Name": "Command Voltage"
                 }
             ]
         },

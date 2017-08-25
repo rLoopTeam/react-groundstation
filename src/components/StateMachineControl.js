@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ConfirmButton from './buttons/ConfirmButton.js';
-import { STATEMACHINE_STATES } from '../shared/constants';
+import { STATEMACHINE_STATES, STATEMACHINE_COMMANDS } from '../shared/constants';
 
 import createSocket from '../shared/socket';
 
@@ -21,9 +21,9 @@ class StateMachineControl extends Component {
 
   render () {
     return (<div>
-      {Object.keys(STATEMACHINE_STATES).map(function (item, index) {
-        // Excludes UNKNOWN_STATE and NO_COMMAND from transitions.
-        if (index < 2) {
+      {STATEMACHINE_COMMANDS.map(function (item, index) {
+        // Excludes NO_COMMAND from transitions.
+        if (index < 1) {
           return;
         } else if (this.props.showAvailable && this.props.availableStates.indexOf(item) === -1) {
           return;
@@ -32,11 +32,10 @@ class StateMachineControl extends Component {
         }
 
         let cleanName = item.replace('_', ' ').toLowerCase();
-        let stateIndex = STATEMACHINE_STATES[item];
         return (
           <div className='form-group stateswitches' key={'SwitchGroup_' + item}>
-            <ConfirmButton delay={2000} className="btn btn-warning" action={this.doPodCommand.bind(this, 'unlock', stateIndex)}>Unlock - {cleanName}</ConfirmButton>
-            <ConfirmButton delay={2000} className="btn btn-danger" action={this.doPodCommand.bind(this, 'execute', stateIndex)}>Execute - {cleanName}</ConfirmButton>
+            <ConfirmButton delay={2000} className="btn btn-warning" action={this.doPodCommand.bind(this, 'unlock', index)}>Unlock - {cleanName}</ConfirmButton>
+            <ConfirmButton delay={2000} className="btn btn-danger" action={this.doPodCommand.bind(this, 'execute', index)}>Execute - {cleanName}</ConfirmButton>
           </div>
         );
       }, this)}

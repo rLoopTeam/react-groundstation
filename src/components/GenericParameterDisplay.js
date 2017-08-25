@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class GenericParameterDisplay extends Component {
   /*
@@ -33,7 +34,7 @@ class GenericParameterDisplay extends Component {
 
   dataCallback (parameterData) {
     if (this._isMounted) {
-      if (isNaN(parameterData.Value)) { this.setState({value: parameterData.Value, stale: parameterData.IsStale, units: parameterData.Units}); } else { this.setState({value: Number(parameterData.Value).toFixed(2), stale: parameterData.IsStale, units: parameterData.Units}); }
+      if (isNaN(parameterData.Value)) { this.setState({value: parameterData.Value, stale: parameterData.IsStale, units: parameterData.Units}); } else { this.setState({value: Number(parameterData.Value).toFixed(4), stale: parameterData.IsStale, units: parameterData.Units}); }
     }
   }
 
@@ -75,9 +76,9 @@ class GenericParameterDisplay extends Component {
 }
 
 GenericParameterDisplay.propTypes = {
-  hideUnits: React.PropTypes.oneOf(['true']),
-  hex: React.PropTypes.oneOf(['true']),
-  hexType: React.PropTypes.oneOf([8, 16, 32, 64])
+  hideUnits: PropTypes.oneOf(['true']),
+  hex: PropTypes.oneOf(['true']),
+  hexType: PropTypes.oneOf([8, 16, 32, 64])
 };
 
 export default GenericParameterDisplay;

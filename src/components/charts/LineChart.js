@@ -1,5 +1,6 @@
 // first of course react!
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactHighcharts from 'react-highcharts';
 import GenericParameterDisplay from '../GenericParameterDisplay.js';
 
@@ -140,12 +141,12 @@ class LineChart extends GenericParameterDisplay {
 }
 
 LineChart.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
-  xAxisLabel: React.PropTypes.string.isRequired,
-  yAxisLabel: React.PropTypes.string.isRequired,
-  parameters: React.PropTypes.array.isRequired,
-  totalPoints: React.PropTypes.number.isRequired,
-  updateRate: React.PropTypes.number
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  xAxisLabel: PropTypes.string.isRequired,
+  yAxisLabel: PropTypes.string.isRequired,
+  parameters: PropTypes.array.isRequired,
+  totalPoints: PropTypes.number.isRequired,
+  updateRate: PropTypes.number
 };
 export default LineChart;

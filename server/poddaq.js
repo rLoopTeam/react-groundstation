@@ -1,5 +1,5 @@
 var fs = require('fs');
-var writefile = fs.createWriteStream('logs/poddaq.csv');
+var writefile = fs.createWriteStream('logs/poddaq.csv', {'flags': 'a'});
 class PodDAQ {
   constructor (packetStats) {
     this.isLogging = false;

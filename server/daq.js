@@ -1,5 +1,6 @@
 var fs = require('fs');
-var outfile = fs.createWriteStream('logs/output.csv');
+var outfile = fs.createWriteStream('logs/output.csv', {'flags': 'a'});
+var d = new Date();
 
 class DAQ {
   constructor (packetStats) {
@@ -11,13 +12,13 @@ class DAQ {
   gotNewPacket (packet) {
     if (this.isLogging === false) { return; }
 
-    // just no need for this
-    var toWrite = packet.rxTime + ', ';
-    toWrite = packet.packetName + ',';
+    var toWrite = packet.packetName + ',' +  packet.rxTime + ', ';
     for (var i = 0; i < packet.parameters.length - 1; i++) {
       toWrite = toWrite + packet.parameters[i].value + ',';
     }
 
+	toWrite += "\n";
+	
     outfile.write(toWrite);
 
     this.packetStats.loggedPacketType(packet.packetType);
