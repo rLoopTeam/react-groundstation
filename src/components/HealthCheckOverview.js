@@ -244,14 +244,14 @@ class HealthCheckOverview extends Component {
           min: 5,
           max: 75,
           params: [
-            ''
+            'Brake stepper temp'
           ]
         },
         'Brake air gap (mm)': {
           min: 2.5,
           max: 25,
           params: [
-            ''
+            'Brake air gap'
           ]
         }
       }
