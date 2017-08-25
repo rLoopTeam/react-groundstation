@@ -30,7 +30,6 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
 
 .stateBlock {
     & {
-        transition: all 1s ease-in-out;
         text-transform: capitalize;
         flex: 1;
     }
@@ -60,6 +59,7 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
         margin-right: 10px;
         border-right: 1px solid $border_color;
         padding: 10px;
+        transition: all 1s ease-in-out;
     }
 
     legend {
