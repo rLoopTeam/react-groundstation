@@ -58,8 +58,8 @@ class HealthCheckDisplay extends GenericParameterDisplay {
   isDangerous () {
     for (let valueIndex in this.packetValues) {
       let value = this.packetValues[valueIndex];
-      if (value === '?') {
-        return true;
+      if (value === '?' || value === 'No data') {
+        return false;
       } else if (Number(value) > this.props.max) {
         console.debug('overmax', this.props.label, value);
         return true;
@@ -72,12 +72,25 @@ class HealthCheckDisplay extends GenericParameterDisplay {
     return false;
   }
 
+  isUnknown () {
+    for (let valueIndex in this.packetValues) {
+      let value = this.packetValues[valueIndex];
+      if (value === '?' || value === 'No data') {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   render () {
     let className = 'health data';
     let detailedElements = [];
 
     if (this.isDangerous()) {
-      className += ' danger-row';
+      className += ' warning-row';
+    } else if (this.isUnknown()) {
+      className += ' noData-row';
     } else {
       className += ' nominal-row';
     }

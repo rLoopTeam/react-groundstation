@@ -51,7 +51,7 @@ class GenericParameterDisplay extends Component {
     if (this.props.hex === 'true') {
       formattedValue = Number(this.state.value).toString(16);
       if (formattedValue === 'NaN') {
-        return '?';
+        return 'No data';
       }
 
       if (this.props.hexType !== null && this.props.hexType !== undefined) {
