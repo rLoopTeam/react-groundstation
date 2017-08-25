@@ -19,10 +19,6 @@ class MainLayout extends Component {
         ]
       },
       {
-        name: 'Cooling',
-        location: '/cooling'
-      },
-      {
         name: 'Power A',
         location: '/powerA',
         children: [
@@ -38,6 +34,10 @@ class MainLayout extends Component {
           {name: 'Raw Temperatures', location: '/powerBRawTemps'},
           {name: 'Cooling', location: '/powerBCooling'}
         ]
+      },
+      {
+        name: 'Cooling',
+        location: '/cooling'
       },
       {
         name: 'DAQ', location: '/DAQ'
@@ -57,13 +57,16 @@ class MainLayout extends Component {
         ]
       },
       {
+        name: 'State Machine',
+        location: '/statemachine'
+      },
+      {
         name: 'Extras',
         location: '/extras',
         children: [
           {name: 'Auto Sequence', location: '/autoSequence'},
           {name: 'Functional Test', location: '/functionalTest'},
-          {name: 'Xilinx Sim', location: '/xilinxsim'},
-          {name: 'State Machine', location: '/statemachine'}
+          {name: 'Xilinx Sim', location: '/xilinxsim'}
         ]
       },
       {
