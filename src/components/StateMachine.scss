@@ -5,6 +5,7 @@ $color_state_panel: #1976d2;
 $text_color: #FFF;
 $border_color: #EEE;
 
+$state_button_focus_color: #43A047;
 $state_button_color: #4CAF50;
 $state_button_width: 95px;
 $state_button_count: 6;
@@ -81,6 +82,7 @@ $_bar_wrap_width: $_state_current_state_width + ($_state_block_width * $state_bu
 
     &:hover,
     &:focus {
+        background-color: $state_button_focus_color;
         color: $text_color;
     }
 }
