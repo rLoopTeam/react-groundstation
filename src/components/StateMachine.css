@@ -1,19 +1,64 @@
-.stateswitches button {
-    margin-right: 5px;
-    text-transform: capitalize;
-}
-
 .stateStatus {
-    position: fixed;
-    background-color: #424242;
+    /* background-color: #424242; */
+    background-color: #DFDFDF;
     color: #FFF;
-    top: 50px;
-    left: 0;
     width: 100%;
-    padding: 10px 25px;
-    font-family: 'Courier New';
     text-align: center;
     z-index: 1;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #333333;
+}
+
+.stateBlock.currentState {
+    font-size: 32px;
+    flex: 0 1 10%;
+}
+
+.stateBlock {
+    /* text-transform: capitalize; */
+    text-transform: uppercase;
+    flex: 1;
+}
+
+
+.stateBlock div {
+    border: 1px solid green;
+}
+/*
+.stateBlock div:nth-child(1) {
+    border-left: 1px solid #FFF;
+    border: 1px solid red;
+}
+*/
+
+
+.stateBlock div {
+    /*margin-right: 10px; */
+    /* border-right: 1px solid #FFF; */
+    border: 1px solid #B0B0B0;
+    padding: 10px;
+}
+
+.stateBlock:empty {
+    display: none;
+}
+
+.stateBlock legend {
+    border-bottom: none;
+    color: #333333;
+    font-size: 20pt;
+}
+
+.btn-state {
+    background-color: transparent;
+    border: 1px solid white;
+    margin-right: 5px;
+    border-radius: 0;
+    padding: 10px;
+    width: 92px;
 }
 
 @keyframes state-active-flash {
@@ -37,4 +82,27 @@
 	animation-name: state-active-flash;
     animation-duration: 2.5s;
     animation-iteration-count: infinite;
+}
+
+@media only screen and (max-width: 1600px) {
+    .stateStatus {
+        flex-flow: column;
+    }
+
+    .stateBlock.currentState {
+        width: 100%;
+    }
+
+    .stateBlock div {
+        border: 1px solid white;
+        margin: 5px;
+    }
+}
+
+.sm-button {
+    font-size: 20px;
+    margin: 10px;
+    background-color: green;
+    width: 50pt;
+    height: 35pt;
 }
