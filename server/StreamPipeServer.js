@@ -60,6 +60,10 @@ class StreamPipeServer {
             parameters: []
           };
 
+          if (self.requestedParams === undefined) {
+            return;
+          }
+
           for (var i = 0, len = self.requestedParams[clientID].length; i < len; i++) {
             let paramName = self.requestedParams[clientID][i];
             let paramData = rtDataStore.retrieveDataParameter(paramName);

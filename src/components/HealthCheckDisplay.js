@@ -43,7 +43,9 @@ class HealthCheckDisplay extends GenericParameterDisplay {
         return;
       }
 
-      if (isNaN(parameterData.Value)) {
+      if (parameterData.IsStale) {
+        this.packetValues[parameterData.Name] = NaN;
+      } else if (isNaN(parameterData.Value)) {
         this.packetValues[parameterData.Name] = parameterData.Value;
       } else {
         this.packetValues[parameterData.Name] = Number(
@@ -75,7 +77,7 @@ class HealthCheckDisplay extends GenericParameterDisplay {
   isUnknown () {
     for (let valueIndex in this.packetValues) {
       let value = this.packetValues[valueIndex];
-      if (value === '?' || value === 'No data') {
+      if (value === '?' || value === 'No data' || isNaN(value)) {
         return true;
       }
     }

@@ -45,6 +45,7 @@ module.exports = {
     // TODO Sequence counters
    
     // Find the IP and port for the node we're transmitting to
+    /*
     var found = false;
     var port = 0;
     var ip = '';
@@ -96,6 +97,7 @@ module.exports = {
         client2.close();
       });
     }
+    */
   }
 };
 
