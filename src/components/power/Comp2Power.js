@@ -27,6 +27,17 @@ class Power_Overview extends Component {
       {label: 'Highest Sensor Index', value: `Power ${props.route.L} BMS Highest Sensor Index`},
       {label: 'Pack Current', value: `Power ${props.route.L} BMS Battery Current`},
       {label: 'Charge Current', value: `Power ${props.route.L} BMS Charging Current`},
+      {label: 'State of Charge', value: `Power ${props.route.L} BMS State of Charge`}
+    ];
+
+    this.labels2 = [
+      {label: 'Pack Volts', value: `Power ${props.route.L} BMS Pack Volts`},
+      {label: 'Highest Cell Volts', value: `Power ${props.route.L} BMS Highest Cell Volts`},
+      {label: 'Lowest Cell Volts', value: `Power ${props.route.L} BMS Lowest Cell Volts`},
+      {label: 'Node Temp', value: `Power ${props.route.L} BMS Node Temp`},
+      {label: 'Voltage Updates', value: `Power ${props.route.L} BMS Voltage Updates`},
+      {label: 'Temp Scan Count', value: `Power ${props.route.L} BMS Temp Scan Count`},
+      {label: 'Latch Relay', value: `Power ${props.route.L} BMS Latch Relay`}
     ];
 
     this.cellIndexes = [...(new Array(18)).keys()];
