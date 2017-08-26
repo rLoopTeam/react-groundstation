@@ -26,6 +26,7 @@ import AuxProp from './components/AuxProp.js';
 import Cooling from './components/Cooling.js';
 import StateMachine from './components/StateMachine.js';
 import LandingGear from './components/LandingGear.js';
+import TrackDb from './components/trackdb.js';
 
 const APP_ROUTES = (
   <Route path="/" component={MainLayout}>
@@ -58,6 +59,7 @@ const APP_ROUTES = (
     <Route path="AuxProp" component={AuxProp} />
     <Route path="statemachine" component={StateMachine} />
     <Route path="landinggear" component={LandingGear} />
+    <Route path="trackdb" component={TrackDb} />
   </Route>
 );
 
