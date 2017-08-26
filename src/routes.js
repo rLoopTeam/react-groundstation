@@ -22,6 +22,7 @@ import Power_RawTemperatures from './components/power/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
 import HealthCheck from './components/HealthCheck.js';
 import HealthCheckOverview from './components/HealthCheckOverview.js';
+import HealthCheckDetailed from './components/HealthCheckDetailed.js';
 import AuxProp from './components/AuxProp.js';
 import Cooling from './components/Cooling.js';
 import StateMachine from './components/StateMachine.js';
@@ -54,7 +55,9 @@ const APP_ROUTES = (
     <Route path="DAQ" component={DAQ} />
     <Route path="healthcheck" component={HealthCheckOverview} />
     <Route path="healthcheck/overview" component={HealthCheckOverview} viewMode="overview" />
-    <Route path="healthcheck/detailed" component={HealthCheck} viewMode="detailed" />
+    <Route path="healthcheck/detailed" component={HealthCheckOverview} viewMode="detailed"/>
+    <Route path="healthcheck/detailed_health" component={HealthCheckDetailed} />
+
     <Route path="AuxProp" component={AuxProp} />
     <Route path="statemachine" component={StateMachine} />
     <Route path="landinggear" component={LandingGear} />
