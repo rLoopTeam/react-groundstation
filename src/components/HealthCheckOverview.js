@@ -407,7 +407,7 @@ class HealthCheckOverview extends Component {
     else {
       return (
         <div className="detailed-content">
-          <legend>Pod Ctitical Health</legend>
+          <legend>Pod Critical Health</legend>
             <div className="col-md-12">
               {this.criticalParams.map(function (item, index) {
                 if (item.group)
