@@ -19,27 +19,30 @@
 .danger-row {
 	background-color: #ff7f44;
 }
-.critical-row {
-	animation-name: critical-flash;
-    animation-duration: 0.5s;
-    animation-iteration-count: infinite;
-}
-
 .noData-row{
 	background-color: #A3A3A3;
 }
 
 .inhibited-row{
-	background-color: #f9ce80;
+	background-color: #F98652;
 }
 
 .faultarea {
     clear: both;
     margin-bottom: 23px;
 }
-
+.critical-row {
+    background-color: #f9ce80;
+}
+/*
+.critical-row {
+	animation-name: critical-flash;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
 @keyframes critical-flash {
     0%   {background-color: #d03535; color: white;}
     50%  {background-color: #ffffff; color: black;}
     100% {background-color: #d03535; color: white;}
 }
+*/
