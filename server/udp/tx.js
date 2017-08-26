@@ -43,7 +43,7 @@ module.exports = {
 
   transmitPodCommand: function (node, packetType, u32Block0, u32Block1, u32Block2, u32Block3) {
     // TODO Sequence counters
-   /*
+   
     // Find the IP and port for the node we're transmitting to
     var found = false;
     var port = 0;
@@ -66,7 +66,7 @@ module.exports = {
         u32Block0.toString(16) + ' ' + u32Block1.toString(16) + ' ' + u32Block2.toString(16) + ' ' + u32Block3.toString(16)
       );
     }
-    /*
+  
     var packet = [];
 
     // These if blocks look odd but I think it'll do the correct handling for everything
@@ -96,7 +96,6 @@ module.exports = {
         client2.close();
       });
     }
-    */
   }
 };
 

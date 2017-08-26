@@ -65,7 +65,7 @@ class RealTimeDataStore {
 
   retrieveDataParameter (parameterName) {
     var ret = {'Name': parameterName,
-      'Value': 'No data',
+      'Value': '?',
       'IsStale': true,
       'Units': '?',
       'PacketName': '?'};
