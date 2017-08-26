@@ -7,10 +7,9 @@ import faultFlagDefinitions from '../../config/faultFlagDefinitions.js';
 import nominalConditions from '../../config/nominalConditions.js';
 import createSocket from '../shared/socket';
 import './HealthCheck.css';
-var packetDefinitions = require('../../config/packetDefinitions.json');
+import packetDefinitions from '../../config/packetDefinitions.json';
 
 let socket = createSocket();
-
 class TrackDb extends Component {
   constructor (props) {
     super(props);
@@ -18,31 +17,30 @@ class TrackDb extends Component {
       streamManager: new StreamingPageManager()
     };
     this.trackParams = [];
-    for (var element in this.trackParams) {
+    packetDefinitions['packetDefinitions'].forEach(function (element) {
       if (element['Name'] === 'FCU Data') {
-        this.trackParams = element;
+        this.trackParams = element['Parameters'];
         return;
       }
-    }
+    }, this);
   }
-
   genTrackLabels () {
     let arr = [];
-    for (var item in this.trackParams) {
+    this.trackParams.forEach(function (element) {
       arr.push(
-            <div className="row" key={'dbParam'}>
-            <div>{item}</div>
-            <label>{item['Name']}</label>
-            <GenericParameterLabel
-                StreamingPageManager={this.state.streamManager}
-                parameter={item['Name']} hex={item.hex}/>
-        </div>
-        );
-    }
+        <div className="row" key={element['Name']}>
+        <label>{element['Name']}</label>
+        <GenericParameterLabel
+            StreamingPageManager={this.state.streamManager}
+            parameter={element['Name']}/>
+    </div>
+      );
+    }, this);
+    return arr;
   }
   render () {
     return (
-          <div className="Trackdb">
+          <div className="detailed-content">
           <legend>Raw Data</legend>
           <div className="col-md-12">
             {this.genTrackLabels()}
