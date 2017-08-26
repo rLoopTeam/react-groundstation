@@ -46,6 +46,7 @@ class RealTimeDataStore {
       for (var y = 0, len = this.rtDataStore.length; y < len; y++) {
         if (newDataPacket.parameters[x].name === this.rtDataStore[y].Name) {
           this.rtDataStore[y].Value = newDataPacket.parameters[x].value;
+          this.rtDataStore[y].RxTime = Date.now();
           found = true;
           break;
         }
@@ -67,13 +68,13 @@ class RealTimeDataStore {
     var ret = {'Name': parameterName,
       'Value': '?',
       'IsStale': true,
-      'Units': '?',
+      'Units': '',
       'PacketName': '?'};
 
     for (var y = 0, len = this.rtDataStore.length; y < len; y++) {
       if (parameterName === this.rtDataStore[y].Name) {
         ret.Value = this.rtDataStore[y].Value;
-        if ((this.date.getTime() - this.rtDataStore[y].RxTime) < 2000) { ret.IsStale = false; }
+        if ((Date.now() - this.rtDataStore[y].RxTime) < 2000) { ret.IsStale = false; }
 
         ret.Units = this.rtDataStore[y].Units;
         ret.PacketName = this.rtDataStore[y].PacketName;

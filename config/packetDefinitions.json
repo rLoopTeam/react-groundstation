@@ -4397,37 +4397,28 @@
                     "Name": "Node Temp"
                 },
                 {
-                    "units": "Amps",
                     "type": "float32",
+                    "units": "Amps",
                     "size": 4,
                     "Name": "Battery Current"
                 },
                 {
-                    "units": "Amps",
                     "type": "float32",
+                    "units": "Amps",
                     "size": 4,
                     "Name": "Charging Current"
                 },
                 {
-                    "units": "%",
                     "type": "float32",
+                    "units": "%",
                     "size": 4,
                     "Name": "State of Charge"
-                }
-            ]
-        },
-        {
-            "Name": "Power B Current Sensor",
-            "PacketType": 14337,
-            "Node": "Power Node B",
-            "DAQ": false,
-            "ParameterPrefix": "Power B Charger ",
-            "Parameters": [
-                {
-                    "type": "float32",
+                },
+				{
+                    "type": "uint8",
                     "units": "",
-                    "size": 4,
-                    "Name": "Current"
+                    "size": 1,
+                    "Name": "Latch Relay"
                 }
             ]
         },
@@ -4850,12 +4841,6 @@
                     "Name": "Current Position 1"
                 },
                 {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Limit Interrupt 1"
-                },
-                {
                     "type": "uint32",
                     "units": "A",
                     "size": 4,
@@ -4986,12 +4971,6 @@
                     "units": "",
                     "size": 4,
                     "Name": "Current Position 2"
-                },
-                {
-                    "type": "int32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Limit Interrupt 2"
                 },
                 {
                     "type": "uint8",
@@ -5655,38 +5634,29 @@
                     "Name": "Node Temp"
                 },
                 {
-                    "units": "Amps",
                     "type": "float32",
+                    "units": "Amps",
                     "size": 4,
                     "Name": "Battery Current"
                 },
                 {
-                    "units": "Amps",
                     "type": "float32",
+                    "units": "Amps",
                     "size": 4,
                     "Name": "Charging Current"
                 },
                 {
-                    "units": "%",
                     "type": "float32",
+                    "units": "%",
                     "size": 4,
                     "Name": "State of Charge"
-                }
-            ]
-        },
-        {
-            "Name": "Power A Current Sensor",
-            "PacketType": 14337,
-            "Node": "Power Node A",
-            "DAQ": false,
-            "ParameterPrefix": "Power A Charger ",
-            "Parameters": [
-                {
-                    "type": "float32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Current"
-                }
+                },
+				{
+					"type": "uint8",
+					"units": "",
+					"size": 1,
+					"Name": "Latch Relay"
+				}
             ]
         },
         {

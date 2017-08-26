@@ -5,12 +5,15 @@ class StreamPipeServer {
     this.dataStreamServer = io.of('/dataStreamServer');
     this.requestedParams = {};
     this.lastParams = {};
+    this.lastParamsStale = {};
 
     this.dataStreamServer.on('connection', function (socket) {
       var clientID = socket.id;
 
       self.lastParams[clientID] = {};
       self.requestedParams[clientID] = [];
+      self.lastParamsStale[clientID] = {};
+      self.timer;
 
       console.log(`StreamPipeServer: New client id ${socket.id}`);
 
@@ -42,6 +45,7 @@ class StreamPipeServer {
 
       var clientReady = true;
       rtDataStore.hasNewData.on('new_rtData', sendNewData);
+      self.timer = setInterval(sendNewData, 2000);
 
       /**
        * @param {object} newDataPacket: See realtimeDataStore.insertDataPacket for more info.
@@ -61,13 +65,14 @@ class StreamPipeServer {
             let paramData = rtDataStore.retrieveDataParameter(paramName);
 
             // Do not send what the client already has in their datastore.
-            if (paramData.Value === self.lastParams[clientID][paramName]) {
+            if (paramData.Value === self.lastParams[clientID][paramName] && paramData.IsStale === self.lastParamsStale[clientID][paramName]) {
               continue;
             }
 
             // Send and cache if they don't have it.
             newData.parameters.push(paramData);
             self.lastParams[clientID][paramName] = paramData.Value;
+            self.lastParamsStale[clientID][paramName] = paramData.IsStale;
           }
 
           socket.emit('new data burst', newData, function (data) { clientReady = true; });
@@ -76,6 +81,7 @@ class StreamPipeServer {
 
       socket.on('disconnect', function () {
         rtDataStore.hasNewData.removeListener('new_rtData', sendNewData);
+        clearInterval(self.timer);
         delete self.requestedParams[clientID];
         delete self.lastParams[clientID];
       });
