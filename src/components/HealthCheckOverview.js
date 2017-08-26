@@ -85,7 +85,13 @@ class HealthCheckOverview extends Component {
             'HE 3 Temperature',
             'HE 4 Temperature',
             'HE 5 Temperature',
-            'HE 6 Temperature'
+            'HE 6 Temperature',
+            'HE 13 Temperature',
+            'HE 14 Temperature',
+            'HE 15 Temperature',
+            'HE 16 Temperature',
+            'HE 17 Temperature',
+            'HE 18 Temperature'
           ]
         },
         'Hover engine temp right': {
@@ -97,7 +103,13 @@ class HealthCheckOverview extends Component {
             'HE 9 Temperature',
             'HE 10 Temperature',
             'HE 11 Temperature',
-            'HE 12 Temperature'
+            'HE 12 Temperature',
+            'HE 19 Temperature',
+            'HE 20 Temperature',
+            'HE 21 Temperature',
+            'HE 22 Temperature',
+            'HE 23 Temperature',
+            'HE 24 Temperature'
           ]
         },
         'Hover engine RPMs Left': {
