@@ -59,20 +59,7 @@ class FlightControl_FullAccel extends Component {
           </form>
 
         <legend>Full Accelerometer Data</legend>
-
-        <LineChart
-          id="AccelerometerChart"
-          StreamingPageManager={this.state.streamManager}
-          parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
-          hideUnits='true'
-          title="Accelerometer time-series"
-          yRange={[-20, 20]}
-          yAxisLabel="Gs"
-          xAxisLabel="Time"
-          totalPoints={120}
-        />
-
-        <div className="row margin-bottom-20px">
+        <div className="col-xs-6">
           <form className="form-inline col-xs-4">
             <div className="form-group">
                 <label htmlFor="a0_x">A1:X-Axis</label>
@@ -99,9 +86,7 @@ class FlightControl_FullAccel extends Component {
               </div>
             </div>
           </form>
-        </div>
 
-        <div className="row">
           <form className="form-inline col-xs-4">
             <div className="form-group">
 
@@ -120,12 +105,6 @@ class FlightControl_FullAccel extends Component {
               </div>
             </div>
           </form>
-
-        </div>
-
-        <br /><br />
-
-        <div className="row">
           <form className="form-inline col-xs-4">
             <div className="form-group">
                 <label htmlFor="a1_x">A2:X-Axis</label>
@@ -152,11 +131,6 @@ class FlightControl_FullAccel extends Component {
               </div>
             </div>
           </form>
-        </div>
-
-        <br />
-
-        <div className="row">
           <form className="form-inline col-xs-4">
             <div className="form-group">
 
@@ -176,9 +150,96 @@ class FlightControl_FullAccel extends Component {
             </div>
           </form>
         </div>
+        <div className="col-xs-6">
+          <LineChart
+            id="AccelerometerChart"
+            StreamingPageManager={this.state.streamManager}
+            parameters={['Accel 1 X Gs', 'Accel 1 Y Gs', 'Accel 1 Z Gs']}
+            hideUnits='true'
+            title="Accelerometer time-series"
+            yRange={[-20, 20]}
+            yAxisLabel="Gs"
+            xAxisLabel="Time"
+            totalPoints={120}
+          />
+        </div>
+        <br />
 
-        <br></br>
-        <br></br>
+        <legend>Threshold</legend>
+        <div className="row">
+        <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Accel thresholding active</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel Thresholding Active' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Accel threshold time</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel Threshold Time' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Accel threshold</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel Threshold' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Accel threshold count</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Accel Threshold Counter' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Decel thresholding active</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Decel Thresholding Active' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Decel threshold time</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Decel Threshold Time' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Decel threshold</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Decel Threshold' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+          <form className="form-inline col-xs-4">
+            <div className="form-group">
+
+              <label htmlFor="a0_flags">Decel threshold counter</label>
+              <div>
+                <GenericParameterInput StreamingPageManager={this.state.streamManager} parameter='Decel Threshold Counter' hideUnits='true' readOnly='true'/>
+              </div>
+            </div>
+          </form>
+        </div>
 
         <legend>Device Status</legend>
         <div className="row">

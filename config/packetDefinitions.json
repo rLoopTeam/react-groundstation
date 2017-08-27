@@ -3727,25 +3727,49 @@
                     "type": "uint8",
                     "units": "",
                     "size": 1,
-                    "Name": "Thresholding Active"
+                    "Name": "Accel Thresholding Active"
                 },
                 {
-                    "type": "uint32",
-                    "units": "",
-                    "size": 4,
-                    "Name": "Thresholding Time"
+                    "type": "uint16",
+                    "units": "x10ms",
+                    "size": 2,
+                    "Name": "Accel Threshold Time"
                 },
                 {
                     "type": "int32",
-                    "units": "",
+                    "units": "mm ss",
                     "size": 4,
-                    "Name": "Thresholding Accel"
+                    "Name": "Accel Threshold"
                 },
                 {
-                    "type": "uint32",
+                    "type": "uint16",
+                    "units": "x10ms",
+                    "size": 2,
+                    "Name": "Accel Threshold Counter"
+                },
+                {
+                    "type": "uint8",
                     "units": "",
+                    "size": 1,
+                    "Name": "Decel Thresholding Active"
+                },
+                {
+                    "type": "uint16",
+                    "units": "x10ms",
+                    "size": 2,
+                    "Name": "Decel Threshold Time"
+                },
+                {
+                    "type": "int32",
+                    "units": "mm ss",
                     "size": 4,
-                    "Name": "Thresholding Counter"
+                    "Name": "Decel Threshold"
+                },
+                {
+                    "type": "uint16",
+                    "units": "x10ms",
+                    "size": 2,
+                    "Name": "Decel Threshold Counter"
                 }
             ]
         },
