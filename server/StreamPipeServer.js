@@ -60,7 +60,7 @@ class StreamPipeServer {
             parameters: []
           };
 
-          if (self.requestedParams === undefined) {
+          if (self.requestedParams[clientID] === undefined) {
             return;
           }
 

@@ -257,16 +257,16 @@ class HealthCheckOverview extends Component {
           ]
         },
         'Brake 2 Limit Switches': {
-          min: 1,
-          max: 2,
+          min: 0,
+          max: 1,
           params: [
             'Limit Extend 2',
             'Limit Retract 2'
           ]
         },
         'LGU Limit Switches': {
-          min: 1,
-          max: 2,
+          min: 0,
+          max: 1,
           params: [
             'LGU Switch Extend 1',
             'LGU Switch Extend 2',

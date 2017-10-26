@@ -36,7 +36,6 @@ export const STATEMACHINE_COMMANDS = [
   'TEST_MODE',
   'DRIVE',
   'FLIGHT_PREP',
-  'ARMED_WAIT',
   'READY'
 ];
 
@@ -44,7 +43,7 @@ export const STATEMACHINE_TRANSITIONS = {
   'IDLE': [
     'TEST_MODE',
     'DRIVE',
-    'ARMED_WAIT'
+    'FLIGHT_PREP'
   ],
   'TEST_MODE': [
     'IDLE'
@@ -52,13 +51,9 @@ export const STATEMACHINE_TRANSITIONS = {
   'DRIVE': [
     'IDLE'
   ],
-  'ARMED_WAIT': [
-    'IDLE',
-    'FLIGHT_PREP'
-  ],
   'FLIGHT_PREP': [
-    'ARMED_WAIT',
-    'READY'
+    'READY',
+    'IDLE'
   ],
   'READY': [
     'FLIGHT_PREP'
