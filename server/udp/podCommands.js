@@ -194,6 +194,10 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001201, 0x0, 0x0);
   }
 
+  function FCUStreamingControlStart_ASI () {
+    udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000001, 0x00001701, 0x0, 0x0);
+  }
+
   function FCUStreamingControlStop_Accel () {
     udp.tx.transmitPodCommand('Flight Control', 0x0100, 0x00000000, 0x00000000, 0x0, 0x0);
   }
@@ -350,6 +354,22 @@ module.exports = function (udp) {
     udp.tx.transmitPodCommand('Power Node B', 0x3020, 0x11229988, 0x0, 0x0, 0x0);
   }
 
+  function PowerAEnableAutoBalance () {
+    udp.tx.transmitPodCommand('Power Node A', 0x3022, 0x34566543, 0x1, 0, 0x0);
+  }
+
+  function PowerBEnableAutoBalance () {
+    udp.tx.transmitPodCommand('Power Node B', 0x3022, 0x34566543, 0x1, 0, 0x0);
+  }
+
+  function PowerADisableAutoBalance () {
+    udp.tx.transmitPodCommand('Power Node A', 0x3022, 0x34566543, 0x0, 0, 0x0);
+  }
+
+  function PowerBDisableAutoBalance () {
+    udp.tx.transmitPodCommand('Power Node B', 0x3022, 0x34566543, 0x0, 0, 0x0);
+  }
+
   function PowerAStopAllManualDischarging () {
     udp.tx.transmitPodCommand('Power Node A', 0x3021, 0x34566543, 0x0, 0, 0x0);
   }
@@ -391,8 +411,21 @@ module.exports = function (udp) {
   }
 
   // Hover Engines
-  function FCUHover_Enable () {
-    udp.tx.transmitPodCommand('Flight Control', 0x0000, 0x00, 0x00000000, 0x0, 0x0); // TODO
+  function FCUThrottle_DevModeEnable () {
+    udp.tx.transmitPodCommand('Flight Control', 0x1500, 0x11223344, 0x00000000, 0x0, 0x0); 
+  }
+
+  function FCUThrottle_DevModeDisable () {
+    udp.tx.transmitPodCommand('Flight Control', 0x1500, 0x00, 0x00000000, 0x0, 0x0); 
+  }
+
+  //Engines: 0-7 individual engines, 8 = all, 
+  //Throttle: rpm: 200 or 500
+  //ramp: 0: step, 1: ramp
+  //ex: (8,200,1)
+  function FCUHover_SetThrottle(engines, throttle, ramp)
+  {
+    udp.tx.transmitPodCommand('Flight Control', 0x1501, engines, throttle, ramp, 0x0); 
   }
 
   function FCUHover_Disable () {
@@ -563,6 +596,7 @@ module.exports = function (udp) {
     FCUStreamingControlStart_MotorsRaw,
     FCUStreamingControlStart_Lasers,
     FCUStreamingControlStart_ForwardLaser,
+    FCUStreamingControlStart_ASI,
     FCUAccel_FineZero,
     FCUAccel_AutoZero,
 
@@ -588,6 +622,10 @@ module.exports = function (udp) {
     PowerAStopCharging,
     PowerBStartCharging,
     PowerBStopCharging,
+    PowerAEnableAutoBalance,
+    PowerBEnableAutoBalance,
+    PowerADisableAutoBalance,
+    PowerBDisableAutoBalance,
     PowerAStartDischarging,
     PowerAStopDischarging,
     PowerBStartDischarging,
@@ -617,7 +655,9 @@ module.exports = function (udp) {
     PodSafePowerNodeB,
     ForcePreRunPhase,
 
-    FCUHover_Enable,
+    FCUThrottle_DevModeEnable,
+    FCUThrottle_DevModeDisable,
+    FCUHover_SetThrottle,
     FCUHover_Disable,
     FCUHover_EnableStaticHovering,
     FCUHover_ReleaseStaticHovering,

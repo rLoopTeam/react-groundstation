@@ -154,6 +154,9 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       'FlightControl:Stream_MotorsRaw': (data) => {
         podCommands.FCUStreamingControlStart_MotorsRaw();
       },
+      'FlightControl:Stream_ASI': (data) => {
+        podCommands.FCUStreamingControlStart_ASI();
+      },
 
       // Contrast sensor streaming control
       'FlightControl_Contrast:StartStream': () => {
@@ -184,11 +187,19 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       },
 
         // Hover Engines
-      'FlightControl_Hover:Enable': () => {
-        podCommands.FCUHover_Enable();
+      'FlightControl_ThrottleDevMode:Enable': () => {
+        podCommands.FCUThrottle_DevModeEnable();
       },
-      'FlightControl_Hover:Disable': () => {
-        podCommands.FCUHover_Disable();
+      'FlightControl_ThrottleDevMode:Disable': () => {
+        podCommands.FCUThrottle_DevModeDisable();
+      },
+
+      //Engines: 0-7 individual engines, 8 = all, 
+      //throttle: rpm: 200 or 500
+      //ramp: 0: step, 1: ramp
+      //ex: (8,200,1)
+      'FCUHover_SetThrottle': (data) => {
+        podCommands.FCUHover_SetThrottle(data.engines, data.throttle, data.ramp);
       },
       'FlightControl_Hover:EnableStaticHovering': () => {
         podCommands.FCUHover_EnableStaticHovering();
@@ -290,6 +301,28 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
         podCommands.PowerBStopCharging();
       },
 
+      'PowerA:EnableAutoBalance': () => {
+        podCommands.PowerAEnableAutoBalance();
+      },
+      'PowerB:EnableAutoBalance': () => {
+        podCommands.PowerBEnableAutoBalance();
+      },
+
+      'PowerA:DisableAutoBalance': () => {
+        podCommands.PowerADisableAutoBalance();
+      },
+      'PowerB:DisableAutoBalance': () => {
+        podCommands.PowerBDisableAutoBalance();
+      },
+
+      'PowerA:PowerAStopAllManualDischarging': () => {
+        podCommands.PowerAStopAllManualDischarging();
+      },
+
+      'PowerB:PowerAStopAllManualDischarging': () => {
+        podCommands.PowerAStopAllManualDischarging();
+      },
+
       'PowerA:StartDischarging': (data) => {
         podCommands.PowerAStartDischarging(data);
       },
@@ -303,7 +336,6 @@ module.exports = function (io, udp, room, logger, podCommands, commConfig, daq, 
       'PowerB:StopDischarging': (data) => {
         podCommands.PowerBStopDischarging(data);
       },
-
       'PowerA:StopManualDischarging': (data) => {
         podCommands.PowerAStopAllManualDischarging(data);
       },

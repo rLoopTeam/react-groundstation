@@ -34,7 +34,6 @@ class Power_Overview extends Component {
       {label: 'Pack Volts', value: `Power ${props.route.L} BMS Pack Volts`},
       {label: 'Highest Cell Volts', value: `Power ${props.route.L} BMS Highest Cell Volts`},
       {label: 'Lowest Cell Volts', value: `Power ${props.route.L} BMS Lowest Cell Volts`},
-      {label: 'Node Temp', value: `Power ${props.route.L} BMS Node Temp`},
       {label: 'Voltage Updates', value: `Power ${props.route.L} BMS Voltage Updates`},
       {label: 'Temp Scan Count', value: `Power ${props.route.L} BMS Temp Scan Count`},
       {label: 'Latch Relay', value: `Power ${props.route.L} BMS Latch Relay`}
@@ -43,7 +42,7 @@ class Power_Overview extends Component {
     this.cellIndexes = [...(new Array(18)).keys()];
 
     this.labels3 = [
-      {label: 'Pressure', value: `Power B Node Pressure`}
+      {label: 'Pressure', value: `Power B BMS Node Pressure`}
     ];
   }
 

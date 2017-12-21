@@ -37,7 +37,9 @@ class Power_Overview extends Component {
       {label: 'Node Pressure', value: `Power ${props.route.L} BMS Node Pressure`},
       {label: 'Node Temp', value: `Power ${props.route.L} BMS Node Temp`},
       {label: 'Voltage Updates', value: `Power ${props.route.L} BMS Voltage Updates`},
-      {label: 'Temp Scan Count', value: `Power ${props.route.L} BMS Temp Scan Count`}
+      {label: 'Temp Scan Count', value: `Power ${props.route.L} BMS Temp Scan Count`},
+      {label: 'Latch Relay', value: `Power ${props.route.L} BMS Latch Relay`},
+      {label: 'Balance State', value: `Power ${props.route.L} BMS Balance State`}
     ];
 
     this.cellIndexes = [...(new Array(18)).keys()];
@@ -82,9 +84,19 @@ class Power_Overview extends Component {
     socket.emit(`Power${this.props.route.L}:StopDischarging`, data);
   }
 
-  stopManualDischarging (data, e) {
+  stopAllManualDischarging (data, e) {
     e.preventDefault();
-    socket.emit(`Power${this.props.route.L}:StopManualDischarging`, data);
+    socket.emit(`Power${this.props.route.L}:StopAllManualDischarging`, data);
+  }
+
+  EnableAutoBalance (data, e) {
+    e.preventDefault();
+    socket.emit(`Power${this.props.route.L}:EnableAutoBalance`, data);
+  }
+
+  DisableAutoBalance (data, e) {
+    e.preventDefault();
+    socket.emit(`Power${this.props.route.L}:DisableAutoBalance`, data);
   }
 
   requestBMS (data, e) {
@@ -152,7 +164,9 @@ class Power_Overview extends Component {
               </div>
             </div>
             <div className="row">
-              <button type="button" className="btn btn-success" onClick={this.stopManualDischarging.bind(this, {})} style={{margin: 10}}>Stop Manual Discharging</button>
+              <button type="button" className="btn btn-success" onClick={this.EnableAutoBalance.bind(this, {})} style={{margin: 10}}>Enable Auto Balancing</button>
+              <button type="button" className="btn btn-success" onClick={this.DisableAutoBalance.bind(this, {})} style={{margin: 10}}>Disable Auto Balancing</button>
+              <button type="button" className="btn btn-success" onClick={this.stopAllManualDischarging.bind(this, {})} style={{margin: 10}}>Turn Off All Resistors</button>
             </div>
             {
               this.cellIndexes.map(function (_, cellIndex) {
@@ -166,6 +180,16 @@ class Power_Overview extends Component {
                           <GenericParameterLabel
                             StreamingPageManager={_this.state.streamManager}
                             parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Voltage`}/>
+                        </div>
+                      </div>
+                      <div className="col-sm-5">
+                        <label>Discharging:</label>
+                      </div>
+                      <div className="row">
+                        <div className="col-sm-3">
+                          <GenericParameterLabel
+                            StreamingPageManager={_this.state.streamManager}
+                            parameter={`Power ${this.props.route.L} BMS ${cellIndex + 1} Module Resistor`}/>
                         </div>
                       </div>
                       <button type="button" className="btn btn-success" onClick={this.startDischarge.bind(this, {cellIndex: cellIndex})} style={{margin: 10}}>Start Discharging</button>

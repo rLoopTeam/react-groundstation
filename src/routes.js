@@ -19,6 +19,7 @@ import CommConfig from './components/CommConfig';
 import DAQ from './components/DAQ';
 import Power_Overview from './components/power/overview';
 import Power_Comp2 from './components/power/Comp2Power.js';
+import Power_Autodesk from './components/power/AutoDeskDemo.js';
 import Power_RawTemperatures from './components/power/rawTemps';
 import PowerNodeConfig from './components/PowerNodeConfig.js';
 import HealthCheck from './components/HealthCheck.js';
@@ -39,6 +40,7 @@ const APP_ROUTES = (
     <Route path="powerBOverview" component={Power_Overview} L="B"/>
     <Route path="powerBRawTemps" component={Power_RawTemperatures} L="B" />
     <Route path="powerComp2" component={Power_Comp2} L="A"/>
+    <Route path="AutoDeskDemo" component={Power_Autodesk} L="A"/>
     <Route path="cooling" component={Cooling} />
     <Route path="lgu" component={LGU} />
     <Route path="AutoSequence" component={AutoSequence} />

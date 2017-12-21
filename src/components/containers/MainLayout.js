@@ -24,7 +24,8 @@ class MainLayout extends Component {
         children: [
           {name: 'Overview', location: '/powerAOverview'},
           {name: 'Raw Temperatures', location: '/powerARawTemps'},
-          {name: 'Comp 2', location: '/powerComp2'}
+          {name: 'Comp 2', location: '/powerComp2'},
+          {name: 'Autodesk', location: '/AutoDeskDemo'}
         ]
       },
       {

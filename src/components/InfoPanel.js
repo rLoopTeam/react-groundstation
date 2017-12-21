@@ -38,9 +38,9 @@ class InfoPanel extends Component {
 
           <div className="InfoPanel-content">
             <button className="btn btn-primary col-sm-1" onClick={this.toggleModalVisibility.bind(this)}>Faults</button>
-            <div className="col-sm-2">Power A Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node A network status'/></div>
-            <div className="col-sm-2">Power B Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node B network status'/></div>
-            <div className="col-sm-2">FCU Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Flight Control network status'/></div>
+            <div className="col-sm-1">Power A Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Power Node A network status'/></div>
+            <div className="col-sm-1">LGU Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Landing Gear network status'/></div>
+            <div className="col-sm-1">FCU Status:<GenericParameterLabel StreamingPageManager={this.state.streamManager} parameter='Flight Control network status'/></div>
             <Stop />
           </div>
         </div>
